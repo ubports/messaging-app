@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=tr("Messaging")
+GenericName=tr("Messaging App")
+Comment=tr("Messaging application")
+Exec=messaging-app %u
+Terminal=false
+Icon=messaging-app
+MimeType=x-scheme-handler/contact;x-scheme-handler/call
+X-Ubuntu-Touch=true
+X-Ubuntu-StageHint=SideStage
+X-Ubuntu-Gettext-Domain=messaging-app

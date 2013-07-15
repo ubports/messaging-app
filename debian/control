@@ -1,0 +1,62 @@
+Source: messaging-app
+Section: x11
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: cmake,
+               debhelper (>= 9),
+               dh-translations,
+               libgl1-mesa-dev | libgl-dev,
+               libgles2-mesa-dev,
+               libicu-dev,
+               pkg-config,
+               python,
+               qt5-default,
+               qtbase5-dev (>= 5.0),
+               qtdeclarative5-dev (>= 5.0)
+Standards-Version: 3.9.4
+Vcs-Bzr: lp:messaging-app
+Vcs-Browser: https://bazaar.launchpad.net/~phablet-team/messaging-app/trunk/files
+
+Package: messaging-app
+Architecture: i386 amd64 armhf
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         dbus-x11,
+         libicu48,
+         qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu
+Recommends: unity8 (>= 7.81.0~),
+Description: Messaging application for Ubuntu
+ An application to send and receive messages.
+
+Package: messaging-app-dbg
+Architecture: i386 amd64 armhf
+Section: debug
+Priority: extra
+Depends: ${misc:Depends},
+         messaging-app (= ${binary:Version}),
+Description: debugging symbols for messaging-app
+ This package contains the debugging symbols for messaging-app
+
+Package: messaging-app-autopilot
+Architecture: all
+Section: debug
+Priority: extra
+Depends: ${misc:Depends},
+         autopilot-qt5,
+         libqt5test5,
+         libqt5widgets5,
+         messaging-app (>= ${binary:Version}),
+         python-autopilot
+Description: autopilot tests for messaging-app
+ This package contains the autopilot tests for messaging-app
+
+Package: messaging-app-connected-autopilot
+Architecture: all
+Section: debug
+Priority: extra
+Depends: ${misc:Depends},
+         messaging-app (= ${binary:Version}),
+         libautopilot-qt,
+         python-autopilot
+Description: connected autopilot tests for messaging-app
+ This package contains the connected autopilot tests for messaging-app

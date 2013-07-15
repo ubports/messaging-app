@@ -1,0 +1,43 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node xmlns:dox="http://www.ayatana.org/dbus/dox.dtd">
+    <dox:d><![CDATA[
+      @mainpage
+
+      An interface to the messaging application.
+    ]]></dox:d>
+    <interface name="com.canonical.MessagingApp" xmlns:dox="http://www.ayatana.org/dbus/dox.dtd">
+        <dox:d>
+          An interface to the messaging application.
+        </dox:d>
+        <method name="ShowMessages">
+            <dox:d><![CDATA[
+               Request to open the messages tab.
+            ]]></dox:d>
+            <arg name="number" type="s" direction="in"/>
+        </method>
+        <method name="ShowMessage">
+            <dox:d><![CDATA[
+                Request to open the messages tab and show the given message.
+            ]]></dox:d>
+            <arg name="messageId" type="s" direction="in"/>
+        </method>
+        <method name="NewMessage">
+            <dox:d><![CDATA[
+               Request to open the messages tab to send a new message.
+            ]]></dox:d>
+        </method>
+        <method name="SendMessage">
+            <dox:d><![CDATA[
+               Request to send a message to a contact.
+            ]]></dox:d>
+            <arg name="number" type="s" direction="in"/>
+            <arg name="message" type="s" direction="in"/>
+        </method>
+        <method name="SendAppMessage">
+            <dox:d><![CDATA[
+                Send a message to the running application.
+            ]]></dox:d>
+            <arg name="message" type="s" direction="in"/>
+        </method>
+    </interface>
+</node>

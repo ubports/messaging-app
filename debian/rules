@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+override_dh_install:
+	dh_install --fail-missing
+
+%:
+	dh $@ --parallel --with translations
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Debug
+
+override_dh_auto_test:
+	make -C obj-$(DEB_HOST_GNU_TYPE) test
+
+override_dh_translations:
+	# Override dh_translations to work around http://pad.lv/1183262.
+	# Unfortunately, the default build directory is not exposed
+	# (see http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601774).
+	$(MAKE) -C obj-$(DEB_HOST_GNU_TYPE) messaging-app.pot
+
+.PHONY: override_dh_strip
+override_dh_strip:
+	dh_strip --dbg-package=messaging-app-dbg

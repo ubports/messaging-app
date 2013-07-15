@@ -1,0 +1,61 @@
+/*
+ * Copyright (C) 2012-2013 Canonical, Ltd.
+ *
+ * Authors:
+ *  Olivier Tilloy <olivier.tilloy@canonical.com>
+ *
+ * This file is part of messaging-app.
+ *
+ * messaging-app is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 3.
+ *
+ * messaging-app is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Qt
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDir>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusConnectionInterface>
+#include <QtDBus/QDBusReply>
+
+inline bool isRunningInstalled() {
+    static bool installed = (QCoreApplication::applicationDirPath() ==
+                             QDir(("@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_BINDIR@")).canonicalPath());
+    return installed;
+}
+
+inline QString messagingAppDirectory() {
+    if (isRunningInstalled()) {
+        return QString("@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/");
+    } else {
+        return QString("@CMAKE_SOURCE_DIR@/src/qml/");
+    }
+}
+
+inline QString ubuntuPhonePluginPath() {
+    if (isRunningInstalled()) {
+        return QString::null;
+    } else {
+        return QString("@CMAKE_SOURCE_DIR@/");
+    }
+}
+
+inline bool isMessagingApplicationInstance() {
+    return QCoreApplication::applicationName() == "MessagingApp";
+}
+
+inline bool isMessagingApplicationRunning() {
+    QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered("com.canonical.MessagingApp");
+    if (reply.isValid()) {
+        return reply.value();
+    }
+    return false;
+}
