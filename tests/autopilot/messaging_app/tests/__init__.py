@@ -15,8 +15,6 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals, GreaterThan
 
-from messaging_app.emulators.communication_panel import CommunicationPanel
-
 from messaging_app.emulators.utils import Utils
 
 import os
@@ -74,10 +72,6 @@ class MessagingAppTestCase(AutopilotTestCase):
     def get_main_view(self):
         return self.app.select_single("QQuickView")
 
-    def get_tabs(self):
-        """Returns the top tabs bar."""
-        return self.app.select_single("NewTabBar")
-
     def click_item(self, item, delay=0.1):
         """Does a mouse click on the passed item, and moved the mouse there
            before"""
@@ -90,28 +84,12 @@ class MessagingAppTestCase(AutopilotTestCase):
         sleep(delay)
         self.pointing_device.click()
 
-    def switch_to_conversation_tab(self):
-        tabs_bar = self.get_tabs()
-        conversation_pane = self.utils.get_conversations_pane()
-        self.click_item(tabs_bar)
-
-        conversations_tab_button = self.utils.get_conversations_tab_button()
-        self.assertThat(conversations_tab_button.opacity,
-                        Eventually(GreaterThan(0.35)))
-        self.click_item(conversations_tab_button)
-
-        self.assertThat(conversation_pane.isCurrent, Eventually(Equals(True)))
-
     def reveal_toolbar(self):
         main_view = self.get_main_view()
         x_line = main_view.x + main_view.width * 0.5
         start_y = main_view.y + main_view.height - 1
         stop_y = start_y - 200
         self.pointing_device.drag(x_line, start_y, x_line, stop_y)
-
-    @property
-    def communication_panel(self):
-        return CommunicationPanel(self.app)
 
     @property
     def utils(self):

@@ -23,10 +23,3 @@ class Utils(object):
         buttons = tool_bar.select_many("Button")
         return buttons[index+1]
 
-    def get_conversations_tab_button(self):
-        return self.app.select_single("AbstractButton", buttonIndex=4)
-
-    def get_conversations_pane(self):
-        return self.app.select_single(
-            "PageStack", objectName="communicationsStack")
-
