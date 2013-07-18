@@ -15,8 +15,6 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals, GreaterThan
 
-from connected_tests.emulators.communication_panel import CommunicationPanel
-
 import os
 import shutil
 import ConfigParser
@@ -56,9 +54,9 @@ class MessagingAppTestCase(AutopilotTestCase):
     def setUp(self):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(MessagingAppTestCase, self).setUp()
-        self.delete_call_sms_logs()
+        #self.delete_call_sms_logs()
 
-        self.addCleanup(self.restore_call_sms_logs)
+        #self.addCleanup(self.restore_call_sms_logs)
 
         if os.path.exists(self.local_location):
             self.launch_test_local()
@@ -87,79 +85,3 @@ class MessagingAppTestCase(AutopilotTestCase):
     def get_main_view(self):
         return self.app.select_single("QQuickView")
 
-    def get_tabs(self):
-        """Returns the top tabs bar."""
-        return self.app.select_single("NewTabBar")
-
-    def get_conversations_tab_button(self):
-        return self.app.select_single("AbstractButton", buttonIndex=4)
-
-    def get_conversations_pane(self):
-        return self.app.select_single(
-            "PageStack", objectName="communicationsStack")
-
-    def switch_to_conversation_tab(self):
-        tabs_bar = self.get_tabs()
-        conversation_pane = self.get_conversations_pane()
-        self.pointing_device.click_object(tabs_bar)
-
-        conversations_tab_button = self.get_conversations_tab_button()
-        self.assertThat(conversations_tab_button.opacity,
-                        Eventually(GreaterThan(0.35)))
-        self.pointing_device.click_object(conversations_tab_button)
-
-        self.assertThat(conversation_pane.isCurrent, Eventually(Equals(True)))
-
-    def number_to_object_name(self, string):
-
-        keys = {
-            'buttonOne' : '1',
-            'buttonTwo' : '2',
-            'buttonThree' : '3',
-            'buttonFour' : '4',
-            'buttonFive' : '5',
-            'buttonSix' : '6',
-            'buttonSeven' : '7',
-            'buttonEight' : '8',
-            'buttonNine' : '9',
-            'buttonZero' : '0',
-            'buttonHash' : '#',
-            'buttonAsterisk' : '*'
-        }
-        for key, value in keys.items():
-            if value == string:
-                return key
-
-    def dial_number(self, number):
-        for keys in str(number):
-            objectName = self.number_to_object_name(keys)
-            button = self.communication_panel.select_single_retry("KeypadButton", objectName=objectName)
-            self.pointing_device.click_object(button)
-
-    def reveal_toolbar(self):
-        main_view = self.get_main_view()
-        x_line = main_view.x + main_view.width * 0.5
-        start_y = main_view.y + main_view.height - 1
-        stop_y = start_y - 200
-        self.pointing_device.drag(x_line, start_y, x_line, stop_y)
-
-    def delete_call_sms_logs(self):
-        if os.path.exists(self.ORIGINAL):
-            shutil.move(self.ORIGINAL, self.BACKUP)
-            self.assertThat(
-                lambda: os.path.exists(self.BACKUP), Eventually(Equals(True)))
-        else:
-            pass
-
-    def restore_call_sms_logs(self):
-        if os.path.exists(self.BACKUP):
-            shutil.rmtree(self.ORIGINAL)
-            self.assertThat(lambda: os.path.exists(self.ORIGINAL), Eventually(Equals(False)))
-            shutil.move(self.BACKUP, self.ORIGINAL)
-            self.assertTrue(lambda: os.path.exists(self.ORIGINAL), Eventually(Equals(True)))
-        else:
-            pass
-            
-    @property
-    def communication_panel(self):
-        return CommunicationPanel(self.app)
