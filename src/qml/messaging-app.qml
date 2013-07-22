@@ -21,6 +21,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 
 MainView {
     id: mainView
@@ -65,11 +66,17 @@ MainView {
         id: threadDelegate
         Item {
             property bool selected: false
-            // FIXME: use address-book-service
-            property bool unknownContact: true
+            property bool unknownContact: contactWatcher.contactId == ""
             anchors.left: parent.left
             anchors.right: parent.right
             height: units.gu(10)
+
+
+            ContactWatcher {
+                id: contactWatcher
+                phoneNumber: participants[0]
+            }
+
             Connections {
                 target: mainView
                 onSelectionModeChanged: {
@@ -95,12 +102,19 @@ MainView {
                 anchors.left: parent.left
                 anchors.leftMargin: units.gu(1)
                 image: Image {
-                    // TODO: request avatar
-                    source: unknownContact ? Qt.resolvedUrl("assets/avatar-default.png") : ""
+                    source: {
+                        if(!unknownContact) {
+                            if (contactWatcher.avatar != "") {
+                                return contactWatcher.avatar
+                            }
+                        }
+                        return Qt.resolvedUrl("assets/avatar-default.png")
+                    }
                 }
                 MouseArea {
                     anchors.fill: avatar
                     onClicked: PopupUtils.open(newcontactPopover, avatar)
+                    enabled: unknownContact
                 }
             }
 
@@ -112,8 +126,7 @@ MainView {
                 anchors.right: parent.right
                 anchors.rightMargin: units.gu(1)
                 fontSize: "large"
-                // TODO: do not assume the first participant is the final contact
-                text: participants == undefined ? "Unknown" : participants[0]
+                text: unknownContact ? contactWatcher.phoneNumber : contactWatcher.alias
             }
 
             Label {
