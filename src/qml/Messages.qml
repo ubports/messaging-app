@@ -67,6 +67,10 @@ Page {
                 filterProperty: "threadId"
                 filterValue: threadId
             }
+            HistoryFilter {
+                filterProperty: "accountId"
+                filterValue: telepathyHelper.accountId
+            }
         }
     }
 
@@ -105,7 +109,7 @@ Page {
         cacheBuffer: selectionMode ? units.gu(10) * count : 320
         delegate: MessageDelegate {
             message: textMessage
-            incoming: sender != "self"
+            incoming: senderId != "self"
             timestamp: timestamp
 
             Connections {

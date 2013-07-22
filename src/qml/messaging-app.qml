@@ -224,6 +224,10 @@ MainView {
                 cacheBuffer: selectionMode ? units.gu(10) * count : 320
                 model: HistoryThreadModel {
                     type: HistoryThreadModel.EventTypeText
+                    filter: HistoryFilter {
+                        filterProperty: "accountId"
+                        filterValue: telepathyHelper.accountId
+                    }
                 }
                 delegate: threadDelegate
             }
