@@ -36,6 +36,10 @@ MainView {
             selectionMode = false
         }
     }
+    Component.onCompleted: {
+        Theme.name = "Ubuntu.Components.Themes.SuruGradient"
+    }
+
 
     signal applicationReady
 
@@ -64,48 +68,25 @@ MainView {
 
     Component {
         id: threadDelegate
-        Item {
-            property bool selected: false
-            property bool unknownContact: contactWatcher.contactId == ""
+        ListItem.Subtitled {
+            //property bool selected: false
+            property bool unknownContact: delegateHelper.contactId == ""
             anchors.left: parent.left
             anchors.right: parent.right
             height: units.gu(10)
-
-
-            ContactWatcher {
-                id: contactWatcher
-                phoneNumber: participants[0]
-            }
-
-            Connections {
-                target: mainView
-                onSelectionModeChanged: {
-                    if (!selectionMode) {
-                        selected = false
-                    }
-                }
-            }
-
-            // FIXME: temporary solution to display selected threads
-            Rectangle {
-                anchors.fill: parent
-                height: units.gu(2)
-                width: units.gu(2)
-                color: "gray"
-                opacity: 0.3
-                visible: selected
-            }
-
-            UbuntuShape {
+            text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
+            subText: eventTextMessage == undefined ? "" : eventTextMessage
+            removable: true
+            icon: UbuntuShape {
                 id: avatar
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: units.gu(1)
+                height: units.gu(6)
+                width: units.gu(6)
                 image: Image {
+                    anchors.fill: parent
                     source: {
                         if(!unknownContact) {
-                            if (contactWatcher.avatar != "") {
-                                return contactWatcher.avatar
+                            if (delegateHelper.avatar != "") {
+                                return delegateHelper.avatar
                             }
                         }
                         return Qt.resolvedUrl("assets/avatar-default.png")
@@ -117,63 +98,74 @@ MainView {
                     enabled: unknownContact
                 }
             }
-
-            Label {
-                id: contactName
-                anchors.top: avatar.top
-                anchors.left: avatar.right
-                anchors.leftMargin: units.gu(1)
-                anchors.right: parent.right
-                anchors.rightMargin: units.gu(1)
-                fontSize: "large"
-                text: unknownContact ? contactWatcher.phoneNumber : contactWatcher.alias
+            onClicked: {
+                if (mainView.selectionMode) {
+                    selected = !selected
+                    if (selected) {
+                        selectionCount = selectionCount + 1
+                    } else {
+                        selectionCount = selectionCount - 1
+                    }
+                } else {
+                    var properties = {}
+                    properties["threadId"] = threadId
+                    properties["number"] = participants[0]
+                    mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+                }
+            }
+            onPressAndHold: {
+                mainView.selectionMode = true
+                selected = true
+                selectionCount = 1
             }
 
-            Label {
-                id: message
-                anchors.top: contactName.bottom
-                anchors.topMargin: units.gu(1)
-                anchors.left: avatar.right
-                anchors.leftMargin: units.gu(1)
-                anchors.right: parent.right
-                anchors.rightMargin: units.gu(1)
-                elide: Text.ElideRight
-                fontSize: "medium"
-                text: eventTextMessage == undefined ? "" : eventTextMessage
-            }
-
-            Image {
-                anchors.bottom: parent.bottom
-                source: Qt.resolvedUrl("assets/horizontal_divider.png")
-            }
-
-            MouseArea {
-                anchors {
-                    left: avatar.right
-                    right: parent.right
-                    top: parent.top
-                    bottom: parent.bottom
+            Item {
+                id: delegateHelper
+                property alias phoneNumber: watcherInternal.phoneNumber
+                property alias alias: watcherInternal.alias
+                property alias avatar: watcherInternal.avatar
+                property alias contactId: watcherInternal.contactId
+                ContactWatcher {
+                    id: watcherInternal
+                    phoneNumber: participants[0]
                 }
 
-                onClicked: {
-                    if (mainView.selectionMode) {
-                        selected = !selected
-                        if (selected) {
-                            selectionCount = selectionCount + 1
-                        } else {
-                            selectionCount = selectionCount - 1
+                Connections {
+                    target: mainView
+                    onSelectionModeChanged: {
+                        if (!selectionMode) {
+                            selected = false
                         }
-                    } else {
-                        var properties = {}
-                        properties["threadId"] = threadId
-                        properties["number"] = participants[0]
-                        mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                     }
                 }
-                onPressAndHold: {
-                    mainView.selectionMode = true
-                    selected = true
-                    selectionCount = 1
+                MouseArea {
+                    anchors {
+                        left: avatar.right
+                        right: parent.right
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
+
+                    onClicked: {
+                        if (mainView.selectionMode) {
+                            selected = !selected
+                            if (selected) {
+                                selectionCount = selectionCount + 1
+                            } else {
+                                selectionCount = selectionCount - 1
+                            }
+                        } else {
+                            var properties = {}
+                            properties["threadId"] = threadId
+                            properties["number"] = participants[0]
+                            mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+                        }
+                    }
+                    onPressAndHold: {
+                        mainView.selectionMode = true
+                        selected = true
+                        selectionCount = 1
+                    }
                 }
             }
         }
@@ -207,6 +199,22 @@ MainView {
         opened: true
     }
 
+    HistoryThreadModel {
+        id: threadModel
+        type: HistoryThreadModel.EventTypeText
+        filter: HistoryFilter {
+            filterProperty: "accountId"
+            filterValue: telepathyHelper.accountId
+        }
+    }
+
+    SortProxyModel {
+        id: sortProxy
+        sortRole: HistoryThreadModel.LastEventTimestampRole
+        model: threadModel
+        ascending: false
+    }
+
     PageStack {
         id: mainStack
         anchors.fill: parent
@@ -222,13 +230,7 @@ MainView {
                 // We can't destroy delegates while selectionMode == true
                 // looks like 320 is the default value
                 cacheBuffer: selectionMode ? units.gu(10) * count : 320
-                model: HistoryThreadModel {
-                    type: HistoryThreadModel.EventTypeText
-                    filter: HistoryFilter {
-                        filterProperty: "accountId"
-                        filterValue: telepathyHelper.accountId
-                    }
-                }
+                model: sortProxy
                 delegate: threadDelegate
             }
 

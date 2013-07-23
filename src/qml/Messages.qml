@@ -60,7 +60,7 @@ Page {
     }
 
     HistoryEventModel {
-        id: historyModel
+        id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: HistoryIntersectionFilter {
             HistoryFilter {
@@ -72,6 +72,13 @@ Page {
                 filterValue: telepathyHelper.accountId
             }
         }
+    }
+
+    SortProxyModel {
+        id: sortProxy
+        model: eventModel
+        sortRole: HistoryEventModel.TimestampRole
+        ascending: false
     }
 
     Item {
@@ -104,7 +111,7 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
-        model: threadId != "" ? historyModel : null
+        model: threadId != "" ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         cacheBuffer: selectionMode ? units.gu(10) * count : 320
         delegate: MessageDelegate {
