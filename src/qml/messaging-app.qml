@@ -211,7 +211,7 @@ MainView {
     SortProxyModel {
         id: sortProxy
         sortRole: HistoryThreadModel.LastEventTimestampRole
-        model: threadModel
+        sourceModel: threadModel
         ascending: false
     }
 

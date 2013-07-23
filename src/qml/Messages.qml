@@ -76,7 +76,7 @@ Page {
 
     SortProxyModel {
         id: sortProxy
-        model: eventModel
+        sourceModel: eventModel
         sortRole: HistoryEventModel.TimestampRole
         ascending: false
     }
