@@ -24,8 +24,8 @@ Depends: ${misc:Depends},
          dbus-x11,
          libicu48,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
+         qtdeclarative5-ubuntu-history-plugin,
          qtdeclarative5-ubuntu-telephony-plugin,
-         qtdeclarative5-history-service-plugin
 Recommends: unity8 (>= 7.81.0~),
 Description: Messaging application for Ubuntu
  An application to send and receive messages.
