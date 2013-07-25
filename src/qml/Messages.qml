@@ -72,6 +72,10 @@ Page {
                 filterValue: telepathyHelper.accountId
             }
         }
+        sort: HistorySort {
+           sortField: "timestamp"
+           sortOrder: HistorySort.DescendingOrder
+        }
     }
 
     SortProxyModel {
@@ -82,15 +86,16 @@ Page {
     }
 
     Item {
+        id: newMessage
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
         }
-        id: newMessage
         clip: true
         height: threadId == "" ? childrenRect.height + units.gu(1) : 0
         TextField {
+            onTextChanged: messages.number = text
             anchors {
                 top: parent.top
                 left: parent.left
@@ -191,6 +196,10 @@ Page {
             width: units.gu(15)
             enabled: textEntry.text != "" && telepathyHelper.connected
             onClicked: {
+               if (messages.threadId == "") {
+                   messages.threadId = messages.number
+               }
+
                 chatManager.sendMessage(messages.number, textEntry.text)
                 textEntry.text = ""
             }
