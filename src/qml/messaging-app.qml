@@ -20,7 +20,6 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
-import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 
 MainView {
@@ -38,6 +37,7 @@ MainView {
     }
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
+        mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
 
@@ -199,49 +199,10 @@ MainView {
         opened: true
     }
 
-    HistoryThreadModel {
-        id: threadModel
-        type: HistoryThreadModel.EventTypeText
-        filter: HistoryFilter {
-            filterProperty: "accountId"
-            filterValue: telepathyHelper.accountId
-        }
-        sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
-        }
-    }
-
-    SortProxyModel {
-        id: sortProxy
-        sortRole: HistoryThreadModel.LastEventTimestampRole
-        sourceModel: threadModel
-        ascending: false
-    }
-
     PageStack {
         id: mainStack
         anchors.fill: parent
         Component.onCompleted: push(page0)
-        Page {
-            id: page0
-            tools: selectionMode ? selectionToolbar : regularToolbar
 
-            title: i18n.tr("Messages")
-            ListView {
-                id: threadList
-                anchors.fill: parent
-                // We can't destroy delegates while selectionMode == true
-                // looks like 320 is the default value
-                cacheBuffer: selectionMode ? units.gu(10) * count : 320
-                model: sortProxy
-                delegate: threadDelegate
-            }
-
-            Scrollbar {
-                flickableItem: threadList
-                align: Qt.AlignTrailing
-            }
-        }
     }
 }
