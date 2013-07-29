@@ -24,12 +24,16 @@ import Ubuntu.Telephony 0.1
 Page {
     id: messages
     property string threadId: ""
-    property string number
+    property alias number: contactWatcher.phoneNumber
     property bool selectionMode: false
     property int selectionCount: 0
     flickable: null
-    title:  threadId != "" ? messages.number : i18n.tr("New Message")
+    title:  threadId != "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
     tools: selectionMode ? selectionToolbar : regularToolbar
+
+    ContactWatcher {
+        id: contactWatcher
+    }
 
     onSelectionCountChanged: {
         if (selectionCount == 0) {
