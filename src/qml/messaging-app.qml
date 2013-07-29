@@ -43,8 +43,21 @@ MainView {
 
     signal applicationReady
 
+    Connections {
+        target: telepathyHelper
+        onAccountReady: {
+            mainView.applicationReady()
+        }
+    }
+
     function startNewMessage() {
         var properties = {}
+        mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+    }
+
+    function startChat(phoneNumber) {
+        var properties = {}
+        properties["number"] = phoneNumber
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 

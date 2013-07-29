@@ -23,13 +23,17 @@ import Ubuntu.Telephony 0.1
 
 Page {
     id: messages
-    property string threadId: ""
+    property string threadId: getCurrentThreadId()
     property alias number: contactWatcher.phoneNumber
     property bool selectionMode: false
     property int selectionCount: 0
     flickable: null
     title:  threadId != "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
     tools: selectionMode ? selectionToolbar : regularToolbar
+
+    function getCurrentThreadId() {
+        return eventModel.threadIdForParticipants(telepathyHelper.accountId, HistoryThreadModel.EventTypeText, messages.number)
+    }
 
     ContactWatcher {
         id: contactWatcher
@@ -39,6 +43,10 @@ Page {
         if (selectionCount == 0) {
             selectionMode = false
         }
+    }
+
+    onNumberChanged: {
+        threadId = getCurrentThreadId()
     }
 
     // just and empty toolbar with back button
@@ -91,6 +99,7 @@ Page {
 
     Item {
         id: newMessage
+        property alias newNumber: newPhoneNumberField.text
         anchors {
             top: parent.top
             left: parent.left
@@ -99,7 +108,7 @@ Page {
         clip: true
         height: threadId == "" ? childrenRect.height + units.gu(1) : 0
         TextField {
-            onTextChanged: messages.number = text
+            id: newPhoneNumberField
             anchors {
                 top: parent.top
                 left: parent.left
@@ -198,11 +207,15 @@ Page {
             anchors.bottom: parent.bottom
             text: "Send"
             width: units.gu(15)
-            enabled: textEntry.text != "" && telepathyHelper.connected
+            enabled: textEntry.text != "" && telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
             onClicked: {
-               if (messages.threadId == "") {
-                   messages.threadId = messages.number
-               }
+                if (messages.number === "" && newMessage.newNumber !== "") {
+                    messages.number = newMessage.newNumber
+                }
+
+                if (messages.threadId == "") {
+                    messages.threadId = messages.number
+                }
 
                 chatManager.sendMessage(messages.number, textEntry.text)
                 textEntry.text = ""
