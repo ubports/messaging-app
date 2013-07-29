@@ -52,7 +52,9 @@ Page {
         // looks like 320 is the default value
         cacheBuffer: selectionMode ? units.gu(10) * count : 320
         model: sortProxy
-        delegate: threadDelegate
+        delegate: ThreadDelegate {
+            id: threadDelegate
+        }
     }
 
     Scrollbar {

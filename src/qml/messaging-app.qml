@@ -66,111 +66,6 @@ MainView {
         }
     }
 
-    Component {
-        id: threadDelegate
-        ListItem.Subtitled {
-            //property bool selected: false
-            property bool unknownContact: delegateHelper.contactId == ""
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: units.gu(10)
-            text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
-            subText: eventTextMessage == undefined ? "" : eventTextMessage
-            removable: true
-            icon: UbuntuShape {
-                id: avatar
-                height: units.gu(6)
-                width: units.gu(6)
-                image: Image {
-                    anchors.fill: parent
-                    source: {
-                        if(!unknownContact) {
-                            if (delegateHelper.avatar != "") {
-                                return delegateHelper.avatar
-                            }
-                        }
-                        return Qt.resolvedUrl("assets/avatar-default.png")
-                    }
-                }
-                MouseArea {
-                    anchors.fill: avatar
-                    onClicked: PopupUtils.open(newcontactPopover, avatar)
-                    enabled: unknownContact
-                }
-            }
-            onClicked: {
-                if (mainView.selectionMode) {
-                    selected = !selected
-                    if (selected) {
-                        selectionCount = selectionCount + 1
-                    } else {
-                        selectionCount = selectionCount - 1
-                    }
-                } else {
-                    var properties = {}
-                    properties["threadId"] = threadId
-                    properties["number"] = participants[0]
-                    mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
-                }
-            }
-            onPressAndHold: {
-                mainView.selectionMode = true
-                selected = true
-                selectionCount = 1
-            }
-
-            Item {
-                id: delegateHelper
-                property alias phoneNumber: watcherInternal.phoneNumber
-                property alias alias: watcherInternal.alias
-                property alias avatar: watcherInternal.avatar
-                property alias contactId: watcherInternal.contactId
-                ContactWatcher {
-                    id: watcherInternal
-                    phoneNumber: participants[0]
-                }
-
-                Connections {
-                    target: mainView
-                    onSelectionModeChanged: {
-                        if (!selectionMode) {
-                            selected = false
-                        }
-                    }
-                }
-                MouseArea {
-                    anchors {
-                        left: avatar.right
-                        right: parent.right
-                        top: parent.top
-                        bottom: parent.bottom
-                    }
-
-                    onClicked: {
-                        if (mainView.selectionMode) {
-                            selected = !selected
-                            if (selected) {
-                                selectionCount = selectionCount + 1
-                            } else {
-                                selectionCount = selectionCount - 1
-                            }
-                        } else {
-                            var properties = {}
-                            properties["threadId"] = threadId
-                            properties["number"] = participants[0]
-                            mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
-                        }
-                    }
-                    onPressAndHold: {
-                        mainView.selectionMode = true
-                        selected = true
-                        selectionCount = 1
-                    }
-                }
-            }
-        }
-    }
-
     ToolbarItems {
         id: regularToolbar
         ToolbarButton {
@@ -202,7 +97,5 @@ MainView {
     PageStack {
         id: mainStack
         anchors.fill: parent
-        Component.onCompleted: push(page0)
-
     }
 }
