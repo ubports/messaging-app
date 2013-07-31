@@ -41,7 +41,6 @@ static void printUsage(const QStringList& arguments)
              << "[message://PHONE_NUMBER]"
              << "[messageId://MESSAGE_ID]"
              << "[--fullscreen]"
-             << "[--test-contacts]"
              << "[--help]"
              << "[-testability]";
 }
@@ -56,19 +55,13 @@ MessagingApplication::MessagingApplication(int &argc, char **argv)
 bool MessagingApplication::setup()
 {
     static QList<QString> validSchemes;
-    bool singlePanel = true;
     bool fullScreen = false;
-    QString contactEngine = "folks";
 
     if (validSchemes.isEmpty()) {
-        validSchemes << "contact";
-        validSchemes << "call";
-        validSchemes << "message";
+        validSchemes << "messages";
         validSchemes << "messageId";
-        validSchemes << "voicemail";
     }
 
-    QString contactKey;
     QStringList arguments = this->arguments();
 
     if (arguments.contains("--help")) {
@@ -76,24 +69,9 @@ bool MessagingApplication::setup()
         return false;
     }
 
-    if (arguments.contains("--dual-panel")) {
-        arguments.removeAll("--dual-panel");
-        singlePanel = false;
-    }
-
-    if (arguments.contains("--single-panel")) {
-        arguments.removeAll("--single-panel");
-        singlePanel = true;
-    }
-
     if (arguments.contains("--fullscreen")) {
         arguments.removeAll("--fullscreen");
         fullScreen = true;
-    }
-
-    if (arguments.contains("--test-contacts")) {
-        arguments.removeAll("--test-contacts");
-        contactEngine = "memory";
     }
 
     // The testability driver is only loaded by QApplication but not by QGuiApplication.
@@ -156,10 +134,7 @@ bool MessagingApplication::setup()
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("Messaging");
     m_view->rootContext()->setContextProperty("application", this);
-    m_view->rootContext()->setContextProperty("contactKey", contactKey);
     m_view->rootContext()->setContextProperty("dbus", m_dbus);
-    m_view->rootContext()->setContextProperty("appLayout", singlePanel ? "singlePane" : "dualPane" );
-    m_view->rootContext()->setContextProperty("contactEngine", contactEngine);
     m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
 
     QString pluginPath = ubuntuPhonePluginPath();
@@ -245,32 +220,15 @@ void MessagingApplication::parseArgument(const QString &arg)
     if (!mainView) {
         return;
     }
-    const QMetaObject *mo = mainView->metaObject();
 
-
-    if (scheme == "message") {
+    if (scheme == "messages") {
         if (value.isEmpty()) {
-            int index = mo->indexOfMethod("startNewMessage()");
-            if (index != -1) {
-                QMetaMethod method = mo->method(index);
-                method.invoke(mainView);
-            }
+            QMetaObject::invokeMethod(mainView, "startNewMessage");
         } else {
-            int index = mo->indexOfMethod("startChat(QVariant)");
-            if (index != -1) {
-                QMetaMethod method = mo->method(index);
-                method.invoke(mainView,
-                              Q_ARG(QVariant, QVariant(value)));
-            }
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
        }
     } else if (scheme == "messageId") {
-        int index = mo->indexOfMethod("showMessage(QVariant)");
-        if (index != -1) {
-            QMetaMethod method = mo->method(index);
-            method.invoke(mainView,
-                          Q_ARG(QVariant, QVariant("")),
-                          Q_ARG(QVariant, QVariant(value)));
-        }
+        QMetaObject::invokeMethod(mainView, "showMessage", Q_ARG(QVariant, value));
     }
 }
 

@@ -52,7 +52,7 @@ MessagingAppDBus::connectToBus()
 void
 MessagingAppDBus::ShowMessages(const QString &number)
 {
-    Q_EMIT request(QString("message://%1").arg(number));
+    Q_EMIT request(QString("messages://%1").arg(number));
 }
 
 void MessagingAppDBus::ShowMessage(const QString &messageId)
@@ -62,7 +62,7 @@ void MessagingAppDBus::ShowMessage(const QString &messageId)
 
 void MessagingAppDBus::NewMessage()
 {
-    Q_EMIT request(QString("message://"));
+    Q_EMIT request(QString("messages://"));
 }
 
 void MessagingAppDBus::SendMessage(const QString &number, const QString &message)

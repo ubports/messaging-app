@@ -28,10 +28,12 @@ Page {
     property bool selectionMode: false
     property int selectionCount: 0
     flickable: null
-    title:  threadId != "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
+    title:  number !== "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
     tools: selectionMode ? selectionToolbar : regularToolbar
 
     function getCurrentThreadId() {
+        if (number === "")
+            return ""
         return eventModel.threadIdForParticipants(telepathyHelper.accountId, HistoryThreadModel.EventTypeText, messages.number)
     }
 
@@ -106,7 +108,7 @@ Page {
             right: parent.right
         }
         clip: true
-        height: threadId == "" ? childrenRect.height + units.gu(1) : 0
+        height: (number === "" && threadId == "") ? childrenRect.height + units.gu(1) : 0
         TextField {
             id: newPhoneNumberField
             anchors {
@@ -129,7 +131,7 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
-        model: threadId != "" ? sortProxy : null
+        model: threadId !== "" ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         cacheBuffer: selectionMode ? units.gu(10) * count : 320
         delegate: MessageDelegate {
