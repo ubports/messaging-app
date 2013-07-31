@@ -3,6 +3,8 @@ file(GLOB QML_JS_FILES *.qml *.js)
 #set(QML_DIRS
 #    )
 
+add_custom_target(messaging_app_QMlFiles ALL SOURCES ${QML_JS_FILES})
+
 set(ASSETS_DIR assets)
 
 install(FILES ${QML_JS_FILES} DESTINATION ${MESSAGING_APP_DIR})
