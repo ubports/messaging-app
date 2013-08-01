@@ -25,12 +25,13 @@ import Ubuntu.Telephony 0.1
 ListItem.Subtitled {
     //property bool selected: false
     property bool unknownContact: delegateHelper.contactId == ""
+    property bool selectionMode: false
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
     text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     subText: eventTextMessage == undefined ? "" : eventTextMessage
-    removable: true
+    removable: !selectionMode
     icon: UbuntuShape {
         id: avatar
         height: units.gu(6)
@@ -48,7 +49,7 @@ ListItem.Subtitled {
         }
         MouseArea {
             anchors.fill: avatar
-            onClicked: PopupUtils.open(newcontactPopover, avatar)
+            onClicked: !selectionMode && PopupUtils.open(newcontactPopover, avatar)
             enabled: unknownContact
         }
     }
