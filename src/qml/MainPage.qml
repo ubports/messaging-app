@@ -54,6 +54,7 @@ Page {
         model: sortProxy
         delegate: ThreadDelegate {
             id: threadDelegate
+            selectionMode: mainView.selectionMode
         }
     }
 

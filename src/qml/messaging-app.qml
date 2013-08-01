@@ -82,6 +82,12 @@ MainView {
     ToolbarItems {
         id: regularToolbar
         ToolbarButton {
+            text: i18n.tr("Select")
+            iconSource: Qt.resolvedUrl("assets/select.png")
+            onTriggered: selectionMode = true
+        }
+
+        ToolbarButton {
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/compose.png")
                 text: i18n.tr("Compose")
