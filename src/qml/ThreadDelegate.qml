@@ -49,7 +49,10 @@ ListItem.Subtitled {
         }
         MouseArea {
             anchors.fill: avatar
-            onClicked: !selectionMode && PopupUtils.open(newcontactPopover, avatar)
+            onClicked: {
+                mainView.newPhoneNumber = delegateHelper.phoneNumber
+                !selectionMode && PopupUtils.open(newcontactPopover, avatar)
+            }
             enabled: unknownContact
         }
     }

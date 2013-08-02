@@ -30,6 +30,7 @@ MainView {
     height: units.gu(71)
     property bool selectionMode: false
     property int selectionCount: 0
+    property string newPhoneNumber
     onSelectionCountChanged: {
         if (selectionCount == 0) {
             selectionMode = false
@@ -74,7 +75,13 @@ MainView {
                     right: parent.right
                 }
                 ListItem.Standard { text: i18n.tr("Add to existing contact") }
-                ListItem.Standard { text: i18n.tr("Create new contact") }
+                ListItem.Standard {
+                    text: i18n.tr("Create new contact")
+                    onClicked: {
+                        applicationUtils.switchToAddressbookApp("create://" + newPhoneNumber)
+                        popover.hide()
+                    }
+                }
             }
         }
     }
