@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
 
 ListItem.Subtitled {
+    id: delegate
     //property bool selected: false
     property bool unknownContact: delegateHelper.contactId == ""
     property bool selectionMode: false
@@ -31,7 +32,6 @@ ListItem.Subtitled {
     height: units.gu(10)
     text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     subText: eventTextMessage == undefined ? "" : eventTextMessage
-    removable: !selectionMode
     icon: UbuntuShape {
         id: avatar
         height: units.gu(6)
@@ -51,30 +51,32 @@ ListItem.Subtitled {
             anchors.fill: avatar
             onClicked: {
                 mainView.newPhoneNumber = delegateHelper.phoneNumber
-                !selectionMode && PopupUtils.open(newcontactPopover, avatar)
+                if (selectionMode) {
+                    delegate.clicked()
+                } else {
+                    PopupUtils.open(newcontactPopover, avatar)
+                }
             }
             enabled: unknownContact
         }
     }
-    onClicked: {
-        if (mainView.selectionMode) {
-            selected = !selected
-            if (selected) {
-                selectionCount = selectionCount + 1
-            } else {
-                selectionCount = selectionCount - 1
-            }
-        } else {
-            var properties = {}
-            properties["threadId"] = threadId
-            properties["number"] = participants[0]
-            mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
-        }
+
+    onItemRemoved: {
+        threadModel.removeThread(accountId, threadId, type)
     }
-    onPressAndHold: {
-        mainView.selectionMode = true
-        selected = true
-        selectionCount = 1
+
+    backgroundIndicator: Rectangle {
+        anchors.fill: parent
+        color: Theme.palette.selected.base
+        Label {
+            text: i18n.tr("Delete")
+            anchors {
+                fill: parent
+                margins: units.gu(2)
+            }
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+        }
     }
 
     Item {
@@ -87,15 +89,6 @@ ListItem.Subtitled {
         ContactWatcher {
             id: watcherInternal
             phoneNumber: participants[0]
-        }
-
-        Connections {
-            target: mainView
-            onSelectionModeChanged: {
-                if (!selectionMode) {
-                    selected = false
-                }
-            }
         }
     }
 }

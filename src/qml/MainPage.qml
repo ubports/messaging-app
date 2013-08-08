@@ -19,11 +19,16 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Contacts 0.1
 
 Page {
     id: mainPage
-    tools: selectionMode ? selectionToolbar : regularToolbar
+    tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
     title: i18n.tr("Messages")
+
+    function startSelection() {
+        threadList.startSelection()
+    }
 
     HistoryThreadModel {
         id: threadModel
@@ -45,17 +50,40 @@ Page {
         ascending: false
     }
 
-    ListView {
+    MultipleSelectionListView {
         id: threadList
         anchors.fill: parent
-        // We can't destroy delegates while selectionMode == true
-        // looks like 320 is the default value
-        cacheBuffer: selectionMode ? units.gu(10) * count : 320
-        model: sortProxy
-        delegate: ThreadDelegate {
+        listModel: sortProxy
+        acceptAction.text: i18n.tr("Delete")
+        listDelegate: ThreadDelegate {
             id: threadDelegate
-            selectionMode: mainView.selectionMode
+            selectionMode: threadList.isInSelectionMode
+            selected: threadList.isSelected(threadDelegate)
+            removable: !selectionMode
+            onClicked: {
+                if (threadList.isInSelectionMode) {
+                    if (!threadList.selectItem(threadDelegate)) {
+                        threadList.deselectItem(threadDelegate)
+                    }
+                } else {
+                    var properties = {}
+                    properties["threadId"] = threadId
+                    properties["number"] = participants[0]
+                    mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+                }
+            }
+            onPressAndHold: {
+                threadList.startSelection()
+                threadList.selectItem(threadDelegate)
+            }
         }
+        onSelectionDone: {
+            for (var i=0; i < items.count; i++) {
+                var thread = items.get(i).model
+                threadModel.removeThread(thread.accountId, thread.threadId, thread.type)
+            }
+        }
+
     }
 
     Scrollbar {
