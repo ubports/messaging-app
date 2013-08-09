@@ -28,14 +28,8 @@ MainView {
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
-    property bool selectionMode: false
-    property int selectionCount: 0
     property string newPhoneNumber
-    onSelectionCountChanged: {
-        if (selectionCount == 0) {
-            selectionMode = false
-        }
-    }
+
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
@@ -91,7 +85,7 @@ MainView {
         ToolbarButton {
             text: i18n.tr("Select")
             iconSource: Qt.resolvedUrl("assets/select.png")
-            onTriggered: selectionMode = true
+            onTriggered: mainStack.currentPage.startSelection()
         }
 
         ToolbarButton {
@@ -105,19 +99,8 @@ MainView {
 
     ToolbarItems {
         id: selectionToolbar
-        visible: selectionMode
-        back: Button {
-            text: i18n.tr("Cancel")
-            anchors.verticalCenter: parent.verticalCenter
-            onClicked: selectionMode = false
-        }
-
-        Button {
-            anchors.verticalCenter: parent.verticalCenter
-            text: i18n.tr("Delete")
-        }
         locked: true
-        opened: true
+        opened: false
     }
 
     PageStack {

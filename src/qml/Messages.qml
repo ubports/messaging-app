@@ -20,13 +20,13 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
+import Ubuntu.Contacts 0.1
 
 Page {
     id: messages
     property string threadId: getCurrentThreadId()
     property alias number: contactWatcher.phoneNumber
-    property bool selectionMode: false
-    property int selectionCount: 0
+    property alias selectionMode: messageList.isInSelectionMode
     flickable: null
     title:  number !== "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
     tools: selectionMode ? selectionToolbar : regularToolbar
@@ -41,12 +41,6 @@ Page {
         id: contactWatcher
     }
 
-    onSelectionCountChanged: {
-        if (selectionCount == 0) {
-            selectionMode = false
-        }
-    }
-
     onNumberChanged: {
         threadId = getCurrentThreadId()
     }
@@ -54,23 +48,6 @@ Page {
     // just and empty toolbar with back button
     ToolbarItems {
         id: regularToolbar
-    }
-
-    ToolbarItems {
-        id: selectionToolbar
-        visible: selectionMode
-        back: Button {
-            text: i18n.tr("Cancel")
-            anchors.verticalCenter: parent.verticalCenter
-            onClicked: selectionMode = false
-        }
-
-        Button {
-            anchors.verticalCenter: parent.verticalCenter
-            text: i18n.tr("Delete")
-        }
-        locked: true
-        opened: true
     }
 
     HistoryEventModel {
@@ -122,49 +99,43 @@ Page {
         }
     }
 
-    ListView {
+    MultipleSelectionListView {
         id: messageList
         clip: true
+        acceptAction.text: i18n.tr("Delete")
         anchors {
             top: newMessage.bottom
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
         }
-        model: threadId !== "" ? sortProxy : null
+        listModel: threadId !== "" ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
-        cacheBuffer: selectionMode ? units.gu(10) * count : 320
-        delegate: MessageDelegate {
+        listDelegate: MessageDelegate {
+            id: messageDelegate
             message: textMessage
             incoming: senderId != "self"
             timestamp: timestamp
-
-            Connections {
-                target: messages
-                onSelectionModeChanged: {
-                    if (!selectionMode) {
-                        selected = false
-                    }
-                }
-            }
-
+            selected: messageList.isSelected(messageDelegate)
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    if (selectionMode) {
-                        selected = !selected
-                        if (selected) {
-                            selectionCount = selectionCount + 1
-                        } else {
-                            selectionCount = selectionCount - 1
+                    if (messageList.isInSelectionMode) {
+                        if (!messageList.selectItem(messageDelegate)) {
+                            messageList.deselectItem(messageDelegate)
                         }
                     }
                 }
                 onPressAndHold: {
-                    selectionMode = true
-                    selected = true
-                    selectionCount = 1
+                    messageList.startSelection()
+                    messageList.selectItem(messageDelegate)
                 }
+            }
+        }
+        onSelectionDone: {
+            for (var i=0; i < items.count; i++) {
+                var event = items.get(i).model
+                eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
             }
         }
     }
@@ -172,7 +143,7 @@ Page {
     Item {
         id: bottomPanel
         anchors.bottom: keyboard.top
-        anchors.bottomMargin: units.gu(1)
+        anchors.bottomMargin: selectionMode ? 0 : units.gu(1)
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(1)

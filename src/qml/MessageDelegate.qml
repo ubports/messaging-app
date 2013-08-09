@@ -83,9 +83,4 @@ Item {
             text: messageDelegate.message
         }
     }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: messageDelegate.clicked(mouse)
-    }
 }
