@@ -24,7 +24,6 @@ import Ubuntu.Telephony 0.1
 
 ListItem.Empty {
     id: delegate
-    //property bool selected: false
     property bool unknownContact: delegateHelper.contactId == ""
     property bool selectionMode: false
     anchors.left: parent.left

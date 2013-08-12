@@ -18,37 +18,44 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
+import "dateUtils.js" as DateUtils
 
-Item {
+ListItem.Empty {
     id: messageDelegate
-    property string message
     property bool incoming: false
-    property variant timestamp
-    property bool selected: false
-
-    signal clicked(var mouse)
+    property string textColor: incoming ? "#333333" : "#ffffff"
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
+    height: bubble.height
+    showDivider: false
+    highlightWhenPressed: false
 
-    height: bubble.height + units.gu(1)
-
-    // FIXME: temporary solution to display selected messages
-    Rectangle {
+    backgroundIndicator: Rectangle {
         anchors.fill: parent
-        height: units.gu(2)
-        width: units.gu(2)
-        color: "gray"
-        opacity: 0.3
-        visible: selected
+        color: Theme.palette.selected.base
+        Label {
+            text: i18n.tr("Delete")
+            anchors {
+                fill: parent
+                margins: units.gu(2)
+            }
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment:  messageDelegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+        }
+    }
+
+    onItemRemoved: {
+        eventModel.removeEvent(accountId, threadId, eventId, type)
     }
 
     BorderImage {
         id: bubble
 
-        anchors.left: incoming ? undefined : parent.left
+        anchors.left: incoming ? parent.left : undefined
         anchors.leftMargin: units.gu(1)
-        anchors.right: incoming ? parent.right : undefined
+        anchors.right: incoming ? undefined : parent.right
         anchors.rightMargin: units.gu(1)
         anchors.top: parent.top
 
@@ -64,23 +71,52 @@ Item {
 
         source: selectBubble()
 
-        height: messageText.height + units.gu(3)
+        height: messageContents.height + units.gu(4)
 
-        Label {
-            id: messageText
+        Item {
+            id: messageContents
+            anchors {
+                top: parent.top
+                topMargin: units.gu(2)
+                left: parent.left
+                leftMargin: incoming ? units.gu(3) : units.gu(2)
+                right: parent.right
+                rightMargin: units.gu(3)
+            }
+            height: childrenRect.height
 
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: bubble.left
-            anchors.leftMargin: bubble.border.left
-            anchors.right: bubble.right
-            anchors.rightMargin: bubble.border.right
-            height: paintedHeight
+            // TODO: to be used only on multiparty chat
+            Label {
+                id: senderName
+                anchors.top: parent.top
+                height: text == "" ? 0 : paintedHeight
+                fontSize: "large"
+                color: textColor
+                text: ""
+            }
 
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            fontSize: "medium"
-            color: incoming ? "#ffffff" : "#333333"
-            opacity: incoming ? 1 : 0.9
-            text: messageDelegate.message
+            Label {
+                id: date
+                anchors.top: senderName.bottom
+                height: paintedHeight
+                fontSize: "x-small"
+                color: textColor
+                text: DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
+            }
+
+            Label {
+                id: messageText
+                anchors.top: date.bottom
+                anchors.topMargin: units.gu(1)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: paintedHeight
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                fontSize: "medium"
+                color: textColor
+                opacity: incoming ? 1 : 0.9
+                text: textMessage
+            }
         }
     }
 }

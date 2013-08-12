@@ -28,39 +28,6 @@ Page {
     tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
     title: i18n.tr("Messages")
 
-//    Grid {
-//        anchors.fill: parent
-//        columns: 40
-//        rows: 100
-//        spacing: units.gu(1)
-//        Repeater {
-//            model: 3000
-
-//            Rectangle {
-//                height: units.gu(1)
-//                width: units.gu(1)
-//                color: "gray"
-//            }
-//        }
-//        opacity: 0.5
-//    }
-
-//    Grid {
-//        anchors.fill: parent
-//        flow: Grid.TopToBottom
-//        columns: 40
-//        rows: 100
-//        spacing: units.gu(1)
-//        Repeater {
-//            model: 3000
-//            Rectangle {
-//                height: units.gu(1)
-//                width: units.gu(1)
-//                color: "black"
-//            }
-//        }
-//    }
-
     function startSelection() {
         threadList.startSelection()
     }
