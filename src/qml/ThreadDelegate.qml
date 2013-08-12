@@ -96,7 +96,6 @@ ListItem.Empty {
             top: contactName.bottom
             left: contactName.left
         }
-        // TODO: change contactwatcher to support phone type
         text: delegateHelper.phoneNumberSubTypeLabel
         color: "gray"
         fontSize: "x-small"
