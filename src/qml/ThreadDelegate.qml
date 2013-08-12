@@ -21,10 +21,12 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
+import Ubuntu.Contacts 0.1
+import QtContacts 5.0
 
 ListItem.Empty {
     id: delegate
-    property bool unknownContact: delegateHelper.contactId == ""
+    property bool unknownContact: delegateHelper.isUnknown
     property bool selectionMode: false
     anchors.left: parent.left
     anchors.right: parent.right
@@ -95,7 +97,7 @@ ListItem.Empty {
             left: contactName.left
         }
         // TODO: change contactwatcher to support phone type
-        text: "Mobile"
+        text: delegateHelper.phoneNumberSubTypeLabel
         color: "gray"
         fontSize: "x-small"
     }
@@ -140,10 +142,32 @@ ListItem.Empty {
         property alias alias: watcherInternal.alias
         property alias avatar: watcherInternal.avatar
         property alias contactId: watcherInternal.contactId
+        property alias subTypes: phoneDetail.subTypes
+        property alias contexts: phoneDetail.contexts
+        property alias isUnknown: watcherInternal.isUnknown
+        property string phoneNumberSubTypeLabel: ""
+
+        function updateSubTypeLabel() {
+            phoneNumberSubTypeLabel = isUnknown ? "" : phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label
+        }
+
+        onSubTypesChanged: updateSubTypeLabel();
+        onContextsChanged: updateSubTypeLabel();
+        onIsUnknownChanged: updateSubTypeLabel();
 
         ContactWatcher {
             id: watcherInternal
             phoneNumber: participants[0]
+        }
+
+        PhoneNumber {
+            id: phoneDetail
+            contexts: watcherInternal.phoneNumberContexts
+            subTypes: watcherInternal.phoneNumberSubTypes
+        }
+
+        ContactDetailPhoneNumberTypeModel {
+            id: phoneTypeModel
         }
     }
 }
