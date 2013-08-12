@@ -18,13 +18,48 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
+import "dateUtils.js" as DateUtils
 
 Page {
     id: mainPage
     tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
     title: i18n.tr("Messages")
+
+//    Grid {
+//        anchors.fill: parent
+//        columns: 40
+//        rows: 100
+//        spacing: units.gu(1)
+//        Repeater {
+//            model: 3000
+
+//            Rectangle {
+//                height: units.gu(1)
+//                width: units.gu(1)
+//                color: "gray"
+//            }
+//        }
+//        opacity: 0.5
+//    }
+
+//    Grid {
+//        anchors.fill: parent
+//        flow: Grid.TopToBottom
+//        columns: 40
+//        rows: 100
+//        spacing: units.gu(1)
+//        Repeater {
+//            model: 3000
+//            Rectangle {
+//                height: units.gu(1)
+//                width: units.gu(1)
+//                color: "black"
+//            }
+//        }
+//    }
 
     function startSelection() {
         threadList.startSelection()
@@ -55,6 +90,27 @@ Page {
         anchors.fill: parent
         listModel: sortProxy
         acceptAction.text: i18n.tr("Delete")
+        section.property: "eventTimestamp"
+        section.delegate: Item {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: units.gu(5)
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: units.gu(2)
+                anchors.verticalCenter: parent.verticalCenter
+                fontSize: "medium"
+                elide: Text.ElideRight
+                color: "gray"
+                opacity: 0.6
+                text: DateUtils.friendlyDay(section, i18n);
+                verticalAlignment: Text.AlignVCenter
+            }
+            ListItem.ThinDivider {
+                anchors.bottom: parent.bottom
+            }
+        }
+
         listDelegate: ThreadDelegate {
             id: threadDelegate
             selectionMode: threadList.isInSelectionMode
