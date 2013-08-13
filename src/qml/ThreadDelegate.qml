@@ -21,21 +21,28 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
+import Ubuntu.Contacts 0.1
+import QtContacts 5.0
 
-ListItem.Subtitled {
+ListItem.Empty {
     id: delegate
-    //property bool selected: false
-    property bool unknownContact: delegateHelper.contactId == ""
+    property bool unknownContact: delegateHelper.isUnknown
     property bool selectionMode: false
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
-    text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
-    subText: eventTextMessage == undefined ? "" : eventTextMessage
-    icon: UbuntuShape {
+
+    UbuntuShape {
         id: avatar
-        height: units.gu(6)
-        width: units.gu(6)
+        height: units.gu(7)
+        width: units.gu(7)
+        radius: "medium"
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(1)
+            verticalCenter: parent.verticalCenter
+        }
+
         image: Image {
             anchors.fill: parent
             source: {
@@ -61,6 +68,55 @@ ListItem.Subtitled {
         }
     }
 
+    Label {
+        id: contactName
+        anchors {
+            top: avatar.top
+            left: avatar.right
+            leftMargin: units.gu(2)
+        }
+        text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
+    }
+
+    Label {
+        id: time
+        anchors {
+            verticalCenter: contactName.verticalCenter
+            right: parent.right
+            rightMargin: units.gu(3)
+        }
+        fontSize: "x-small"
+        color: "gray"
+        text: Qt.formatDateTime(eventTimestamp,"hh:mm AP")
+    }
+
+    Label {
+        id: phoneType
+        anchors {
+            top: contactName.bottom
+            left: contactName.left
+        }
+        text: delegateHelper.phoneNumberSubTypeLabel
+        color: "gray"
+        fontSize: "x-small"
+    }
+
+    Label {
+        id: latestMessage
+        height: units.gu(3)
+        anchors {
+            top: phoneType.bottom
+            topMargin: units.gu(0.5)
+            left: phoneType.left
+            right: parent.right
+            rightMargin: units.gu(3)
+        }
+        elide: Text.ElideRight
+        maximumLineCount: 2
+        fontSize: "x-small"
+        wrapMode: Text.WordWrap
+        text: eventTextMessage == undefined ? "" : eventTextMessage
+    }
     onItemRemoved: {
         threadModel.removeThread(accountId, threadId, type)
     }
@@ -85,10 +141,32 @@ ListItem.Subtitled {
         property alias alias: watcherInternal.alias
         property alias avatar: watcherInternal.avatar
         property alias contactId: watcherInternal.contactId
+        property alias subTypes: phoneDetail.subTypes
+        property alias contexts: phoneDetail.contexts
+        property alias isUnknown: watcherInternal.isUnknown
+        property string phoneNumberSubTypeLabel: ""
+
+        function updateSubTypeLabel() {
+            phoneNumberSubTypeLabel = isUnknown ? "" : phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label
+        }
+
+        onSubTypesChanged: updateSubTypeLabel();
+        onContextsChanged: updateSubTypeLabel();
+        onIsUnknownChanged: updateSubTypeLabel();
 
         ContactWatcher {
             id: watcherInternal
             phoneNumber: participants[0]
+        }
+
+        PhoneNumber {
+            id: phoneDetail
+            contexts: watcherInternal.phoneNumberContexts
+            subTypes: watcherInternal.phoneNumberSubTypes
+        }
+
+        ContactDetailPhoneNumberTypeModel {
+            id: phoneTypeModel
         }
     }
 }

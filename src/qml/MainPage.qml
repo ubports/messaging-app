@@ -18,8 +18,10 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
+import "dateUtils.js" as DateUtils
 
 Page {
     id: mainPage
@@ -55,6 +57,27 @@ Page {
         anchors.fill: parent
         listModel: sortProxy
         acceptAction.text: i18n.tr("Delete")
+        section.property: "eventDate"
+        section.delegate: Item {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: units.gu(5)
+            Label {
+                anchors.left: parent.left
+                anchors.leftMargin: units.gu(2)
+                anchors.verticalCenter: parent.verticalCenter
+                fontSize: "medium"
+                elide: Text.ElideRight
+                color: "gray"
+                opacity: 0.6
+                text: DateUtils.friendlyDay(section, i18n);
+                verticalAlignment: Text.AlignVCenter
+            }
+            ListItem.ThinDivider {
+                anchors.bottom: parent.bottom
+            }
+        }
+
         listDelegate: ThreadDelegate {
             id: threadDelegate
             selectionMode: threadList.isInSelectionMode

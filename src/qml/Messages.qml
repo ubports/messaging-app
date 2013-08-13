@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
@@ -109,27 +110,31 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
+        // TODO: workaround to add some extra space at the bottom and top
+        header: Item {
+            height: units.gu(2)
+        }
+        footer: Item {
+            height: units.gu(2)
+        }
         listModel: threadId !== "" ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
+        spacing: units.gu(2)
         listDelegate: MessageDelegate {
             id: messageDelegate
-            message: textMessage
             incoming: senderId != "self"
-            timestamp: timestamp
             selected: messageList.isSelected(messageDelegate)
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (messageList.isInSelectionMode) {
-                        if (!messageList.selectItem(messageDelegate)) {
-                            messageList.deselectItem(messageDelegate)
-                        }
+            removable: !selectionMode
+            onClicked: {
+                if (messageList.isInSelectionMode) {
+                    if (!messageList.selectItem(messageDelegate)) {
+                        messageList.deselectItem(messageDelegate)
                     }
                 }
-                onPressAndHold: {
-                    messageList.startSelection()
-                    messageList.selectItem(messageDelegate)
-                }
+            }
+            onPressAndHold: {
+                messageList.startSelection()
+                messageList.selectItem(messageDelegate)
             }
         }
         onSelectionDone: {
@@ -143,22 +148,24 @@ Page {
     Item {
         id: bottomPanel
         anchors.bottom: keyboard.top
-        anchors.bottomMargin: selectionMode ? 0 : units.gu(1)
+        anchors.bottomMargin: selectionMode ? 0 : units.gu(2)
         anchors.left: parent.left
         anchors.right: parent.right
-        height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(1)
+        height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(4)
         visible: !selectionMode
         clip: true
-
+        ListItem.ThinDivider {
+            anchors.top: parent.top
+        }
         TextArea {
             id: textEntry
             clip: true
-            anchors.bottomMargin: units.gu(1)
+            anchors.bottomMargin: units.gu(2)
             anchors.bottom: attachButton.top
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(1)
+            anchors.leftMargin: units.gu(2)
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(1)
+            anchors.rightMargin: units.gu(2)
             height: units.gu(5)
             autoSize: true
             placeholderText: i18n.tr("Write a message...")
@@ -168,18 +175,19 @@ Page {
         Button {
             id: attachButton
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(1)
+            anchors.leftMargin: units.gu(2)
             anchors.bottom: parent.bottom
             text: "Attach"
-            width: units.gu(15)
+            width: units.gu(17)
+            color: "gray"
         }
 
         Button {
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(1)
+            anchors.rightMargin: units.gu(2)
             anchors.bottom: parent.bottom
             text: "Send"
-            width: units.gu(15)
+            width: units.gu(17)
             enabled: textEntry.text != "" && telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
             onClicked: {
                 if (messages.number === "" && newMessage.newNumber !== "") {
