@@ -107,6 +107,7 @@ MainView {
 
     PageStack {
         id: mainStack
+        objectName: "mainStack"
         anchors.fill: parent
     }
 }

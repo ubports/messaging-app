@@ -16,19 +16,12 @@ class MainView(toolkit_emulators.MainView):
     def __init__(self, *args):
         super(MainView, self).__init__(*args)
 
-    @property
-    def messages_page(self):
-        return self.select_single(MessagesPage)
+    def get_pagestack(self):
+        return self.select_single("PageStack", objectName="mainStack")
 
-class MessagesPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
-    def __init__(self, *args):
-        super(MessagesPage, self).__init__(*args)
+    def get_messages_page(self):
+        return self.select_single("Messages", objectName="messagesPage")
 
-    @property
-    def messages_listview(self):
-        return self.select_single("MultipleSelectionListView", objectName="messageList")
-
-    @property
-    def newmessage_textfield(self):
+    def get_newmessage_textfield(self):
         return self.select_single("TextField", objectName="newPhoneNumberField")
 

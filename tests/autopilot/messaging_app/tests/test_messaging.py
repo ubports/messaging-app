@@ -30,8 +30,10 @@ class TestMessaging(MessagingAppTestCase):
 
     def test_write_new_message(self):
         self.test_click_new_message_button()
-        text_entry = self.main_view.messages_page.newmessage_textfield
+        self.assertThat(self.main_view.get_pagestack().depth, Eventually(Equals(2)))
+        self.assertThat(self.main_view.get_messages_page().visible, Eventually(Equals(True)))
+        text_entry = self.main_view.get_newmessage_textfield()
         self.pointing_device.click_object(text_entry)
-        self.type_string("123")
-        self.assertThat(text_entry.value, Eventually(Equals("123")))
+        self.keyboard.type("123")
+        self.assertThat(text_entry.text, Eventually(Equals("123")))
 

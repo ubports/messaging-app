@@ -25,6 +25,7 @@ import Ubuntu.Contacts 0.1
 
 Page {
     id: messages
+    objectName: "messagesPage"
     property string threadId: getCurrentThreadId()
     property alias number: contactWatcher.phoneNumber
     property alias selectionMode: messageList.isInSelectionMode
