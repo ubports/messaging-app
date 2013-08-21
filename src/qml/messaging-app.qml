@@ -83,12 +83,14 @@ MainView {
     ToolbarItems {
         id: regularToolbar
         ToolbarButton {
+            objectName: "selectButton"
             text: i18n.tr("Select")
             iconSource: Qt.resolvedUrl("assets/select.png")
             onTriggered: mainStack.currentPage.startSelection()
         }
 
         ToolbarButton {
+            objectName: "newMessageButton"
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/compose.png")
                 text: i18n.tr("Compose")

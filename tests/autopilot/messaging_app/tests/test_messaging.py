@@ -23,5 +23,15 @@ class TestMessaging(MessagingAppTestCase):
     def setUp(self):
         super(TestMessaging, self).setUp()
 
-    def test_dummy(self):
-        self.assertThat(True, Equals(True))
+    def test_click_new_message_button(self):
+        self.main_view.open_toolbar()
+        toolbar = self.main_view.get_toolbar()
+        toolbar.click_button("newMessageButton")
+
+    def test_write_new_message(self):
+        self.test_click_new_message_button()
+        text_entry = self.main_view.messages_page.newmessage_textfield
+        self.pointing_device.click_object(text_entry)
+        self.type_string("123")
+        self.assertThat(text_entry.value, Eventually(Equals("123")))
+

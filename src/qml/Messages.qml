@@ -89,6 +89,7 @@ Page {
         height: (number === "" && threadId == "") ? childrenRect.height + units.gu(1) : 0
         TextField {
             id: newPhoneNumberField
+            objectName: "newPhoneNumberField"
             anchors {
                 top: parent.top
                 left: parent.left
