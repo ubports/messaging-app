@@ -1,5 +1,10 @@
 messaging-app (0.1-0ubuntu1) UNRELEASED; urgency=low
 
+  [ Tiago Salem Herrmann ]
   * Initial release
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Modifications related to compliance with our packaging standards
+  * Automatic snapshot from revision 15 (bootstrap)
 
  -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Mon, 15 Jul 2013 11:36:03 -0300
