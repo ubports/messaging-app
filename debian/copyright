@@ -1,8 +1,14 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: messaging-app
+Source: https://launchpad.net/messaging-app
 
 Files: *
 Copyright: 2012, 2013 Canonical Ltd.
 License: GPL-3
+
+Files: src/qml/assets/*
+Copyright: 2012, 2013 Canonical Ltd.
+License: CC-BY-SA-3.0
 
 License: GPL-3
  This program is free software: you can redistribute it and/or modify
@@ -20,3 +26,8 @@ License: GPL-3
  On Debian systems, the full text of the GNU General Public License
  version 3 can be found in the file /usr/share/common-licenses/GPL-3.
 
+License: CC-BY-SA-3.0
+ This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
+ Unported License. To view a copy of this license, visit
+ http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative
+ Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
