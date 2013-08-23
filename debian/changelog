@@ -1,4 +1,4 @@
-messaging-app (0.1-0ubuntu1) UNRELEASED; urgency=low
+messaging-app (0.1+13.10.20130823.1-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
   * Initial release
@@ -7,4 +7,7 @@ messaging-app (0.1-0ubuntu1) UNRELEASED; urgency=low
   * Modifications related to compliance with our packaging standards
   * Automatic snapshot from revision 15 (bootstrap)
 
- -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Mon, 15 Jul 2013 11:36:03 -0300
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 16
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 23 Aug 2013 07:16:48 +0000
