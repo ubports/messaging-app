@@ -54,6 +54,7 @@ Page {
 
     MultipleSelectionListView {
         id: threadList
+        objectName: "threadList"
         anchors.fill: parent
         listModel: sortProxy
         acceptAction.text: i18n.tr("Delete")

@@ -15,7 +15,8 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals, GreaterThan
 
-from messaging_app.emulators.utils import Utils
+from ubuntuuitoolkit import emulators as toolkit_emulators
+from messaging_app import emulators
 
 import os
 from time import sleep
@@ -32,11 +33,11 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     if model() == 'Desktop':
         scenarios = [
-        ('with mouse', dict(input_device_class=Mouse)),
+            ('with mouse', dict(input_device_class=Mouse)),
         ]
     else:
         scenarios = [
-        ('with touch', dict(input_device_class=Touch)),
+            ('with touch', dict(input_device_class=Touch)),
         ]
 
     local_location = "../../src/messaging-app"
@@ -50,47 +51,29 @@ class MessagingAppTestCase(AutopilotTestCase):
         else:
             self.launch_test_installed()
 
-        main_view = self.get_main_view()
-        self.assertThat(main_view.visible, Eventually(Equals(True)))
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
 
     def launch_test_local(self):
         self.app = self.launch_test_application(
-            self.local_location, "--test-contacts", app_type='qt')
+            self.local_location,
+            "--test-contacts",
+            app_type='qt',
+            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
         if model() == 'Desktop':
             self.app = self.launch_test_application(
                 "messaging-app",
-                "--test-contacts")
+                "--test-contacts",
+                emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
             self.app = self.launch_test_application(
                "messaging-app", 
                "--test-contacts",
                "--desktop_file_hint=/usr/share/applications/messaging-app.desktop",
-               app_type='qt')
-
-    def get_main_view(self):
-        return self.app.select_single("QQuickView")
-
-    def click_item(self, item, delay=0.1):
-        """Does a mouse click on the passed item, and moved the mouse there
-           before"""
-        # In jenkins test may fail because we don't wait before clicking the
-        # target so we add a little delay before click.
-        if model() == 'Desktop' and delay <= 0.25:
-            delay = 0.25
-
-        self.pointing_device.move_to_object(item)
-        sleep(delay)
-        self.pointing_device.click()
-
-    def reveal_toolbar(self):
-        main_view = self.get_main_view()
-        x_line = main_view.x + main_view.width * 0.5
-        start_y = main_view.y + main_view.height - 1
-        stop_y = start_y - 200
-        self.pointing_device.drag(x_line, start_y, x_line, stop_y)
+               app_type='qt',
+               emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     @property
-    def utils(self):
-        return Utils(self.app)
+    def main_view(self):
+        return self.app.select_single(emulators.MainView)

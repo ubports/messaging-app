@@ -25,6 +25,7 @@ import Ubuntu.Contacts 0.1
 
 Page {
     id: messages
+    objectName: "messagesPage"
     property string threadId: getCurrentThreadId()
     property alias number: contactWatcher.phoneNumber
     property alias selectionMode: messageList.isInSelectionMode
@@ -89,6 +90,7 @@ Page {
         height: (number === "" && threadId == "") ? childrenRect.height + units.gu(1) : 0
         TextField {
             id: newPhoneNumberField
+            objectName: "newPhoneNumberField"
             anchors {
                 top: parent.top
                 left: parent.left
