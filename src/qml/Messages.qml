@@ -31,7 +31,8 @@ Page {
     property alias selectionMode: messageList.isInSelectionMode
     flickable: null
     title:  number !== "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
-    tools: selectionMode ? selectionToolbar : regularToolbar
+    tools: messagesToolbar
+    onSelectionModeChanged: messagesToolbar.opened = false
 
     function getCurrentThreadId() {
         if (number === "")
@@ -47,9 +48,41 @@ Page {
         threadId = getCurrentThreadId()
     }
 
-    // just and empty toolbar with back button
     ToolbarItems {
-        id: regularToolbar
+        id: messagesToolbar
+        ToolbarButton {
+            objectName: "selectMessagesButton"
+            action: Action {
+                iconSource: Qt.resolvedUrl("assets/select.png")
+                text: i18n.tr("Select")
+                onTriggered: messageList.startSelection()
+            }
+        }
+        ToolbarButton {
+            visible: !contactWatcher.isUnknown
+            objectName: "contactProfileButton"
+            action: Action {
+                iconSource: Qt.resolvedUrl("assets/contact.svg")
+                text: i18n.tr("Contact")
+                onTriggered: {
+                    applicationUtils.switchToAddressbookApp("contact://" + contactWatcher.contactId)
+                    messagesToolbar.opened = false
+                }
+            }
+        }
+        ToolbarButton {
+            visible: !contactWatcher.isUnknown
+            objectName: "contactCallButton"
+            action: Action {
+                iconSource: Qt.resolvedUrl("assets/call-start.svg")
+                text: i18n.tr("Call")
+                onTriggered: {
+                    applicationUtils.switchToDialerApp("call://" + contactWatcher.phoneNumber)
+                    messagesToolbar.opened = false
+                }
+            }
+        }
+        locked: selectionMode
     }
 
     HistoryEventModel {

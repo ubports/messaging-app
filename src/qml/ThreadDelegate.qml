@@ -50,8 +50,9 @@ ListItem.Empty {
                     if (delegateHelper.avatar != "") {
                         return delegateHelper.avatar
                     }
+                    return Qt.resolvedUrl("assets/avatar-default.png")
                 }
-                return Qt.resolvedUrl("assets/avatar-default.png")
+                return Qt.resolvedUrl("assets/add.svg")
             }
         }
         MouseArea {
