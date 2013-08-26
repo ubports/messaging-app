@@ -1,3 +1,16 @@
+messaging-app (0.1+13.10.20130826-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the correct application icon.
+
+  [ Tiago Salem Herrmann ]
+  * add initial autopilot tests.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 19
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 26 Aug 2013 02:37:26 +0000
+
 messaging-app (0.1+13.10.20130823.1-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
