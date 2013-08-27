@@ -1,3 +1,14 @@
+messaging-app (0.1+13.10.20130827-0ubuntu1) saucy; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * add actions icons to the thread view toolbar add plus icon for
+    unknown contacts on the main view.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 21
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 27 Aug 2013 02:41:45 +0000
+
 messaging-app (0.1+13.10.20130826-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
