@@ -1,3 +1,15 @@
+messaging-app (0.1+13.10.20130827.1-0ubuntu1) saucy; urgency=low
+
+  [ Sebastien Bacher ]
+  * update the depends, some of the binaries got renamed when entering
+    the ubuntu archive. Let the old names, as an alternative, for the
+    transition, those can be dropped later.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 23
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 27 Aug 2013 12:47:38 +0000
+
 messaging-app (0.1+13.10.20130827-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
