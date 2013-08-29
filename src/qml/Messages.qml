@@ -52,6 +52,7 @@ Page {
         id: messagesToolbar
         ToolbarButton {
             objectName: "selectMessagesButton"
+            visible: messageList.count !== 0
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/select.png")
                 text: i18n.tr("Select")
