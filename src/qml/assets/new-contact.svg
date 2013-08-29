@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg3376" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="90" width="90" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <defs id="defs3378">
+  <clipPath id="clipPath3008-8" clipPathUnits="userSpaceOnUse">
+   <path id="path3010-4" style="color:#000000;fill:#f0f" d="m222.01 818.38v53.968h126v-53.968h-41.618c-2.3377 3.8156-5.017 7.3019-8.2185 10.221-3.2833 2.9932-7.3229 5.8744-13.188 5.8744-5.8649 0-9.9045-2.8812-13.188-5.8744-3.2015-2.9186-5.8808-6.4049-8.2185-10.221h-41.57z"/>
+  </clipPath>
+ </defs>
+ <metadata id="metadata3381">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="translate(0 -962.36)">
+  <g id="g4142" transform="translate(-480,48)">
+   <rect id="rect4006" style="color:#000000;fill:none" height="90" width="90" y="914.36" x="480"/>
+   <rect id="rect4012" style="color:#000000;fill:#808080" height="42" width="5.9899" y="962.36" x="543.01"/>
+   <rect id="rect4014" style="color:#000000;fill:#808080" transform="rotate(90)" height="42" width="6" y="-567" x="980.36"/>
+   <path id="rect3461-3-1" style="color:#000000;fill:#808080" transform="translate(480 914.36)" d="m20.281 36.625c-11.266 0.886-14.281 4.975-14.281 13.563v3.937c0 5.889-0.0044 5.875 7.844 5.875h35.312c7.848 0 7.844 0.014 7.844-5.875v-3.937c0-8.626-3.019-12.701-14.406-13.563-0.768 0.921-1.59 1.792-2.469 2.594-2.147 1.958-4.789 3.843-8.625 3.843s-6.478-1.885-8.625-3.843c-0.874-0.798-1.674-1.678-2.437-2.594-0.05 0.004-0.107-0.004-0.157 0z"/>
+   <path id="path3447-0-6" style="color:#000000;fill:#808080" d="m511.5 914.36c-9.6428-0.00002-13.5 3.8948-13.5 13.632v1.9474c0 7.7895 7.7369 21.421 13.511 21.421 5.7744 0 13.489-13.632 13.489-21.421v-1.9474c0-9.7368-3.8572-13.632-13.5-13.632z"/>
+  </g>
+ </g>
+ <g id="layer2" style="display:none">
+  <rect id="rect4006-1" style="color:#000000;display:inline;fill:none" height="90" width="90" y=".0000015822" x="0"/>
+  <rect id="rect4012-2" style="color:#000000;display:inline;fill:#808080" height="42" width="5.9899" y="48" x="63.01"/>
+  <rect id="rect4014-9" style="color:#000000;display:inline;fill:#808080" transform="rotate(90)" height="42" width="6" y="-87" x="66"/>
+  <path id="rect3461-3-1-0" style="color:#000000;display:inline;fill:#808080" d="m246 851.36c0 9 0 9 12 9h54c12 0 12 0 12-9v-6c0-15-6-21-30-21h-18c-24 0-30 6-30 21z" clip-path="url(#clipPath3008-8)" transform="matrix(.65401 0 0 .65432 -154.89 -502.95)"/>
+  <path id="path3447-0-6-2" style="color:#000000;display:inline;fill:#808080" d="m31.5 0c-9.643-0.00002-13.5 3.8948-13.5 13.632v1.9474c0 7.789 7.737 21.421 13.511 21.421 5.775 0 13.489-13.632 13.489-21.421v-1.9474c0-9.7372-3.857-13.632-13.5-13.632z"/>
+ </g>
+</svg>

@@ -28,6 +28,8 @@ Page {
     tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
     title: i18n.tr("Messages")
 
+    property alias threadCount: threadList.count
+
     function startSelection() {
         threadList.startSelection()
     }

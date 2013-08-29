@@ -60,6 +60,18 @@ Page {
             }
         }
         ToolbarButton {
+            visible: contactWatcher.isUnknown && contactWatcher.phoneNumber !== ""
+            objectName: "addContactButton"
+            action: Action {
+                iconSource: Qt.resolvedUrl("assets/new-contact.svg")
+                text: i18n.tr("Add contact")
+                onTriggered: {
+                    applicationUtils.switchToAddressbookApp("create://" + contactWatcher.phoneNumber)
+                    messagesToolbar.opened = false
+                }
+            }
+        }
+        ToolbarButton {
             visible: !contactWatcher.isUnknown
             objectName: "contactProfileButton"
             action: Action {
@@ -72,7 +84,7 @@ Page {
             }
         }
         ToolbarButton {
-            visible: !contactWatcher.isUnknown
+            visible: contactWatcher.phoneNumber !== ""
             objectName: "contactCallButton"
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/call-start.svg")

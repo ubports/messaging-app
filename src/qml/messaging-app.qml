@@ -83,6 +83,7 @@ MainView {
     ToolbarItems {
         id: regularToolbar
         ToolbarButton {
+            visible: mainStack.currentPage.threadCount !== 0
             objectName: "selectButton"
             text: i18n.tr("Select")
             iconSource: Qt.resolvedUrl("assets/select.png")
