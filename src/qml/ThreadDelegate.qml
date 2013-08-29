@@ -52,7 +52,7 @@ ListItem.Empty {
                     }
                     return Qt.resolvedUrl("assets/avatar-default.png")
                 }
-                return Qt.resolvedUrl("assets/add.svg")
+                return Qt.resolvedUrl("assets/new-contact.svg")
             }
         }
         MouseArea {
