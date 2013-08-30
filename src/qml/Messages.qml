@@ -52,10 +52,23 @@ Page {
         id: messagesToolbar
         ToolbarButton {
             objectName: "selectMessagesButton"
+            visible: messageList.count !== 0
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/select.png")
                 text: i18n.tr("Select")
                 onTriggered: messageList.startSelection()
+            }
+        }
+        ToolbarButton {
+            visible: contactWatcher.isUnknown && contactWatcher.phoneNumber !== ""
+            objectName: "addContactButton"
+            action: Action {
+                iconSource: Qt.resolvedUrl("assets/new-contact.svg")
+                text: i18n.tr("Add contact")
+                onTriggered: {
+                    applicationUtils.switchToAddressbookApp("create://" + contactWatcher.phoneNumber)
+                    messagesToolbar.opened = false
+                }
             }
         }
         ToolbarButton {
@@ -71,7 +84,7 @@ Page {
             }
         }
         ToolbarButton {
-            visible: !contactWatcher.isUnknown
+            visible: contactWatcher.phoneNumber !== ""
             objectName: "contactCallButton"
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/call-start.svg")
