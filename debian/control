@@ -38,6 +38,7 @@ Depends: ${misc:Depends},
          libqt5widgets5,
          messaging-app (>= ${binary:Version}),
          python-autopilot,
+         ubuntu-ui-toolkit-autopilot,
 Description: autopilot tests for messaging-app
  This package contains the autopilot tests for messaging-app
 
@@ -48,5 +49,6 @@ Depends: ${misc:Depends},
          messaging-app (>= ${binary:Version}),
          libautopilot-qt,
          python-autopilot,
+         ubuntu-ui-toolkit-autopilot,
 Description: connected autopilot tests for messaging-app
  This package contains the connected autopilot tests for messaging-app
