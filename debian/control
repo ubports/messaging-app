@@ -25,6 +25,7 @@ Depends: ${misc:Depends},
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          qtdeclarative5-ubuntu-history0.1 | qtdeclarative5-ubuntu-history-plugin,
          qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
+         qtdeclarative5-ubuntu-contacts0.1
 Recommends: unity8 (>= 7.81.0~),
 Description: messaging application for Ubuntu
  An application to send and receive messages.
