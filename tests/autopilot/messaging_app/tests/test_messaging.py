@@ -34,6 +34,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.main_view.get_messages_page().visible, Eventually(Equals(True)))
         text_entry = self.main_view.get_newmessage_textfield()
         self.pointing_device.click_object(text_entry)
+        text_entry.activeFocus.wait_for(True)
         self.keyboard.type("123")
         self.assertThat(text_entry.text, Eventually(Equals("123")))
 
