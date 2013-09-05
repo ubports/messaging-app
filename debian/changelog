@@ -1,3 +1,18 @@
+messaging-app (0.1+13.10.20130905-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix runtime dependencies. Ensure the text entry has active focus
+    before starting to input text.
+
+  [ Olivier Tilloy ]
+  * Fix runtime dependencies. Ensure the text entry has active focus
+    before starting to input text.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 28
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 05 Sep 2013 08:44:08 +0000
+
 messaging-app (0.1+13.10.20130830.2-0ubuntu1) saucy; urgency=low
 
   [ Łukasz 'sil2100' Zemczak ]
