@@ -73,7 +73,7 @@ Page {
                 elide: Text.ElideRight
                 color: "gray"
                 opacity: 0.6
-                text: DateUtils.friendlyDay(section.replace(/-/g, "/"));
+                text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
                 verticalAlignment: Text.AlignVCenter
             }
             ListItem.ThinDivider {
