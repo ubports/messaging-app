@@ -73,7 +73,7 @@ Page {
                 elide: Text.ElideRight
                 color: "gray"
                 opacity: 0.6
-                text: DateUtils.friendlyDay(section, i18n);
+                text: DateUtils.friendlyDay(section.replace(/-/g, "/"));
                 verticalAlignment: Text.AlignVCenter
             }
             ListItem.ThinDivider {
