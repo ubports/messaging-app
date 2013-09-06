@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.History 0.1
@@ -133,19 +134,104 @@ Page {
             right: parent.right
         }
         clip: true
-        height: (number === "" && threadId == "") ? childrenRect.height + units.gu(1) : 0
+        height: (number === "" && threadId == "") ? units.gu(7) : 0
+        focus: true
+
+        Label {
+            id: labelTo
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                verticalCenter: parent.verticalCenter
+            }
+            text: i18n.tr("To:")
+            fontSize: "medium"
+            opacity: 0.2
+        }
+
         TextField {
             id: newPhoneNumberField
             objectName: "newPhoneNumberField"
             anchors {
-                top: parent.top
-                left: parent.left
+                verticalCenter: parent.verticalCenter
+                left: labelTo.right
                 right: parent.right
-                topMargin: units.gu(1)
-                leftMargin: units.gu(1)
+                leftMargin: units.gu(2)
                 rightMargin: units.gu(1)
             }
+
+            style: null
+            color: "white"
+            font.pixelSize: FontUtils.sizeToPixels("large")
+            placeholderText: i18n.tr("Enter number")
         }
+    }
+
+    ContactSearchListView {
+        id: contactSearch
+        property string searchTerm: {
+            if(newMessage.newNumber !== "" && messages.number === "") {
+                return newMessage.newNumber
+            }
+            return "some value that won't match"
+        }
+        anchors {
+            top: newMessage.bottom
+            left: parent.left
+            right: parent.right
+            margins: units.gu(2)
+        }
+
+        states: [
+            State {
+                name: "empty"
+                when: contactSearch.count == 0
+                PropertyChanges {
+                    target: contactSearch
+                    height: 0
+                }
+            }
+        ]
+
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        filter: UnionFilter {
+            DetailFilter {
+                detail: ContactDetail.Name
+                field: Name.FirstName
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+            DetailFilter {
+                detail: ContactDetail.Name
+                field: Name.LastName
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+        }
+
+        onDetailClicked: {
+            messages.number = detail.number
+        }
+        z: 1
     }
 
     MultipleSelectionListView {
