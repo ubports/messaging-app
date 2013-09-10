@@ -20,9 +20,12 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
+import QtContacts 5.0
+
 
 Page {
     id: messages
@@ -47,6 +50,41 @@ Page {
 
     onNumberChanged: {
         threadId = getCurrentThreadId()
+    }
+
+    Component {
+        id: contactsSheet
+        DefaultSheet {
+            // FIXME: workaround to set the contact list
+            // background to black
+            Rectangle {
+                anchors.fill: parent
+                anchors.margins: -units.gu(1)
+                color: "#221e1c"
+            }
+            id: sheet
+            title: "Add Contact"
+            doneButton: false
+            modal: true
+            contentsHeight: parent.height
+            contentsWidth: parent.width
+            ContactListView {
+                anchors.fill: parent
+                detailToPick: ContactDetail.PhoneNumber
+                onContactClicked: {
+                    // FIXME: search for favorite number
+                    number = contact.phoneNumber.number
+                    textEntry.forceActiveFocus()
+                    PopupUtils.close(sheet)
+                }
+                onDetailClicked: {
+                    number = detail.number
+                    PopupUtils.close(sheet)
+                    textEntry.forceActiveFocus()
+                }
+            }
+            onDoneClicked: PopupUtils.close(sheet)
+        }
     }
 
     ToolbarItems {
@@ -164,17 +202,44 @@ Page {
             color: "white"
             font.pixelSize: FontUtils.sizeToPixels("large")
             placeholderText: i18n.tr("Enter number")
+            Keys.onReturnPressed: textEntry.forceActiveFocus()
         }
+
+        Image {
+            height: units.gu(3)
+            width: units.gu(3)
+            anchors {
+                right: parent.right
+                rightMargin: units.gu(2)
+                verticalCenter: labelTo.verticalCenter
+            }
+
+            source: Qt.resolvedUrl("assets/new-contact.svg")
+            MouseArea {
+                anchors.fill: parent
+                onClicked: PopupUtils.open(contactsSheet)
+            }
+        }
+    }
+
+    Rectangle {
+        anchors.fill: contactSearch
+        anchors.leftMargin: -units.gu(2)
+        anchors.rightMargin: -units.gu(2)
+        color: "black"
+        opacity: 0.6
+        z: -1
     }
 
     ContactSearchListView {
         id: contactSearch
         property string searchTerm: {
-            if(newMessage.newNumber !== "" && messages.number === "") {
+            if(newMessage.newNumber !== "" && messages.number === "" && newPhoneNumberField.focus) {
                 return newMessage.newNumber
             }
             return "some value that won't match"
         }
+        clip: false
         anchors {
             top: newMessage.bottom
             left: parent.left
@@ -230,6 +295,7 @@ Page {
 
         onDetailClicked: {
             messages.number = detail.number
+            textEntry.forceActiveFocus()
         }
         z: 1
     }
@@ -314,6 +380,7 @@ Page {
             text: "Attach"
             width: units.gu(17)
             color: "gray"
+            visible: false
         }
 
         Button {
