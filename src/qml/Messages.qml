@@ -41,7 +41,11 @@ Page {
     function getCurrentThreadId() {
         if (number === "")
             return ""
-        return eventModel.threadIdForParticipants(telepathyHelper.accountId, HistoryThreadModel.EventTypeText, messages.number)
+        return eventModel.threadIdForParticipants(telepathyHelper.accountId, HistoryThreadModel.EventTypeText, normalizeNumber(messages.number))
+    }
+   
+    function normalizeNumber(phoneNumber) {
+        return phoneNumber.replace(/\D/g, '')
     }
 
     ContactWatcher {
@@ -73,12 +77,12 @@ Page {
                 detailToPick: ContactDetail.PhoneNumber
                 onContactClicked: {
                     // FIXME: search for favorite number
-                    number = contact.phoneNumber.number
+                    number = normalizeNumber(contact.phoneNumber.number)
                     textEntry.forceActiveFocus()
                     PopupUtils.close(sheet)
                 }
                 onDetailClicked: {
-                    number = detail.number
+                    number = normalizeNumber(detail.number)
                     PopupUtils.close(sheet)
                     textEntry.forceActiveFocus()
                 }
@@ -294,7 +298,7 @@ Page {
         }
 
         onDetailClicked: {
-            messages.number = detail.number
+            messages.number = normalizeNumber(detail.number)
             textEntry.forceActiveFocus()
         }
         z: 1
@@ -392,11 +396,11 @@ Page {
             enabled: textEntry.text != "" && telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
             onClicked: {
                 if (messages.number === "" && newMessage.newNumber !== "") {
-                    messages.number = newMessage.newNumber
+                    messages.number = normalizeNumber(newMessage.newNumber)
                 }
 
                 if (messages.threadId == "") {
-                    messages.threadId = messages.number
+                    messages.threadId = normalizeNumber(messages.number)
                 }
 
                 chatManager.sendMessage(messages.number, textEntry.text)
