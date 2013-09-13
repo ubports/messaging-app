@@ -41,13 +41,12 @@ Page {
     function getCurrentThreadId() {
         if (number === "")
             return ""
-        return eventModel.threadIdForParticipants(telepathyHelper.accountId, HistoryThreadModel.EventTypeText, normalizeNumber(messages.number))
+        return threadModel.threadIdForParticipants(telepathyHelper.accountId,
+                                                              HistoryThreadModel.EventTypeText,
+                                                              messages.number,
+                                                              HistoryThreadModel.MatchPhoneNumber)
     }
    
-    function normalizeNumber(phoneNumber) {
-        return phoneNumber.replace(/\D/g, '')
-    }
-
     ContactWatcher {
         id: contactWatcher
     }
@@ -77,12 +76,12 @@ Page {
                 detailToPick: ContactDetail.PhoneNumber
                 onContactClicked: {
                     // FIXME: search for favorite number
-                    number = normalizeNumber(contact.phoneNumber.number)
+                    number = contact.phoneNumber.number
                     textEntry.forceActiveFocus()
                     PopupUtils.close(sheet)
                 }
                 onDetailClicked: {
-                    number = normalizeNumber(detail.number)
+                    number = detail.number
                     PopupUtils.close(sheet)
                     textEntry.forceActiveFocus()
                 }
@@ -298,7 +297,7 @@ Page {
         }
 
         onDetailClicked: {
-            messages.number = normalizeNumber(detail.number)
+            messages.number = detail.number
             textEntry.forceActiveFocus()
         }
         z: 1
@@ -396,11 +395,16 @@ Page {
             enabled: textEntry.text != "" && telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
             onClicked: {
                 if (messages.number === "" && newMessage.newNumber !== "") {
-                    messages.number = normalizeNumber(newMessage.newNumber)
+                    messages.number = newMessage.newNumber
                 }
 
                 if (messages.threadId == "") {
-                    messages.threadId = normalizeNumber(messages.number)
+                    // create the new thread and get the threadId
+                    messages.threadId = threadModel.threadIdForParticipants(telepathyHelper.accountId,
+                                                                            HistoryThreadModel.EventTypeText,
+                                                                            messages.number,
+                                                                            HistoryThreadModel.MatchPhoneNumber,
+                                                                            true)
                 }
 
                 chatManager.sendMessage(messages.number, textEntry.text)

@@ -34,19 +34,6 @@ Page {
         threadList.startSelection()
     }
 
-    HistoryThreadModel {
-        id: threadModel
-        type: HistoryThreadModel.EventTypeText
-        filter: HistoryFilter {
-            filterProperty: "accountId"
-            filterValue: telepathyHelper.accountId
-        }
-        sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
-        }
-    }
-
     SortProxyModel {
         id: sortProxy
         sortRole: HistoryThreadModel.LastEventTimestampRole
