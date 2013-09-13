@@ -41,7 +41,7 @@ Page {
     function getCurrentThreadId() {
         if (number === "")
             return ""
-        return threadModel.threadIdForParticipants(telepathyHelper.accountId,
+        return eventModel.threadIdForParticipants(telepathyHelper.accountId,
                                                               HistoryThreadModel.EventTypeText,
                                                               messages.number,
                                                               HistoryThreadModel.MatchPhoneNumber)
@@ -400,7 +400,7 @@ Page {
 
                 if (messages.threadId == "") {
                     // create the new thread and get the threadId
-                    messages.threadId = threadModel.threadIdForParticipants(telepathyHelper.accountId,
+                    messages.threadId = eventModel.threadIdForParticipants(telepathyHelper.accountId,
                                                                             HistoryThreadModel.EventTypeText,
                                                                             messages.number,
                                                                             HistoryThreadModel.MatchPhoneNumber,

@@ -41,6 +41,19 @@ Page {
         ascending: false
     }
 
+    HistoryThreadModel {
+        id: threadModel
+        type: HistoryThreadModel.EventTypeText
+        filter: HistoryFilter {
+            filterProperty: "accountId"
+            filterValue: telepathyHelper.accountId
+        }
+        sort: HistorySort {
+            sortField: "lastEventTimestamp"
+            sortOrder: HistorySort.DescendingOrder
+        }
+    }
+
     MultipleSelectionListView {
         id: threadList
         objectName: "threadList"

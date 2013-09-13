@@ -21,7 +21,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
-import Ubuntu.History 0.1
 
 MainView {
     id: mainView
@@ -55,19 +54,6 @@ MainView {
         var properties = {}
         properties["number"] = phoneNumber
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
-    }
-
-    HistoryThreadModel {
-        id: threadModel
-        type: HistoryThreadModel.EventTypeText
-        filter: HistoryFilter {
-            filterProperty: "accountId"
-            filterValue: telepathyHelper.accountId
-        }
-        sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
-        }
     }
 
     Component {
