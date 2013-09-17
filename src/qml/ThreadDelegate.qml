@@ -65,6 +65,12 @@ ListItem.Empty {
                     PopupUtils.open(newcontactPopover, avatar)
                 }
             }
+            onPressAndHold: {
+                mainView.newPhoneNumber = delegateHelper.phoneNumber
+                if (!selectionMode) {
+                    PopupUtils.open(newcontactPopover, avatar)
+                }
+            }
             enabled: unknownContact
         }
     }
