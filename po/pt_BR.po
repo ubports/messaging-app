@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-15 17:32-0300\n"
+"POT-Creation-Date: 2013-09-13 13:41-0300\n"
 "PO-Revision-Date: 2013-06-14 21:06+0000\n"
 "Last-Translator: <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -19,6 +19,64 @@ msgstr ""
 "X-Launchpad-Export-Date: 2013-06-15 06:21+0000\n"
 "X-Generator: Launchpad (build 16667)\n"
 
+#: src/qml/dateUtils.js:62
+#, qt-format
+msgid "%1 hour call"
+msgid_plural "%1 hours call"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/dateUtils.js:64
+#, qt-format
+msgid "%1 minute call"
+msgid_plural "%1 minutes call"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/dateUtils.js:66
+#, qt-format
+msgid "%1 second call"
+msgid_plural "%1 seconds call"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/Messages.qml:109
+msgid "Add contact"
+msgstr ""
+
+#: src/qml/messaging-app.qml:85
+msgid "Add to existing contact"
+msgstr ""
+
+#: src/qml/Messages.qml:133
+msgid "Call"
+msgstr ""
+
+#: src/qml/messaging-app.qml:111
+msgid "Compose"
+msgstr ""
+
+#: src/qml/Messages.qml:121
+msgid "Contact"
+msgstr ""
+
+#: src/qml/messaging-app.qml:87
+msgid "Create new contact"
+msgstr ""
+
+#: src/qml/MessageDelegate.qml:39 src/qml/MainPage.qml:49
+#: src/qml/Messages.qml:309 src/qml/ThreadDelegate.qml:129
+msgid "Delete"
+msgstr ""
+
+#: src/qml/Messages.qml:207
+msgid "Enter number"
+msgstr ""
+
+#: src/qml/MainPage.qml:29
+msgid "Messages"
+msgstr ""
+
 #: src/messaging-app.desktop.in:3
 msgid "Messaging"
 msgstr ""
@@ -29,4 +87,28 @@ msgstr ""
 
 #: src/messaging-app.desktop.in:5
 msgid "Messaging application"
+msgstr ""
+
+#: src/qml/Messages.qml:37
+msgid "New Message"
+msgstr ""
+
+#: src/qml/Messages.qml:100 src/qml/messaging-app.qml:102
+msgid "Select"
+msgstr ""
+
+#: src/qml/Messages.qml:188
+msgid "To:"
+msgstr ""
+
+#: src/qml/dateUtils.js:41
+msgid "Today"
+msgstr ""
+
+#: src/qml/Messages.qml:374
+msgid "Write a message..."
+msgstr ""
+
+#: src/qml/dateUtils.js:43
+msgid "Yesterday"
 msgstr ""

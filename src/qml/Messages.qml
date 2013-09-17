@@ -17,11 +17,15 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
+import QtContacts 5.0
+
 
 Page {
     id: messages
@@ -37,15 +41,53 @@ Page {
     function getCurrentThreadId() {
         if (number === "")
             return ""
-        return eventModel.threadIdForParticipants(telepathyHelper.accountId, HistoryThreadModel.EventTypeText, messages.number)
+        return eventModel.threadIdForParticipants(telepathyHelper.accountId,
+                                                              HistoryThreadModel.EventTypeText,
+                                                              messages.number,
+                                                              HistoryThreadModel.MatchPhoneNumber)
     }
-
+   
     ContactWatcher {
         id: contactWatcher
     }
 
     onNumberChanged: {
         threadId = getCurrentThreadId()
+    }
+
+    Component {
+        id: contactsSheet
+        DefaultSheet {
+            // FIXME: workaround to set the contact list
+            // background to black
+            Rectangle {
+                anchors.fill: parent
+                anchors.margins: -units.gu(1)
+                color: "#221e1c"
+            }
+            id: sheet
+            title: "Add Contact"
+            doneButton: false
+            modal: true
+            contentsHeight: parent.height
+            contentsWidth: parent.width
+            ContactListView {
+                anchors.fill: parent
+                detailToPick: ContactDetail.PhoneNumber
+                onContactClicked: {
+                    // FIXME: search for favorite number
+                    number = contact.phoneNumber.number
+                    textEntry.forceActiveFocus()
+                    PopupUtils.close(sheet)
+                }
+                onDetailClicked: {
+                    number = detail.number
+                    PopupUtils.close(sheet)
+                    textEntry.forceActiveFocus()
+                }
+            }
+            onDoneClicked: PopupUtils.close(sheet)
+        }
     }
 
     ToolbarItems {
@@ -133,19 +175,132 @@ Page {
             right: parent.right
         }
         clip: true
-        height: (number === "" && threadId == "") ? childrenRect.height + units.gu(1) : 0
+        height: (number === "" && threadId == "") ? units.gu(7) : 0
+        focus: true
+
+        Label {
+            id: labelTo
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                verticalCenter: parent.verticalCenter
+            }
+            text: i18n.tr("To:")
+            fontSize: "medium"
+            opacity: 0.2
+        }
+
         TextField {
             id: newPhoneNumberField
             objectName: "newPhoneNumberField"
             anchors {
-                top: parent.top
-                left: parent.left
+                verticalCenter: parent.verticalCenter
+                left: labelTo.right
                 right: parent.right
-                topMargin: units.gu(1)
-                leftMargin: units.gu(1)
+                leftMargin: units.gu(2)
                 rightMargin: units.gu(1)
             }
+
+            style: null
+            color: "white"
+            font.pixelSize: FontUtils.sizeToPixels("large")
+            placeholderText: i18n.tr("Enter number")
+            Keys.onReturnPressed: textEntry.forceActiveFocus()
         }
+
+        Image {
+            height: units.gu(3)
+            width: units.gu(3)
+            anchors {
+                right: parent.right
+                rightMargin: units.gu(2)
+                verticalCenter: labelTo.verticalCenter
+            }
+
+            source: Qt.resolvedUrl("assets/new-contact.svg")
+            MouseArea {
+                anchors.fill: parent
+                onClicked: PopupUtils.open(contactsSheet)
+            }
+        }
+    }
+
+    Rectangle {
+        anchors.fill: contactSearch
+        anchors.leftMargin: -units.gu(2)
+        anchors.rightMargin: -units.gu(2)
+        color: "black"
+        opacity: 0.6
+        z: -1
+    }
+
+    ContactSearchListView {
+        id: contactSearch
+        property string searchTerm: {
+            if(newMessage.newNumber !== "" && messages.number === "" && newPhoneNumberField.focus) {
+                return newMessage.newNumber
+            }
+            return "some value that won't match"
+        }
+        clip: false
+        anchors {
+            top: newMessage.bottom
+            left: parent.left
+            right: parent.right
+            margins: units.gu(2)
+        }
+
+        states: [
+            State {
+                name: "empty"
+                when: contactSearch.count == 0
+                PropertyChanges {
+                    target: contactSearch
+                    height: 0
+                }
+            }
+        ]
+
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        filter: UnionFilter {
+            DetailFilter {
+                detail: ContactDetail.Name
+                field: Name.FirstName
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+            DetailFilter {
+                detail: ContactDetail.Name
+                field: Name.LastName
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+        }
+
+        onDetailClicked: {
+            messages.number = detail.number
+            textEntry.forceActiveFocus()
+        }
+        z: 1
     }
 
     MultipleSelectionListView {
@@ -228,6 +383,7 @@ Page {
             text: "Attach"
             width: units.gu(17)
             color: "gray"
+            visible: false
         }
 
         Button {
@@ -243,7 +399,12 @@ Page {
                 }
 
                 if (messages.threadId == "") {
-                    messages.threadId = messages.number
+                    // create the new thread and get the threadId
+                    messages.threadId = eventModel.threadIdForParticipants(telepathyHelper.accountId,
+                                                                            HistoryThreadModel.EventTypeText,
+                                                                            messages.number,
+                                                                            HistoryThreadModel.MatchPhoneNumber,
+                                                                            true)
                 }
 
                 chatManager.sendMessage(messages.number, textEntry.text)

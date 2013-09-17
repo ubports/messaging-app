@@ -34,6 +34,13 @@ Page {
         threadList.startSelection()
     }
 
+    SortProxyModel {
+        id: sortProxy
+        sortRole: HistoryThreadModel.LastEventTimestampRole
+        sourceModel: threadModel
+        ascending: false
+    }
+
     HistoryThreadModel {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
@@ -45,13 +52,6 @@ Page {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
         }
-    }
-
-    SortProxyModel {
-        id: sortProxy
-        sortRole: HistoryThreadModel.LastEventTimestampRole
-        sourceModel: threadModel
-        ascending: false
     }
 
     MultipleSelectionListView {
