@@ -1,3 +1,20 @@
+messaging-app (0.1+13.10.20130917-0ubuntu1) saucy; urgency=low
+
+  [ Dennis O'Flaherty ]
+  * Format date properly so friendlyDay() can return the right string.
+    (LP: #1220043)
+
+  [ Tiago Salem Herrmann ]
+  * invoke popups also on pressAndHold.
+  * add support for contacts quick search this branch needs the history
+    service from this MR: https://code.launchpad.net/~tiagosh/history-
+    service/fix-threadForParticipants/+merge/185547. (LP: #1224944)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 32
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 17 Sep 2013 12:57:10 +0000
+
 messaging-app (0.1+13.10.20130905-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
