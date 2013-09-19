@@ -10,3 +10,4 @@ MimeType=x-scheme-handler/contact;x-scheme-handler/call
 X-Ubuntu-Touch=true
 X-Ubuntu-StageHint=SideStage
 X-Ubuntu-Gettext-Domain=messaging-app
+X-Ubuntu-Single-Instance=true
