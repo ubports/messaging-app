@@ -46,7 +46,11 @@ Page {
                                                               messages.number,
                                                               HistoryThreadModel.MatchPhoneNumber)
     }
-   
+
+    function markMessageAsRead(accountId, threadId, eventId, type) {
+        return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
     ContactWatcher {
         id: contactWatcher
     }
@@ -338,6 +342,12 @@ Page {
             onPressAndHold: {
                 messageList.startSelection()
                 messageList.selectItem(messageDelegate)
+            }
+
+            Component.onCompleted: {
+                if (newEvent) {
+                    messages.markMessageAsRead(accountId, threadId, eventId, type);
+                }
             }
         }
         onSelectionDone: {
