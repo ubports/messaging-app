@@ -328,6 +328,12 @@ Page {
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
             removable: !selectionMode
+            Rectangle {
+                visible: selected
+                color: Theme.palette.selected.background
+                anchors.fill: parent
+                z: -1
+            }
             onClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {

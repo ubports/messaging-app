@@ -86,6 +86,13 @@ Page {
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode
+            Rectangle {
+                visible: selected
+                color: Theme.palette.selected.background
+                anchors.fill: parent
+                z: -1
+            }
+
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
