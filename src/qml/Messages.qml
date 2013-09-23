@@ -181,6 +181,7 @@ Page {
         clip: true
         height: (number === "" && threadId == "") ? units.gu(7) : 0
         focus: true
+        Component.onCompleted: number === "" && newPhoneNumberField.forceActiveFocus()
 
         Label {
             id: labelTo
