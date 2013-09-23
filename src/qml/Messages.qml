@@ -328,6 +328,7 @@ Page {
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
             removable: !selectionMode
+            // FIXME: the selected state should be handled by the UITK
             Rectangle {
                 visible: selected
                 color: UbuntuColors.orange
