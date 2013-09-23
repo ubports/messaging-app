@@ -88,7 +88,8 @@ Page {
             removable: !selectionMode
             Rectangle {
                 visible: selected
-                color: Theme.palette.selected.background
+                color: UbuntuColors.orange
+                opacity: 0.5
                 anchors.fill: parent
                 z: -1
             }
