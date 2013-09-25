@@ -15,6 +15,8 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals, GreaterThan
 
+from messaging_app.tests import MessagingAppTestCase
+
 import os
 import shutil
 import ConfigParser
@@ -22,7 +24,7 @@ import ConfigParser
 config_file = os.path.expanduser('~/.testnumbers.cfg')
 
 
-class MessagingAppTestCase(AutopilotTestCase):
+class MessagingAppConnectedTestCase(MessagingAppTestCase):
     """A common test case class that provides several useful methods for
     Messaging App tests.
 
@@ -84,4 +86,3 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     def get_main_view(self):
         return self.app.select_single("QQuickView")
-
