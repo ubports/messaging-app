@@ -1,3 +1,20 @@
+messaging-app (0.1+13.10.20130925-0ubuntu1) saucy; urgency=low
+
+  [ Ted Gould ]
+  * Adding single instance marker to the desktop file.
+
+  [ Gustavo Pichorim Boiko ]
+  * Mark events as read when they are opened in the messages view.
+
+  [ Tiago Salem Herrmann ]
+  * Add a visual feedback for selected messages/conversations. (LP:
+    #1227351)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 36
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 25 Sep 2013 06:35:22 +0000
+
 messaging-app (0.1+13.10.20130917-0ubuntu1) saucy; urgency=low
 
   [ Dennis O'Flaherty ]
