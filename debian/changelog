@@ -1,3 +1,14 @@
+messaging-app (0.1+13.10.20130926.1-0ubuntu1) saucy; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Focus phone number entry when composing a new message. (LP:
+    #1227356)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 38
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 26 Sep 2013 08:46:06 +0000
+
 messaging-app (0.1+13.10.20130925-0ubuntu1) saucy; urgency=low
 
   [ Ted Gould ]
