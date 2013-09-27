@@ -51,6 +51,32 @@ Page {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
+    Component {
+         id: newContactDialog
+         Dialog {
+             id: dialogue
+             title: i18n.tr("Save contact")
+             text: i18n.tr("How do you want to save the contact?")
+             Button {
+                 text: i18n.tr("Add to existing contact")
+                 color: UbuntuColors.orange
+                 onClicked: {
+                     PopupUtils.open(addPhoneNumberToContactSheet)
+                     PopupUtils.close(dialogue)
+                 }
+             }
+             Button {
+                 text: i18n.tr("Create new contact")
+                 color: UbuntuColors.warmGrey
+                 onClicked: {
+                     applicationUtils.switchToAddressbookApp("addressbook://create" +
+                                                             "?phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                     PopupUtils.close(dialogue)
+                 }
+             }
+         }
+    }
+
     ContactWatcher {
         id: contactWatcher
     }
@@ -60,7 +86,36 @@ Page {
     }
 
     Component {
-        id: contactsSheet
+        id: addPhoneNumberToContactSheet
+        DefaultSheet {
+            // FIXME: workaround to set the contact list
+            // background to black
+            Rectangle {
+                anchors.fill: parent
+                anchors.margins: -units.gu(1)
+                color: "#221e1c"
+            }
+            id: sheet
+            title: "Add Contact"
+            doneButton: false
+            modal: true
+            contentsHeight: parent.height
+            contentsWidth: parent.width
+            ContactListView {
+                anchors.fill: parent
+                onContactClicked: {
+                    applicationUtils.switchToAddressbookApp("addressbook://addphone" +
+                                                            "?id=" + encodeURIComponent(contact.contactId) +
+                                                            "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                    PopupUtils.close(sheet)
+                }
+            }
+            onDoneClicked: PopupUtils.close(sheet)
+        }
+    }
+
+    Component {
+        id: addContactToConversationSheet
         DefaultSheet {
             // FIXME: workaround to set the contact list
             // background to black
@@ -110,9 +165,9 @@ Page {
             objectName: "addContactButton"
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/new-contact.svg")
-                text: i18n.tr("Add contact")
+                text: i18n.tr("Add")
                 onTriggered: {
-                    applicationUtils.switchToAddressbookApp("create://" + contactWatcher.phoneNumber)
+                    PopupUtils.open(newContactDialog)
                     messagesToolbar.opened = false
                 }
             }
@@ -124,7 +179,7 @@ Page {
                 iconSource: Qt.resolvedUrl("assets/contact.svg")
                 text: i18n.tr("Contact")
                 onTriggered: {
-                    applicationUtils.switchToAddressbookApp("contact://" + contactWatcher.contactId)
+                    applicationUtils.switchToAddressbookApp("addressbook://contact?id=" + encodeURIComponent(contactWatcher.contactId))
                     messagesToolbar.opened = false
                 }
             }
@@ -225,7 +280,7 @@ Page {
             source: Qt.resolvedUrl("assets/new-contact.svg")
             MouseArea {
                 anchors.fill: parent
-                onClicked: PopupUtils.open(contactsSheet)
+                onClicked: PopupUtils.open(addContactToConversationSheet)
             }
         }
     }

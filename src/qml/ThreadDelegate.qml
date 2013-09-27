@@ -46,32 +46,11 @@ ListItem.Empty {
         image: Image {
             anchors.fill: parent
             source: {
-                if(!unknownContact) {
-                    if (delegateHelper.avatar != "") {
-                        return delegateHelper.avatar
-                    }
-                    return Qt.resolvedUrl("assets/avatar-default.png")
+                if(!unknownContact && delegateHelper.avatar !== "") {
+                    return delegateHelper.avatar
                 }
-                return Qt.resolvedUrl("assets/new-contact.svg")
+                return Qt.resolvedUrl("assets/avatar-default.png")
             }
-        }
-        MouseArea {
-            anchors.fill: avatar
-            onClicked: {
-                mainView.newPhoneNumber = delegateHelper.phoneNumber
-                if (selectionMode) {
-                    delegate.clicked()
-                } else {
-                    PopupUtils.open(newcontactPopover, avatar)
-                }
-            }
-            onPressAndHold: {
-                mainView.newPhoneNumber = delegateHelper.phoneNumber
-                if (!selectionMode) {
-                    PopupUtils.open(newcontactPopover, avatar)
-                }
-            }
-            enabled: unknownContact
         }
     }
 
