@@ -165,7 +165,7 @@ Page {
             objectName: "addContactButton"
             action: Action {
                 iconSource: Qt.resolvedUrl("assets/new-contact.svg")
-                text: i18n.tr("Add contact")
+                text: i18n.tr("Add")
                 onTriggered: {
                     PopupUtils.open(newContactDialog)
                     messagesToolbar.opened = false
