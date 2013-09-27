@@ -73,7 +73,7 @@ ListItem.Empty {
 
         height: messageContents.height + units.gu(4)
 
-        Item {
+        FocusScope {
             id: messageContents
             anchors {
                 top: parent.top
@@ -104,18 +104,37 @@ ListItem.Empty {
                 text: DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
             }
 
-            Label {
+            // TODO We are not using TextArea from the sdk because it is not getting the
+            // line count correctly for some messages.
+            TextEdit {
                 id: messageText
+                focus: false
+                clip: false
                 anchors.top: date.bottom
                 anchors.topMargin: units.gu(1)
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: paintedHeight
+                activeFocusOnPress: false
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                fontSize: "medium"
+                height: editor.paintedHeight
+                cursorVisible: false
+                cursorDelegate: null
+                readOnly: true
                 color: textColor
                 opacity: incoming ? 1 : 0.9
-                text: textMessage
+                text: parseText(textMessage)
+                textFormat: TextEdit.RichText
+                font.pixelSize: FontUtils.sizeToPixels("medium")
+                font.family: "Ubuntu"
+                onLinkActivated:  Qt.openUrlExternally(link)
+                function parseText(text) {
+                    // remove html tags
+                    text = text.replace(/(<([^>]+)>)/ig,"");
+                    // replace line breaks
+                    text = text.toString().replace(/(\n)+/g, '<br />');
+                    // check for links
+                    return text.toString().replace(new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "img"), '$1<a href="$2">$2</a>');
+                }
             }
         }
     }
