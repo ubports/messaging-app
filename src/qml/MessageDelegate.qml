@@ -121,9 +121,9 @@ ListItem.Empty {
                     // remove html tags
                     text = text.replace(/(<([^>]+)>)/ig,"");
                     // replace line breaks
-                    text = text.toString().replace(/(\n)+/g, '<br />');
+                    text = text.replace(/(\n)+/g, '<br />');
                     // check for links
-                    return text.toString().replace(new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "img"), '$1<a href="$2">$2</a>');
+                    return text.replace(new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "img"), '$1<a href="$2">$2</a>');
                 }
 
             }
