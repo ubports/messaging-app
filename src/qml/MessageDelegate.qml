@@ -115,7 +115,17 @@ ListItem.Empty {
                 fontSize: "medium"
                 color: textColor
                 opacity: incoming ? 1 : 0.9
-                text: textMessage
+                text: parseText(textMessage)
+                onLinkActivated:  Qt.openUrlExternally(link)
+                function parseText(text) {
+                    // remove html tags
+                    text = text.replace(/(<([^>]+)>)/ig,"");
+                    // replace line breaks
+                    text = text.replace(/(\n)+/g, '<br />');
+                    // check for links
+                    return text.replace(new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "img"), '$1<a href="$2">$2</a>');
+                }
+
             }
         }
     }
