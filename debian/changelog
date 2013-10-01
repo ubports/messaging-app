@@ -1,3 +1,17 @@
+messaging-app (0.1+13.10.20131001.4-0ubuntu1) saucy; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Replace the "new contact" icon used for unknown contacts on the
+    conversations list by the default avatar. Remove popup when tapping
+    unknown contact avatars and implement a dialog for adding new
+    contacts. (LP: #1231569, #1231442)
+  * Parse messages and add links when necessary. (LP: #1192442)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 41
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 01 Oct 2013 21:20:39 +0000
+
 messaging-app (0.1+13.10.20130926.1-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
