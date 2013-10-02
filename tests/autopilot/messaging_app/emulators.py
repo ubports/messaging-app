@@ -25,3 +25,15 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_textfield(self):
         return self.select_single("TextField", objectName="newPhoneNumberField")
 
+    def get_newmessage_textarea(self):
+        return self.select_single("TextArea", objectName="")
+
+    def get_send_button(self):
+        return self.select_single('Button', text='Send')
+
+    def get_thread_from_number(self, number):
+        for item in self.select_many("QQuickItem"):
+            if "phoneNumber" in item.get_properties():
+                if item.get_properties()['phoneNumber'] == number:
+                    return item
+        return None
