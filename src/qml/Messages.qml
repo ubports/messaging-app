@@ -37,7 +37,18 @@ Page {
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     flickable: null
-    title:  landscape ? "" : number !== "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
+    title: {
+        if (landscape) {
+            return ""
+        }
+        if (number !== "") {
+            if (contactWatcher.isUnknown) {
+                return messages.number
+            }
+            return contactWatcher.alias
+        }
+        return i18n.tr("New Message")
+    }
     tools: messagesToolbar
     onSelectionModeChanged: messagesToolbar.opened = false
 
