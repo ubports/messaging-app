@@ -430,13 +430,11 @@ Page {
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(4)
         visible: !selectionMode
-        clip: true
         ListItem.ThinDivider {
             anchors.top: parent.top
         }
         TextArea {
             id: textEntry
-            clip: true
             anchors.bottomMargin: units.gu(2)
             anchors.bottom: attachButton.top
             anchors.left: parent.left
@@ -447,6 +445,14 @@ Page {
             autoSize: true
             placeholderText: i18n.tr("Write a message...")
             focus: false
+
+            InverseMouseArea {
+                anchors.fill: parent
+                visible: textEntry.activeFocus
+                onClicked: {
+                    textEntry.focus = false;
+                }
+            }
         }
 
         Button {
