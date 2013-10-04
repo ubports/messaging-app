@@ -86,14 +86,14 @@ MainView {
             visible: mainStack.currentPage.threadCount !== 0
             objectName: "selectButton"
             text: i18n.tr("Select")
-            iconSource: Qt.resolvedUrl("assets/select.png")
+            iconSource: "image://theme/select"
             onTriggered: mainStack.currentPage.startSelection()
         }
 
         ToolbarButton {
             objectName: "newMessageButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/compose.png")
+                iconSource: "image://theme/compose"
                 text: i18n.tr("Compose")
                 onTriggered: mainView.startNewMessage()
             }

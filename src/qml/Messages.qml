@@ -155,7 +155,7 @@ Page {
             objectName: "selectMessagesButton"
             visible: messageList.count !== 0
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/select.png")
+                iconSource: "image://theme/select"
                 text: i18n.tr("Select")
                 onTriggered: messageList.startSelection()
             }
@@ -164,7 +164,7 @@ Page {
             visible: contactWatcher.isUnknown && contactWatcher.phoneNumber !== ""
             objectName: "addContactButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/new-contact.svg")
+                iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
                 onTriggered: {
                     PopupUtils.open(newContactDialog)
@@ -176,7 +176,7 @@ Page {
             visible: !contactWatcher.isUnknown
             objectName: "contactProfileButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/contact.svg")
+                iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
                 onTriggered: {
                     applicationUtils.switchToAddressbookApp("addressbook://contact?id=" + encodeURIComponent(contactWatcher.contactId))
@@ -188,7 +188,7 @@ Page {
             visible: contactWatcher.phoneNumber !== ""
             objectName: "contactCallButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/call-start.svg")
+                iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
                     applicationUtils.switchToDialerApp("call://" + contactWatcher.phoneNumber)
@@ -268,7 +268,7 @@ Page {
             Keys.onReturnPressed: textEntry.forceActiveFocus()
         }
 
-        Image {
+        Icon {
             height: units.gu(3)
             width: units.gu(3)
             anchors {
@@ -277,7 +277,8 @@ Page {
                 verticalCenter: labelTo.verticalCenter
             }
 
-            source: Qt.resolvedUrl("assets/new-contact.svg")
+            name: "new-contact"
+            color: "white"
             MouseArea {
                 anchors.fill: parent
                 onClicked: PopupUtils.open(addContactToConversationSheet)
