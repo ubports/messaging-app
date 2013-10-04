@@ -1,3 +1,14 @@
+messaging-app (0.1+13.10.20131004.1-0ubuntu1) saucy; urgency=low
+
+  [ Max Brustkern ]
+  * Implemented test of SMS sending and moved connected_tests to
+    messaging_app_connected to avoid conflict with dialer-app.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 43
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 04 Oct 2013 07:23:23 +0000
+
 messaging-app (0.1+13.10.20131001.4-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
