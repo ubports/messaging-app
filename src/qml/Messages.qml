@@ -69,8 +69,7 @@ Page {
                  text: i18n.tr("Create new contact")
                  color: UbuntuColors.warmGrey
                  onClicked: {
-                     applicationUtils.switchToAddressbookApp("addressbook://create" +
-                                                             "?phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                     Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(contactWatcher.phoneNumber));
                      PopupUtils.close(dialogue)
                  }
              }
@@ -104,9 +103,8 @@ Page {
             ContactListView {
                 anchors.fill: parent
                 onContactClicked: {
-                    applicationUtils.switchToAddressbookApp("addressbook://addphone" +
-                                                            "?id=" + encodeURIComponent(contact.contactId) +
-                                                            "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
+                                                                "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
                     PopupUtils.close(sheet)
                 }
             }
@@ -179,7 +177,7 @@ Page {
                 iconSource: Qt.resolvedUrl("assets/contact.svg")
                 text: i18n.tr("Contact")
                 onTriggered: {
-                    applicationUtils.switchToAddressbookApp("addressbook://contact?id=" + encodeURIComponent(contactWatcher.contactId))
+                    Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contactWatcher.contactId))
                     messagesToolbar.opened = false
                 }
             }
@@ -191,7 +189,7 @@ Page {
                 iconSource: Qt.resolvedUrl("assets/call-start.svg")
                 text: i18n.tr("Call")
                 onTriggered: {
-                    applicationUtils.switchToDialerApp("call://" + contactWatcher.phoneNumber)
+                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                     messagesToolbar.opened = false
                 }
             }

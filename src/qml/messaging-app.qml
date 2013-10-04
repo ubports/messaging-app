@@ -81,7 +81,7 @@ MainView {
                 ListItem.Standard {
                     text: i18n.tr("Create new contact")
                     onClicked: {
-                        applicationUtils.switchToAddressbookApp("create://" + newPhoneNumber)
+                        Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(newPhoneNumber))
                         popover.hide()
                     }
                 }
