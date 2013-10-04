@@ -31,15 +31,13 @@
 #include <QDBusConnectionInterface>
 #include <QLibrary>
 #include "config.h"
-#include "messagingappdbus.h"
 #include <QQmlEngine>
 
 static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[messages://PHONE_NUMBER]"
-             << "[messageId://MESSAGE_ID]"
+             << "[message:///PHONE_NUMBER]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -49,7 +47,6 @@ MessagingApplication::MessagingApplication(int &argc, char **argv)
     : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
 {
     setApplicationName("MessagingApp");
-    m_dbus = new MessagingAppDBus(this);
 }
 
 bool MessagingApplication::setup()
@@ -58,8 +55,7 @@ bool MessagingApplication::setup()
     bool fullScreen = false;
 
     if (validSchemes.isEmpty()) {
-        validSchemes << "messages";
-        validSchemes << "messageId";
+        validSchemes << "message";
     }
 
     QStringList arguments = this->arguments();
@@ -114,27 +110,12 @@ bool MessagingApplication::setup()
         }
     }
 
-    // check if the app is already running, if it is, send the message to the running instance
-    QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered("com.canonical.MessagingApp");
-    if (reply.isValid() && reply.value()) {
-        QDBusInterface appInterface("com.canonical.MessagingApp",
-                                    "/com/canonical/MessagingApp",
-                                    "com.canonical.MessagingApp");
-        appInterface.call("SendAppMessage", m_arg);
-        return false;
-    }
-
-    if (!m_dbus->connectToBus()) {
-        qWarning() << "Failed to expose com.canonical.MessagingApp on DBUS.";
-    }
-
     m_view = new QQuickView();
     QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)), this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("Messaging");
     m_view->rootContext()->setContextProperty("application", this);
-    m_view->rootContext()->setContextProperty("dbus", m_dbus);
     m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
 
     QString pluginPath = ubuntuPhonePluginPath();
@@ -148,13 +129,6 @@ bool MessagingApplication::setup()
     } else {
         m_view->show();
     }
-
-    connect(m_dbus,
-            SIGNAL(request(QString)),
-            SLOT(onMessageReceived(QString)));
-    connect(m_dbus,
-            SIGNAL(messageSendRequested(QString,QString)),
-            SLOT(onMessageSendRequested(QString,QString)));
 
     return true;
 }
@@ -186,60 +160,24 @@ void MessagingApplication::onApplicationReady()
     m_arg.clear();
 }
 
-void MessagingApplication::onMessageSendRequested(const QString &phoneNumber, const QString &message)
-{
-    QQuickItem *mainView = m_view->rootObject();
-    if (!mainView) {
-        return;
-    }
-    const QMetaObject *mo = mainView->metaObject();
-    int index = mo->indexOfMethod("sendMessage(QVariant,QVariant)");
-    if (index != -1) {
-        QMetaMethod method = mo->method(index);
-        method.invoke(mainView,
-                      Q_ARG(QVariant, QVariant(phoneNumber)),
-                      Q_ARG(QVariant, QVariant(message)));
-    }
-}
-
 void MessagingApplication::parseArgument(const QString &arg)
 {
     if (arg.isEmpty()) {
         return;
     }
 
-    QStringList args = arg.split("://");
-    if (args.size() != 2) {
-        return;
-    }
-
-    QString scheme = args[0];
-    QString value = args[1];
+    QUrl url(arg);
+    QString scheme = url.scheme();
+    // Remove the first "/"
+    QString value = url.path().right(url.path().length() -1);
 
     QQuickItem *mainView = m_view->rootObject();
     if (!mainView) {
         return;
     }
 
-    if (scheme == "messages") {
-        if (value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startNewMessage");
-        } else {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
-       }
-    } else if (scheme == "messageId") {
-        QMetaObject::invokeMethod(mainView, "showMessage", Q_ARG(QVariant, value));
-    }
-}
-
-void MessagingApplication::onMessageReceived(const QString &message)
-{
-    if (m_applicationIsReady) {
-        parseArgument(message);
-        m_arg.clear();
-        activateWindow();
-    } else {
-        m_arg = message;
+    if (scheme == "message") {
+        QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
     }
 }
 

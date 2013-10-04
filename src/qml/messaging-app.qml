@@ -56,6 +56,15 @@ MainView {
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 
+    Connections {
+        target: UriHandler
+        onOpened: {
+           for (var i = 0; i < uris.length; ++i) {
+               application.parseArgument(uris[i])
+           }
+       }
+    }
+
     Component {
         id: newcontactPopover
 
