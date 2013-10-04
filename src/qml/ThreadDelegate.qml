@@ -45,6 +45,7 @@ ListItem.Empty {
 
         image: Image {
             anchors.fill: parent
+            fillMode: Image.PreserveAspectCrop
             source: {
                 if(!unknownContact && delegateHelper.avatar !== "") {
                     return delegateHelper.avatar
