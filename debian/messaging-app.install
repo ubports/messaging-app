@@ -1,5 +1,4 @@
 usr/share/applications/messaging-app*.desktop
-usr/share/dbus-1/services/*MessagingApp*.service
 usr/share/locale/*/LC_MESSAGES/messaging-app.mo
 usr/share/messaging-app/*.qml
 usr/share/messaging-app/*.js
