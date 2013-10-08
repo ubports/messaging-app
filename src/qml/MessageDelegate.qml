@@ -35,7 +35,7 @@ ListItem.Empty {
 
     Icon {
         id: selectionIndicator
-        visible: selected
+        visible: selectionMode
         name: "select"
         height: units.gu(3)
         width: units.gu(3)
@@ -44,7 +44,7 @@ ListItem.Empty {
         anchors.verticalCenter: bubble.verticalCenter
         anchors.leftMargin: incoming ? units.gu(2) : 0
         anchors.rightMargin: incoming ? 0 : units.gu(2)
-        color: "white"
+        color: selected ? "white" : "grey"
     }
 
     onItemRemoved: {

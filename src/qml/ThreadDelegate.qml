@@ -44,12 +44,12 @@ ListItem.Empty {
         opacity: 0.2
     }
     Icon {
-        visible: selected
+        visible: selectionIndicator.visible
         anchors.centerIn: selectionIndicator
         name: "select"
         height: units.gu(3)
         width: units.gu(3)
-        color: "white"
+        color: selected ? "white" : "grey"
     }
 
     UbuntuShape {
