@@ -45,14 +45,22 @@ MainView {
         }
     }
 
+    function emptyStack() {
+        while (mainStack.depth !== 1) {
+            mainStack.pop()
+        }
+    }
+
     function startNewMessage() {
         var properties = {}
+        emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 
     function startChat(phoneNumber) {
         var properties = {}
         properties["number"] = phoneNumber
+        emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 

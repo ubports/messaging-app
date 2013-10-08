@@ -32,6 +32,26 @@ ListItem.Empty {
     anchors.right: parent.right
     height: units.gu(10)
 
+    // FIXME: the selected state should be handled by the UITK
+    Rectangle {
+        id: selectionIndicator
+        visible: selectionMode
+        height: parent.height
+        anchors.right: parent.right
+        anchors.top: parent.top
+        width: visible ? units.gu(6) : 0
+        color: "black"
+        opacity: 0.2
+    }
+    Icon {
+        visible: selected
+        anchors.centerIn: selectionIndicator
+        name: "select"
+        height: units.gu(3)
+        width: units.gu(3)
+        color: "white"
+    }
+
     UbuntuShape {
         id: avatar
         height: units.gu(7)
@@ -68,7 +88,7 @@ ListItem.Empty {
         id: time
         anchors {
             verticalCenter: contactName.verticalCenter
-            right: parent.right
+            right: selectionIndicator.left
             rightMargin: units.gu(3)
         }
         fontSize: "x-small"
@@ -94,7 +114,7 @@ ListItem.Empty {
             top: phoneType.bottom
             topMargin: units.gu(0.5)
             left: phoneType.left
-            right: parent.right
+            right: selectionIndicator.left
             rightMargin: units.gu(3)
         }
         elide: Text.ElideRight
@@ -105,20 +125,6 @@ ListItem.Empty {
     }
     onItemRemoved: {
         threadModel.removeThread(accountId, threadId, type)
-    }
-
-    backgroundIndicator: Rectangle {
-        anchors.fill: parent
-        color: Theme.palette.selected.base
-        Label {
-            text: i18n.tr("Delete")
-            anchors {
-                fill: parent
-                margins: units.gu(2)
-            }
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
-        }
     }
 
     Item {
