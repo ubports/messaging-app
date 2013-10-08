@@ -67,10 +67,17 @@ Page {
              }
              Button {
                  text: i18n.tr("Create new contact")
-                 color: UbuntuColors.warmGrey
+                 color: UbuntuColors.orange
                  onClicked: {
                      applicationUtils.switchToAddressbookApp("addressbook://create" +
                                                              "?phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                     PopupUtils.close(dialogue)
+                 }
+             }
+             Button {
+                 text: i18n.tr("Cancel")
+                 color: UbuntuColors.warmGrey
+                 onClicked: {
                      PopupUtils.close(dialogue)
                  }
              }
