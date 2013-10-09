@@ -48,6 +48,7 @@ ListItem.Empty {
             anchors.fill: parent
             fillMode: defaultAvatar ? Image.PreserveAspectFit : Image.PreserveAspectCrop
             source: defaultAvatar ? "image://theme/contact" : delegateHelper.avatar
+            asynchronous: true
         }
     }
 
