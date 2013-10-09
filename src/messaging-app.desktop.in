@@ -11,3 +11,4 @@ X-Ubuntu-Touch=true
 X-Ubuntu-StageHint=SideStage
 X-Ubuntu-Gettext-Domain=messaging-app
 X-Ubuntu-Single-Instance=true
+X-Screenshot=@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/assets/messaging-app-screenshot.png
