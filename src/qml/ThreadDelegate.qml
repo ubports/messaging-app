@@ -91,6 +91,8 @@ ListItem.Empty {
             fillMode: defaultAvatar ? Image.PreserveAspectFit : Image.PreserveAspectCrop
             source: defaultAvatar ? Qt.resolvedUrl("assets/contact_defaulticon.png") : delegateHelper.avatar
             asynchronous: true
+            sourceSize.width: width * 1.5
+            sourceSize.height: height * 1.5
         }
     }
 
