@@ -33,23 +33,46 @@ ListItem.Empty {
     height: units.gu(10)
 
     // FIXME: the selected state should be handled by the UITK
-    Rectangle {
-        id: selectionIndicator
-        visible: selectionMode
-        height: parent.height
-        anchors.right: parent.right
-        anchors.top: parent.top
+    Item {
+        id: selection
+
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+        }
         width: visible ? units.gu(6) : 0
-        color: "black"
-        opacity: 0.2
-    }
-    Icon {
-        visible: selectionIndicator.visible
-        anchors.centerIn: selectionIndicator
-        name: "select"
-        height: units.gu(3)
-        width: units.gu(3)
-        color: selected ? "white" : "grey"
+        opacity: selectionMode ? 1.0 : 0.0
+        visible: opacity > 0.0
+
+        Behavior on width {
+            UbuntuNumberAnimation { }
+        }
+
+        Behavior on opacity {
+            UbuntuNumberAnimation { }
+        }
+
+        Rectangle {
+            id: selectionIndicator
+            anchors.fill: parent
+            color: "black"
+            opacity: 0.2
+        }
+
+        Icon {
+            anchors.centerIn: selectionIndicator
+            name: "select"
+            height: units.gu(3)
+            width: units.gu(3)
+            color: selected ? "white" : "grey"
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 100
+                }
+            }
+        }
     }
 
     UbuntuShape {
@@ -86,7 +109,7 @@ ListItem.Empty {
         id: time
         anchors {
             verticalCenter: contactName.verticalCenter
-            right: selectionIndicator.left
+            right: selection.left
             rightMargin: units.gu(3)
         }
         fontSize: "x-small"
