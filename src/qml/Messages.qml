@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Window 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
@@ -33,8 +34,22 @@ Page {
     property string threadId: getCurrentThreadId()
     property alias number: contactWatcher.phoneNumber
     property alias selectionMode: messageList.isInSelectionMode
+    // FIXME: MainView should provide if the view is in portait or landscape
+    property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
+    property bool landscape: orientationAngle == 90 || orientationAngle == 270
     flickable: null
-    title:  number !== "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
+    title: {
+        if (landscape) {
+            return ""
+        }
+        if (number !== "") {
+            if (contactWatcher.isUnknown) {
+                return messages.number
+            }
+            return contactWatcher.alias
+        }
+        return i18n.tr("New Message")
+    }
     tools: messagesToolbar
     onSelectionModeChanged: messagesToolbar.opened = false
 
@@ -69,8 +84,7 @@ Page {
                  text: i18n.tr("Create new contact")
                  color: UbuntuColors.orange
                  onClicked: {
-                     applicationUtils.switchToAddressbookApp("addressbook://create" +
-                                                             "?phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                     Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(contactWatcher.phoneNumber));
                      PopupUtils.close(dialogue)
                  }
              }
@@ -111,9 +125,8 @@ Page {
             ContactListView {
                 anchors.fill: parent
                 onContactClicked: {
-                    applicationUtils.switchToAddressbookApp("addressbook://addphone" +
-                                                            "?id=" + encodeURIComponent(contact.contactId) +
-                                                            "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
+                                                                "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
                     PopupUtils.close(sheet)
                 }
             }
@@ -162,7 +175,7 @@ Page {
             objectName: "selectMessagesButton"
             visible: messageList.count !== 0
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/select.png")
+                iconSource: "image://theme/select"
                 text: i18n.tr("Select")
                 onTriggered: messageList.startSelection()
             }
@@ -171,7 +184,7 @@ Page {
             visible: contactWatcher.isUnknown && contactWatcher.phoneNumber !== ""
             objectName: "addContactButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/new-contact.svg")
+                iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
                 onTriggered: {
                     PopupUtils.open(newContactDialog)
@@ -183,10 +196,10 @@ Page {
             visible: !contactWatcher.isUnknown
             objectName: "contactProfileButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/contact.svg")
+                iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
                 onTriggered: {
-                    applicationUtils.switchToAddressbookApp("addressbook://contact?id=" + encodeURIComponent(contactWatcher.contactId))
+                    Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contactWatcher.contactId))
                     messagesToolbar.opened = false
                 }
             }
@@ -195,10 +208,10 @@ Page {
             visible: contactWatcher.phoneNumber !== ""
             objectName: "contactCallButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/call-start.svg")
+                iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
-                    applicationUtils.switchToDialerApp("call://" + contactWatcher.phoneNumber)
+                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                     messagesToolbar.opened = false
                 }
             }
@@ -275,7 +288,7 @@ Page {
             Keys.onReturnPressed: textEntry.forceActiveFocus()
         }
 
-        Image {
+        Icon {
             height: units.gu(3)
             width: units.gu(3)
             anchors {
@@ -284,7 +297,8 @@ Page {
                 verticalCenter: labelTo.verticalCenter
             }
 
-            source: Qt.resolvedUrl("assets/new-contact.svg")
+            name: "new-contact"
+            color: "white"
             MouseArea {
                 anchors.fill: parent
                 onClicked: PopupUtils.open(addContactToConversationSheet)
@@ -444,7 +458,6 @@ Page {
         }
         TextArea {
             id: textEntry
-            clip: true
             anchors.bottomMargin: units.gu(2)
             anchors.bottom: attachButton.top
             anchors.left: parent.left
@@ -455,6 +468,14 @@ Page {
             autoSize: true
             placeholderText: i18n.tr("Write a message...")
             focus: false
+
+            InverseMouseArea {
+                anchors.fill: parent
+                visible: textEntry.activeFocus
+                onClicked: {
+                    textEntry.focus = false;
+                }
+            }
         }
 
         Button {

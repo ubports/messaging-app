@@ -63,14 +63,11 @@ ListItem.Empty {
             verticalCenter: parent.verticalCenter
         }
         image: Image {
-            fillMode: Image.PreserveAspectCrop
+            property bool defaultAvatar: unknownContact || delegateHelper.avatar === ""
+            anchors.fill: parent
+            fillMode: defaultAvatar ? Image.PreserveAspectFit : Image.PreserveAspectCrop
+            source: defaultAvatar ? Qt.resolvedUrl("assets/contact_defaulticon.png") : delegateHelper.avatar
             asynchronous: true
-            source: {
-                if(!unknownContact && delegateHelper.avatar !== "") {
-                    return delegateHelper.avatar
-                }
-                return Qt.resolvedUrl("assets/contact_defaulticon.png")
-            }
         }
     }
 
