@@ -56,6 +56,15 @@ MainView {
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 
+    Connections {
+        target: UriHandler
+        onOpened: {
+           for (var i = 0; i < uris.length; ++i) {
+               application.parseArgument(uris[i])
+           }
+       }
+    }
+
     Component {
         id: newcontactPopover
 
@@ -72,7 +81,7 @@ MainView {
                 ListItem.Standard {
                     text: i18n.tr("Create new contact")
                     onClicked: {
-                        applicationUtils.switchToAddressbookApp("create://" + newPhoneNumber)
+                        Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(newPhoneNumber))
                         popover.hide()
                     }
                 }
