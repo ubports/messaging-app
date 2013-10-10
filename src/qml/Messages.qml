@@ -168,7 +168,7 @@ Page {
             objectName: "selectMessagesButton"
             visible: messageList.count !== 0
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/select.png")
+                iconSource: "image://theme/select"
                 text: i18n.tr("Select")
                 onTriggered: messageList.startSelection()
             }
@@ -177,7 +177,7 @@ Page {
             visible: contactWatcher.isUnknown && contactWatcher.phoneNumber !== ""
             objectName: "addContactButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/new-contact.svg")
+                iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
                 onTriggered: {
                     PopupUtils.open(newContactDialog)
@@ -189,7 +189,7 @@ Page {
             visible: !contactWatcher.isUnknown
             objectName: "contactProfileButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/contact.svg")
+                iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
                 onTriggered: {
                     Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contactWatcher.contactId))
@@ -201,7 +201,7 @@ Page {
             visible: contactWatcher.phoneNumber !== ""
             objectName: "contactCallButton"
             action: Action {
-                iconSource: Qt.resolvedUrl("assets/call-start.svg")
+                iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
                     Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
@@ -281,7 +281,7 @@ Page {
             Keys.onReturnPressed: textEntry.forceActiveFocus()
         }
 
-        Image {
+        Icon {
             height: units.gu(3)
             width: units.gu(3)
             anchors {
@@ -290,7 +290,8 @@ Page {
                 verticalCenter: labelTo.verticalCenter
             }
 
-            source: Qt.resolvedUrl("assets/new-contact.svg")
+            name: "new-contact"
+            color: "white"
             MouseArea {
                 anchors.fill: parent
                 onClicked: PopupUtils.open(addContactToConversationSheet)
@@ -443,13 +444,11 @@ Page {
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(4)
         visible: !selectionMode
-        clip: true
         ListItem.ThinDivider {
             anchors.top: parent.top
         }
         TextArea {
             id: textEntry
-            clip: true
             anchors.bottomMargin: units.gu(2)
             anchors.bottom: attachButton.top
             anchors.left: parent.left
@@ -460,6 +459,14 @@ Page {
             autoSize: true
             placeholderText: i18n.tr("Write a message...")
             focus: false
+
+            InverseMouseArea {
+                anchors.fill: parent
+                visible: textEntry.activeFocus
+                onClicked: {
+                    textEntry.focus = false;
+                }
+            }
         }
 
         Button {

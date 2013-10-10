@@ -44,13 +44,11 @@ ListItem.Empty {
         }
 
         image: Image {
+            property bool defaultAvatar: unknownContact || delegateHelper.avatar === ""
             anchors.fill: parent
-            source: {
-                if(!unknownContact && delegateHelper.avatar !== "") {
-                    return delegateHelper.avatar
-                }
-                return Qt.resolvedUrl("assets/avatar-default.png")
-            }
+            fillMode: defaultAvatar ? Image.PreserveAspectFit : Image.PreserveAspectCrop
+            source: defaultAvatar ? "image://theme/contact" : delegateHelper.avatar
+            asynchronous: true
         }
     }
 
