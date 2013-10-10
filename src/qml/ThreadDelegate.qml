@@ -54,22 +54,22 @@ ListItem.Empty {
 
     UbuntuShape {
         id: avatar
-        height: units.gu(7)
-        width: units.gu(7)
+        height: units.gu(6)
+        width: units.gu(6)
         radius: "medium"
         anchors {
             left: parent.left
-            leftMargin: units.gu(1)
+            leftMargin: units.gu(2)
             verticalCenter: parent.verticalCenter
         }
-
         image: Image {
-            anchors.fill: parent
+            fillMode: Image.PreserveAspectCrop
+            asynchronous: true
             source: {
                 if(!unknownContact && delegateHelper.avatar !== "") {
                     return delegateHelper.avatar
                 }
-                return Qt.resolvedUrl("assets/avatar-default.png")
+                return Qt.resolvedUrl("assets/contact_defaulticon.png")
             }
         }
     }
@@ -81,6 +81,7 @@ ListItem.Empty {
             left: avatar.right
             leftMargin: units.gu(2)
         }
+        fontSize: "medium"
         text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
@@ -92,7 +93,7 @@ ListItem.Empty {
             rightMargin: units.gu(3)
         }
         fontSize: "x-small"
-        color: "gray"
+        color: "white"
         text: Qt.formatDateTime(eventTimestamp,"hh:mm AP")
     }
 
@@ -119,9 +120,10 @@ ListItem.Empty {
         }
         elide: Text.ElideRight
         maximumLineCount: 2
-        fontSize: "x-small"
+        fontSize: "small"
         wrapMode: Text.WordWrap
         text: eventTextMessage == undefined ? "" : eventTextMessage
+        opacity: 0.2
     }
     onItemRemoved: {
         threadModel.removeThread(accountId, threadId, type)
