@@ -32,22 +32,64 @@ ListItem.Empty {
     anchors.right: parent.right
     height: units.gu(10)
 
+    // FIXME: the selected state should be handled by the UITK
+    Item {
+        id: selection
+
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+        }
+        width: visible ? units.gu(6) : 0
+        opacity: selectionMode ? 1.0 : 0.0
+        visible: opacity > 0.0
+
+        Behavior on width {
+            UbuntuNumberAnimation { }
+        }
+
+        Behavior on opacity {
+            UbuntuNumberAnimation { }
+        }
+
+        Rectangle {
+            id: selectionIndicator
+            anchors.fill: parent
+            color: "black"
+            opacity: 0.2
+        }
+
+        Icon {
+            anchors.centerIn: selectionIndicator
+            name: "select"
+            height: units.gu(3)
+            width: units.gu(3)
+            color: selected ? "white" : "grey"
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 100
+                }
+            }
+        }
+    }
+
     UbuntuShape {
         id: avatar
-        height: units.gu(7)
-        width: units.gu(7)
+        height: units.gu(6)
+        width: units.gu(6)
         radius: "medium"
         anchors {
             left: parent.left
-            leftMargin: units.gu(1)
+            leftMargin: units.gu(2)
             verticalCenter: parent.verticalCenter
         }
-
         image: Image {
             property bool defaultAvatar: unknownContact || delegateHelper.avatar === ""
             anchors.fill: parent
             fillMode: defaultAvatar ? Image.PreserveAspectFit : Image.PreserveAspectCrop
-            source: defaultAvatar ? "image://theme/contact" : delegateHelper.avatar
+            source: defaultAvatar ? Qt.resolvedUrl("assets/contact_defaulticon.png") : delegateHelper.avatar
             asynchronous: true
         }
     }
@@ -59,6 +101,7 @@ ListItem.Empty {
             left: avatar.right
             leftMargin: units.gu(2)
         }
+        fontSize: "medium"
         text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
@@ -66,11 +109,11 @@ ListItem.Empty {
         id: time
         anchors {
             verticalCenter: contactName.verticalCenter
-            right: parent.right
+            right: selection.left
             rightMargin: units.gu(3)
         }
         fontSize: "x-small"
-        color: "gray"
+        color: "white"
         text: Qt.formatDateTime(eventTimestamp,"hh:mm AP")
     }
 
@@ -92,31 +135,18 @@ ListItem.Empty {
             top: phoneType.bottom
             topMargin: units.gu(0.5)
             left: phoneType.left
-            right: parent.right
+            right: selectionIndicator.left
             rightMargin: units.gu(3)
         }
         elide: Text.ElideRight
         maximumLineCount: 2
-        fontSize: "x-small"
+        fontSize: "small"
         wrapMode: Text.WordWrap
         text: eventTextMessage == undefined ? "" : eventTextMessage
+        opacity: 0.2
     }
     onItemRemoved: {
         threadModel.removeThread(accountId, threadId, type)
-    }
-
-    backgroundIndicator: Rectangle {
-        anchors.fill: parent
-        color: Theme.palette.selected.base
-        Label {
-            text: i18n.tr("Delete")
-            anchors {
-                fill: parent
-                margins: units.gu(2)
-            }
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
-        }
     }
 
     Item {

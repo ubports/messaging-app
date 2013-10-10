@@ -82,9 +82,16 @@ Page {
              }
              Button {
                  text: i18n.tr("Create new contact")
-                 color: UbuntuColors.warmGrey
+                 color: UbuntuColors.orange
                  onClicked: {
                      Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                     PopupUtils.close(dialogue)
+                 }
+             }
+             Button {
+                 text: i18n.tr("Cancel")
+                 color: UbuntuColors.warmGrey
+                 onClicked: {
                      PopupUtils.close(dialogue)
                  }
              }
@@ -321,7 +328,9 @@ Page {
             top: newMessage.bottom
             left: parent.left
             right: parent.right
-            margins: units.gu(2)
+            leftMargin: units.gu(2)
+            bottomMargin: units.gu(2)
+            rightMargin: units.gu(2)
         }
 
         states: [
@@ -401,15 +410,9 @@ Page {
             id: messageDelegate
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
-            removable: !selectionMode
-            // FIXME: the selected state should be handled by the UITK
-            Rectangle {
-                visible: selected
-                color: UbuntuColors.orange
-                opacity: 0.5
-                anchors.fill: parent
-                z: -1
-            }
+            removable: !messages.selectionMode
+            selectionMode: messages.selectionMode
+            confirmRemoval: true
             onClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
@@ -444,6 +447,12 @@ Page {
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(4)
         visible: !selectionMode
+        clip: true
+
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
         ListItem.ThinDivider {
             anchors.top: parent.top
         }

@@ -25,6 +25,7 @@ ListItem.Empty {
     id: messageDelegate
     property bool incoming: false
     property string textColor: incoming ? "#333333" : "#ffffff"
+    property bool selectionMode: false
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
@@ -32,18 +33,18 @@ ListItem.Empty {
     showDivider: false
     highlightWhenPressed: false
 
-    backgroundIndicator: Rectangle {
-        anchors.fill: parent
-        color: Theme.palette.selected.base
-        Label {
-            text: i18n.tr("Delete")
-            anchors {
-                fill: parent
-                margins: units.gu(2)
-            }
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment:  messageDelegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
-        }
+    Icon {
+        id: selectionIndicator
+        visible: selectionMode
+        name: "select"
+        height: units.gu(3)
+        width: units.gu(3)
+        anchors.right: incoming ? undefined : bubble.left
+        anchors.left: incoming ? bubble.right : undefined
+        anchors.verticalCenter: bubble.verticalCenter
+        anchors.leftMargin: incoming ? units.gu(2) : 0
+        anchors.rightMargin: incoming ? 0 : units.gu(2)
+        color: selected ? "white" : "grey"
     }
 
     onItemRemoved: {

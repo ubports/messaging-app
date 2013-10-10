@@ -86,15 +86,7 @@ Page {
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode
-            // FIXME: the selected state should be handled by the UITK
-            Rectangle {
-                visible: selected
-                color: UbuntuColors.orange
-                opacity: 0.5
-                anchors.fill: parent
-                z: -1
-            }
-
+            confirmRemoval: true
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
