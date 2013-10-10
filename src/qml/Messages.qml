@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import QtQuick.Window 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
@@ -33,8 +34,22 @@ Page {
     property string threadId: getCurrentThreadId()
     property alias number: contactWatcher.phoneNumber
     property alias selectionMode: messageList.isInSelectionMode
+    // FIXME: MainView should provide if the view is in portait or landscape
+    property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
+    property bool landscape: orientationAngle == 90 || orientationAngle == 270
     flickable: null
-    title:  number !== "" ? (contactWatcher.isUnknown ? messages.number : contactWatcher.alias) : i18n.tr("New Message")
+    title: {
+        if (landscape) {
+            return ""
+        }
+        if (number !== "") {
+            if (contactWatcher.isUnknown) {
+                return messages.number
+            }
+            return contactWatcher.alias
+        }
+        return i18n.tr("New Message")
+    }
     tools: messagesToolbar
     onSelectionModeChanged: messagesToolbar.opened = false
 
