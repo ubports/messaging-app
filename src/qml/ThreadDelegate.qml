@@ -88,11 +88,11 @@ ListItem.Empty {
         image: Image {
             property bool defaultAvatar: unknownContact || delegateHelper.avatar === ""
             anchors.fill: parent
-            fillMode: defaultAvatar ? Image.PreserveAspectFit : Image.PreserveAspectCrop
+            fillMode: Image.PreserveAspectCrop
             source: defaultAvatar ? Qt.resolvedUrl("assets/contact_defaulticon.png") : delegateHelper.avatar
             asynchronous: true
-            sourceSize.width: width * 1.5
-            sourceSize.height: height * 1.5
+            sourceSize.width: defaultAvatar ? undefined : width * 1.5
+            sourceSize.height: defaultAvatar ? undefined : height * 1.5
         }
     }
 
