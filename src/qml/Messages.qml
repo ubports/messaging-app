@@ -284,6 +284,7 @@ Page {
             style: null
             color: "white"
             font.pixelSize: FontUtils.sizeToPixels("large")
+            font.family: "Ubuntu"
             placeholderText: i18n.tr("Enter number")
             Keys.onReturnPressed: textEntry.forceActiveFocus()
         }
@@ -468,6 +469,7 @@ Page {
             autoSize: true
             placeholderText: i18n.tr("Write a message...")
             focus: false
+            font.family: "Ubuntu"
 
             InverseMouseArea {
                 anchors.fill: parent
