@@ -1,3 +1,22 @@
+messaging-app (0.1+13.10.20131011-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Hide page header in landscape mode.
+  * Change the messaging-app to use the new URL dispatcher mechanism.
+  * Add a screenshot of the messaging-app.
+  * Fix some visual design bugs in the app. The following items were
+    fixed: Icons are now all loaded from the icon theme. Clicking on
+    messages removes the focus from the text input field, dismissing the
+    keyboard. Fix the scaling of avatar images.
+  * confirm before removing items. change the selection indicator to
+    match specs. use animation when changing to selection mode in
+    Messages.qml. pop all pages from pageStack before pushing a new one.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 49
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 11 Oct 2013 08:47:19 +0000
+
 messaging-app (0.1+13.10.20131004.1-0ubuntu1) saucy; urgency=low
 
   [ Max Brustkern ]
