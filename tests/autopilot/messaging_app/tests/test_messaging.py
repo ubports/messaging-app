@@ -7,16 +7,29 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
-"""Tests for the Messaging App"""
+"""Tests for the Messaging App using ofono-phonesim"""
 
 from __future__ import absolute_import
 
+import subprocess
+
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
+from testtools import skipUnless
 
 from messaging_app.tests import MessagingAppTestCase
 
+# determine whether we are running with phonesim
+try:
+    out = subprocess.check_output(["/usr/share/ofono/scripts/list-modems"],
+                                  stderr=subprocess.PIPE)
+    have_phonesim = out.startswith("[ /phonesim ]")
+except subprocess.CalledProcessError:
+    have_phonesim = False
 
+
+@skipUnless(have_phonesim,
+            "this test needs to run under with-ofono-phonesim")
 class TestMessaging(MessagingAppTestCase):
     """Tests for the communication panel."""
 
