@@ -137,7 +137,7 @@ ListItem.Empty {
             top: phoneType.bottom
             topMargin: units.gu(0.5)
             left: phoneType.left
-            right: selectionIndicator.left
+            right: selection.left
             rightMargin: units.gu(3)
         }
         elide: Text.ElideRight
