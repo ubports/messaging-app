@@ -87,7 +87,11 @@ class TestMessaging(MessagingAppTestCase):
         self.pointing_device.click_object(button)
         self.assertThat(button.enabled, Eventually(Equals(False)))
 
-        # TODO: verify that we get a bubble with our message
+        # verify that we get a bubble with our message
+        messages_page = self.main_view.select_single(objectName="messagesPage")
+        list_view = messages_page.select_single("MultipleSelectionListView")
+        l = list_view.select_single("Label", text="hello from Ubuntu")
+        self.assertNotEqual(l, None)
 
         # switch back to main page with thread list
         self.close_osk()
@@ -96,14 +100,12 @@ class TestMessaging(MessagingAppTestCase):
 
         # should show our message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
-        # TODO: verify text in the list
-        #print self.thread_list
-        #for p in self.thread_list.get_properties():
-        #    print '  ', p, repr(getattr(self.thread_list, p))
-        #for c in self.thread_list.get_children():
-        #    print c
-        #    for p in c.get_properties():
-        #        print '  ', p, repr(getattr(c, p))
+        # should show address number
+        l = self.thread_list.select_single("Label", text="123")
+        self.assertNotEqual(l, None)
+        # should show text
+        l = self.thread_list.select_single("Label", text="hello from Ubuntu")
+        self.assertNotEqual(l, None)
 
     #
     # Helper methods
