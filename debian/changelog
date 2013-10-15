@@ -1,3 +1,15 @@
+messaging-app (0.1+13.10.20131015.2-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Limit the size of images in memory.
+  * Fix the latest message right anchor.
+  * Use Ubuntu font sendTo/Message boxes
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 53
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 15 Oct 2013 20:24:10 +0000
+
 messaging-app (0.1+13.10.20131011-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
