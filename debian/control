@@ -44,6 +44,9 @@ Depends: ${misc:Depends},
          ofono-phonesim-autostart,
 Description: autopilot tests for messaging-app
  This package contains the autopilot tests for messaging-app
+ .
+ These tests run against the ofono phone simulator (pulled in through
+ ofono-phonesim-autostart).
 
 Package: messaging-app-connected-autopilot
 Architecture: all
@@ -53,6 +56,10 @@ Depends: ${misc:Depends},
          libautopilot-qt,
          python-autopilot,
          ubuntu-ui-toolkit-autopilot,
-Conflicts: ofono-phonesim-autostart,
 Description: connected autopilot tests for messaging-app
  This package contains the connected autopilot tests for messaging-app
+ .
+ These tests run against real SIM cards/hardware and need to be configured
+ manually before they work. Do not install ubuntu-ui-toolkit-autopilot with
+ these!
+
