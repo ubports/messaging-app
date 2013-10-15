@@ -13,7 +13,11 @@ from __future__ import absolute_import
 
 import subprocess
 import os
+import tempfile
+import shutil
 import time
+
+import dbus
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
@@ -107,6 +111,16 @@ class TestMessaging(MessagingAppTestCase):
         l = self.thread_list.select_single("Label", text="hello from Ubuntu")
         self.assertNotEqual(l, None)
 
+    def test_receive_message(self):
+        self.receive_sms("0815", "hello to Ubuntu")
+
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
+        l = self.thread_list.select_single("Label", text="0815")
+        self.assertNotEqual(l, None)
+        # should show text
+        l = self.thread_list.select_single("Label", text="hello to Ubuntu")
+        self.assertNotEqual(l, None)
+
     #
     # Helper methods
     #
@@ -144,3 +158,25 @@ class TestMessaging(MessagingAppTestCase):
         back_button = toolbar.select_single("ActionItem", text=u"Back")
         self.assertNotEqual(back_button, None)
         self.pointing_device.click_object(back_button)
+
+    def receive_sms(self, sender, text):
+        """Receive an SMS"""
+
+        # prepare and send a Qt GUI script to phonesim, over its private D-BUS
+        # set up by ofono-phonesim-autostart
+        script_dir = tempfile.mkdtemp(prefix="phonesim_script")
+        os.chmod(script_dir, 0o755)
+        self.addCleanup(shutil.rmtree, script_dir)
+        with open(os.path.join(script_dir, "sms.js"), "w") as f:
+            f.write("""tabSMS.gbMessage1.leMessageSender.text = "%s";
+tabSMS.gbMessage1.leSMSClass.text = "1";
+tabSMS.gbMessage1.teSMSText.setPlainText("%s");
+tabSMS.gbMessage1.pbSendSMSMessage.click();
+""" % (sender, text))
+
+        with open("/run/lock/ofono-phonesim-dbus.address") as f:
+            phonesim_bus = f.read().strip()
+        bus = dbus.bus.BusConnection(phonesim_bus)
+        script_proxy = bus.get_object("org.ofono.phonesim", "/")
+        script_proxy.SetPath(script_dir)
+        script_proxy.Run("sms.js")
