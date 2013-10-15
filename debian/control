@@ -41,6 +41,7 @@ Depends: ${misc:Depends},
          messaging-app (>= ${binary:Version}),
          python-autopilot,
          ubuntu-ui-toolkit-autopilot,
+         ofono-phonesim-autostart,
 Description: autopilot tests for messaging-app
  This package contains the autopilot tests for messaging-app
 
@@ -52,5 +53,6 @@ Depends: ${misc:Depends},
          libautopilot-qt,
          python-autopilot,
          ubuntu-ui-toolkit-autopilot,
+Conflicts: ofono-phonesim-autostart,
 Description: connected autopilot tests for messaging-app
  This package contains the connected autopilot tests for messaging-app
