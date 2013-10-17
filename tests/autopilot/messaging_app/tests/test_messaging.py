@@ -98,6 +98,7 @@ class TestMessaging(MessagingAppTestCase):
         # verify that we get a bubble with our message
         messages_page = self.main_view.select_single(objectName="messagesPage")
         list_view = messages_page.select_single("MultipleSelectionListView")
+        self.assertThat(list_view.count, Eventually(Equals(1)))
         l = list_view.select_single("Label", text="hello from Ubuntu")
         self.assertNotEqual(l, None)
 
