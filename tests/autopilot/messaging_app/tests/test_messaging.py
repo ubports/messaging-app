@@ -68,6 +68,10 @@ class TestMessaging(MessagingAppTestCase):
         subprocess.call(["pkill", "history-daemon"])
         subprocess.call(["pkill", "-f", "telephony-service-handler"])
 
+        # on desktop, notify-osd may generate persistent popups (like for "SMS
+        # received"), don't make that stay around for the tests
+        subprocess.call(["pkill", "-f", "notify-osd"])
+
     def test_write_new_message(self):
         self.click_new_message_button()
 
