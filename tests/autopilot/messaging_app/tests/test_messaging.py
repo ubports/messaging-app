@@ -122,6 +122,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         l = self.thread_list.select_single("Label", text="0815")
         self.assertNotEqual(l, None)
+        time.sleep(1)  # make it visible to human users for a sec
         # should show text
         l = self.thread_list.select_single("Label", text="hello to Ubuntu")
         self.assertNotEqual(l, None)
