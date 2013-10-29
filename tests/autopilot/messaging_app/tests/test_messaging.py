@@ -21,7 +21,7 @@ import dbus
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
-from testtools import skipUnless
+from testtools import skipIf, skipUnless
 
 from messaging_app.tests import MessagingAppTestCase
 
@@ -36,6 +36,8 @@ except subprocess.CalledProcessError:
 
 @skipUnless(have_phonesim,
             "this test needs to run under with-ofono-phonesim")
+@skipIf(os.uname()[2].endswith("maguro"),
+        "tests cause Unity crashes on maguro")
 class TestMessaging(MessagingAppTestCase):
     """Tests for the communication panel."""
 
