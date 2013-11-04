@@ -41,6 +41,8 @@ class TestUI(MessagingAppTestCase):
         # type message
         text_entry = self.main_view.get_newmessage_textarea()
         self.pointing_device.click_object(text_entry)
+        # need to click twice, first time to hide the toolbar (LP#1207369)
+        self.pointing_device.click_object(text_entry)
         text_entry.activeFocus.wait_for(True)
         message = "hello from Ubuntu"
         self.keyboard.type(message)
