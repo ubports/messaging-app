@@ -19,7 +19,19 @@ from messaging_app.tests import MessagingAppTestCase
 
 import os
 import shutil
+import subprocess
 import ConfigParser
+
+# determine whether we are running with phonesim
+try:
+    out = subprocess.check_output(["/usr/share/ofono/scripts/list-modems"],
+                                  stderr=subprocess.PIPE)
+    if out.startswith("[ /phonesim ]"):
+        print("ofono-phonesim is currently running, but this test is meant "
+              "to run against real hardware. Please uninstall "
+              "ofono-phonesim-autostart or run 'sudo stop ofono-phonesim'.")
+except subprocess.CalledProcessError:
+    pass
 
 config_file = os.path.expanduser('~/.testnumbers.cfg')
 
