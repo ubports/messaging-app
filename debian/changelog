@@ -1,3 +1,13 @@
+messaging-app (0.1+14.04.20131104-0ubuntu1) trusty; urgency=low
+
+  [ Martin Pitt ]
+  * test_messaging.py: Cover SMS send/receive through ofono-phonesim.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 55
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 04 Nov 2013 19:23:32 +0000
+
 messaging-app (0.1+13.10.20131015.2-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
