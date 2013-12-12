@@ -108,6 +108,10 @@ class TestMessaging(MessagingAppTestCase):
 
         # switch back to main page with thread list
         self.close_osk()
+
+        # TODO: this is a workaround to force the keyboard to close, as close_osk()
+        # doesn't seem to work on mako
+        self.pointing_device.click_object(button)
         self.go_back()
         self.assertThat(self.thread_list.visible, Eventually(Equals(True)))
 
