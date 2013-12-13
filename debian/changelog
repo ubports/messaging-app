@@ -1,3 +1,18 @@
+messaging-app (0.1+14.04.20131213-0ubuntu1) trusty; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Remove the obsolete connected tests.
+
+  [ Tiago Salem Herrmann ]
+  * A workaround to steal the focus from the input entry and force the
+    osk to be closed. The current close_osk() implementation does not
+    work properly.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 58
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 13 Dec 2013 20:12:11 +0000
+
 messaging-app (0.1+14.04.20131104-0ubuntu1) trusty; urgency=low
 
   [ Martin Pitt ]
