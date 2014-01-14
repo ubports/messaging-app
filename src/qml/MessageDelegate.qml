@@ -95,7 +95,7 @@ ListItem.Empty {
         anchors.leftMargin: 0
         anchors.rightMargin: units.gu(1)
 
-        visible: running
+        visible: running && !selectionMode
         // if temporarily failed or unknown status, then show the spinner
         running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown || 
                   textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
@@ -112,7 +112,7 @@ ListItem.Empty {
         anchors.verticalCenter: bubble.verticalCenter
         anchors.leftMargin: 0
         anchors.rightMargin: units.gu(1)
-        visible: (textMessageStatus == HistoryThreadModel.MessageStatusPermanentlyFailed) && !incoming
+        visible: (textMessageStatus == HistoryThreadModel.MessageStatusPermanentlyFailed) && !incoming && !selectionMode
         MouseArea {
             anchors.fill: parent
             onClicked: PopupUtils.open(popoverComponent, warningButton)
