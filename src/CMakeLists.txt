@@ -37,4 +37,8 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE}
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
     )
 
+install(FILES "messaging-app.url-dispatcher"
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls
+    )
+
 add_subdirectory(qml)
