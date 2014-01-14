@@ -19,6 +19,10 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
+import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
+
 import "dateUtils.js" as DateUtils
 
 ListItem.Empty {
@@ -33,6 +37,40 @@ ListItem.Empty {
     showDivider: false
     highlightWhenPressed: false
 
+    Item {
+        Component {
+            id: popoverComponent
+            Popover {
+                id: popover
+                Column {
+                    id: containerLayout
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        right: parent.right
+                    }
+                    ListItem.Standard {
+                        text: i18n.tr("Try again")
+                        enabled: telepathyHelper.connected
+                        onClicked: {
+                            // resend this message and remove the old one
+                            eventModel.removeEvent(accountId, threadId, eventId, type)
+                            chatManager.sendMessage(threadId, textMessage)
+                            PopupUtils.close(popover)
+                        }
+                    }
+                    ListItem.Standard {
+                        text: i18n.tr("Cancel")
+                        onClicked: {
+                            eventModel.removeEvent(accountId, threadId, eventId, type)
+                            PopupUtils.close(popover)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     Icon {
         id: selectionIndicator
         visible: selectionMode
@@ -45,6 +83,45 @@ ListItem.Empty {
         anchors.leftMargin: incoming ? units.gu(2) : 0
         anchors.rightMargin: incoming ? 0 : units.gu(2)
         color: selected ? "white" : "grey"
+    }
+
+    ActivityIndicator {
+        id: indicator
+        height: units.gu(3)
+        width: units.gu(3)
+        anchors.right: bubble.left
+        anchors.left: undefined
+        anchors.verticalCenter: bubble.verticalCenter
+        anchors.leftMargin: 0
+        anchors.rightMargin: units.gu(1)
+
+        visible: running && !selectionMode
+        // if temporarily failed or unknown status, then show the spinner
+        running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown || 
+                  textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+    }
+
+    // FIXME: this is just a temporary workaround while we dont have the final design
+    UbuntuShape {
+        id: warningButton
+        color: "yellow"
+        height: units.gu(3)
+        width: units.gu(3)
+        anchors.right: bubble.left
+        anchors.left: undefined
+        anchors.verticalCenter: bubble.verticalCenter
+        anchors.leftMargin: 0
+        anchors.rightMargin: units.gu(1)
+        visible: (textMessageStatus == HistoryThreadModel.MessageStatusPermanentlyFailed) && !incoming && !selectionMode
+        MouseArea {
+            anchors.fill: parent
+            onClicked: PopupUtils.open(popoverComponent, warningButton)
+        }
+        Label {
+            text: "!"
+            color: "black"
+            anchors.centerIn: parent
+        }
     }
 
     onItemRemoved: {
@@ -102,7 +179,14 @@ ListItem.Empty {
                 height: paintedHeight
                 fontSize: "x-small"
                 color: textColor
-                text: DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
+                text: {
+                    if (indicator.visible) 
+                        i18n.tr("Sending...") 
+                    else if (warningButton.visible)
+                        i18n.tr("Failed")
+                    else 
+                        DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
+                }
             }
 
             Label {
