@@ -1,3 +1,14 @@
+messaging-app (0.1+14.04.20140116-0ubuntu1) trusty; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Add a delivery status indicator to the messages view. Add a popover
+    that provide actions to cancel or resend a given message.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 60
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 16 Jan 2014 13:18:47 +0000
+
 messaging-app (0.1+14.04.20131213-0ubuntu1) trusty; urgency=low
 
   [ Gustavo Pichorim Boiko ]
