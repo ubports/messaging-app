@@ -283,6 +283,7 @@ Page {
 
             style: null
             color: "white"
+            inputMethodHints: Qt.ImhNoPredictiveText
             font.pixelSize: FontUtils.sizeToPixels("large")
             font.family: "Ubuntu"
             placeholderText: i18n.tr("Enter number")
