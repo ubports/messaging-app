@@ -124,6 +124,22 @@ class TestMessaging(MessagingAppTestCase):
         l = self.thread_list.select_single("Label", text="hello from Ubuntu")
         self.assertNotEqual(l, None)
 
+    def test_write_new_message_to_group(self):
+        recipient_list = ["123", "321"]
+        self.click_new_message_button()
+
+        # type address number
+        text_entry = self.main_view.get_newmessage_textfield()
+        text_entry.activeFocus.wait_for(True)
+        for number in recipient_list:
+            self.keyboard.type(number)
+            self.assertThat(text_entry.text, Eventually(Equals(number)))
+            self.keyboard.press_and_release("Return")
+
+        # check if recipients match
+        multircpt_entry = self.main_view.get_newmessage_multirecipientinput()
+        self.assertThat(multircpt_entry.get_properties()['recipientCount'],  Eventually(Equals(len(recipient_list))))
+
     def test_receive_message(self):
         self.receive_sms("0815", "hello to Ubuntu")
 

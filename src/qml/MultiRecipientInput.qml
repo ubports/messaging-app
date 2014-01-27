@@ -65,6 +65,7 @@ FocusScope {
 
     ListModel {
         id: recipientModel
+        objectName: "recipientModel"
         onCountChanged: {
             var i
             var tmp = []
@@ -153,6 +154,7 @@ FocusScope {
             id: searchDelegate
             TextField {
                 id: contactSearchInput
+                objectName: "contactSearchInput"
                 focus: expanded
                 style: null
                 height: units.gu(4)

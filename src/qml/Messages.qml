@@ -282,6 +282,7 @@ Page {
 
     MultiRecipientInput {
         id: multiRcpt
+        objectName: "multiRcpt"
         visible: participants.length == 0
         enabled: visible
         anchors {
