@@ -95,6 +95,7 @@ Page {
                 } else {
                     var properties = {}
                     properties["threadId"] = threadId
+                    properties["participants"] = participants
                     properties["number"] = participants[0]
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }

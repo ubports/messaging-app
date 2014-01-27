@@ -26,6 +26,19 @@ import QtContacts 5.0
 
 ListItem.Empty {
     id: delegate
+    property bool groupChat: participants.length > 1
+    property string groupChatLabel: {
+        var firstRcpt
+        if (unknownContact) {
+            firstRcpt = delegateHelper.phoneNumber
+        } else {
+            firstRcpt = delegateHelper.alias
+        }
+
+        if (participants.length > 1)
+            return firstRcpt + " +" + String(participants.length-1)
+        return firstRcpt
+    }
     property bool unknownContact: delegateHelper.isUnknown
     property bool selectionMode: false
     anchors.left: parent.left
@@ -104,7 +117,7 @@ ListItem.Empty {
             leftMargin: units.gu(2)
         }
         fontSize: "medium"
-        text: unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
+        text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
     Label {
