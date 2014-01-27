@@ -269,13 +269,21 @@ Page {
         color: "white"
         MouseArea {
             anchors.fill: parent
-            onClicked: PopupUtils.open(addContactToConversationSheet)
+            onClicked: {
+                var item = keyboard.recursiveFindFocusedItem(messages)
+                if (item) {
+                    item.focus = false
+                }
+
+                PopupUtils.open(addContactToConversationSheet)
+            }
         }
     }
 
     MultiRecipientInput {
         id: multiRcpt
         visible: participants.length == 0
+        enabled: visible
         anchors {
             top: parent.top
             topMargin: units.gu(1)
