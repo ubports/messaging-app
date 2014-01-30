@@ -52,7 +52,8 @@ Page {
             if (participants.length == 1) {
                 return firstRcpt
             } else {
-                return firstRcpt + " +" + String(participants.length-1) + i18n.tr(" others")
+                var numOther = participants.length-1
+                return firstRcpt + " +" + i18n.tr("%1 other", "%1 others", numOther).arg(numOther)
             }
         }
         return i18n.tr("New Message")
