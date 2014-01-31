@@ -33,6 +33,7 @@ Page {
     objectName: "messagesPage"
     property string threadId: getCurrentThreadId()
     property variant participants: []
+    property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
@@ -73,6 +74,83 @@ Page {
     function markMessageAsRead(accountId, threadId, eventId, type) {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
+
+    Component {
+        id: participantsPopover
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                Repeater {
+                    model: participants
+                    Item {
+                        height: childrenRect.height
+                        width: popover.width
+                        ListItem.Standard { 
+                            id: listItem
+                            text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
+                        }
+                        ContactWatcher {
+                            id: contactWatcher
+                            phoneNumber: modelData
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Item {
+        id: headerContent
+        visible: groupChat
+        anchors.fill: parent
+
+        Label {
+            text: messages.title
+            fontSize: "x-large"
+            font.weight: Font.Light
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(1)
+                top: parent.top
+                bottom: parent.bottom
+                right: participantsButton.left
+            }
+        }
+
+        Icon {
+            id: participantsButton
+            name: "navigation-menu"
+            width: visible ? units.gu(6) : 0
+            height: units.gu(6)
+            visible: groupChat
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: parent.right
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: PopupUtils.open(participantsPopover, participantsButton)
+            }
+        }
+    }
+
+    Binding {
+        target: messages.header
+        property: "contents"
+        value: groupChat ? headerContent : null
+        when: messages.header && groupChat
+    }
+
 
     Component {
          id: newContactDialog
