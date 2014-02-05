@@ -513,6 +513,9 @@ Page {
                                                                             true)
                 }
 
+                // make sure we flush everything we have prepared in the OSK preedit
+                Qt.inputMethod.commit();
+
                 chatManager.sendMessage(messages.number, textEntry.text)
                 textEntry.text = ""
             }
