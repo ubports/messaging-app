@@ -11,14 +11,11 @@
 
 from __future__ import absolute_import
 
-import subprocess
 import os
-import tempfile
-import shutil
+import subprocess
 import time
 
-import dbus
-
+from autopilot.introspection import dbus
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 from testtools import skipIf, skipUnless
@@ -42,6 +39,9 @@ class TestMessaging(MessagingAppTestCase):
     """Tests for the communication panel."""
 
     def setUp(self):
+        # kill OSK it gets stuck open sometimes
+        subprocess.call(["pkill", "maliit-server"])
+
         # provide clean history
         self.history = os.path.expanduser(
             "~/.local/share/history-service/history.sqlite")
@@ -74,123 +74,405 @@ class TestMessaging(MessagingAppTestCase):
         # received"), don't make that stay around for the tests
         subprocess.call(["pkill", "-f", "notify-osd"])
 
-    def test_write_new_message(self):
-        self.click_new_message_button()
+    def test_receive_message(self):
+        # receive an sms message
+        self.main_view.receive_sms('0815', 'hello to Ubuntu')
 
-        # type address number
-        text_entry = self.main_view.get_newmessage_textfield()
-        text_entry.activeFocus.wait_for(True)
-        self.keyboard.type("123")
-        self.assertThat(text_entry.text, Eventually(Equals("123")))
+        # verify that we got the message
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
+
+        # verify number
+        self.thread_list.select_single('Label', text='0815')
+        time.sleep(1)  # make it visible to human users for a sec
+        # verify text
+        self.thread_list.select_single('Label', text='hello to Ubuntu')
+
+    def test_write_new_message(self):
+        self.main_view.click_new_message_button()
+        #verify the thread list page is not visible
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type contact/number
+        phone_num = 123
+        self.main_view.type_contact_phone_num(phone_num)
 
         # type message
-        text_entry = self.main_view.get_newmessage_textarea()
-        self.pointing_device.click_object(text_entry)
-        # need to click twice, first time to hide the toolbar (LP#1207369)
-        self.pointing_device.click_object(text_entry)
-        text_entry.activeFocus.wait_for(True)
         message = "hello from Ubuntu"
-        self.keyboard.type(message)
-        self.assertThat(text_entry.text, Eventually(Equals(message)))
+        self.main_view.type_message(message)
 
         # send
-        button = self.main_view.get_send_button()
-        self.assertThat(button.enabled, Eventually(Equals(True)))
-        self.pointing_device.click_object(button)
-        self.assertThat(button.enabled, Eventually(Equals(False)))
+        self.main_view.click_send_button()
 
         # verify that we get a bubble with our message
-        messages_page = self.main_view.select_single(objectName="messagesPage")
-        list_view = messages_page.select_single("MultipleSelectionListView")
+        list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(1)))
-        l = list_view.select_single("Label", text="hello from Ubuntu")
-        self.assertNotEqual(l, None)
+        # verify label text
+        self.main_view.get_message("hello from Ubuntu")
 
         # switch back to main page with thread list
-        self.close_osk()
+        self.main_view.close_osk()
+        self.main_view.go_back()
 
-        # TODO: this is a workaround to force the keyboard to close, as close_osk()
-        # doesn't seem to work on mako
-        self.pointing_device.click_object(button)
-        self.go_back()
+        # verify the main page with the contacts that have sent messages is
+        # visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(True)))
 
-        # should show our message in the thread list
+        # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
-        # should show address number
-        l = self.thread_list.select_single("Label", text="123")
-        self.assertNotEqual(l, None)
-        # should show text
-        l = self.thread_list.select_single("Label", text="hello from Ubuntu")
-        self.assertNotEqual(l, None)
+        # verify our number
+        self.thread_list.select_single("Label", text="123")
+        # verify our text
+        self.thread_list.select_single("Label", text="hello from Ubuntu")
 
-    def test_receive_message(self):
-        self.receive_sms("0815", "hello to Ubuntu")
+    def test_deleting_message_long_press(self):
+        self.main_view.click_new_message_button()
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
+        # type address number
+        phone_num = "555-555-4321"
+        self.main_view.type_contact_phone_num(phone_num)
+        # type message
+        message = "delete me"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        bubble = self.main_view.get_message(message)
+
+        self.main_view.close_osk()
+
+        # long press on bubble
+        self.main_view.long_press(bubble)
+
+        # select delete button
+        self.main_view.click_delete_dialog_button()
+
+        # verify message is deleted
+        bubble.wait_until_destroyed()
+
+    def test_cancel_deleting_message_long_press(self):
+        self.main_view.click_new_message_button()
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type address number
+        phone_num = "5555551234"
+        self.main_view.type_contact_phone_num(phone_num)
+
+        # type message
+        message = "do not delete"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        bubble = self.main_view.get_message(message)
+
+        self.main_view.close_osk()
+
+        # long press on bubble and verify cancel button does not delete message
+        self.main_view.long_press(bubble)
+        self.main_view.click_cancel_dialog_button()
+        time.sleep(5)  # on a slow machine it might return a false positive
+        #the bubble must exist
+        bubble = self.main_view.get_message(message)
+
+    def test_open_received_message(self):
+        number = '5555555678'
+        message = 'open me'
+        # receive message
+        self.main_view.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
-        l = self.thread_list.select_single("Label", text="0815")
-        self.assertNotEqual(l, None)
-        time.sleep(1)  # make it visible to human users for a sec
-        # should show text
-        l = self.thread_list.select_single("Label", text="hello to Ubuntu")
-        self.assertNotEqual(l, None)
+        # click message thread
+        mess_thread = self.thread_list.wait_select_single("Label", text=number)
+        self.pointing_device.click_object(mess_thread)
+        self.main_view.get_message(message)
+        # send new message
+        self.main_view.type_message('{} 2'.format(message))
+        self.main_view.click_send_button()
+        # verify both messages are seen in list
+        self.main_view.get_message('{} 2'.format(message))
+        self.main_view.get_message(message)
 
-    #
-    # Helper methods
-    #
+    def test_delete_multiple_messages(self):
+        number = '5555559876'
+        message = "delete me"
+        # send 5 messages
+        for num in range(1, 6):
+            self.main_view.receive_sms(number, '{} {}'.format(message, num))
+            time.sleep(1)
+        # verify messages show up in thread
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
 
-    def click_new_message_button(self):
-        """Click "New message" menu button and wait for "New message" page"""
+        mess_thread = self.thread_list.wait_select_single("Label", text=number)
+        self.pointing_device.click_object(mess_thread)
 
-        self.main_view.open_toolbar()
-        toolbar = self.main_view.get_toolbar()
-        toolbar.click_button("newMessageButton")
-        self.assertThat(self.main_view.get_pagestack().depth,
-                        Eventually(Equals(2)))
-        self.assertThat(self.main_view.get_messages_page().visible,
-                        Eventually(Equals(True)))
-        self.assertThat(self.thread_list.visible, Equals(False))
+        # long press on message 5
+        bubble5 = self.main_view.get_label("delete me 5")
+        self.main_view.long_press(bubble5)
 
-    def close_osk(self):
-        """Swipe down to close on-screen keyboard"""
+        # tap message 2 - 4
+        for num in range(2, 5):
+            bubble = self.main_view.get_label(
+                '{} {}'.format(message, num)
+            )
+            self.pointing_device.click_object(bubble)
 
-        # TODO: hack! this belongs into the Ubuntu UI toolkit emulator,
-        # LP#1239753
-        x1, y1, x2, y2 = self.main_view.globalRect
-        mid_x = (x2 - x1) // 2
-        mid_y = (y2 - y1) * 7 // 10
-        self.pointing_device.drag(mid_x, mid_y, mid_x, y2)
-        time.sleep(1)
+        # delete messages 2 - 5
+        self.main_view.click_delete_dialog_button()
 
-    def go_back(self):
-        """Click back button from toolbar"""
+        #verify message 2 - 5 are destroyed
+        for num in range(2, 6):
+            try:
+                bubble = self.main_view.get_label(
+                    '{} {}'.format(message, num)
+                )
+                bubble.wait_until_destroyed()
+            ## if the message is not there it was already destroyed
+            except dbus.StateNotFoundError:
+                pass
+        #verify message bubble 1 exists
+        self.main_view.get_label("delete me 1")
 
-        # will fail with i18n; this belongs into the Ubuntu UI toolkit
-        # emulator, LP#1239751
-        self.main_view.open_toolbar()
-        toolbar = self.main_view.get_toolbar()
-        back_button = toolbar.select_single("ActionItem", text=u"Back")
-        self.assertNotEqual(back_button, None)
-        self.pointing_device.click_object(back_button)
+    def test_toolbar_delete_message(self):
+        self.main_view.click_new_message_button()
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
-    def receive_sms(self, sender, text):
-        """Receive an SMS"""
+        # type address number
+        phone_num = "555-555-4321"
+        self.main_view.type_contact_phone_num(phone_num)
+        # type message
+        message = "delete me"
+        self.main_view.type_message(message)
 
-        # prepare and send a Qt GUI script to phonesim, over its private D-BUS
-        # set up by ofono-phonesim-autostart
-        script_dir = tempfile.mkdtemp(prefix="phonesim_script")
-        os.chmod(script_dir, 0o755)
-        self.addCleanup(shutil.rmtree, script_dir)
-        with open(os.path.join(script_dir, "sms.js"), "w") as f:
-            f.write("""tabSMS.gbMessage1.leMessageSender.text = "%s";
-tabSMS.gbMessage1.leSMSClass.text = "1";
-tabSMS.gbMessage1.teSMSText.setPlainText("%s");
-tabSMS.gbMessage1.pbSendSMSMessage.click();
-""" % (sender, text))
+        # send
+        self.main_view.click_send_button()
 
-        with open("/run/lock/ofono-phonesim-dbus.address") as f:
-            phonesim_bus = f.read().strip()
-        bus = dbus.bus.BusConnection(phonesim_bus)
-        script_proxy = bus.get_object("org.ofono.phonesim", "/")
-        script_proxy.SetPath(script_dir)
-        script_proxy.Run("sms.js")
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        bubble = self.main_view.get_message(message)
+
+        self.main_view.close_osk()
+
+        # press on select button and message then delete
+        self.main_view.click_select_messages_button()
+        self.pointing_device.click_object(bubble)
+        self.main_view.click_delete_dialog_button()
+        #verify messsage is gone
+        bubble.wait_until_destroyed()
+
+    def test_toolbar_delete_message_without_selecting_a_message(self):
+        self.main_view.click_new_message_button()
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type address number
+        phone_num = "555-555-4321"
+        self.main_view.type_contact_phone_num(phone_num)
+        # type message
+        message = "dont delete me"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        self.main_view.get_message(message)
+
+        self.main_view.close_osk()
+
+        # press on select button then delete
+        self.main_view.click_select_messages_button()
+        self.main_view.click_delete_dialog_button()
+
+        #verify messsage is not gone
+        time.sleep(5)  # wait 5 seconds, the emulator is slow
+        list_view.select_single("Label", text=message)
+
+    def test_recieve_text_with_letters_in_phone_number(self):
+        number = 'letters'
+        message = 'open me'
+        # receive message
+        self.main_view.receive_sms(number, message)
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
+        # click message thread
+        mess_thread = self.thread_list.wait_select_single(
+            'Label',
+            text='letters@'  # phonesim sends text with number as letters@
+        )
+        self.pointing_device.click_object(mess_thread)
+        self.main_view.get_message(message)
+        # send new message
+        self.main_view.type_message('{} 2'.format(message))
+        self.main_view.click_send_button()
+        # verify both messages are seen in list
+        self.main_view.get_message('{} 2'.format(message))
+        self.main_view.get_message(message)
+
+    def test_cancel_delete_thread_from_main_view(self):
+        self.main_view.click_new_message_button()
+        #verify the thread list page is not visible
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type contact/number
+        phone_num = 123
+        self.main_view.type_contact_phone_num(phone_num)
+
+        # type message
+        message = "hello from Ubuntu"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        # verify label text
+        self.main_view.get_message("hello from Ubuntu")
+
+        # switch back to main page with thread list
+        self.main_view.close_osk()
+        self.main_view.go_back()
+
+        # verify the main page with the contacts that have sent messages is
+        # visible
+        self.assertThat(self.thread_list.visible, Eventually(Equals(True)))
+
+        # verify a message in the thread list
+        self.assertThat(self.thread_list.count, Equals(1))
+        # verify our number
+        self.thread_list.select_single("Label", text="123")
+        # verify our text
+        self.thread_list.select_single("Label", text="hello from Ubuntu")
+        # use select button in toolbar
+        self.main_view.click_select_button()
+        # click cancel button
+        self.main_view.click_cancel_dialog_button()
+        # wait for slow emulator
+        time.sleep(5)
+        # verify our number was not deleted
+        self.thread_list.select_single("Label", text="123")
+        # verify our text was not deleted
+        self.thread_list.select_single("Label", text="hello from Ubuntu")
+
+    def test_delete_thread_from_main_view(self):
+        self.main_view.click_new_message_button()
+        #verify the thread list page is not visible
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type contact/number
+        phone_num = 123
+        self.main_view.type_contact_phone_num(phone_num)
+
+        # type message
+        message = "hello from Ubuntu"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        # verify label text
+        self.main_view.get_message("hello from Ubuntu")
+
+        # switch back to main page with thread list
+        self.main_view.close_osk()
+        self.main_view.go_back()
+
+        # verify the main page with the contacts that have sent messages is
+        # visible
+        self.assertThat(self.thread_list.visible, Eventually(Equals(True)))
+
+        # verify a message in the thread list
+        self.assertThat(self.thread_list.count, Equals(1))
+        # verify our number
+        mess_thread = self.thread_list.select_single("Label", text="123")
+        # verify our text
+        self.thread_list.select_single("Label", text="hello from Ubuntu")
+        # use select button in toolbar
+        self.main_view.click_select_button()
+        # click thread we want to delete
+        self.pointing_device.click_object(mess_thread)
+        # click cancel button
+        self.main_view.click_delete_dialog_button()
+        # verify our text was deleted
+        mess_thread.wait_until_destroyed()
+
+    def test_delete_message_thread_swipe_right(self):
+        # receive an sms message
+        self.main_view.receive_sms('0815', 'hello to Ubuntu')
+
+        # verify that we got the message
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
+
+        # delete thread by swiping
+        self.main_view.delete_thread('0815')
+        self.assertThat(self.thread_list.count, Eventually(Equals(0)))
+
+    def test_delete_message_swipe_right(self):
+        self.main_view.click_new_message_button()
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type address number
+        phone_num = "555-555-4321"
+        self.main_view.type_contact_phone_num(phone_num)
+        # type message
+        message = "delete me okay"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        self.main_view.get_message(message)
+
+        #delete message
+        self.main_view.delete_message(message)
+        self.assertThat(list_view.count, Eventually(Equals(0)))
+
+    def test_delete_message_thread_swipe_left(self):
+        # receive an sms message
+        self.main_view.receive_sms('0815', 'hello to Ubuntu')
+
+        # verify that we got the message
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
+
+        # delete thread by swiping
+        self.main_view.delete_thread('0815', direction='left')
+        self.assertThat(self.thread_list.count, Eventually(Equals(0)))
+
+    def test_delete_message_swipe_left(self):
+        self.main_view.click_new_message_button()
+        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
+
+        # type address number
+        phone_num = "555-555-4321"
+        self.main_view.type_contact_phone_num(phone_num)
+        # type message
+        message = "delete me okay"
+        self.main_view.type_message(message)
+
+        # send
+        self.main_view.click_send_button()
+
+        # verify that we get a bubble with our message
+        list_view = self.main_view.get_multiple_selection_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(1)))
+        self.main_view.get_message(message)
+
+        #delete message
+        self.main_view.delete_message(message, direction='left')
+        self.assertThat(list_view.count, Eventually(Equals(0)))
