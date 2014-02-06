@@ -1,3 +1,17 @@
+messaging-app (0.1+14.04.20140206-0ubuntu1) trusty; urgency=low
+
+  [ Bill Filler ]
+  * disable predictive text for To: field so word ribbon does not
+    appear.
+
+  [ Ted Gould ]
+  * Adding URL dispatcher configuration file.
+
+  [ Omer Akram ]
+  * Load testability driver if QT_LOAD_TESTABILITY is in the environment
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 06 Feb 2014 18:58:55 +0000
+
 messaging-app (0.1+14.04.20140116-0ubuntu1) trusty; urgency=low
 
   [ Tiago Salem Herrmann ]
