@@ -47,6 +47,9 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     """
 
+    #the keyboard causes problems on maguro
+    subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
+
     if model() == 'Desktop':
         scenarios = [
             ('with mouse', dict(input_device_class=Mouse)),
@@ -56,13 +59,13 @@ class MessagingAppTestCase(AutopilotTestCase):
             ('with touch', dict(input_device_class=Touch)),
         ]
 
-    local_location = "../../src/messaging-app"
+    local_location = '../../src/messaging-app'
 
     def setUp(self):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(MessagingAppTestCase, self).setUp()
 
-        subprocess.call(["pkill", "-ecf", "messaging-app"])
+        subprocess.call(['pkill', '-ecf', 'messaging-app'])
 
         if os.path.exists(self.local_location):
             self.launch_test_local()
@@ -74,22 +77,22 @@ class MessagingAppTestCase(AutopilotTestCase):
     def launch_test_local(self):
         self.app = self.launch_test_application(
             self.local_location,
-            "--test-contacts",
+            '--test-contacts',
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
         if model() == 'Desktop':
             self.app = self.launch_test_application(
-                "messaging-app",
-                "--test-contacts",
+                'messaging-app',
+                '--test-contacts',
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
             self.app = self.launch_test_application(
-                "messaging-app",
-                "--test-contacts",
-                "--desktop_file_hint="
-                "/usr/share/applications/messaging-app.desktop",
+                'messaging-app',
+                '--test-contacts',
+                '--desktop_file_hint='
+                '/usr/share/applications/messaging-app.desktop',
                 app_type='qt',
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 

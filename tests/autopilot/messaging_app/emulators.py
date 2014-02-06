@@ -355,7 +355,11 @@ class MainView(toolkit_emulators.MainView):
             )
 
     def receive_sms(self, sender, text):
-        """Receive an SMS"""
+        """Receive an SMS based on sender number and text
+
+        :parameter sender: phone number the message is from
+        :parameter text: text you want to send in the message
+        """
 
         # prepare and send a Qt GUI script to phonesim, over its private D-BUS
         # set up by ofono-phonesim-autostart

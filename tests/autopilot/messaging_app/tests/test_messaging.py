@@ -24,36 +24,34 @@ from messaging_app.tests import MessagingAppTestCase
 
 # determine whether we are running with phonesim
 try:
-    out = subprocess.check_output(["/usr/share/ofono/scripts/list-modems"],
+    out = subprocess.check_output(['/usr/share/ofono/scripts/list-modems'],
                                   stderr=subprocess.PIPE)
-    have_phonesim = out.startswith("[ /phonesim ]")
+    have_phonesim = out.startswith('[ /phonesim ]')
 except subprocess.CalledProcessError:
     have_phonesim = False
 
 
 @skipUnless(have_phonesim,
-            "this test needs to run under with-ofono-phonesim")
-@skipIf(os.uname()[2].endswith("maguro"),
-        "tests cause Unity crashes on maguro")
+            'this test needs to run under with-ofono-phonesim')
+@skipIf(os.uname()[2].endswith('maguro'),
+        'tests cause Unity crashes on maguro')
 class TestMessaging(MessagingAppTestCase):
     """Tests for the communication panel."""
 
     def setUp(self):
-        # kill OSK it gets stuck open sometimes
-        subprocess.call(["pkill", "maliit-server"])
 
         # provide clean history
         self.history = os.path.expanduser(
-            "~/.local/share/history-service/history.sqlite")
+            '~/.local/share/history-service/history.sqlite')
         if os.path.exists(self.history):
-            os.rename(self.history, self.history + ".orig")
-        subprocess.call(["pkill", "history-daemon"])
-        subprocess.call(["pkill", "-f", "telephony-service-handler"])
+            os.rename(self.history, self.history + '.orig')
+        subprocess.call(['pkill', 'history-daemon'])
+        subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
         super(TestMessaging, self).setUp()
 
         # no initial messages
-        self.thread_list = self.app.select_single(objectName="threadList")
+        self.thread_list = self.app.select_single(objectName='threadList')
         self.assertThat(self.thread_list.visible, Equals(True))
         self.assertThat(self.thread_list.count, Equals(0))
 
@@ -65,14 +63,14 @@ class TestMessaging(MessagingAppTestCase):
             os.unlink(self.history)
         except OSError:
             pass
-        if os.path.exists(self.history + ".orig"):
-            os.rename(self.history + ".orig", self.history)
-        subprocess.call(["pkill", "history-daemon"])
-        subprocess.call(["pkill", "-f", "telephony-service-handler"])
+        if os.path.exists(self.history + '.orig'):
+            os.rename(self.history + '.orig', self.history)
+        subprocess.call(['pkill', 'history-daemon'])
+        subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
         # on desktop, notify-osd may generate persistent popups (like for "SMS
         # received"), don't make that stay around for the tests
-        subprocess.call(["pkill", "-f", "notify-osd"])
+        subprocess.call(['pkill', '-f', 'notify-osd'])
 
     def test_receive_message(self):
         # receive an sms message
@@ -97,7 +95,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.type_contact_phone_num(phone_num)
 
         # type message
-        message = "hello from Ubuntu"
+        message = 'hello from Ubuntu'
         self.main_view.type_message(message)
 
         # send
@@ -107,7 +105,7 @@ class TestMessaging(MessagingAppTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(1)))
         # verify label text
-        self.main_view.get_message("hello from Ubuntu")
+        self.main_view.get_message('hello from Ubuntu')
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -120,19 +118,19 @@ class TestMessaging(MessagingAppTestCase):
         # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
         # verify our number
-        self.thread_list.select_single("Label", text="123")
+        self.thread_list.select_single('Label', text='123')
         # verify our text
-        self.thread_list.select_single("Label", text="hello from Ubuntu")
+        self.thread_list.select_single('Label', text='hello from Ubuntu')
 
     def test_deleting_message_long_press(self):
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type address number
-        phone_num = "555-555-4321"
+        phone_num = '555-555-4321'
         self.main_view.type_contact_phone_num(phone_num)
         # type message
-        message = "delete me"
+        message = 'delete me'
         self.main_view.type_message(message)
 
         # send
@@ -159,11 +157,11 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type address number
-        phone_num = "5555551234"
+        phone_num = '5555551234'
         self.main_view.type_contact_phone_num(phone_num)
 
         # type message
-        message = "do not delete"
+        message = 'do not delete'
         self.main_view.type_message(message)
 
         # send
@@ -190,7 +188,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
-        mess_thread = self.thread_list.wait_select_single("Label", text=number)
+        mess_thread = self.thread_list.wait_select_single('Label', text=number)
         self.pointing_device.click_object(mess_thread)
         self.main_view.get_message(message)
         # send new message
@@ -202,7 +200,7 @@ class TestMessaging(MessagingAppTestCase):
 
     def test_delete_multiple_messages(self):
         number = '5555559876'
-        message = "delete me"
+        message = 'delete me'
         # send 5 messages
         for num in range(1, 6):
             self.main_view.receive_sms(number, '{} {}'.format(message, num))
@@ -210,11 +208,11 @@ class TestMessaging(MessagingAppTestCase):
         # verify messages show up in thread
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
 
-        mess_thread = self.thread_list.wait_select_single("Label", text=number)
+        mess_thread = self.thread_list.wait_select_single('Label', text=number)
         self.pointing_device.click_object(mess_thread)
 
         # long press on message 5
-        bubble5 = self.main_view.get_label("delete me 5")
+        bubble5 = self.main_view.get_label('delete me 5')
         self.main_view.long_press(bubble5)
 
         # tap message 2 - 4
@@ -238,17 +236,17 @@ class TestMessaging(MessagingAppTestCase):
             except dbus.StateNotFoundError:
                 pass
         #verify message bubble 1 exists
-        self.main_view.get_label("delete me 1")
+        self.main_view.get_label('delete me 1')
 
     def test_toolbar_delete_message(self):
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type address number
-        phone_num = "555-555-4321"
+        phone_num = '555-555-4321'
         self.main_view.type_contact_phone_num(phone_num)
         # type message
-        message = "delete me"
+        message = 'delete me'
         self.main_view.type_message(message)
 
         # send
@@ -273,10 +271,10 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type address number
-        phone_num = "555-555-4321"
+        phone_num = '555-555-4321'
         self.main_view.type_contact_phone_num(phone_num)
         # type message
-        message = "dont delete me"
+        message = 'dont delete me'
         self.main_view.type_message(message)
 
         # send
@@ -327,7 +325,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.type_contact_phone_num(phone_num)
 
         # type message
-        message = "hello from Ubuntu"
+        message = 'hello from Ubuntu'
         self.main_view.type_message(message)
 
         # send
@@ -337,7 +335,7 @@ class TestMessaging(MessagingAppTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(1)))
         # verify label text
-        self.main_view.get_message("hello from Ubuntu")
+        self.main_view.get_message('hello from Ubuntu')
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -350,9 +348,9 @@ class TestMessaging(MessagingAppTestCase):
         # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
         # verify our number
-        self.thread_list.select_single("Label", text="123")
+        self.thread_list.select_single('Label', text='123')
         # verify our text
-        self.thread_list.select_single("Label", text="hello from Ubuntu")
+        self.thread_list.select_single('Label', text='hello from Ubuntu')
         # use select button in toolbar
         self.main_view.click_select_button()
         # click cancel button
@@ -360,9 +358,9 @@ class TestMessaging(MessagingAppTestCase):
         # wait for slow emulator
         time.sleep(5)
         # verify our number was not deleted
-        self.thread_list.select_single("Label", text="123")
+        self.thread_list.select_single('Label', text='123')
         # verify our text was not deleted
-        self.thread_list.select_single("Label", text="hello from Ubuntu")
+        self.thread_list.select_single('Label', text='hello from Ubuntu')
 
     def test_delete_thread_from_main_view(self):
         self.main_view.click_new_message_button()
@@ -374,7 +372,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.type_contact_phone_num(phone_num)
 
         # type message
-        message = "hello from Ubuntu"
+        message = 'hello from Ubuntu'
         self.main_view.type_message(message)
 
         # send
@@ -384,7 +382,7 @@ class TestMessaging(MessagingAppTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(1)))
         # verify label text
-        self.main_view.get_message("hello from Ubuntu")
+        self.main_view.get_message('hello from Ubuntu')
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -397,9 +395,9 @@ class TestMessaging(MessagingAppTestCase):
         # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
         # verify our number
-        mess_thread = self.thread_list.select_single("Label", text="123")
+        mess_thread = self.thread_list.select_single('Label', text='123')
         # verify our text
-        self.thread_list.select_single("Label", text="hello from Ubuntu")
+        self.thread_list.select_single('Label', text='hello from Ubuntu')
         # use select button in toolbar
         self.main_view.click_select_button()
         # click thread we want to delete
@@ -425,10 +423,10 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type address number
-        phone_num = "555-555-4321"
+        phone_num = '555-555-4321'
         self.main_view.type_contact_phone_num(phone_num)
         # type message
-        message = "delete me okay"
+        message = 'delete me okay'
         self.main_view.type_message(message)
 
         # send
@@ -459,10 +457,10 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type address number
-        phone_num = "555-555-4321"
+        phone_num = '555-555-4321'
         self.main_view.type_contact_phone_num(phone_num)
         # type message
-        message = "delete me okay"
+        message = 'delete me okay'
         self.main_view.type_message(message)
 
         # send
