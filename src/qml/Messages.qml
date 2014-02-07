@@ -66,6 +66,11 @@ Page {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
+    function sendPendingMessage() {
+        chatManager.sendMessage(messages.number, textEntry.text)
+        textEntry.text = ""
+    }
+
     Component {
          id: newContactDialog
          Dialog {
@@ -96,6 +101,46 @@ Page {
                  }
              }
          }
+    }
+
+    Component {
+        id: sendEmptyDialog
+        Dialog {
+            id: dialogueEmpty
+            title: i18n.tr("Empty message")
+            text: i18n.tr("Send an empty message?")
+
+            property bool oskVisible: false
+
+            Button {
+                text: i18n.tr("Yes")
+                color: UbuntuColors.orange
+                onClicked: {
+                    sendPendingMessage()
+                    PopupUtils.close(dialogueEmpty)
+                }
+            }
+            Button {
+                text: i18n.tr("No")
+                color: UbuntuColors.warmGrey
+                onClicked: {
+                    PopupUtils.close(dialogueEmpty)
+                }
+            }
+
+            Component.onCompleted: { 
+                oskVisible = Qt.inputMethod.visible
+                if (oskVisible) {
+                    Qt.inputMethod.hide()
+                }
+            }
+            Component.onDestruction: {
+                if (oskVisible) {
+                    // this essentially forces the OSK to open
+                    textEntry.forceActiveFocus()
+                }
+            }
+        }
     }
 
     ContactWatcher {
@@ -498,7 +543,7 @@ Page {
             anchors.bottom: parent.bottom
             text: "Send"
             width: units.gu(17)
-            enabled: textEntry.text != "" && telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
+            enabled: telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
             onClicked: {
                 if (messages.number === "" && newMessage.newNumber !== "") {
                     messages.number = newMessage.newNumber
@@ -514,10 +559,14 @@ Page {
                 }
 
                 // make sure we flush everything we have prepared in the OSK preedit
-                Qt.inputMethod.commit();
+                Qt.inputMethod.commit()
 
-                chatManager.sendMessage(messages.number, textEntry.text)
-                textEntry.text = ""
+                if (textEntry.text == "") {
+                    PopupUtils.open(sendEmptyDialog)
+                }
+                else {
+                    sendPendingMessage()
+                }
             }
         }
     }
