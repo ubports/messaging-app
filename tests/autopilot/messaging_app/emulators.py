@@ -214,6 +214,7 @@ class MainView(toolkit_emulators.MainView):
         text_entry.focus.wait_for(True)
         time.sleep(.3)
         self.keyboard.type(str(message))
+        print('typed: "{}" expected: "{}"'.format(text_entry.text, message))
 
     def type_contact_phone_num(self, num_or_contact):
         """Select and type phone number or contact
@@ -226,6 +227,8 @@ class MainView(toolkit_emulators.MainView):
         text_entry.focus.wait_for(True)
         time.sleep(.3)
         self.keyboard.type(str(num_or_contact))
+        print('typed "{}" expected "{}"'.format(text_entry.text,
+                                                num_or_contact))
 
     def click_send_button(self):
         """Click the send button on the message page"""
