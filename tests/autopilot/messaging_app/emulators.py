@@ -213,7 +213,7 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(text_entry)
         text_entry.focus.wait_for(True)
         time.sleep(.3)
-        self.keyboard.type(str(message))
+        self.keyboard.type(str(message), delay=0.2)
         print('typed: "{}" expected: "{}"'.format(text_entry.text, message))
 
     def type_contact_phone_num(self, num_or_contact):
@@ -226,7 +226,7 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(text_entry)
         text_entry.focus.wait_for(True)
         time.sleep(.3)
-        self.keyboard.type(str(num_or_contact))
+        self.keyboard.type(str(num_or_contact), delay=0.2)
         print('typed "{}" expected "{}"'.format(text_entry.text,
                                                 num_or_contact))
 
