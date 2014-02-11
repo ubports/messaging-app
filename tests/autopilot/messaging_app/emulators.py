@@ -43,6 +43,7 @@ class MainView(toolkit_emulators.MainView):
 
         """
 
+        time.sleep(2)  # message is not always found on slow emulator
         for thread in self.select_many('ThreadDelegate'):
             for item in self.select_many('QQuickItem'):
                 if "phoneNumber" in item.get_properties():
@@ -58,6 +59,7 @@ class MainView(toolkit_emulators.MainView):
 
         """
 
+        time.sleep(2)  # message is not always found on slow emulator
         for message in self.select_many('MessageDelegate'):
             for item in self.select_many('Label'):
                 if "text" in item.get_properties():
