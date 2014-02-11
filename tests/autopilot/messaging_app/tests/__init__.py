@@ -47,8 +47,9 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     """
 
-    #the keyboard causes problems on maguro
-    subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
+    #Don't use keyboard on desktop
+    if model() == 'Desktop':
+        subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
 
     if model() == 'Desktop':
         scenarios = [
@@ -65,7 +66,7 @@ class MessagingAppTestCase(AutopilotTestCase):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(MessagingAppTestCase, self).setUp()
 
-        subprocess.call(['pkill', '-ecf', 'messaging-app'])
+        subprocess.call(['pkill', 'messaging-app'])
 
         if os.path.exists(self.local_location):
             self.launch_test_local()

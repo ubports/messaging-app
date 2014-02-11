@@ -73,6 +73,7 @@ class TestMessaging(MessagingAppTestCase):
         subprocess.call(['pkill', '-f', 'notify-osd'])
 
     def test_receive_message(self):
+        """Verify that we can receive a text message"""
         # receive an sms message
         self.main_view.receive_sms('0815', 'hello to Ubuntu')
 
@@ -86,6 +87,7 @@ class TestMessaging(MessagingAppTestCase):
         self.thread_list.select_single('Label', text='hello to Ubuntu')
 
     def test_write_new_message(self):
+        """Verify we can write and send a new text message"""
         self.main_view.click_new_message_button()
         #verify the thread list page is not visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
@@ -123,6 +125,7 @@ class TestMessaging(MessagingAppTestCase):
         self.thread_list.select_single('Label', text='hello from Ubuntu')
 
     def test_deleting_message_long_press(self):
+        """Verify we can delete a message with a long press on the message"""
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
@@ -153,6 +156,7 @@ class TestMessaging(MessagingAppTestCase):
         bubble.wait_until_destroyed()
 
     def test_cancel_deleting_message_long_press(self):
+        """Verify we can cancel deleting a message with a long press"""
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
@@ -182,6 +186,7 @@ class TestMessaging(MessagingAppTestCase):
         bubble = self.main_view.get_message(message)
 
     def test_open_received_message(self):
+        """Verify we can open a txt message we have received"""
         number = '5555555678'
         message = 'open me'
         # receive message
@@ -199,6 +204,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.get_message(message)
 
     def test_delete_multiple_messages(self):
+        """Verify we can delete multiple messages"""
         number = '5555559876'
         message = 'delete me'
         # send 5 messages
@@ -239,6 +245,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.get_label('delete me 1')
 
     def test_toolbar_delete_message(self):
+        """Verify we can use the toolbar to delete a message"""
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
@@ -267,6 +274,7 @@ class TestMessaging(MessagingAppTestCase):
         bubble.wait_until_destroyed()
 
     def test_toolbar_delete_message_without_selecting_a_message(self):
+        """Verify we only delete messages that have been selected"""
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
@@ -296,6 +304,7 @@ class TestMessaging(MessagingAppTestCase):
         list_view.select_single("Label", text=message)
 
     def test_recieve_text_with_letters_in_phone_number(self):
+        """verify we can receive a text message with letters for a phone #"""
         number = 'letters'
         message = 'open me'
         # receive message
@@ -316,6 +325,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.get_message(message)
 
     def test_cancel_delete_thread_from_main_view(self):
+        """Verify we can cancel deleting a message thread"""
         self.main_view.click_new_message_button()
         #verify the thread list page is not visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
@@ -363,6 +373,7 @@ class TestMessaging(MessagingAppTestCase):
         self.thread_list.select_single('Label', text='hello from Ubuntu')
 
     def test_delete_thread_from_main_view(self):
+        """Verify we can delete a message thread"""
         self.main_view.click_new_message_button()
         #verify the thread list page is not visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
@@ -408,6 +419,7 @@ class TestMessaging(MessagingAppTestCase):
         mess_thread.wait_until_destroyed()
 
     def test_delete_message_thread_swipe_right(self):
+        """Verify we can delete a message thread by swiping right"""
         # receive an sms message
         self.main_view.receive_sms('0815', 'hello to Ubuntu')
 
@@ -419,6 +431,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.count, Eventually(Equals(0)))
 
     def test_delete_message_swipe_right(self):
+        """Verify we can delete a message by swiping right"""
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
@@ -442,6 +455,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
     def test_delete_message_thread_swipe_left(self):
+        """Verify we can delete a message thread by swiping left"""
         # receive an sms message
         self.main_view.receive_sms('0815', 'hello to Ubuntu')
 
@@ -453,6 +467,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.count, Eventually(Equals(0)))
 
     def test_delete_message_swipe_left(self):
+        """Verify we can delete a message by swiping left"""
         self.main_view.click_new_message_button()
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
