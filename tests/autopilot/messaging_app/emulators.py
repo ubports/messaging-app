@@ -11,6 +11,7 @@
 """Messaging app autopilot emulators."""
 
 import dbus
+import logging
 import os
 import shutil
 import subprocess
@@ -31,6 +32,7 @@ class MainView(toolkit_emulators.MainView):
         super(MainView, self).__init__(*args)
         self.pointing_device = toolkit_emulators.get_pointing_device()
         self.keyboard = Keyboard.create()
+        self.logger = logging.getLogger(__name__)
 
     def get_pagestack(self):
         """Return PageStack with objectName mainStack"""
@@ -216,7 +218,8 @@ class MainView(toolkit_emulators.MainView):
         text_entry.focus.wait_for(True)
         time.sleep(.3)
         self.keyboard.type(str(message), delay=0.2)
-        print('typed: "{}" expected: "{}"'.format(text_entry.text, message))
+        self.logger.info(
+            'typed: "{}" expected: "{}"'.format(text_entry.text, message))
 
     def type_contact_phone_num(self, num_or_contact):
         """Select and type phone number or contact
@@ -229,8 +232,8 @@ class MainView(toolkit_emulators.MainView):
         text_entry.focus.wait_for(True)
         time.sleep(.3)
         self.keyboard.type(str(num_or_contact), delay=0.2)
-        print('typed "{}" expected "{}"'.format(text_entry.text,
-                                                num_or_contact))
+        self.logger.info(
+            'typed "{}" expected "{}"'.format(text_entry.text, num_or_contact))
 
     def click_send_button(self):
         """Click the send button on the message page"""
