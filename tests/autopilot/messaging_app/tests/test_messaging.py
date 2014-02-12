@@ -18,7 +18,7 @@ import time
 from autopilot.introspection import dbus
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
-from testtools import skipIf, skipUnless
+from testtools import skipIf
 
 from messaging_app.tests import MessagingAppTestCase
 
@@ -31,14 +31,24 @@ except subprocess.CalledProcessError:
     have_phonesim = False
 
 
-@skipUnless(have_phonesim,
-            'this test needs to run under with-ofono-phonesim')
 @skipIf(os.uname()[2].endswith('maguro'),
         'tests cause Unity crashes on maguro')
 class TestMessaging(MessagingAppTestCase):
     """Tests for the communication panel."""
 
     def setUp(self):
+
+        # determine whether we are running with phonesim
+        try:
+            out = subprocess.check_output(
+                ['/usr/share/ofono/scripts/list-modems'],
+                stderr=subprocess.PIPE
+            )
+            have_phonesim = out.startswith('[ /phonesim ]')
+        except subprocess.CalledProcessError:
+            have_phonesim = False
+
+        self.assertTrue(have_phonesim)
 
         # provide clean history
         self.history = os.path.expanduser(
