@@ -148,7 +148,7 @@ Page {
         target: messages.header
         property: "contents"
         value: groupChat ? headerContent : null
-        when: messages.header && groupChat
+        when: messages.header && groupChat && !landscape
     }
 
 
