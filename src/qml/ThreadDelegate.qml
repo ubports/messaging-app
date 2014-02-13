@@ -28,16 +28,16 @@ ListItem.Empty {
     id: delegate
     property bool groupChat: participants.length > 1
     property string groupChatLabel: {
-        var firstRcpt
+        var firstRecipient
         if (unknownContact) {
-            firstRcpt = delegateHelper.phoneNumber
+            firstRecipient = delegateHelper.phoneNumber
         } else {
-            firstRcpt = delegateHelper.alias
+            firstRecipient = delegateHelper.alias
         }
 
         if (participants.length > 1)
-            return firstRcpt + " +" + String(participants.length-1)
-        return firstRcpt
+            return firstRecipient + " +" + String(participants.length-1)
+        return firstRecipient
     }
     property bool unknownContact: delegateHelper.isUnknown
     property bool selectionMode: false

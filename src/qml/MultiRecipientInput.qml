@@ -23,7 +23,7 @@ import Ubuntu.Telephony 0.1
 import QtContacts 5.0
 
 FocusScope {
-    id: multiRcptWidget
+    id: multiRecipientWidget
     property bool expanded: true
     property int recipientCount: recipientModel.count-2
     property int selectedIndex: -1
@@ -181,7 +181,7 @@ FocusScope {
                     text = ""
                 }
                 Connections {
-                    target: multiRcptWidget
+                    target: multiRecipientWidget
                     onClearSearch: text = ""
                 }
                 Keys.onPressed: {
@@ -256,14 +256,14 @@ FocusScope {
     ContactSearchListView {
         id: contactSearch
         property string searchTerm: {
-            if(multiRcptWidget.searchString !== "" && multiRcptWidget.expanded) {
-                return multiRcptWidget.searchString
+            if(multiRecipientWidget.searchString !== "" && multiRecipientWidget.expanded) {
+                return multiRecipientWidget.searchString
             }
             return "some value that won't match"
         }
         clip: false
         anchors {
-            top: multiRcptWidget.bottom
+            top: multiRecipientWidget.bottom
             left: parent.left
             right: parent.right
             leftMargin: units.gu(2)
@@ -318,8 +318,8 @@ FocusScope {
         }
 
         onDetailClicked: {
-            multiRcptWidget.addRecipient(detail.number)
-            multiRcptWidget.clearSearch()
+            multiRecipientWidget.addRecipient(detail.number)
+            multiRecipientWidget.clearSearch()
         }
     }
 

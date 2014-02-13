@@ -26,7 +26,7 @@ class MainView(toolkit_emulators.MainView):
         return self.select_single("TextField", objectName="contactSearchInput")
 
     def get_newmessage_multirecipientinput(self):
-        return self.select_single("MultiRecipientInput", objectName="multiRcpt")
+        return self.select_single("MultiRecipientInput", objectName="multiRecipient")
 
     def get_newmessage_textarea(self):
         return self.select_single("TextArea", objectName="")

@@ -44,17 +44,17 @@ Page {
             return ""
         }
         if (participants.length > 0) {
-            var firstRcpt = ""
+            var firstRecipient = ""
             if (contactWatcher.isUnknown) {
-                firstRcpt = contactWatcher.phoneNumber
+                firstRecipient = contactWatcher.phoneNumber
             } else {
-                firstRcpt = contactWatcher.alias
+                firstRecipient = contactWatcher.alias
             }
             if (participants.length == 1) {
-                return firstRcpt
+                return firstRecipient
             } else {
                 var numOther = participants.length-1
-                return firstRcpt + " +" + i18n.tr("%1 other", "%1 others", numOther).arg(numOther)
+                return firstRecipient + " +" + i18n.tr("%1 other", "%1 others", numOther).arg(numOther)
             }
         }
         return i18n.tr("New Message")
@@ -242,14 +242,14 @@ Page {
                 detailToPick: ContactDetail.PhoneNumber
                 onContactClicked: {
                     // FIXME: search for favorite number
-                    multiRcpt.addRecipient(contact.phoneNumber.number)
-                    multiRcpt.forceActiveFocus()
+                    multiRecipient.addRecipient(contact.phoneNumber.number)
+                    multiRecipient.forceActiveFocus()
                     PopupUtils.close(sheet)
                 }
                 onDetailClicked: {
-                    multiRcpt.addRecipient(detail.number)
+                    multiRecipient.addRecipient(detail.number)
                     PopupUtils.close(sheet)
-                    multiRcpt.forceActiveFocus()
+                    multiRecipient.forceActiveFocus()
                 }
             }
             onDoneClicked: PopupUtils.close(sheet)
@@ -334,7 +334,7 @@ Page {
 
     Icon {
         id: addIcon
-        visible: multiRcpt.visible
+        visible: multiRecipient.visible
         height: units.gu(3)
         width: units.gu(3)
         anchors {
@@ -360,8 +360,8 @@ Page {
     }
 
     MultiRecipientInput {
-        id: multiRcpt
-        objectName: "multiRcpt"
+        id: multiRecipient
+        objectName: "multiRecipient"
         visible: participants.length == 0
         enabled: visible
         anchors {
@@ -377,7 +377,7 @@ Page {
         clip: true
         acceptAction.text: i18n.tr("Delete")
         anchors {
-            top: multiRcpt.bottom
+            top: multiRecipient.bottom
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -482,10 +482,10 @@ Page {
             anchors.bottom: parent.bottom
             text: "Send"
             width: units.gu(17)
-            enabled: textEntry.text != "" && telepathyHelper.connected && (participants.length > 0 || multiRcpt.recipientCount > 0 )
+            enabled: textEntry.text != "" && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
             onClicked: {
-                if (participants.length == 0 && multiRcpt.recipientCount > 0) {
-                    participants = multiRcpt.recipients
+                if (participants.length == 0 && multiRecipient.recipientCount > 0) {
+                    participants = multiRecipient.recipients
                 }
 
                 if (messages.threadId == "") {
