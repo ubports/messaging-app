@@ -22,14 +22,6 @@ from testtools import skipIf
 
 from messaging_app.tests import MessagingAppTestCase
 
-# determine whether we are running with phonesim
-try:
-    out = subprocess.check_output(['/usr/share/ofono/scripts/list-modems'],
-                                  stderr=subprocess.PIPE)
-    have_phonesim = out.startswith('[ /phonesim ]')
-except subprocess.CalledProcessError:
-    have_phonesim = False
-
 
 @skipIf(os.uname()[2].endswith('maguro'),
         'tests cause Unity crashes on maguro')
