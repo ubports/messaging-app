@@ -246,24 +246,21 @@ class MainView(toolkit_emulators.MainView):
     def click_new_message_button(self):
         """Click "Compose/ new message" button from toolbar on main page"""
 
-        self.open_toolbar()
-        toolbar = self.get_toolbar()
+        toolbar = self.open_toolbar()
         toolbar.click_button("newMessageButton")
         toolbar.animating.wait_for(False)
 
     def click_select_button(self):
         """Click select button from toolbar on main page"""
 
-        self.open_toolbar()
-        toolbar = self.get_toolbar()
+        toolbar = self.open_toolbar()
         toolbar.click_button("selectButton")
         toolbar.animating.wait_for(False)
 
     def click_select_messages_button(self):
         """Click select messages button from toolbar on messages page"""
 
-        self.open_toolbar()
-        toolbar = self.get_toolbar()
+        toolbar = self.open_toolbar()
         toolbar.click_button("selectMessagesButton")
         toolbar.animating.wait_for(False)
 
@@ -279,8 +276,7 @@ class MainView(toolkit_emulators.MainView):
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
 
-        self.open_toolbar()
-        toolbar = self.get_toolbar()
+        toolbar = self.open_toolbar()
         button = toolbar.wait_select_single("ActionItem", text=u"Add")
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
@@ -288,8 +284,7 @@ class MainView(toolkit_emulators.MainView):
     def click_call_button(self):
         """Click call button from toolbar on messages page"""
 
-        self.open_toolbar()
-        toolbar = self.get_toolbar()
+        toolbar = self.open_toolbar()
         button = toolbar.wait_select_single("ActionItem", text=u"Call")
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
@@ -297,8 +292,7 @@ class MainView(toolkit_emulators.MainView):
     def click_back_button(self):
         """Click back button from toolbar on messages page"""
 
-        self.open_toolbar()
-        toolbar = self.get_toolbar()
+        toolbar = self.open_toolbar()
         button = toolbar.wait_select_single("ActionItem", text=u"Back")
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
