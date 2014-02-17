@@ -134,7 +134,7 @@ class TestMessaging(MessagingAppTestCase):
         for number in recipient_list:
             self.keyboard.type(number)
             self.assertThat(text_entry.text, Eventually(Equals(number)))
-            self.keyboard.press_and_release("Return")
+            self.keyboard.press_and_release("Enter")
 
         # check if recipients match
         multircpt_entry = self.main_view.get_newmessage_multirecipientinput()
