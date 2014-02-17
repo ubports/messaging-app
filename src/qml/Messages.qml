@@ -106,51 +106,23 @@ Page {
         }
     }
 
-    Item {
-        id: headerContent
+    Icon {
+        id: participantsButton
+        name: "navigation-menu"
+        parent: messages.header
         visible: groupChat
-        anchors.fill: parent
-
-        Label {
-            text: messages.title
-            fontSize: "x-large"
-            font.weight: Font.Light
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-            anchors {
-                left: parent.left
-                leftMargin: units.gu(1)
-                top: parent.top
-                bottom: parent.bottom
-                right: participantsButton.left
-            }
+        width: visible ? units.gu(6) : 0
+        height: units.gu(6)
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: parent.right
         }
 
-        Icon {
-            id: participantsButton
-            name: "navigation-menu"
-            width: visible ? units.gu(6) : 0
-            height: units.gu(6)
-            visible: groupChat
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: PopupUtils.open(participantsPopover, participantsButton)
-            }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: PopupUtils.open(participantsPopover, participantsButton)
         }
     }
-
-    Binding {
-        target: messages.header
-        property: "contents"
-        value: groupChat ? headerContent : null
-        when: messages.header && groupChat && !landscape
-    }
-
 
     Component {
          id: newContactDialog
