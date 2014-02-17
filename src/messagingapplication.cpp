@@ -129,6 +129,13 @@ bool MessagingApplication::setup()
     m_view->rootContext()->setContextProperty("application", this);
     m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
 
+    // check if there is a contacts backend override
+    QString contactsBackend = qgetenv("QTCONTACTS_MANAGER_OVERRIDE");
+    if (!contactsBackend.isEmpty()) {
+        qDebug() << "Overriding the contacts backend, using:" << contactsBackend;
+        m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
+    }
+
     QString pluginPath = ubuntuPhonePluginPath();
     if (!pluginPath.isNull()) {
         m_view->engine()->addImportPath(pluginPath);
