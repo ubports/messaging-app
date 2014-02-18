@@ -23,7 +23,10 @@ class MainView(toolkit_emulators.MainView):
         return self.select_single("Messages", objectName="messagesPage")
 
     def get_newmessage_textfield(self):
-        return self.select_single("TextField", objectName="newPhoneNumberField")
+        return self.select_single("TextField", objectName="contactSearchInput")
+
+    def get_newmessage_multirecipientinput(self):
+        return self.select_single("MultiRecipientInput", objectName="multiRecipient")
 
     def get_newmessage_textarea(self):
         return self.select_single("TextArea", objectName="")
@@ -33,7 +36,7 @@ class MainView(toolkit_emulators.MainView):
 
     def get_thread_from_number(self, number):
         for item in self.select_many("QQuickItem"):
-            if "phoneNumber" in item.get_properties():
-                if item.get_properties()['phoneNumber'] == number:
+            if "participants" in item.get_properties():
+                if item.get_properties()['participants'][0] == number:
                     return item
         return None
