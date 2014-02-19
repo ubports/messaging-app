@@ -59,7 +59,8 @@ MainView {
 
     function startChat(phoneNumber) {
         var properties = {}
-        properties["number"] = phoneNumber
+        var participants = [phoneNumber]
+        properties["participants"] = participants
         emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }

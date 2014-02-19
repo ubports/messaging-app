@@ -94,7 +94,7 @@ class MainView(toolkit_emulators.MainView):
 
         return self.select_single(
             "TextField",
-            objectName="newPhoneNumberField",
+            objectName="contactSearchInput",
         )
 
     def get_multiple_selection_list_view(self):
@@ -102,6 +102,13 @@ class MainView(toolkit_emulators.MainView):
 
         page = self.get_messages_page()
         return page.select_single('MultipleSelectionListView')
+
+    def get_newmessage_multirecipientinput(self):
+        """Return MultiRecipientInput from the messages page"""
+        return self.select_single(
+            "MultiRecipientInput", 
+            objectName="multiRecipient",
+        )
 
     def get_newmessage_textarea(self):
         """Return TextArea with blank objectName"""
@@ -227,13 +234,13 @@ class MainView(toolkit_emulators.MainView):
         :parameter num_or_contact: number or contact to type
         """
 
-        text_entry = self.get_newmessage_textfield()
+        text_entry = self.get_newmessage_multirecipientinput()
         self.pointing_device.click_object(text_entry)
         text_entry.focus.wait_for(True)
         time.sleep(.3)
         self.keyboard.type(str(num_or_contact), delay=0.2)
         self.logger.info(
-            'typed "{}" expected "{}"'.format(text_entry.text, num_or_contact))
+            'typed "{}" expected "{}"'.format(self.get_newmessage_textfield().text, num_or_contact))
 
     def click_send_button(self):
         """Click the send button on the message page"""

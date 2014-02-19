@@ -32,7 +32,8 @@ Page {
     id: messages
     objectName: "messagesPage"
     property string threadId: getCurrentThreadId()
-    property alias number: contactWatcher.phoneNumber
+    property variant participants: []
+    property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
@@ -42,11 +43,19 @@ Page {
         if (landscape) {
             return ""
         }
-        if (number !== "") {
+        if (participants.length > 0) {
+            var firstRecipient = ""
             if (contactWatcher.isUnknown) {
-                return messages.number
+                firstRecipient = contactWatcher.phoneNumber
+            } else {
+                firstRecipient = contactWatcher.alias
             }
-            return contactWatcher.alias
+            if (participants.length == 1) {
+                return firstRecipient
+            } else {
+                var numOther = participants.length-1
+                return firstRecipient + " +" + i18n.tr("%1 other", "%1 others", numOther).arg(numOther)
+            }
         }
         return i18n.tr("New Message")
     }
@@ -54,17 +63,94 @@ Page {
     onSelectionModeChanged: messagesToolbar.opened = false
 
     function getCurrentThreadId() {
-        if (number === "")
+        if (participants.length == 0)
             return ""
         return eventModel.threadIdForParticipants(telepathyHelper.accountId,
                                                               HistoryThreadModel.EventTypeText,
-                                                              messages.number,
+                                                              participants,
                                                               HistoryThreadModel.MatchPhoneNumber)
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
+
+    Component {
+        id: participantsPopover
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                Repeater {
+                    model: participants
+                    Item {
+                        height: childrenRect.height
+                        width: popover.width
+                        ListItem.Standard { 
+                            id: listItem
+                            text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
+                        }
+                        ContactWatcher {
+                            id: contactWatcher
+                            phoneNumber: modelData
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Item {
+        id: headerContent
+        visible: groupChat
+        anchors.fill: parent
+
+        Label {
+            text: messages.title
+            fontSize: "x-large"
+            font.weight: Font.Light
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(1)
+                top: parent.top
+                bottom: parent.bottom
+                right: participantsButton.left
+            }
+        }
+
+        Icon {
+            id: participantsButton
+            name: "navigation-menu"
+            width: visible ? units.gu(6) : 0
+            height: units.gu(6)
+            visible: groupChat
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: parent.right
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: PopupUtils.open(participantsPopover, participantsButton)
+            }
+        }
+    }
+
+    Binding {
+        target: messages.header
+        property: "contents"
+        value: groupChat ? headerContent : null
+        when: messages.header && !landscape && messages.active
+    }
+
 
     Component {
          id: newContactDialog
@@ -100,9 +186,10 @@ Page {
 
     ContactWatcher {
         id: contactWatcher
+        phoneNumber: participants.length > 0 ? participants[0] : ""
     }
 
-    onNumberChanged: {
+    onParticipantsChanged: {
         threadId = getCurrentThreadId()
     }
 
@@ -155,14 +242,14 @@ Page {
                 detailToPick: ContactDetail.PhoneNumber
                 onContactClicked: {
                     // FIXME: search for favorite number
-                    number = contact.phoneNumber.number
-                    textEntry.forceActiveFocus()
+                    multiRecipient.addRecipient(contact.phoneNumber.number)
+                    multiRecipient.forceActiveFocus()
                     PopupUtils.close(sheet)
                 }
                 onDetailClicked: {
-                    number = detail.number
+                    multiRecipient.addRecipient(detail.number)
                     PopupUtils.close(sheet)
-                    textEntry.forceActiveFocus()
+                    multiRecipient.forceActiveFocus()
                 }
             }
             onDoneClicked: PopupUtils.close(sheet)
@@ -181,7 +268,7 @@ Page {
             }
         }
         ToolbarButton {
-            visible: contactWatcher.isUnknown && contactWatcher.phoneNumber !== ""
+            visible: contactWatcher.isUnknown && participants.length == 1
             objectName: "addContactButton"
             action: Action {
                 iconSource: "image://theme/new-contact"
@@ -193,7 +280,7 @@ Page {
             }
         }
         ToolbarButton {
-            visible: !contactWatcher.isUnknown
+            visible: !contactWatcher.isUnknown && participants.length == 1
             objectName: "contactProfileButton"
             action: Action {
                 iconSource: "image://theme/contact"
@@ -205,7 +292,7 @@ Page {
             }
         }
         ToolbarButton {
-            visible: contactWatcher.phoneNumber !== ""
+            visible: participants.length == 1
             objectName: "contactCallButton"
             action: Action {
                 iconSource: "image://theme/call-start"
@@ -245,147 +332,44 @@ Page {
         ascending: false
     }
 
-    Item {
-        id: newMessage
-        property alias newNumber: newPhoneNumberField.text
+    Icon {
+        id: addIcon
+        visible: multiRecipient.visible
+        height: units.gu(3)
+        width: units.gu(3)
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(2)
+            top: parent.top
+            topMargin: units.gu(1)
+        }
+
+        name: "new-contact"
+        color: "white"
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                var item = keyboard.recursiveFindFocusedItem(messages)
+                if (item) {
+                    item.focus = false
+                }
+
+                PopupUtils.open(addContactToConversationSheet)
+            }
+        }
+    }
+
+    MultiRecipientInput {
+        id: multiRecipient
+        objectName: "multiRecipient"
+        visible: participants.length == 0
+        enabled: visible
         anchors {
             top: parent.top
+            topMargin: units.gu(1)
             left: parent.left
-            right: parent.right
+            right: addIcon.left
         }
-        clip: true
-        height: (number === "" && threadId == "") ? units.gu(7) : 0
-        focus: true
-        Component.onCompleted: number === "" && newPhoneNumberField.forceActiveFocus()
-
-        Label {
-            id: labelTo
-            anchors {
-                left: parent.left
-                leftMargin: units.gu(2)
-                verticalCenter: parent.verticalCenter
-            }
-            text: i18n.tr("To:")
-            fontSize: "medium"
-            opacity: 0.2
-        }
-
-        TextField {
-            id: newPhoneNumberField
-            objectName: "newPhoneNumberField"
-            anchors {
-                verticalCenter: parent.verticalCenter
-                left: labelTo.right
-                right: parent.right
-                leftMargin: units.gu(2)
-                rightMargin: units.gu(1)
-            }
-
-            style: null
-            color: "white"
-            inputMethodHints: Qt.ImhNoPredictiveText
-            font.pixelSize: FontUtils.sizeToPixels("large")
-            font.family: "Ubuntu"
-            placeholderText: i18n.tr("Enter number")
-            Keys.onReturnPressed: textEntry.forceActiveFocus()
-        }
-
-        Icon {
-            height: units.gu(3)
-            width: units.gu(3)
-            anchors {
-                right: parent.right
-                rightMargin: units.gu(2)
-                verticalCenter: labelTo.verticalCenter
-            }
-
-            name: "new-contact"
-            color: "white"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: PopupUtils.open(addContactToConversationSheet)
-            }
-        }
-    }
-
-    Rectangle {
-        anchors.fill: contactSearch
-        anchors.leftMargin: -units.gu(2)
-        anchors.rightMargin: -units.gu(2)
-        color: "black"
-        opacity: 0.6
-        z: -1
-    }
-
-    ContactSearchListView {
-        id: contactSearch
-        property string searchTerm: {
-            if(newMessage.newNumber !== "" && messages.number === "" && newPhoneNumberField.focus) {
-                return newMessage.newNumber
-            }
-            return "some value that won't match"
-        }
-        clip: false
-        anchors {
-            top: newMessage.bottom
-            left: parent.left
-            right: parent.right
-            leftMargin: units.gu(2)
-            bottomMargin: units.gu(2)
-            rightMargin: units.gu(2)
-        }
-
-        states: [
-            State {
-                name: "empty"
-                when: contactSearch.count == 0
-                PropertyChanges {
-                    target: contactSearch
-                    height: 0
-                }
-            }
-        ]
-
-        Behavior on height {
-            UbuntuNumberAnimation { }
-        }
-
-        filter: UnionFilter {
-            DetailFilter {
-                detail: ContactDetail.Name
-                field: Name.FirstName
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
-                detail: ContactDetail.Name
-                field: Name.LastName
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-        }
-
-        onDetailClicked: {
-            messages.number = detail.number
-            textEntry.forceActiveFocus()
-        }
-        z: 1
     }
 
     MultipleSelectionListView {
@@ -393,7 +377,7 @@ Page {
         clip: true
         acceptAction.text: i18n.tr("Delete")
         anchors {
-            top: newMessage.bottom
+            top: multiRecipient.bottom
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -498,22 +482,21 @@ Page {
             anchors.bottom: parent.bottom
             text: "Send"
             width: units.gu(17)
-            enabled: textEntry.text != "" && telepathyHelper.connected && (messages.number !== "" || newMessage.newNumber !== "" )
+            enabled: textEntry.text != "" && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
             onClicked: {
-                if (messages.number === "" && newMessage.newNumber !== "") {
-                    messages.number = newMessage.newNumber
+                if (participants.length == 0 && multiRecipient.recipientCount > 0) {
+                    participants = multiRecipient.recipients
                 }
 
                 if (messages.threadId == "") {
                     // create the new thread and get the threadId
                     messages.threadId = eventModel.threadIdForParticipants(telepathyHelper.accountId,
                                                                             HistoryThreadModel.EventTypeText,
-                                                                            messages.number,
+                                                                            participants,
                                                                             HistoryThreadModel.MatchPhoneNumber,
                                                                             true)
                 }
-
-                chatManager.sendMessage(messages.number, textEntry.text)
+                chatManager.sendMessage(participants, textEntry.text)
                 textEntry.text = ""
             }
         }
