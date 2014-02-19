@@ -79,16 +79,16 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.click_new_message_button()
 
         # type address number
-        text_entry = self.main_view.get_newmessage_textfield()
-        text_entry.activeFocus.wait_for(True)
         for number in recipient_list:
-            self.keyboard.type(number)
-            self.assertThat(text_entry.text, Eventually(Equals(number)))
+            self.main_view.type_contact_phone_num(number)
             self.keyboard.press_and_release("Enter")
 
         # check if recipients match
         multircpt_entry = self.main_view.get_newmessage_multirecipientinput()
-        self.assertThat(multircpt_entry.get_properties()['recipientCount'],  Eventually(Equals(len(recipient_list))))
+        self.assertThat(
+            multircpt_entry.get_properties()['recipientCount'],
+            Eventually(Equals(len(recipient_list)))
+        )
 
     def test_receive_message(self):
         """Verify that we can receive a text message"""

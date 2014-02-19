@@ -106,7 +106,7 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_multirecipientinput(self):
         """Return MultiRecipientInput from the messages page"""
         return self.select_single(
-            "MultiRecipientInput", 
+            "MultiRecipientInput",
             objectName="multiRecipient",
         )
 
@@ -239,8 +239,10 @@ class MainView(toolkit_emulators.MainView):
         text_entry.focus.wait_for(True)
         time.sleep(.3)
         self.keyboard.type(str(num_or_contact), delay=0.2)
+        self.keyboard.press_and_release("Enter")
         self.logger.info(
-            'typed "{}" expected "{}"'.format(self.get_newmessage_textfield().text, num_or_contact))
+            'typed "{}" expected "{}"'.format(
+                self.get_newmessage_textfield().text, num_or_contact))
 
     def click_send_button(self):
         """Click the send button on the message page"""
