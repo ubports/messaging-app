@@ -83,7 +83,7 @@ bool MessagingApplication::setup()
 
     // The testability driver is only loaded by QApplication but not by QGuiApplication.
     // However, QApplication depends on QWidget which would add some unneeded overhead => Let's load the testability driver on our own.
-    if (arguments.contains("-testability")) {
+    if (arguments.contains("-testability") || qgetenv("QT_LOAD_TESTABILITY") == "1") {
         arguments.removeAll("-testability");
         QLibrary testLib(QLatin1String("qttestability"));
         if (testLib.load()) {
@@ -128,6 +128,13 @@ bool MessagingApplication::setup()
     m_view->setTitle("Messaging");
     m_view->rootContext()->setContextProperty("application", this);
     m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
+
+    // check if there is a contacts backend override
+    QString contactsBackend = qgetenv("QTCONTACTS_MANAGER_OVERRIDE");
+    if (!contactsBackend.isEmpty()) {
+        qDebug() << "Overriding the contacts backend, using:" << contactsBackend;
+        m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
+    }
 
     QString pluginPath = ubuntuPhonePluginPath();
     if (!pluginPath.isNull()) {
