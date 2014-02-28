@@ -416,6 +416,11 @@ Page {
                     messages.markMessageAsRead(accountId, threadId, eventId, type);
                 }
             }
+            onResend: {
+                // resend this message and remove the old one
+                eventModel.removeEvent(accountId, threadId, eventId, type)
+                chatManager.sendMessage(messages.participants, textMessage)
+            }
         }
         onSelectionDone: {
             for (var i=0; i < items.count; i++) {
