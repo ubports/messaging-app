@@ -1,3 +1,17 @@
+messaging-app (0.1+14.04.20140228-0ubuntu1) trusty; urgency=low
+
+  [ chris.gagnon ]
+  * update autopilot emulator add tests
+
+  [ Tiago Salem Herrmann ]
+  * Resend messages to all participants of a particular group chat.
+  * update autopilot emulator add tests
+
+  [ Dimitri John Ledkov ]
+  * Drop dbus-x11 dependency, dbus-launch is not used.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 28 Feb 2014 14:56:55 +0000
+
 messaging-app (0.1+14.04.20140218.1-0ubuntu1) trusty; urgency=low
 
   [ Gustavo Pichorim Boiko ]
