@@ -392,6 +392,7 @@ Page {
         listModel: threadId !== "" ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
+        highlightFollowsCurrentItem: false
         listDelegate: MessageDelegate {
             id: messageDelegate
             incoming: senderId != "self"
