@@ -38,6 +38,7 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
+    property bool pendingMessage: false
     flickable: null
     title: {
         if (landscape) {
@@ -392,6 +393,7 @@ Page {
         listModel: threadId !== "" ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
+        highlightFollowsCurrentItem: false
         listDelegate: MessageDelegate {
             id: messageDelegate
             incoming: senderId != "self"
@@ -427,6 +429,12 @@ Page {
                 var event = items.get(i).model
                 eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
             }
+        }
+        onCountChanged: {
+            if (messages.pendingMessage) {
+                messageList.contentY = 0
+                messages.pendingMessage = false
+            } 
         }
     }
 
@@ -501,6 +509,7 @@ Page {
                                                                             HistoryThreadModel.MatchPhoneNumber,
                                                                             true)
                 }
+                messages.pendingMessage = true
                 chatManager.sendMessage(participants, textEntry.text)
                 textEntry.text = ""
             }
