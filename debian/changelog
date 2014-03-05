@@ -1,3 +1,11 @@
+messaging-app (0.1+14.04.20140305-0ubuntu1) trusty; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * set highlightFollowsCurrentItem to false to avoid unexpected
+    behaviors with qt5.2 (LP: #1286315)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 05 Mar 2014 04:58:23 +0000
+
 messaging-app (0.1+14.04.20140228-0ubuntu1) trusty; urgency=low
 
   [ chris.gagnon ]
