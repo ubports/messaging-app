@@ -32,6 +32,7 @@ Page {
     id: messages
     objectName: "messagesPage"
     property string threadId: getCurrentThreadId()
+    property string accountId: ""
     property variant participants: []
     property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
@@ -66,7 +67,7 @@ Page {
     function getCurrentThreadId() {
         if (participants.length == 0)
             return ""
-        return eventModel.threadIdForParticipants(telepathyHelper.accountId,
+        return eventModel.threadIdForParticipants(accountId,
                                                               HistoryThreadModel.EventTypeText,
                                                               participants,
                                                               HistoryThreadModel.MatchPhoneNumber)
@@ -317,7 +318,7 @@ Page {
             }
             HistoryFilter {
                 filterProperty: "accountId"
-                filterValue: telepathyHelper.accountId
+                filterValue: accountId
             }
         }
         sort: HistorySort {
@@ -501,9 +502,14 @@ Page {
                     participants = multiRecipient.recipients
                 }
 
+                if (accountId == "") {
+                    // FIXME: handle dual sim
+                    accountId = telepathyHelper.accountIds[0]
+                }
+
                 if (messages.threadId == "") {
                     // create the new thread and get the threadId
-                    messages.threadId = eventModel.threadIdForParticipants(telepathyHelper.accountId,
+                    messages.threadId = eventModel.threadIdForParticipants(accountId,
                                                                             HistoryThreadModel.EventTypeText,
                                                                             participants,
                                                                             HistoryThreadModel.MatchPhoneNumber,

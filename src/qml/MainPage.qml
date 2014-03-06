@@ -44,10 +44,6 @@ Page {
     HistoryThreadModel {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
-        /*filter: HistoryFilter {
-            filterProperty: "accountId"
-            filterValue: telepathyHelper.accountId
-        }*/
         sort: HistorySort {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
@@ -95,6 +91,7 @@ Page {
                 } else {
                     var properties = {}
                     properties["threadId"] = threadId
+                    properties["accountId"] = accountId
                     properties["participants"] = participants
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
