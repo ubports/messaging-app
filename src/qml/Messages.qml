@@ -502,14 +502,16 @@ Page {
                     participants = multiRecipient.recipients
                 }
 
-                if (accountId == "") {
+                if (messages.accountId == "") {
                     // FIXME: handle dual sim
-                    accountId = telepathyHelper.accountIds[0]
+                    console.log(messages.accountId)
+                    messages.accountId = telepathyHelper.accountIds[0]
+                    console.log(messages.accountId)
                 }
 
                 if (messages.threadId == "") {
                     // create the new thread and get the threadId
-                    messages.threadId = eventModel.threadIdForParticipants(accountId,
+                    messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
                                                                             HistoryThreadModel.EventTypeText,
                                                                             participants,
                                                                             HistoryThreadModel.MatchPhoneNumber,
