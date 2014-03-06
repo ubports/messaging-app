@@ -1,3 +1,9 @@
+messaging-app (0.1+14.04.20140306-0ubuntu1) trusty; urgency=low
+
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 06 Mar 2014 08:10:21 +0000
+
 messaging-app (0.1+14.04.20140305-0ubuntu1) trusty; urgency=low
 
   [ Tiago Salem Herrmann ]
