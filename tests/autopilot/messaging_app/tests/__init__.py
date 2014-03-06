@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2012 Canonical
+# Copyright 2012-2014 Canonical
 #
 # This file is part of messaging-app.
 #
@@ -13,18 +13,18 @@ from autopilot.input import Mouse, Touch, Pointer
 from autopilot.matchers import Eventually
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
-from testtools.matchers import Equals, GreaterThan
+from testtools.matchers import Equals
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from messaging_app import emulators
 
 import os
 import sys
-from time import sleep
 import logging
 import subprocess
 
 logger = logging.getLogger(__name__)
+
 
 # ensure we have an ofono account; we assume that we have these tools,
 # otherwise we consider this a test failure (missing dependencies)
@@ -47,6 +47,10 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     """
 
+    #Don't use keyboard on desktop
+    if model() == 'Desktop':
+        subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
+
     if model() == 'Desktop':
         scenarios = [
             ('with mouse', dict(input_device_class=Mouse)),
@@ -56,11 +60,13 @@ class MessagingAppTestCase(AutopilotTestCase):
             ('with touch', dict(input_device_class=Touch)),
         ]
 
-    local_location = "../../src/messaging-app"
+    local_location = '../../src/messaging-app'
 
     def setUp(self):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(MessagingAppTestCase, self).setUp()
+
+        subprocess.call(['pkill', 'messaging-app'])
 
         if os.path.exists(self.local_location):
             self.launch_test_local()
@@ -72,23 +78,24 @@ class MessagingAppTestCase(AutopilotTestCase):
     def launch_test_local(self):
         self.app = self.launch_test_application(
             self.local_location,
-            "--test-contacts",
+            '--test-contacts',
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
         if model() == 'Desktop':
             self.app = self.launch_test_application(
-                "messaging-app",
-                "--test-contacts",
+                'messaging-app',
+                '--test-contacts',
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
             self.app = self.launch_test_application(
-               "messaging-app", 
-               "--test-contacts",
-               "--desktop_file_hint=/usr/share/applications/messaging-app.desktop",
-               app_type='qt',
-               emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+                'messaging-app',
+                '--test-contacts',
+                '--desktop_file_hint='
+                '/usr/share/applications/messaging-app.desktop',
+                app_type='qt',
+                emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     @property
     def main_view(self):

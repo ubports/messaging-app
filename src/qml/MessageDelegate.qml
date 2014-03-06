@@ -37,6 +37,8 @@ ListItem.Empty {
     showDivider: false
     highlightWhenPressed: false
 
+    signal resend()
+
     Item {
         Component {
             id: popoverComponent
@@ -53,9 +55,7 @@ ListItem.Empty {
                         text: i18n.tr("Try again")
                         enabled: telepathyHelper.connected
                         onClicked: {
-                            // resend this message and remove the old one
-                            eventModel.removeEvent(accountId, threadId, eventId, type)
-                            chatManager.sendMessage(threadId, textMessage)
+                            resend()
                             PopupUtils.close(popover)
                         }
                     }

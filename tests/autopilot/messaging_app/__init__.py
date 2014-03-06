@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2012 Canonical
+# Copyright 2012 - 2014 Canonical
 #
 # This file is part of messaging-app.
 #
@@ -7,4 +7,4 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
-"""Marumbi autopilot tests and emulators - top level package."""
+"""messaging-app autopilot tests and emulators - top level package."""
