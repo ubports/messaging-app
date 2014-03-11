@@ -422,7 +422,7 @@ Page {
             onResend: {
                 // resend this message and remove the old one
                 eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage)
+                chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
         }
         onSelectionDone: {
@@ -504,9 +504,7 @@ Page {
 
                 if (messages.accountId == "") {
                     // FIXME: handle dual sim
-                    console.log(messages.accountId)
                     messages.accountId = telepathyHelper.accountIds[0]
-                    console.log(messages.accountId)
                 }
 
                 if (messages.threadId == "") {
@@ -518,7 +516,7 @@ Page {
                                                                             true)
                 }
                 messages.pendingMessage = true
-                chatManager.sendMessage(participants, textEntry.text)
+                chatManager.sendMessage(participants, textEntry.text, messages.accountId)
                 textEntry.text = ""
             }
         }
