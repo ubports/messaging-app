@@ -15,18 +15,17 @@ import os
 import subprocess
 import time
 
-from autopilot.introspection import dbus
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+from testtools.matchers import Equals, HasLength
 from testtools import skipIf
 
+from messaging_app import emulators
 from messaging_app.tests import MessagingAppTestCase
 
 
 @skipIf(os.uname()[2].endswith('maguro'),
         'tests cause Unity crashes on maguro')
-class TestMessaging(MessagingAppTestCase):
-    """Tests for the communication panel."""
+class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
 
@@ -50,7 +49,7 @@ class TestMessaging(MessagingAppTestCase):
         subprocess.call(['pkill', 'history-daemon'])
         subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
-        super(TestMessaging, self).setUp()
+        super(BaseMessagingTestCase, self).setUp()
 
         # no initial messages
         self.thread_list = self.app.select_single(objectName='threadList')
@@ -58,7 +57,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.count, Equals(0))
 
     def tearDown(self):
-        super(TestMessaging, self).tearDown()
+        super(BaseMessagingTestCase, self).tearDown()
 
         # restore history
         try:
@@ -73,6 +72,10 @@ class TestMessaging(MessagingAppTestCase):
         # on desktop, notify-osd may generate persistent popups (like for "SMS
         # received"), don't make that stay around for the tests
         subprocess.call(['pkill', '-f', 'notify-osd'])
+
+
+class TestMessaging(BaseMessagingTestCase):
+    """Tests for the communication panel."""
 
     def test_write_new_message_to_group(self):
         recipient_list = ["123", "321"]
@@ -220,46 +223,6 @@ class TestMessaging(MessagingAppTestCase):
         # verify both messages are seen in list
         self.main_view.get_message('{} 2'.format(message))
         self.main_view.get_message(message)
-
-    def test_delete_multiple_messages(self):
-        """Verify we can delete multiple messages"""
-        number = '5555559876'
-        message_text = 'delete me'
-        # send 3 messages. Reversed because on the QML, the one with the
-        # 0 index is the latest received.
-        message_indexes = list(reversed(range(3)))
-        for index in message_indexes:
-            self.main_view.receive_sms(
-                number, '{} {}'.format(message_text, index))
-            time.sleep(1)
-        # verify messages show up in thread
-        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
-
-        mess_thread = self.thread_list.wait_select_single(
-            'Label', text=number)
-        self.pointing_device.click_object(mess_thread)
-
-        # long press on last message.
-        self.main_view.long_press_message(index=0)
-
-        # select one more message
-        bubble = self.main_view.get_label('{} {}'.format(message_text, 1))
-        self.pointing_device.click_object(bubble)
-
-        # Delete selected messages.
-        self.main_view.click_delete_dialog_button()
-
-        # Verify messages 1 and 2 are destroyed.
-        for index in message_indexes[1:]:
-            try:
-                bubble = self.main_view.get_label(
-                    '{} {}'.format(message_text, index))
-                bubble.wait_until_destroyed()
-            ## if the message is not there it was already destroyed
-            except dbus.StateNotFoundError:
-                pass
-        # verify that the first message exists
-        self.main_view.get_label('{} {}'.format(message_text, 2))
 
     def test_toolbar_delete_message(self):
         """Verify we can use the toolbar to delete a message"""
@@ -506,3 +469,41 @@ class TestMessaging(MessagingAppTestCase):
         #delete message
         self.main_view.delete_message(message, direction='left')
         self.assertThat(list_view.count, Eventually(Equals(0)))
+
+
+class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
+
+    def setUp(self):
+        super(MessagingTestCaseWithExistingThread, self).setUp()
+        self.main_page = self.main_view.select_single(emulators.MainPage)
+        self.number = '5555559876'
+        self.messages = self.receive_messages()
+
+    def receive_messages(self):
+        # send 3 messages. Reversed because on the QML, the one with the
+        # 0 index is the latest received.
+        messages = []
+        message_indexes = list(reversed(range(3)))
+        for index in message_indexes:
+            message_text = 'test message {}'.format(index)
+            self.main_view.receive_sms(
+                self.number, message_text)
+            time.sleep(1)
+            messages.append(message_text)
+        # Wait for the thread.
+        self.assertThat(
+            self.main_page.get_thread_count, Eventually(Equals(1)))
+        return messages
+
+    def test_delete_multiple_messages(self):
+        """Verify we can delete multiple messages"""
+        messages_page = self.main_page.open_thread(self.number)
+
+        messages_page.select_messages(1, 2)
+        messages_page.delete()
+
+        remaining_messages = messages_page.get_messages()
+        self.assertThat(remaining_messages, HasLength(1))
+        _, remaining_message_text = remaining_messages[0]
+        self.assertEqual(
+            remaining_message_text, self.messages[0])

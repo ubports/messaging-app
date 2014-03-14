@@ -375,6 +375,7 @@ Page {
 
     MultipleSelectionListView {
         id: messageList
+        objectName: "messageList"
         clip: true
         acceptAction.text: i18n.tr("Delete")
         anchors {

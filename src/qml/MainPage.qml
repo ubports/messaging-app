@@ -83,6 +83,7 @@ Page {
 
         listDelegate: ThreadDelegate {
             id: threadDelegate
+            objectName: "thread%1".arg(participants)
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode

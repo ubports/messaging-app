@@ -97,7 +97,7 @@ ListItem.Empty {
 
         visible: running && !selectionMode
         // if temporarily failed or unknown status, then show the spinner
-        running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown || 
+        running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown ||
                   textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
     }
 
@@ -175,22 +175,24 @@ ListItem.Empty {
 
             Label {
                 id: date
+                objectName: 'messageDate'
                 anchors.top: senderName.bottom
                 height: paintedHeight
                 fontSize: "x-small"
                 color: textColor
                 text: {
-                    if (indicator.visible) 
-                        i18n.tr("Sending...") 
+                    if (indicator.visible)
+                        i18n.tr("Sending...")
                     else if (warningButton.visible)
                         i18n.tr("Failed")
-                    else 
+                    else
                         DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
                 }
             }
 
             Label {
                 id: messageText
+                objectName: 'messageText'
                 anchors.top: date.bottom
                 anchors.topMargin: units.gu(1)
                 anchors.left: parent.left
