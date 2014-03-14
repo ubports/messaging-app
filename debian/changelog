@@ -1,3 +1,13 @@
+messaging-app (0.1+14.04.20140314-0ubuntu1) trusty; urgency=low
+
+  [ Leo Arias ]
+  * Refactor the test_delete_multiple_messages to make it readable and
+    maintainable.
+  * Added a sleep to workaround an autopilot error we are getting with
+    the qt5.2 landing PPA. (LP: #1291394)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 14 Mar 2014 15:01:39 +0000
+
 messaging-app (0.1+14.04.20140306-0ubuntu1) trusty; urgency=low
 
   * New rebuild forced
