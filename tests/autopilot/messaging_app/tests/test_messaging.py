@@ -224,44 +224,42 @@ class TestMessaging(MessagingAppTestCase):
     def test_delete_multiple_messages(self):
         """Verify we can delete multiple messages"""
         number = '5555559876'
-        message = 'delete me'
-        # send 5 messages. Reversed because on the QML, the one with the
+        message_text = 'delete me'
+        # send 3 messages. Reversed because on the QML, the one with the
         # 0 index is the latest received.
-        messages = list(reversed(range(5)))
-        for num in messages:
-            self.main_view.receive_sms(number, '{} {}'.format(message, num))
+        message_indexes = list(reversed(range(3)))
+        for index in message_indexes:
+            self.main_view.receive_sms(
+                number, '{} {}'.format(message_text, index))
             time.sleep(1)
         # verify messages show up in thread
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
 
-        mess_thread = self.thread_list.wait_select_single('Label', text=number)
+        mess_thread = self.thread_list.wait_select_single(
+            'Label', text=number)
         self.pointing_device.click_object(mess_thread)
 
-        # long press on last message
+        # long press on last message.
         self.main_view.long_press_message(index=0)
 
-        # tap message 1 - 3
-        for num in messages[1:-1]:
-            bubble = self.main_view.get_label(
-                '{} {}'.format(message, num)
-            )
-            self.pointing_device.click_object(bubble)
+        # select one more message
+        bubble = self.main_view.get_label('{} {}'.format(message_text, 1))
+        self.pointing_device.click_object(bubble)
 
-        # delete messages 1 - 4
+        # Delete selected messages.
         self.main_view.click_delete_dialog_button()
 
-        #verify message 1 - 4 are destroyed
-        for num in messages[1:]:
+        # Verify messages 1 and 2 are destroyed.
+        for index in message_indexes[1:]:
             try:
                 bubble = self.main_view.get_label(
-                    '{} {}'.format(message, num)
-                )
+                    '{} {}'.format(message_text, index))
                 bubble.wait_until_destroyed()
             ## if the message is not there it was already destroyed
             except dbus.StateNotFoundError:
                 pass
         # verify that the first message exists
-        self.main_view.get_label('delete me {}'.format(messages[0]))
+        self.main_view.get_label('{} {}'.format(message_text, 2))
 
     def test_toolbar_delete_message(self):
         """Verify we can use the toolbar to delete a message"""
