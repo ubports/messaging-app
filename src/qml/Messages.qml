@@ -93,7 +93,7 @@ Page {
                     Item {
                         height: childrenRect.height
                         width: popover.width
-                        ListItem.Standard { 
+                        ListItem.Standard {
                             id: listItem
                             text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
                         }
@@ -396,6 +396,7 @@ Page {
         highlightFollowsCurrentItem: false
         listDelegate: MessageDelegate {
             id: messageDelegate
+            objectName: "message%1".arg(index)
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
             removable: !messages.selectionMode
@@ -434,7 +435,7 @@ Page {
             if (messages.pendingMessage) {
                 messageList.contentY = 0
                 messages.pendingMessage = false
-            } 
+            }
         }
     }
 

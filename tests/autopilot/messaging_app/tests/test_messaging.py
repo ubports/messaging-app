@@ -226,7 +226,7 @@ class TestMessaging(MessagingAppTestCase):
         number = '5555559876'
         message = 'delete me'
         # send 5 messages
-        for num in range(1, 6):
+        for num in range(5):
             self.main_view.receive_sms(number, '{} {}'.format(message, num))
             time.sleep(1)
         # verify messages show up in thread
@@ -235,22 +235,21 @@ class TestMessaging(MessagingAppTestCase):
         mess_thread = self.thread_list.wait_select_single('Label', text=number)
         self.pointing_device.click_object(mess_thread)
 
-        # long press on message 5
-        bubble5 = self.main_view.get_label('delete me 5')
-        self.main_view.long_press(bubble5)
+        # long press on last message
+        self.main_view.long_press_message(index=0)
 
-        # tap message 2 - 4
-        for num in range(2, 5):
+        # tap message 1 - 3
+        for num in range(1, 4):
             bubble = self.main_view.get_label(
                 '{} {}'.format(message, num)
             )
             self.pointing_device.click_object(bubble)
 
-        # delete messages 2 - 5
+        # delete messages 1 - 3
         self.main_view.click_delete_dialog_button()
 
-        #verify message 2 - 5 are destroyed
-        for num in range(2, 6):
+        #verify message 1 - 4 are destroyed
+        for num in range(1, 5):
             try:
                 bubble = self.main_view.get_label(
                     '{} {}'.format(message, num)
@@ -260,7 +259,7 @@ class TestMessaging(MessagingAppTestCase):
             except dbus.StateNotFoundError:
                 pass
         #verify message bubble 1 exists
-        self.main_view.get_label('delete me 1')
+        self.main_view.get_label('delete me 0')
 
     def test_toolbar_delete_message(self):
         """Verify we can use the toolbar to delete a message"""

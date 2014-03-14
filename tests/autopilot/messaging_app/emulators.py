@@ -34,6 +34,11 @@ class MainView(toolkit_emulators.MainView):
         self.keyboard = Keyboard.create()
         self.logger = logging.getLogger(__name__)
 
+    def long_press_message(self, index):
+        message = self.wait_select_single(
+            'MessageDelegate', objectName='message{}'.format(index))
+        self.long_press(message)
+
     def get_pagestack(self):
         """Return PageStack with objectName mainStack"""
         return self.select_single("PageStack", objectName="mainStack")
