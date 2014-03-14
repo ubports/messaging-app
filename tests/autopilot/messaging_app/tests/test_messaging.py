@@ -489,7 +489,8 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
             self.main_view.receive_sms(
                 self.number, message_text)
             time.sleep(1)
-            messages.append(message_text)
+            # Prepend to make sure that the indexes match.
+            messages.insert(0, message_text)
         # Wait for the thread.
         self.assertThat(
             self.main_page.get_thread_count, Eventually(Equals(1)))
