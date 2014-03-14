@@ -225,8 +225,10 @@ class TestMessaging(MessagingAppTestCase):
         """Verify we can delete multiple messages"""
         number = '5555559876'
         message = 'delete me'
-        # send 5 messages
-        for num in range(5):
+        # send 5 messages. Reversed because on the QML, the one with the
+        # 0 index is the latest received.
+        messages = list(reversed(range(5)))
+        for num in messages:
             self.main_view.receive_sms(number, '{} {}'.format(message, num))
             time.sleep(1)
         # verify messages show up in thread
@@ -239,7 +241,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.long_press_message(index=0)
 
         # tap message 1 - 3
-        for num in range(1, 4):
+        for num in messages[1:-1]:
             bubble = self.main_view.get_label(
                 '{} {}'.format(message, num)
             )
@@ -249,7 +251,7 @@ class TestMessaging(MessagingAppTestCase):
         self.main_view.click_delete_dialog_button()
 
         #verify message 1 - 4 are destroyed
-        for num in range(1, 5):
+        for num in messages[1:]:
             try:
                 bubble = self.main_view.get_label(
                     '{} {}'.format(message, num)
@@ -258,8 +260,8 @@ class TestMessaging(MessagingAppTestCase):
             ## if the message is not there it was already destroyed
             except dbus.StateNotFoundError:
                 pass
-        #verify message bubble 0 exists
-        self.main_view.get_label('delete me 0')
+        # verify that the first message exists
+        self.main_view.get_label('delete me {}'.format(messages[0]))
 
     def test_toolbar_delete_message(self):
         """Verify we can use the toolbar to delete a message"""
