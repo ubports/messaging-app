@@ -426,6 +426,13 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     @autopilot_logging.log_action(logger.info)
     def select_messages(self, *indexes):
+        """Select messages.
+
+        :param indexes: The indexes of the messages to select. The most
+            recently received message has the 0 index, and the oldest message
+            has the higher index.
+
+        """
         first_message_delegate = self._get_message_delegate(indexes[0])
         self._long_press(first_message_delegate)
         for index in indexes[1:]:
