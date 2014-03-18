@@ -31,8 +31,9 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property string threadId: getCurrentThreadId()
-    property string accountId: ""
+    property string threadId: ""
+    // FIXME: we should get the account ID properly when dealing with multiple accounts
+    property string accountId: telepathyHelper.accountsIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
@@ -63,6 +64,9 @@ Page {
     }
     tools: messagesToolbar
     onSelectionModeChanged: messagesToolbar.opened = false
+    Component.onCompleted: {
+        threadId = getCurrentThreadId()
+    }
 
     function getCurrentThreadId() {
         if (participants.length == 0)
