@@ -418,7 +418,9 @@ class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         # it seems that the QML changes between autopilot selecting the
         # object and clicking it. --elopio - 2014-03-14
         time.sleep(2)
-        return self.get_root_instance().wait_select_single(Messages)
+        messages_page = self.get_root_instance().wait_select_single(Messages)
+        messages_page.loaded.wait_for(True)
+        return messages_page
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
