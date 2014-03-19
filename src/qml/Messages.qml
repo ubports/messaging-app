@@ -39,7 +39,6 @@ Page {
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
-    property alias loaded: eventModel.loaded
     flickable: null
     title: {
         if (landscape) {
@@ -325,9 +324,6 @@ Page {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
         }
-        property bool loaded: false
-
-        Component.onCompleted: loaded = true
     }
 
     SortProxyModel {

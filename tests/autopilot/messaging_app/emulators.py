@@ -413,9 +413,7 @@ class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         thread = self.select_single(
             'ThreadDelegate', objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
-        messages_page = self.get_root_instance().wait_select_single(Messages)
-        messages_page.loaded.wait_for(True)
-        return messages_page
+        return self.get_root_instance().wait_select_single(Messages)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
