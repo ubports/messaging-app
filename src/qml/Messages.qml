@@ -33,7 +33,7 @@ Page {
     objectName: "messagesPage"
     property string threadId: ""
     // FIXME: we should get the account ID properly when dealing with multiple accounts
-    property string accountId: telepathyHelper.accountsIds[0]
+    property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
