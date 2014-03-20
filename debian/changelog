@@ -1,3 +1,11 @@
+messaging-app (0.1+14.04.20140320-0ubuntu1) trusty; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Wait for the messages to be marked as read before getting them in
+    autopilot tests. (LP: #1293610)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 20 Mar 2014 10:18:50 +0000
+
 messaging-app (0.1+14.04.20140314-0ubuntu1) trusty; urgency=low
 
   [ Leo Arias ]
