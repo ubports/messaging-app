@@ -31,7 +31,9 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property string threadId: getCurrentThreadId()
+    property string threadId: ""
+    // FIXME: we should get the account ID properly when dealing with multiple accounts
+    property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
@@ -62,11 +64,14 @@ Page {
     }
     tools: messagesToolbar
     onSelectionModeChanged: messagesToolbar.opened = false
+    Component.onCompleted: {
+        threadId = getCurrentThreadId()
+    }
 
     function getCurrentThreadId() {
         if (participants.length == 0)
             return ""
-        return eventModel.threadIdForParticipants(telepathyHelper.accountId,
+        return eventModel.threadIdForParticipants(accountId,
                                                               HistoryThreadModel.EventTypeText,
                                                               participants,
                                                               HistoryThreadModel.MatchPhoneNumber)
@@ -317,7 +322,7 @@ Page {
             }
             HistoryFilter {
                 filterProperty: "accountId"
-                filterValue: telepathyHelper.accountId
+                filterValue: accountId
             }
         }
         sort: HistorySort {
@@ -424,7 +429,7 @@ Page {
             onResend: {
                 // resend this message and remove the old one
                 eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage)
+                chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
         }
         onSelectionDone: {
@@ -504,16 +509,21 @@ Page {
                     participants = multiRecipient.recipients
                 }
 
+                if (messages.accountId == "") {
+                    // FIXME: handle dual sim
+                    messages.accountId = telepathyHelper.accountIds[0]
+                }
+
                 if (messages.threadId == "") {
                     // create the new thread and get the threadId
-                    messages.threadId = eventModel.threadIdForParticipants(telepathyHelper.accountId,
+                    messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
                                                                             HistoryThreadModel.EventTypeText,
                                                                             participants,
                                                                             HistoryThreadModel.MatchPhoneNumber,
                                                                             true)
                 }
                 messages.pendingMessage = true
-                chatManager.sendMessage(participants, textEntry.text)
+                chatManager.sendMessage(participants, textEntry.text, messages.accountId)
                 textEntry.text = ""
             }
         }
