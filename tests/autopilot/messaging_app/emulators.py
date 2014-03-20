@@ -413,11 +413,6 @@ class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         thread = self.select_single(
             'ThreadDelegate', objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
-        # XXX workaround an autopilot error we are getting with the qt5.2
-        # landing PPA. If we try to select messages without the sleep,
-        # it seems that the QML changes between autopilot selecting the
-        # object and clicking it. --elopio - 2014-03-14
-        time.sleep(2)
         return self.get_root_instance().wait_select_single(Messages)
 
 
@@ -446,7 +441,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def _get_message_delegate(self, index):
         return self.wait_select_single(
-            'MessageDelegate', objectName='message{}'.format(index))
+            'MessageDelegate', objectName='message{}'.format(index), unread=False)
 
     def _long_press(self, object_):
         if model() == 'Desktop':

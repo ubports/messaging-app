@@ -30,6 +30,7 @@ ListItem.Empty {
     property bool incoming: false
     property string textColor: incoming ? "#333333" : "#ffffff"
     property bool selectionMode: false
+    property bool unread: false
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined

@@ -400,6 +400,7 @@ Page {
             objectName: "message%1".arg(index)
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
+            unread: newEvent
             removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             confirmRemoval: true
