@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012, 2013, 2014 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -79,6 +79,7 @@ Page {
 
         listDelegate: ThreadDelegate {
             id: threadDelegate
+            objectName: "thread%1".arg(participants)
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode

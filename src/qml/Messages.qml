@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012, 2013, 2014 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -98,7 +98,7 @@ Page {
                     Item {
                         height: childrenRect.height
                         width: popover.width
-                        ListItem.Standard { 
+                        ListItem.Standard {
                             id: listItem
                             text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
                         }
@@ -380,6 +380,7 @@ Page {
 
     MultipleSelectionListView {
         id: messageList
+        objectName: "messageList"
         clip: true
         acceptAction.text: i18n.tr("Delete")
         anchors {
@@ -401,8 +402,10 @@ Page {
         highlightFollowsCurrentItem: false
         listDelegate: MessageDelegate {
             id: messageDelegate
+            objectName: "message%1".arg(index)
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
+            unread: newEvent
             removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             confirmRemoval: true
@@ -439,7 +442,7 @@ Page {
             if (messages.pendingMessage) {
                 messageList.contentY = 0
                 messages.pendingMessage = false
-            } 
+            }
         }
     }
 
