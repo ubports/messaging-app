@@ -5,7 +5,7 @@ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                debhelper (>= 9),
                dh-translations,
-               flake8,
+               python-flake8,
                pkg-config,
                python,
                qt5-default,
@@ -47,4 +47,3 @@ Description: autopilot tests for messaging-app
  .
  These tests run against the ofono phone simulator (pulled in through
  ofono-phonesim-autostart).
-
