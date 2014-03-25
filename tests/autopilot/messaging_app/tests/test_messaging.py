@@ -50,7 +50,9 @@ class BaseMessagingTestCase(MessagingAppTestCase):
         subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
         # make sure the modem is running on phonesim
-        subprocess.call(['mc-tool', 'update', 'ofono/ofono/account0', 'string:modem-objpath=/phonesim'])
+        subprocess.call(
+            ['mc-tool', 'update', 'ofono/ofono/account0',
+             'string:modem-objpath=/phonesim'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
 
         super(BaseMessagingTestCase, self).setUp()
@@ -74,7 +76,9 @@ class BaseMessagingTestCase(MessagingAppTestCase):
         subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
         # restore the original connection
-        subprocess.call(['mc-tool', 'update', 'ofono/ofono/account0', 'string:modem-objpath=/ril_0'])
+        subprocess.call(
+            ['mc-tool', 'update', 'ofono/ofono/account0',
+             'string:modem-objpath=/ril_0'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
 
         # on desktop, notify-osd may generate persistent popups (like for "SMS
