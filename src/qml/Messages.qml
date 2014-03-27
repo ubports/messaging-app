@@ -503,8 +503,14 @@ Page {
             anchors.bottom: parent.bottom
             text: "Send"
             width: units.gu(17)
-            enabled: textEntry.text != "" && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
+            enabled: (textEntry.text != "" || textEntry.inputMethodComposing) && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
             onClicked: {
+                // make sure we flush everything we have prepared in the OSK preedit
+                Qt.inputMethod.commit();
+                if (textEntry.text == "") {
+                    return
+                }
+
                 if (participants.length == 0 && multiRecipient.recipientCount > 0) {
                     participants = multiRecipient.recipients
                 }
