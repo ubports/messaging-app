@@ -13,6 +13,7 @@ override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Debug
 
 override_dh_auto_test:
+	flake8  tests/autopilot/messaging_app/
 	make -C obj-$(DEB_HOST_GNU_TYPE) test
 
 override_dh_translations:

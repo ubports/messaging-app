@@ -441,7 +441,8 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def _get_message_delegate(self, index):
         return self.wait_select_single(
-            'MessageDelegate', objectName='message{}'.format(index), unread=False)
+            'MessageDelegate', objectName='message{}'.format(index),
+            unread=False)
 
     def _long_press_to_select_message(self, message):
         # XXX We used to leave the pointing device pressed for three seconds,
