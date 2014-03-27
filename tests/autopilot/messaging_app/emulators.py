@@ -434,7 +434,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
         """
         first_message_delegate = self._get_message_delegate(indexes[0])
-        self._long_press(first_message_delegate)
+        self._long_press_to_select_message(first_message_delegate)
         for index in indexes[1:]:
             message_delegate = self._get_message_delegate(index)
             self.pointing_device.click_object(message_delegate)
@@ -443,15 +443,16 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return self.wait_select_single(
             'MessageDelegate', objectName='message{}'.format(index), unread=False)
 
-    def _long_press(self, object_):
-        if model() == 'Desktop':
-            self.pointing_device.click_object(object_, press_duration=3)
-        else:
-            # Work around for http://pad.lv/1268782
-            self.pointing_device.move_to_object(object_)
-            self.pointing_device.press()
-            time.sleep(3)
-            self.pointing_device.release()
+    def _long_press_to_select_message(self, message):
+        # XXX We used to leave the pointing device pressed for three seconds,
+        # but that failed some times on Jenkins. So now we are leaving it
+        # pressed until we are in selection mode. The behavior is almost the
+        # same, and if it keeps failing in Jenkins we will get more
+        # information to understand the error. --elopio - 2014-03-24
+        self.pointing_device.move_to_object(message)
+        self.pointing_device.press()
+        self.selectionMode.wait_for(True)
+        self.pointing_device.release()
 
     @autopilot_logging.log_action(logger.info)
     def delete(self):
