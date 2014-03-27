@@ -1,3 +1,20 @@
+messaging-app (0.1+14.04.20140327-0ubuntu1) trusty; urgency=low
+
+  [ Thomi Richards ]
+  * Fixed the python static errors and added flake8 to the test hooks.
+
+  [ Leo Arias ]
+  * When deleting messages in autopilot tests, leave the pointer pressed
+    until the page switches to selection mode.
+  * Fixed the python static errors and added flake8 to the test hooks.
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Make sure we flush the text that's being held in the OSK pre-edit
+    (if any) before sending the message. Fixes LP: #1271494. (LP:
+    #1271494)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 27 Mar 2014 19:13:21 +0000
+
 messaging-app (0.1+14.04.20140325-0ubuntu1) trusty; urgency=low
 
   [ Gustavo Pichorim Boiko ]
