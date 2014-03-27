@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
+# Copyright 2013, 2014 Canonical
 #
 # This file is part of messaging-app.
 #
@@ -18,9 +18,13 @@ import subprocess
 import tempfile
 import time
 
+from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
 from ubuntuuitoolkit import emulators as toolkit_emulators
+
+
+logger = logging.getLogger(__name__)
 
 
 class EmulatorException(Exception):
@@ -394,3 +398,82 @@ tabSMS.gbMessage1.pbSendSMSMessage.click();
         script_proxy.SetPath(script_dir)
         script_proxy.Run("sms.js")
         shutil.rmtree(script_dir)
+
+
+class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for the Main Page."""
+
+    def get_thread_count(self):
+        """Return the number of message threads."""
+        return self.select_single(
+            'MultipleSelectionListView', objectName='threadList').count
+
+    @autopilot_logging.log_action(logger.info)
+    def open_thread(self, participants):
+        thread = self.select_single(
+            'ThreadDelegate', objectName='thread{}'.format(participants))
+        self.pointing_device.click_object(thread)
+        return self.get_root_instance().wait_select_single(Messages)
+
+
+class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for the Messages Page."""
+
+    def get_messages_count(self):
+        """Return the number of meesages."""
+        return self.select_single(
+            'MultipleSelectionListView', objectName='messageList').count
+
+    @autopilot_logging.log_action(logger.info)
+    def select_messages(self, *indexes):
+        """Select messages.
+
+        :param indexes: The indexes of the messages to select. The most
+            recently received message has the 0 index, and the oldest message
+            has the higher index.
+
+        """
+        first_message_delegate = self._get_message_delegate(indexes[0])
+        self._long_press(first_message_delegate)
+        for index in indexes[1:]:
+            message_delegate = self._get_message_delegate(index)
+            self.pointing_device.click_object(message_delegate)
+
+    def _get_message_delegate(self, index):
+        return self.wait_select_single(
+            'MessageDelegate', objectName='message{}'.format(index), unread=False)
+
+    def _long_press(self, object_):
+        if model() == 'Desktop':
+            self.pointing_device.click_object(object_, press_duration=3)
+        else:
+            # Work around for http://pad.lv/1268782
+            self.pointing_device.move_to_object(object_)
+            self.pointing_device.press()
+            time.sleep(3)
+            self.pointing_device.release()
+
+    @autopilot_logging.log_action(logger.info)
+    def delete(self):
+        """Delete the selected messages."""
+        button = self.select_single(
+            'Button', objectName='DialogButtons.acceptButton')
+        self.pointing_device.click_object(button)
+
+    def get_messages(self):
+        """Return a list with the information of the messages.
+
+        Each item of the returned list is a tuple of (date, text).
+
+        """
+        messages = []
+        # TODO return the messages in the same order that they are displayed.
+        # --elopio - 2014-03-14
+        for index in range(self.get_messages_count()):
+            message_delegate = self._get_message_delegate(index)
+            date = message_delegate.select_single(
+                'Label', objectName='messageDate').text
+            text = message_delegate.select_single(
+                'Label', objectName='messageText').text
+            messages.append((date, text))
+        return messages

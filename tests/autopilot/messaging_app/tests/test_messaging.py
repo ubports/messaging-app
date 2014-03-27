@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2012 Canonical
+# Copyright 2012, 2014 Canonical
 #
 # This file is part of messaging-app.
 #
@@ -15,18 +15,17 @@ import os
 import subprocess
 import time
 
-from autopilot.introspection import dbus
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+from testtools.matchers import Equals, HasLength
 from testtools import skipIf
 
+from messaging_app import emulators
 from messaging_app.tests import MessagingAppTestCase
 
 
 @skipIf(os.uname()[2].endswith('maguro'),
         'tests cause Unity crashes on maguro')
-class TestMessaging(MessagingAppTestCase):
-    """Tests for the communication panel."""
+class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
 
@@ -50,7 +49,11 @@ class TestMessaging(MessagingAppTestCase):
         subprocess.call(['pkill', 'history-daemon'])
         subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
-        super(TestMessaging, self).setUp()
+        # make sure the modem is running on phonesim
+        subprocess.call(['mc-tool', 'update', 'ofono/ofono/account0', 'string:modem-objpath=/phonesim'])
+        subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
+
+        super(BaseMessagingTestCase, self).setUp()
 
         # no initial messages
         self.thread_list = self.app.select_single(objectName='threadList')
@@ -58,7 +61,7 @@ class TestMessaging(MessagingAppTestCase):
         self.assertThat(self.thread_list.count, Equals(0))
 
     def tearDown(self):
-        super(TestMessaging, self).tearDown()
+        super(BaseMessagingTestCase, self).tearDown()
 
         # restore history
         try:
@@ -70,9 +73,17 @@ class TestMessaging(MessagingAppTestCase):
         subprocess.call(['pkill', 'history-daemon'])
         subprocess.call(['pkill', '-f', 'telephony-service-handler'])
 
+        # restore the original connection
+        subprocess.call(['mc-tool', 'update', 'ofono/ofono/account0', 'string:modem-objpath=/ril_0'])
+        subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
+
         # on desktop, notify-osd may generate persistent popups (like for "SMS
         # received"), don't make that stay around for the tests
         subprocess.call(['pkill', '-f', 'notify-osd'])
+
+
+class TestMessaging(BaseMessagingTestCase):
+    """Tests for the communication panel."""
 
     def test_write_new_message_to_group(self):
         recipient_list = ["123", "321"]
@@ -220,47 +231,6 @@ class TestMessaging(MessagingAppTestCase):
         # verify both messages are seen in list
         self.main_view.get_message('{} 2'.format(message))
         self.main_view.get_message(message)
-
-    def test_delete_multiple_messages(self):
-        """Verify we can delete multiple messages"""
-        number = '5555559876'
-        message = 'delete me'
-        # send 5 messages
-        for num in range(1, 6):
-            self.main_view.receive_sms(number, '{} {}'.format(message, num))
-            time.sleep(1)
-        # verify messages show up in thread
-        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
-
-        mess_thread = self.thread_list.wait_select_single('Label', text=number)
-        self.pointing_device.click_object(mess_thread)
-
-        # long press on message 5
-        bubble5 = self.main_view.get_label('delete me 5')
-        self.main_view.long_press(bubble5)
-
-        # tap message 2 - 4
-        for num in range(2, 5):
-            bubble = self.main_view.get_label(
-                '{} {}'.format(message, num)
-            )
-            self.pointing_device.click_object(bubble)
-
-        # delete messages 2 - 5
-        self.main_view.click_delete_dialog_button()
-
-        #verify message 2 - 5 are destroyed
-        for num in range(2, 6):
-            try:
-                bubble = self.main_view.get_label(
-                    '{} {}'.format(message, num)
-                )
-                bubble.wait_until_destroyed()
-            ## if the message is not there it was already destroyed
-            except dbus.StateNotFoundError:
-                pass
-        #verify message bubble 1 exists
-        self.main_view.get_label('delete me 1')
 
     def test_toolbar_delete_message(self):
         """Verify we can use the toolbar to delete a message"""
@@ -507,3 +477,42 @@ class TestMessaging(MessagingAppTestCase):
         #delete message
         self.main_view.delete_message(message, direction='left')
         self.assertThat(list_view.count, Eventually(Equals(0)))
+
+
+class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
+
+    def setUp(self):
+        super(MessagingTestCaseWithExistingThread, self).setUp()
+        self.main_page = self.main_view.select_single(emulators.MainPage)
+        self.number = '5555559876'
+        self.messages = self.receive_messages()
+
+    def receive_messages(self):
+        # send 3 messages. Reversed because on the QML, the one with the
+        # 0 index is the latest received.
+        messages = []
+        message_indexes = list(reversed(range(3)))
+        for index in message_indexes:
+            message_text = 'test message {}'.format(index)
+            self.main_view.receive_sms(
+                self.number, message_text)
+            time.sleep(1)
+            # Prepend to make sure that the indexes match.
+            messages.insert(0, message_text)
+        # Wait for the thread.
+        self.assertThat(
+            self.main_page.get_thread_count, Eventually(Equals(1)))
+        return messages
+
+    def test_delete_multiple_messages(self):
+        """Verify we can delete multiple messages"""
+        messages_page = self.main_page.open_thread(self.number)
+
+        messages_page.select_messages(1, 2)
+        messages_page.delete()
+
+        remaining_messages = messages_page.get_messages()
+        self.assertThat(remaining_messages, HasLength(1))
+        _, remaining_message_text = remaining_messages[0]
+        self.assertEqual(
+            remaining_message_text, self.messages[0])

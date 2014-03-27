@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012, 2013, 2014 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -30,6 +30,7 @@ ListItem.Empty {
     property bool incoming: false
     property string textColor: incoming ? "#333333" : "#ffffff"
     property bool selectionMode: false
+    property bool unread: false
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
@@ -97,7 +98,7 @@ ListItem.Empty {
 
         visible: running && !selectionMode
         // if temporarily failed or unknown status, then show the spinner
-        running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown || 
+        running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown ||
                   textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
     }
 
@@ -175,22 +176,24 @@ ListItem.Empty {
 
             Label {
                 id: date
+                objectName: 'messageDate'
                 anchors.top: senderName.bottom
                 height: paintedHeight
                 fontSize: "x-small"
                 color: textColor
                 text: {
-                    if (indicator.visible) 
-                        i18n.tr("Sending...") 
+                    if (indicator.visible)
+                        i18n.tr("Sending...")
                     else if (warningButton.visible)
                         i18n.tr("Failed")
-                    else 
+                    else
                         DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
                 }
             }
 
             Label {
                 id: messageText
+                objectName: 'messageText'
                 anchors.top: date.bottom
                 anchors.topMargin: units.gu(1)
                 anchors.left: parent.left

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012, 2013, 2014 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -31,7 +31,9 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property string threadId: getCurrentThreadId()
+    property string threadId: ""
+    // FIXME: we should get the account ID properly when dealing with multiple accounts
+    property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
     property alias selectionMode: messageList.isInSelectionMode
@@ -62,11 +64,14 @@ Page {
     }
     tools: messagesToolbar
     onSelectionModeChanged: messagesToolbar.opened = false
+    Component.onCompleted: {
+        threadId = getCurrentThreadId()
+    }
 
     function getCurrentThreadId() {
         if (participants.length == 0)
             return ""
-        return eventModel.threadIdForParticipants(telepathyHelper.accountId,
+        return eventModel.threadIdForParticipants(accountId,
                                                               HistoryThreadModel.EventTypeText,
                                                               participants,
                                                               HistoryThreadModel.MatchPhoneNumber)
@@ -93,7 +98,7 @@ Page {
                     Item {
                         height: childrenRect.height
                         width: popover.width
-                        ListItem.Standard { 
+                        ListItem.Standard {
                             id: listItem
                             text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
                         }
@@ -317,7 +322,7 @@ Page {
             }
             HistoryFilter {
                 filterProperty: "accountId"
-                filterValue: telepathyHelper.accountId
+                filterValue: accountId
             }
         }
         sort: HistorySort {
@@ -375,6 +380,7 @@ Page {
 
     MultipleSelectionListView {
         id: messageList
+        objectName: "messageList"
         clip: true
         acceptAction.text: i18n.tr("Delete")
         anchors {
@@ -396,8 +402,10 @@ Page {
         highlightFollowsCurrentItem: false
         listDelegate: MessageDelegate {
             id: messageDelegate
+            objectName: "message%1".arg(index)
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
+            unread: newEvent
             removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             confirmRemoval: true
@@ -421,7 +429,7 @@ Page {
             onResend: {
                 // resend this message and remove the old one
                 eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage)
+                chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
         }
         onSelectionDone: {
@@ -434,7 +442,7 @@ Page {
             if (messages.pendingMessage) {
                 messageList.contentY = 0
                 messages.pendingMessage = false
-            } 
+            }
         }
     }
 
@@ -507,16 +515,21 @@ Page {
                     participants = multiRecipient.recipients
                 }
 
+                if (messages.accountId == "") {
+                    // FIXME: handle dual sim
+                    messages.accountId = telepathyHelper.accountIds[0]
+                }
+
                 if (messages.threadId == "") {
                     // create the new thread and get the threadId
-                    messages.threadId = eventModel.threadIdForParticipants(telepathyHelper.accountId,
+                    messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
                                                                             HistoryThreadModel.EventTypeText,
                                                                             participants,
                                                                             HistoryThreadModel.MatchPhoneNumber,
                                                                             true)
                 }
                 messages.pendingMessage = true
-                chatManager.sendMessage(participants, textEntry.text)
+                chatManager.sendMessage(participants, textEntry.text, messages.accountId)
                 textEntry.text = ""
             }
         }

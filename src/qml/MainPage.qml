@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012, 2013, 2014 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -44,10 +44,6 @@ Page {
     HistoryThreadModel {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
-        filter: HistoryFilter {
-            filterProperty: "accountId"
-            filterValue: telepathyHelper.accountId
-        }
         sort: HistorySort {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
@@ -83,6 +79,7 @@ Page {
 
         listDelegate: ThreadDelegate {
             id: threadDelegate
+            objectName: "thread%1".arg(participants)
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode
@@ -95,6 +92,7 @@ Page {
                 } else {
                     var properties = {}
                     properties["threadId"] = threadId
+                    properties["accountId"] = accountId
                     properties["participants"] = participants
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
