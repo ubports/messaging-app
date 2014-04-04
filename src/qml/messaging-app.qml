@@ -32,7 +32,9 @@ MainView {
 
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
-        mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+        if (!application.hasArgument()) {
+            mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+        }
     }
 
 
@@ -53,6 +55,9 @@ MainView {
 
     function startNewMessage() {
         var properties = {}
+        if (mainStack.depth === 0) {
+            mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+        }
         emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
@@ -61,7 +66,13 @@ MainView {
         var properties = {}
         var participants = [phoneNumber]
         properties["participants"] = participants
+        if (mainStack.depth === 0) {
+            mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+        }
         emptyStack()
+        if (phoneNumber === "") {
+            return;
+        }
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 

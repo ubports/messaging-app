@@ -195,7 +195,11 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
 
     if (scheme == "message") {
-        QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
+        if (!value.isEmpty()) {
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
+        } else {
+            QMetaObject::invokeMethod(mainView, "startNewMessage");
+        }
     }
 }
 
@@ -205,4 +209,9 @@ void MessagingApplication::activateWindow()
         m_view->raise();
         m_view->requestActivate();
     }
+}
+
+bool MessagingApplication::hasArgument() const
+{
+    return !m_arg.isEmpty();
 }

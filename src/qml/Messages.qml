@@ -416,10 +416,6 @@ Page {
                     }
                 }
             }
-            onPressAndHold: {
-                messageList.startSelection()
-                messageList.selectItem(messageDelegate)
-            }
 
             Component.onCompleted: {
                 if (newEvent) {
