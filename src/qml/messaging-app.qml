@@ -48,7 +48,7 @@ MainView {
     }
 
     function emptyStack() {
-        while (mainStack.depth !== 1) {
+        while (mainStack.depth !== 1 && mainStack.depth !== 0) {
             mainStack.pop()
         }
     }
@@ -107,32 +107,6 @@ MainView {
                 }
             }
         }
-    }
-
-    ToolbarItems {
-        id: regularToolbar
-        ToolbarButton {
-            visible: mainStack.currentPage.threadCount !== 0
-            objectName: "selectButton"
-            text: i18n.tr("Select")
-            iconSource: "image://theme/select"
-            onTriggered: mainStack.currentPage.startSelection()
-        }
-
-        ToolbarButton {
-            objectName: "newMessageButton"
-            action: Action {
-                iconSource: "image://theme/compose"
-                text: i18n.tr("Compose")
-                onTriggered: mainView.startNewMessage()
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: selectionToolbar
-        locked: true
-        opened: false
     }
 
     PageStack {

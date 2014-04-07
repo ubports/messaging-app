@@ -34,6 +34,32 @@ Page {
         threadList.startSelection()
     }
 
+    ToolbarItems {
+        id: regularToolbar
+        ToolbarButton {
+            visible: mainStack.currentPage.threadCount !== 0
+            objectName: "selectButton"
+            text: i18n.tr("Select")
+            iconSource: "image://theme/select"
+            onTriggered: mainStack.currentPage.startSelection()
+        }
+
+        ToolbarButton {
+            objectName: "newMessageButton"
+            action: Action {
+                iconSource: "image://theme/compose"
+                text: i18n.tr("Compose")
+                onTriggered: mainView.startNewMessage()
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: selectionToolbar
+        locked: true
+        opened: false
+    }
+
     SortProxyModel {
         id: sortProxy
         sortRole: HistoryThreadModel.LastEventTimestampRole
