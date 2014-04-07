@@ -17,7 +17,7 @@ import time
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, HasLength
-from testtools import skipIf
+from testtools import skipIf, skip
 
 from messaging_app import emulators
 from messaging_app.tests import MessagingAppTestCase
@@ -157,6 +157,7 @@ class TestMessaging(BaseMessagingTestCase):
         # verify our text
         self.thread_list.select_single('Label', text='hello from Ubuntu')
 
+    @skip("long press is currently invoking a context menu")
     def test_deleting_message_long_press(self):
         """Verify we can delete a message with a long press on the message"""
         self.main_view.click_new_message_button()
@@ -188,6 +189,7 @@ class TestMessaging(BaseMessagingTestCase):
         # verify message is deleted
         bubble.wait_until_destroyed()
 
+    @skip("long press is currently invoking a context menu")
     def test_cancel_deleting_message_long_press(self):
         """Verify we can cancel deleting a message with a long press"""
         self.main_view.click_new_message_button()
@@ -512,6 +514,7 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
         """Verify we can delete multiple messages"""
         messages_page = self.main_page.open_thread(self.number)
 
+        self.main_view.click_select_messages_button()
         messages_page.select_messages(1, 2)
         messages_page.delete()
 
