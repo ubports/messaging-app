@@ -163,16 +163,11 @@ void MessagingApplication::onViewStatusChanged(QQuickView::Status status)
     if (status != QQuickView::Ready) {
         return;
     }
-
-    QQuickItem *mainView = m_view->rootObject();
-    if (mainView) {
-        QObject::connect(mainView, SIGNAL(applicationReady()), this, SLOT(onApplicationReady()));
-    }
+    onApplicationReady();
 }
 
 void MessagingApplication::onApplicationReady()
 {
-    QObject::disconnect(QObject::sender(), SIGNAL(applicationReady()), this, SLOT(onApplicationReady()));
     m_applicationIsReady = true;
     parseArgument(m_arg);
     m_arg.clear();
@@ -209,9 +204,4 @@ void MessagingApplication::activateWindow()
         m_view->raise();
         m_view->requestActivate();
     }
-}
-
-bool MessagingApplication::hasArgument() const
-{
-    return !m_arg.isEmpty();
 }

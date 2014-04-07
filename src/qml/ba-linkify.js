@@ -202,7 +202,7 @@ function linkify( txt, options ) {
   
   // Process the array items.
   for ( i = 0; i < parts.length; i++ ) {
-    html += options.callback.apply( window, parts[i] );
+    html += options.callback.apply( this, parts[i] );
   }
   
   // In case of catastrophic failure, return the original text;

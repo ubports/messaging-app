@@ -32,20 +32,10 @@ MainView {
 
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
-        if (!application.hasArgument()) {
-            mainStack.push(Qt.resolvedUrl("MainPage.qml"))
-        }
+        mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
-
 
     signal applicationReady
-
-    Connections {
-        target: telepathyHelper
-        onAccountReady: {
-            mainView.applicationReady()
-        }
-    }
 
     function emptyStack() {
         while (mainStack.depth !== 1 && mainStack.depth !== 0) {
@@ -55,9 +45,6 @@ MainView {
 
     function startNewMessage() {
         var properties = {}
-        if (mainStack.depth === 0) {
-            mainStack.push(Qt.resolvedUrl("MainPage.qml"))
-        }
         emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
@@ -66,9 +53,6 @@ MainView {
         var properties = {}
         var participants = [phoneNumber]
         properties["participants"] = participants
-        if (mainStack.depth === 0) {
-            mainStack.push(Qt.resolvedUrl("MainPage.qml"))
-        }
         emptyStack()
         if (phoneNumber === "") {
             return;
