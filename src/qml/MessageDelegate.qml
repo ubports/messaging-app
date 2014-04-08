@@ -24,7 +24,7 @@ import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 
 import "dateUtils.js" as DateUtils
-import "ba-linkify.js" as BaLinkify
+import "3rd_party/ba-linkify.js" as BaLinkify
 
 ListItem.Empty {
     id: messageDelegate
