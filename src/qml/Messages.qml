@@ -210,7 +210,7 @@ Page {
                 color: "#221e1c"
             }
             id: sheet
-            title: "Add Contact"
+            title: i18n.tr("Add to contact")
             doneButton: false
             modal: true
             contentsHeight: parent.height
@@ -238,7 +238,7 @@ Page {
                 color: "#221e1c"
             }
             id: sheet
-            title: "Add Contact"
+            title: i18n.tr("Add Contact")
             doneButton: false
             modal: true
             contentsHeight: parent.height
