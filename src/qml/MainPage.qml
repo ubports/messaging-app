@@ -120,6 +120,7 @@ Page {
                     properties["threadId"] = threadId
                     properties["accountId"] = accountId
                     properties["participants"] = participants
+                    properties["keyboardFocus"] = false
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }

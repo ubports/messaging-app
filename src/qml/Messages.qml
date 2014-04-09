@@ -36,6 +36,7 @@ Page {
     property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
+    property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
@@ -478,6 +479,11 @@ Page {
                 visible: textEntry.activeFocus
                 onClicked: {
                     textEntry.focus = false;
+                }
+            }
+            Component.onCompleted: {
+                if (messages.keyboardFocus && participants.length != 0) {
+                    textEntry.forceActiveFocus()
                 }
             }
         }
