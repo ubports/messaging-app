@@ -291,7 +291,13 @@ class TestMessaging(BaseMessagingTestCase):
 
         # press on select button then delete
         self.main_view.click_select_messages_button()
-        self.main_view.click_delete_dialog_button()
+
+        # click the Delete button, but do not wait for it to go away
+        button = self.main_view.get_visible_delete_dialog_button()
+        self.pointing_device.click_object(button)
+
+        # button should be disabled as no items are selected
+        self.assertThat(button.enabled, Eventually(Equals(False)))
 
         #verify messsage is not gone
         time.sleep(5)  # wait 5 seconds, the emulator is slow
