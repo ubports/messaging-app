@@ -384,6 +384,7 @@ Page {
         objectName: "messageList"
         clip: true
         acceptAction.text: i18n.tr("Delete")
+        acceptAction.enabled: selectedItems.count > 0
         anchors {
             top: multiRecipient.bottom
             left: parent.left
