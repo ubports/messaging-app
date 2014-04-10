@@ -82,6 +82,7 @@ Page {
         anchors.fill: parent
         listModel: sortProxy
         acceptAction.text: i18n.tr("Delete")
+        acceptAction.enabled: selectedItems.count > 0
         section.property: "eventDate"
         section.delegate: Item {
             anchors.left: parent.left
