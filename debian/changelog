@@ -1,3 +1,14 @@
+messaging-app (0.1+14.04.20140410.1-0ubuntu1) trusty; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * make press and hold display a context menu where users can copy the
+    text message. linkify phone numbers and invoke dialer-app
+    accordingly. use a 3rd party library to detect/linkify web links.
+    avoid showing the thread view at startup when launching messaging-
+    app from other apps (LP: #1302652)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 10 Apr 2014 16:15:01 +0000
+
 messaging-app (0.1+14.04.20140327-0ubuntu1) trusty; urgency=low
 
   [ Thomi Richards ]
