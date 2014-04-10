@@ -35,18 +35,10 @@ MainView {
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
-
     signal applicationReady
 
-    Connections {
-        target: telepathyHelper
-        onAccountReady: {
-            mainView.applicationReady()
-        }
-    }
-
     function emptyStack() {
-        while (mainStack.depth !== 1) {
+        while (mainStack.depth !== 1 && mainStack.depth !== 0) {
             mainStack.pop()
         }
     }
@@ -62,6 +54,9 @@ MainView {
         var participants = [phoneNumber]
         properties["participants"] = participants
         emptyStack()
+        if (phoneNumber === "") {
+            return;
+        }
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 
@@ -96,32 +91,6 @@ MainView {
                 }
             }
         }
-    }
-
-    ToolbarItems {
-        id: regularToolbar
-        ToolbarButton {
-            visible: mainStack.currentPage.threadCount !== 0
-            objectName: "selectButton"
-            text: i18n.tr("Select")
-            iconSource: "image://theme/select"
-            onTriggered: mainStack.currentPage.startSelection()
-        }
-
-        ToolbarButton {
-            objectName: "newMessageButton"
-            action: Action {
-                iconSource: "image://theme/compose"
-                text: i18n.tr("Compose")
-                onTriggered: mainView.startNewMessage()
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: selectionToolbar
-        locked: true
-        opened: false
     }
 
     PageStack {

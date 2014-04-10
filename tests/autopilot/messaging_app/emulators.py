@@ -433,9 +433,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             has the higher index.
 
         """
-        first_message_delegate = self._get_message_delegate(indexes[0])
-        self._long_press_to_select_message(first_message_delegate)
-        for index in indexes[1:]:
+        for index in indexes:
             message_delegate = self._get_message_delegate(index)
             self.pointing_device.click_object(message_delegate)
 

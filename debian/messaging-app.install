@@ -4,4 +4,5 @@ usr/share/locale/*/LC_MESSAGES/messaging-app.mo
 usr/share/messaging-app/*.qml
 usr/share/messaging-app/*.js
 usr/share/messaging-app/assets
+usr/share/messaging-app/3rd_party
 usr/bin/*messaging-app*

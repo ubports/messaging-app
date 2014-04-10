@@ -36,6 +36,7 @@ Page {
     property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
+    property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
@@ -210,7 +211,7 @@ Page {
                 color: "#221e1c"
             }
             id: sheet
-            title: "Add Contact"
+            title: i18n.tr("Add to contact")
             doneButton: false
             modal: true
             contentsHeight: parent.height
@@ -238,7 +239,7 @@ Page {
                 color: "#221e1c"
             }
             id: sheet
-            title: "Add Contact"
+            title: i18n.tr("Add Contact")
             doneButton: false
             modal: true
             contentsHeight: parent.height
@@ -383,6 +384,7 @@ Page {
         objectName: "messageList"
         clip: true
         acceptAction.text: i18n.tr("Delete")
+        acceptAction.enabled: selectedItems.count > 0
         anchors {
             top: multiRecipient.bottom
             left: parent.left
@@ -415,10 +417,6 @@ Page {
                         messageList.deselectItem(messageDelegate)
                     }
                 }
-            }
-            onPressAndHold: {
-                messageList.startSelection()
-                messageList.selectItem(messageDelegate)
             }
 
             Component.onCompleted: {
@@ -482,6 +480,11 @@ Page {
                 visible: textEntry.activeFocus
                 onClicked: {
                     textEntry.focus = false;
+                }
+            }
+            Component.onCompleted: {
+                if (messages.keyboardFocus && participants.length != 0) {
+                    textEntry.forceActiveFocus()
                 }
             }
         }

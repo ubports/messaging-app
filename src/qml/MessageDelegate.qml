@@ -24,6 +24,7 @@ import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 
 import "dateUtils.js" as DateUtils
+import "3rd_party/ba-linkify.js" as BaLinkify
 
 ListItem.Empty {
     id: messageDelegate
@@ -39,6 +40,32 @@ ListItem.Empty {
     highlightWhenPressed: false
 
     signal resend()
+
+    onPressAndHold: PopupUtils.open(popoverMenuComponent, messageDelegate)
+
+    Item {
+        Component {
+            id: popoverMenuComponent
+            Popover {
+                id: popover
+                Column {
+                    id: containerLayout
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        right: parent.right
+                    }
+                    ListItem.Standard {
+                        text: i18n.tr("Copy")
+                        onClicked: {
+                            Clipboard.push(textMessage);
+                            PopupUtils.close(popover)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     Item {
         Component {
@@ -206,12 +233,16 @@ ListItem.Empty {
                 text: parseText(textMessage)
                 onLinkActivated:  Qt.openUrlExternally(link)
                 function parseText(text) {
+                    var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[-. ]?([0-9]+)[-. ]?([0-9]+)[-. ]?([0-9]+))/img;
                     // remove html tags
-                    text = text.replace(/(<([^>]+)>)/ig,"");
+                    text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
                     // replace line breaks
                     text = text.replace(/(\n)+/g, '<br />');
                     // check for links
-                    return text.replace(new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "img"), '$1<a href="$2">$2</a>');
+                    text = BaLinkify.linkify(text);
+                    // linkify phone numbers
+                    return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
+
                 }
 
             }
