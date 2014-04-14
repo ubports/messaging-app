@@ -1,3 +1,9 @@
+messaging-app (0.1+14.04.20140410.1-0ubuntu2) trusty; urgency=medium
+
+  * No-change rebuild for shlib changes in qtbase and qtdeclarative.
+
+ -- Ricardo Salveti de Araujo <ricardo.salveti@canonical.com>  Mon, 14 Apr 2014 12:45:27 -0300
+
 messaging-app (0.1+14.04.20140410.1-0ubuntu1) trusty; urgency=low
 
   [ Tiago Salem Herrmann ]
