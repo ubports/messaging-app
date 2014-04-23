@@ -39,7 +39,7 @@ ListItem.Empty {
         anchors.right: imageDelegate.incoming ? undefined : parent.right
         anchors.rightMargin: units.gu(1)
         anchors.top: parent.top
-        width: image.implicitWidth + units.gu(3)
+        width: image.width + units.gu(3)
         height: image.height + units.gu(2)
 
         function selectBubble() {
