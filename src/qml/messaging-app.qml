@@ -21,6 +21,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
+import Ubuntu.Content 0.1
 
 MainView {
     id: mainView
@@ -35,7 +36,56 @@ MainView {
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
+    Component {
+        id: resultComponent
+        ContentItem {}
+    }
+
+    Page {
+        id: picker
+        visible: false
+        property var curTransfer
+        property var url
+        property var handler
+
+        function __exportItems(url) {
+            if (picker.curTransfer.state === ContentTransfer.InProgress)
+            {
+                picker.curTransfer.items = [ resultComponent.createObject(mainView, {"url": url}) ];
+                picker.curTransfer.state = ContentTransfer.Charged;
+            }
+        }
+
+        ContentPeerPicker {
+            visible: parent.visible
+            contentType: ContentType.Pictures
+            handler: picker.handler
+
+            onPeerSelected: {
+                picker.curTransfer = peer.request();
+                    mainStack.pop();
+                    if (picker.curTransfer.state === ContentTransfer.InProgress)
+                        picker.__exportItems(picker.url);
+            }
+        }
+
+        Connections {
+            target: picker.curTransfer
+            onStateChanged: {
+                console.log("curTransfer StateChanged: " + picker.curTransfer.state);
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                {
+                    picker.__exportItems(picker.url);
+                }
+            }
+        }
+    }
+
     signal applicationReady
+
+    function startsWith(string, prefix) {
+        return string.slice(0, prefix.length) === prefix;
+    }
 
     function emptyStack() {
         while (mainStack.depth !== 1 && mainStack.depth !== 0) {

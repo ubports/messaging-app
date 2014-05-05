@@ -22,6 +22,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
+import Ubuntu.Content 0.1
 
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
@@ -35,6 +36,7 @@ Item {
     property alias confirmRemoval: internalDelegate.confirmRemoval
     property alias removable: internalDelegate.removable
     property alias selected: internalDelegate.selected
+    property variant activeAttachment
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
@@ -43,14 +45,42 @@ Item {
     signal resend()
     signal clicked()
 
+    Component {
+        id: popoverSaveAttachmentComponent
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem.Standard {
+                    text: i18n.tr("Save")
+                    onClicked: {
+                        mainStack.push(picker, {"url": activeAttachment.filePath, "handler": ContentHandler.Destination});
+                        PopupUtils.close(popover)
+                    }
+                }
+                ListItem.Standard {
+                    text: i18n.tr("Share")
+                    onClicked: {
+                        mainStack.push(picker, {"url": activeAttachment.filePath, "handler": ContentHandler.Share});
+                        PopupUtils.close(popover)
+                    }
+                }
+            }
+        }
+    }
+
     Column {
         id: attachments
         anchors.top: parent.top
         height: childrenRect.height
         anchors.right: parent.right
         anchors.left: parent.left
-        anchors.leftMargin: units.gu(1)
-        anchors.rightMargin: units.gu(1)
+        spacing: units.gu(2)
         // TODO: we currently support only images as attachments
         Repeater {
             model: textMessageAttachments
@@ -59,30 +89,50 @@ Item {
                 anchors.right: parent.right
                 height: item ? item.height : undefined
                 source: {
-                    switch (modelData.contentType) {
-                    case "image/jpeg":
-                    case "image/gif":
-                    case "image/*":
-                    case "image/tiff":
-                    case "image/png":
-                    case "image/vnd.wap.wbmp":
-                        "MMSImage.qml"
-                        break
-                    default:
-                        console.log("No MMS render for " + modelData.contentType)
+                    if (startsWith(modelData.contentType, "image/")) {
+                        return "MMS/MMSImage.qml"
+                    } else if (startsWith(modelData.contentType, "video/")) {
+                        return "MMS/MMSVideo.qml"
+                    } else if (modelData.contentType === "application/smil" ) {
+                        console.log("Ignoring SMIL file")
                         return ""
+                    } else {
+                        console.log("No MMS render for " + modelData.contentType)
+                        return "MMS/MMSDefault.qml"
                     }
                 }
                 onStatusChanged: {
                     if (status == Loader.Ready) {
                         item.attachment = modelData
-                        item.incoming = incoming
+                        item.incoming = false//incoming
                     }
                 }
                 Connections {
                     target: item
                     onItemRemoved: {
                         console.log("attachment removed: " + modelData.attachmentId)
+                        eventModel.removeEventAttachment(accountId, threadId, eventId, type, modelData.attachmentId)
+                    }
+                }
+                Connections {
+                    target: item
+                    onPressAndHold: {
+                        activeAttachment = item
+                        PopupUtils.open(popoverSaveAttachmentComponent, item)
+                    }
+                }
+                Connections {
+                    target: item
+                    onClicked: {
+                        if (item.previewer === "") {
+                            activeAttachment = item
+                            PopupUtils.open(popoverSaveAttachmentComponent, item)
+                            return
+                        }
+
+                        var properties = {}
+                        properties["attachment"] = item.attachment
+                        mainStack.push(Qt.resolvedUrl(item.previewer), properties)
                     }
                 }
             }
@@ -215,26 +265,15 @@ Item {
             eventModel.removeEvent(accountId, threadId, eventId, type)
         }
 
-        BorderImage {
+        MessageBubble {
             id: bubble
 
+            incoming: messageDelegate.incoming
             anchors.left: incoming ? parent.left : undefined
             anchors.leftMargin: units.gu(1)
             anchors.right: incoming ? undefined : parent.right
             anchors.rightMargin: units.gu(1)
             anchors.top: parent.top
-
-            function selectBubble() {
-                var fileName = "assets/conversation_";
-                if (incoming) {
-                    fileName += "incoming.sci";
-                } else {
-                    fileName += "outgoing.sci";
-                }
-                return fileName;
-            }
-
-            source: selectBubble()
 
             height: messageContents.height + units.gu(4)
 

@@ -18,50 +18,61 @@
 
 import QtQuick 2.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import ".."
 
 ListItem.Empty {
     id: imageDelegate
     property var attachment
     property bool incoming
+    property string previewer: "MMS/PreviewerImage.qml"
     anchors.left: parent.left
     anchors.right: parent.right
-
+    state: incoming ? "incoming" : "outgoing"
+    states: [
+        State {
+            name: "incoming"
+            AnchorChanges {
+                target: bubble
+                anchors.left: parent.left
+                anchors.right: undefined
+            }
+            PropertyChanges {
+                target: bubble
+                anchors.leftMargin: units.gu(1)
+                anchors.rightMargin: units.gu(1)
+            }
+        },
+        State {
+            name: "outgoing"
+            AnchorChanges {
+                target: bubble
+                anchors.left: undefined
+                anchors.right: parent.right
+            }
+            PropertyChanges {
+                target: bubble
+                anchors.leftMargin: units.gu(1)
+                anchors.rightMargin: units.gu(1)
+            }
+        }
+    ]
     removable: true
     confirmRemoval: true
     height: bubble.height
     clip: true
     showDivider: false
     highlightWhenPressed: false
-    BorderImage {
+    MessageBubble {
         id: bubble
-        anchors.left: imageDelegate.incoming ? parent.left : undefined
-        anchors.leftMargin: units.gu(1)
-        anchors.right: imageDelegate.incoming ? undefined : parent.right
-        anchors.rightMargin: units.gu(1)
+        incoming: imageDelegate.incoming
         anchors.top: parent.top
         width: image.width + units.gu(3)
         height: image.height + units.gu(2)
 
-        function selectBubble() {
-            var fileName = "assets/conversation_";
-            if (incoming) {
-                fileName += "incoming.sci";
-            } else {
-                fileName += "outgoing.sci";
-            }
-            return fileName;
-        }
-
-        source: selectBubble()
-
         Image {
             id: image
-            anchors.right: imageDelegate.incoming ? undefined : parent.right
-            anchors.rightMargin: imageDelegate.incoming ? undefined : units.gu(2)
-            anchors.left: !imageDelegate.incoming ? undefined : parent.left
-            anchors.leftMargin: !imageDelegate.incoming ? undefined : units.gu(2)
-            anchors.topMargin: units.gu(1)
-            anchors.top: parent.top
+            anchors.centerIn: parent
+            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
             height: sourceSize.height < units.gu(20) ? sourceSize.height : units.gu(20)
             fillMode: Image.PreserveAspectFit
             asynchronous: true
