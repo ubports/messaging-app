@@ -42,6 +42,7 @@ Page {
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
+
     flickable: null
     title: {
         if (landscape) {
@@ -265,19 +266,21 @@ Page {
 
     ToolbarItems {
         id: messagesToolbar
+        visible: false
         ToolbarButton {
             objectName: "selectMessagesButton"
-            visible: messageList.count !== 0
+
             action: Action {
+                visible: messageList.count !== 0
                 iconSource: "image://theme/select"
                 text: i18n.tr("Select")
                 onTriggered: messageList.startSelection()
             }
         }
         ToolbarButton {
-            visible: contactWatcher.isUnknown && participants.length == 1
             objectName: "addContactButton"
             action: Action {
+                visible: contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
                 onTriggered: {
@@ -287,9 +290,9 @@ Page {
             }
         }
         ToolbarButton {
-            visible: !contactWatcher.isUnknown && participants.length == 1
             objectName: "contactProfileButton"
             action: Action {
+                visible: !contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
                 onTriggered: {
@@ -299,9 +302,9 @@ Page {
             }
         }
         ToolbarButton {
-            visible: participants.length == 1
             objectName: "contactCallButton"
             action: Action {
+                visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
@@ -310,7 +313,8 @@ Page {
                 }
             }
         }
-        locked: selectionMode
+        //locked: selectionMode
+        locked: mainStack.depth === 1 ?  true : selectionMode
     }
 
     HistoryEventModel {

@@ -28,6 +28,7 @@ MainView {
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
+    useDeprecatedToolbar: false
     property string newPhoneNumber
 
     Component.onCompleted: {

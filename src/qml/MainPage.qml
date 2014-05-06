@@ -23,11 +23,13 @@ import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
 import "dateUtils.js" as DateUtils
 
-Page {
+PageWithBottomEdge {
     id: mainPage
     tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
     title: i18n.tr("Messages")
 
+    bottomEdgePageSource: "Messages.qml"
+    bottomEdgeTitle: i18n.tr("New Message")
     property alias threadCount: threadList.count
 
     function startSelection() {
@@ -35,6 +37,9 @@ Page {
     }
 
     ToolbarItems {
+        locked: true
+        opened: false
+        visible: false
         id: regularToolbar
         ToolbarButton {
             visible: mainStack.currentPage.threadCount !== 0
@@ -56,6 +61,7 @@ Page {
 
     ToolbarItems {
         id: selectionToolbar
+        visible: false
         locked: true
         opened: false
     }
