@@ -44,6 +44,12 @@ Page {
     property bool pendingMessage: false
 
     flickable: null
+    signal ready
+    onReady: {
+        if (participants.length === 0)
+            multiRecipient.forceActiveFocus()
+    }
+
     title: {
         if (landscape) {
             return ""
@@ -487,7 +493,8 @@ Page {
                 }
             }
             Component.onCompleted: {
-                if (messages.keyboardFocus && participants.length != 0) {
+                // if page is active, it means this is not a bottom edge page
+                if (messages.active && messages.keyboardFocus && participants.length != 0) {
                     textEntry.forceActiveFocus()
                 }
             }

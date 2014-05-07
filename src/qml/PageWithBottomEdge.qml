@@ -7,6 +7,13 @@ Page {
     property alias bottomEdgePageComponent: edgeLoader.sourceComponent
     property alias bottomEdgePageSource: edgeLoader.source
     property alias bottomEdgeTitle: tipLabel.text
+    property alias bottomEdgeEnabled: bottomEdge.visible
+    property int bottomEdgeExpandThreshold: page.height * 0.3
+    property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
+
+    readonly property alias bottomEdgePage: edgeLoader.item
+
+    signal bottomEdgeReleased()
 
     onActiveChanged: {
         if (active) {
@@ -18,7 +25,7 @@ Page {
         id: bottomEdge
 
         z: 1
-        height: page.height + tip.height
+        height: (edgeLoader.item && edgeLoader.item.flickable) ? page.height + tip.height : page.height + tip.height - header.height
         y: page.height - tip.height
         clip: true
         anchors {
@@ -49,7 +56,7 @@ Page {
                 height: units.gu(1)
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.3) }
+                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.7) }
                 }
                 opacity: bottomEdge.state != "collapsed" ? 1.0 : 0.0
                 Behavior on opacity {
@@ -62,7 +69,7 @@ Page {
                     fill: parent
                     topMargin: units.gu(1)
                 }
-                color: Theme.palette.normal.background
+                color: UbuntuColors.coolGrey
                 Label {
                     id: tipLabel
                     anchors.centerIn: parent
@@ -75,7 +82,8 @@ Page {
                 drag.target: bottomEdge
 
                 onReleased: {
-                    if (bottomEdge.y < (page.height * 0.7)) {
+                    page.bottomEdgeReleased()
+                    if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - tip.height)) {
                         bottomEdge.state = "expanded"
                     } else {
                         bottomEdge.state = "collapsed"
@@ -84,7 +92,6 @@ Page {
 
                 onPressed: {
                     bottomEdge.state = "floating"
-                    edgeLoader.active = false
                     edgeLoader.active = true
                 }
             }
@@ -127,7 +134,10 @@ Page {
 
                     ScriptAction {
                         script: {
+                            edgeLoader.item.active = true
                             page.pageStack.push(edgeLoader.item)
+                            if (edgeLoader.item.ready)
+                                edgeLoader.item.ready()
                             edgeLoader.item.forceActiveFocus()
                         }
                     }
@@ -140,7 +150,7 @@ Page {
                         script: {
                             edgeLoader.item.parent = edgeLoader
                             edgeLoader.item.anchors.fill = edgeLoader
-                            //edgeLoader.item.anchors.topMargin = 0
+                            edgeLoader.item.active = false
                         }
                     }
                     UbuntuNumberAnimation {
@@ -182,6 +192,12 @@ Page {
                 active: false
                 anchors.fill: parent
                 anchors.topMargin: (edgeLoader.status === Loader.Ready ? edgeLoader.item.flickable.contentY : 0)
+
+                onStatusChanged: {
+                    if (status === Loader.Ready) {
+                        item.active = false;
+                    }
+                }
             }
         }
     }

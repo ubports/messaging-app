@@ -28,7 +28,11 @@ PageWithBottomEdge {
     tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
     title: i18n.tr("Messages")
 
-    bottomEdgePageSource: "Messages.qml"
+    bottomEdgeEnabled: !threadList.isInSelectionMode
+    bottomEdgePageComponent: Messages {
+        active: false
+    }
+
     bottomEdgeTitle: i18n.tr("New Message")
     property alias threadCount: threadList.count
 
@@ -41,7 +45,7 @@ PageWithBottomEdge {
         opened: false
         visible: false
         id: regularToolbar
-        ToolbarButton {
+        /*ToolbarButton {
             visible: mainStack.currentPage.threadCount !== 0
             objectName: "selectButton"
             text: i18n.tr("Select")
@@ -56,7 +60,7 @@ PageWithBottomEdge {
                 text: i18n.tr("Compose")
                 onTriggered: mainView.startNewMessage()
             }
-        }
+        }*/
     }
 
     ToolbarItems {

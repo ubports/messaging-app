@@ -24,7 +24,7 @@ import QtContacts 5.0
 
 FocusScope {
     id: multiRecipientWidget
-    property bool expanded: true
+    property bool expanded: activeFocus
     property int recipientCount: recipientModel.count-2
     property int selectedIndex: -1
     property variant recipients: []
@@ -90,7 +90,6 @@ FocusScope {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-
         move: Transition {
             UbuntuNumberAnimation { properties: "x,y";}
         }
