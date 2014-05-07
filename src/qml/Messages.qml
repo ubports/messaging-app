@@ -51,6 +51,10 @@ Page {
     }
 
     title: {
+        if (selectionMode) {
+            return i18n.tr("Edit")
+        }
+
         if (landscape) {
             return ""
         }

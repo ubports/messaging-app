@@ -25,10 +25,11 @@ import "dateUtils.js" as DateUtils
 
 PageWithBottomEdge {
     id: mainPage
-    tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
-    title: i18n.tr("Messages")
+    property alias selectionMode: threadList.isInSelectionMode
+    tools: selectionMode ? selectionToolbar : regularToolbar
+    title: selectionMode ? i18n.tr("Edit") : i18n.tr("Messages")
 
-    bottomEdgeEnabled: !threadList.isInSelectionMode
+    bottomEdgeEnabled: !selectionMode
     bottomEdgePageComponent: Messages {
         active: false
     }
@@ -41,33 +42,30 @@ PageWithBottomEdge {
     }
 
     ToolbarItems {
-        locked: true
-        opened: false
-        visible: false
         id: regularToolbar
-        /*ToolbarButton {
-            visible: mainStack.currentPage.threadCount !== 0
-            objectName: "selectButton"
-            text: i18n.tr("Select")
-            iconSource: "image://theme/select"
-            onTriggered: mainStack.currentPage.startSelection()
-        }
-
-        ToolbarButton {
-            objectName: "newMessageButton"
-            action: Action {
-                iconSource: "image://theme/compose"
-                text: i18n.tr("Compose")
-                onTriggered: mainView.startNewMessage()
-            }
-        }*/
+        visible: false
     }
 
     ToolbarItems {
         id: selectionToolbar
         visible: false
-        locked: true
-        opened: false
+        back: ToolbarButton {
+            id: selectionModeCancelButton
+            objectName: "selectionModeCancelButton"
+            action: Action {
+                iconSource: "image://theme/cancel"
+                onTriggered: threadList.cancelSelection()
+            }
+        }
+        ToolbarButton {
+            id: selectionModeDeleteButton
+            objectName: "selectionModeDeleteButton"
+            action: Action {
+                enabled: threadList.selectedItems.count > 0
+                iconSource: "image://theme/delete"
+                onTriggered: threadList.endSelection()
+            }
+        }
     }
 
     SortProxyModel {
@@ -93,6 +91,7 @@ PageWithBottomEdge {
         listModel: sortProxy
         acceptAction.text: i18n.tr("Delete")
         acceptAction.enabled: selectedItems.count > 0
+        showActionButtons: false
         section.property: "eventDate"
         section.delegate: Item {
             anchors.left: parent.left
