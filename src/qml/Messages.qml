@@ -64,14 +64,29 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
-                var numOther = participants.length-1
-                return firstRecipient + " +" + i18n.tr("%1 other", "%1 others", numOther).arg(numOther)
+                return i18n.tr("Group")
             }
         }
         return i18n.tr("New Message")
     }
-    tools: messagesToolbar
-    onSelectionModeChanged: messagesToolbar.opened = false
+    tools: {
+        if (selectionMode) {
+            return messagesToolbarSelectionMode
+        }
+
+        if (participants.length == 0) {
+            return null
+        } else if (participants.length == 1) {
+            if (contactWatcher.isUnknown) {
+                return messagesToolbarUnknownContact
+            } else {
+                return messagesToolbarKnownContact
+            }
+        } else if (groupChat){
+            return messagesToolbarGroupChat
+        }
+    }
+
     Component.onCompleted: {
         threadId = getCurrentThreadId()
     }
@@ -119,52 +134,6 @@ Page {
             }
         }
     }
-
-    Item {
-        id: headerContent
-        visible: groupChat
-        anchors.fill: parent
-
-        Label {
-            text: messages.title
-            fontSize: "x-large"
-            font.weight: Font.Light
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-            anchors {
-                left: parent.left
-                leftMargin: units.gu(1)
-                top: parent.top
-                bottom: parent.bottom
-                right: participantsButton.left
-            }
-        }
-
-        Icon {
-            id: participantsButton
-            name: "navigation-menu"
-            width: visible ? units.gu(6) : 0
-            height: units.gu(6)
-            visible: groupChat
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: PopupUtils.open(participantsPopover, participantsButton)
-            }
-        }
-    }
-
-    Binding {
-        target: messages.header
-        property: "contents"
-        value: groupChat ? headerContent : null
-        when: messages.header && !landscape && messages.active
-    }
-
 
     Component {
          id: newContactDialog
@@ -271,16 +240,54 @@ Page {
     }
 
     ToolbarItems {
-        id: messagesToolbar
+        id: messagesToolbarSelectionMode
+        visible: false
+        back: ToolbarButton {
+            id: selectionModeCancelButton
+            objectName: "selectionModeCancelButton"
+            action: Action {
+                iconSource: "image://theme/cancel"
+                onTriggered: messageList.cancelSelection()
+            }
+        }
+        ToolbarButton {
+            id: selectionModeDeleteButton
+            objectName: "selectionModeDeleteButton"
+            action: Action {
+                enabled: messageList.selectedItems.count > 0
+                iconSource: "image://theme/delete"
+                onTriggered: messageList.endSelection()
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: messagesToolbarGroupChat
         visible: false
         ToolbarButton {
-            objectName: "selectMessagesButton"
-
+            id: groupChatButton
+            objectName: "groupChatButton"
             action: Action {
-                visible: messageList.count !== 0
-                iconSource: "image://theme/select"
-                text: i18n.tr("Select")
-                onTriggered: messageList.startSelection()
+                iconSource: "image://theme/navigation-menu"
+                onTriggered: {
+                    PopupUtils.open(participantsPopover, messages.header)
+                }
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: messagesToolbarUnknownContact
+        visible: false
+        ToolbarButton {
+            objectName: "contactCallButton"
+            action: Action {
+                visible: participants.length == 1
+                iconSource: "image://theme/call-start"
+                text: i18n.tr("Call")
+                onTriggered: {
+                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                }
             }
         }
         ToolbarButton {
@@ -291,7 +298,22 @@ Page {
                 text: i18n.tr("Add")
                 onTriggered: {
                     PopupUtils.open(newContactDialog)
-                    messagesToolbar.opened = false
+                }
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: messagesToolbarKnownContact
+        visible: false
+        ToolbarButton {
+            objectName: "contactCallButton"
+            action: Action {
+                visible: participants.length == 1
+                iconSource: "image://theme/call-start"
+                text: i18n.tr("Call")
+                onTriggered: {
+                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                 }
             }
         }
@@ -303,24 +325,9 @@ Page {
                 text: i18n.tr("Contact")
                 onTriggered: {
                     Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contactWatcher.contactId))
-                    messagesToolbar.opened = false
                 }
             }
         }
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
-                    messagesToolbar.opened = false
-                }
-            }
-        }
-        //locked: selectionMode
-        locked: mainStack.depth === 1 ?  true : selectionMode
     }
 
     HistoryEventModel {
@@ -395,6 +402,7 @@ Page {
         clip: true
         acceptAction.text: i18n.tr("Delete")
         acceptAction.enabled: selectedItems.count > 0
+        showActionButtons: false
         anchors {
             top: multiRecipient.bottom
             left: parent.left
@@ -427,6 +435,10 @@ Page {
                         messageList.deselectItem(messageDelegate)
                     }
                 }
+            }
+            onTriggerSelectionMode: {
+                messageList.startSelection()
+                clicked()
             }
 
             Component.onCompleted: {

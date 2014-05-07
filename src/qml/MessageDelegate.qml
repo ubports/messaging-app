@@ -40,6 +40,7 @@ ListItem.Empty {
     highlightWhenPressed: false
 
     signal resend()
+    signal triggerSelectionMode()
 
     onPressAndHold: PopupUtils.open(popoverMenuComponent, messageDelegate)
 
@@ -59,6 +60,13 @@ ListItem.Empty {
                         text: i18n.tr("Copy")
                         onClicked: {
                             Clipboard.push(textMessage);
+                            PopupUtils.close(popover)
+                        }
+                    }
+                    ListItem.Standard {
+                        text: i18n.tr("Select")
+                        onClicked: {
+                            triggerSelectionMode()
                             PopupUtils.close(popover)
                         }
                     }
