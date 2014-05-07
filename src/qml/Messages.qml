@@ -250,8 +250,16 @@ Page {
             id: selectionModeCancelButton
             objectName: "selectionModeCancelButton"
             action: Action {
-                iconSource: "image://theme/cancel"
+                iconSource: "image://theme/close"
                 onTriggered: messageList.cancelSelection()
+            }
+        }
+        ToolbarButton {
+            id: selectionModeSelectAllButton
+            objectName: "selectionModeSelectAllButton"
+            action: Action {
+                iconSource: "image://theme/filter"
+                onTriggered: messageList.selectAll()
             }
         }
         ToolbarButton {

@@ -53,8 +53,16 @@ PageWithBottomEdge {
             id: selectionModeCancelButton
             objectName: "selectionModeCancelButton"
             action: Action {
-                iconSource: "image://theme/cancel"
+                iconSource: "image://theme/close"
                 onTriggered: threadList.cancelSelection()
+            }
+        }
+        ToolbarButton {
+            id: selectionModeSelectAllButton
+            objectName: "selectionModeSelectAllButton"
+            action: Action {
+                iconSource: "image://theme/filter"
+                onTriggered: threadList.selectAll()
             }
         }
         ToolbarButton {
