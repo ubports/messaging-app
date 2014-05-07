@@ -12,6 +12,7 @@ Page {
     property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
 
     readonly property alias bottomEdgePage: edgeLoader.item
+    readonly property bool isReady: (tip.opacity === 0.0)
 
     signal bottomEdgeReleased()
 
@@ -23,6 +24,7 @@ Page {
 
     Item {
         id: bottomEdge
+        objectName: "bottomEdge"
 
         z: 1
         height: (edgeLoader.item && edgeLoader.item.flickable) ? page.height + tip.height : page.height + tip.height - header.height
@@ -35,6 +37,7 @@ Page {
 
         Item {
             id: tip
+            objectName: "bottomEdgeTip"
 
             anchors {
                 left: parent.left
@@ -167,6 +170,7 @@ Page {
                             page.title = title
                             // fix for a bug in the sdk header
                             activeLeafNode = page
+                            edgePageBackground.anchors.topMargin = 0
                         }
                     }
                 }
@@ -184,6 +188,15 @@ Page {
                 top: tip.bottom
                 bottom: parent.bottom
             }
+
+            //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
+            Binding {
+                target: edgePageBackground
+                property: "anchors.topMargin"
+                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                when: (edgeLoader.status === Loader.Ready && !page.isReady)
+            }
+
             color: Theme.palette.normal.background
 
             Loader {
@@ -191,7 +204,6 @@ Page {
 
                 active: false
                 anchors.fill: parent
-                anchors.topMargin: (edgeLoader.status === Loader.Ready ? edgeLoader.item.flickable.contentY : 0)
 
                 onStatusChanged: {
                     if (status === Loader.Ready) {
