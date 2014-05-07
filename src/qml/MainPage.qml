@@ -97,9 +97,6 @@ PageWithBottomEdge {
         objectName: "threadList"
         anchors.fill: parent
         listModel: sortProxy
-        //acceptAction.text: i18n.tr("Delete")
-        //acceptAction.enabled: selectedItems.count > 0
-        //showActionButtons: false
         section.property: "eventDate"
         section.delegate: Item {
             anchors.left: parent.left
