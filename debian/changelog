@@ -1,3 +1,13 @@
+messaging-app (0.1+14.10.20140512-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Tiago Salem Herrmann ]
+  * update po and pot files
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 12 May 2014 22:51:45 +0000
+
 messaging-app (0.1+14.04.20140410.1-0ubuntu2) trusty; urgency=medium
 
   * No-change rebuild for shlib changes in qtbase and qtdeclarative.
