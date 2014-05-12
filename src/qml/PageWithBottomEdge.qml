@@ -1,3 +1,56 @@
+/*
+    Example:
+
+    MainView {
+        objectName: "mainView"
+
+        applicationName: "com.ubuntu.developer.boiko.bottomedge"
+
+        width: units.gu(100)
+        height: units.gu(75)
+
+        Component {
+            id: pageComponent
+
+            PageWithBottomEdge {
+                id: mainPage
+                title: i18n.tr("Main Page")
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: "white"
+                }
+
+                bottomEdgePageComponent: Page {
+                    title: "Contents"
+                    anchors.fill: parent
+
+                    // WORKAROUND: SKD changes the page header as soon as the page get created
+                    // setting active false will avoid that
+                    active: false
+
+                    //anchors.topMargin: contentsPage.flickable.contentY
+
+                    ListView {
+                        anchors.fill: parent
+                        model: 50
+                        delegate: ListItems.Standard {
+                            text: "One Content Item: " + index
+                        }
+                    }
+                }
+                bottomEdgeTitle: i18n.tr("Bottom edge action")
+            }
+        }
+
+        PageStack {
+            id: stack
+            Component.onCompleted: stack.push(pageComponent)
+        }
+    }
+
+*/
+
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
@@ -10,11 +63,24 @@ Page {
     property alias bottomEdgeEnabled: bottomEdge.visible
     property int bottomEdgeExpandThreshold: page.height * 0.3
     property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
+    property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
     readonly property bool isReady: (tip.opacity === 0.0)
 
     signal bottomEdgeReleased()
+    signal bottomEdgeDismissed()
+
+    function showBottomEdgePage(source, properties)
+    {
+        edgeLoader.setSource(source, properties)
+        bottomEdge.state = "expanded"
+    }
+
+    function setBottomEdgePage(source, properties)
+    {
+        edgeLoader.setSource(source, properties)
+    }
 
     onActiveChanged: {
         if (active) {
@@ -93,10 +159,7 @@ Page {
                     }
                 }
 
-                onPressed: {
-                    bottomEdge.state = "floating"
-                    edgeLoader.active = true
-                }
+                onPressed: bottomEdge.state = "floating"
             }
         }
 
@@ -142,6 +205,10 @@ Page {
                             if (edgeLoader.item.ready)
                                 edgeLoader.item.ready()
                             edgeLoader.item.forceActiveFocus()
+                            if (edgeLoader.item.flickable) {
+                                edgeLoader.item.flickable.contentY = -page.header.height
+                                edgeLoader.item.flickable.returnToBounds()
+                            }
                         }
                     }
                 }
@@ -163,14 +230,22 @@ Page {
                     }
                     ScriptAction {
                         script: {
-                            edgeLoader.active = false
+                            // destroy current bottom page
+                            if (page.reloadBottomEdgePage) {
+                                edgeLoader.active = false
+                            }
                             // FIXME: this is ugly, but the header is not updating the title correctly
                             var title = page.title
                             page.title = "Something else"
                             page.title = title
                             // fix for a bug in the sdk header
                             activeLeafNode = page
-                            edgePageBackground.anchors.topMargin = 0
+
+                            // notify
+                            page.bottomEdgeDismissed()
+
+                            // load a new bottom page in memory
+                            edgeLoader.active = true
                         }
                     }
                 }
@@ -189,6 +264,8 @@ Page {
                 bottom: parent.bottom
             }
 
+            color: Theme.palette.normal.background
+
             //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
             Binding {
                 target: edgePageBackground
@@ -197,19 +274,14 @@ Page {
                 when: (edgeLoader.status === Loader.Ready && !page.isReady)
             }
 
-            color: Theme.palette.normal.background
-
             Loader {
                 id: edgeLoader
 
-                active: false
+                active: true
                 anchors.fill: parent
+                asynchronous: true
 
-                onStatusChanged: {
-                    if (status === Loader.Ready) {
-                        item.active = false;
-                    }
-                }
+                onLoaded: item.active = false
             }
         }
     }
