@@ -27,6 +27,7 @@ import QtContacts 5.0
 ListItem.Empty {
     id: delegate
     property bool groupChat: participants.length > 1
+    property string searchTerm
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -44,6 +45,21 @@ ListItem.Empty {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
+    // WORKAROUND: history-service can't filter by contact names
+    onSearchTermChanged: {
+        var found = false
+        var searchTermLowerCase = searchTerm.toLowerCase()
+        if (searchTerm !== "") {
+            if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
+            || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
+                found = true
+            }
+        } else {
+            found = true
+        }
+   
+        height = found ? units.gu(10) : 0
+    }
 
     // FIXME: the selected state should be handled by the UITK
     Item {

@@ -26,8 +26,10 @@ import "dateUtils.js" as DateUtils
 PageWithBottomEdge {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
-    tools: selectionMode ? selectionToolbar : regularToolbar
+    property bool searching: false
+    tools: selectionMode ? selectionToolbar : searching ? searchToolbar : regularToolbar
     title: selectionMode ? i18n.tr("Edit") : i18n.tr("Messages")
+    __customHeaderContents: mainPage.searching ? searchField : null
 
     bottomEdgeEnabled: !selectionMode
     bottomEdgePageComponent: Messages {
@@ -41,9 +43,57 @@ PageWithBottomEdge {
         threadList.startSelection()
     }
 
+    TextField {
+        id: searchField
+        visible: mainPage.searching
+        anchors {
+            left: parent.left
+            topMargin: units.gu(1.5)
+            rightMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
+        }
+        onActiveFocusChanged: {
+            if (!activeFocus) {
+                searchField.text = ""
+                mainPage.searching = false
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: searchToolbar
+
+        visible: false
+        back: ToolbarButton {
+            visible: false
+            action: Action {
+                objectName: "cancelSearch"
+                visible: mainPage.searching
+                iconName: "close"
+                text: i18n.tr("Cancel")
+                onTriggered: {
+                    searchField.text = ""
+                    mainPage.searching = false
+                }
+            }
+        }
+    }
+
     ToolbarItems {
         id: regularToolbar
         visible: false
+        ToolbarButton {
+            id: searchButton
+            objectName: "searchButton"
+            action: Action {
+                iconSource: "image://theme/search"
+                onTriggered: {
+                    mainPage.searching = true
+                    searchField.forceActiveFocus()
+                }
+            }
+        }
     }
 
     ToolbarItems {
@@ -92,13 +142,9 @@ PageWithBottomEdge {
         }
     }
 
-    MultipleSelectionListView {
-        id: threadList
-        objectName: "threadList"
-        anchors.fill: parent
-        listModel: sortProxy
-        section.property: "eventDate"
-        section.delegate: Item {
+    Component {
+        id: sectionDelegate
+        Item {
             anchors.left: parent.left
             anchors.right: parent.right
             height: units.gu(5)
@@ -117,7 +163,15 @@ PageWithBottomEdge {
                 anchors.bottom: parent.bottom
             }
         }
+    }
 
+    MultipleSelectionListView {
+        id: threadList
+        objectName: "threadList"
+        anchors.fill: parent
+        listModel: sortProxy
+        section.property: "eventDate"
+        section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
             objectName: "thread%1".arg(participants)
@@ -125,6 +179,7 @@ PageWithBottomEdge {
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode
             confirmRemoval: true
+            searchTerm: mainPage.searching ? searchField.text : ""
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
