@@ -53,6 +53,7 @@ PageWithBottomEdge {
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
         }
+        inputMethodHints: Qt.ImhNoPredictiveText
         onActiveFocusChanged: {
             if (!activeFocus) {
                 searchField.text = ""
