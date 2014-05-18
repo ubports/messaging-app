@@ -1,4 +1,4 @@
-# Latvian translation for messaging-app
+# Gaelic; Scottish translation for messaging-app
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the messaging-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
@@ -8,13 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2014-05-17 18:46+0000\n"
-"Last-Translator: Jānis-Marks Gailis <jeanmarc.gailis@gmail.com>\n"
-"Language-Team: Latvian <lv@li.org>\n"
+"PO-Revision-Date: 2014-05-17 21:21+0000\n"
+"Last-Translator: Akerbeltz <fios@akerbeltz.org>\n"
+"Language-Team: Gaelic; Scottish <gd@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
 "X-Launchpad-Export-Date: 2014-05-18 05:57+0000\n"
 "X-Generator: Launchpad (build 17007)\n"
 
@@ -22,88 +23,93 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 stunda zvans"
-msgstr[1] "%1 stundu zvans"
-msgstr[2] "%1 stundu zvans"
+msgstr[0] "Gairm %1 uair a thìde"
+msgstr[1] "Gairm %1 uair a thìde"
+msgstr[2] "Gairm %1 uairean a thìde"
+msgstr[3] "Gairm %1 uair a thìde"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 minutes zvans"
-msgstr[1] "%1 minušu zvans"
-msgstr[2] "%1 minušu zvans"
+msgstr[0] "Gairm %1 mhionaid"
+msgstr[1] "Gairm %1 mhionaid"
+msgstr[2] "Gairm %1 mionaidean"
+msgstr[3] "Gairm %1 mionaid"
 
 #: src/qml/Messages.qml:61
 #, qt-format
 msgid "%1 other"
 msgid_plural "%1 others"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 eile"
+msgstr[1] "%1 eile"
+msgstr[2] "%1 eile"
+msgstr[3] "%1 eile"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 sekundes zvans"
-msgstr[1] "%1 sekunžu zvans"
-msgstr[2] "%1 sekunžu zvans"
+msgstr[0] "Gairm %1 diog"
+msgstr[1] "Gairm %1 dhiog"
+msgstr[2] "Gairm %1 diogan"
+msgstr[3] "Gairm %1 diog"
 
 #: src/qml/Messages.qml:282
 msgid "Add"
-msgstr "Pievienot"
+msgstr "Cuir ris"
 
 #: src/qml/Messages.qml:242
 msgid "Add Contact"
-msgstr "Pievienot kontaktu"
+msgstr "Cuir neach-aithne ris"
 
 #: src/qml/MultiRecipientInput.qml:163
 msgid "Add contacts.."
-msgstr ""
+msgstr "Cuir luchd-aithne ris.."
 
 #: src/qml/MultiRecipientInput.qml:217
 msgid "Add contacts..."
-msgstr ""
+msgstr "Cuir luchd-aithne ris..."
 
 #: src/qml/Messages.qml:214
 msgid "Add to contact"
-msgstr ""
+msgstr "Cuir ris an neach-aithne"
 
 #: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
 msgid "Add to existing contact"
-msgstr "Pievienot jau pastāvošam kontaktam"
+msgstr "Cuir ri neach-aithne a tha ann mu thràth"
 
 #: src/qml/Messages.qml:306
 msgid "Call"
-msgstr "Piezvanīt"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
 msgid "Cancel"
-msgstr "Atcelt"
+msgstr ""
 
 #: src/qml/MainPage.qml:51
 msgid "Compose"
-msgstr "Kompozēt"
+msgstr ""
 
 #: src/qml/Messages.qml:294
 msgid "Contact"
-msgstr "Kontakts"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:59
 msgid "Copy"
-msgstr "Kopēt"
+msgstr ""
 
 #: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
 msgid "Create new contact"
-msgstr "Izveidot jaunu kontaktu"
+msgstr ""
 
 #: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
 msgid "Delete"
-msgstr "Dzēst"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:215
 msgid "Failed"
-msgstr "Neizdevās"
+msgstr ""
 
 #: src/qml/Messages.qml:167
 msgid "How do you want to save the contact?"
@@ -111,7 +117,7 @@ msgstr ""
 
 #: src/qml/MainPage.qml:29
 msgid "Messages"
-msgstr "Ziņas"
+msgstr ""
 
 #: src/messaging-app.desktop.in:3
 msgid "Messaging"
@@ -127,7 +133,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:64
 msgid "New Message"
-msgstr "Jauna Ziņa"
+msgstr ""
 
 #: src/qml/Messages.qml:166
 msgid "Save contact"
@@ -135,7 +141,7 @@ msgstr ""
 
 #: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
 msgid "Select"
-msgstr "Izvēlēties"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:213
 msgid "Sending..."
@@ -143,7 +149,7 @@ msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "Šodien"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:83
 msgid "Try again"
@@ -155,4 +161,4 @@ msgstr ""
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "Vakar"
+msgstr ""
