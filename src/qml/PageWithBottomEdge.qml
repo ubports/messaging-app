@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2014 Canonical, Ltd.
  *
@@ -74,7 +73,7 @@ Page {
     property alias bottomEdgeTitle: tipLabel.text
     property alias bottomEdgeEnabled: bottomEdge.visible
     property int bottomEdgeExpandThreshold: page.height * 0.3
-    property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
+    property int bottomEdgeExposedArea: bottomEdge.state !== "expanded" ? (page.height - bottomEdge.y - tip.height) : _areaWhenExpanded
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
@@ -83,6 +82,7 @@ Page {
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
     property bool _showEdgePageWhenReady: false
+    property int _areaWhenExpanded: 0
 
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()
@@ -96,6 +96,26 @@ Page {
     function setBottomEdgePage(source, properties)
     {
         edgeLoader.setSource(source, properties)
+    }
+
+    function _pushPage()
+    {
+        if (edgeLoader.status === Loader.Ready) {
+            edgeLoader.item.active = true
+            page.pageStack.push(edgeLoader.item)
+            if (edgeLoader.item.flickable) {
+                edgeLoader.item.flickable.contentY = -page.header.height
+                edgeLoader.item.flickable.returnToBounds()
+            }
+            if (edgeLoader.item.ready)
+                edgeLoader.item.ready()
+        }
+    }
+
+    Component.onCompleted: {
+        // avoid a binding on the expanded height value
+        var expandedHeight = height;
+        _areaWhenExpanded = expandedHeight;
     }
 
     onActiveChanged: {
@@ -172,6 +192,7 @@ Page {
                 anchors.fill: parent
                 drag.axis: Drag.YAxis
                 drag.target: bottomEdge
+                drag.minimumY: 0
 
                 onReleased: {
                     page.bottomEdgeReleased()
@@ -222,17 +243,7 @@ Page {
                     }
 
                     ScriptAction {
-                        script: {
-                            edgeLoader.item.active = true
-                            page.pageStack.push(edgeLoader.item)
-                            if (edgeLoader.item.ready)
-                                edgeLoader.item.ready()
-                            edgeLoader.item.forceActiveFocus()
-                            if (edgeLoader.item.flickable) {
-                                edgeLoader.item.flickable.contentY = -page.header.height
-                                edgeLoader.item.flickable.returnToBounds()
-                            }
-                        }
+                        script: page._pushPage()
                     }
                 }
             },
@@ -313,10 +324,12 @@ Page {
                 active: true
                 anchors.fill: parent
                 asynchronous: true
-
-                onLoaded: item.active = false
+                onLoaded: {
+                    if (page.isReady && edgeLoader.item.active != true) {
+                        page._pushPage()
+                    }
+                }
             }
         }
     }
 }
-

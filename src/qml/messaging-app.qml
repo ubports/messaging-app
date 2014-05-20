@@ -32,7 +32,7 @@ MainView {
     property string newPhoneNumber
 
     Component.onCompleted: {
-        Theme.name = "Ubuntu.Components.Themes.SuruGradient"
+        //Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 

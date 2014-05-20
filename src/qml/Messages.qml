@@ -32,6 +32,7 @@ Page {
     id: messages
     objectName: "messagesPage"
     property string threadId: ""
+    property bool newMessage: threadId === ""
     // FIXME: we should get the account ID properly when dealing with multiple accounts
     property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
@@ -43,10 +44,13 @@ Page {
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
     flickable: null
+    __customHeaderContents: newMessage ? newMessageHeader : null
+    property bool isReady: false
     signal ready
     onReady: {
-        if (participants.length === 0)
-            multiRecipient.forceActiveFocus()
+        isReady = true
+        if (participants.length === 0 && keyboardFocus)
+            multiRecipient.forceFocus()
     }
 
     title: {
@@ -168,6 +172,129 @@ Page {
                  }
              }
          }
+    }
+
+    Item {
+        id: newMessageHeader
+        anchors {
+            left: parent.left
+            rightMargin: units.gu(1)
+            right: parent.right
+            bottom: parent.bottom
+            top: parent.top
+        }
+        visible: participants.length == 0 && isReady && messages.active
+        MultiRecipientInput {
+            id: multiRecipient
+            objectName: "multiRecipient"
+            enabled: visible
+            width: childrenRect.width
+            anchors {
+                left: parent.left
+                right: addIcon.left
+                rightMargin: units.gu(1)
+                verticalCenter: parent.verticalCenter
+            }
+        }
+        Icon {
+            id: addIcon
+            visible: multiRecipient.visible
+            height: units.gu(3)
+            width: units.gu(3)
+            anchors {
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+            }
+
+            name: "new-contact"
+            color: "gray"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    var item = keyboard.recursiveFindFocusedItem(messages)
+                    if (item) {
+                        item.focus = false
+                    }
+                    item = keyboard.recursiveFindFocusedItem(newMessageHeader)
+                    if (item) {
+                        item.focus = false
+                    }
+                    PopupUtils.open(addContactToConversationSheet)
+                }
+            }
+        }
+    }
+
+    ContactSearchListView {
+        id: contactSearch
+        property string searchTerm: {
+            if(multiRecipient.searchString !== "" && multiRecipient.focus) {
+                return multiRecipient.searchString
+            }
+            return "some value that won't match"
+        }
+        clip: false
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            leftMargin: units.gu(2)
+            bottomMargin: units.gu(2)
+            rightMargin: units.gu(2)
+        }
+
+        states: [
+            State {
+                name: "empty"
+                when: contactSearch.count == 0
+                PropertyChanges {
+                    target: contactSearch
+                    height: 0
+                }
+            }
+        ]
+
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        filter: UnionFilter {
+            DetailFilter {
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+
+        }
+
+        onDetailClicked: {
+            multiRecipient.addRecipient(detail.number)
+            multiRecipient.clearSearch()
+        }
+        z: 1
+    }
+
+    Rectangle {
+        anchors.fill: contactSearch
+        anchors.leftMargin: -units.gu(2)
+        anchors.rightMargin: -units.gu(2)
+        color: "black"
+        opacity: 0.6
+        z: -1
     }
 
     ContactWatcher {
@@ -367,52 +494,12 @@ Page {
         ascending: false
     }
 
-    Icon {
-        id: addIcon
-        visible: multiRecipient.visible
-        height: units.gu(3)
-        width: units.gu(3)
-        anchors {
-            right: parent.right
-            rightMargin: units.gu(2)
-            top: parent.top
-            topMargin: units.gu(1)
-        }
-
-        name: "new-contact"
-        color: "white"
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                var item = keyboard.recursiveFindFocusedItem(messages)
-                if (item) {
-                    item.focus = false
-                }
-
-                PopupUtils.open(addContactToConversationSheet)
-            }
-        }
-    }
-
-    MultiRecipientInput {
-        id: multiRecipient
-        objectName: "multiRecipient"
-        visible: participants.length == 0
-        enabled: visible
-        anchors {
-            top: parent.top
-            topMargin: units.gu(1)
-            left: parent.left
-            right: addIcon.left
-        }
-    }
-
     MultipleSelectionListView {
         id: messageList
         objectName: "messageList"
         clip: true
         anchors {
-            top: multiRecipient.bottom
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -424,7 +511,7 @@ Page {
         footer: Item {
             height: units.gu(2)
         }
-        listModel: threadId !== "" ? sortProxy : null
+        listModel: !newMessage ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
         highlightFollowsCurrentItem: false
@@ -477,10 +564,10 @@ Page {
     Item {
         id: bottomPanel
         anchors.bottom: keyboard.top
-        anchors.bottomMargin: selectionMode ? 0 : units.gu(2)
+        //anchors.bottomMargin: selectionMode ? 0 : units.gu(2)
         anchors.left: parent.left
         anchors.right: parent.right
-        height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(4)
+        height: selectionMode ? 0 : textEntry.height + units.gu(2)
         visible: !selectionMode
         clip: true
 
@@ -493,13 +580,13 @@ Page {
         }
         TextArea {
             id: textEntry
-            anchors.bottomMargin: units.gu(2)
-            anchors.bottom: attachButton.top
+            anchors.bottomMargin: units.gu(1)
+            anchors.bottom: parent.bottom
             anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
-            height: units.gu(5)
+            anchors.leftMargin: units.gu(1)
+            anchors.right: sendButton.left
+            anchors.rightMargin: units.gu(1)
+            height: units.gu(4)
             autoSize: true
             placeholderText: i18n.tr("Write a message...")
             focus: false
@@ -520,23 +607,24 @@ Page {
             }
         }
 
-        Button {
-            id: attachButton
-            anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
-            anchors.bottom: parent.bottom
-            text: "Attach"
-            width: units.gu(17)
-            color: "gray"
-            visible: false
-        }
+//        Button {
+//            id: attachButton
+//            anchors.left: parent.left
+//            anchors.leftMargin: units.gu(2)
+//            anchors.bottom: parent.bottom
+//            text: "Attach"
+//            width: units.gu(17)
+//            color: "gray"
+//            visible: false
+//        }
 
         Button {
+            id: sendButton
+            anchors.verticalCenter: textEntry.verticalCenter
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
-            anchors.bottom: parent.bottom
+            anchors.rightMargin: units.gu(1)
             text: "Send"
-            width: units.gu(17)
+            width: units.gu(7)
             enabled: (textEntry.text != "" || textEntry.inputMethodComposing) && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
             onClicked: {
                 // make sure we flush everything we have prepared in the OSK preedit
@@ -554,7 +642,7 @@ Page {
                     messages.accountId = telepathyHelper.accountIds[0]
                 }
 
-                if (messages.threadId == "") {
+                if (messages.newMessage) {
                     // create the new thread and get the threadId
                     messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
                                                                             HistoryThreadModel.EventTypeText,
