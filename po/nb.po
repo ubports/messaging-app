@@ -8,29 +8,29 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2014-05-15 17:19+0000\n"
+"PO-Revision-Date: 2014-05-19 09:27+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-22 06:49+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anrop på %1 time"
+msgstr[1] "Anrop på %1 timer"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anrop på %1 minutt"
+msgstr[1] "Anrop på %1 minutter"
 
 #: src/qml/Messages.qml:61
 #, qt-format
@@ -43,8 +43,8 @@ msgstr[1] "%1 andre"
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anrop på %1 sekund"
+msgstr[1] "Anrop på %1 sekunder"
 
 #: src/qml/Messages.qml:282
 msgid "Add"

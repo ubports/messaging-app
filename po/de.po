@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2013-10-15 10:05+0000\n"
-"Last-Translator: Phillip Sz <Unknown>\n"
+"PO-Revision-Date: 2014-05-20 13:36+0000\n"
+"Last-Translator: Michael Hahn <michaelr.hahn97@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-22 06:49+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -48,23 +48,23 @@ msgstr[1] "Anfrufdauer %1 Sekunden"
 
 #: src/qml/Messages.qml:282
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: src/qml/Messages.qml:242
 msgid "Add Contact"
-msgstr ""
+msgstr "Kontakt hinzufügen"
 
 #: src/qml/MultiRecipientInput.qml:163
 msgid "Add contacts.."
-msgstr ""
+msgstr "Kontakte hinzufügen …"
 
 #: src/qml/MultiRecipientInput.qml:217
 msgid "Add contacts..."
-msgstr ""
+msgstr "Kontakte hinzufügen …"
 
 #: src/qml/Messages.qml:214
 msgid "Add to contact"
-msgstr ""
+msgstr "Zu Kontakt hinzufügen"
 
 #: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
 msgid "Add to existing contact"
@@ -76,7 +76,7 @@ msgstr "Anruf"
 
 #: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: src/qml/MainPage.qml:51
 msgid "Compose"
@@ -88,7 +88,7 @@ msgstr "Kontakt"
 
 #: src/qml/MessageDelegate.qml:59
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
 msgid "Create new contact"
@@ -100,11 +100,11 @@ msgstr "Löschen"
 
 #: src/qml/MessageDelegate.qml:215
 msgid "Failed"
-msgstr ""
+msgstr "Fehlgeschlagen"
 
 #: src/qml/Messages.qml:167
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "Wie möchten Sie den Kontakt speichern?"
 
 #: src/qml/MainPage.qml:29
 msgid "Messages"
@@ -128,7 +128,7 @@ msgstr "Neue Nachricht"
 
 #: src/qml/Messages.qml:166
 msgid "Save contact"
-msgstr ""
+msgstr "Kontakt speichern"
 
 #: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
 msgid "Select"
@@ -136,7 +136,7 @@ msgstr "Auswählen"
 
 #: src/qml/MessageDelegate.qml:213
 msgid "Sending..."
-msgstr ""
+msgstr "Wird gesendet …"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -144,7 +144,7 @@ msgstr "Heute"
 
 #: src/qml/MessageDelegate.qml:83
 msgid "Try again"
-msgstr ""
+msgstr "Erneut versuchen"
 
 #: src/qml/Messages.qml:474
 msgid "Write a message..."

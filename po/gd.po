@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2014-05-17 21:21+0000\n"
+"PO-Revision-Date: 2014-05-19 10:34+0000\n"
 "Last-Translator: Akerbeltz <fios@akerbeltz.org>\n"
 "Language-Team: Gaelic; Scottish <gd@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-05-18 05:57+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-22 06:49+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -81,84 +81,84 @@ msgstr "Cuir ri neach-aithne a tha ann mu thràth"
 
 #: src/qml/Messages.qml:306
 msgid "Call"
-msgstr ""
+msgstr "Gairm"
 
 #: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
 msgid "Cancel"
-msgstr ""
+msgstr "Sguir dheth"
 
 #: src/qml/MainPage.qml:51
 msgid "Compose"
-msgstr ""
+msgstr "Sgrìobh"
 
 #: src/qml/Messages.qml:294
 msgid "Contact"
-msgstr ""
+msgstr "Neach-aithne"
 
 #: src/qml/MessageDelegate.qml:59
 msgid "Copy"
-msgstr ""
+msgstr "Dèan lethbhreac"
 
 #: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
 msgid "Create new contact"
-msgstr ""
+msgstr "Cruthaich neach-aithne ùr"
 
 #: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
 msgid "Delete"
-msgstr ""
+msgstr "Sguab às"
 
 #: src/qml/MessageDelegate.qml:215
 msgid "Failed"
-msgstr ""
+msgstr "Dh'fhàillig e"
 
 #: src/qml/Messages.qml:167
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "Ciamar a shàbhaileas sinn an neach-aithne dhut?"
 
 #: src/qml/MainPage.qml:29
 msgid "Messages"
-msgstr ""
+msgstr "Teachdaireachdan"
 
 #: src/messaging-app.desktop.in:3
 msgid "Messaging"
-msgstr ""
+msgstr "Teachdaireachdan"
 
 #: src/messaging-app.desktop.in:4
 msgid "Messaging App"
-msgstr ""
+msgstr "Aplacaid nan teachdaireachdan"
 
 #: src/messaging-app.desktop.in:5
 msgid "Messaging application"
-msgstr ""
+msgstr "Aplacaid nan teachdaireachdan"
 
 #: src/qml/Messages.qml:64
 msgid "New Message"
-msgstr ""
+msgstr "Teachdaireachd ùr"
 
 #: src/qml/Messages.qml:166
 msgid "Save contact"
-msgstr ""
+msgstr "Sàbhail an neach-aithne"
 
 #: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
 msgid "Select"
-msgstr ""
+msgstr "Tagh"
 
 #: src/qml/MessageDelegate.qml:213
 msgid "Sending..."
-msgstr ""
+msgstr "'Ga chur..."
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr ""
+msgstr "An-diugh"
 
 #: src/qml/MessageDelegate.qml:83
 msgid "Try again"
-msgstr ""
+msgstr "Feuch ris a-rithist"
 
 #: src/qml/Messages.qml:474
 msgid "Write a message..."
-msgstr ""
+msgstr "Sgrìobh teachdaireachd..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr ""
+msgstr "An-dè"
