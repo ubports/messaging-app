@@ -1,3 +1,10 @@
+messaging-app (0.1+14.10.20140522-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Add initial mms support (images and videos) .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 22 May 2014 21:54:40 +0000
+
 messaging-app (0.1+14.10.20140512-0ubuntu1) utopic; urgency=low
 
   [ Ubuntu daily release ]
