@@ -225,28 +225,59 @@ Page {
         }
     }
 
-    ContactSearchListView {
+    ContactSimpleListView {
         id: contactSearch
+        Item {
+            id: root
+            property string manager: "galera"
+        }
+        property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
+        visible: searchEnabled
+        onSearchTermChanged: currentContactExpanded = -1
+        detailToPick: ContactDetail.PhoneNumber
         property string searchTerm: {
             if(multiRecipient.searchString !== "" && multiRecipient.focus) {
                 return multiRecipient.searchString
             }
             return "some value that won't match"
         }
-        clip: false
+        listModel: ContactModel {
+            manager: contactSearch.manager
+            sortOrders: contactSearch.sortOrders
+            fetchHint: contactSearch.fetchHint
+            filter: UnionFilter {
+                DetailFilter {
+                    detail: ContactDetail.DisplayLabel
+                    field: DisplayLabel.Label
+                    value: contactSearch.searchTerm
+                    matchFlags: DetailFilter.MatchContains
+                }
+                DetailFilter {
+                    detail: ContactDetail.PhoneNumber
+                    field: PhoneNumber.Number
+                    value: contactSearch.searchTerm
+                    matchFlags: DetailFilter.MatchPhoneNumber
+                }
+
+                DetailFilter {
+                    detail: ContactDetail.PhoneNumber
+                    field: PhoneNumber.Number
+                    value: contactSearch.searchTerm
+                    matchFlags: DetailFilter.MatchContains
+                }
+            }
+        }
+        clip: true
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
-            leftMargin: units.gu(2)
-            bottomMargin: units.gu(2)
-            rightMargin: units.gu(2)
+            bottom: bottomPanel.top
         }
-
         states: [
             State {
                 name: "empty"
-                when: contactSearch.count == 0
+                when: contactSearch.count === 0
                 PropertyChanges {
                     target: contactSearch
                     height: 0
@@ -257,44 +288,11 @@ Page {
         Behavior on height {
             UbuntuNumberAnimation { }
         }
-
-        filter: UnionFilter {
-            DetailFilter {
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-        }
-
         onDetailClicked: {
             multiRecipient.addRecipient(detail.number)
             multiRecipient.clearSearch()
         }
         z: 1
-    }
-
-    Rectangle {
-        anchors.fill: contactSearch
-        anchors.leftMargin: -units.gu(2)
-        anchors.rightMargin: -units.gu(2)
-        color: "black"
-        opacity: 0.6
-        z: -1
     }
 
     ContactWatcher {

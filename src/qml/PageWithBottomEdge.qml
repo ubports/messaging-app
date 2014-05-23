@@ -153,38 +153,46 @@ Page {
                 right: parent.right
                 top: parent.top
             }
-            height: units.gu(4)
+            height: units.gu(3.5)
             z: 1
+            clip: true
 
             opacity: state !== "expanded" ? 1.0 : 0
 
             Rectangle {
                 id: shadow
                 anchors {
-                    top: parent.top
+                    bottom: parent.bottom
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(1)
+                height: units.gu(0.7)
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.7) }
+                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.2) }
                 }
-                opacity: bottomEdge.state != "collapsed" ? 1.0 : 0.0
+
                 Behavior on opacity {
                     UbuntuNumberAnimation { }
                 }
             }
 
-            Rectangle {
+            UbuntuShape {
                 anchors {
-                    fill: parent
-                    topMargin: units.gu(1)
+                    top: parent.top
+                    horizontalCenter: parent.horizontalCenter
                 }
-                color: UbuntuColors.coolGrey
+                width: tipLabel.width + units.gu(6)
+                height: units.gu(7)
+                color: Theme.palette.normal.overlay
                 Label {
                     id: tipLabel
-                    anchors.centerIn: parent
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        bottom: parent.verticalCenter
+                        bottomMargin: units.gu(0.5)
+                    }
+
                 }
             }
 
