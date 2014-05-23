@@ -205,3 +205,14 @@ void MessagingApplication::activateWindow()
         m_view->requestActivate();
     }
 }
+
+QString MessagingApplication::readTextFile(const QString &fileName) {
+    QString text;
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return QString();
+    }
+    text = QString(file.readAll());
+    file.close();
+    return text;
+}

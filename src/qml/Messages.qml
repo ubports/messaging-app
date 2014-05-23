@@ -22,6 +22,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
@@ -42,6 +43,36 @@ Page {
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
+    property var activeTransfer: null
+    property var attachments: []
+    Connections {
+        target: activeTransfer !== null ? activeTransfer : null
+        onStateChanged: {
+            console.log("1")
+            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
+                        (activeTransfer.state === ContentTransfer.Aborted));
+
+            if (activeTransfer.state === ContentTransfer.Charged) {
+
+                console.log("2")
+                if (activeTransfer.items.length > 0) {
+                    console.log("3")
+                    var attachment = []
+                    attachment.push("imageid")
+                    attachment.push("image/jpg")
+                    attachment.push(activeTransfer.items[0].url)
+                    console.log(activeTransfer.items[0].url)
+                    attachments.push(attachment)
+                }
+            }
+console.log("4")
+//            if (done) {
+//                PopupUtils.close(changeButton.loadingDialog)
+//                changeButton.loadingDialog = null
+//            }
+        }
+    }
+
     flickable: null
     title: {
         if (landscape) {
@@ -80,6 +111,13 @@ Page {
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    ContentPeer {
+        id: defaultSource
+        contentType: ContentType.Pictures
+        handler: ContentHandler.Source
+        selectionType: ContentTransfer.Single
     }
 
     Component {
@@ -497,7 +535,10 @@ Page {
             text: "Attach"
             width: units.gu(17)
             color: "gray"
-            visible: false
+            visible: true
+            onClicked: {
+                activeTransfer = defaultSource.request();
+            }
         }
 
         Button {
@@ -532,6 +573,13 @@ Page {
                                                                             true)
                 }
                 messages.pendingMessage = true
+                if (messages.attachments.length > 0) {
+                    chatManager.sendMMS(participants, textEntry.text, messages.attachments, messages.accountId)
+                    textEntry.text = ""
+                    messages.attachments = []
+                    return
+                }
+
                 chatManager.sendMessage(participants, textEntry.text, messages.accountId)
                 textEntry.text = ""
             }
