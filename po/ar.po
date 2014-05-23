@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2013-10-21 19:35+0000\n"
+"PO-Revision-Date: 2014-05-22 08:50+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-23 09:13+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -45,8 +45,12 @@ msgstr[5] "اتصال %1 دقيقة"
 #, qt-format
 msgid "%1 other"
 msgid_plural "%1 others"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "لا آخرين (%1)"
+msgstr[1] "واحد آخر (%1)"
+msgstr[2] "أثنين آخرين (%1)"
+msgstr[3] "%1 آخرين"
+msgstr[4] "%1 آخرين"
+msgstr[5] "%1 آخرين"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
@@ -61,23 +65,23 @@ msgstr[5] "اتصال %1 ثانية"
 
 #: src/qml/Messages.qml:282
 msgid "Add"
-msgstr ""
+msgstr "إضافة"
 
 #: src/qml/Messages.qml:242
 msgid "Add Contact"
-msgstr ""
+msgstr "إضافة شخص"
 
 #: src/qml/MultiRecipientInput.qml:163
 msgid "Add contacts.."
-msgstr ""
+msgstr "إضافة أشخاص.."
 
 #: src/qml/MultiRecipientInput.qml:217
 msgid "Add contacts..."
-msgstr ""
+msgstr "إضافة أشخاص..."
 
 #: src/qml/Messages.qml:214
 msgid "Add to contact"
-msgstr ""
+msgstr "إضافة إلى شخص"
 
 #: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
 msgid "Add to existing contact"
@@ -89,7 +93,7 @@ msgstr "اتصل"
 
 #: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
 msgid "Cancel"
-msgstr ""
+msgstr "إلغاء"
 
 #: src/qml/MainPage.qml:51
 msgid "Compose"
@@ -101,7 +105,7 @@ msgstr "شخص"
 
 #: src/qml/MessageDelegate.qml:59
 msgid "Copy"
-msgstr ""
+msgstr "نسخ"
 
 #: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
 msgid "Create new contact"
@@ -113,11 +117,11 @@ msgstr "احذف"
 
 #: src/qml/MessageDelegate.qml:215
 msgid "Failed"
-msgstr ""
+msgstr "فشل"
 
 #: src/qml/Messages.qml:167
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "كيف ترغب بحفظ الشخص؟"
 
 #: src/qml/MainPage.qml:29
 msgid "Messages"
@@ -141,7 +145,7 @@ msgstr "رسالة جديدة"
 
 #: src/qml/Messages.qml:166
 msgid "Save contact"
-msgstr ""
+msgstr "حفظ الشخص"
 
 #: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
 msgid "Select"
@@ -149,7 +153,7 @@ msgstr "اختر"
 
 #: src/qml/MessageDelegate.qml:213
 msgid "Sending..."
-msgstr ""
+msgstr "يرسِل..."
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -157,7 +161,7 @@ msgstr "اليوم"
 
 #: src/qml/MessageDelegate.qml:83
 msgid "Try again"
-msgstr ""
+msgstr "أعِد المحاولة"
 
 #: src/qml/Messages.qml:474
 msgid "Write a message..."
