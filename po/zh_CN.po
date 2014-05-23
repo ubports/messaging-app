@@ -8,148 +8,144 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2013-10-11 14:18+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-05-22 12:33+0000\n"
+"Last-Translator: Anthony Wong <anthony.wong@ubuntu.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:15+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-23 09:13+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 小时通话"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 分钟通话"
 
 #: src/qml/Messages.qml:61
 #, qt-format
 msgid "%1 other"
 msgid_plural "%1 others"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 其他"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 秒通话"
 
 #: src/qml/Messages.qml:282
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: src/qml/Messages.qml:242
 msgid "Add Contact"
-msgstr ""
+msgstr "添加联系人"
 
 #: src/qml/MultiRecipientInput.qml:163
 msgid "Add contacts.."
-msgstr ""
+msgstr "添加联系人.."
 
 #: src/qml/MultiRecipientInput.qml:217
 msgid "Add contacts..."
-msgstr ""
+msgstr "添加联系人..."
 
 #: src/qml/Messages.qml:214
 msgid "Add to contact"
-msgstr ""
+msgstr "添加到联系人"
 
 #: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
 msgid "Add to existing contact"
-msgstr ""
+msgstr "添加到已有联系人"
 
 #: src/qml/Messages.qml:306
 msgid "Call"
-msgstr ""
+msgstr "拨号"
 
 #: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/qml/MainPage.qml:51
 msgid "Compose"
-msgstr ""
+msgstr "编写"
 
 #: src/qml/Messages.qml:294
 msgid "Contact"
-msgstr ""
+msgstr "联系人"
 
 #: src/qml/MessageDelegate.qml:59
 msgid "Copy"
-msgstr ""
+msgstr "复制"
 
 #: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
 msgid "Create new contact"
-msgstr ""
+msgstr "创建新联系人"
 
 #: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: src/qml/MessageDelegate.qml:215
 msgid "Failed"
-msgstr ""
+msgstr "失败"
 
 #: src/qml/Messages.qml:167
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "怎样保存联系人？"
 
 #: src/qml/MainPage.qml:29
 msgid "Messages"
-msgstr ""
+msgstr "信息"
 
 #: src/messaging-app.desktop.in:3
 msgid "Messaging"
-msgstr ""
+msgstr "信息"
 
 #: src/messaging-app.desktop.in:4
 msgid "Messaging App"
-msgstr ""
+msgstr "信息应用"
 
 #: src/messaging-app.desktop.in:5
 msgid "Messaging application"
-msgstr ""
+msgstr "信息应用"
 
 #: src/qml/Messages.qml:64
 msgid "New Message"
-msgstr ""
+msgstr "新信息"
 
 #: src/qml/Messages.qml:166
 msgid "Save contact"
-msgstr ""
+msgstr "保存联系人"
 
 #: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: src/qml/MessageDelegate.qml:213
 msgid "Sending..."
-msgstr ""
+msgstr "正在发送..."
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 #: src/qml/MessageDelegate.qml:83
 msgid "Try again"
-msgstr ""
+msgstr "请重试"
 
 #: src/qml/Messages.qml:474
 msgid "Write a message..."
-msgstr ""
+msgstr "编写新信息..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr ""
+msgstr "昨天"
