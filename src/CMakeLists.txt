@@ -1,5 +1,7 @@
 set(MESSAGING_APP messaging-app)
 
+add_definitions(-DI18N_DIRECTORY="${CMAKE_INSTALL_PREFIX}/share/locale")
+
 set(messaging_app_HDRS
     messagingapplication.h
     )

@@ -33,6 +33,8 @@ MainView {
 
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
+        i18n.domain = "messaging-app"
+        i18n.bindtextdomain("messaging-app", i18nDirectory)
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
