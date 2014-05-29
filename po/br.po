@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2014-05-16 08:48+0000\n"
+"PO-Revision-Date: 2014-05-28 06:06+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-05-29 05:49+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -30,7 +30,7 @@ msgstr[1] "%1 eurvezh o pellgomz"
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
 msgstr[0] "%1 vunutenn o pellgomz"
-msgstr[1] "%1 munut o pellgomz"
+msgstr[1] "%1 a vunutoù o pellgomz"
 
 #: src/qml/Messages.qml:61
 #, qt-format
