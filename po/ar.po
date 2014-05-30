@@ -1,156 +1,172 @@
-# Brazilian Portuguese translation for messaging-app
-# Copyright (c) 2013 Canonical Ltd 2013
+# Arabic translation for messaging-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the messaging-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2013-10-04 06:48+0000\n"
-"Last-Translator: Tiago Hillebrandt <tiagohillebrandt@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"PO-Revision-Date: 2014-05-22 08:50+0000\n"
+"Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
+"Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
-"Language: pt_BR\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
+"3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
+"X-Launchpad-Export-Date: 2014-05-24 06:52+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "chamada de %1 hora"
-msgstr[1] "chamada de %1 horas"
+msgstr[0] "اتصال أقل من ساعة (%1)"
+msgstr[1] "اتصال ساعة واحدة (%1)"
+msgstr[2] "اتصال ساعتان (%1)"
+msgstr[3] "اتصال %1 ساعات"
+msgstr[4] "اتصال %1 ساعة"
+msgstr[5] "اتصال %1 ساعة"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "chamada de %1 minuto"
-msgstr[1] "chamada de %1 minutos"
+msgstr[0] "اتصال أقل من دقيقة (%1)"
+msgstr[1] "اتصال دقيقة واحدة (%1)"
+msgstr[2] "اتصال دقيقتان (%1)"
+msgstr[3] "اتصال %1 دقائق"
+msgstr[4] "اتصال %1 دقيقة"
+msgstr[5] "اتصال %1 دقيقة"
 
 #: src/qml/Messages.qml:61
 #, qt-format
 msgid "%1 other"
 msgid_plural "%1 others"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "لا آخرين (%1)"
+msgstr[1] "واحد آخر (%1)"
+msgstr[2] "أثنين آخرين (%1)"
+msgstr[3] "%1 آخرين"
+msgstr[4] "%1 آخرين"
+msgstr[5] "%1 آخرين"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "chamada de %1 segundo"
-msgstr[1] "chamada de %1 segundos"
+msgstr[0] "اتصال أقل من ثانية (%1)"
+msgstr[1] "اتصال ثانية واحدة (%1)"
+msgstr[2] "اتصال ثانيتين (%1)"
+msgstr[3] "اتصال %1 ثوان"
+msgstr[4] "اتصال %1 ثانية"
+msgstr[5] "اتصال %1 ثانية"
 
 #: src/qml/Messages.qml:282
 msgid "Add"
-msgstr ""
+msgstr "إضافة"
 
 #: src/qml/Messages.qml:242
 msgid "Add Contact"
-msgstr ""
+msgstr "إضافة شخص"
 
 #: src/qml/MultiRecipientInput.qml:163
 msgid "Add contacts.."
-msgstr ""
+msgstr "إضافة أشخاص.."
 
 #: src/qml/MultiRecipientInput.qml:217
 msgid "Add contacts..."
-msgstr ""
+msgstr "إضافة أشخاص..."
 
 #: src/qml/Messages.qml:214
 msgid "Add to contact"
-msgstr ""
+msgstr "إضافة إلى شخص"
 
 #: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
 msgid "Add to existing contact"
-msgstr "Adicionar para contato existente"
+msgstr "أضف إلى شخص موجود"
 
 #: src/qml/Messages.qml:306
 msgid "Call"
-msgstr "Chamar"
+msgstr "اتصل"
 
 #: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
 msgid "Cancel"
-msgstr ""
+msgstr "إلغاء"
 
 #: src/qml/MainPage.qml:51
 msgid "Compose"
-msgstr "Escrever"
+msgstr "أنشئ"
 
 #: src/qml/Messages.qml:294
 msgid "Contact"
-msgstr "Contato"
+msgstr "شخص"
 
 #: src/qml/MessageDelegate.qml:59
 msgid "Copy"
-msgstr ""
+msgstr "نسخ"
 
 #: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
 msgid "Create new contact"
-msgstr "Criar novo contato"
+msgstr "أنشئ شخصا جديدا"
 
 #: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
 msgid "Delete"
-msgstr "Excluir"
+msgstr "احذف"
 
 #: src/qml/MessageDelegate.qml:215
 msgid "Failed"
-msgstr ""
+msgstr "فشل"
 
 #: src/qml/Messages.qml:167
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "كيف ترغب بحفظ الشخص؟"
 
 #: src/qml/MainPage.qml:29
 msgid "Messages"
-msgstr "Conversas"
+msgstr "الرسائل"
 
 #: src/messaging-app.desktop.in:3
 msgid "Messaging"
-msgstr "Mensagens"
+msgstr "التراسل"
 
 #: src/messaging-app.desktop.in:4
 msgid "Messaging App"
-msgstr "App de mensagens"
+msgstr "تطبيق التراسل"
 
 #: src/messaging-app.desktop.in:5
 msgid "Messaging application"
-msgstr "Aplicativo de mensagens"
+msgstr "تطبيق التراسل"
 
 #: src/qml/Messages.qml:64
 msgid "New Message"
-msgstr "Nova mensagem"
+msgstr "رسالة جديدة"
 
 #: src/qml/Messages.qml:166
 msgid "Save contact"
-msgstr ""
+msgstr "حفظ الشخص"
 
 #: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
 msgid "Select"
-msgstr "Selecionar"
+msgstr "اختر"
 
 #: src/qml/MessageDelegate.qml:213
 msgid "Sending..."
-msgstr ""
+msgstr "يرسِل..."
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "Hoje"
+msgstr "اليوم"
 
 #: src/qml/MessageDelegate.qml:83
 msgid "Try again"
-msgstr ""
+msgstr "أعِد المحاولة"
 
 #: src/qml/Messages.qml:474
 msgid "Write a message..."
-msgstr "Escrever uma mensagem..."
+msgstr "اكتب رسالة..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "Ontem"
+msgstr "أمس"
