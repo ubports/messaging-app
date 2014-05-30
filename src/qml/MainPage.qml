@@ -28,7 +28,7 @@ PageWithBottomEdge {
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false
     tools: selectionMode ? selectionToolbar : searching ? searchToolbar : regularToolbar
-    title: selectionMode ? i18n.tr("Edit") : i18n.tr("Messages")
+    title: selectionMode ? i18n.tr("Edit") : i18n.tr("Chats")
     __customHeaderContents: mainPage.searching ? searchField : null
 
     bottomEdgeEnabled: !selectionMode
@@ -36,7 +36,7 @@ PageWithBottomEdge {
         active: false
     }
 
-    bottomEdgeTitle: i18n.tr("New Message")
+    bottomEdgeTitle: i18n.tr("New Chat")
     property alias threadCount: threadList.count
 
     function startSelection() {
@@ -155,13 +155,16 @@ PageWithBottomEdge {
                 anchors.verticalCenter: parent.verticalCenter
                 fontSize: "medium"
                 elide: Text.ElideRight
-                color: "gray"
-                opacity: 0.6
+                color: "#5d5d5d"
+                //opacity: 0.6
                 text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
                 verticalAlignment: Text.AlignVCenter
             }
             ListItem.ThinDivider {
+                anchors.leftMargin: units.gu(2)
+                anchors.rightMargin: units.gu(2)
                 anchors.bottom: parent.bottom
+                opacity: 0.6
             }
         }
     }
@@ -169,9 +172,16 @@ PageWithBottomEdge {
     MultipleSelectionListView {
         id: threadList
         objectName: "threadList"
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
+
         listModel: sortProxy
         section.property: "eventDate"
+        spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
@@ -207,6 +217,10 @@ PageWithBottomEdge {
             }
         }
 
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     Scrollbar {

@@ -67,7 +67,7 @@ StyledItem {
         onCountChanged: {
             var i
             var tmp = []
-            for(i = 1; i< recipientModel.count-1; i++) {
+            for(i = 0; i< recipientModel.count-1; i++) {
                 tmp.push(recipientModel.get(i).phoneNumber)
             }
             recipients = tmp
@@ -77,6 +77,7 @@ StyledItem {
             searchItem: true
         }
     }
+
     Flickable {
         id: scrollableArea
         anchors.fill: parent
@@ -94,7 +95,7 @@ StyledItem {
 
             Component {
                 id: contactDelegate
-                Button {
+                Label {
                     property string contactName: {
                         if (contactWatcher.isUnknown) {
                             return contactWatcher.phoneNumber
@@ -106,10 +107,14 @@ StyledItem {
                     property bool selected: selectedIndex == index
                     height: units.gu(4)
                     visible: height != 0
-                    color: selected ? UbuntuColors.warmGrey : UbuntuColors.orange
+                    //color: selected ? UbuntuColors.warmGrey : UbuntuColors.orange
                     text: contactName
-                    onClicked: selectedIndex == index ? selectedIndex = -1 : selectedIndex = index
-
+                    //onClicked: selectedIndex == index ? selectedIndex = -1 : selectedIndex = index
+                    font.pixelSize: FontUtils.sizeToPixels("medium")
+                    font.family: "Ubuntu"
+                    font.weight: Font.Light
+                    color: "#752571"
+                    verticalAlignment: Text.AlignVCenter
                     ContactWatcher {
                         id: contactWatcher
                     }
@@ -128,9 +133,10 @@ StyledItem {
                     hasClearButton: false
                     clip: false
                     placeholderText: i18n.tr("Add contacts..")
-                    color: UbuntuColors.warmGrey
-                    font.pixelSize: FontUtils.sizeToPixels("large")
                     font.family: "Ubuntu"
+                    font.weight: Font.Light
+                    color: "#752571"
+                    font.pixelSize: FontUtils.sizeToPixels("medium")
                     inputMethodHints: Qt.ImhNoPredictiveText
                     onActiveFocusChanged: {
                         if (!activeFocus && text !== "") {
@@ -163,6 +169,12 @@ StyledItem {
                             } else {
                                 recipientModel.remove(recipientCount-1)
                             }
+                        } if (event.key === Qt.Key_Comma) {
+                            if (text == "")
+                                return
+                            addRecipient(text)
+                            text = ""
+                            event.accepted = true
                         } else {
                             if (selectedIndex != -1) {
                                 recipientModel.remove(selectedIndex)

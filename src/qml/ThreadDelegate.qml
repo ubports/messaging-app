@@ -45,6 +45,7 @@ ListItem.Empty {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
+    showDivider: false
     // WORKAROUND: history-service can't filter by contact names
     onSearchTermChanged: {
         var found = false
@@ -106,22 +107,49 @@ ListItem.Empty {
 
     UbuntuShape {
         id: avatar
+        property bool defaultAvatar: delegateHelper.avatar === "" && !unknownContact
         height: units.gu(6)
         width: units.gu(6)
         radius: "medium"
+        color: Theme.palette.normal.overlay
         anchors {
             left: parent.left
             leftMargin: units.gu(2)
             verticalCenter: parent.verticalCenter
         }
         image: Image {
-            property bool defaultAvatar: unknownContact || delegateHelper.avatar === ""
+            id: avatarImage
+            visible: delegateHelper.avatar !== ""
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
-            source: defaultAvatar ? Qt.resolvedUrl("assets/contact_defaulticon.png") : delegateHelper.avatar
+            source: delegateHelper.avatar
             asynchronous: true
-            sourceSize.width: defaultAvatar ? undefined : width * 1.5
-            sourceSize.height: defaultAvatar ? undefined : height * 1.5
+            sourceSize.width: width * 1.5
+            sourceSize.height: height * 1.5
+        }
+
+        Label {
+            property string avatarLabel: {
+                if (unknownContact) {
+                    return ""
+                }
+
+                var nameArray = delegateHelper.alias.split(" ")
+                var finalName = ""
+                if (nameArray.length === 1) {
+                    finalName = nameArray[0][0]
+                } else if (nameArray.length > 1) {
+                    finalName = nameArray[0][0] + nameArray[1][0]
+                }
+                return finalName
+            }
+            visible: avatar.defaultAvatar
+            color: "#752571"
+            anchors.centerIn: parent
+            fontSize: "medium"
+            text: avatarLabel
+            font.weight: Font.Light
+            font.capitalization: Font.AllUppercase
         }
     }
 
@@ -129,10 +157,13 @@ ListItem.Empty {
         id: contactName
         anchors {
             top: avatar.top
+            topMargin: units.gu(0.5)
             left: avatar.right
-            leftMargin: units.gu(2)
+            leftMargin: units.gu(1)
         }
+        font.weight: Font.Light
         fontSize: "medium"
+        color: "#752571"
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
@@ -141,40 +172,41 @@ ListItem.Empty {
         anchors {
             verticalCenter: contactName.verticalCenter
             right: selection.left
-            rightMargin: units.gu(3)
+            rightMargin: units.gu(2)
         }
         fontSize: "x-small"
-        color: "white"
-        text: Qt.formatDateTime(eventTimestamp,"hh:mm AP")
+        color: "#5d5d5d"
+        text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
     }
 
-    Label {
-        id: phoneType
-        anchors {
-            top: contactName.bottom
-            left: contactName.left
-        }
-        text: delegateHelper.phoneNumberSubTypeLabel
-        color: "gray"
-        fontSize: "x-small"
-    }
+//    Label {
+//        id: phoneType
+//        anchors {
+//            top: contactName.bottom
+//            left: contactName.left
+//        }
+//        text: delegateHelper.phoneNumberSubTypeLabel
+//        color: "gray"
+//        fontSize: "x-small"
+//    }
 
     Label {
         id: latestMessage
         height: units.gu(3)
         anchors {
-            top: phoneType.bottom
+            top: contactName.bottom
             topMargin: units.gu(0.5)
-            left: phoneType.left
-            right: selection.left
+            left: contactName.left
+            right: time.left
             rightMargin: units.gu(3)
         }
         elide: Text.ElideRight
         maximumLineCount: 2
-        fontSize: "small"
+        fontSize: "x-small"
         wrapMode: Text.WordWrap
         text: eventTextMessage == undefined ? "" : eventTextMessage
-        opacity: 0.2
+        font.weight: Font.Light
+        //opacity: 0.2
     }
     onItemRemoved: {
         threadModel.removeThread(accountId, threadId, type)

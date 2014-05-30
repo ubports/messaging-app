@@ -174,6 +174,39 @@ Page {
          }
     }
 
+    Component {
+        id: phoneNumberPicker
+        ContactListView {
+            anchors.fill: parent
+            detailToPick: ContactDetail.PhoneNumber
+        }
+    }
+
+    Page {
+        id: newRecipientPage
+        active: false
+        visible: false
+        title: i18n.tr("Add recipient")
+        Loader {
+            id: contactListLoader
+            anchors.fill: parent
+            active: newRecipientPage.visible
+            sourceComponent: phoneNumberPicker
+            Connections {
+                target: contactListLoader.item ? contactListLoader.item : null
+                onDetailClicked: {
+                    if (action === "message" || action === "") {
+                        multiRecipient.addRecipient(detail.number)
+                        multiRecipient.forceActiveFocus()
+                    } else if (action === "call") {
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+                    }
+                    mainStack.pop()
+                }
+            }
+        }
+    }
+
     Item {
         id: newMessageHeader
         anchors {
@@ -219,7 +252,10 @@ Page {
                     if (item) {
                         item.focus = false
                     }
-                    PopupUtils.open(addContactToConversationSheet)
+                    mainStack.push(newRecipientPage, {})
+                    newRecipientPage.active = true
+                    newRecipientPage.visible = true
+                    //PopupUtils.open(addContactToConversationSheet)
                 }
             }
         }
@@ -289,8 +325,13 @@ Page {
             UbuntuNumberAnimation { }
         }
         onDetailClicked: {
-            multiRecipient.addRecipient(detail.number)
-            multiRecipient.clearSearch()
+            if (action === "message" || action === "") {
+                multiRecipient.addRecipient(detail.number)
+                multiRecipient.clearSearch()
+                multiRecipient.forceActiveFocus()
+            } else if (action === "call") {
+                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+            }
         }
         z: 1
     }
@@ -309,11 +350,11 @@ Page {
         DefaultSheet {
             // FIXME: workaround to set the contact list
             // background to black
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -units.gu(1)
-                color: "#221e1c"
-            }
+//            Rectangle {
+//                anchors.fill: parent
+//                anchors.margins: -units.gu(1)
+//                color: "#221e1c"
+//            }
             id: sheet
             title: i18n.tr("Add to contact")
             doneButton: false
@@ -322,11 +363,11 @@ Page {
             contentsWidth: parent.width
             ContactListView {
                 anchors.fill: parent
-                onContactClicked: {
-                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
-                                                                "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
-                    PopupUtils.close(sheet)
-                }
+//                onContactClicked: {
+//                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
+//                                                                "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+//                    PopupUtils.close(sheet)
+//                }
             }
             onDoneClicked: PopupUtils.close(sheet)
         }
@@ -337,11 +378,11 @@ Page {
         DefaultSheet {
             // FIXME: workaround to set the contact list
             // background to black
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -units.gu(1)
-                color: "#221e1c"
-            }
+//            Rectangle {
+//                anchors.fill: parent
+//                anchors.margins: -units.gu(1)
+//                color: "#221e1c"
+//            }
             id: sheet
             title: i18n.tr("Add Contact")
             doneButton: false
@@ -351,16 +392,20 @@ Page {
             ContactListView {
                 anchors.fill: parent
                 detailToPick: ContactDetail.PhoneNumber
-                onContactClicked: {
-                    // FIXME: search for favorite number
-                    multiRecipient.addRecipient(contact.phoneNumber.number)
-                    multiRecipient.forceActiveFocus()
-                    PopupUtils.close(sheet)
-                }
+//                onContactClicked: {
+//                    // FIXME: search for favorite number
+//                    multiRecipient.addRecipient(contact.phoneNumber.number)
+//                    multiRecipient.forceActiveFocus()
+//                    PopupUtils.close(sheet)
+//                }
                 onDetailClicked: {
-                    multiRecipient.addRecipient(detail.number)
-                    PopupUtils.close(sheet)
-                    multiRecipient.forceActiveFocus()
+                    if (action === "message") {
+                        multiRecipient.addRecipient(detail.number)
+                        PopupUtils.close(sheet)
+                        multiRecipient.forceActiveFocus()
+                    } else if (action === "call") {
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+                    }
                 }
             }
             onDoneClicked: PopupUtils.close(sheet)
@@ -576,16 +621,29 @@ Page {
         ListItem.ThinDivider {
             anchors.top: parent.top
         }
+
+        Icon {
+            id: attachButton
+            anchors.left: parent.left
+            anchors.leftMargin: units.gu(2)
+            anchors.verticalCenter: sendButton.verticalCenter
+            height: units.gu(3)
+            width: units.gu(3)
+            color: "gray"
+            name: "camera"
+        }
+
         TextArea {
             id: textEntry
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
-            anchors.left: parent.left
+            anchors.left: attachButton.right
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
             height: units.gu(4)
             autoSize: true
+            maximumLineCount: 0
             placeholderText: i18n.tr("Write a message...")
             focus: false
             font.family: "Ubuntu"
@@ -605,23 +663,15 @@ Page {
             }
         }
 
-//        Button {
-//            id: attachButton
-//            anchors.left: parent.left
-//            anchors.leftMargin: units.gu(2)
-//            anchors.bottom: parent.bottom
-//            text: "Attach"
-//            width: units.gu(17)
-//            color: "gray"
-//            visible: false
-//        }
-
         Button {
             id: sendButton
-            anchors.verticalCenter: textEntry.verticalCenter
+            //anchors.verticalCenter: textEntry.verticalCenter
+            anchors.bottomMargin: units.gu(1)
+            anchors.bottom: parent.bottom
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(1)
+            anchors.rightMargin: units.gu(2)
             text: "Send"
+            color: "green"
             width: units.gu(7)
             enabled: (textEntry.text != "" || textEntry.inputMethodComposing) && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
             onClicked: {
@@ -630,16 +680,13 @@ Page {
                 if (textEntry.text == "") {
                     return
                 }
-
                 if (participants.length == 0 && multiRecipient.recipientCount > 0) {
                     participants = multiRecipient.recipients
                 }
-
                 if (messages.accountId == "") {
                     // FIXME: handle dual sim
                     messages.accountId = telepathyHelper.accountIds[0]
                 }
-
                 if (messages.newMessage) {
                     // create the new thread and get the threadId
                     messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
