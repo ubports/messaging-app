@@ -20,6 +20,7 @@ from testtools.matchers import Equals, HasLength
 from testtools import skipIf, skip
 
 from messaging_app import emulators
+from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
 
@@ -108,7 +109,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_receive_message(self):
         """Verify that we can receive a text message"""
         # receive an sms message
-        self.main_view.receive_sms('0815', 'hello to Ubuntu')
+        helpers.receive_sms('0815', 'hello to Ubuntu')
 
         # verify that we got the message
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
@@ -225,7 +226,7 @@ class TestMessaging(BaseMessagingTestCase):
         number = '5555555678'
         message = 'open me'
         # receive message
-        self.main_view.receive_sms(number, message)
+        helpers.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
         mess_thread = self.thread_list.wait_select_single('Label', text=number)
@@ -303,12 +304,12 @@ class TestMessaging(BaseMessagingTestCase):
         time.sleep(5)  # wait 5 seconds, the emulator is slow
         list_view.select_single("Label", text=message)
 
-    def test_recieve_text_with_letters_in_phone_number(self):
+    def test_receive_text_with_letters_in_phone_number(self):
         """verify we can receive a text message with letters for a phone #"""
         number = 'letters'
         message = 'open me'
         # receive message
-        self.main_view.receive_sms(number, message)
+        helpers.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
         mess_thread = self.thread_list.wait_select_single(
@@ -421,7 +422,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_delete_message_thread_swipe_right(self):
         """Verify we can delete a message thread by swiping right"""
         # receive an sms message
-        self.main_view.receive_sms('0815', 'hello to Ubuntu')
+        helpers.receive_sms('0815', 'hello to Ubuntu')
 
         # verify that we got the message
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
@@ -457,7 +458,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_delete_message_thread_swipe_left(self):
         """Verify we can delete a message thread by swiping left"""
         # receive an sms message
-        self.main_view.receive_sms('0815', 'hello to Ubuntu')
+        helpers.receive_sms('0815', 'hello to Ubuntu')
 
         # verify that we got the message
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
@@ -506,7 +507,7 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
         message_indexes = list(reversed(range(3)))
         for index in message_indexes:
             message_text = 'test message {}'.format(index)
-            self.main_view.receive_sms(
+            helpers.receive_sms(
                 self.number, message_text)
             time.sleep(1)
             # Prepend to make sure that the indexes match.
