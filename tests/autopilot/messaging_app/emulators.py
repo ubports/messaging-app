@@ -164,11 +164,6 @@ class MainView(toolkit_emulators.MainView):
             objectName='contactCallButton',
         )
 
-    def get_header(self):
-        """return header object"""
-
-        return self.select_single('Header', objectName='MainView_Header')
-
     def get_dialog_buttons(self, visible=True):
         """Return DialogButtons
 
