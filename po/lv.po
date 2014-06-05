@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-09 15:13-0300\n"
-"PO-Revision-Date: 2014-05-19 20:14+0000\n"
+"PO-Revision-Date: 2014-05-31 14:55+0000\n"
 "Last-Translator: Jānis-Marks Gailis <jeanmarc.gailis@gmail.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-05-22 06:49+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
+"X-Launchpad-Export-Date: 2014-06-01 05:59+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -38,8 +38,9 @@ msgstr[2] "%1 minušu zvans"
 #, qt-format
 msgid "%1 other"
 msgid_plural "%1 others"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 cits"
+msgstr[1] "%1 citu"
+msgstr[2] "%1 citi"
 
 #: src/qml/dateUtils.js:66
 #, qt-format

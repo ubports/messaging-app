@@ -26,6 +26,8 @@
 #include <QtDBus/QDBusConnectionInterface>
 #include <QtDBus/QDBusReply>
 
+#define I18N_DIRECTORY "@CMAKE_INSTALL_PREFIX@/share/locale"
+
 inline bool isRunningInstalled() {
     static bool installed = (QCoreApplication::applicationDirPath() ==
                              QDir(("@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_BINDIR@")).canonicalPath());
