@@ -30,7 +30,7 @@ import "3rd_party/ba-linkify.js" as BaLinkify
 Item {
     id: messageDelegate
     property bool incoming: false
-    property string textColor: incoming ? "#333333" : "#ffffff"
+    property string textColor: incoming ? "#333333" : "#752571"
     property bool selectionMode: false
     property bool unread: false
     property alias confirmRemoval: internalDelegate.confirmRemoval
@@ -112,7 +112,7 @@ Item {
                 onStatusChanged: {
                     if (status == Loader.Ready) {
                         item.attachment = modelData
-                        item.incoming = false//incoming
+                        item.incoming = incoming
                     }
                 }
                 Connections {
