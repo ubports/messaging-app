@@ -153,7 +153,7 @@ Item {
         anchors.left: parent ? parent.left : undefined
         anchors.right: parent ? parent.right: undefined
         clip: true
-        height: (textMessage === "" && textMessageAttachments.length > 0) ? 0 : bubble.height
+        height: (textMessage === "" && textMessageAttachments.length > 0) ? 0 : bubble.height + date.height
         showDivider: false
         highlightWhenPressed: false
         onPressAndHold: PopupUtils.open(popoverMenuComponent, messageDelegate)
@@ -280,6 +280,28 @@ Item {
             eventModel.removeEvent(accountId, threadId, eventId, type)
         }
 
+        Label {
+            id: date
+            objectName: 'messageDate'
+            anchors.top: parent.top
+            anchors{
+                right: bubble.right
+                rightMargin: units.gu(2)
+            }
+            
+            height: paintedHeight + units.gu(0.5)
+            fontSize: "x-small"
+            color: "#333333"
+            text: {
+                if (indicator.visible)
+                    i18n.tr("Sending...")
+                else if (warningButton.visible)
+                    i18n.tr("Failed")
+                else
+                    DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
+            }
+        }
+
         MessageBubble {
             id: bubble
 
@@ -288,7 +310,7 @@ Item {
             anchors.leftMargin: units.gu(1)
             anchors.right: incoming ? undefined : parent.right
             anchors.rightMargin: units.gu(1)
-            anchors.top: parent.top
+            anchors.top: date.bottom
 
             height: messageContents.height + units.gu(4)
 
@@ -315,27 +337,10 @@ Item {
                 }
 
                 Label {
-                    id: date
-                    objectName: 'messageDate'
-                    anchors.top: senderName.bottom
-                    height: paintedHeight
-                    fontSize: "x-small"
-                    color: textColor
-                    text: {
-                        if (indicator.visible)
-                            i18n.tr("Sending...")
-                        else if (warningButton.visible)
-                            i18n.tr("Failed")
-                        else
-                            DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
-                    }
-                }
-
-                Label {
                     id: messageText
                     objectName: 'messageText'
-                    anchors.top: date.bottom
-                    anchors.topMargin: units.gu(1)
+                    anchors.top: parent.top
+                    //anchors.topMargin: units.gu(1)
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: paintedHeight
