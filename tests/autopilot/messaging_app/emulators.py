@@ -17,7 +17,7 @@ import time
 from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
-from autopilot.introspection import StateNotFoundError
+from autopilot.introspection.dbus import StateNotFoundError
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
@@ -265,7 +265,7 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(select)
 
         # and now click the message again to start with it unselected
-        self.pointing_device.click_object(selectionButton)
+        self.pointing_device.click_object(message)
 
     def enable_threads_selection_mode(self):
         """Enable the selection mode on the threads page by pressing and
