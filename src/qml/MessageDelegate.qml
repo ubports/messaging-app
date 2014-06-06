@@ -180,6 +180,7 @@ Item {
                             }
                         }
                         ListItem.Standard {
+                            objectName: "popoverSelectAction"
                             text: i18n.tr("Select")
                             onClicked: {
                                 triggerSelectionMode()

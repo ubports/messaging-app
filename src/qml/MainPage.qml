@@ -104,6 +104,7 @@ PageWithBottomEdge {
             id: selectionModeCancelButton
             objectName: "selectionModeCancelButton"
             action: Action {
+                objectName: "selectionModeCancelAction"
                 iconSource: "image://theme/close"
                 onTriggered: threadList.cancelSelection()
             }
@@ -112,6 +113,7 @@ PageWithBottomEdge {
             id: selectionModeSelectAllButton
             objectName: "selectionModeSelectAllButton"
             action: Action {
+                objectName: "selectionModeSelectAllAction"
                 iconSource: "image://theme/filter"
                 onTriggered: threadList.selectAll()
             }
@@ -120,6 +122,7 @@ PageWithBottomEdge {
             id: selectionModeDeleteButton
             objectName: "selectionModeDeleteButton"
             action: Action {
+                objectName: "selectionModeDeleteAction"
                 enabled: threadList.selectedItems.count > 0
                 iconSource: "image://theme/delete"
                 onTriggered: threadList.endSelection()
