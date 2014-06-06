@@ -17,6 +17,7 @@ import time
 from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
+from autopilot.introspection import StateNotFoundError
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
@@ -45,7 +46,8 @@ class MainView(toolkit_emulators.MainView):
         :parameter phone_number: the phone_number of message thread
 
         """
-        return self.wait_select_single("ThreadDelegate", phoneNumber=phone_number)
+        return self.wait_select_single("ThreadDelegate",
+                                       phoneNumber=phone_number)
 
     def get_message(self, text):
         """Return message from text
@@ -84,7 +86,8 @@ class MainView(toolkit_emulators.MainView):
     def get_messages_page(self):
         """Return messages with objectName messagesPage"""
 
-        return self.wait_select_single("Messages", objectName="messagesPage", active=True)
+        return self.wait_select_single("Messages", objectName="messagesPage",
+                                       active=True)
 
     def get_newmessage_textfield(self):
         """Return TextField with objectName newPhoneNumberField"""
@@ -110,7 +113,8 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_textarea(self):
         """Return TextArea with blank objectName"""
 
-        return self.get_messages_page().select_single('TextArea', objectName='')
+        return self.get_messages_page().select_single('TextArea',
+                                                      objectName='')
 
     def get_send_button(self):
         """Return Button with text Send"""
@@ -251,12 +255,14 @@ class MainView(toolkit_emulators.MainView):
     def enable_messages_selection_mode(self):
         """Enable the selection mode on the messages page by pressing and
         holding the first item"""
-        message = self.wait_select_single("MessageDelegate", objectName="message0")
+        message = self.wait_select_single("MessageDelegate",
+                                          objectName="message0")
         self.long_press(message)
 
         # now click the popover action
-        selectionButton = self.wait_select_single("Standard", objectName="popoverSelectAction")
-        self.pointing_device.click_object(selectionButton)
+        select = self.wait_select_single("Standard",
+                                         objectName="popoverSelectAction")
+        self.pointing_device.click_object(select)
 
         # and now click the message again to start with it unselected
         self.pointing_device.click_object(selectionButton)
@@ -393,7 +399,8 @@ class PageWithBottomEdge(MainView):
         """Bring the bottom edge page to the screen"""
         self.bottomEdgePageLoaded.wait_for(True)
         try:
-            action_item = self.wait_select_single('QQuickItem', objectName='bottomEdgeTip')
+            action_item = self.wait_select_single('QQuickItem',
+                                                  objectName='bottomEdgeTip')
             start_x = action_item.globalRect.x + (action_item.globalRect.width * 0.5)
             start_y = action_item.globalRect.y + (action_item.height * 0.5)
             stop_y = start_y - (self.height * 0.7)
