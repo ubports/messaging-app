@@ -153,6 +153,7 @@ Page {
                  text: i18n.tr("Add to existing contact")
                  color: UbuntuColors.orange
                  onClicked: {
+                     Qt.inputMethod.hide()
                      PopupUtils.open(addPhoneNumberToContactSheet)
                      PopupUtils.close(dialogue)
                  }
@@ -245,14 +246,7 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    var item = keyboard.recursiveFindFocusedItem(messages)
-                    if (item) {
-                        item.focus = false
-                    }
-                    item = keyboard.recursiveFindFocusedItem(newMessageHeader)
-                    if (item) {
-                        item.focus = false
-                    }
+                    Qt.inputMethod.hide()
                     mainStack.push(newRecipientPage, {})
                     newRecipientPage.active = true
                     newRecipientPage.visible = true
@@ -468,6 +462,7 @@ Page {
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
+                    Qt.inputMethod.hide()
                     Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                 }
             }
@@ -479,6 +474,7 @@ Page {
                 iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
                 onTriggered: {
+                    Qt.inputMethod.hide()
                     PopupUtils.open(newContactDialog)
                 }
             }
