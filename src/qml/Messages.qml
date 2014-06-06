@@ -153,9 +153,11 @@ Page {
                  text: i18n.tr("Add to existing contact")
                  color: UbuntuColors.orange
                  onClicked: {
-                     Qt.inputMethod.hide()
-                     PopupUtils.open(addPhoneNumberToContactSheet)
                      PopupUtils.close(dialogue)
+                     Qt.inputMethod.hide()
+                     mainStack.push(addPhoneNumberToContactPage, {})
+                     addPhoneNumberToContactPage.active = true
+                     addPhoneNumberToContactPage.visible = true
                  }
              }
              Button {
@@ -209,6 +211,27 @@ Page {
         }
     }
 
+    Page {
+        id: addPhoneNumberToContactPage
+        active: false
+        visible: false
+        title: i18n.tr("Add to contact")
+        Loader {
+            id: contactListLoader1
+            anchors.fill: parent
+            active: addPhoneNumberToContactPage.visible
+            sourceComponent: phoneNumberPicker
+            Connections {
+                target: contactListLoader1.item ? contactListLoader1.item : null
+                onInfoRequested: {
+                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
+                                         "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
+                    mainStack.pop()
+                }
+            }
+        }
+    }
+
     Item {
         id: newMessageHeader
         anchors {
@@ -250,7 +273,6 @@ Page {
                     mainStack.push(newRecipientPage, {})
                     newRecipientPage.active = true
                     newRecipientPage.visible = true
-                    //PopupUtils.open(addContactToConversationSheet)
                 }
             }
         }
@@ -338,73 +360,6 @@ Page {
 
     onParticipantsChanged: {
         threadId = getCurrentThreadId()
-    }
-
-    Component {
-        id: addPhoneNumberToContactSheet
-        DefaultSheet {
-            // FIXME: workaround to set the contact list
-            // background to black
-//            Rectangle {
-//                anchors.fill: parent
-//                anchors.margins: -units.gu(1)
-//                color: "#221e1c"
-//            }
-            id: sheet
-            title: i18n.tr("Add to contact")
-            doneButton: false
-            modal: true
-            contentsHeight: parent.height
-            contentsWidth: parent.width
-            ContactListView {
-                anchors.fill: parent
-//                onContactClicked: {
-//                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
-//                                                                "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
-//                    PopupUtils.close(sheet)
-//                }
-            }
-            onDoneClicked: PopupUtils.close(sheet)
-        }
-    }
-
-    Component {
-        id: addContactToConversationSheet
-        DefaultSheet {
-            // FIXME: workaround to set the contact list
-            // background to black
-//            Rectangle {
-//                anchors.fill: parent
-//                anchors.margins: -units.gu(1)
-//                color: "#221e1c"
-//            }
-            id: sheet
-            title: i18n.tr("Add Contact")
-            doneButton: false
-            modal: true
-            contentsHeight: parent.height
-            contentsWidth: parent.width
-            ContactListView {
-                anchors.fill: parent
-                detailToPick: ContactDetail.PhoneNumber
-//                onContactClicked: {
-//                    // FIXME: search for favorite number
-//                    multiRecipient.addRecipient(contact.phoneNumber.number)
-//                    multiRecipient.forceActiveFocus()
-//                    PopupUtils.close(sheet)
-//                }
-                onDetailClicked: {
-                    if (action === "message") {
-                        multiRecipient.addRecipient(detail.number)
-                        PopupUtils.close(sheet)
-                        multiRecipient.forceActiveFocus()
-                    } else if (action === "call") {
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
-                    }
-                }
-            }
-            onDoneClicked: PopupUtils.close(sheet)
-        }
     }
 
     ToolbarItems {
@@ -604,7 +559,6 @@ Page {
     Item {
         id: bottomPanel
         anchors.bottom: keyboard.top
-        //anchors.bottomMargin: selectionMode ? 0 : units.gu(2)
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
@@ -662,7 +616,6 @@ Page {
 
         Button {
             id: sendButton
-            //anchors.verticalCenter: textEntry.verticalCenter
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
             anchors.right: parent.right
