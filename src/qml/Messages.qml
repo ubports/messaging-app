@@ -44,7 +44,8 @@ Page {
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
     flickable: null
-    __customHeaderContents: newMessage ? newMessageHeader : null
+    // we need to use isReady here to know if this is a bottom edge page or not.
+    __customHeaderContents: newMessage && isReady ? newMessageHeader : null
     property bool isReady: false
     signal ready
     onReady: {
