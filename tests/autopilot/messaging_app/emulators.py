@@ -264,6 +264,9 @@ class MainView(toolkit_emulators.MainView):
                                          objectName="popoverSelectAction")
         self.pointing_device.click_object(select)
 
+        # FIXME: there should be a better way to detect when the popover is gone
+        time.sleep(2)
+
         # and now click the message again to start with it unselected
         self.pointing_device.click_object(message)
 
