@@ -287,6 +287,7 @@ Page {
                 multiRecipient.clearSearch()
                 multiRecipient.forceActiveFocus()
             } else if (action === "call") {
+                Qt.inputMethod.hide()
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             }
         }
