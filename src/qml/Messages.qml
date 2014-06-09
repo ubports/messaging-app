@@ -228,27 +228,13 @@ Page {
             if(multiRecipient.searchString !== "" && multiRecipient.focus) {
                 return multiRecipient.searchString
             }
-            return "some value that won't match"
+            return ""
         }
-        filter: UnionFilter {
-            DetailFilter {
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
+        onSearchTermChanged: {
+            if (searchTerm.length > 0) {
+                changeFilter(contactSearchFilter)
+            } else {
+                phoneFilter(null)
             }
         }
         clip: true
@@ -283,6 +269,29 @@ Page {
             }
         }
         z: 1
+        UnionFilter {
+            id: contactSearchFilter
+            DetailFilter {
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+        }
+
     }
 
     ContactWatcher {
