@@ -10,17 +10,14 @@
 
 """Messaging app autopilot emulators."""
 
-import dbus
 import logging
-import os
-import shutil
 import subprocess
-import tempfile
 import time
 
 from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
+
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
@@ -367,32 +364,6 @@ class MainView(toolkit_emulators.MainView):
                 'Invalid direction "{0}" used on swipe to delete function '
                 'direction can be right or left'.format(direction)
             )
-
-    def receive_sms(self, sender, text):
-        """Receive an SMS based on sender number and text
-
-        :parameter sender: phone number the message is from
-        :parameter text: text you want to send in the message
-        """
-
-        # prepare and send a Qt GUI script to phonesim, over its private D-BUS
-        # set up by ofono-phonesim-autostart
-        script_dir = tempfile.mkdtemp(prefix="phonesim_script")
-        os.chmod(script_dir, 0o755)
-        with open(os.path.join(script_dir, "sms.js"), "w") as f:
-            f.write("""tabSMS.gbMessage1.leMessageSender.text = "%s";
-tabSMS.gbMessage1.leSMSClass.text = "1";
-tabSMS.gbMessage1.teSMSText.setPlainText("%s");
-tabSMS.gbMessage1.pbSendSMSMessage.click();
-""" % (sender, text))
-
-        with open("/run/lock/ofono-phonesim-dbus.address") as f:
-            phonesim_bus = f.read().strip()
-        bus = dbus.bus.BusConnection(phonesim_bus)
-        script_proxy = bus.get_object("org.ofono.phonesim", "/")
-        script_proxy.SetPath(script_dir)
-        script_proxy.Run("sms.js")
-        shutil.rmtree(script_dir)
 
 
 class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
