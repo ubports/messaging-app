@@ -230,30 +230,25 @@ Page {
             }
             return "some value that won't match"
         }
-        listModel: ContactModel {
-            manager: contactSearch.manager
-            sortOrders: contactSearch.sortOrders
-            fetchHint: contactSearch.fetchHint
-            filter: UnionFilter {
-                DetailFilter {
-                    detail: ContactDetail.DisplayLabel
-                    field: DisplayLabel.Label
-                    value: contactSearch.searchTerm
-                    matchFlags: DetailFilter.MatchContains
-                }
-                DetailFilter {
-                    detail: ContactDetail.PhoneNumber
-                    field: PhoneNumber.Number
-                    value: contactSearch.searchTerm
-                    matchFlags: DetailFilter.MatchPhoneNumber
-                }
+        filter: UnionFilter {
+            DetailFilter {
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
 
-                DetailFilter {
-                    detail: ContactDetail.PhoneNumber
-                    field: PhoneNumber.Number
-                    value: contactSearch.searchTerm
-                    matchFlags: DetailFilter.MatchContains
-                }
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
             }
         }
         clip: true
