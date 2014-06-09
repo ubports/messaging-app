@@ -387,6 +387,7 @@ Page {
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
+                    Qt.inputMethod.hide()
                     Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                 }
             }
