@@ -27,7 +27,6 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
-
 Page {
     id: messages
     objectName: "messagesPage"
@@ -155,9 +154,7 @@ Page {
                  onClicked: {
                      PopupUtils.close(dialogue)
                      Qt.inputMethod.hide()
-                     mainStack.push(addPhoneNumberToContactPage, {})
-                     addPhoneNumberToContactPage.active = true
-                     addPhoneNumberToContactPage.visible = true
+                     mainStack.push(Qt.resolvedUrl("AddPhoneNumberToContactPage.qml"), {"phoneNumber": contactWatcher.phoneNumber})
                  }
              }
              Button {
@@ -176,60 +173,6 @@ Page {
                  }
              }
          }
-    }
-
-    Component {
-        id: phoneNumberPicker
-        ContactListView {
-            anchors.fill: parent
-            detailToPick: ContactDetail.PhoneNumber
-        }
-    }
-
-    Page {
-        id: newRecipientPage
-        active: false
-        visible: false
-        title: i18n.tr("Add recipient")
-        Loader {
-            id: contactListLoader
-            anchors.fill: parent
-            active: newRecipientPage.visible
-            sourceComponent: phoneNumberPicker
-            Connections {
-                target: contactListLoader.item ? contactListLoader.item : null
-                onDetailClicked: {
-                    if (action === "message" || action === "") {
-                        multiRecipient.addRecipient(detail.number)
-                        multiRecipient.forceActiveFocus()
-                    } else if (action === "call") {
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
-                    }
-                    mainStack.pop()
-                }
-            }
-        }
-    }
-
-    Page {
-        id: addPhoneNumberToContactPage
-        active: false
-        visible: false
-        title: i18n.tr("Add to contact")
-        Loader {
-            id: contactListLoader1
-            anchors.fill: parent
-            active: addPhoneNumberToContactPage.visible
-            sourceComponent: phoneNumberPicker
-            Connections {
-                target: contactListLoader1.item ? contactListLoader1.item : null
-                onInfoRequested: {
-                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
-                                         "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
-                    mainStack.pop()
-                }
-            }
-        }
     }
 
     Item {
@@ -270,54 +213,28 @@ Page {
                 anchors.fill: parent
                 onClicked: {
                     Qt.inputMethod.hide()
-                    mainStack.push(newRecipientPage, {})
-                    newRecipientPage.active = true
-                    newRecipientPage.visible = true
+                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
                 }
             }
         }
     }
 
-    ContactSimpleListView {
+    ContactListView {
         id: contactSearch
-        Item {
-            id: root
-            property string manager: "galera"
-        }
         property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
         visible: searchEnabled
-        onSearchTermChanged: currentContactExpanded = -1
         detailToPick: ContactDetail.PhoneNumber
         property string searchTerm: {
             if(multiRecipient.searchString !== "" && multiRecipient.focus) {
                 return multiRecipient.searchString
             }
-            return "some value that won't match"
+            return ""
         }
-        listModel: ContactModel {
-            manager: contactSearch.manager
-            sortOrders: contactSearch.sortOrders
-            fetchHint: contactSearch.fetchHint
-            filter: UnionFilter {
-                DetailFilter {
-                    detail: ContactDetail.DisplayLabel
-                    field: DisplayLabel.Label
-                    value: contactSearch.searchTerm
-                    matchFlags: DetailFilter.MatchContains
-                }
-                DetailFilter {
-                    detail: ContactDetail.PhoneNumber
-                    field: PhoneNumber.Number
-                    value: contactSearch.searchTerm
-                    matchFlags: DetailFilter.MatchPhoneNumber
-                }
-
-                DetailFilter {
-                    detail: ContactDetail.PhoneNumber
-                    field: PhoneNumber.Number
-                    value: contactSearch.searchTerm
-                    matchFlags: DetailFilter.MatchContains
-                }
+        onSearchTermChanged: {
+            if (searchTerm.length > 0) {
+                changeFilter(contactSearchFilter)
+            } else {
+                phoneFilter(null)
             }
         }
         clip: true
@@ -347,10 +264,34 @@ Page {
                 multiRecipient.clearSearch()
                 multiRecipient.forceActiveFocus()
             } else if (action === "call") {
+                Qt.inputMethod.hide()
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             }
         }
         z: 1
+        UnionFilter {
+            id: contactSearchFilter
+            DetailFilter {
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+        }
+
     }
 
     ContactWatcher {
@@ -449,6 +390,7 @@ Page {
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
                 onTriggered: {
+                    Qt.inputMethod.hide()
                     Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                 }
             }
