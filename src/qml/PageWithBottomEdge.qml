@@ -184,7 +184,6 @@ Page {
             clip: true
             y: -bottomEdge.tipHeight
             anchors.horizontalCenter: parent.horizontalCenter
-            objectName: "bottomEdgeTip"
 
             UbuntuShape {
                 id: tip
