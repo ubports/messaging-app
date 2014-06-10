@@ -77,7 +77,7 @@ Page {
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
-    readonly property bool isReady: (tip.opacity === 0.0) && (bottomEdge.y === bottomEdge.pageStartY)
+    readonly property bool isReady: (tip.opacity === 0.0)
     readonly property bool isCollapsed: (tip.opacity === 1.0)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
@@ -108,7 +108,6 @@ Page {
                 edgeLoader.item.flickable.contentY = -page.header.height
                 edgeLoader.item.flickable.returnToBounds()
             }
-
             if (edgeLoader.item.ready)
                 edgeLoader.item.ready()
         }
@@ -140,6 +139,7 @@ Page {
         color: "black"
         anchors.fill: page
         opacity: 0.7 * ((page.height - bottomEdge.y) / page.height)
+        z: 1
     }
 
     Rectangle {
@@ -147,7 +147,6 @@ Page {
         objectName: "bottomEdge"
 
         readonly property int tipHeight: units.gu(3)
-        readonly property var header: page.__propagated && page.__propagated.header ? page.__propagated.header : null
         readonly property int pageStartY: 0
 
         z: 1
@@ -178,6 +177,8 @@ Page {
 
         Item {
             id: tipContainer
+            objectName: "bottomEdgeTip"
+
             width: childrenRect.width
             height: bottomEdge.tipHeight
             clip: true
@@ -205,6 +206,36 @@ Page {
             }
         }
 
+        MouseArea {
+            preventStealing: true
+            drag.axis: Drag.YAxis
+            drag.target: bottomEdge
+            drag.minimumY: bottomEdge.pageStartY
+            drag.maximumY: page.height
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: bottomEdge.tipHeight
+            y: -height
+
+            onReleased: {
+                page.bottomEdgeReleased()
+                if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
+                    bottomEdge.state = "expanded"
+                } else {
+                    bottomEdge.state = "collapsed"
+                    bottomEdge.y = bottomEdge.height
+                }
+            }
+
+            onPressed: {
+                bottomEdge.state = "floating"
+                bottomEdge.y -= bottomEdge.tipHeight
+            }
+        }
+
         Behavior on y {
             UbuntuNumberAnimation {}
         }
@@ -215,7 +246,7 @@ Page {
                 name: "collapsed"
                 PropertyChanges {
                     target: bottomEdge
-                    y: page.height
+                    y: bottomEdge.height
                 }
                 PropertyChanges {
                     target: tip
@@ -264,6 +295,7 @@ Page {
                         script: {
                             edgeLoader.item.parent = edgeLoader
                             edgeLoader.item.anchors.fill = edgeLoader
+                            edgeLoader.item.active = false
                         }
                     }
                     UbuntuNumberAnimation {
@@ -297,68 +329,27 @@ Page {
             }
         ]
 
-        Item {
+        Loader {
+            id: edgeLoader
+
+            z: 1
+            active: true
+            asynchronous: true
             anchors.fill: parent
-            clip: true
 
-            Loader {
-                id: edgeLoader
+            //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
+            Binding {
+                target: edgeLoader
+                property: "anchors.topMargin"
+                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                when: (edgeLoader.status === Loader.Ready && !page.isReady)
+            }
 
-                z: 1
-                active: true
-                asynchronous: true
-                anchors.fill: parent
-
-                //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
-                Binding {
-                    target: edgeLoader
-                    property: "anchors.topMargin"
-                    value: edgeLoader.item && edgeLoader.item.flickable ? -bottomEdge.header.height : 0
-                    when: (edgeLoader.status === Loader.Ready && !page.isReady)
-                }
-
-                Behavior on anchors.topMargin {
-                    UbuntuNumberAnimation {}
-                }
-
-                onLoaded: {
-                    if (page.isReady && edgeLoader.item.active != true) {
-                        page._pushPage()
-                    }
+            onLoaded: {
+                if (page.isReady && edgeLoader.item.active != true) {
+                    page._pushPage()
                 }
             }
         }
-
-        MouseArea {
-            preventStealing: true
-            drag.axis: Drag.YAxis
-            drag.target: bottomEdge
-            drag.minimumY: bottomEdge.pageStartY
-            drag.maximumY: page.height
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: bottomEdge.tipHeight
-            y: -height
-            z: 2
-
-            onReleased: {
-                page.bottomEdgeReleased()
-                if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
-                    bottomEdge.state = "expanded"
-                } else {
-                    bottomEdge.state = "collapsed"
-                    bottomEdge.y = bottomEdge.height
-                }
-            }
-
-            onPressed: {
-                bottomEdge.state = "floating"
-                bottomEdge.y -= bottomEdge.tipHeight
-            }
-        }
-
     }
 }
