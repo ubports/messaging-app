@@ -264,7 +264,8 @@ class MainView(toolkit_emulators.MainView):
                                          objectName="popoverSelectAction")
         self.pointing_device.click_object(select)
 
-        # FIXME: there should be a better way to detect when the popover is gone
+        # FIXME: there should be a better way to detect when the popover is
+        # gone
         time.sleep(2)
 
         # and now click the message again to start with it unselected
@@ -404,10 +405,13 @@ class PageWithBottomEdge(MainView):
         try:
             action_item = self.wait_select_single('QQuickItem',
                                                   objectName='bottomEdgeTip')
-            start_x = action_item.globalRect.x + (action_item.globalRect.width * 0.5)
-            start_y = action_item.globalRect.y + (action_item.height * 0.5)
+            start_x = action_item.globalRect.x +
+            (action_item.globalRect.width * 0.5)
+            start_y = action_item.globalRect.y +
+            (action_item.height * 0.5)
             stop_y = start_y - (self.height * 0.7)
-            self.pointing_device.drag(start_x, start_y, start_x, stop_y, rate=2)
+            self.pointing_device.drag(start_x, start_y,
+                                      start_x, stop_y, rate=2)
             self.isReady.wait_for(True)
         except StateNotFoundError:
             logger.error('BottomEdge element not found.')
@@ -427,7 +431,8 @@ class MainPage(PageWithBottomEdge):
         thread = self.select_single(
             'ThreadDelegate', objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
-        return self.get_root_instance().wait_select_single(Messages, threadId=thread.threadId)
+        root = self.get_root_instance()
+        return root.wait_select_single(Messages, threadId=thread.threadId)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
