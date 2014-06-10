@@ -40,8 +40,10 @@ ListItem.Empty {
             return firstRecipient + " +" + String(participants.length-1)
         return firstRecipient
     }
+    property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property bool selectionMode: false
+    property string threadId: model.threadId
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)

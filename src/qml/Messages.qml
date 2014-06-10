@@ -310,6 +310,7 @@ Page {
             id: selectionModeCancelButton
             objectName: "selectionModeCancelButton"
             action: Action {
+                objectName: "selectionModeCancelAction"
                 iconSource: "image://theme/close"
                 onTriggered: messageList.cancelSelection()
             }
@@ -318,6 +319,7 @@ Page {
             id: selectionModeSelectAllButton
             objectName: "selectionModeSelectAllButton"
             action: Action {
+                objectName: "selectionModeSelectAllAction"
                 iconSource: "image://theme/filter"
                 onTriggered: messageList.selectAll()
             }
@@ -326,6 +328,7 @@ Page {
             id: selectionModeDeleteButton
             objectName: "selectionModeDeleteButton"
             action: Action {
+                objectName: "selectionModeDeleteAction"
                 enabled: messageList.selectedItems.count > 0
                 iconSource: "image://theme/delete"
                 onTriggered: messageList.endSelection()
