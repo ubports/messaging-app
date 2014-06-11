@@ -224,26 +224,15 @@ Page {
         property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
         visible: searchEnabled
         detailToPick: ContactDetail.PhoneNumber
+        clip: true
+        z: 1
         property string searchTerm: {
             if(multiRecipient.searchString !== "" && multiRecipient.focus) {
                 return multiRecipient.searchString
             }
             return ""
         }
-        onSearchTermChanged: {
-            if (searchTerm.length > 0) {
-                changeFilter(contactSearchFilter)
-            } else {
-                changeFilter(null)
-            }
-        }
-        clip: true
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: bottomPanel.top
-        }
+
         states: [
             State {
                 name: "empty"
@@ -255,9 +244,25 @@ Page {
             }
         ]
 
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: bottomPanel.top
+        }
+
         Behavior on height {
             UbuntuNumberAnimation { }
         }
+
+        onSearchTermChanged: {
+            if (searchTerm.length > 0) {
+                changeFilter(contactSearchFilter)
+            } else {
+                changeFilter(null)
+            }
+        }
+
         onDetailClicked: {
             if (action === "message" || action === "") {
                 multiRecipient.addRecipient(detail.number)
@@ -268,11 +273,12 @@ Page {
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             }
         }
+
         onInfoRequested: {
             Qt.inputMethod.hide()
             Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
         }
-        z: 1
+
         UnionFilter {
             id: contactSearchFilter
             DetailFilter {
@@ -295,7 +301,6 @@ Page {
                 matchFlags: DetailFilter.MatchContains
             }
         }
-
     }
 
     ContactWatcher {
