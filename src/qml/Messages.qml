@@ -268,6 +268,10 @@ Page {
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             }
         }
+        onInfoRequested: {
+            Qt.inputMethod.hide()
+            Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
+        }
         z: 1
         UnionFilter {
             id: contactSearchFilter

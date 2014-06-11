@@ -32,5 +32,9 @@ Page {
                                  "&phone=" + encodeURIComponent(phoneNumber))
             mainStack.pop()
         }
+        onInfoRequested: {
+            Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
+            mainStack.pop()
+        }
     }
 }
