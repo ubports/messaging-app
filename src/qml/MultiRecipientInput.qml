@@ -87,7 +87,6 @@ StyledItem {
             id: contactFlow
             anchors.left: parent.left
             anchors.leftMargin: units.gu(1)
-            //anchors.right: parent.right
             anchors.top: parent.top
             move: Transition {
                 UbuntuNumberAnimation { properties: "x,y";}
@@ -96,6 +95,18 @@ StyledItem {
             Component {
                 id: contactDelegate
                 Label {
+                    Rectangle {
+                        anchors.fill: parent
+                        anchors.topMargin: units.gu(1)
+                        anchors.bottomMargin: units.gu(1)
+                        color: UbuntuColors.warmGrey
+                        visible: selected
+                        z: -1
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: selectedIndex == index ? selectedIndex = -1 : selectedIndex = index
+                    }
                     property string contactName: {
                         if (contactWatcher.isUnknown) {
                             return contactWatcher.phoneNumber
@@ -105,15 +116,14 @@ StyledItem {
                     property alias phoneNumber: contactWatcher.phoneNumber
                     property int index
                     property bool selected: selectedIndex == index
+                    property string separator: index == recipientCount-1 ? "" : ","
                     height: units.gu(4)
                     visible: height != 0
-                    //color: selected ? UbuntuColors.warmGrey : UbuntuColors.orange
-                    text: contactName
-                    //onClicked: selectedIndex == index ? selectedIndex = -1 : selectedIndex = index
+                    text: contactName + separator
                     font.pixelSize: FontUtils.sizeToPixels("medium")
                     font.family: "Ubuntu"
                     font.weight: Font.Light
-                    color: "#752571"
+                    color: selected ? "white" : "#752571"
                     verticalAlignment: Text.AlignVCenter
                     ContactWatcher {
                         id: contactWatcher

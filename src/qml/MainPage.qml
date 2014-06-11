@@ -159,7 +159,6 @@ PageWithBottomEdge {
                 fontSize: "medium"
                 elide: Text.ElideRight
                 color: "#5d5d5d"
-                //opacity: 0.6
                 text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
                 verticalAlignment: Text.AlignVCenter
             }

@@ -181,16 +181,18 @@ ListItem.Empty {
         text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
     }
 
-//    Label {
-//        id: phoneType
-//        anchors {
-//            top: contactName.bottom
-//            left: contactName.left
-//        }
-//        text: delegateHelper.phoneNumberSubTypeLabel
-//        color: "gray"
-//        fontSize: "x-small"
-//    }
+    // This is currently not being used in the new designs, but let's keep it here for now
+    /*
+    Label {
+        id: phoneType
+        anchors {
+            top: contactName.bottom
+            left: contactName.left
+        }
+        text: delegateHelper.phoneNumberSubTypeLabel
+        color: "gray"
+        fontSize: "x-small"
+    }*/
 
     Label {
         id: latestMessage
@@ -208,7 +210,6 @@ ListItem.Empty {
         wrapMode: Text.WordWrap
         text: eventTextMessage == undefined ? "" : eventTextMessage
         font.weight: Font.Light
-        //opacity: 0.2
     }
     onItemRemoved: {
         threadModel.removeThread(accountId, threadId, type)

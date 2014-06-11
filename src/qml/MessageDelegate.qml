@@ -341,7 +341,6 @@ Item {
                     id: messageText
                     objectName: 'messageText'
                     anchors.top: parent.top
-                    //anchors.topMargin: units.gu(1)
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: paintedHeight
