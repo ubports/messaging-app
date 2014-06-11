@@ -234,7 +234,7 @@ Page {
             if (searchTerm.length > 0) {
                 changeFilter(contactSearchFilter)
             } else {
-                phoneFilter(null)
+                changeFilter(null)
             }
         }
         clip: true
