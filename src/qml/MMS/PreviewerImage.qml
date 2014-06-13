@@ -23,8 +23,10 @@ import ".."
 
 Previewer {
     title: i18n.tr("Image Preview")
+    clip: true
     Image {
         anchors.centerIn: parent
+        anchors.fill: parent
         fillMode: Image.PreserveAspectFit
         source: attachment.filePath
     }
