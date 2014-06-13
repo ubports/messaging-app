@@ -18,16 +18,23 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import Ubuntu.Content 0.1
-import ".."
+import Ubuntu.Contacts 0.1
 
-Previewer {
-    title: i18n.tr("Image Preview")
-    clip: true
-    Image {
-        anchors.centerIn: parent
+Page {
+    id: addPhoneNumberToContactPage
+    property string phoneNumber
+    title: i18n.tr("Add to contact")
+    ContactListView {
+        id: contactList
         anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
-        source: attachment.filePath
+        onDetailClicked: {
+            Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
+                                 "&phone=" + encodeURIComponent(phoneNumber))
+            mainStack.pop()
+        }
+        onInfoRequested: {
+            Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
+            mainStack.pop()
+        }
     }
 }

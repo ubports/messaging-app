@@ -22,6 +22,7 @@ import QtMultimedia 5.0
 import ".."
 
 Previewer {
+    title: i18n.tr("Video Preview")
     // This previewer implements only basic video controls: play/pause/rewind
     onActionTriggered: video.pause()
     MediaPlayer {
