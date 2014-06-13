@@ -226,13 +226,14 @@ Page {
         detailToPick: ContactDetail.PhoneNumber
         clip: true
         z: 1
+        autoUpdate: false
+
         property string searchTerm: {
             if(multiRecipient.searchString !== "" && multiRecipient.focus) {
                 return multiRecipient.searchString
             }
             return ""
         }
-
         states: [
             State {
                 name: "empty"
@@ -256,11 +257,26 @@ Page {
         }
 
         onSearchTermChanged: {
-            if (searchTerm.length > 0) {
+            if ((searchTerm.length > 0) && (filter != contactSearchFilter)) {
                 changeFilter(contactSearchFilter)
-            } else {
+            } else if ((searchTerm.length == 0) && (filter != null)) {
                 changeFilter(null)
             }
+            contactSearchTimeout.restart()
+        }
+
+        InvalidFilter {
+            id: invalidFilter
+        }
+
+        // clear list if it is invisible to save some memory
+        onVisibleChanged: {
+            if (visible && (filter != null)) {
+                changeFilter(null)
+            } else if (!visible && filter != invalidFilter) {
+                changeFilter(invalidFilter)
+            }
+            contactSearch.update()
         }
 
         onDetailClicked: {
@@ -281,6 +297,7 @@ Page {
 
         UnionFilter {
             id: contactSearchFilter
+
             DetailFilter {
                 detail: ContactDetail.DisplayLabel
                 field: DisplayLabel.Label
@@ -300,6 +317,15 @@ Page {
                 value: contactSearch.searchTerm
                 matchFlags: DetailFilter.MatchContains
             }
+        }
+
+        Timer {
+            id: contactSearchTimeout
+
+            running: false
+            repeat: false
+            interval: 300
+            onTriggered: contactSearch.update()
         }
     }
 
