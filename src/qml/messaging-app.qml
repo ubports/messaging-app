@@ -69,6 +69,7 @@ MainView {
                     if (picker.curTransfer.state === ContentTransfer.InProgress)
                         picker.__exportItems(picker.url);
             }
+            onCancelPressed: mainStack.pop();
         }
 
         Connections {
