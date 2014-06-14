@@ -455,42 +455,6 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.delete_message(message)
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
-    def test_delete_message_thread_swipe_left(self):
-        """Verify we can delete a message thread by swiping left"""
-        # receive an sms message
-        helpers.receive_sms('0815', 'hello to Ubuntu')
-
-        # verify that we got the message
-        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
-
-        # delete thread by swiping
-        self.main_view.delete_thread('0815', direction='left')
-        self.assertThat(self.thread_list.count, Eventually(Equals(0)))
-
-    def test_delete_message_swipe_left(self):
-        """Verify we can delete a message by swiping left"""
-        self.main_view.click_new_message_button()
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type address number
-        phone_num = '555-555-4321'
-        self.main_view.type_contact_phone_num(phone_num)
-        # type message
-        message = 'delete me okay'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        self.main_view.get_message(message)
-
-        #delete message
-        self.main_view.delete_message(message, direction='left')
-        self.assertThat(list_view.count, Eventually(Equals(0)))
-
 
 class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
 
