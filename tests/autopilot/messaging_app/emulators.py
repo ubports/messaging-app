@@ -17,6 +17,7 @@ import time
 from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
+from autopilot.introspection.dbus import StateNotFoundError
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
@@ -45,15 +46,8 @@ class MainView(toolkit_emulators.MainView):
         :parameter phone_number: the phone_number of message thread
 
         """
-
-        time.sleep(2)  # message is not always found on slow emulator
-        for thread in self.select_many(ThreadDelegate):
-            for item in self.select_many('QQuickItem'):
-                if "phoneNumber" in item.get_properties():
-                    if item.get_properties()['phoneNumber'] == phone_number:
-                        return thread
-        raise EmulatorException('Could not find thread with the phone number '
-                                '{}'.format(phone_number))
+        return self.wait_select_single(ThreadDelegate,
+                                       phoneNumber=phone_number)
 
     def get_message(self, text):
         """Return message from text
@@ -84,11 +78,16 @@ class MainView(toolkit_emulators.MainView):
 
         return self.wait_select_single("MainPage", objectName="")
 
+    def click_header_action(self, action):
+        """Click the action 'action' on the header"""
+        self.get_header().click_action_button(action)
+
     #messages page
     def get_messages_page(self):
         """Return messages with objectName messagesPage"""
 
-        return self.wait_select_single("Messages", objectName="messagesPage")
+        return self.wait_select_single("Messages", objectName="messagesPage",
+                                       active=True)
 
     def get_newmessage_textfield(self):
         """Return TextField with objectName newPhoneNumberField"""
@@ -114,12 +113,13 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_textarea(self):
         """Return TextArea with blank objectName"""
 
-        return self.select_single('TextArea', objectName='')
+        return self.get_messages_page().select_single('TextArea',
+                                                      objectName='')
 
     def get_send_button(self):
         """Return Button with text Send"""
 
-        return self.select_single('Button', text='Send')
+        return self.get_messages_page().select_single('Button', text='Send')
 
     def get_toolbar_back_button(self):
         """Return toolbar button with objectName back_toolbar_button"""
@@ -248,26 +248,37 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(button)
         button.enabled.wait_for(False)
 
-    def click_new_message_button(self):
-        """Click "Compose/ new message" button from toolbar on main page"""
+    def start_new_message(self):
+        """Reveal the bottom edge page to start composing a new message"""
+        self.get_main_page().reveal_bottom_edge_page()
 
-        toolbar = self.open_toolbar()
-        toolbar.click_button("newMessageButton")
-        toolbar.animating.wait_for(False)
+    def enable_messages_selection_mode(self):
+        """Enable the selection mode on the messages page by pressing and
+        holding the first item"""
+        message = self.wait_select_single("MessageDelegate",
+                                          objectName="message0")
+        self.long_press(message)
 
-    def click_select_button(self):
-        """Click select button from toolbar on main page"""
+        # now click the popover action
+        select = self.wait_select_single("Standard",
+                                         objectName="popoverSelectAction")
+        self.pointing_device.click_object(select)
 
-        toolbar = self.open_toolbar()
-        toolbar.click_button("selectButton")
-        toolbar.animating.wait_for(False)
+        # FIXME: there should be a better way to detect when the popover is
+        # gone
+        time.sleep(2)
 
-    def click_select_messages_button(self):
-        """Click select messages button from toolbar on messages page"""
+        # and now click the message again to start with it unselected
+        self.pointing_device.click_object(message)
 
-        toolbar = self.open_toolbar()
-        toolbar.click_button("selectMessagesButton")
-        toolbar.animating.wait_for(False)
+    def enable_threads_selection_mode(self):
+        """Enable the selection mode on the threads page by pressing and
+        holding the first item"""
+        # FIXME: there is probably a better way to do this
+        thread = self.select_many("ThreadDelegate")[0]
+        self.long_press(thread)
+        # and now click to unselect it
+        self.pointing_device.click_object(thread)
 
     def close_osk(self):
         """Swipe down to close on-screen keyboard"""
@@ -302,6 +313,22 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
 
+    def click_threads_header_delete(self):
+        """Click the header action 'Delete' on Messages view"""
+        self.click_header_action('selectionModeDeleteAction')
+
+    def click_threads_header_cancel(self):
+        """Click the header action 'Cancel' on Messages view"""
+        self.get_header().click_custom_back_button()
+
+    def click_messages_header_delete(self):
+        """Click the header action 'Delete' on Messages view"""
+        self.click_header_action('selectionModeDeleteAction')
+
+    def click_messages_header_cancel(self):
+        """Click the header action 'Cancel' on Messages view"""
+        self.get_header().click_custom_back_button()
+
     def delete_thread(self, phone_number):
         """Delete thread containing specified phone number.
 
@@ -324,7 +351,32 @@ class MainView(toolkit_emulators.MainView):
         message.confirm_removal()
 
 
-class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class PageWithBottomEdge(MainView):
+    """An emulator class that makes it easy to interact with the bottom edge
+       swipe page"""
+    def __init__(self, *args):
+        super(PageWithBottomEdge, self).__init__(*args)
+
+    def reveal_bottom_edge_page(self):
+        """Bring the bottom edge page to the screen"""
+        self.bottomEdgePageLoaded.wait_for(True)
+        try:
+            action_item = self.wait_select_single('QQuickItem',
+                                                  objectName='bottomEdgeTip')
+            start_x = (action_item.globalRect.x +
+                       (action_item.globalRect.width * 0.5))
+            start_y = (action_item.globalRect.y +
+                       (action_item.height * 0.5))
+            stop_y = start_y - (self.height * 0.7)
+            self.pointing_device.drag(start_x, start_y,
+                                      start_x, stop_y, rate=2)
+            self.isReady.wait_for(True)
+        except StateNotFoundError:
+            logger.error('BottomEdge element not found.')
+            raise
+
+
+class MainPage(PageWithBottomEdge):
     """Autopilot helper for the Main Page."""
 
     def get_thread_count(self):
@@ -337,7 +389,8 @@ class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         thread = self.select_single(
             ThreadDelegate, objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
-        return self.get_root_instance().wait_select_single(Messages)
+        root = self.get_root_instance()
+        return root.wait_select_single(Messages, threadId=thread.threadId)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
@@ -376,13 +429,6 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self.pointing_device.press()
         self.selectionMode.wait_for(True)
         self.pointing_device.release()
-
-    @autopilot_logging.log_action(logger.info)
-    def delete(self):
-        """Delete the selected messages."""
-        button = self.select_single(
-            'Button', objectName='DialogButtons.acceptButton')
-        self.pointing_device.click_object(button)
 
     def get_messages(self):
         """Return a list with the information of the messages.

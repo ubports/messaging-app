@@ -23,41 +23,111 @@ import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
 import "dateUtils.js" as DateUtils
 
-Page {
+PageWithBottomEdge {
     id: mainPage
-    tools: threadList.isInSelectionMode ? selectionToolbar : regularToolbar
-    title: i18n.tr("Messages")
+    property alias selectionMode: threadList.isInSelectionMode
+    property bool searching: false
+    tools: selectionMode ? selectionToolbar : searching ? searchToolbar : regularToolbar
+    title: selectionMode ? i18n.tr("Edit") : i18n.tr("Chats")
+    __customHeaderContents: mainPage.searching ? searchField : null
 
+    bottomEdgeEnabled: !selectionMode
+    bottomEdgePageComponent: Messages {
+        active: false
+    }
+
+    bottomEdgeTitle: i18n.tr("New Chat")
     property alias threadCount: threadList.count
 
     function startSelection() {
         threadList.startSelection()
     }
 
+    TextField {
+        id: searchField
+        visible: mainPage.searching
+        anchors {
+            left: parent.left
+            topMargin: units.gu(1.5)
+            rightMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
+        }
+        inputMethodHints: Qt.ImhNoPredictiveText
+        onActiveFocusChanged: {
+            if (!activeFocus) {
+                searchField.text = ""
+                mainPage.searching = false
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: searchToolbar
+
+        visible: false
+        back: ToolbarButton {
+            visible: false
+            action: Action {
+                objectName: "cancelSearch"
+                visible: mainPage.searching
+                iconName: "close"
+                text: i18n.tr("Cancel")
+                onTriggered: {
+                    searchField.text = ""
+                    mainPage.searching = false
+                }
+            }
+        }
+    }
+
     ToolbarItems {
         id: regularToolbar
+        visible: false
         ToolbarButton {
-            visible: mainStack.currentPage.threadCount !== 0
-            objectName: "selectButton"
-            text: i18n.tr("Select")
-            iconSource: "image://theme/select"
-            onTriggered: mainStack.currentPage.startSelection()
-        }
-
-        ToolbarButton {
-            objectName: "newMessageButton"
+            id: searchButton
+            objectName: "searchButton"
             action: Action {
-                iconSource: "image://theme/compose"
-                text: i18n.tr("Compose")
-                onTriggered: mainView.startNewMessage()
+                iconSource: "image://theme/search"
+                onTriggered: {
+                    mainPage.searching = true
+                    searchField.forceActiveFocus()
+                }
             }
         }
     }
 
     ToolbarItems {
         id: selectionToolbar
-        locked: true
-        opened: false
+        visible: false
+        back: ToolbarButton {
+            id: selectionModeCancelButton
+            objectName: "selectionModeCancelButton"
+            action: Action {
+                objectName: "selectionModeCancelAction"
+                iconSource: "image://theme/close"
+                onTriggered: threadList.cancelSelection()
+            }
+        }
+        ToolbarButton {
+            id: selectionModeSelectAllButton
+            objectName: "selectionModeSelectAllButton"
+            action: Action {
+                objectName: "selectionModeSelectAllAction"
+                iconSource: "image://theme/filter"
+                onTriggered: threadList.selectAll()
+            }
+        }
+        ToolbarButton {
+            id: selectionModeDeleteButton
+            objectName: "selectionModeDeleteButton"
+            action: Action {
+                objectName: "selectionModeDeleteAction"
+                enabled: threadList.selectedItems.count > 0
+                iconSource: "image://theme/delete"
+                onTriggered: threadList.endSelection()
+            }
+        }
     }
 
     SortProxyModel {
@@ -76,15 +146,9 @@ Page {
         }
     }
 
-    MultipleSelectionListView {
-        id: threadList
-        objectName: "threadList"
-        anchors.fill: parent
-        listModel: sortProxy
-        acceptAction.text: i18n.tr("Delete")
-        acceptAction.enabled: selectedItems.count > 0
-        section.property: "eventDate"
-        section.delegate: Item {
+    Component {
+        id: sectionDelegate
+        Item {
             anchors.left: parent.left
             anchors.right: parent.right
             height: units.gu(5)
@@ -94,16 +158,33 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
                 fontSize: "medium"
                 elide: Text.ElideRight
-                color: "gray"
-                opacity: 0.6
+                color: "#5d5d5d"
                 text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
                 verticalAlignment: Text.AlignVCenter
             }
             ListItem.ThinDivider {
+                anchors.leftMargin: units.gu(2)
+                anchors.rightMargin: units.gu(2)
                 anchors.bottom: parent.bottom
+                opacity: 0.6
             }
         }
+    }
 
+    MultipleSelectionListView {
+        id: threadList
+        objectName: "threadList"
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
+
+        listModel: sortProxy
+        section.property: "eventDate"
+        spacing: searchField.text === "" ? units.gu(-2) : 0
+        section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
             objectName: "thread%1".arg(participants)
@@ -111,6 +192,7 @@ Page {
             selected: threadList.isSelected(threadDelegate)
             removable: !selectionMode
             confirmRemoval: true
+            searchTerm: mainPage.searching ? searchField.text : ""
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
@@ -137,6 +219,10 @@ Page {
             }
         }
 
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     Scrollbar {

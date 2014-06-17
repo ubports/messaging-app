@@ -29,10 +29,10 @@ MainView {
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
+    useDeprecatedToolbar: false
     property string newPhoneNumber
 
     Component.onCompleted: {
-        Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
@@ -69,6 +69,7 @@ MainView {
                     if (picker.curTransfer.state === ContentTransfer.InProgress)
                         picker.__exportItems(picker.url);
             }
+            onCancelPressed: mainStack.pop();
         }
 
         Connections {

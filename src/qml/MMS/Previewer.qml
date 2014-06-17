@@ -28,11 +28,13 @@ Page {
     tools: ToolbarItems {
         ToolbarButton {
             objectName: "saveButton"
-            text: i18n.tr("Save")
-            iconSource: "image://theme/save"
-            onTriggered: {
-                mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
-                actionTriggered()
+            action: Action {
+                text: i18n.tr("Save")
+                iconSource: "image://theme/save"
+                onTriggered: {
+                    mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
+                    actionTriggered()
+                }
             }
         }
 

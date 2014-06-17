@@ -1,3 +1,10 @@
+messaging-app (0.1+14.10.20140613.2-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Implement new designs + bottom edge swipe
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 13 Jun 2014 19:42:12 +0000
+
 messaging-app (0.1+14.10.20140609-0ubuntu1) utopic; urgency=low
 
   [ Tim Peeters ]
