@@ -291,19 +291,13 @@ class MainView(toolkit_emulators.MainView):
 
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Add")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("addContactAction")
 
     def click_call_button(self):
         """Click call button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Call")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("callContactAction")
 
     def click_back_button(self):
         """Click back button from toolbar on messages page"""

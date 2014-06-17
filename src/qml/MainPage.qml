@@ -88,6 +88,7 @@ PageWithBottomEdge {
             id: searchButton
             objectName: "searchButton"
             action: Action {
+                objectName: "searchAction"
                 iconSource: "image://theme/search"
                 onTriggered: {
                     mainPage.searching = true

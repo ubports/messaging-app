@@ -378,6 +378,7 @@ Page {
             id: groupChatButton
             objectName: "groupChatButton"
             action: Action {
+                objectName: "groupChatAction"
                 iconSource: "image://theme/navigation-menu"
                 onTriggered: {
                     PopupUtils.open(participantsPopover, messages.header)
@@ -392,6 +393,7 @@ Page {
         ToolbarButton {
             objectName: "contactCallButton"
             action: Action {
+                objectName: "contactCallAction"
                 visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
@@ -404,6 +406,7 @@ Page {
         ToolbarButton {
             objectName: "addContactButton"
             action: Action {
+                objectName: "addContactAction"
                 visible: contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
@@ -421,6 +424,7 @@ Page {
         ToolbarButton {
             objectName: "contactCallButton"
             action: Action {
+                objectName: "contactCallKnownAction"
                 visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
@@ -433,6 +437,7 @@ Page {
         ToolbarButton {
             objectName: "contactProfileButton"
             action: Action {
+                objectName: "contactProfileAction"
                 visible: !contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
