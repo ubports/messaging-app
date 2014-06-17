@@ -307,6 +307,28 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
 
+    def click_add_to_contact_button(self):
+        """
+        Click the 'Add to existing contact' button
+        in the 'Save Contact' dialog.
+        """
+        button = self.wait_select_single('Button',
+            objectName="addToExistingContact")
+        self.pointing_device.click_object(button)
+
+    def click_create_new_contact_button(self):
+        """
+        Click the 'Create new contact' button
+        in the 'Save Contact' dialog
+        """
+        button = self.wait_select_single('Button',
+            objectName="createNewContact")
+
+    def click_cancel_save_button(self):
+        " Click the 'Cancel' button in the 'Save Contact' dialog """
+        button = self.wait_select_single('Button',
+            objectName="cancelSave")
+
     def click_threads_header_delete(self):
         """Click the header action 'Delete' on Messages view"""
         self.click_header_action('selectionModeDeleteAction')

@@ -149,6 +149,7 @@ Page {
              title: i18n.tr("Save contact")
              text: i18n.tr("How do you want to save the contact?")
              Button {
+                 objectName: "addToExistingContact"
                  text: i18n.tr("Add to existing contact")
                  color: UbuntuColors.orange
                  onClicked: {
@@ -158,6 +159,7 @@ Page {
                  }
              }
              Button {
+                 objectName: "createNewContact"
                  text: i18n.tr("Create new contact")
                  color: UbuntuColors.orange
                  onClicked: {
@@ -166,6 +168,7 @@ Page {
                  }
              }
              Button {
+                 objectName: "cancelSave"
                  text: i18n.tr("Cancel")
                  color: UbuntuColors.warmGrey
                  onClicked: {
