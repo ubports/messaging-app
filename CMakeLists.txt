@@ -5,6 +5,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 # Standard install paths
 include(GNUInstallDirs)
 
+find_program(INTLTOOL_MERGE intltool-merge)
+find_program(INTLTOOL_EXTRACT intltool-extract)
+
 # Check for include files
 include(CheckIncludeFileCXX)
 include(CheckIncludeFile)
