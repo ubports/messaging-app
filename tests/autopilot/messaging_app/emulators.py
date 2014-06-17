@@ -46,7 +46,7 @@ class MainView(toolkit_emulators.MainView):
         :parameter phone_number: the phone_number of message thread
 
         """
-        return self.wait_select_single("ThreadDelegate",
+        return self.wait_select_single(ThreadDelegate,
                                        phoneNumber=phone_number)
 
     def get_message(self, text):
@@ -57,7 +57,7 @@ class MainView(toolkit_emulators.MainView):
         """
 
         time.sleep(2)  # message is not always found on slow emulator
-        for message in self.select_many('MessageDelegate'):
+        for message in self.select_many(MessageDelegate):
             for item in self.select_many('Label'):
                 if "text" in item.get_properties():
                     if item.get_properties()['text'] == text:
@@ -329,68 +329,26 @@ class MainView(toolkit_emulators.MainView):
         """Click the header action 'Cancel' on Messages view"""
         self.get_header().click_custom_back_button()
 
-    def delete_thread(self, phone_number, direction='right'):
-        """Delete thread containing specified phone number
+    def delete_thread(self, phone_number):
+        """Delete thread containing specified phone number.
 
         :parameter phone_number: phone number of thread to delete
         :parameter direction: right or left, the direction to swipe to delete
         """
-
         thread = self.get_thread_from_number(phone_number)
-        delete = self.swipe_to_delete(thread, direction=direction)
-        delete_button = delete.wait_select_single('QQuickImage', visible=True)
-        self.pointing_device.click_object(delete_button)
-        thread.wait_until_destroyed()
+        thread.swipe_to_delete()
+        thread.confirm_removal()
 
-    def delete_message(self, text, direction='right'):
-        """Deletes message with specified text
+    def delete_message(self, text):
+        """Deletes message with specified text.
 
-        :parameter text: the text of the message you want to delete
-        :parameter direction: right or left, the direction to swipe to delete
+        :parameter text: the text of the message you want to delete.
+        :parameter direction: right or left, the direction to swipe to delete.
+
         """
-
         message = self.get_message(text)
-        delete = self.swipe_to_delete(message, direction=direction)
-        delete_button = delete.wait_select_single('QQuickImage', visible=True)
-        self.pointing_device.click_object(delete_button)
-        message.wait_until_destroyed()
-
-    def swipe_to_delete(self, obj, direction='right', offset=.1):
-        """Swipe and objet left or right
-
-        :parameter direction: right or left, the direction to swipe
-        :parameter offset: the ammount of space to offset at start of swipe
-        """
-
-        x, y, w, h = obj.globalRect
-
-        s_rx = x + (w * offset)
-        e_rx = w
-
-        s_lx = w - (w * offset)
-        e_lx = w * offset
-
-        sy = y + (h / 2)
-
-        if (direction == 'right'):
-            self.pointing_device.drag(s_rx, sy, e_rx, sy)
-            # wait for animation
-            time.sleep(.5)
-            return self.wait_select_single('QQuickItem',
-                                           objectName='confirmRemovalDialog',
-                                           visible=True)
-        elif (direction == 'left'):
-            self.pointing_device.drag(s_lx, sy, e_lx, sy)
-            # wait for animation
-            time.sleep(.5)
-            return self.wait_select_single('QQuickItem',
-                                           objectName='confirmRemovalDialog',
-                                           visible=True)
-        else:
-            raise EmulatorException(
-                'Invalid direction "{0}" used on swipe to delete function '
-                'direction can be right or left'.format(direction)
-            )
+        message.swipe_to_delete()
+        message.confirm_removal()
 
 
 class PageWithBottomEdge(MainView):
@@ -429,7 +387,7 @@ class MainPage(PageWithBottomEdge):
     @autopilot_logging.log_action(logger.info)
     def open_thread(self, participants):
         thread = self.select_single(
-            'ThreadDelegate', objectName='thread{}'.format(participants))
+            ThreadDelegate, objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
         root = self.get_root_instance()
         return root.wait_select_single(Messages, threadId=thread.threadId)
@@ -489,3 +447,20 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
                 'Label', objectName='messageText').text
             messages.append((date, text))
         return messages
+
+
+class ThreadDelegate(toolkit_emulators.Empty):
+    """Autopilot helper for ThreadDelegate."""
+
+
+class MessageDelegate(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for the MessageDelegate."""
+
+    def swipe_to_delete(self):
+        self._get_internal_list_item().swipe_to_delete()
+
+    def _get_internal_list_item(self):
+        return self.select_single(toolkit_emulators.Empty)
+
+    def confirm_removal(self):
+        self._get_internal_list_item().confirm_removal()
