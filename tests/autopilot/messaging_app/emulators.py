@@ -313,7 +313,7 @@ class MainView(toolkit_emulators.MainView):
         in the 'Save Contact' dialog.
         """
         button = self.wait_select_single('Button',
-            objectName="addToExistingContact")
+                                         objectName="addToExistingContact")
         self.pointing_device.click_object(button)
 
     def click_create_new_contact_button(self):
@@ -322,12 +322,14 @@ class MainView(toolkit_emulators.MainView):
         in the 'Save Contact' dialog
         """
         button = self.wait_select_single('Button',
-            objectName="createNewContact")
+                                         objectName="createNewContact")
+        self.pointing_device.click_object(button)
 
     def click_cancel_save_button(self):
         " Click the 'Cancel' button in the 'Save Contact' dialog """
         button = self.wait_select_single('Button',
-            objectName="cancelSave")
+                                         objectName="cancelSave")
+        self.pointing_device.click_object(button)
 
     def click_threads_header_delete(self):
         """Click the header action 'Delete' on Messages view"""
