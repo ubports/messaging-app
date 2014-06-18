@@ -297,7 +297,7 @@ class MainView(toolkit_emulators.MainView):
     def click_call_button(self):
         """Click call button from toolbar on messages page"""
         header = self.get_header()
-        header.click_action_button("callContactAction")
+        header.click_action_button("contactCallAction")
 
     def click_back_button(self):
         """Click back button from toolbar on messages page"""
