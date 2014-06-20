@@ -61,6 +61,7 @@ Page {
                     attachment["contentType"] = application.fileMimeType(filePath)
                     attachment["filePath"] = filePath
                     attachments.append(attachment)
+                    textEntry.forceActiveFocus() 
                 }
             }
         }
@@ -596,6 +597,7 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
+                    Qt.inputMethod.hide()
                     activeTransfer = defaultSource.request();
                 }
             }
@@ -613,6 +615,13 @@ Page {
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
             height: childrenRect.height
+            onActiveFocusChanged: {
+                if(activeFocus) {
+                    messageTextArea.forceActiveFocus()
+                } else {
+                    focus = false
+                }
+            }
             focus: false
             MouseArea {
                 anchors.fill: parent
@@ -656,13 +665,13 @@ Page {
                 font.family: "Ubuntu"
             }
 
-            InverseMouseArea {
+            /*InverseMouseArea {
                 anchors.fill: parent
                 visible: textEntry.activeFocus
                 onClicked: {
                     textEntry.focus = false;
                 }
-            }
+            }*/
             Component.onCompleted: {
                 // if page is active, it means this is not a bottom edge page
                 if (messages.active && messages.keyboardFocus && participants.length != 0) {
