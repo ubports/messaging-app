@@ -55,7 +55,6 @@ Page {
                 if (activeTransfer.items.length > 0) {
                     var attachment = []
                     var url = String(activeTransfer.items[0].url)
-                    console.log(application.fileMimeType(url.replace('file://', '')))
                     attachment.push(url.split('/').reverse()[0])
                     attachment.push(application.fileMimeType(url.replace('file://', '')))
                     attachment.push(url)
