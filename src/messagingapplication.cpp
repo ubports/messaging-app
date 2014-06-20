@@ -32,6 +32,7 @@
 #include <QLibrary>
 #include "config.h"
 #include <QQmlEngine>
+#include <QMimeDatabase>
 
 static void printUsage(const QStringList& arguments)
 {
@@ -206,3 +207,21 @@ void MessagingApplication::activateWindow()
         m_view->requestActivate();
     }
 }
+
+QString MessagingApplication::readTextFile(const QString &fileName) {
+    QString text;
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return QString();
+    }
+    text = QString(file.readAll());
+    file.close();
+    return text;
+}
+
+QString MessagingApplication::fileMimeType(const QString &fileName) {
+    QMimeDatabase db;
+    QMimeType type = db.mimeTypeForFile(fileName);
+    return type.name();
+}
+

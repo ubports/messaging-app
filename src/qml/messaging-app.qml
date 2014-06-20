@@ -73,7 +73,7 @@ MainView {
         }
 
         Connections {
-            target: picker.curTransfer
+            target: picker.curTransfer !== null ? picker.curTransfer : null
             onStateChanged: {
                 console.log("curTransfer StateChanged: " + picker.curTransfer.state);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)

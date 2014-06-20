@@ -37,6 +37,7 @@ Item {
     property alias removable: internalDelegate.removable
     property alias selected: internalDelegate.selected
     property variant activeAttachment
+    property string mmsText: ""
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
@@ -104,6 +105,9 @@ Item {
                     } else if (modelData.contentType === "application/smil" ) {
                         console.log("Ignoring SMIL file")
                         return ""
+                    } else if (startsWith(modelData.contentType, "text/plain") ) {
+                        mmsText = application.readTextFile(modelData.filePath)
+                        return ""
                     } else {
                         console.log("No MMS render for " + modelData.contentType)
                         return "MMS/MMSDefault.qml"
@@ -149,11 +153,12 @@ Item {
 
     ListItem.Empty {
         id: internalDelegate
-        anchors.top: attachments.bottom
+        anchors.top: attachments.bottom        
+        anchors.topMargin: textMessageAttachments.length > 0 ? units.gu(1) : undefined
         anchors.left: parent ? parent.left : undefined
         anchors.right: parent ? parent.right: undefined
         clip: true
-        height: (textMessage === "" && textMessageAttachments.length > 0) ? 0 : bubble.height + date.height
+        height: (textMessage === "" && mmsText === "" && textMessageAttachments.length > 0) ? 0 : bubble.height + date.height
         showDivider: false
         highlightWhenPressed: false
         onPressAndHold: PopupUtils.open(popoverMenuComponent, messageDelegate)
@@ -251,7 +256,7 @@ Item {
             visible: running && !selectionMode
             // if temporarily failed or unknown status, then show the spinner
             running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown ||
-                      textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+                      textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming && mmsText === ""
         }
 
         // FIXME: this is just a temporary workaround while we dont have the final design
@@ -348,7 +353,7 @@ Item {
                     fontSize: "medium"
                     color: textColor
                     opacity: incoming ? 1 : 0.9
-                    text: parseText(textMessage)
+                    text: textMessage !== "" ? parseText(textMessage) : parseText(mmsText)
                     onLinkActivated:  Qt.openUrlExternally(link)
                     function parseText(text) {
                         var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[-. ]?([0-9]+)[-. ]?([0-9]+)[-. ]?([0-9]+))/img;
@@ -360,9 +365,7 @@ Item {
                         text = BaLinkify.linkify(text);
                         // linkify phone numbers
                         return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
-
                     }
-
                 }
             }
         }

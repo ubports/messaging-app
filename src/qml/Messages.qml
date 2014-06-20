@@ -22,6 +22,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
@@ -42,6 +43,28 @@ Page {
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
+    property var activeTransfer: null
+    property var attachments: []
+    Connections {
+        target: activeTransfer !== null ? activeTransfer : null
+        onStateChanged: {
+            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
+                        (activeTransfer.state === ContentTransfer.Aborted));
+
+            if (activeTransfer.state === ContentTransfer.Charged) {
+                if (activeTransfer.items.length > 0) {
+                    var attachment = []
+                    var url = String(activeTransfer.items[0].url)
+                    console.log(application.fileMimeType(url.replace('file://', '')))
+                    attachment.push(url.split('/').reverse()[0])
+                    attachment.push(application.fileMimeType(url.replace('file://', '')))
+                    attachment.push(url)
+                    attachments.push(attachment)
+                }
+            }
+        }
+    }
+
     flickable: null
     // we need to use isReady here to know if this is a bottom edge page or not.
     __customHeaderContents: newMessage && isReady ? newMessageHeader : null
@@ -109,6 +132,13 @@ Page {
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    ContentPeer {
+        id: defaultSource
+        contentType: ContentType.Pictures
+        handler: ContentHandler.Source
+        selectionType: ContentTransfer.Single
     }
 
     Component {
@@ -562,6 +592,12 @@ Page {
             width: units.gu(3)
             color: "gray"
             name: "camera"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    activeTransfer = defaultSource.request();
+                }
+            }
         }
 
         TextArea {
@@ -626,6 +662,13 @@ Page {
                                                                             true)
                 }
                 messages.pendingMessage = true
+                if (messages.attachments.length > 0) {
+                    chatManager.sendMMS(participants, textEntry.text, messages.attachments, messages.accountId)
+                    textEntry.text = ""
+                    messages.attachments = []
+                    return
+                }
+
                 chatManager.sendMessage(participants, textEntry.text, messages.accountId)
                 textEntry.text = ""
             }

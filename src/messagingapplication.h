@@ -36,6 +36,8 @@ public:
 public Q_SLOTS:
     void activateWindow();
     void parseArgument(const QString &arg);
+    QString readTextFile(const QString &fileName);
+    QString fileMimeType(const QString &fileName);
 
 private Q_SLOTS:
     void onViewStatusChanged(QQuickView::Status status);
