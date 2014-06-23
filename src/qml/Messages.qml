@@ -44,6 +44,7 @@ Page {
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
     property var activeTransfer: null
+    property int activeAttachmentIndex: -1
     ListModel {
         id: attachments
     }
@@ -57,6 +58,7 @@ Page {
                 if (activeTransfer.items.length > 0) {
                     var attachment = {}
                     var filePath = String(activeTransfer.items[0].url).replace('file://', '')
+                    // get only the basename
                     attachment["name"] = filePath.split('/').reverse()[0]
                     attachment["contentType"] = application.fileMimeType(filePath)
                     attachment["filePath"] = filePath
@@ -141,6 +143,30 @@ Page {
         contentType: ContentType.Pictures
         handler: ContentHandler.Source
         selectionType: ContentTransfer.Single
+    }
+
+    Component {
+        id: attachmentPopover
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem.Standard {
+                    text: i18n.tr("Remove")
+                    onClicked: {
+                        attachments.remove(activeAttachmentIndex)
+                        PopupUtils.close(popover)
+                    }
+                }
+            }
+            Component.onDestruction: activeAttachmentIndex = -1
+        }
     }
 
     Component {
@@ -607,6 +633,7 @@ Page {
             id: textEntry
             property alias text: messageTextArea.text
             property alias inputMethodComposing: messageTextArea.inputMethodComposing
+            property int fullSize: attachmentThumbnails.height + messageTextArea.height
             style: Theme.createStyleComponent("TextFieldStyle.qml", textEntry)
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
@@ -614,7 +641,7 @@ Page {
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
-            height: childrenRect.height
+            height: attachments.count !== 0 ? fullSize + units.gu(1) : fullSize
             onActiveFocusChanged: {
                 if(activeFocus) {
                     messageTextArea.forceActiveFocus()
@@ -636,6 +663,7 @@ Page {
                 anchors.leftMargin: units.gu(1)
                 anchors.rightMargin: units.gu(1)
                 anchors.topMargin: units.gu(1)
+                height: childrenRect.height
                 Repeater {
                     model: attachments
                     delegate: UbuntuShape {
@@ -646,6 +674,14 @@ Page {
                             fillMode: Image.PreserveAspectCrop
                             source: filePath
                             asynchronous: true
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                mouse.accept = true
+                                activeAttachmentIndex = index
+                                PopupUtils.open(attachmentPopover, parent)
+                            }
                         }
                     }
                 }
