@@ -227,7 +227,7 @@ Page {
         clip: true
         z: 1
         autoUpdate: false
-        searchTerm: multiRecipient.searchString
+        filterTerm: multiRecipient.searchString
 
         states: [
             State {
