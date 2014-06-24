@@ -577,6 +577,7 @@ Page {
             onResend: {
                 // resend this message and remove the old one
                 eventModel.removeEvent(accountId, threadId, eventId, type)
+                // FIXME: handle attachments
                 chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
         }
