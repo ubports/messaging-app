@@ -45,9 +45,24 @@ Page {
     property bool pendingMessage: false
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
+    property var sharedAttachmentsTransfer: []
+
+    function addAttachmentsToModel(transfer) {
+        for (var i = 0; i < transfer.items.length; i++) {
+            var attachment = {}
+            var filePath = String(transfer.items[i].url).replace('file://', '')
+            // get only the basename
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["filePath"] = filePath
+            attachments.append(attachment)
+        }
+    }
+
     ListModel {
         id: attachments
     }
+
     Connections {
         target: activeTransfer !== null ? activeTransfer : null
         onStateChanged: {
@@ -56,13 +71,7 @@ Page {
 
             if (activeTransfer.state === ContentTransfer.Charged) {
                 if (activeTransfer.items.length > 0) {
-                    var attachment = {}
-                    var filePath = String(activeTransfer.items[0].url).replace('file://', '')
-                    // get only the basename
-                    attachment["name"] = filePath.split('/').reverse()[0]
-                    attachment["contentType"] = application.fileMimeType(filePath)
-                    attachment["filePath"] = filePath
-                    attachments.append(attachment)
+                    addAttachmentsToModel(activeTransfer)
                     textEntry.forceActiveFocus() 
                 }
             }
@@ -123,6 +132,7 @@ Page {
 
     Component.onCompleted: {
         threadId = getCurrentThreadId()
+        addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
     function getCurrentThreadId() {

@@ -43,6 +43,16 @@ MainView {
         ContentItem {}
     }
 
+    Connections {
+        target: ContentHub
+        onShareRequested: {
+            var properties = {}
+            emptyStack()
+            properties["sharedAttachmentsTransfer"] = transfer
+            mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
+        }
+    }
+
     Page {
         id: picker
         visible: false
@@ -65,9 +75,9 @@ MainView {
 
             onPeerSelected: {
                 picker.curTransfer = peer.request();
-                    mainStack.pop();
-                    if (picker.curTransfer.state === ContentTransfer.InProgress)
-                        picker.__exportItems(picker.url);
+                mainStack.pop();
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                    picker.__exportItems(picker.url);
             }
             onCancelPressed: mainStack.pop();
         }
