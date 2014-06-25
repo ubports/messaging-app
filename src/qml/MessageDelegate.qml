@@ -108,6 +108,9 @@ Item {
                     } else if (startsWith(modelData.contentType, "text/plain") ) {
                         mmsText = application.readTextFile(modelData.filePath)
                         return ""
+                    } else if (startsWith(modelData.contentType, "text/vcard") ||
+                              startsWith(modelData.contentType, "text/x-vcard")) {
+                        return "MMS/MMSContact.qml"
                     } else {
                         console.log("No MMS render for " + modelData.contentType)
                         return "MMS/MMSDefault.qml"
@@ -129,7 +132,7 @@ Item {
                 Connections {
                     target: item
                     onPressAndHold: {
-                        activeAttachment = item
+                        activeAttachment = modelData
                         PopupUtils.open(popoverSaveAttachmentComponent, item)
                     }
                 }
@@ -137,7 +140,7 @@ Item {
                     target: item
                     onClicked: {
                         if (item.previewer === "") {
-                            activeAttachment = item
+                            activeAttachment = modelData
                             PopupUtils.open(popoverSaveAttachmentComponent, item)
                             return
                         }

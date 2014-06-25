@@ -59,6 +59,20 @@ MainView {
         property var curTransfer
         property var url
         property var handler
+        property var contentType: getContentType(url)
+
+        function getContentType(filePath) {
+            var contentType = application.fileMimeType(String(filePath).replace("file://",""))
+            console.log(filePath)
+            console.log(contentType)
+            if (startsWith(contentType, "image/")) {
+                return ContentType.Pictures
+            } else if (startsWith(contentType, "text/vcard") ||
+                       startsWith(contentType, "text/x-vcard")) {
+                return ContentType.Contacts
+            }
+            return ContentType.Unknown
+        }
 
         function __exportItems(url) {
             if (picker.curTransfer.state === ContentTransfer.InProgress)
@@ -70,7 +84,7 @@ MainView {
 
         ContentPeerPicker {
             visible: parent.visible
-            contentType: ContentType.Pictures
+            contentType: picker.contentType
             handler: picker.handler
 
             onPeerSelected: {
@@ -97,7 +111,7 @@ MainView {
     signal applicationReady
 
     function startsWith(string, prefix) {
-        return string.slice(0, prefix.length) === prefix;
+        return string.toLowerCase().slice(0, prefix.length) === prefix.toLowerCase();
     }
 
     function emptyStack() {
