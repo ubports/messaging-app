@@ -47,7 +47,7 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     """
 
-    #Don't use keyboard on desktop
+    # Don't use keyboard on desktop
     if model() == 'Desktop':
         subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
 
