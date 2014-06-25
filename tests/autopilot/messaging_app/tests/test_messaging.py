@@ -123,7 +123,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_write_new_message(self):
         """Verify we can write and send a new text message"""
         self.main_view.start_new_message()
-        #verify the thread list page is not visible
+        # verify the thread list page is not visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type contact/number
@@ -219,7 +219,7 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.long_press(bubble)
         self.main_view.click_cancel_dialog_button()
         time.sleep(5)  # on a slow machine it might return a false positive
-        #the bubble must exist
+        # the bubble must exist
         bubble = self.main_view.get_message(message)
 
     def test_open_received_message(self):
@@ -266,7 +266,7 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.enable_messages_selection_mode()
         self.pointing_device.click_object(bubble)
         self.main_view.click_messages_header_delete()
-        #verify messsage is gone
+        # verify messsage is gone
         bubble.wait_until_destroyed()
 
     def test_delete_message_without_selecting_a_message(self):
@@ -297,7 +297,7 @@ class TestMessaging(BaseMessagingTestCase):
         # click the delete button
         self.main_view.click_messages_header_delete()
 
-        #verify messsage is not gone
+        # verify messsage is not gone
         time.sleep(5)  # wait 5 seconds, the emulator is slow
         list_view.select_single("Label", text=message)
 
@@ -325,7 +325,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_cancel_delete_thread_from_main_view(self):
         """Verify we can cancel deleting a message thread"""
         self.main_view.start_new_message()
-        #verify the thread list page is not visible
+        # verify the thread list page is not visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type contact/number
@@ -373,7 +373,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_delete_thread_from_main_view(self):
         """Verify we can delete a message thread"""
         self.main_view.start_new_message()
-        #verify the thread list page is not visible
+        # verify the thread list page is not visible
         self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
 
         # type contact/number
@@ -448,7 +448,7 @@ class TestMessaging(BaseMessagingTestCase):
         self.assertThat(list_view.count, Eventually(Equals(1)))
         self.main_view.get_message(message)
 
-        #delete message
+        # delete message
         self.main_view.delete_message(message)
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
