@@ -73,7 +73,7 @@ ListItem.Empty {
 
         Label {
             id: label
-            text: i18n.tr("vCard: ") + attachment.attachmentId
+            text: i18n.tr("vCard")
             anchors.centerIn: parent
             anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
             fontSize: "medium"
