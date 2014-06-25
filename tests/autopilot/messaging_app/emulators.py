@@ -82,7 +82,7 @@ class MainView(toolkit_emulators.MainView):
         """Click the action 'action' on the header"""
         self.get_header().click_action_button(action)
 
-    #messages page
+    # messages page
     def get_messages_page(self):
         """Return messages with objectName messagesPage"""
 
@@ -286,7 +286,7 @@ class MainView(toolkit_emulators.MainView):
         # killing the maliit-server closes the OSK
         if model() is not 'Desktop':
             subprocess.call(["pkill", "maliit-server"])
-            #wait for server to respawn
+            # wait for server to respawn
             time.sleep(2)
 
     def click_add_button(self):
