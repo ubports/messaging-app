@@ -61,19 +61,6 @@ MainView {
         property var handler
         property var contentType: getContentType(url)
 
-        function getContentType(filePath) {
-            var contentType = application.fileMimeType(String(filePath).replace("file://",""))
-            console.log(filePath)
-            console.log(contentType)
-            if (startsWith(contentType, "image/")) {
-                return ContentType.Pictures
-            } else if (startsWith(contentType, "text/vcard") ||
-                       startsWith(contentType, "text/x-vcard")) {
-                return ContentType.Contacts
-            }
-            return ContentType.Unknown
-        }
-
         function __exportItems(url) {
             if (picker.curTransfer.state === ContentTransfer.InProgress)
             {
@@ -112,6 +99,17 @@ MainView {
 
     function startsWith(string, prefix) {
         return string.toLowerCase().slice(0, prefix.length) === prefix.toLowerCase();
+    }
+
+    function getContentType(filePath) {
+        var contentType = application.fileMimeType(String(filePath).replace("file://",""))
+        if (startsWith(contentType, "image/")) {
+            return ContentType.Pictures
+        } else if (startsWith(contentType, "text/vcard") ||
+                   startsWith(contentType, "text/x-vcard")) {
+            return ContentType.Contacts
+        }
+        return ContentType.Unknown
     }
 
     function emptyStack() {

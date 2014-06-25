@@ -80,6 +80,7 @@ Page {
     readonly property bool isReady: (tip.opacity === 0.0)
     readonly property bool isCollapsed: (tip.opacity === 1.0)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
+    property var temporaryProperties: null
 
     property bool _showEdgePageWhenReady: false
     property int _areaWhenExpanded: 0
@@ -91,6 +92,7 @@ Page {
     function showBottomEdgePage(source, properties)
     {
         edgeLoader.setSource(source, properties)
+        temporaryProperties = properties
         _showEdgePageWhenReady = true
     }
 
@@ -310,7 +312,13 @@ Page {
                                 edgeLoader.active = false
                                 // remove properties from old instance
                                 if (edgeLoader.source !== "") {
-                                    edgeLoader.setSource(edgeLoader.source, {})
+                                    var properties = {}
+                                    if (temporaryProperties !== null) {
+                                        properties = temporaryProperties
+                                        temporaryProperties = null
+                                    }
+
+                                    edgeLoader.setSource(edgeLoader.source, properties)
                                 }
                             }
 

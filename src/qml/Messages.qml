@@ -675,13 +675,17 @@ Page {
                 anchors.rightMargin: units.gu(1)
                 anchors.topMargin: units.gu(1)
                 height: childrenRect.height
-                Repeater {
-                    model: attachments
-                    delegate: UbuntuShape {
+                Component {
+                    id: thumbnailImage
+                    UbuntuShape {
+                        property int index
+                        property string filePath
+                        width: childrenRect.width
+                        height: childrenRect.height
                         image: Image {
                             id: avatarImage
-                            anchors.fill: parent
                             width: units.gu(8)
+                            height: units.gu(8)
                             fillMode: Image.PreserveAspectCrop
                             source: filePath
                             asynchronous: true
@@ -692,6 +696,82 @@ Page {
                                 mouse.accept = true
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
+                            }
+                        }
+                    }
+                }
+
+                Component {
+                    id: thumbnailContact
+                    UbuntuShape {
+                        property int index
+                        property string filePath
+                        width: childrenRect.width
+                        height: childrenRect.height
+                        Icon {
+                            anchors.centerIn: parent
+                            width: units.gu(6)
+                            height: units.gu(6)
+                            name: "contact"
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                mouse.accept = true
+                                activeAttachmentIndex = index
+                                PopupUtils.open(attachmentPopover, parent)
+                            }
+                        }
+                    }
+                }
+
+                Component {
+                    id: thumbnailUnknown
+                    UbuntuShape {
+                        property int index
+                        property string filePath
+                        width: childrenRect.width
+                        height: childrenRect.height
+                        Icon {
+                            anchors.centerIn: parent
+                            width: units.gu(6)
+                            height: units.gu(6)
+                            name: "attachment"
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                mouse.accept = true
+                                activeAttachmentIndex = index
+                                PopupUtils.open(attachmentPopover, parent)
+                            }
+                        }
+                    }
+                }
+
+                Repeater {
+                    model: attachments
+                    delegate: Loader {
+                        height: units.gu(8)
+                        width: units.gu(8)
+                        sourceComponent: {
+                            var contentType = getContentType(filePath)
+                            console.log(contentType)
+                            switch(contentType) {
+                            case ContentType.Contacts:
+                                return thumbnailContact
+                            case ContentType.Pictures:
+                                return thumbnailImage
+                            case ContentType.Unknown:
+                                return thumbnailUnknown
+                            default:
+                                console.log("unknown content Type")
+                            }
+                        }
+                        onStatusChanged: {
+                            if (status == Loader.Ready) {
+                                item.index = index
+                                item.filePath = filePath
                             }
                         }
                     }
