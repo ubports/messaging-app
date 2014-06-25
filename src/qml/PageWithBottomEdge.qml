@@ -308,6 +308,10 @@ Page {
                             // destroy current bottom page
                             if (page.reloadBottomEdgePage) {
                                 edgeLoader.active = false
+                                // remove properties from old instance
+                                if (edgeLoader.source !== "") {
+                                    edgeLoader.setSource(edgeLoader.source, {})
+                                }
                             }
 
                             // notify
