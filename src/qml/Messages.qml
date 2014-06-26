@@ -601,7 +601,23 @@ Page {
             onResend: {
                 // resend this message and remove the old one
                 eventModel.removeEvent(accountId, threadId, eventId, type)
-                // FIXME: handle attachments
+                if (textMessageAttachments.length > 0) {
+                    var newAttachments = []
+                    for (var i = 0; i < textMessageAttachments.length; i++) {
+                        var attachment = []
+                        var item = textMessageAttachments[i]
+                        // we dont include smil files. they will be auto generated
+                        if (item.contentType.toLowerCase() == "application/smil") {
+                            continue
+                        }
+                        attachment.push(item.attachmentId)
+                        attachment.push(item.contentType)
+                        attachment.push(item.filePath)
+                        newAttachments.push(attachment)
+                    }
+                    chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
+                    return
+                }
                 chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
         }
