@@ -118,7 +118,7 @@ Page {
         }
 
         if (participants.length == 0) {
-            return null
+            return messagesToolbarNewMessage
         } else if (participants.length == 1) {
             if (contactWatcher.isUnknown) {
                 return messagesToolbarUnknownContact
@@ -454,6 +454,20 @@ Page {
         }
     }
 
+    ToolbarItems {
+        id: messagesToolbarNewMessage
+        visible: false
+        back: ToolbarButton {
+            action: Action {
+                onTriggered: {
+                    mainPage.temporaryProperties = null
+                    mainStack.pop()
+                }
+                iconSource: "image://theme/back"
+            }
+        }
+    }
+ 
     ToolbarItems {
         id: messagesToolbarUnknownContact
         visible: false
