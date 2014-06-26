@@ -41,4 +41,9 @@ install(FILES "messaging-app.url-dispatcher"
     DESTINATION ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls
     )
 
+install(FILES "messaging-app-content.json"
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/content-hub
+    RENAME messaging-app
+    )
+
 add_subdirectory(qml)
