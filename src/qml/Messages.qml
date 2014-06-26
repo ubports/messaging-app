@@ -27,11 +27,11 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
-
 Page {
     id: messages
     objectName: "messagesPage"
     property string threadId: ""
+    property bool newMessage: threadId === ""
     // FIXME: we should get the account ID properly when dealing with multiple accounts
     property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
@@ -43,7 +43,21 @@ Page {
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
     flickable: null
+    // we need to use isReady here to know if this is a bottom edge page or not.
+    __customHeaderContents: newMessage && isReady ? newMessageHeader : null
+    property bool isReady: false
+    signal ready
+    onReady: {
+        isReady = true
+        if (participants.length === 0 && keyboardFocus)
+            multiRecipient.forceFocus()
+    }
+
     title: {
+        if (selectionMode) {
+            return i18n.tr("Edit")
+        }
+
         if (landscape) {
             return ""
         }
@@ -57,14 +71,29 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
-                var numOther = participants.length-1
-                return firstRecipient + " +" + i18n.tr("%1 other", "%1 others", numOther).arg(numOther)
+                return i18n.tr("Group")
             }
         }
         return i18n.tr("New Message")
     }
-    tools: messagesToolbar
-    onSelectionModeChanged: messagesToolbar.opened = false
+    tools: {
+        if (selectionMode) {
+            return messagesToolbarSelectionMode
+        }
+
+        if (participants.length == 0) {
+            return null
+        } else if (participants.length == 1) {
+            if (contactWatcher.isUnknown) {
+                return messagesToolbarUnknownContact
+            } else {
+                return messagesToolbarKnownContact
+            }
+        } else if (groupChat){
+            return messagesToolbarGroupChat
+        }
+    }
+
     Component.onCompleted: {
         threadId = getCurrentThreadId()
     }
@@ -113,52 +142,6 @@ Page {
         }
     }
 
-    Item {
-        id: headerContent
-        visible: groupChat
-        anchors.fill: parent
-
-        Label {
-            text: messages.title
-            fontSize: "x-large"
-            font.weight: Font.Light
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-            anchors {
-                left: parent.left
-                leftMargin: units.gu(1)
-                top: parent.top
-                bottom: parent.bottom
-                right: participantsButton.left
-            }
-        }
-
-        Icon {
-            id: participantsButton
-            name: "navigation-menu"
-            width: visible ? units.gu(6) : 0
-            height: units.gu(6)
-            visible: groupChat
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: PopupUtils.open(participantsPopover, participantsButton)
-            }
-        }
-    }
-
-    Binding {
-        target: messages.header
-        property: "contents"
-        value: groupChat ? headerContent : null
-        when: messages.header && !landscape && messages.active
-    }
-
-
     Component {
          id: newContactDialog
          Dialog {
@@ -169,8 +152,9 @@ Page {
                  text: i18n.tr("Add to existing contact")
                  color: UbuntuColors.orange
                  onClicked: {
-                     PopupUtils.open(addPhoneNumberToContactSheet)
                      PopupUtils.close(dialogue)
+                     Qt.inputMethod.hide()
+                     mainStack.push(Qt.resolvedUrl("AddPhoneNumberToContactPage.qml"), {"phoneNumber": contactWatcher.phoneNumber})
                  }
              }
              Button {
@@ -191,6 +175,160 @@ Page {
          }
     }
 
+    Item {
+        id: newMessageHeader
+        anchors {
+            left: parent.left
+            rightMargin: units.gu(1)
+            right: parent.right
+            bottom: parent.bottom
+            top: parent.top
+        }
+        visible: participants.length == 0 && isReady && messages.active
+        MultiRecipientInput {
+            id: multiRecipient
+            objectName: "multiRecipient"
+            enabled: visible
+            width: childrenRect.width
+            anchors {
+                left: parent.left
+                right: addIcon.left
+                rightMargin: units.gu(1)
+                verticalCenter: parent.verticalCenter
+            }
+        }
+        Icon {
+            id: addIcon
+            visible: multiRecipient.visible
+            height: units.gu(3)
+            width: units.gu(3)
+            anchors {
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+            }
+
+            name: "new-contact"
+            color: "gray"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    Qt.inputMethod.hide()
+                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                }
+            }
+        }
+    }
+
+    ContactListView {
+        id: contactSearch
+        property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
+        visible: searchEnabled
+        detailToPick: ContactDetail.PhoneNumber
+        clip: true
+        z: 1
+        autoUpdate: false
+
+        property string searchTerm: {
+            if(multiRecipient.searchString !== "" && multiRecipient.focus) {
+                return multiRecipient.searchString
+            }
+            return ""
+        }
+        states: [
+            State {
+                name: "empty"
+                when: contactSearch.count === 0
+                PropertyChanges {
+                    target: contactSearch
+                    height: 0
+                }
+            }
+        ]
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: bottomPanel.top
+        }
+
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        onSearchTermChanged: {
+            if ((searchTerm.length > 0) && (filter != contactSearchFilter)) {
+                changeFilter(contactSearchFilter)
+            } else if ((searchTerm.length == 0) && (filter != null)) {
+                changeFilter(null)
+            }
+            contactSearchTimeout.restart()
+        }
+
+        InvalidFilter {
+            id: invalidFilter
+        }
+
+        // clear list if it is invisible to save some memory
+        onVisibleChanged: {
+            if (visible && (filter != null)) {
+                changeFilter(null)
+            } else if (!visible && filter != invalidFilter) {
+                changeFilter(invalidFilter)
+            }
+            contactSearch.update()
+        }
+
+        onDetailClicked: {
+            if (action === "message" || action === "") {
+                multiRecipient.addRecipient(detail.number)
+                multiRecipient.clearSearch()
+                multiRecipient.forceActiveFocus()
+            } else if (action === "call") {
+                Qt.inputMethod.hide()
+                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+            }
+        }
+
+        onInfoRequested: {
+            Qt.inputMethod.hide()
+            Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
+        }
+
+        UnionFilter {
+            id: contactSearchFilter
+
+            DetailFilter {
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactSearch.searchTerm
+                matchFlags: DetailFilter.MatchContains
+            }
+        }
+
+        Timer {
+            id: contactSearchTimeout
+
+            running: false
+            repeat: false
+            interval: 300
+            onTriggered: contactSearch.update()
+        }
+    }
+
     ContactWatcher {
         id: contactWatcher
         phoneNumber: participants.length > 0 ? participants[0] : ""
@@ -200,117 +338,109 @@ Page {
         threadId = getCurrentThreadId()
     }
 
-    Component {
-        id: addPhoneNumberToContactSheet
-        DefaultSheet {
-            // FIXME: workaround to set the contact list
-            // background to black
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -units.gu(1)
-                color: "#221e1c"
+    ToolbarItems {
+        id: messagesToolbarSelectionMode
+        visible: false
+        back: ToolbarButton {
+            id: selectionModeCancelButton
+            objectName: "selectionModeCancelButton"
+            action: Action {
+                objectName: "selectionModeCancelAction"
+                iconSource: "image://theme/close"
+                onTriggered: messageList.cancelSelection()
             }
-            id: sheet
-            title: i18n.tr("Add to contact")
-            doneButton: false
-            modal: true
-            contentsHeight: parent.height
-            contentsWidth: parent.width
-            ContactListView {
-                anchors.fill: parent
-                onContactClicked: {
-                    Qt.openUrlExternally("addressbook:///addphone?id=" + encodeURIComponent(contact.contactId) +
-                                                                "&phone=" + encodeURIComponent(contactWatcher.phoneNumber))
-                    PopupUtils.close(sheet)
-                }
-            }
-            onDoneClicked: PopupUtils.close(sheet)
         }
-    }
-
-    Component {
-        id: addContactToConversationSheet
-        DefaultSheet {
-            // FIXME: workaround to set the contact list
-            // background to black
-            Rectangle {
-                anchors.fill: parent
-                anchors.margins: -units.gu(1)
-                color: "#221e1c"
+        ToolbarButton {
+            id: selectionModeSelectAllButton
+            objectName: "selectionModeSelectAllButton"
+            action: Action {
+                objectName: "selectionModeSelectAllAction"
+                iconSource: "image://theme/filter"
+                onTriggered: messageList.selectAll()
             }
-            id: sheet
-            title: i18n.tr("Add Contact")
-            doneButton: false
-            modal: true
-            contentsHeight: parent.height
-            contentsWidth: parent.width
-            ContactListView {
-                anchors.fill: parent
-                detailToPick: ContactDetail.PhoneNumber
-                onContactClicked: {
-                    // FIXME: search for favorite number
-                    multiRecipient.addRecipient(contact.phoneNumber.number)
-                    multiRecipient.forceActiveFocus()
-                    PopupUtils.close(sheet)
-                }
-                onDetailClicked: {
-                    multiRecipient.addRecipient(detail.number)
-                    PopupUtils.close(sheet)
-                    multiRecipient.forceActiveFocus()
-                }
+        }
+        ToolbarButton {
+            id: selectionModeDeleteButton
+            objectName: "selectionModeDeleteButton"
+            action: Action {
+                objectName: "selectionModeDeleteAction"
+                enabled: messageList.selectedItems.count > 0
+                iconSource: "image://theme/delete"
+                onTriggered: messageList.endSelection()
             }
-            onDoneClicked: PopupUtils.close(sheet)
         }
     }
 
     ToolbarItems {
-        id: messagesToolbar
+        id: messagesToolbarGroupChat
+        visible: false
         ToolbarButton {
-            objectName: "selectMessagesButton"
-            visible: messageList.count !== 0
+            id: groupChatButton
+            objectName: "groupChatButton"
             action: Action {
-                iconSource: "image://theme/select"
-                text: i18n.tr("Select")
-                onTriggered: messageList.startSelection()
+                iconSource: "image://theme/navigation-menu"
+                onTriggered: {
+                    PopupUtils.open(participantsPopover, messages.header)
+                }
             }
         }
+    }
+
+    ToolbarItems {
+        id: messagesToolbarUnknownContact
+        visible: false
         ToolbarButton {
-            visible: contactWatcher.isUnknown && participants.length == 1
-            objectName: "addContactButton"
+            objectName: "contactCallButton"
             action: Action {
-                iconSource: "image://theme/new-contact"
-                text: i18n.tr("Add")
+                visible: participants.length == 1
+                iconSource: "image://theme/call-start"
+                text: i18n.tr("Call")
                 onTriggered: {
-                    PopupUtils.open(newContactDialog)
-                    messagesToolbar.opened = false
+                    Qt.inputMethod.hide()
+                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
                 }
             }
         }
         ToolbarButton {
-            visible: !contactWatcher.isUnknown && participants.length == 1
+            objectName: "addContactButton"
+            action: Action {
+                visible: contactWatcher.isUnknown && participants.length == 1
+                iconSource: "image://theme/new-contact"
+                text: i18n.tr("Add")
+                onTriggered: {
+                    Qt.inputMethod.hide()
+                    PopupUtils.open(newContactDialog)
+                }
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: messagesToolbarKnownContact
+        visible: false
+        ToolbarButton {
+            objectName: "contactCallButton"
+            action: Action {
+                visible: participants.length == 1
+                iconSource: "image://theme/call-start"
+                text: i18n.tr("Call")
+                onTriggered: {
+                    Qt.inputMethod.hide()
+                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                }
+            }
+        }
+        ToolbarButton {
             objectName: "contactProfileButton"
             action: Action {
+                visible: !contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
                 onTriggered: {
                     Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contactWatcher.contactId))
-                    messagesToolbar.opened = false
                 }
             }
         }
-        ToolbarButton {
-            visible: participants.length == 1
-            objectName: "contactCallButton"
-            action: Action {
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
-                    messagesToolbar.opened = false
-                }
-            }
-        }
-        locked: selectionMode
     }
 
     HistoryEventModel {
@@ -339,54 +469,12 @@ Page {
         ascending: false
     }
 
-    Icon {
-        id: addIcon
-        visible: multiRecipient.visible
-        height: units.gu(3)
-        width: units.gu(3)
-        anchors {
-            right: parent.right
-            rightMargin: units.gu(2)
-            top: parent.top
-            topMargin: units.gu(1)
-        }
-
-        name: "new-contact"
-        color: "white"
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                var item = keyboard.recursiveFindFocusedItem(messages)
-                if (item) {
-                    item.focus = false
-                }
-
-                PopupUtils.open(addContactToConversationSheet)
-            }
-        }
-    }
-
-    MultiRecipientInput {
-        id: multiRecipient
-        objectName: "multiRecipient"
-        visible: participants.length == 0
-        enabled: visible
-        anchors {
-            top: parent.top
-            topMargin: units.gu(1)
-            left: parent.left
-            right: addIcon.left
-        }
-    }
-
     MultipleSelectionListView {
         id: messageList
         objectName: "messageList"
         clip: true
-        acceptAction.text: i18n.tr("Delete")
-        acceptAction.enabled: selectedItems.count > 0
         anchors {
-            top: multiRecipient.bottom
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -398,7 +486,7 @@ Page {
         footer: Item {
             height: units.gu(2)
         }
-        listModel: threadId !== "" ? sortProxy : null
+        listModel: !newMessage ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
         highlightFollowsCurrentItem: false
@@ -417,6 +505,10 @@ Page {
                         messageList.deselectItem(messageDelegate)
                     }
                 }
+            }
+            onTriggerSelectionMode: {
+                messageList.startSelection()
+                clicked()
             }
 
             Component.onCompleted: {
@@ -447,10 +539,9 @@ Page {
     Item {
         id: bottomPanel
         anchors.bottom: keyboard.top
-        anchors.bottomMargin: selectionMode ? 0 : units.gu(2)
         anchors.left: parent.left
         anchors.right: parent.right
-        height: selectionMode ? 0 : textEntry.height + attachButton.height + units.gu(4)
+        height: selectionMode ? 0 : textEntry.height + units.gu(2)
         visible: !selectionMode
         clip: true
 
@@ -461,16 +552,29 @@ Page {
         ListItem.ThinDivider {
             anchors.top: parent.top
         }
-        TextArea {
-            id: textEntry
-            anchors.bottomMargin: units.gu(2)
-            anchors.bottom: attachButton.top
+
+        Icon {
+            id: attachButton
             anchors.left: parent.left
             anchors.leftMargin: units.gu(2)
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
-            height: units.gu(5)
+            anchors.verticalCenter: sendButton.verticalCenter
+            height: units.gu(3)
+            width: units.gu(3)
+            color: "gray"
+            name: "camera"
+        }
+
+        TextArea {
+            id: textEntry
+            anchors.bottomMargin: units.gu(1)
+            anchors.bottom: parent.bottom
+            anchors.left: attachButton.right
+            anchors.leftMargin: units.gu(1)
+            anchors.right: sendButton.left
+            anchors.rightMargin: units.gu(1)
+            height: units.gu(4)
             autoSize: true
+            maximumLineCount: 0
             placeholderText: i18n.tr("Write a message...")
             focus: false
             font.family: "Ubuntu"
@@ -483,29 +587,22 @@ Page {
                 }
             }
             Component.onCompleted: {
-                if (messages.keyboardFocus && participants.length != 0) {
+                // if page is active, it means this is not a bottom edge page
+                if (messages.active && messages.keyboardFocus && participants.length != 0) {
                     textEntry.forceActiveFocus()
                 }
             }
         }
 
         Button {
-            id: attachButton
-            anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
+            id: sendButton
+            anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
-            text: "Attach"
-            width: units.gu(17)
-            color: "gray"
-            visible: false
-        }
-
-        Button {
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
-            anchors.bottom: parent.bottom
             text: "Send"
-            width: units.gu(17)
+            color: "green"
+            width: units.gu(7)
             enabled: (textEntry.text != "" || textEntry.inputMethodComposing) && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
             onClicked: {
                 // make sure we flush everything we have prepared in the OSK preedit
@@ -513,17 +610,14 @@ Page {
                 if (textEntry.text == "") {
                     return
                 }
-
                 if (participants.length == 0 && multiRecipient.recipientCount > 0) {
                     participants = multiRecipient.recipients
                 }
-
                 if (messages.accountId == "") {
                     // FIXME: handle dual sim
                     messages.accountId = telepathyHelper.accountIds[0]
                 }
-
-                if (messages.threadId == "") {
+                if (messages.newMessage) {
                     // create the new thread and get the threadId
                     messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
                                                                             HistoryThreadModel.EventTypeText,
