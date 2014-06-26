@@ -42,7 +42,7 @@ install(FILES "messaging-app.url-dispatcher"
     )
 
 install(FILES "messaging-app-content.json"
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/content-hub
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/content-hub/peers
     RENAME messaging-app
     )
 
