@@ -859,7 +859,7 @@ Page {
             onClicked: {
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
-                if (textEntry.text == "") {
+                if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
                 if (participants.length == 0 && multiRecipient.recipientCount > 0) {
