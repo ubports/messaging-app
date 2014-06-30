@@ -227,13 +227,8 @@ Page {
         clip: true
         z: 1
         autoUpdate: false
+        filterTerm: multiRecipient.searchString
 
-        property string searchTerm: {
-            if(multiRecipient.searchString !== "" && multiRecipient.focus) {
-                return multiRecipient.searchString
-            }
-            return ""
-        }
         states: [
             State {
                 name: "empty"
@@ -256,15 +251,6 @@ Page {
             UbuntuNumberAnimation { }
         }
 
-        onSearchTermChanged: {
-            if ((searchTerm.length > 0) && (filter != contactSearchFilter)) {
-                changeFilter(contactSearchFilter)
-            } else if ((searchTerm.length == 0) && (filter != null)) {
-                changeFilter(null)
-            }
-            contactSearchTimeout.restart()
-        }
-
         InvalidFilter {
             id: invalidFilter
         }
@@ -273,10 +259,11 @@ Page {
         onVisibleChanged: {
             if (visible && (filter != null)) {
                 changeFilter(null)
+                update()
             } else if (!visible && filter != invalidFilter) {
                 changeFilter(invalidFilter)
+                update()
             }
-            contactSearch.update()
         }
 
         onDetailClicked: {
@@ -293,39 +280,6 @@ Page {
         onInfoRequested: {
             Qt.inputMethod.hide()
             Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
-        }
-
-        UnionFilter {
-            id: contactSearchFilter
-
-            DetailFilter {
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-        }
-
-        Timer {
-            id: contactSearchTimeout
-
-            running: false
-            repeat: false
-            interval: 300
-            onTriggered: contactSearch.update()
         }
     }
 
