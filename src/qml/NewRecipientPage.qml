@@ -24,8 +24,9 @@ import QtContacts 5.0
 Page {
     id: newRecipientPage
     property Item multiRecipient: null
-    title: i18n.tr("Add recipient")
+    property Item parentPage: null
 
+    title: i18n.tr("Add recipient")
     tools: ToolbarItems {
         id: toolbarItemsSearch
 
@@ -56,6 +57,7 @@ Page {
         }
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
+        placeholderText: i18n.tr("Type a name or phone to search")
     }
 
     ContactListView {
@@ -84,4 +86,8 @@ Page {
             }
         }
     }
+
+    // WORKAROUND: This is necessary to make the header visible from a bottom edge page
+    Component.onCompleted: parentPage.active = false
+    Component.onDestruction: parentPage.active = true
 }
