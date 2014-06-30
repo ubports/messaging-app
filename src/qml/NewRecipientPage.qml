@@ -25,9 +25,44 @@ Page {
     id: newRecipientPage
     property Item multiRecipient: null
     title: i18n.tr("Add recipient")
+
+    tools: ToolbarItems {
+        id: toolbarItemsSearch
+
+        back: ToolbarButton {
+            visible: false
+            action: Action {
+                objectName: "cancelSearch"
+
+                visible: mainPage.searching
+                iconName: "back"
+                text: i18n.tr("Cancel")
+                onTriggered: mainStack.pop()
+            }
+        }
+    }
+
+    __customHeaderContents: TextField {
+        id: searchField
+
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+            topMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
+        }
+        onTextChanged: contactList.currentIndex = -1
+        inputMethodHints: Qt.ImhNoPredictiveText
+    }
+
     ContactListView {
-        id: contactListLoader
+        id: contactList
+
         anchors.fill: parent
+        filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
             if (action === "message" || action === "") {
@@ -41,6 +76,12 @@ Page {
         onInfoRequested: {
             Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
+        }
+        onCountChanged: {
+            // move list up if searching
+            if (searchField.text !== "") {
+                contactList.positionViewAtBeginning()
+            }
         }
     }
 }
