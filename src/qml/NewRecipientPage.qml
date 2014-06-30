@@ -27,21 +27,6 @@ Page {
     property Item parentPage: null
 
     title: i18n.tr("Add recipient")
-    tools: ToolbarItems {
-        id: toolbarItemsSearch
-
-        back: ToolbarButton {
-            visible: false
-            action: Action {
-                objectName: "cancelSearch"
-
-                visible: mainPage.searching
-                iconName: "back"
-                text: i18n.tr("Cancel")
-                onTriggered: mainStack.pop()
-            }
-        }
-    }
 
     __customHeaderContents: TextField {
         id: searchField
