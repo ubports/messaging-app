@@ -80,7 +80,7 @@ ListItem.Empty {
     ]
     removable: true
     confirmRemoval: true
-    height: bubble.height + contactName.height
+    height: bubble.height
     clip: true
     showDivider: false
     highlightWhenPressed: false
