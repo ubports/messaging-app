@@ -554,7 +554,6 @@ Page {
             }
             onResend: {
                 // resend this message and remove the old one
-                eventModel.removeEvent(accountId, threadId, eventId, type)
                 if (textMessageAttachments.length > 0) {
                     var newAttachments = []
                     for (var i = 0; i < textMessageAttachments.length; i++) {
@@ -569,9 +568,11 @@ Page {
                         attachment.push(item.filePath)
                         newAttachments.push(attachment)
                     }
+                    eventModel.removeEvent(accountId, threadId, eventId, type)
                     chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
                     return
                 }
+                eventModel.removeEvent(accountId, threadId, eventId, type)
                 chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
         }
@@ -618,7 +619,6 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    Qt.inputMethod.hide()
                     activeTransfer = defaultSource.request();
                 }
             }
