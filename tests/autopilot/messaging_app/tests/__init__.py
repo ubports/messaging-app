@@ -16,29 +16,17 @@ from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
-from messaging_app import emulators
+from messaging_app import emulators, helpers
 
 import os
-import sys
 import logging
 import subprocess
 
 logger = logging.getLogger(__name__)
 
-
 # ensure we have an ofono account; we assume that we have these tools,
 # otherwise we consider this a test failure (missing dependencies)
-def tp_has_ofono():
-    mc_tool = subprocess.Popen(['mc-tool', 'list'], stdout=subprocess.PIPE,
-                               universal_newlines=True)
-    mc_accounts = mc_tool.communicate()[0]
-    return 'ofono/ofono/account' in mc_accounts
-
-if not tp_has_ofono():
-    subprocess.check_call(['ofono-setup'])
-    if not tp_has_ofono():
-        sys.stderr.write('ofono-setup failed to create ofono account!\n')
-        sys.exit(1)
+helpers.ensure_ofono_account()
 
 
 class MessagingAppTestCase(AutopilotTestCase):
