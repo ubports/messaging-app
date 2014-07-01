@@ -33,6 +33,9 @@
 #include "config.h"
 #include <QQmlEngine>
 #include <QMimeDatabase>
+#include <QVersitReader>
+
+using namespace QtVersit;
 
 static void printUsage(const QStringList& arguments)
 {
@@ -223,5 +226,37 @@ QString MessagingApplication::fileMimeType(const QString &fileName) {
     QMimeDatabase db;
     QMimeType type = db.mimeTypeForFile(fileName);
     return type.name();
+}
+
+QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
+    QFile file(fileName);
+    QString formattedName, structuredName, nickname;
+    if (!file.open(QIODevice::ReadOnly)) {
+        return QString();
+    }
+    QVersitReader reader(file.readAll());
+    reader.startReading();
+    reader.waitForFinished();
+    if (reader.results().count() > 0) {
+        // read only the first contact
+        QVersitDocument firstVcard = reader.results()[0];
+        Q_FOREACH(const QVersitProperty & prop, firstVcard.properties()) {
+            if (prop.name() == "N") {
+                structuredName = prop.value();
+            } else if (prop.name() == "FN") {
+                formattedName = prop.value();
+            } else if (prop.name() == "NICKNAME") {
+                nickname = prop.value();
+            }
+        }
+        if (!formattedName.isEmpty()) {
+            return formattedName;
+        } else if (!structuredName.isEmpty()) {
+            return structuredName.split(";")[1];
+        } else if (!nickname.isEmpty()) {
+            return nickname;
+        }
+    }
+    return QString();
 }
 

@@ -43,6 +43,16 @@ ListItem.Empty {
                 anchors.leftMargin: units.gu(1)
                 anchors.rightMargin: units.gu(1)
             }
+            AnchorChanges {
+                target: contactName
+                anchors.left: bubble.right
+                anchors.right: undefined
+            }
+            PropertyChanges {
+                target: contactName
+                anchors.leftMargin: units.gu(1)
+                anchors.rightMargin: units.gu(1)
+            }
         },
         State {
             name: "outgoing"
@@ -56,11 +66,21 @@ ListItem.Empty {
                 anchors.leftMargin: units.gu(1)
                 anchors.rightMargin: units.gu(1)
             }
+            AnchorChanges {
+                target: contactName
+                anchors.left: undefined
+                anchors.right: bubble.left
+            }
+            PropertyChanges {
+                target: contactName
+                anchors.leftMargin: units.gu(1)
+                anchors.rightMargin: units.gu(1)
+            }
         }
     ]
     removable: true
     confirmRemoval: true
-    height: bubble.height
+    height: bubble.height + contactName.height
     clip: true
     showDivider: false
     highlightWhenPressed: false
@@ -68,18 +88,24 @@ ListItem.Empty {
         id: bubble
         incoming: vcardDelegate.incoming
         anchors.top: parent.top
-        width: label.width + units.gu(4)
-        height: label.height + units.gu(2)
+        width: image.width + units.gu(4)
+        height: image.height + units.gu(2)
 
-        Label {
-            id: label
-            text: i18n.tr("vCard")
+        Icon {
+            id: image
+            height: units.gu(6)
+            width: units.gu(6)
+            name: "contact"
             anchors.centerIn: parent
             anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
-            fontSize: "medium"
-            height: paintedHeight
-            color: textColor
-            opacity: incoming ? 1 : 0.9
         }
+    }
+    Label {
+        id: contactName
+        property string name: application.contactNameFromVCard(attachment.filePath)
+        anchors.bottom: bubble.bottom
+        text: name !== "" ? name : i18n.tr("Unknown contact")
+        height: paintedHeight
+        width: paintedWidth
     }
 }

@@ -12,7 +12,7 @@ set(messaging_app_SRCS
 add_executable(${MESSAGING_APP}
     ${messaging_app_SRCS}
     )
-qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick)
+qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick Versit)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
