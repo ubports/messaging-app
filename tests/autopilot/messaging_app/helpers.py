@@ -42,8 +42,8 @@ tabSMS.gbMessage1.pbSendSMSMessage.click();
 
 
 def tp_has_ofono():
-    mc_tool = subprocess.Popen(['mc-tool', 'list'], stdout=subprocess.PIPE,
-                                universal_newlines=True)
+    mc_tool = subprocess.Popen(
+        ['mc-tool', 'list'],
+        stdout=subprocess.PIPE, universal_newlines=True)
     mc_accounts = mc_tool.communicate()[0]
     return 'ofono/ofono/account' in mc_accounts
-

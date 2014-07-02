@@ -41,7 +41,7 @@ class MessagingFixture(fixtures.Fixture):
             )
             return out.startswith('[ /phonesim ]')
         except subprocess.CalledProcessError:
-               return False
+            return False
 
     def _backup_history(self):
         self.history = os.path.expanduser(
@@ -72,4 +72,3 @@ class MessagingFixture(fixtures.Fixture):
             ['mc-tool', 'update', 'ofono/ofono/account0',
              'string:modem-objpath=/ril_0'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
-
