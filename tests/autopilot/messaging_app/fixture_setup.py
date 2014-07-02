@@ -21,7 +21,7 @@ class MessagingFixture(fixtures.Fixture):
         self.addCleanup(self.cleanup_test_environment)
 
     def setup_test_environment(self):
-        if self._is_phonesim_running() == True:
+        if self._is_phonesim_running():
             self._backup_history()
             self._kill_services_to_respawn()
             self._set_modem_on_phonesim()
