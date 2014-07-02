@@ -11,13 +11,12 @@
 
 from __future__ import absolute_import
 
-import os
 import subprocess
 import time
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, HasLength
-from testtools import skipIf, skip
+from testtools import skip
 
 from messaging_app import emulators
 from messaging_app import fixture_setup
@@ -25,8 +24,6 @@ from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
 
-@skipIf(os.uname()[2].endswith('maguro'),
-        'tests cause Unity crashes on maguro')
 class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
