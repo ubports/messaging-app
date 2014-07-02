@@ -11,6 +11,7 @@ import dbus
 import os
 import shutil
 import tempfile
+import subprocess
 
 
 def receive_sms(sender, text):
@@ -38,3 +39,11 @@ tabSMS.gbMessage1.pbSendSMSMessage.click();
     script_proxy.SetPath(script_dir)
     script_proxy.Run("sms.js")
     shutil.rmtree(script_dir)
+
+
+def tp_has_ofono():
+    mc_tool = subprocess.Popen(['mc-tool', 'list'], stdout=subprocess.PIPE,
+                                universal_newlines=True)
+    mc_accounts = mc_tool.communicate()[0]
+    return 'ofono/ofono/account' in mc_accounts
+

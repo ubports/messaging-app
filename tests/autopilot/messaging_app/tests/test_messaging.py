@@ -20,6 +20,7 @@ from testtools.matchers import Equals, HasLength
 from testtools import skipIf, skip
 
 from messaging_app import emulators
+from messaging_app import fixture_setup
 from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
@@ -30,32 +31,8 @@ class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
 
-        # determine whether we are running with phonesim
-        try:
-            out = subprocess.check_output(
-                ['/usr/share/ofono/scripts/list-modems'],
-                stderr=subprocess.PIPE
-            )
-            have_phonesim = out.startswith('[ /phonesim ]')
-        except subprocess.CalledProcessError:
-            have_phonesim = False
-
-        self.assertTrue(have_phonesim)
-
-        # provide clean history
-        self.history = os.path.expanduser(
-            '~/.local/share/history-service/history.sqlite')
-        if os.path.exists(self.history):
-            os.rename(self.history, self.history + '.orig')
-        subprocess.call(['pkill', 'history-daemon'])
-        subprocess.call(['pkill', '-f', 'telephony-service-handler'])
-
-        # make sure the modem is running on phonesim
-        subprocess.call(
-            ['mc-tool', 'update', 'ofono/ofono/account0',
-             'string:modem-objpath=/phonesim'])
-        subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
-
+        test_setup = fixture_setup.MessagingFixture()
+        self.useFixture(test_setup)
         super(BaseMessagingTestCase, self).setUp()
 
         # no initial messages
@@ -65,22 +42,6 @@ class BaseMessagingTestCase(MessagingAppTestCase):
 
     def tearDown(self):
         super(BaseMessagingTestCase, self).tearDown()
-
-        # restore history
-        try:
-            os.unlink(self.history)
-        except OSError:
-            pass
-        if os.path.exists(self.history + '.orig'):
-            os.rename(self.history + '.orig', self.history)
-        subprocess.call(['pkill', 'history-daemon'])
-        subprocess.call(['pkill', '-f', 'telephony-service-handler'])
-
-        # restore the original connection
-        subprocess.call(
-            ['mc-tool', 'update', 'ofono/ofono/account0',
-             'string:modem-objpath=/ril_0'])
-        subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
 
         # on desktop, notify-osd may generate persistent popups (like for "SMS
         # received"), don't make that stay around for the tests
