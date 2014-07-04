@@ -64,12 +64,6 @@ Page {
             Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
         }
-        onCountChanged: {
-            // move list up if searching
-            if (searchField.text !== "") {
-                contactList.positionViewAtBeginning()
-            }
-        }
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
