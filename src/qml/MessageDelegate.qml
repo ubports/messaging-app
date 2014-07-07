@@ -30,7 +30,7 @@ import "3rd_party/ba-linkify.js" as BaLinkify
 Item {
     id: messageDelegate
     property bool incoming: false
-    property string textColor: incoming ? "#333333" : "#752571"
+    property string textColor: incoming ? "#333333" : "white"
     property bool selectionMode: false
     property bool unread: false
     property alias confirmRemoval: internalDelegate.confirmRemoval
@@ -347,7 +347,7 @@ Item {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     fontSize: "medium"
                     color: textColor
-                    opacity: incoming ? 1 : 0.9
+                    //opacity: incoming ? 1 : 0.9
                     text: parseText(textMessage)
                     onLinkActivated:  Qt.openUrlExternally(link)
                     function parseText(text) {
