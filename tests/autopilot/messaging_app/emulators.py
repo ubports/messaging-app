@@ -145,6 +145,21 @@ class MainView(toolkit_emulators.MainView):
             objectName='addContactButton',
         )
 
+    def get_toolbar_add_contact_icon(self):
+        """Return toolbar icon with name new-contact"""
+
+        return self.select_single(
+            'Icon',
+            name='new-contact',
+        )
+
+    def get_contact_list_view(self):
+        """Returns the ContactListView object"""
+        return self.select_single(
+            'ContactListView',
+            objectName='newRecipientList'
+        )
+
     def get_toolbar_contact_profile_button(self):
         """Return toolbar button with objectName contactProfileButton"""
 

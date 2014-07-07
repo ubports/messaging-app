@@ -27,6 +27,7 @@ Page {
     title: i18n.tr("Add recipient")
     ContactListView {
         id: contactListLoader
+        objectName: "newRecipientList"
         anchors.fill: parent
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
