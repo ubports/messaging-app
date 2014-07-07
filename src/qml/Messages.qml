@@ -22,6 +22,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
@@ -42,6 +43,41 @@ Page {
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property bool pendingMessage: false
+    property var activeTransfer: null
+    property int activeAttachmentIndex: -1
+    property var sharedAttachmentsTransfer: []
+
+    function addAttachmentsToModel(transfer) {
+        for (var i = 0; i < transfer.items.length; i++) {
+            var attachment = {}
+            var filePath = String(transfer.items[i].url).replace('file://', '')
+            // get only the basename
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["filePath"] = filePath
+            attachments.append(attachment)
+        }
+    }
+
+    ListModel {
+        id: attachments
+    }
+
+    Connections {
+        target: activeTransfer !== null ? activeTransfer : null
+        onStateChanged: {
+            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
+                        (activeTransfer.state === ContentTransfer.Aborted));
+
+            if (activeTransfer.state === ContentTransfer.Charged) {
+                if (activeTransfer.items.length > 0) {
+                    addAttachmentsToModel(activeTransfer)
+                    textEntry.forceActiveFocus() 
+                }
+            }
+        }
+    }
+
     flickable: null
     // we need to use isReady here to know if this is a bottom edge page or not.
     __customHeaderContents: newMessage && isReady ? newMessageHeader : null
@@ -82,7 +118,7 @@ Page {
         }
 
         if (participants.length == 0) {
-            return null
+            return messagesToolbarNewMessage
         } else if (participants.length == 1) {
             if (contactWatcher.isUnknown) {
                 return messagesToolbarUnknownContact
@@ -96,6 +132,7 @@ Page {
 
     Component.onCompleted: {
         threadId = getCurrentThreadId()
+        addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
     function getCurrentThreadId() {
@@ -109,6 +146,37 @@ Page {
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    ContentPeer {
+        id: defaultSource
+        contentType: ContentType.Pictures
+        handler: ContentHandler.Source
+        selectionType: ContentTransfer.Single
+    }
+
+    Component {
+        id: attachmentPopover
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem.Standard {
+                    text: i18n.tr("Remove")
+                    onClicked: {
+                        attachments.remove(activeAttachmentIndex)
+                        PopupUtils.close(popover)
+                    }
+                }
+            }
+            Component.onDestruction: activeAttachmentIndex = -1
+        }
     }
 
     Component {
@@ -341,6 +409,20 @@ Page {
     }
 
     ToolbarItems {
+        id: messagesToolbarNewMessage
+        visible: false
+        back: ToolbarButton {
+            action: Action {
+                onTriggered: {
+                    mainPage.temporaryProperties = null
+                    mainStack.pop()
+                }
+                iconSource: "image://theme/back"
+            }
+        }
+    }
+ 
+    ToolbarItems {
         id: messagesToolbarUnknownContact
         visible: false
         ToolbarButton {
@@ -472,6 +554,24 @@ Page {
             }
             onResend: {
                 // resend this message and remove the old one
+                if (textMessageAttachments.length > 0) {
+                    var newAttachments = []
+                    for (var i = 0; i < textMessageAttachments.length; i++) {
+                        var attachment = []
+                        var item = textMessageAttachments[i]
+                        // we dont include smil files. they will be auto generated
+                        if (item.contentType.toLowerCase() == "application/smil") {
+                            continue
+                        }
+                        attachment.push(item.attachmentId)
+                        attachment.push(item.contentType)
+                        attachment.push(item.filePath)
+                        newAttachments.push(attachment)
+                    }
+                    eventModel.removeEvent(accountId, threadId, eventId, type)
+                    chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
+                    return
+                }
                 eventModel.removeEvent(accountId, threadId, eventId, type)
                 chatManager.sendMessage(messages.participants, textMessage, accountId)
             }
@@ -516,34 +616,177 @@ Page {
             width: units.gu(3)
             color: "gray"
             name: "camera"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    activeTransfer = defaultSource.request();
+                }
+            }
         }
 
-        TextArea {
+        StyledItem {
             id: textEntry
+            property alias text: messageTextArea.text
+            property alias inputMethodComposing: messageTextArea.inputMethodComposing
+            property int fullSize: attachmentThumbnails.height + messageTextArea.height
+            style: Theme.createStyleComponent("TextFieldStyle.qml", textEntry)
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
             anchors.left: attachButton.right
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
-            height: units.gu(4)
-            autoSize: true
-            maximumLineCount: 0
-            placeholderText: i18n.tr("Write a message...")
+            height: attachments.count !== 0 ? fullSize + units.gu(1) : fullSize
+            onActiveFocusChanged: {
+                if(activeFocus) {
+                    messageTextArea.forceActiveFocus()
+                } else {
+                    focus = false
+                }
+            }
             focus: false
-            font.family: "Ubuntu"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: messageTextArea.forceActiveFocus()
+            }
+            Flow {
+                id: attachmentThumbnails
+                spacing: units.gu(1)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.leftMargin: units.gu(1)
+                anchors.rightMargin: units.gu(1)
+                anchors.topMargin: units.gu(1)
+                height: childrenRect.height
+                Component {
+                    id: thumbnailImage
+                    UbuntuShape {
+                        property int index
+                        property string filePath
+                        width: childrenRect.width
+                        height: childrenRect.height
+                        image: Image {
+                            id: avatarImage
+                            width: units.gu(8)
+                            height: units.gu(8)
+                            fillMode: Image.PreserveAspectCrop
+                            source: filePath
+                            asynchronous: true
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                mouse.accept = true
+                                activeAttachmentIndex = index
+                                PopupUtils.open(attachmentPopover, parent)
+                            }
+                        }
+                    }
+                }
 
-            InverseMouseArea {
+                Component {
+                    id: thumbnailContact
+                    UbuntuShape {
+                        property int index
+                        property string filePath
+                        width: childrenRect.width
+                        height: childrenRect.height
+                        Icon {
+                            anchors.centerIn: parent
+                            width: units.gu(6)
+                            height: units.gu(6)
+                            name: "contact"
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                mouse.accept = true
+                                activeAttachmentIndex = index
+                                PopupUtils.open(attachmentPopover, parent)
+                            }
+                        }
+                    }
+                }
+
+                Component {
+                    id: thumbnailUnknown
+                    UbuntuShape {
+                        property int index
+                        property string filePath
+                        width: childrenRect.width
+                        height: childrenRect.height
+                        Icon {
+                            anchors.centerIn: parent
+                            width: units.gu(6)
+                            height: units.gu(6)
+                            name: "attachment"
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                mouse.accept = true
+                                activeAttachmentIndex = index
+                                PopupUtils.open(attachmentPopover, parent)
+                            }
+                        }
+                    }
+                }
+
+                Repeater {
+                    model: attachments
+                    delegate: Loader {
+                        height: units.gu(8)
+                        width: units.gu(8)
+                        sourceComponent: {
+                            var contentType = getContentType(filePath)
+                            console.log(contentType)
+                            switch(contentType) {
+                            case ContentType.Contacts:
+                                return thumbnailContact
+                            case ContentType.Pictures:
+                                return thumbnailImage
+                            case ContentType.Unknown:
+                                return thumbnailUnknown
+                            default:
+                                console.log("unknown content Type")
+                            }
+                        }
+                        onStatusChanged: {
+                            if (status == Loader.Ready) {
+                                item.index = index
+                                item.filePath = filePath
+                            }
+                        }
+                    }
+                }
+            }
+
+            TextArea {
+                id: messageTextArea
+                anchors.top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: units.gu(4)
+                style: MultiRecipientFieldStyle {}
+                autoSize: true
+                maximumLineCount: 0
+                placeholderText: i18n.tr("Write a message...")
+                focus: textEntry.focus
+                font.family: "Ubuntu"
+            }
+
+            /*InverseMouseArea {
                 anchors.fill: parent
                 visible: textEntry.activeFocus
                 onClicked: {
                     textEntry.focus = false;
                 }
-            }
+            }*/
             Component.onCompleted: {
                 // if page is active, it means this is not a bottom edge page
                 if (messages.active && messages.keyboardFocus && participants.length != 0) {
-                    textEntry.forceActiveFocus()
+                    messageTextArea.forceActiveFocus()
                 }
             }
         }
@@ -557,11 +800,20 @@ Page {
             text: "Send"
             color: "green"
             width: units.gu(7)
-            enabled: (textEntry.text != "" || textEntry.inputMethodComposing) && telepathyHelper.connected && (participants.length > 0 || multiRecipient.recipientCount > 0 )
+            enabled: {
+                if (!telepathyHelper.connected)
+                    return false
+                if (participants.length > 0 || multiRecipient.recipientCount > 0) {
+                    if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
+                        return true
+                    }
+                }
+                return false
+            }
             onClicked: {
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
-                if (textEntry.text == "") {
+                if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
                 if (participants.length == 0 && multiRecipient.recipientCount > 0) {
@@ -580,6 +832,22 @@ Page {
                                                                             true)
                 }
                 messages.pendingMessage = true
+                if (attachments.count > 0) {
+                    var newAttachments = []
+                    for (var i = 0; i < attachments.count; i++) {
+                        var attachment = []
+                        var item = attachments.get(i)
+                        attachment.push(item.name)
+                        attachment.push(item.contentType)
+                        attachment.push(item.filePath)
+                        newAttachments.push(attachment)
+                    }
+                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.accountId)
+                    textEntry.text = ""
+                    attachments.clear()
+                    return
+                }
+
                 chatManager.sendMessage(participants, textEntry.text, messages.accountId)
                 textEntry.text = ""
             }
