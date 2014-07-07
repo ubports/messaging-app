@@ -11,6 +11,7 @@ Build-Depends: cmake,
                qt5-default,
                qtbase5-dev (>= 5.0),
                qtdeclarative5-dev (>= 5.0),
+               qtpim5-dev,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
