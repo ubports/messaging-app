@@ -48,7 +48,12 @@ Page {
     ContactListView {
         id: contactList
 
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
@@ -64,6 +69,10 @@ Page {
             Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
         }
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
