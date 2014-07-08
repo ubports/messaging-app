@@ -145,6 +145,7 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
+        chatManager.acknowledgeMessage(participants[0], eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
