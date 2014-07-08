@@ -41,6 +41,7 @@ find_package(Qt5DBus)
 find_package(Qt5Qml)
 find_package(Qt5Quick)
 find_package(Qt5Test)
+find_package(Qt5Versit)
 
 execute_process(
     COMMAND qmake -query QT_INSTALL_QML
