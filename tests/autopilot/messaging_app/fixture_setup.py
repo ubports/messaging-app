@@ -38,7 +38,7 @@ class MessagingFixture(fixtures.Fixture):
                 ['/usr/share/ofono/scripts/list-modems'],
                 stderr=subprocess.PIPE
             )
-            return out.startswith('[ /phonesim ]')
+            return out.startswith(b'[ /phonesim ]')
         except subprocess.CalledProcessError:
             return False
 
