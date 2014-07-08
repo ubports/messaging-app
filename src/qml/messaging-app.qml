@@ -43,12 +43,23 @@ MainView {
         ContentItem {}
     }
 
+    Connections {
+        target: ContentHub
+        onShareRequested: {
+            var properties = {}
+            emptyStack()
+            properties["sharedAttachmentsTransfer"] = transfer
+            mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
+        }
+    }
+
     Page {
         id: picker
         visible: false
         property var curTransfer
         property var url
         property var handler
+        property var contentType: getContentType(url)
 
         function __exportItems(url) {
             if (picker.curTransfer.state === ContentTransfer.InProgress)
@@ -60,20 +71,20 @@ MainView {
 
         ContentPeerPicker {
             visible: parent.visible
-            contentType: ContentType.Pictures
+            contentType: picker.contentType
             handler: picker.handler
 
             onPeerSelected: {
                 picker.curTransfer = peer.request();
-                    mainStack.pop();
-                    if (picker.curTransfer.state === ContentTransfer.InProgress)
-                        picker.__exportItems(picker.url);
+                mainStack.pop();
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                    picker.__exportItems(picker.url);
             }
             onCancelPressed: mainStack.pop();
         }
 
         Connections {
-            target: picker.curTransfer
+            target: picker.curTransfer !== null ? picker.curTransfer : null
             onStateChanged: {
                 console.log("curTransfer StateChanged: " + picker.curTransfer.state);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)
@@ -87,7 +98,18 @@ MainView {
     signal applicationReady
 
     function startsWith(string, prefix) {
-        return string.slice(0, prefix.length) === prefix;
+        return string.toLowerCase().slice(0, prefix.length) === prefix.toLowerCase();
+    }
+
+    function getContentType(filePath) {
+        var contentType = application.fileMimeType(String(filePath).replace("file://",""))
+        if (startsWith(contentType, "image/")) {
+            return ContentType.Pictures
+        } else if (startsWith(contentType, "text/vcard") ||
+                   startsWith(contentType, "text/x-vcard")) {
+            return ContentType.Contacts
+        }
+        return ContentType.Unknown
     }
 
     function emptyStack() {

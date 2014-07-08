@@ -12,7 +12,7 @@ set(messaging_app_SRCS
 add_executable(${MESSAGING_APP}
     ${messaging_app_SRCS}
     )
-qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick)
+qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick Versit)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -39,6 +39,11 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE}
 
 install(FILES "messaging-app.url-dispatcher"
     DESTINATION ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls
+    )
+
+install(FILES "messaging-app-content.json"
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/content-hub/peers
+    RENAME messaging-app
     )
 
 add_subdirectory(qml)

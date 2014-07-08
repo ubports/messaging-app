@@ -1,3 +1,33 @@
+messaging-app (0.1+14.10.20140703.1-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Implement MMS sending support. Add content-hub share handler for
+    pictures and contacts. (LP: #1325009)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 03 Jul 2014 13:42:10 +0000
+
+messaging-app (0.1+14.10.20140701-0ubuntu1) utopic; urgency=low
+
+  [ Michał Sawicz ]
+  * New icon from suru theme.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 01 Jul 2014 07:42:20 +0000
+
+messaging-app (0.1+14.10.20140627-0ubuntu1) utopic; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update contact search to new ContactList API
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 27 Jun 2014 16:05:57 +0000
+
+messaging-app (0.1+14.10.20140617-0ubuntu1) utopic; urgency=low
+
+  [ Leo Arias ]
+  * Removed the tests that swipe to the left. Updated the tests to use
+    the swipe_to_delete helper from the toolkit. (LP: #1330352)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 17 Jun 2014 23:12:42 +0000
+
 messaging-app (0.1+14.10.20140613.2-0ubuntu1) utopic; urgency=low
 
   [ Tiago Salem Herrmann ]
