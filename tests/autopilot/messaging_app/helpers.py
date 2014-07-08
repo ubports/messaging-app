@@ -14,7 +14,7 @@ import tempfile
 import subprocess
 import sys
 import time
-import exceptions
+from dbus import exceptions
 
 
 def receive_sms(sender, text):
