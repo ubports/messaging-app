@@ -46,10 +46,15 @@ Page {
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
+    property string text: ""
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
             var attachment = {}
+            if (!startsWith(String(transfer.items[i].url),"file://")) {
+                messages.text = String(transfer.items[i].url)
+                continue
+            }
             var filePath = String(transfer.items[i].url).replace('file://', '')
             // get only the basename
             attachment["name"] = filePath.split('/').reverse()[0]
@@ -775,6 +780,7 @@ Page {
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
+                text: messages.text
             }
 
             /*InverseMouseArea {
