@@ -629,7 +629,7 @@ Page {
             height: units.gu(3)
             width: units.gu(3)
             color: "gray"
-            name: "camera"
+            name: "camera-app-symbolic"
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
@@ -788,6 +788,8 @@ Page {
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
+                font.pixelSize: FontUtils.sizeToPixels("small")
+                color: "#5d5d5d"
                 text: messages.text
             }
 
@@ -815,6 +817,8 @@ Page {
             text: "Send"
             color: "green"
             width: units.gu(7)
+            height: units.gu(4)
+            font.pixelSize: FontUtils.sizeToPixels("small")
             enabled: {
                 if (!telepathyHelper.connected)
                     return false
