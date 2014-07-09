@@ -223,6 +223,7 @@ Page {
              title: i18n.tr("Save contact")
              text: i18n.tr("How do you want to save the contact?")
              Button {
+                 objectName: "addToExistingContact"
                  text: i18n.tr("Add to existing contact")
                  color: UbuntuColors.orange
                  onClicked: {
@@ -232,6 +233,7 @@ Page {
                  }
              }
              Button {
+                 objectName: "createNewContact"
                  text: i18n.tr("Create new contact")
                  color: UbuntuColors.orange
                  onClicked: {
@@ -240,6 +242,7 @@ Page {
                  }
              }
              Button {
+                 objectName: "cancelSave"
                  text: i18n.tr("Cancel")
                  color: UbuntuColors.warmGrey
                  onClicked: {
@@ -406,6 +409,7 @@ Page {
             id: groupChatButton
             objectName: "groupChatButton"
             action: Action {
+                objectName: "groupChatAction"
                 iconSource: "image://theme/navigation-menu"
                 onTriggered: {
                     PopupUtils.open(participantsPopover, messages.header)
@@ -434,6 +438,7 @@ Page {
         ToolbarButton {
             objectName: "contactCallButton"
             action: Action {
+                objectName: "contactCallAction"
                 visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
@@ -446,6 +451,7 @@ Page {
         ToolbarButton {
             objectName: "addContactButton"
             action: Action {
+                objectName: "addContactAction"
                 visible: contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
@@ -463,6 +469,7 @@ Page {
         ToolbarButton {
             objectName: "contactCallButton"
             action: Action {
+                objectName: "contactCallKnownAction"
                 visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
@@ -475,6 +482,7 @@ Page {
         ToolbarButton {
             objectName: "contactProfileButton"
             action: Action {
+                objectName: "contactProfileAction"
                 visible: !contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
