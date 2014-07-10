@@ -81,26 +81,9 @@ class TestMessaging(BaseMessagingTestCase):
 
     def test_write_new_message(self):
         """Verify we can write and send a new text message"""
-        self.main_view.start_new_message()
-        # verify the thread list page is not visible
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type contact/number
-        phone_num = 123
-        self.main_view.type_contact_phone_num(phone_num)
-
-        # type message
-        message = 'hello from Ubuntu'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        # verify label text
-        self.main_view.get_message('hello from Ubuntu')
+        phone_num = '123'
+        message = 'hello from Ubuntu'        
+        self.main_view.send_message(phone_num, message)
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -114,30 +97,16 @@ class TestMessaging(BaseMessagingTestCase):
         self.assertThat(self.thread_list.count, Equals(1))
         # verify our number
         thread = self.main_view.get_thread_from_number(phone_num)
-        self.assertThat(thread.phoneNumber, Equals('123'))
+        self.assertThat(thread.phoneNumber, Equals(phone_num))
         # verify our text
-        thread.wait_select_single('Label', text='hello from Ubuntu')
+        thread.wait_select_single('Label', text=message)
 
     @skip("long press is currently invoking a context menu")
     def test_deleting_message_long_press(self):
         """Verify we can delete a message with a long press on the message"""
-        self.main_view.start_new_message()
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type address number
         phone_num = '555-555-4321'
-        self.main_view.type_contact_phone_num(phone_num)
-        # type message
-        message = 'delete me'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        bubble = self.main_view.get_message(message)
+        message = 'delete me'        
+        bubble = self.main_view.send_message(phone_num, message)
 
         self.main_view.close_osk()
 
@@ -153,24 +122,9 @@ class TestMessaging(BaseMessagingTestCase):
     @skip("long press is currently invoking a context menu")
     def test_cancel_deleting_message_long_press(self):
         """Verify we can cancel deleting a message with a long press"""
-        self.main_view.start__new_message_button()
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type address number
         phone_num = '5555551234'
-        self.main_view.type_contact_phone_num(phone_num)
-
-        # type message
         message = 'do not delete'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        bubble = self.main_view.get_message(message)
+        bubble = self.main_view.send_message(phone_num, message)
 
         self.main_view.close_osk()
 
@@ -201,23 +155,9 @@ class TestMessaging(BaseMessagingTestCase):
 
     def test_header_delete_message(self):
         """Verify we can use the toolbar to delete a message"""
-        self.main_view.start_new_message()
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type address number
         phone_num = '555-555-4321'
-        self.main_view.type_contact_phone_num(phone_num)
-        # type message
         message = 'delete me'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        bubble = self.main_view.get_message(message)
+        bubble = self.main_view.send_message(phone_num, message)
 
         self.main_view.close_osk()
 
@@ -230,23 +170,9 @@ class TestMessaging(BaseMessagingTestCase):
 
     def test_delete_message_without_selecting_a_message(self):
         """Verify we only delete messages that have been selected"""
-        self.main_view.start_new_message()
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type address number
         phone_num = '555-555-4321'
-        self.main_view.type_contact_phone_num(phone_num)
-        # type message
-        message = 'dont delete me'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        self.main_view.get_message(message)
+        message = 'delete me'
+        self.main_view.send_message(phone_num, message)
 
         self.main_view.close_osk()
 
@@ -258,6 +184,7 @@ class TestMessaging(BaseMessagingTestCase):
 
         # verify messsage is not gone
         time.sleep(5)  # wait 5 seconds, the emulator is slow
+        list_view = self.main_view.get_multiple_selection_list_view()
         list_view.select_single("Label", text=message)
 
     def test_receive_text_with_letters_in_phone_number(self):
@@ -283,26 +210,9 @@ class TestMessaging(BaseMessagingTestCase):
 
     def test_cancel_delete_thread_from_main_view(self):
         """Verify we can cancel deleting a message thread"""
-        self.main_view.start_new_message()
-        # verify the thread list page is not visible
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type contact/number
-        phone_num = 123
-        self.main_view.type_contact_phone_num(phone_num)
-
-        # type message
+        phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        # verify label text
-        self.main_view.get_message('hello from Ubuntu')
+        self.main_view.send_message(phone_num, message)
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -316,42 +226,25 @@ class TestMessaging(BaseMessagingTestCase):
         self.assertThat(self.thread_list.count, Equals(1))
         # verify our number
         thread = self.main_view.get_thread_from_number(phone_num)
-        self.assertThat(thread.phoneNumber, Equals('123'))
+        self.assertThat(thread.phoneNumber, Equals(phone_num))
         # verify our text
-        thread.select_single('Label', text='hello from Ubuntu')
+        thread.select_single('Label', text=message)
         # use select button in toolbar
         self.main_view.enable_threads_selection_mode()
         # click cancel button
         self.main_view.click_threads_header_cancel()
         # verify our number was not deleted
         thread = self.main_view.get_thread_from_number(phone_num)
-        self.assertThat(thread.phoneNumber, Equals('123'))
+        self.assertThat(thread.phoneNumber, Equals(phone_num))
         # verify our text was not deleted
-        thread.select_single('Label', text='hello from Ubuntu')
+        thread.select_single('Label', text=message)
 
     def test_delete_thread_from_main_view(self):
         """Verify we can delete a message thread"""
-        self.main_view.start_new_message()
-        # verify the thread list page is not visible
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type contact/number
-        phone_num = 123
-        self.main_view.type_contact_phone_num(phone_num)
-
-        # type message
+        phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        # verify label text
-        self.main_view.get_message('hello from Ubuntu')
-
+        self.main_view.send_message(phone_num, message)
+        
         # switch back to main page with thread list
         self.main_view.close_osk()
         self.main_view.go_back()
@@ -365,7 +258,7 @@ class TestMessaging(BaseMessagingTestCase):
         # verify our number
         mess_thread = self.main_view.get_thread_from_number(phone_num)
         # verify our text
-        self.thread_list.select_single('Label', text='hello from Ubuntu')
+        self.thread_list.select_single('Label', text=message)
         # use select button in toolbar
         self.main_view.enable_threads_selection_mode()
         # click thread we want to delete
@@ -389,26 +282,13 @@ class TestMessaging(BaseMessagingTestCase):
 
     def test_delete_message_swipe_right(self):
         """Verify we can delete a message by swiping right"""
-        self.main_view.start_new_message()
-        self.assertThat(self.thread_list.visible, Eventually(Equals(False)))
-
-        # type address number
         phone_num = '555-555-4321'
-        self.main_view.type_contact_phone_num(phone_num)
-        # type message
         message = 'delete me okay'
-        self.main_view.type_message(message)
-
-        # send
-        self.main_view.click_send_button()
-
-        # verify that we get a bubble with our message
-        list_view = self.main_view.get_multiple_selection_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
-        self.main_view.get_message(message)
+        self.main_view.send_message(phone_num, message)
 
         # delete message
         self.main_view.delete_message(message)
+        list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
 

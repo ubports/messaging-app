@@ -381,6 +381,11 @@ class MainView(toolkit_emulators.MainView):
         self.type_message(message)
         self.click_send_button()
 
+        self.get_multiple_selection_list_view().count.wait_for(1)
+        thread_bubble = self.get_message(message)
+        
+        return thread_bubble
+
 
 class PageWithBottomEdge(MainView):
     """An emulator class that makes it easy to interact with the bottom edge
