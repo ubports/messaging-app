@@ -28,7 +28,7 @@ class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
 
-        test_setup = fixture_setup.MessagingFixture()
+        test_setup = fixture_setup.MessagingTestEnvironment()
         self.useFixture(test_setup)
         super(BaseMessagingTestCase, self).setUp()
 
