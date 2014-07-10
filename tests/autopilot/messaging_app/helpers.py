@@ -99,7 +99,9 @@ def ensure_ofono_account():
 
 def _is_ofono_account_set():
     mc_tool = subprocess.Popen(
-        ['mc-tool', 'list'],
-        stdout=subprocess.PIPE, universal_newlines=True)
+        [
+            'mc-tool',
+            'list'
+        ], stdout=subprocess.PIPE, universal_newlines=True)
     mc_accounts = mc_tool.communicate()[0]
     return 'ofono/ofono/account' in mc_accounts
