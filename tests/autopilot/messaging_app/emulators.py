@@ -383,7 +383,7 @@ class MainView(toolkit_emulators.MainView):
 
         self.get_multiple_selection_list_view().count.wait_for(1)
         thread_bubble = self.get_message(message)
-        
+
         return thread_bubble
 
 

@@ -82,7 +82,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_write_new_message(self):
         """Verify we can write and send a new text message"""
         phone_num = '123'
-        message = 'hello from Ubuntu'        
+        message = 'hello from Ubuntu'
         self.main_view.send_message(phone_num, message)
 
         # switch back to main page with thread list
@@ -105,7 +105,7 @@ class TestMessaging(BaseMessagingTestCase):
     def test_deleting_message_long_press(self):
         """Verify we can delete a message with a long press on the message"""
         phone_num = '555-555-4321'
-        message = 'delete me'        
+        message = 'delete me'
         bubble = self.main_view.send_message(phone_num, message)
 
         self.main_view.close_osk()
@@ -244,7 +244,7 @@ class TestMessaging(BaseMessagingTestCase):
         phone_num = '123'
         message = 'hello from Ubuntu'
         self.main_view.send_message(phone_num, message)
-        
+
         # switch back to main page with thread list
         self.main_view.close_osk()
         self.main_view.go_back()
