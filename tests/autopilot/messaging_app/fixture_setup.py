@@ -47,20 +47,8 @@ class RespawnService(fixtures.Fixture):
 
     def setUp(self):
         super(RespawnService, self).setUp()
-        if not self._is_phonesim_running():
-            raise RuntimeError('ofono-phonesim is not setup')
         self.addCleanup(self._kill_services_to_respawn)
         self._kill_services_to_respawn()
-
-    def _is_phonesim_running(self):
-        try:
-            out = subprocess.check_output(
-                ['/usr/share/ofono/scripts/list-modems'],
-                stderr=subprocess.PIPE
-            )
-            return out.startswith('[ /phonesim ]')
-        except subprocess.CalledProcessError:
-            return False
 
     def _kill_services_to_respawn(self):
         subprocess.call(['pkill', 'history-daemon'])
@@ -71,8 +59,20 @@ class OfonoPhoneSIM(fixtures.Fixture):
 
     def setUp(self):
         super(OfonoPhoneSIM, self).setUp()
+        if not self._is_phonesim_running():
+            raise RuntimeError('ofono-phonesim is not setup')
         self.addCleanup(self._restore_sim_connection)
         self._set_modem_on_phonesim()
+
+    def _is_phonesim_running(self):
+        try:
+            out = subprocess.check_output(
+                ['/usr/share/ofono/scripts/list-modems'],
+                stderr=subprocess.PIPE
+            )
+            return out.startswith('[ /phonesim ]')
+        except subprocess.CalledProcessError:
+            return False
 
     def _set_modem_on_phonesim(self):
         subprocess.call(
