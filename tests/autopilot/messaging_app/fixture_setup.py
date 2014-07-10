@@ -10,11 +10,10 @@
 import fixtures
 import subprocess
 import os
-import sys
 
 
 class MessagingTestEnvironment(fixtures.Fixture):
-    
+
     def setUp(self):
         super(MessagingTestEnvironment, self).setUp()
         self.useFixture(OfonoPhoneSIM())
@@ -74,7 +73,7 @@ class OfonoPhoneSIM(fixtures.Fixture):
         super(OfonoPhoneSIM, self).setUp()
         self.addCleanup(self._restore_sim_connection)
         self._set_modem_on_phonesim()
-    
+
     def _set_modem_on_phonesim(self):
         subprocess.call(
             ['mc-tool', 'update', 'ofono/ofono/account0',
@@ -86,4 +85,3 @@ class OfonoPhoneSIM(fixtures.Fixture):
             ['mc-tool', 'update', 'ofono/ofono/account0',
              'string:modem-objpath=/ril_0'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
-

@@ -30,7 +30,7 @@ class BaseMessagingTestCase(MessagingAppTestCase):
 
         test_setup = fixture_setup.MessagingTestEnvironment()
         self.useFixture(test_setup)
-        
+
         super(BaseMessagingTestCase, self).setUp()
 
         # no initial messages
