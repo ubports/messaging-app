@@ -19,20 +19,14 @@ from ubuntuuitoolkit import emulators as toolkit_emulators
 from messaging_app import emulators, helpers
 
 import os
-import sys
 import logging
 import subprocess
 
 logger = logging.getLogger(__name__)
 
-
 # ensure we have an ofono account; we assume that we have these tools,
 # otherwise we consider this a test failure (missing dependencies)
-if not helpers.tp_has_ofono():
-    subprocess.check_call(['ofono-setup'])
-    if not helpers.tp_has_ofono():
-        sys.stderr.write('ofono-setup failed to create ofono account!\n')
-        sys.exit(1)
+helpers.ensure_ofono_account()
 
 
 class MessagingAppTestCase(AutopilotTestCase):
