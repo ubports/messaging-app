@@ -379,9 +379,11 @@ class MainView(toolkit_emulators.MainView):
         self.start_new_message()
         self.type_contact_phone_num(number)
         self.type_message(message)
+        old_message_count = self.get_multiple_selection_list_view().count
         self.click_send_button()
 
-        self.get_multiple_selection_list_view().count.wait_for(1)
+        self.get_multiple_selection_list_view().count.wait_for(
+            old_message_count + 1)
         thread_bubble = self.get_message(message)
 
         return thread_bubble
