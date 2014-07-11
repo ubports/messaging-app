@@ -69,7 +69,8 @@ class OfonoPhoneSIM(fixtures.Fixture):
         try:
             out = subprocess.check_output(
                 ['/usr/share/ofono/scripts/list-modems'],
-                stderr=subprocess.PIPE
+                stderr=subprocess.PIPE,
+                universal_newlines=True
             )
             return out.startswith('[ /phonesim ]')
         except subprocess.CalledProcessError:
