@@ -886,7 +886,7 @@ Page {
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
                 }
-                // create the new thread and get the threadId before changing the model
+                // create the new thread and update the threadId list
                 eventModel.threadIdForParticipants(messages.accountId,
                                                    HistoryThreadModel.EventTypeText,
                                                    participants,
