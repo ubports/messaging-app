@@ -863,10 +863,9 @@ Page {
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
             enabled: {
-                if (!telepathyHelper.isAccountConnected(messages.accountId))
-                    return false
-                if (participants.length > 0 || multiRecipient.recipientCount > 0) {
-                    if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
+               if (participants.length > 0 || multiRecipient.recipientCount > 0) {
+                    if ((textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) 
+                         && telepathyHelper.isAccountConnected(messages.accountId)) {
                         return true
                     }
                 }
