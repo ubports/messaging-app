@@ -94,8 +94,7 @@ class TestMessaging(BaseMessagingTestCase):
         """test get_contact_list_view() helper is working"""
         # open the chat window
         self.main_view.start_new_message()
-        add_icon = self.main_view.get_toolbar_add_contact_icon()
-        self.pointing_device.click_object(add_icon)
+        self.main_view.click_add_contact_icon()
 
         # pop up the contact list to choose recipient
         contact_view = self.main_view.get_contact_list_view()

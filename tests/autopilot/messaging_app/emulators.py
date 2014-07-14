@@ -153,6 +153,12 @@ class MainView(toolkit_emulators.MainView):
             name='new-contact',
         )
 
+    def click_add_contact_icon(self):
+        """Click the add contact icon"""
+
+        icon = self.get_toolbar_add_contact_icon()
+        self.pointing_device.click_object(icon)
+
     def get_contact_list_view(self):
         """Returns the ContactListView object"""
         return self.select_single(
