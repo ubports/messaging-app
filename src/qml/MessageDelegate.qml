@@ -38,6 +38,7 @@ Item {
     property alias selected: internalDelegate.selected
     property variant activeAttachment
     property string mmsText: ""
+    property string accountLabel: ""
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
@@ -262,13 +263,26 @@ Item {
                       textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming && mmsText === ""
         }
 
+        Label {
+            id: accountIndicator
+            anchors {
+                right: bubble.left
+                rightMargin: units.gu(0.5)
+                bottom: bubble.bottom
+            }
+            text: accountLabel
+            visible: !incoming
+            font.pixelSize: FontUtils.sizeToPixels("small")
+            color: "green"
+        }
+
         // FIXME: this is just a temporary workaround while we dont have the final design
         UbuntuShape {
             id: warningButton
             color: "yellow"
             height: units.gu(3)
             width: units.gu(3)
-            anchors.right: bubble.left
+            anchors.right: accountIndicator.left
             anchors.left: undefined
             anchors.verticalCenter: bubble.verticalCenter
             anchors.leftMargin: 0

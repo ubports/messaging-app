@@ -31,9 +31,9 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property string threadId: ""
-    property bool newMessage: threadId === ""
-    // FIXME: we should get the account ID properly when dealing with multiple accounts
+    property bool newMessage: participants.length == 0
+    // FIXME this info must come from system settings or telephony-service
+    property var accounts: {"ofono/ofono/account0": "SIM 1", "ofono/ofono/account1": "SIM 2"}
     property string accountId: telepathyHelper.accountIds[0]
     property variant participants: []
     property bool groupChat: participants.length > 1
@@ -46,6 +46,7 @@ Page {
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
+    property string lastFilter: ""
     property string text: ""
 
     function addAttachmentsToModel(transfer) {
@@ -112,7 +113,7 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
-                return i18n.tr("Group")
+                return i18n.tr("Group (%1 members)").arg(participants.length)
             }
         }
         return i18n.tr("New Message")
@@ -136,17 +137,32 @@ Page {
     }
 
     Component.onCompleted: {
-        threadId = getCurrentThreadId()
+        getCurrentThreadId()
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
     function getCurrentThreadId() {
-        if (participants.length == 0)
-            return ""
-        return eventModel.threadIdForParticipants(accountId,
-                                                              HistoryThreadModel.EventTypeText,
-                                                              participants,
-                                                              HistoryThreadModel.MatchPhoneNumber)
+        if (participants.length == 0) {
+            eventModel.filter = null
+            return
+        }
+        var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
+        var componentFilters = ""
+        for (var i = 0; i < telepathyHelper.accountIds.length; i++) {
+            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i], 
+                                                                 HistoryThreadModel.EventTypeText,
+                                                                 participants,
+                                                                 HistoryThreadModel.MatchPhoneNumber)
+            if (filterValue === "") {
+                continue
+            }
+            componentFilters += 'HistoryFilter { filterProperty: "threadId"; filterValue: "%1" } '.arg(filterValue)
+        }
+        if (componentFilters != lastFilter) {
+            var finalString = componentUnion.arg(componentFilters)
+            eventModel.filter = Qt.createQmlObject(finalString, eventModel)
+            lastFilter = componentFilters
+        }
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
@@ -252,6 +268,42 @@ Page {
          }
     }
 
+    Rectangle {
+        id: accountList
+        clip: true
+        z: 1
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+        }
+        height: telepathyHelper.accountIds.length > 1 ? childrenRect.height : 0
+        color: "white"
+        Row {
+            anchors {
+                top: parent.top
+                horizontalCenter: parent.horizontalCenter
+            }
+            height: childrenRect.height
+            width: childrenRect.width
+            spacing: units.gu(2)
+            Repeater {
+                model: telepathyHelper.accountIds
+                delegate: Label {
+                    width: paintedWidth
+                    height: paintedHeight
+                    text: messages.accounts[modelData]
+                    font.pixelSize: FontUtils.sizeToPixels("small")
+                    color: messages.accountId == modelData ? "red" : "#5d5d5d"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: messages.accountId = modelData
+                    }
+                }
+            }
+        }
+    }
+
     Item {
         id: newMessageHeader
         anchors {
@@ -259,7 +311,7 @@ Page {
             rightMargin: units.gu(1)
             right: parent.right
             bottom: parent.bottom
-            top: parent.top
+            //top: accountList.bottom
         }
         visible: participants.length == 0 && isReady && messages.active
         MultiRecipientInput {
@@ -284,7 +336,7 @@ Page {
                 verticalCenter: parent.verticalCenter
             }
 
-            name: "new-contact"
+            name: "contact"
             color: "gray"
             MouseArea {
                 anchors.fill: parent
@@ -366,7 +418,7 @@ Page {
     }
 
     onParticipantsChanged: {
-        threadId = getCurrentThreadId()
+        getCurrentThreadId()
     }
 
     ToolbarItems {
@@ -410,7 +462,7 @@ Page {
             objectName: "groupChatButton"
             action: Action {
                 objectName: "groupChatAction"
-                iconSource: "image://theme/navigation-menu"
+                iconSource: "image://theme/contact-group"
                 onTriggered: {
                     PopupUtils.open(participantsPopover, messages.header)
                 }
@@ -496,16 +548,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: HistoryIntersectionFilter {
-            HistoryFilter {
-                filterProperty: "threadId"
-                filterValue: threadId
-            }
-            HistoryFilter {
-                filterProperty: "accountId"
-                filterValue: accountId
-            }
-        }
+        filter: null
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
@@ -536,7 +579,7 @@ Page {
         footer: Item {
             height: units.gu(2)
         }
-        listModel: !newMessage ? sortProxy : null
+        listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
         highlightFollowsCurrentItem: false
@@ -549,6 +592,7 @@ Page {
             removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             confirmRemoval: true
+            accountLabel: messages.accounts[accountId]
             onClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
@@ -587,7 +631,7 @@ Page {
                     return
                 }
                 eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage, accountId)
+                chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
             }
         }
         onSelectionDone: {
@@ -820,7 +864,7 @@ Page {
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
             enabled: {
-                if (!telepathyHelper.connected)
+                if (!telepathyHelper.isAccountConnected(messages.accountId))
                     return false
                 if (participants.length > 0 || multiRecipient.recipientCount > 0) {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
@@ -835,21 +879,22 @@ Page {
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
-                if (participants.length == 0 && multiRecipient.recipientCount > 0) {
-                    participants = multiRecipient.recipients
-                }
                 if (messages.accountId == "") {
                     // FIXME: handle dual sim
                     messages.accountId = telepathyHelper.accountIds[0]
                 }
-                if (messages.newMessage) {
-                    // create the new thread and get the threadId
-                    messages.threadId = eventModel.threadIdForParticipants(messages.accountId,
-                                                                            HistoryThreadModel.EventTypeText,
-                                                                            participants,
-                                                                            HistoryThreadModel.MatchPhoneNumber,
-                                                                            true)
+                // dont change the participants list
+                if (participants.length == 0) {
+                    participants = multiRecipient.recipients
                 }
+                // create the new thread and get the threadId before changing the model
+                eventModel.threadIdForParticipants(messages.accountId,
+                                                   HistoryThreadModel.EventTypeText,
+                                                   participants,
+                                                   HistoryThreadModel.MatchPhoneNumber,
+                                                   true)
+
+                getCurrentThreadId()
                 messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []

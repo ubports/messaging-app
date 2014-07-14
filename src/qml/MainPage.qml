@@ -201,7 +201,6 @@ PageWithBottomEdge {
                     }
                 } else {
                     var properties = {}
-                    properties["threadId"] = threadId
                     properties["accountId"] = accountId
                     properties["participants"] = participants
                     properties["keyboardFocus"] = false
