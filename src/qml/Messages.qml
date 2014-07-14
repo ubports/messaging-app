@@ -31,7 +31,6 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property bool newMessage: participants.length == 0
     // FIXME this info must come from system settings or telephony-service
     property var accounts: {"ofono/ofono/account0": "SIM 1", "ofono/ofono/account1": "SIM 2"}
     property string accountId: telepathyHelper.accountIds[0]
@@ -86,7 +85,7 @@ Page {
 
     flickable: null
     // we need to use isReady here to know if this is a bottom edge page or not.
-    __customHeaderContents: newMessage && isReady ? newMessageHeader : null
+    __customHeaderContents: participants.length === 0 && isReady ? newMessageHeader : null
     property bool isReady: false
     signal ready
     onReady: {
