@@ -322,6 +322,7 @@ Page {
 
         anchors {
             top: parent.top
+            topMargin: unist.gu(1)
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -346,13 +347,17 @@ Page {
             }
         }
 
+        ContactDetailPhoneNumberTypeModel {
+            id: phoneTypeModel
+        }
+
         listDelegate: Item {
             anchors {
                 left: parent.left
                 right: parent.right
                 margins: units.gu(2)
             }
-            height: phoneRepeater.count * units.gu(7)
+            height: phoneRepeater.count * units.gu(6)
             Column {
                 anchors.fill: parent
                 spacing: units.gu(1)
@@ -367,7 +372,7 @@ Page {
                             left: parent.left
                             right: parent.right
                         }
-                        height: units.gu(6)
+                        height: units.gu(5)
 
                         onClicked: {
                             multiRecipient.addRecipient(contact.phoneNumbers[index].number)
@@ -383,7 +388,7 @@ Page {
                                     left: parent.left
                                     right: parent.right
                                 }
-                                height: units.gu(3)
+                                height: units.gu(2)
                                 text: {
                                     // this is necessary to keep the string in the original format
                                     var originalText = contact.displayLabel.label
@@ -406,7 +411,11 @@ Page {
                                     right: parent.right
                                 }
                                 height: units.gu(2)
-                                text: contact.phoneNumbers[index].number
+                                text: {
+                                    var phoneDetail = contact.phoneNumbers[index]
+                                    return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
+                                                    .arg(phoneDetail.number)
+                                }
                             }
                             Item {
                                 anchors {
