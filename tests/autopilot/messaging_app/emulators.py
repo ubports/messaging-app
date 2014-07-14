@@ -306,19 +306,13 @@ class MainView(toolkit_emulators.MainView):
 
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Add")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("addContactAction")
 
     def click_call_button(self):
         """Click call button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Call")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("contactCallAction")
 
     def click_back_button(self):
         """Click back button from toolbar on messages page"""
@@ -327,6 +321,30 @@ class MainView(toolkit_emulators.MainView):
         button = toolbar.wait_select_single("ActionItem", text=u"Back")
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
+
+    def click_add_to_contact_button(self):
+        """
+        Click the 'Add to existing contact' button
+        in the 'Save Contact' dialog.
+        """
+        button = self.wait_select_single('Button',
+                                         objectName="addToExistingContact")
+        self.pointing_device.click_object(button)
+
+    def click_create_new_contact_button(self):
+        """
+        Click the 'Create new contact' button
+        in the 'Save Contact' dialog
+        """
+        button = self.wait_select_single('Button',
+                                         objectName="createNewContact")
+        self.pointing_device.click_object(button)
+
+    def click_cancel_save_button(self):
+        " Click the 'Cancel' button in the 'Save Contact' dialog """
+        button = self.wait_select_single('Button',
+                                         objectName="cancelSave")
+        self.pointing_device.click_object(button)
 
     def click_threads_header_delete(self):
         """Click the header action 'Delete' on Messages view"""

@@ -29,12 +29,12 @@ from messaging_app.tests import MessagingAppTestCase
 class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
-
         # determine whether we are running with phonesim
         try:
             out = subprocess.check_output(
                 ['/usr/share/ofono/scripts/list-modems'],
-                stderr=subprocess.PIPE
+                stderr=subprocess.PIPE,
+                universal_newlines=True
             )
             have_phonesim = out.startswith('[ /phonesim ]')
         except subprocess.CalledProcessError:

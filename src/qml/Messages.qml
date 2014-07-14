@@ -46,10 +46,15 @@ Page {
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
+    property string text: ""
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
             var attachment = {}
+            if (!startsWith(String(transfer.items[i].url),"file://")) {
+                messages.text = String(transfer.items[i].url)
+                continue
+            }
             var filePath = String(transfer.items[i].url).replace('file://', '')
             // get only the basename
             attachment["name"] = filePath.split('/').reverse()[0]
@@ -145,6 +150,7 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
+        chatManager.acknowledgeMessage(participants[0], eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
@@ -217,6 +223,7 @@ Page {
              title: i18n.tr("Save contact")
              text: i18n.tr("How do you want to save the contact?")
              Button {
+                 objectName: "addToExistingContact"
                  text: i18n.tr("Add to existing contact")
                  color: UbuntuColors.orange
                  onClicked: {
@@ -226,6 +233,7 @@ Page {
                  }
              }
              Button {
+                 objectName: "createNewContact"
                  text: i18n.tr("Create new contact")
                  color: UbuntuColors.orange
                  onClicked: {
@@ -234,6 +242,7 @@ Page {
                  }
              }
              Button {
+                 objectName: "cancelSave"
                  text: i18n.tr("Cancel")
                  color: UbuntuColors.warmGrey
                  onClicked: {
@@ -281,7 +290,7 @@ Page {
                 anchors.fill: parent
                 onClicked: {
                     Qt.inputMethod.hide()
-                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
                 }
             }
         }
@@ -400,6 +409,7 @@ Page {
             id: groupChatButton
             objectName: "groupChatButton"
             action: Action {
+                objectName: "groupChatAction"
                 iconSource: "image://theme/navigation-menu"
                 onTriggered: {
                     PopupUtils.open(participantsPopover, messages.header)
@@ -428,6 +438,7 @@ Page {
         ToolbarButton {
             objectName: "contactCallButton"
             action: Action {
+                objectName: "contactCallAction"
                 visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
@@ -440,6 +451,7 @@ Page {
         ToolbarButton {
             objectName: "addContactButton"
             action: Action {
+                objectName: "addContactAction"
                 visible: contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/new-contact"
                 text: i18n.tr("Add")
@@ -457,6 +469,7 @@ Page {
         ToolbarButton {
             objectName: "contactCallButton"
             action: Action {
+                objectName: "contactCallKnownAction"
                 visible: participants.length == 1
                 iconSource: "image://theme/call-start"
                 text: i18n.tr("Call")
@@ -469,6 +482,7 @@ Page {
         ToolbarButton {
             objectName: "contactProfileButton"
             action: Action {
+                objectName: "contactProfileAction"
                 visible: !contactWatcher.isUnknown && participants.length == 1
                 iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
@@ -774,6 +788,7 @@ Page {
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
+                text: messages.text
             }
 
             /*InverseMouseArea {

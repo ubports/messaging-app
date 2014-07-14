@@ -24,11 +24,37 @@ import QtContacts 5.0
 Page {
     id: newRecipientPage
     property Item multiRecipient: null
+    property Item parentPage: null
+
     title: i18n.tr("Add recipient")
+
+    __customHeaderContents: TextField {
+        id: searchField
+
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+            topMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
+        }
+        onTextChanged: contactList.currentIndex = -1
+        inputMethodHints: Qt.ImhNoPredictiveText
+        placeholderText: i18n.tr("Type a name or phone to search")
+    }
+
     ContactListView {
-        id: contactListLoader
+        id: contactList
         objectName: "newRecipientList"
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
+        filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
             if (action === "message" || action === "") {
@@ -44,4 +70,12 @@ Page {
             mainStack.pop()
         }
     }
+
+    KeyboardRectangle {
+        id: keyboard
+    }
+
+    // WORKAROUND: This is necessary to make the header visible from a bottom edge page
+    Component.onCompleted: parentPage.active = false
+    Component.onDestruction: parentPage.active = true
 }

@@ -60,7 +60,7 @@ ListItem.Empty {
         } else {
             found = true
         }
-   
+
         height = found ? units.gu(10) : 0
     }
 
@@ -107,51 +107,19 @@ ListItem.Empty {
         }
     }
 
-    UbuntuShape {
+    ContactAvatar {
         id: avatar
-        property bool defaultAvatar: delegateHelper.avatar === "" && !unknownContact
+
+        fallbackAvatarUrl: delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
+        fallbackDisplayName: delegateHelper.alias
+        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
+
         height: units.gu(6)
         width: units.gu(6)
-        radius: "medium"
-        color: Theme.palette.normal.overlay
         anchors {
             left: parent.left
             leftMargin: units.gu(2)
             verticalCenter: parent.verticalCenter
-        }
-        image: Image {
-            id: avatarImage
-            visible: delegateHelper.avatar !== ""
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectCrop
-            source: delegateHelper.avatar
-            asynchronous: true
-            sourceSize.width: width * 1.5
-            sourceSize.height: height * 1.5
-        }
-
-        Label {
-            property string avatarLabel: {
-                if (unknownContact) {
-                    return ""
-                }
-
-                var nameArray = delegateHelper.alias.split(" ")
-                var finalName = ""
-                if (nameArray.length === 1) {
-                    finalName = nameArray[0][0]
-                } else if (nameArray.length > 1) {
-                    finalName = nameArray[0][0] + nameArray[1][0]
-                }
-                return finalName
-            }
-            visible: avatar.defaultAvatar
-            color: "#752571"
-            anchors.centerIn: parent
-            fontSize: "medium"
-            text: avatarLabel
-            font.weight: Font.Light
-            font.capitalization: Font.AllUppercase
         }
     }
 
