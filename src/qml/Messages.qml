@@ -64,6 +64,10 @@ Page {
         }
     }
 
+    function checkNetwork() {
+        return telepathyHelper.isAccountConnected(messages.accountId)
+    }
+
     ListModel {
         id: attachments
     }
@@ -226,6 +230,24 @@ Page {
                             phoneNumber: modelData
                         }
                     }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: noNetworkDialog
+        Dialog {
+            id: dialogue
+            title: i18n.tr("No network")
+            text: telepathyHelper.accountIds.length >= 2 ? i18n.tr("There is currently no network on " + messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
+            Button {
+                objectName: "closeNoNetworkDialog"
+                text: i18n.tr("Close")
+                color: UbuntuColors.orange
+                onClicked: {
+                    PopupUtils.close(dialogue)
+                    Qt.inputMethod.hide()
                 }
             }
         }
@@ -864,14 +886,18 @@ Page {
             font.pixelSize: FontUtils.sizeToPixels("small")
             enabled: {
                if (participants.length > 0 || multiRecipient.recipientCount > 0) {
-                    if ((textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) 
-                         && telepathyHelper.isAccountConnected(messages.accountId)) {
+                    if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
                         return true
                     }
                 }
                 return false
             }
             onClicked: {
+                if (!checkNetwork()) {
+                    Qt.inputMethod.hide()
+                    PopupUtils.open(noNetworkDialog)
+                    return
+                }
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
