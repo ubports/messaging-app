@@ -131,11 +131,12 @@ PageWithBottomEdge {
         }
     }
 
-    SortProxyModel {
+    HistoryThreadGroupingProxyModel {
         id: sortProxy
         sortRole: HistoryThreadModel.LastEventTimestampRole
         sourceModel: threadModel
         ascending: false
+        groupingProperty: "participants"
     }
 
     HistoryThreadModel {
