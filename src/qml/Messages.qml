@@ -322,7 +322,7 @@ Page {
 
         anchors {
             top: parent.top
-            topMargin: unist.gu(1)
+            topMargin: units.gu(1)
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
