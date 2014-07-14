@@ -216,42 +216,6 @@ Page {
         }
     }
 
-    Component {
-         id: newContactDialog
-         Dialog {
-             id: dialogue
-             title: i18n.tr("Save contact")
-             text: i18n.tr("How do you want to save the contact?")
-             Button {
-                 objectName: "addToExistingContact"
-                 text: i18n.tr("Add to existing contact")
-                 color: UbuntuColors.orange
-                 onClicked: {
-                     PopupUtils.close(dialogue)
-                     Qt.inputMethod.hide()
-                     mainStack.push(Qt.resolvedUrl("AddPhoneNumberToContactPage.qml"), {"phoneNumber": contactWatcher.phoneNumber})
-                 }
-             }
-             Button {
-                 objectName: "createNewContact"
-                 text: i18n.tr("Create new contact")
-                 color: UbuntuColors.orange
-                 onClicked: {
-                     Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(contactWatcher.phoneNumber));
-                     PopupUtils.close(dialogue)
-                 }
-             }
-             Button {
-                 objectName: "cancelSave"
-                 text: i18n.tr("Cancel")
-                 color: UbuntuColors.warmGrey
-                 onClicked: {
-                     PopupUtils.close(dialogue)
-                 }
-             }
-         }
-    }
-
     Item {
         id: newMessageHeader
         anchors {
@@ -457,7 +421,7 @@ Page {
                 text: i18n.tr("Add")
                 onTriggered: {
                     Qt.inputMethod.hide()
-                    PopupUtils.open(newContactDialog)
+                    Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
                 }
             }
         }
