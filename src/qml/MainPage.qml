@@ -215,8 +215,10 @@ PageWithBottomEdge {
         }
         onSelectionDone: {
             for (var i=0; i < items.count; i++) {
-                var thread = items.get(i).model
-                threadModel.removeThread(thread.accountId, thread.threadId, thread.type)
+                var threads = items.get(i).model.threads
+                for (var j in threads) {
+                    threadModel.removeThread(threads[j].accountId, threads[j].threadId, threads[j].type)
+                }
             }
         }
 
