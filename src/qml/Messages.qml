@@ -161,6 +161,11 @@ Page {
             }
             componentFilters += 'HistoryFilter { filterProperty: "threadId"; filterValue: "%1" } '.arg(filterValue)
         }
+        if (componentFilters === "") {
+            eventModel.filter = null
+            lastFilter = ""
+            return
+        }
         if (componentFilters != lastFilter) {
             var finalString = componentUnion.arg(componentFilters)
             eventModel.filter = Qt.createQmlObject(finalString, eventModel)
@@ -578,7 +583,7 @@ Page {
 
     SortProxyModel {
         id: sortProxy
-        sourceModel: eventModel
+        sourceModel: eventModel.filter ? eventModel : null
         sortRole: HistoryEventModel.TimestampRole
         ascending: false
     }
