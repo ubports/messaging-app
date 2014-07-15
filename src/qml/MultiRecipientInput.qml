@@ -22,22 +22,25 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.Telephony 0.1
 import QtContacts 5.0
 
-FocusScope {
+StyledItem {
     id: multiRecipientWidget
-    property bool expanded: true
-    property int recipientCount: recipientModel.count-2
+    property int recipientCount: recipientModel.count-1
     property int selectedIndex: -1
     property variant recipients: []
     property string searchString: ""
     signal clearSearch()
-    height: !visible ? 0 : expanded ? contactFlow.height : units.gu(4)
-    z: 1
-    onExpandedChanged: {
-        if(!expanded)
-            selectedIndex = -1
-    }
-    onActiveFocusChanged: {
-        expanded = activeFocus
+    style: Theme.createStyleComponent("TextFieldStyle.qml", multiRecipientWidget)
+    clip: true
+    height: contactFlow.height
+    focus: activeFocus
+
+    signal forceFocus()
+
+    MouseArea {
+        anchors.fill: parent
+        enabled: parent.focus === false
+        onClicked: forceFocus()
+        z: 1
     }
 
     function addRecipient(phoneNumber) {
@@ -49,14 +52,9 @@ FocusScope {
             }
         }
 
-        recipientModel.insert(recipientCount+1, { "phoneNumber": phoneNumber })
-    }
+        recipientModel.insert(recipientCount, { "phoneNumber": phoneNumber })
+        scrollableArea.contentX = contactFlow.width
 
-    MouseArea {
-        anchors.fill: parent
-        enabled: !expanded
-        onClicked: expanded = !expanded
-        z: 2
     }
 
     Behavior on height {
@@ -69,15 +67,10 @@ FocusScope {
         onCountChanged: {
             var i
             var tmp = []
-            for(i = 1; i< recipientModel.count-1; i++) {
+            for(i = 0; i< recipientModel.count-1; i++) {
                 tmp.push(recipientModel.get(i).phoneNumber)
             }
             recipients = tmp
-        }
-
-        ListElement {
-            phoneNumber: ""
-            expanderItem: true
         }
         ListElement {
             phoneNumber: ""
@@ -85,250 +78,149 @@ FocusScope {
         }
     }
 
-    Flow {
-        id: contactFlow
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
+    Flickable {
+        id: scrollableArea
+        anchors.fill: parent
+        contentWidth: contactFlow.width
+        flickableDirection: Flickable.HorizontalFlick
+        Flow {
+            id: contactFlow
+            anchors.left: parent.left
+            anchors.leftMargin: units.gu(1)
+            anchors.top: parent.top
+            move: Transition {
+                UbuntuNumberAnimation { properties: "x,y";}
+            }
 
-        move: Transition {
-            UbuntuNumberAnimation { properties: "x,y";}
-        }
-
-        Component {
-            id: expanderDelegate
-            Item {
-                height: units.gu(4)
-                width: units.gu(3)
-                Icon {
-                    height: units.gu(2)
-                    width: height
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: units.gu(1)
-                    name: "chevron"
-                    color: "white"
-                    rotation: expanded ? 90 : 0
-                    Behavior on rotation {
-                        UbuntuNumberAnimation { }
+            Component {
+                id: contactDelegate
+                Label {
+                    Rectangle {
+                        anchors.fill: parent
+                        anchors.topMargin: units.gu(1)
+                        anchors.bottomMargin: units.gu(1)
+                        color: UbuntuColors.warmGrey
+                        visible: selected
+                        z: -1
                     }
-
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: {
-                            expanded = !expanded
+                        onClicked: selectedIndex == index ? selectedIndex = -1 : selectedIndex = index
+                    }
+                    property string contactName: {
+                        if (contactWatcher.isUnknown) {
+                            return contactWatcher.phoneNumber
+                        }
+                        return contactWatcher.alias
+                    }
+                    property alias phoneNumber: contactWatcher.phoneNumber
+                    property int index
+                    property bool selected: selectedIndex == index
+                    property string separator: index == recipientCount-1 ? "" : ","
+                    height: units.gu(4)
+                    visible: height != 0
+                    text: contactName + separator
+                    font.pixelSize: FontUtils.sizeToPixels("medium")
+                    font.family: "Ubuntu"
+                    font.weight: Font.Light
+                    color: selected ? "white" : "#752571"
+                    verticalAlignment: Text.AlignVCenter
+                    ContactWatcher {
+                        id: contactWatcher
+                    }
+                }
+            }
+            Component {
+                id: searchDelegate
+                TextField {
+                    id: contactSearchInput
+                    objectName: "contactSearchInput"
+                    focus: true
+                    style: MultiRecipientFieldStyle {}
+                    height: units.gu(4)
+                    // FIXME: this size should be variable
+                    width: units.gu(20)
+                    hasClearButton: false
+                    clip: false
+                    placeholderText: i18n.tr("Add contacts..")
+                    font.family: "Ubuntu"
+                    font.weight: Font.Light
+                    color: "#752571"
+                    font.pixelSize: FontUtils.sizeToPixels("medium")
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                    onActiveFocusChanged: {
+                        if (!activeFocus && text !== "") {
+                            addRecipient(text)
+                            text = ""
                         }
                     }
-                }
-            }
-        }
-        Component {
-            id: contactDelegate
-            Button {
-                property string contactName: {
-                    if (contactWatcher.isUnknown) {
-                        return contactWatcher.phoneNumber
-                    }
-                    return contactWatcher.alias
-                }
-                property alias phoneNumber: contactWatcher.phoneNumber
-                property int index
-                property bool selected: selectedIndex == index
-                height: {
-                    if (!expanded && index != 1)
-                        0
-                    else
-                        units.gu(4)
-                }
-                visible: height != 0
-                color: selected ? UbuntuColors.warmGrey : UbuntuColors.orange
-                text: contactName
-                onClicked: selectedIndex == index ? selectedIndex = -1 : selectedIndex = index
-
-                ContactWatcher {
-                    id: contactWatcher
-                }
-            }
-        }
-        Component {
-            id: searchDelegate
-            TextField {
-                id: contactSearchInput
-                objectName: "contactSearchInput"
-                focus: expanded
-                style: null
-                height: units.gu(4)
-                width: units.gu(12)
-                hasClearButton: false
-                placeholderText: i18n.tr("Add contacts..")
-                color: UbuntuColors.warmGrey
-                font.pixelSize: FontUtils.sizeToPixels("large")
-                font.family: "Ubuntu"
-                Component.onCompleted: forceActiveFocus()
-                inputMethodHints: Qt.ImhNoPredictiveText
-                onActiveFocusChanged: {
-                    if (!activeFocus && text !== "") {
+                    onTextChanged: searchString = text
+                    Keys.onReturnPressed: {
+                        if (text == "")
+                            return
                         addRecipient(text)
                         text = ""
-                        expanded = false
                     }
-                }
-                onTextChanged: searchString = text
-                Keys.onReturnPressed: {
-                    if (text == "")
-                        return
-                    addRecipient(text)
-                    text = ""
-                }
-                Connections {
-                    target: multiRecipientWidget
-                    onClearSearch: text = ""
-                }
-                Keys.onPressed: {
-                    if (event.key === Qt.Key_Backspace && text == "" && recipientCount > 0) {
-                        if (selectedIndex != -1) {
-                            recipientModel.remove(selectedIndex)
-                            selectedIndex = -1
+                    Connections {
+                        target: multiRecipientWidget
+                        onClearSearch: text = ""
+                    }
+                    Connections {
+                        target: multiRecipientWidget
+                        onForceFocus: {
+                            contactSearchInput.forceActiveFocus()
+                        }
+                    }
+                    Keys.onPressed: {
+                        if (event.key === Qt.Key_Backspace && text == "" && recipientCount > 0) {
+                            if (selectedIndex != -1) {
+                                recipientModel.remove(selectedIndex)
+                                selectedIndex = -1
+                            } else {
+                                recipientModel.remove(recipientCount-1)
+                            }
+                        } if (event.key === Qt.Key_Comma) {
+                            if (text == "")
+                                return
+                            addRecipient(text)
+                            text = ""
+                            event.accepted = true
                         } else {
-                            recipientModel.remove(recipientCount)
-                        }
-                    } else {
-                        if (selectedIndex != -1) {
-                            recipientModel.remove(selectedIndex)
-                            selectedIndex = -1
-                            if (event.key === Qt.Key_Backspace)
-                                event.accepted = true
+                            if (selectedIndex != -1) {
+                                recipientModel.remove(selectedIndex)
+                                selectedIndex = -1
+                                if (event.key === Qt.Key_Backspace)
+                                    event.accepted = true
+                            }
                         }
                     }
                 }
             }
-        }
-        Component {
-            id: numberRecipientsDelegate
-            Label {
-                height: units.gu(4)
-                verticalAlignment: Text.AlignVCenter
-                color: recipientCount == 0 ? Theme.palette.normal.backgroundText : Theme.palette.normal.foregroundText
-                text: {
-                    if (recipientCount > 1) {
-                        return "+"+ String(recipientCount-1)
-                    }
-                    else if (recipientCount == 0) {
-                        return i18n.tr("Add contacts...")
-                    } else {
-                        return ""
-                    }
-                }
-            }
-        }
-        spacing: units.gu(1)
-        Repeater {
-            id: rpt
-            model: recipientModel
-            delegate: Loader {
-                sourceComponent: {
-                    if (searchItem)
-                        if (expanded)
+            spacing: units.gu(0.5)
+            Repeater {
+                id: rpt
+                model: recipientModel
+                delegate: Loader {
+                    sourceComponent: {
+                        if (searchItem)
                             searchDelegate
-                        else
-                            numberRecipientsDelegate
-                    else if (expanderItem)
-                        expanderDelegate
-                    else
-                        contactDelegate
-                }
-                Binding {
-                    target: item
-                    property: "phoneNumber"
-                    value: phoneNumber
-                    when: (phoneNumber && status == Loader.Ready)
-                }
-                Binding {
-                    target: item
-                    property: "index"
-                    value: index
-                    when: (index && status == Loader.Ready)
+                       else
+                            contactDelegate
+                    }
+                    Binding {
+                        target: item
+                        property: "phoneNumber"
+                        value: phoneNumber
+                        when: (phoneNumber && status == Loader.Ready)
+                    }
+                    Binding {
+                        target: item
+                        property: "index"
+                        value: index
+                        when: (index && status == Loader.Ready)
+                    }
                 }
             }
         }
-    }
-
-    ContactSearchListView {
-        id: contactSearch
-        property string searchTerm: {
-            if(multiRecipientWidget.searchString !== "" && multiRecipientWidget.expanded) {
-                return multiRecipientWidget.searchString
-            }
-            return "some value that won't match"
-        }
-        clip: false
-        anchors {
-            top: multiRecipientWidget.bottom
-            left: parent.left
-            right: parent.right
-            leftMargin: units.gu(2)
-            bottomMargin: units.gu(2)
-            rightMargin: units.gu(2)
-        }
-
-        states: [
-            State {
-                name: "empty"
-                when: contactSearch.count == 0
-                PropertyChanges {
-                    target: contactSearch
-                    height: 0
-                }
-            }
-        ]
-
-        Behavior on height {
-            UbuntuNumberAnimation { }
-        }
-
-        filter: UnionFilter {
-            DetailFilter {
-                detail: ContactDetail.Name
-                field: Name.FirstName
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
-                detail: ContactDetail.Name
-                field: Name.LastName
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactSearch.searchTerm
-                matchFlags: DetailFilter.MatchContains
-            }
-
-        }
-
-        onDetailClicked: {
-            multiRecipientWidget.addRecipient(detail.number)
-            multiRecipientWidget.clearSearch()
-        }
-    }
-
-    Rectangle {
-        anchors.fill: contactSearch
-        anchors.leftMargin: -units.gu(2)
-        anchors.rightMargin: -units.gu(2)
-        color: "black"
-        opacity: 0.6
-        z: -1
     }
 }

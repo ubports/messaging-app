@@ -21,6 +21,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
+import Ubuntu.Content 0.1
 
 MainView {
     id: mainView
@@ -28,25 +29,91 @@ MainView {
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
+    useDeprecatedToolbar: false
     property string newPhoneNumber
 
     Component.onCompleted: {
-        Theme.name = "Ubuntu.Components.Themes.SuruGradient"
+        i18n.domain = "messaging-app"
+        i18n.bindtextdomain("messaging-app", i18nDirectory)
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
-
-    signal applicationReady
+    Component {
+        id: resultComponent
+        ContentItem {}
+    }
 
     Connections {
-        target: telepathyHelper
-        onAccountReady: {
-            mainView.applicationReady()
+        target: ContentHub
+        onShareRequested: {
+            var properties = {}
+            emptyStack()
+            properties["sharedAttachmentsTransfer"] = transfer
+            mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
         }
     }
 
+    Page {
+        id: picker
+        visible: false
+        property var curTransfer
+        property var url
+        property var handler
+        property var contentType: getContentType(url)
+
+        function __exportItems(url) {
+            if (picker.curTransfer.state === ContentTransfer.InProgress)
+            {
+                picker.curTransfer.items = [ resultComponent.createObject(mainView, {"url": url}) ];
+                picker.curTransfer.state = ContentTransfer.Charged;
+            }
+        }
+
+        ContentPeerPicker {
+            visible: parent.visible
+            contentType: picker.contentType
+            handler: picker.handler
+
+            onPeerSelected: {
+                picker.curTransfer = peer.request();
+                mainStack.pop();
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                    picker.__exportItems(picker.url);
+            }
+            onCancelPressed: mainStack.pop();
+        }
+
+        Connections {
+            target: picker.curTransfer !== null ? picker.curTransfer : null
+            onStateChanged: {
+                console.log("curTransfer StateChanged: " + picker.curTransfer.state);
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                {
+                    picker.__exportItems(picker.url);
+                }
+            }
+        }
+    }
+
+    signal applicationReady
+
+    function startsWith(string, prefix) {
+        return string.toLowerCase().slice(0, prefix.length) === prefix.toLowerCase();
+    }
+
+    function getContentType(filePath) {
+        var contentType = application.fileMimeType(String(filePath).replace("file://",""))
+        if (startsWith(contentType, "image/")) {
+            return ContentType.Pictures
+        } else if (startsWith(contentType, "text/vcard") ||
+                   startsWith(contentType, "text/x-vcard")) {
+            return ContentType.Contacts
+        }
+        return ContentType.Unknown
+    }
+
     function emptyStack() {
-        while (mainStack.depth !== 1) {
+        while (mainStack.depth !== 1 && mainStack.depth !== 0) {
             mainStack.pop()
         }
     }
@@ -62,6 +129,9 @@ MainView {
         var participants = [phoneNumber]
         properties["participants"] = participants
         emptyStack()
+        if (phoneNumber === "") {
+            return;
+        }
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 
@@ -96,32 +166,6 @@ MainView {
                 }
             }
         }
-    }
-
-    ToolbarItems {
-        id: regularToolbar
-        ToolbarButton {
-            visible: mainStack.currentPage.threadCount !== 0
-            objectName: "selectButton"
-            text: i18n.tr("Select")
-            iconSource: "image://theme/select"
-            onTriggered: mainStack.currentPage.startSelection()
-        }
-
-        ToolbarButton {
-            objectName: "newMessageButton"
-            action: Action {
-                iconSource: "image://theme/compose"
-                text: i18n.tr("Compose")
-                onTriggered: mainView.startNewMessage()
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: selectionToolbar
-        locked: true
-        opened: false
     }
 
     PageStack {

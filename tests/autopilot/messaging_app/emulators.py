@@ -10,17 +10,15 @@
 
 """Messaging app autopilot emulators."""
 
-import dbus
 import logging
-import os
-import shutil
 import subprocess
-import tempfile
 import time
 
 from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
+from autopilot.introspection.dbus import StateNotFoundError
+
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
@@ -48,15 +46,8 @@ class MainView(toolkit_emulators.MainView):
         :parameter phone_number: the phone_number of message thread
 
         """
-
-        time.sleep(2)  # message is not always found on slow emulator
-        for thread in self.select_many('ThreadDelegate'):
-            for item in self.select_many('QQuickItem'):
-                if "phoneNumber" in item.get_properties():
-                    if item.get_properties()['phoneNumber'] == phone_number:
-                        return thread
-        raise EmulatorException('Could not find thread with the phone number '
-                                '{}'.format(phone_number))
+        return self.wait_select_single(ThreadDelegate,
+                                       phoneNumber=phone_number)
 
     def get_message(self, text):
         """Return message from text
@@ -66,7 +57,7 @@ class MainView(toolkit_emulators.MainView):
         """
 
         time.sleep(2)  # message is not always found on slow emulator
-        for message in self.select_many('MessageDelegate'):
+        for message in self.select_many(MessageDelegate):
             for item in self.select_many('Label'):
                 if "text" in item.get_properties():
                     if item.get_properties()['text'] == text:
@@ -87,11 +78,16 @@ class MainView(toolkit_emulators.MainView):
 
         return self.wait_select_single("MainPage", objectName="")
 
-    #messages page
+    def click_header_action(self, action):
+        """Click the action 'action' on the header"""
+        self.get_header().click_action_button(action)
+
+    # messages page
     def get_messages_page(self):
         """Return messages with objectName messagesPage"""
 
-        return self.wait_select_single("Messages", objectName="messagesPage")
+        return self.wait_select_single("Messages", objectName="messagesPage",
+                                       active=True)
 
     def get_newmessage_textfield(self):
         """Return TextField with objectName newPhoneNumberField"""
@@ -117,12 +113,13 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_textarea(self):
         """Return TextArea with blank objectName"""
 
-        return self.select_single('TextArea', objectName='')
+        return self.get_messages_page().select_single('TextArea',
+                                                      objectName='')
 
     def get_send_button(self):
         """Return Button with text Send"""
 
-        return self.select_single('Button', text='Send')
+        return self.get_messages_page().select_single('Button', text='Send')
 
     def get_toolbar_back_button(self):
         """Return toolbar button with objectName back_toolbar_button"""
@@ -163,11 +160,6 @@ class MainView(toolkit_emulators.MainView):
             'ActionItem',
             objectName='contactCallButton',
         )
-
-    def get_header(self):
-        """return header object"""
-
-        return self.select_single('Header', objectName='MainView_Header')
 
     def get_dialog_buttons(self, visible=True):
         """Return DialogButtons
@@ -256,26 +248,37 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(button)
         button.enabled.wait_for(False)
 
-    def click_new_message_button(self):
-        """Click "Compose/ new message" button from toolbar on main page"""
+    def start_new_message(self):
+        """Reveal the bottom edge page to start composing a new message"""
+        self.get_main_page().reveal_bottom_edge_page()
 
-        toolbar = self.open_toolbar()
-        toolbar.click_button("newMessageButton")
-        toolbar.animating.wait_for(False)
+    def enable_messages_selection_mode(self):
+        """Enable the selection mode on the messages page by pressing and
+        holding the first item"""
+        message = self.wait_select_single("MessageDelegate",
+                                          objectName="message0")
+        self.long_press(message)
 
-    def click_select_button(self):
-        """Click select button from toolbar on main page"""
+        # now click the popover action
+        select = self.wait_select_single("Standard",
+                                         objectName="popoverSelectAction")
+        self.pointing_device.click_object(select)
 
-        toolbar = self.open_toolbar()
-        toolbar.click_button("selectButton")
-        toolbar.animating.wait_for(False)
+        # FIXME: there should be a better way to detect when the popover is
+        # gone
+        time.sleep(2)
 
-    def click_select_messages_button(self):
-        """Click select messages button from toolbar on messages page"""
+        # and now click the message again to start with it unselected
+        self.pointing_device.click_object(message)
 
-        toolbar = self.open_toolbar()
-        toolbar.click_button("selectMessagesButton")
-        toolbar.animating.wait_for(False)
+    def enable_threads_selection_mode(self):
+        """Enable the selection mode on the threads page by pressing and
+        holding the first item"""
+        # FIXME: there is probably a better way to do this
+        thread = self.select_many("ThreadDelegate")[0]
+        self.long_press(thread)
+        # and now click to unselect it
+        self.pointing_device.click_object(thread)
 
     def close_osk(self):
         """Swipe down to close on-screen keyboard"""
@@ -283,24 +286,18 @@ class MainView(toolkit_emulators.MainView):
         # killing the maliit-server closes the OSK
         if model() is not 'Desktop':
             subprocess.call(["pkill", "maliit-server"])
-            #wait for server to respawn
+            # wait for server to respawn
             time.sleep(2)
 
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Add")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("addContactAction")
 
     def click_call_button(self):
         """Click call button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Call")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("contactCallAction")
 
     def click_back_button(self):
         """Click back button from toolbar on messages page"""
@@ -310,97 +307,94 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
 
-    def delete_thread(self, phone_number, direction='right'):
-        """Delete thread containing specified phone number
+    def click_add_to_contact_button(self):
+        """
+        Click the 'Add to existing contact' button
+        in the 'Save Contact' dialog.
+        """
+        button = self.wait_select_single('Button',
+                                         objectName="addToExistingContact")
+        self.pointing_device.click_object(button)
+
+    def click_create_new_contact_button(self):
+        """
+        Click the 'Create new contact' button
+        in the 'Save Contact' dialog
+        """
+        button = self.wait_select_single('Button',
+                                         objectName="createNewContact")
+        self.pointing_device.click_object(button)
+
+    def click_cancel_save_button(self):
+        " Click the 'Cancel' button in the 'Save Contact' dialog """
+        button = self.wait_select_single('Button',
+                                         objectName="cancelSave")
+        self.pointing_device.click_object(button)
+
+    def click_threads_header_delete(self):
+        """Click the header action 'Delete' on Messages view"""
+        self.click_header_action('selectionModeDeleteAction')
+
+    def click_threads_header_cancel(self):
+        """Click the header action 'Cancel' on Messages view"""
+        self.get_header().click_custom_back_button()
+
+    def click_messages_header_delete(self):
+        """Click the header action 'Delete' on Messages view"""
+        self.click_header_action('selectionModeDeleteAction')
+
+    def click_messages_header_cancel(self):
+        """Click the header action 'Cancel' on Messages view"""
+        self.get_header().click_custom_back_button()
+
+    def delete_thread(self, phone_number):
+        """Delete thread containing specified phone number.
 
         :parameter phone_number: phone number of thread to delete
         :parameter direction: right or left, the direction to swipe to delete
         """
-
         thread = self.get_thread_from_number(phone_number)
-        delete = self.swipe_to_delete(thread, direction=direction)
-        delete_button = delete.wait_select_single('QQuickImage', visible=True)
-        self.pointing_device.click_object(delete_button)
-        thread.wait_until_destroyed()
+        thread.swipe_to_delete()
+        thread.confirm_removal()
 
-    def delete_message(self, text, direction='right'):
-        """Deletes message with specified text
+    def delete_message(self, text):
+        """Deletes message with specified text.
 
-        :parameter text: the text of the message you want to delete
-        :parameter direction: right or left, the direction to swipe to delete
+        :parameter text: the text of the message you want to delete.
+        :parameter direction: right or left, the direction to swipe to delete.
+
         """
-
         message = self.get_message(text)
-        delete = self.swipe_to_delete(message, direction=direction)
-        delete_button = delete.wait_select_single('QQuickImage', visible=True)
-        self.pointing_device.click_object(delete_button)
-        message.wait_until_destroyed()
-
-    def swipe_to_delete(self, obj, direction='right', offset=.1):
-        """Swipe and objet left or right
-
-        :parameter direction: right or left, the direction to swipe
-        :parameter offset: the ammount of space to offset at start of swipe
-        """
-
-        x, y, w, h = obj.globalRect
-
-        s_rx = x + (w * offset)
-        e_rx = w
-
-        s_lx = w - (w * offset)
-        e_lx = w * offset
-
-        sy = y + (h / 2)
-
-        if (direction == 'right'):
-            self.pointing_device.drag(s_rx, sy, e_rx, sy)
-            # wait for animation
-            time.sleep(.5)
-            return self.wait_select_single('QQuickItem',
-                                           objectName='confirmRemovalDialog',
-                                           visible=True)
-        elif (direction == 'left'):
-            self.pointing_device.drag(s_lx, sy, e_lx, sy)
-            # wait for animation
-            time.sleep(.5)
-            return self.wait_select_single('QQuickItem',
-                                           objectName='confirmRemovalDialog',
-                                           visible=True)
-        else:
-            raise EmulatorException(
-                'Invalid direction "{0}" used on swipe to delete function '
-                'direction can be right or left'.format(direction)
-            )
-
-    def receive_sms(self, sender, text):
-        """Receive an SMS based on sender number and text
-
-        :parameter sender: phone number the message is from
-        :parameter text: text you want to send in the message
-        """
-
-        # prepare and send a Qt GUI script to phonesim, over its private D-BUS
-        # set up by ofono-phonesim-autostart
-        script_dir = tempfile.mkdtemp(prefix="phonesim_script")
-        os.chmod(script_dir, 0o755)
-        with open(os.path.join(script_dir, "sms.js"), "w") as f:
-            f.write("""tabSMS.gbMessage1.leMessageSender.text = "%s";
-tabSMS.gbMessage1.leSMSClass.text = "1";
-tabSMS.gbMessage1.teSMSText.setPlainText("%s");
-tabSMS.gbMessage1.pbSendSMSMessage.click();
-""" % (sender, text))
-
-        with open("/run/lock/ofono-phonesim-dbus.address") as f:
-            phonesim_bus = f.read().strip()
-        bus = dbus.bus.BusConnection(phonesim_bus)
-        script_proxy = bus.get_object("org.ofono.phonesim", "/")
-        script_proxy.SetPath(script_dir)
-        script_proxy.Run("sms.js")
-        shutil.rmtree(script_dir)
+        message.swipe_to_delete()
+        message.confirm_removal()
 
 
-class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class PageWithBottomEdge(MainView):
+    """An emulator class that makes it easy to interact with the bottom edge
+       swipe page"""
+    def __init__(self, *args):
+        super(PageWithBottomEdge, self).__init__(*args)
+
+    def reveal_bottom_edge_page(self):
+        """Bring the bottom edge page to the screen"""
+        self.bottomEdgePageLoaded.wait_for(True)
+        try:
+            action_item = self.wait_select_single('QQuickItem',
+                                                  objectName='bottomEdgeTip')
+            start_x = (action_item.globalRect.x +
+                       (action_item.globalRect.width * 0.5))
+            start_y = (action_item.globalRect.y +
+                       (action_item.height * 0.5))
+            stop_y = start_y - (self.height * 0.7)
+            self.pointing_device.drag(start_x, start_y,
+                                      start_x, stop_y, rate=2)
+            self.isReady.wait_for(True)
+        except StateNotFoundError:
+            logger.error('BottomEdge element not found.')
+            raise
+
+
+class MainPage(PageWithBottomEdge):
     """Autopilot helper for the Main Page."""
 
     def get_thread_count(self):
@@ -411,9 +405,10 @@ class MainPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     @autopilot_logging.log_action(logger.info)
     def open_thread(self, participants):
         thread = self.select_single(
-            'ThreadDelegate', objectName='thread{}'.format(participants))
+            ThreadDelegate, objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
-        return self.get_root_instance().wait_select_single(Messages)
+        root = self.get_root_instance()
+        return root.wait_select_single(Messages, threadId=thread.threadId)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
@@ -433,9 +428,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             has the higher index.
 
         """
-        first_message_delegate = self._get_message_delegate(indexes[0])
-        self._long_press_to_select_message(first_message_delegate)
-        for index in indexes[1:]:
+        for index in indexes:
             message_delegate = self._get_message_delegate(index)
             self.pointing_device.click_object(message_delegate)
 
@@ -455,13 +448,6 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self.selectionMode.wait_for(True)
         self.pointing_device.release()
 
-    @autopilot_logging.log_action(logger.info)
-    def delete(self):
-        """Delete the selected messages."""
-        button = self.select_single(
-            'Button', objectName='DialogButtons.acceptButton')
-        self.pointing_device.click_object(button)
-
     def get_messages(self):
         """Return a list with the information of the messages.
 
@@ -479,3 +465,20 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
                 'Label', objectName='messageText').text
             messages.append((date, text))
         return messages
+
+
+class ThreadDelegate(toolkit_emulators.Empty):
+    """Autopilot helper for ThreadDelegate."""
+
+
+class MessageDelegate(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for the MessageDelegate."""
+
+    def swipe_to_delete(self):
+        self._get_internal_list_item().swipe_to_delete()
+
+    def _get_internal_list_item(self):
+        return self.select_single(toolkit_emulators.Empty)
+
+    def confirm_removal(self):
+        self._get_internal_list_item().confirm_removal()

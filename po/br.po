@@ -1,0 +1,155 @@
+# Breton translation for messaging-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-05-09 15:13-0300\n"
+"PO-Revision-Date: 2014-05-28 06:06+0000\n"
+"Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
+"Language-Team: Breton <br@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Launchpad-Export-Date: 2014-06-17 06:50+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
+
+#: src/qml/dateUtils.js:62
+#, qt-format
+msgid "%1 hour call"
+msgid_plural "%1 hours call"
+msgstr[0] "%1 eurvezh o pellgomz"
+msgstr[1] "%1 eurvezh o pellgomz"
+
+#: src/qml/dateUtils.js:64
+#, qt-format
+msgid "%1 minute call"
+msgid_plural "%1 minutes call"
+msgstr[0] "%1 vunutenn o pellgomz"
+msgstr[1] "%1 a vunutoù o pellgomz"
+
+#: src/qml/Messages.qml:61
+#, qt-format
+msgid "%1 other"
+msgid_plural "%1 others"
+msgstr[0] "%1 all"
+msgstr[1] "%1 all"
+
+#: src/qml/dateUtils.js:66
+#, qt-format
+msgid "%1 second call"
+msgid_plural "%1 seconds call"
+msgstr[0] "%1 eilenn o pellgomz"
+msgstr[1] "%1 eilenn o pellgomz"
+
+#: src/qml/Messages.qml:282
+msgid "Add"
+msgstr "Ouzhpennañ"
+
+#: src/qml/Messages.qml:242
+msgid "Add Contact"
+msgstr "Ouzhpennañ un darempred"
+
+#: src/qml/MultiRecipientInput.qml:163
+msgid "Add contacts.."
+msgstr "Ouzhpennañ darempredoù..."
+
+#: src/qml/MultiRecipientInput.qml:217
+msgid "Add contacts..."
+msgstr "Ouzhpennañ darempredoù..."
+
+#: src/qml/Messages.qml:214
+msgid "Add to contact"
+msgstr "Ouzhpennañ d'an darempred"
+
+#: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
+msgid "Add to existing contact"
+msgstr "Ouzhpennañ d'un darempred a zo anezhañ dija"
+
+#: src/qml/Messages.qml:306
+msgid "Call"
+msgstr "Pellgomz"
+
+#: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
+msgid "Cancel"
+msgstr "Nullañ"
+
+#: src/qml/MainPage.qml:51
+msgid "Compose"
+msgstr "Niverenniñ"
+
+#: src/qml/Messages.qml:294
+msgid "Contact"
+msgstr "Darempred"
+
+#: src/qml/MessageDelegate.qml:59
+msgid "Copy"
+msgstr "Eilañ"
+
+#: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
+msgid "Create new contact"
+msgstr "Krouiñ un darempred nevez"
+
+#: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
+msgid "Delete"
+msgstr "Diverkañ"
+
+#: src/qml/MessageDelegate.qml:215
+msgid "Failed"
+msgstr "C'hwitet"
+
+#: src/qml/Messages.qml:167
+msgid "How do you want to save the contact?"
+msgstr "Penaos e fell deoc'h enrollañ an darempred ?"
+
+#: src/qml/MainPage.qml:29
+msgid "Messages"
+msgstr "Kemennadennoù"
+
+#: src/messaging-app.desktop.in:3
+msgid "Messaging"
+msgstr "Kemennerezh"
+
+#: src/messaging-app.desktop.in:4
+msgid "Messaging App"
+msgstr "Arl. kemennerezh"
+
+#: src/messaging-app.desktop.in:5
+msgid "Messaging application"
+msgstr "Arload kemennerezh"
+
+#: src/qml/Messages.qml:64
+msgid "New Message"
+msgstr "Kemennadenn nevez"
+
+#: src/qml/Messages.qml:166
+msgid "Save contact"
+msgstr "Enrollañ an darempred"
+
+#: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
+msgid "Select"
+msgstr "Diuzañ"
+
+#: src/qml/MessageDelegate.qml:213
+msgid "Sending..."
+msgstr "O kas..."
+
+#: src/qml/dateUtils.js:41
+msgid "Today"
+msgstr "Hiziv"
+
+#: src/qml/MessageDelegate.qml:83
+msgid "Try again"
+msgstr "Esa en-dro"
+
+#: src/qml/Messages.qml:474
+msgid "Write a message..."
+msgstr "Skrivañ ur gemennadenn..."
+
+#: src/qml/dateUtils.js:43
+msgid "Yesterday"
+msgstr "Dec'h"

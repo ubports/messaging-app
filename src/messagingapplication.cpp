@@ -32,6 +32,10 @@
 #include <QLibrary>
 #include "config.h"
 #include <QQmlEngine>
+#include <QMimeDatabase>
+#include <QVersitReader>
+
+using namespace QtVersit;
 
 static void printUsage(const QStringList& arguments)
 {
@@ -127,6 +131,7 @@ bool MessagingApplication::setup()
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("Messaging");
     m_view->rootContext()->setContextProperty("application", this);
+    m_view->rootContext()->setContextProperty("i18nDirectory", I18N_DIRECTORY);
     m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
 
     // check if there is a contacts backend override
@@ -163,16 +168,11 @@ void MessagingApplication::onViewStatusChanged(QQuickView::Status status)
     if (status != QQuickView::Ready) {
         return;
     }
-
-    QQuickItem *mainView = m_view->rootObject();
-    if (mainView) {
-        QObject::connect(mainView, SIGNAL(applicationReady()), this, SLOT(onApplicationReady()));
-    }
+    onApplicationReady();
 }
 
 void MessagingApplication::onApplicationReady()
 {
-    QObject::disconnect(QObject::sender(), SIGNAL(applicationReady()), this, SLOT(onApplicationReady()));
     m_applicationIsReady = true;
     parseArgument(m_arg);
     m_arg.clear();
@@ -195,7 +195,11 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
 
     if (scheme == "message") {
-        QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
+        if (!value.isEmpty()) {
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
+        } else {
+            QMetaObject::invokeMethod(mainView, "startNewMessage");
+        }
     }
 }
 
@@ -206,3 +210,53 @@ void MessagingApplication::activateWindow()
         m_view->requestActivate();
     }
 }
+
+QString MessagingApplication::readTextFile(const QString &fileName) {
+    QString text;
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return QString();
+    }
+    text = QString(file.readAll());
+    file.close();
+    return text;
+}
+
+QString MessagingApplication::fileMimeType(const QString &fileName) {
+    QMimeDatabase db;
+    QMimeType type = db.mimeTypeForFile(fileName);
+    return type.name();
+}
+
+QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
+    QFile file(fileName);
+    QString formattedName, structuredName, nickname;
+    if (!file.open(QIODevice::ReadOnly)) {
+        return QString();
+    }
+    QVersitReader reader(file.readAll());
+    reader.startReading();
+    reader.waitForFinished();
+    if (reader.results().count() > 0) {
+        // read only the first contact
+        QVersitDocument firstVcard = reader.results()[0];
+        Q_FOREACH(const QVersitProperty & prop, firstVcard.properties()) {
+            if (prop.name() == "N") {
+                structuredName = prop.value();
+            } else if (prop.name() == "FN") {
+                formattedName = prop.value();
+            } else if (prop.name() == "NICKNAME") {
+                nickname = prop.value();
+            }
+        }
+        if (!formattedName.isEmpty()) {
+            return formattedName;
+        } else if (!structuredName.isEmpty()) {
+            return structuredName.split(";")[1];
+        } else if (!nickname.isEmpty()) {
+            return nickname;
+        }
+    }
+    return QString();
+}
+

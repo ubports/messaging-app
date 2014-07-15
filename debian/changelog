@@ -1,3 +1,113 @@
+messaging-app (0.1+14.10.20140709-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Force modem to go online during tests.
+  * Acknowledge unread messages.
+  * Add support for sharing links. (LP: #1337584)
+  * Update conversation bubbles
+
+  [ Renato Araujo Oliveira Filho ]
+  * Used Ubuntu.Contacts.ContactAvatar in ThreadDelegate.qml
+  * Added search functionality on NewRecipientPage.qml.
+
+  [ Brendan Donegan ]
+  * Add objectName's to Action items and fix some test helpers, plus add
+    a few that are useful.
+  * Convert autopilot tests to use python3
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 09 Jul 2014 00:50:01 +0000
+
+messaging-app (0.1+14.10.20140703.1-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Implement MMS sending support. Add content-hub share handler for
+    pictures and contacts. (LP: #1325009)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 03 Jul 2014 13:42:10 +0000
+
+messaging-app (0.1+14.10.20140701-0ubuntu1) utopic; urgency=low
+
+  [ Michał Sawicz ]
+  * New icon from suru theme.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 01 Jul 2014 07:42:20 +0000
+
+messaging-app (0.1+14.10.20140627-0ubuntu1) utopic; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update contact search to new ContactList API
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 27 Jun 2014 16:05:57 +0000
+
+messaging-app (0.1+14.10.20140617-0ubuntu1) utopic; urgency=low
+
+  [ Leo Arias ]
+  * Removed the tests that swipe to the left. Updated the tests to use
+    the swipe_to_delete helper from the toolkit. (LP: #1330352)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 17 Jun 2014 23:12:42 +0000
+
+messaging-app (0.1+14.10.20140613.2-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Implement new designs + bottom edge swipe
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 13 Jun 2014 19:42:12 +0000
+
+messaging-app (0.1+14.10.20140609-0ubuntu1) utopic; urgency=low
+
+  [ Tim Peeters ]
+  * remove the get_header() function.
+
+  [ Chris Gagnon ]
+  * move receive sms out of page proxy into helper
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 09 Jun 2014 17:42:25 +0000
+
+messaging-app (0.1+14.10.20140530-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix loading translations.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 30 May 2014 13:24:44 +0000
+
+messaging-app (0.1+14.10.20140522-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Add initial mms support (images and videos) .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 22 May 2014 21:54:40 +0000
+
+messaging-app (0.1+14.10.20140512-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Tiago Salem Herrmann ]
+  * update po and pot files
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 12 May 2014 22:51:45 +0000
+
+messaging-app (0.1+14.04.20140410.1-0ubuntu2) trusty; urgency=medium
+
+  * No-change rebuild for shlib changes in qtbase and qtdeclarative.
+
+ -- Ricardo Salveti de Araujo <ricardo.salveti@canonical.com>  Mon, 14 Apr 2014 12:45:27 -0300
+
+messaging-app (0.1+14.04.20140410.1-0ubuntu1) trusty; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * make press and hold display a context menu where users can copy the
+    text message. linkify phone numbers and invoke dialer-app
+    accordingly. use a 3rd party library to detect/linkify web links.
+    avoid showing the thread view at startup when launching messaging-
+    app from other apps (LP: #1302652)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 10 Apr 2014 16:15:01 +0000
+
 messaging-app (0.1+14.04.20140327-0ubuntu1) trusty; urgency=low
 
   [ Thomi Richards ]

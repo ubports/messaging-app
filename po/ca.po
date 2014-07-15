@@ -1,0 +1,155 @@
+# Catalan translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-05-09 15:13-0300\n"
+"PO-Revision-Date: 2014-06-06 08:37+0000\n"
+"Last-Translator: David Planella <david.planella@ubuntu.com>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2014-06-17 06:50+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
+
+#: src/qml/dateUtils.js:62
+#, qt-format
+msgid "%1 hour call"
+msgid_plural "%1 hours call"
+msgstr[0] "Trucada d'%1 hora"
+msgstr[1] "Trucada de %1 hores"
+
+#: src/qml/dateUtils.js:64
+#, qt-format
+msgid "%1 minute call"
+msgid_plural "%1 minutes call"
+msgstr[0] "Trucada d'%1 minut"
+msgstr[1] "Trucada de %1 minuts"
+
+#: src/qml/Messages.qml:61
+#, qt-format
+msgid "%1 other"
+msgid_plural "%1 others"
+msgstr[0] "%1 altre"
+msgstr[1] "%1 altres"
+
+#: src/qml/dateUtils.js:66
+#, qt-format
+msgid "%1 second call"
+msgid_plural "%1 seconds call"
+msgstr[0] "Trucada d'%1 segon"
+msgstr[1] "Trucada de %1 segons"
+
+#: src/qml/Messages.qml:282
+msgid "Add"
+msgstr "Afegeix"
+
+#: src/qml/Messages.qml:242
+msgid "Add Contact"
+msgstr "Afegeix un contacte"
+
+#: src/qml/MultiRecipientInput.qml:163
+msgid "Add contacts.."
+msgstr "Afegeix contactes..."
+
+#: src/qml/MultiRecipientInput.qml:217
+msgid "Add contacts..."
+msgstr "Afegeix contactes..."
+
+#: src/qml/Messages.qml:214
+msgid "Add to contact"
+msgstr "Afegeix al contacte"
+
+#: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
+msgid "Add to existing contact"
+msgstr "Afegeix a un contacte existent"
+
+#: src/qml/Messages.qml:306
+msgid "Call"
+msgstr "Truca-hi"
+
+#: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: src/qml/MainPage.qml:51
+msgid "Compose"
+msgstr "Escriviu un missatge"
+
+#: src/qml/Messages.qml:294
+msgid "Contact"
+msgstr "Contacte"
+
+#: src/qml/MessageDelegate.qml:59
+msgid "Copy"
+msgstr "Copia"
+
+#: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
+msgid "Create new contact"
+msgstr "Crea un contacte nou"
+
+#: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
+msgid "Delete"
+msgstr "Suprimeix"
+
+#: src/qml/MessageDelegate.qml:215
+msgid "Failed"
+msgstr "Ha fallat"
+
+#: src/qml/Messages.qml:167
+msgid "How do you want to save the contact?"
+msgstr "Com voleu desar el contacte?"
+
+#: src/qml/MainPage.qml:29
+msgid "Messages"
+msgstr "Missatges"
+
+#: src/messaging-app.desktop.in:3
+msgid "Messaging"
+msgstr "Missatgeria"
+
+#: src/messaging-app.desktop.in:4
+msgid "Messaging App"
+msgstr "Aplicació de misatgeria"
+
+#: src/messaging-app.desktop.in:5
+msgid "Messaging application"
+msgstr "Aplicació de missatgeria"
+
+#: src/qml/Messages.qml:64
+msgid "New Message"
+msgstr "Missatge nou"
+
+#: src/qml/Messages.qml:166
+msgid "Save contact"
+msgstr "Desa el contacte"
+
+#: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
+msgid "Select"
+msgstr "Seleccioneu"
+
+#: src/qml/MessageDelegate.qml:213
+msgid "Sending..."
+msgstr "S'està enviant..."
+
+#: src/qml/dateUtils.js:41
+msgid "Today"
+msgstr "Avui"
+
+#: src/qml/MessageDelegate.qml:83
+msgid "Try again"
+msgstr "Torna-ho a provar"
+
+#: src/qml/Messages.qml:474
+msgid "Write a message..."
+msgstr "Escriviu un missatge..."
+
+#: src/qml/dateUtils.js:43
+msgid "Yesterday"
+msgstr "Ahir"
