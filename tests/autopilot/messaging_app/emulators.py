@@ -368,6 +368,26 @@ class MainView(toolkit_emulators.MainView):
         message.swipe_to_delete()
         message.confirm_removal()
 
+    @autopilot_logging.log_action(logger.info)
+    def send_message(self, number, message):
+        """Write a new message and send it.
+
+        :param number: number of the contact to send message to.
+        :param message: the message to be sent.
+
+        """
+        self.start_new_message()
+        self.type_contact_phone_num(number)
+        self.type_message(message)
+        old_message_count = self.get_multiple_selection_list_view().count
+        self.click_send_button()
+
+        self.get_multiple_selection_list_view().count.wait_for(
+            old_message_count + 1)
+        thread_bubble = self.get_message(message)
+
+        return thread_bubble
+
 
 class PageWithBottomEdge(MainView):
     """An emulator class that makes it easy to interact with the bottom edge

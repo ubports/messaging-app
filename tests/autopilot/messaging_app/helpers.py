@@ -14,6 +14,7 @@ import tempfile
 import subprocess
 import sys
 import time
+
 from dbus import exceptions
 
 
@@ -100,7 +101,7 @@ def _is_ofono_account_set():
     mc_tool = subprocess.Popen(
         [
             'mc-tool',
-            'list',
+            'list'
         ], stdout=subprocess.PIPE, universal_newlines=True)
     mc_accounts = mc_tool.communicate()[0]
     return 'ofono/ofono/account' in mc_accounts
