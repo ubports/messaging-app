@@ -140,11 +140,11 @@ Page {
     }
 
     Component.onCompleted: {
-        getCurrentThreadId()
+        updateFilters()
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
-    function getCurrentThreadId() {
+    function updateFilters() {
         if (participants.length == 0) {
             eventModel.filter = null
             return
@@ -245,7 +245,7 @@ Page {
         Dialog {
             id: dialogue
             title: i18n.tr("No network")
-            text: telepathyHelper.accountIds.length >= 2 ? i18n.tr("There is currently no network on " + messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
+            text: telepathyHelper.accountIds.length >= 2 ? i18n.tr("There is currently no network on %1").arg(messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
             Button {
                 objectName: "closeNoNetworkDialog"
                 text: i18n.tr("Close")
@@ -337,7 +337,6 @@ Page {
             rightMargin: units.gu(1)
             right: parent.right
             bottom: parent.bottom
-            //top: accountList.bottom
         }
         visible: participants.length == 0 && isReady && messages.active
         MultiRecipientInput {
@@ -444,7 +443,7 @@ Page {
     }
 
     onParticipantsChanged: {
-        getCurrentThreadId()
+        updateFilters()
     }
 
     ToolbarItems {
@@ -923,7 +922,7 @@ Page {
                                                    HistoryThreadModel.MatchPhoneNumber,
                                                    true)
 
-                getCurrentThreadId()
+                updateFilters()
                 messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []
