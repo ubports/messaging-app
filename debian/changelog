@@ -1,3 +1,21 @@
+messaging-app (0.1+14.10.20140715-0ubuntu1) utopic; urgency=low
+
+  [ Iftikhar Ahmad ]
+  * some new helpers for AP tests (LP: #1322055)
+
+  [ Omer Akram ]
+  * pull out the functions in setUp() and tearDown() into a fixture, to
+    be consumed by other projects, wrote send_message helper. (LP:
+    #1328921)
+
+  [ Tiago Salem Herrmann ]
+  * Use upstart to launch the application to run the tests.
+
+  [ iftikhar.ahmad@canonical.com ]
+  * some new helpers for AP tests (LP: #1322055)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 15 Jul 2014 16:32:29 +0000
+
 messaging-app (0.1+14.10.20140709-0ubuntu1) utopic; urgency=low
 
   [ Tiago Salem Herrmann ]
