@@ -77,7 +77,7 @@ Page {
             if (activeTransfer.state === ContentTransfer.Charged) {
                 if (activeTransfer.items.length > 0) {
                     addAttachmentsToModel(activeTransfer)
-                    textEntry.forceActiveFocus() 
+                    textEntry.forceActiveFocus()
                 }
             }
         }
@@ -262,13 +262,16 @@ Page {
 
     ContactListView {
         id: contactSearch
+
         property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
+
         visible: searchEnabled
         detailToPick: ContactDetail.PhoneNumber
         clip: true
         z: 1
         autoUpdate: false
         filterTerm: multiRecipient.searchString
+        showSections: false
 
         states: [
             State {
@@ -283,6 +286,7 @@ Page {
 
         anchors {
             top: parent.top
+            topMargin: units.gu(1)
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -307,20 +311,89 @@ Page {
             }
         }
 
-        onDetailClicked: {
-            if (action === "message" || action === "") {
-                multiRecipient.addRecipient(detail.number)
-                multiRecipient.clearSearch()
-                multiRecipient.forceActiveFocus()
-            } else if (action === "call") {
-                Qt.inputMethod.hide()
-                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
-            }
+        ContactDetailPhoneNumberTypeModel {
+            id: phoneTypeModel
         }
 
-        onInfoRequested: {
-            Qt.inputMethod.hide()
-            Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
+        listDelegate: Item {
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+            height: phoneRepeater.count * units.gu(6)
+            Column {
+                anchors.fill: parent
+                spacing: units.gu(1)
+
+                Repeater {
+                    id: phoneRepeater
+
+                    model: contact.phoneNumbers.length
+
+                    delegate: MouseArea {
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                        height: units.gu(5)
+
+                        onClicked: {
+                            multiRecipient.addRecipient(contact.phoneNumbers[index].number)
+                            multiRecipient.clearSearch()
+                            multiRecipient.forceActiveFocus()
+                        }
+
+                        Column {
+                            anchors.fill: parent
+
+                            Label {
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                height: units.gu(2)
+                                text: {
+                                    // this is necessary to keep the string in the original format
+                                    var originalText = contact.displayLabel.label
+                                    var lowerSearchText =  multiRecipient.searchString.toLowerCase()
+                                    var lowerText = originalText.toLowerCase()
+                                    var searchIndex = lowerText.indexOf(lowerSearchText)
+                                    if (searchIndex !== -1) {
+                                        var piece = originalText.substr(searchIndex, lowerSearchText.length)
+                                        return originalText.replace(piece, "<b>" + piece + "</b>")
+                                    } else {
+                                        return originalText
+                                    }
+                                }
+                                fontSize: "medium"
+                                color: UbuntuColors.lightAubergine
+                            }
+                            Label {
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                height: units.gu(2)
+                                text: {
+                                    var phoneDetail = contact.phoneNumbers[index]
+                                    return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
+                                                    .arg(phoneDetail.number)
+                                }
+                            }
+                            Item {
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                height: units.gu(1)
+                            }
+
+                            ListItem.ThinDivider {}
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -395,7 +468,7 @@ Page {
             }
         }
     }
- 
+
     ToolbarItems {
         id: messagesToolbarUnknownContact
         visible: false

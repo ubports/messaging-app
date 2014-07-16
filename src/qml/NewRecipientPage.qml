@@ -47,7 +47,7 @@ Page {
 
     ContactListView {
         id: contactList
-
+        objectName: "newRecipientList"
         anchors {
             top: parent.top
             left: parent.left
