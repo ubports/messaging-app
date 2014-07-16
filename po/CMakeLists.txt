@@ -17,7 +17,6 @@ file(GLOB_RECURSE I18N_SRCS RELATIVE ${CMAKE_SOURCE_DIR}
 )
 list(APPEND I18N_SRCS src/${DESKTOP_FILE}.in.in)
 list(SORT I18N_SRCS)
-message("Found ${I18N_SRCS}")
 
 foreach(PO_FILE ${PO_FILES})
     get_filename_component(LANG ${PO_FILE} NAME_WE)
