@@ -320,7 +320,7 @@ Page {
 
         onInfoRequested: {
             Qt.inputMethod.hide()
-            Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
+            Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
         }
     }
 
@@ -451,7 +451,7 @@ Page {
                 iconSource: "image://theme/contact"
                 text: i18n.tr("Contact")
                 onTriggered: {
-                    Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contactWatcher.contactId))
+                    Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
                 }
             }
         }
