@@ -77,12 +77,9 @@ class MessagingAppTestCase(AutopilotTestCase):
                 '--test-contacts',
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
-            self.app = self.launch_test_application(
+            self.app = self.launch_upstart_application(
                 'messaging-app',
                 '--test-contacts',
-                '--desktop_file_hint='
-                '/usr/share/applications/messaging-app.desktop',
-                app_type='qt',
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     @property
