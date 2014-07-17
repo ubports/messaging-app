@@ -449,7 +449,7 @@ class MainPage(PageWithBottomEdge):
             ThreadDelegate, objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
         root = self.get_root_instance()
-        return root.wait_select_single(Messages, threadId=thread.threadId)
+        return root.wait_select_single(Messages, participants=participants)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):

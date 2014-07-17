@@ -180,7 +180,9 @@ ListItem.Empty {
         font.weight: Font.Light
     }
     onItemRemoved: {
-        threadModel.removeThread(accountId, threadId, type)
+        for (var i in threads) {
+            threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
+        }
     }
 
     Item {
