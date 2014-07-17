@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-09 15:13-0300\n"
+"POT-Creation-Date: 2014-06-17 11:13+0200\n"
 "PO-Revision-Date: 2014-05-15 11:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-06-17 06:50+0000\n"
-"X-Generator: Launchpad (build 17045)\n"
+"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -35,14 +35,6 @@ msgstr[0] "%1-хвилинний дзвінок"
 msgstr[1] "%1-хвилинний дзвінок"
 msgstr[2] "%1-хвилинний дзвінок"
 
-#: src/qml/Messages.qml:61
-#, qt-format
-msgid "%1 other"
-msgid_plural "%1 others"
-msgstr[0] "ще %1"
-msgstr[1] "ще %1"
-msgstr[2] "ще %1"
-
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
@@ -51,110 +43,146 @@ msgstr[0] "%1-секундний дзвінок"
 msgstr[1] "%1-секундний дзвінок"
 msgstr[2] "%1-секундний дзвінок"
 
-#: src/qml/Messages.qml:282
+#: src/qml/Messages.qml:409
 msgid "Add"
 msgstr "Додати"
 
-#: src/qml/Messages.qml:242
-msgid "Add Contact"
-msgstr "Додати контакт"
-
-#: src/qml/MultiRecipientInput.qml:163
+#: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
 msgstr "Додати контакти.."
 
-#: src/qml/MultiRecipientInput.qml:217
-msgid "Add contacts..."
-msgstr "Додати контакти..."
+#: src/qml/NewRecipientPage.qml:27
+msgid "Add recipient"
+msgstr ""
 
-#: src/qml/Messages.qml:214
+#: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
 msgstr "Додати до контакту"
 
-#: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
+#: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
 msgstr "Додати до наявного запису"
 
-#: src/qml/Messages.qml:306
+#: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
 msgstr "Подзвонити"
 
-#: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
+#: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
+#: src/qml/Messages.qml:169
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/qml/MainPage.qml:51
-msgid "Compose"
-msgstr "Написати"
+#: src/qml/MainPage.qml:31
+msgid "Chats"
+msgstr ""
 
-#: src/qml/Messages.qml:294
+#: src/qml/Messages.qml:438
 msgid "Contact"
 msgstr "Контакт"
 
-#: src/qml/MessageDelegate.qml:59
+#: src/qml/MessageDelegate.qml:176
 msgid "Copy"
 msgstr "Копіювати"
 
-#: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
+#: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
 msgstr "Створити запис"
 
-#: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
-msgid "Delete"
-msgstr "Вилучити"
+#: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
+msgid "Edit"
+msgstr ""
 
-#: src/qml/MessageDelegate.qml:215
+#: src/qml/MessageDelegate.qml:300
 msgid "Failed"
 msgstr "Помилка"
 
-#: src/qml/Messages.qml:167
+#: src/qml/Messages.qml:74
+msgid "Group"
+msgstr ""
+
+#: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
 msgstr "У який спосіб слід зберегти контакт?"
 
-#: src/qml/MainPage.qml:29
-msgid "Messages"
-msgstr "Повідомлення"
+#: src/qml/MMS/PreviewerImage.qml:25
+msgid "Image Preview"
+msgstr ""
 
-#: src/messaging-app.desktop.in:3
-msgid "Messaging"
-msgstr "Обмін повідомленнями"
+#: src/qml/MainPage.qml:39
+msgid "New Chat"
+msgstr ""
 
-#: src/messaging-app.desktop.in:4
-msgid "Messaging App"
-msgstr "Програма для обміну повідомленнями"
-
-#: src/messaging-app.desktop.in:5
-msgid "Messaging application"
-msgstr "Програма для обміну повідомленнями"
-
-#: src/qml/Messages.qml:64
+#: src/qml/Messages.qml:77
 msgid "New Message"
 msgstr "Нове повідомлення"
 
-#: src/qml/Messages.qml:166
+#: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
+msgid "Save"
+msgstr ""
+
+#: src/qml/Messages.qml:149
 msgid "Save contact"
 msgstr "Зберегти контакт"
 
-#: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
+#: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
 msgstr "Вибрати"
 
-#: src/qml/MessageDelegate.qml:213
+#: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
 msgstr "Надсилання…"
+
+#: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
+msgid "Share"
+msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
 msgstr "Сьогодні"
 
-#: src/qml/MessageDelegate.qml:83
+#: src/qml/MessageDelegate.qml:208
 msgid "Try again"
 msgstr "Повторити спробу"
 
-#: src/qml/Messages.qml:474
+#: src/qml/MMS/PreviewerVideo.qml:25
+msgid "Video Preview"
+msgstr ""
+
+#: src/qml/Messages.qml:578
 msgid "Write a message..."
 msgstr "Створення повідомлення…"
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Вчора"
+
+#~ msgid "Delete"
+#~ msgstr "Вилучити"
+
+#~ msgid "Compose"
+#~ msgstr "Написати"
+
+#~ msgid "Messaging"
+#~ msgstr "Обмін повідомленнями"
+
+#~ msgid "Messaging App"
+#~ msgstr "Програма для обміну повідомленнями"
+
+#~ msgid "Messages"
+#~ msgstr "Повідомлення"
+
+#~ msgid "Messaging application"
+#~ msgstr "Програма для обміну повідомленнями"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Додати контакти..."
+
+#~ msgid "Add Contact"
+#~ msgstr "Додати контакт"
+
+#, qt-format
+#~ msgid "%1 other"
+#~ msgid_plural "%1 others"
+#~ msgstr[0] "ще %1"
+#~ msgstr[1] "ще %1"
+#~ msgstr[2] "ще %1"
