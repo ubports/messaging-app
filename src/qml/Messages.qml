@@ -291,7 +291,6 @@ Page {
                             leftMargin: units.gu(-1)
                             rightMargin: units.gu(-1)
                             bottomMargin: units.gu(-1)
-                            topMargin: units.gu(-1)
                         }
                         onClicked: messages.accountId = modelData
                     }
@@ -900,7 +899,7 @@ Page {
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
-                font.pixelSize: FontUtils.sizeToPixels("small")
+                font.pixelSize: FontUtils.sizeToPixels("medium")
                 color: "#5d5d5d"
                 text: messages.text
             }
