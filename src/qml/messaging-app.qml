@@ -144,30 +144,6 @@ MainView {
        }
     }
 
-    Component {
-        id: newcontactPopover
-
-        Popover {
-            id: popover
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                ListItem.Standard { text: i18n.tr("Add to existing contact") }
-                ListItem.Standard {
-                    text: i18n.tr("Create new contact")
-                    onClicked: {
-                        Qt.openUrlExternally("addressbook:///create?phone=" + encodeURIComponent(newPhoneNumber))
-                        popover.hide()
-                    }
-                }
-            }
-        }
-    }
-
     PageStack {
         id: mainStack
         objectName: "mainStack"

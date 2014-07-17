@@ -145,6 +145,27 @@ class MainView(toolkit_emulators.MainView):
             objectName='addContactButton',
         )
 
+    def get_toolbar_add_contact_icon(self):
+        """Return toolbar icon with name new-contact"""
+
+        return self.select_single(
+            'Icon',
+            name='new-contact',
+        )
+
+    def click_add_contact_icon(self):
+        """Click the add contact icon"""
+
+        icon = self.get_toolbar_add_contact_icon()
+        self.pointing_device.click_object(icon)
+
+    def get_contact_list_view(self):
+        """Returns the ContactListView object"""
+        return self.select_single(
+            'ContactListView',
+            objectName='newRecipientList'
+        )
+
     def get_toolbar_contact_profile_button(self):
         """Return toolbar button with objectName contactProfileButton"""
 
@@ -367,6 +388,26 @@ class MainView(toolkit_emulators.MainView):
         message = self.get_message(text)
         message.swipe_to_delete()
         message.confirm_removal()
+
+    @autopilot_logging.log_action(logger.info)
+    def send_message(self, number, message):
+        """Write a new message and send it.
+
+        :param number: number of the contact to send message to.
+        :param message: the message to be sent.
+
+        """
+        self.start_new_message()
+        self.type_contact_phone_num(number)
+        self.type_message(message)
+        old_message_count = self.get_multiple_selection_list_view().count
+        self.click_send_button()
+
+        self.get_multiple_selection_list_view().count.wait_for(
+            old_message_count + 1)
+        thread_bubble = self.get_message(message)
+
+        return thread_bubble
 
 
 class PageWithBottomEdge(MainView):

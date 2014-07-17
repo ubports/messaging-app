@@ -47,7 +47,7 @@ Page {
 
     ContactListView {
         id: contactList
-
+        objectName: "newRecipientList"
         anchors {
             top: parent.top
             left: parent.left
@@ -66,7 +66,7 @@ Page {
             mainStack.pop()
         }
         onInfoRequested: {
-            Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
+            Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
         }
     }

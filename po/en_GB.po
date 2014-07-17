@@ -1,16 +1,16 @@
-# Tamil translation for messaging-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# English (United Kingdom) translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-01-18 17:38+0000\n"
-"Last-Translator: solomon sunder <Unknown>\n"
-"Language-Team: Tamil <ta@li.org>\n"
+"PO-Revision-Date: 2014-07-11 14:40+0000\n"
+"Last-Translator: Alan Pope ㋛ <alan@ubuntu.com>\n"
+"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,30 +22,30 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 மணி நேர அழைப்பு"
-msgstr[1] "%1 மணி நேர அழைப்புகள்"
+msgstr[0] "%1 hour call"
+msgstr[1] "%1 hours call"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 நிமிட அழைப்பு"
-msgstr[1] "%1 நிமிட அழைப்புகள்"
+msgstr[0] "%1 minute call"
+msgstr[1] "%1 minutes call"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 வினாடி அழைப்பு"
-msgstr[1] "%1 வினாடி அழைப்புகள்"
+msgstr[0] "%1 second call"
+msgstr[1] "%1 seconds call"
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr ""
+msgstr "Add contacts.."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
@@ -53,20 +53,20 @@ msgstr ""
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr ""
+msgstr "Add to contact"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "ஏற்கனவேயுள்ள தொடர்பில் சேர்"
+msgstr "Add to existing contact"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr "அழை"
+msgstr "Call"
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
@@ -74,15 +74,15 @@ msgstr ""
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr "தொடர்பு"
+msgstr "Contact"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr ""
+msgstr "Copy"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "புதிய தொடர்பை உருவாக்கு"
+msgstr "Create new contact"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "How do you want to save the contact?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr "புதிய செய்தி"
+msgstr "New Message"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
@@ -118,15 +118,15 @@ msgstr ""
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr ""
+msgstr "Save contact"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr "தேர்ந்தெடு"
+msgstr "Select"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "Sending..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
@@ -134,11 +134,11 @@ msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "இன்று"
+msgstr "Today"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "Try again"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -146,26 +146,38 @@ msgstr ""
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr "செய்தியை எழுது..."
+msgstr "Write a message..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "நேற்று"
+msgstr "Yesterday"
 
-#~ msgid "Delete"
-#~ msgstr "நீக்கு"
+#~ msgid "Add Contact"
+#~ msgstr "Add Contact"
+
+#, qt-format
+#~ msgid "%1 other"
+#~ msgid_plural "%1 others"
+#~ msgstr[0] "%1 other"
+#~ msgstr[1] "%1 others"
 
 #~ msgid "Compose"
-#~ msgstr "அஞ்சல் எழுது"
+#~ msgstr "Compose"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Add contacts..."
+
+#~ msgid "Delete"
+#~ msgstr "Delete"
 
 #~ msgid "Messaging"
-#~ msgstr "செய்தியனுப்புதல்"
+#~ msgstr "Messaging"
 
 #~ msgid "Messaging App"
-#~ msgstr "செய்தியனுப்பும் பயன்பாடு"
+#~ msgstr "Messaging App"
 
 #~ msgid "Messaging application"
-#~ msgstr "செய்தியனுப்பும் பயன்பாடு"
+#~ msgstr "Messaging application"
 
 #~ msgid "Messages"
-#~ msgstr "செய்திகள்"
+#~ msgstr "Messages"
