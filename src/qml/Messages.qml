@@ -260,7 +260,6 @@ Page {
 
     Rectangle {
         id: accountList
-        clip: true
         z: 1
         anchors {
             left: parent.left
@@ -286,7 +285,14 @@ Page {
                     font.pixelSize: FontUtils.sizeToPixels("small")
                     color: messages.accountId == modelData ? "red" : "#5d5d5d"
                     MouseArea {
-                        anchors.fill: parent
+                        anchors {
+                            fill: parent
+                            // increase touch area
+                            leftMargin: units.gu(-1)
+                            rightMargin: units.gu(-1)
+                            bottomMargin: units.gu(-1)
+                            topMargin: units.gu(-1)
+                        }
                         onClicked: messages.accountId = modelData
                     }
                 }
@@ -362,7 +368,7 @@ Page {
         ]
 
         anchors {
-            top: parent.top
+            top: accountList.bottom
             topMargin: units.gu(1)
             left: parent.left
             right: parent.right
@@ -629,7 +635,7 @@ Page {
         objectName: "messageList"
         clip: true
         anchors {
-            top: parent.top
+            top: accountList.bottom
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
