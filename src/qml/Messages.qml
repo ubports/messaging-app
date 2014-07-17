@@ -654,7 +654,7 @@ Page {
             removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             confirmRemoval: true
-            accountLabel: messages.accounts[accountId]
+            accountLabel: telepathyHelper.accountIds.length > 1 ? messages.accounts[accountId] : ""
             onClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
