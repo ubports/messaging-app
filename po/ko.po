@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -148,9 +148,3 @@ msgstr ""
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr ""
-
-#~ msgid "Add contacts..."
-#~ msgstr "연락처 추가"
-
-#~ msgid "Add Contact"
-#~ msgstr "연락처 추가"

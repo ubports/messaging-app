@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -151,33 +151,3 @@ msgstr "Kirjoita viesti..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Eilen"
-
-#~ msgid "Delete"
-#~ msgstr "Poista"
-
-#~ msgid "Messages"
-#~ msgstr "Viestit"
-
-#~ msgid "Compose"
-#~ msgstr "Luo viesti"
-
-#~ msgid "Messaging"
-#~ msgstr "Viestit"
-
-#~ msgid "Messaging application"
-#~ msgstr "Viestisovellus"
-
-#~ msgid "Messaging App"
-#~ msgstr "Viestisovellus"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Lisää yhteytietoja..."
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "%1 muu"
-#~ msgstr[1] "%1 muuta"
-
-#~ msgid "Add Contact"
-#~ msgstr "Lisää yhteystieto"

@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -164,37 +164,3 @@ msgstr "اكتب رسالة..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "أمس"
-
-#~ msgid "Delete"
-#~ msgstr "احذف"
-
-#~ msgid "Compose"
-#~ msgstr "أنشئ"
-
-#~ msgid "Messaging"
-#~ msgstr "التراسل"
-
-#~ msgid "Messaging App"
-#~ msgstr "تطبيق التراسل"
-
-#~ msgid "Messaging application"
-#~ msgstr "تطبيق التراسل"
-
-#~ msgid "Messages"
-#~ msgstr "الرسائل"
-
-#~ msgid "Add contacts..."
-#~ msgstr "إضافة أشخاص..."
-
-#~ msgid "Add Contact"
-#~ msgstr "إضافة شخص"
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "لا آخرين (%1)"
-#~ msgstr[1] "واحد آخر (%1)"
-#~ msgstr[2] "أثنين آخرين (%1)"
-#~ msgstr[3] "%1 آخرين"
-#~ msgstr[4] "%1 آخرين"
-#~ msgstr[5] "%1 آخرين"

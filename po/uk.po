@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -155,34 +155,3 @@ msgstr "Створення повідомлення…"
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Вчора"
-
-#~ msgid "Delete"
-#~ msgstr "Вилучити"
-
-#~ msgid "Compose"
-#~ msgstr "Написати"
-
-#~ msgid "Messaging"
-#~ msgstr "Обмін повідомленнями"
-
-#~ msgid "Messaging App"
-#~ msgstr "Програма для обміну повідомленнями"
-
-#~ msgid "Messages"
-#~ msgstr "Повідомлення"
-
-#~ msgid "Messaging application"
-#~ msgstr "Програма для обміну повідомленнями"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Додати контакти..."
-
-#~ msgid "Add Contact"
-#~ msgstr "Додати контакт"
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "ще %1"
-#~ msgstr[1] "ще %1"
-#~ msgstr[2] "ще %1"

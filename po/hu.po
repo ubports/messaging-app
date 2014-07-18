@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -151,18 +151,3 @@ msgstr "Üzenet írása..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Tegnap"
-
-#~ msgid "Messaging application"
-#~ msgstr "Üzenetküldő alkalmazás"
-
-#~ msgid "Delete"
-#~ msgstr "Törlés"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Kapcsolat hozzáadása"
-
-#~ msgid "Add Contact"
-#~ msgstr "Kapcsolat hozzáadása"
-
-#~ msgid "Messages"
-#~ msgstr "Üzenetek"

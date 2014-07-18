@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -148,21 +148,3 @@ msgstr "ຊຽນຂໍ້ຄວາມ..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "ມື້ວານນີ້"
-
-#~ msgid "Delete"
-#~ msgstr "ລຶບ"
-
-#~ msgid "Compose"
-#~ msgstr "ຂຽນຂໍ້ຄວາມ"
-
-#~ msgid "Messaging"
-#~ msgstr "ການສົ່ງຂໍ້ຄວາມ"
-
-#~ msgid "Messaging App"
-#~ msgstr "ໂປຣເເກມການສົ່ງຂໍ້ຄວາມ"
-
-#~ msgid "Messaging application"
-#~ msgstr "ໂປຣເເກມການສົ່ງຂໍ້ຄວາມ"
-
-#~ msgid "Messages"
-#~ msgstr "ຂໍ້ຄວາມ"

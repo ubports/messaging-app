@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -148,21 +148,3 @@ msgstr "寫訊息..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "昨天"
-
-#~ msgid "Compose"
-#~ msgstr "撰寫"
-
-#~ msgid "Delete"
-#~ msgstr "刪除"
-
-#~ msgid "Messaging"
-#~ msgstr "即時通訊"
-
-#~ msgid "Messaging App"
-#~ msgstr "即時通訊 App"
-
-#~ msgid "Messaging application"
-#~ msgstr "即時通訊程式"
-
-#~ msgid "Messages"
-#~ msgstr "訊息"

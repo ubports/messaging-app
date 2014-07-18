@@ -1,21 +1,20 @@
-# Russian translation for messaging-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Portuguese translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-05-15 13:04+0000\n"
-"Last-Translator: Roman Mindlin <mindline@mail.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2014-07-17 23:50+0000\n"
+"Last-Translator: Filipe André Pinho <Unknown>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
@@ -23,33 +22,30 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 час вызовов"
-msgstr[1] "%1 часа вызовов"
-msgstr[2] "%1 часов вызовов"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 минута вызовов"
-msgstr[1] "%1 минуты вызовов"
-msgstr[2] "%1 минут вызовов"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 секунда вызовов"
-msgstr[1] "%1 секунды вызовов"
-msgstr[2] "%1 секунд вызовов"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr "Добавить"
+msgstr "Adicionar"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr "Добавить контакты..."
+msgstr ""
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
@@ -57,20 +53,20 @@ msgstr ""
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr "Добавить в контакт"
+msgstr ""
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "Добавить к существующему контакту"
+msgstr "Adicionar a contacto existente"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr "Вызов"
+msgstr "Ligar"
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Cancelar"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
@@ -78,23 +74,23 @@ msgstr ""
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr "Контактное лицо"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr "Копировать"
+msgstr "Copiar"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "Создать контактное лицо"
+msgstr "Criar novo contacto"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr "Не удалось"
+msgstr ""
 
 #: src/qml/Messages.qml:74
 msgid "Group"
@@ -102,7 +98,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr "Как сохранить контакт?"
+msgstr "Como deseja guardar o contacto?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -114,7 +110,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr "Создать сообщение"
+msgstr "Mensagem nova"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
@@ -122,27 +118,27 @@ msgstr ""
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr "Сохранить контакт"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr "Выбрать"
+msgstr "Selecionar"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr "Отправка..."
+msgstr "A enviar..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Partilhar"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "Сегодня"
+msgstr "Hoje"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr "Попробовать ещё раз"
+msgstr "Tentar novamente"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -150,8 +146,8 @@ msgstr ""
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr "Новое сообщение..."
+msgstr ""
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "Вчера"
+msgstr ""

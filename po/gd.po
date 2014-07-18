@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -158,35 +158,3 @@ msgstr "Sgrìobh teachdaireachd..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "An-dè"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Cuir luchd-aithne ris..."
-
-#~ msgid "Add Contact"
-#~ msgstr "Cuir neach-aithne ris"
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "%1 eile"
-#~ msgstr[1] "%1 eile"
-#~ msgstr[2] "%1 eile"
-#~ msgstr[3] "%1 eile"
-
-#~ msgid "Delete"
-#~ msgstr "Sguab às"
-
-#~ msgid "Compose"
-#~ msgstr "Sgrìobh"
-
-#~ msgid "Messages"
-#~ msgstr "Teachdaireachdan"
-
-#~ msgid "Messaging"
-#~ msgstr "Teachdaireachdan"
-
-#~ msgid "Messaging App"
-#~ msgstr "Aplacaid nan teachdaireachdan"
-
-#~ msgid "Messaging application"
-#~ msgstr "Aplacaid nan teachdaireachdan"

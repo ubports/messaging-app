@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -148,21 +148,3 @@ msgstr "សរសេរ​សារ..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "ម្សិល​មិញ"
-
-#~ msgid "Compose"
-#~ msgstr "តែង"
-
-#~ msgid "Delete"
-#~ msgstr "លុប"
-
-#~ msgid "Messaging"
-#~ msgstr "ការ​ផ្ញើ​សារ"
-
-#~ msgid "Messaging App"
-#~ msgstr "កម្មវិធី​ផ្ញើ​សារ"
-
-#~ msgid "Messaging application"
-#~ msgstr "កម្មវិធី​ផ្ញើ​សារ"
-
-#~ msgid "Messages"
-#~ msgstr "សារ"

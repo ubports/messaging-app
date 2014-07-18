@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -158,21 +158,3 @@ msgstr "Napišite sporočilo ..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Včeraj"
-
-#~ msgid "Delete"
-#~ msgstr "Izbriši"
-
-#~ msgid "Compose"
-#~ msgstr "Sestavi"
-
-#~ msgid "Messaging"
-#~ msgstr "Sporočanje"
-
-#~ msgid "Messaging App"
-#~ msgstr "Program za sporočanje"
-
-#~ msgid "Messaging application"
-#~ msgstr "Program za sporočanje"
-
-#~ msgid "Messages"
-#~ msgstr "Sporočila"

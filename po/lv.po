@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -154,25 +154,3 @@ msgstr "Rakstīt īsziņu"
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Vakar"
-
-#~ msgid "Delete"
-#~ msgstr "Dzēst"
-
-#~ msgid "Messages"
-#~ msgstr "Ziņas"
-
-#~ msgid "Compose"
-#~ msgstr "Kompozēt"
-
-#~ msgid "Add Contact"
-#~ msgstr "Pievienot kontaktu"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Pievienot kontaktus...."
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "%1 cits"
-#~ msgstr[1] "%1 citu"
-#~ msgstr[2] "%1 citi"

@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -151,33 +151,3 @@ msgstr "Schreiben Sie eine Nachricht …"
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Gestern"
-
-#~ msgid "Compose"
-#~ msgstr "Verfassen"
-
-#~ msgid "Delete"
-#~ msgstr "Löschen"
-
-#~ msgid "Messaging"
-#~ msgstr "Nachrichten"
-
-#~ msgid "Messaging App"
-#~ msgstr "Nachrichten-Anwendung"
-
-#~ msgid "Messaging application"
-#~ msgstr "Nachrichten-Anwendung"
-
-#~ msgid "Messages"
-#~ msgstr "Mitteilungen"
-
-#~ msgid "Add Contact"
-#~ msgstr "Kontakt hinzufügen"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Kontakte hinzufügen …"
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "%1 anderer"
-#~ msgstr[1] "%1 andere"

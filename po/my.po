@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -148,21 +148,3 @@ msgstr "စာတစ်စောင်ရေးမည်"
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "မနေ့က"
-
-#~ msgid "Compose"
-#~ msgstr "ပို့မည်"
-
-#~ msgid "Delete"
-#~ msgstr "ဖျက်မည်"
-
-#~ msgid "Messaging"
-#~ msgstr "စာပို့ခြင်း"
-
-#~ msgid "Messaging App"
-#~ msgstr "စာပို့သည့် App"
-
-#~ msgid "Messaging application"
-#~ msgstr "စာပို့သည့် application"
-
-#~ msgid "Messages"
-#~ msgstr "စာများ"

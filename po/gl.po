@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-09 13:35+0000\n"
+"PO-Revision-Date: 2014-07-17 12:47+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -49,7 +49,7 @@ msgstr "Engadir contactos.."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "Engadir destinatario"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
@@ -70,7 +70,7 @@ msgstr "Cancelar"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "Conversas"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
@@ -86,7 +86,7 @@ msgstr "Crear novo contacto"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
@@ -94,7 +94,7 @@ msgstr "Fallou"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "Grupo"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
@@ -102,11 +102,11 @@ msgstr "Como desexa gardar o contacto?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "Previsualizar imaxe"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "Nova conversa"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -114,7 +114,7 @@ msgstr "Nova mensaxe"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "Gardar"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
@@ -130,7 +130,7 @@ msgstr "Enviando..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Compartir"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -142,7 +142,7 @@ msgstr "Tentar de novo"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Previsualizar vídeo"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
@@ -151,33 +151,3 @@ msgstr "Escribir unha mensaxe..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Onte"
-
-#~ msgid "Compose"
-#~ msgstr "Escribir"
-
-#~ msgid "Delete"
-#~ msgstr "Eliminar"
-
-#~ msgid "Messaging"
-#~ msgstr "Mensaxería"
-
-#~ msgid "Messaging App"
-#~ msgstr "Aplicativo de mensaxería"
-
-#~ msgid "Messaging application"
-#~ msgstr "Aplicativo de mensaxería"
-
-#~ msgid "Messages"
-#~ msgstr "Mensaxes"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Engadir contactos..."
-
-#~ msgid "Add Contact"
-#~ msgstr "Engadir contacto"
-
-#, qt-format
-#~ msgid "%1 other"
-#~ msgid_plural "%1 others"
-#~ msgstr[0] "%1 máis"
-#~ msgstr[1] "%1 máis"

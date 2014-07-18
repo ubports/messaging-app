@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -154,21 +154,3 @@ msgstr "Napsat zprávu..."
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Včera"
-
-#~ msgid "Compose"
-#~ msgstr "Napsat zprávu"
-
-#~ msgid "Delete"
-#~ msgstr "Vymazat"
-
-#~ msgid "Messaging"
-#~ msgstr "Zprávy"
-
-#~ msgid "Messaging App"
-#~ msgstr "Zprávy"
-
-#~ msgid "Messaging application"
-#~ msgstr "Zprávy"
-
-#~ msgid "Messages"
-#~ msgstr "Zprávy"
