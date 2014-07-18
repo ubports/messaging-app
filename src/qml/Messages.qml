@@ -34,6 +34,7 @@ Page {
     // FIXME this info must come from system settings or telephony-service
     property var accounts: {"ofono/ofono/account0": "SIM 1", "ofono/ofono/account1": "SIM 2"}
     property string accountId: telepathyHelper.accountIds[0]
+    property bool multipleAccounts: telepathyHelper.accountIds.length > 1
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -245,7 +246,7 @@ Page {
         Dialog {
             id: dialogue
             title: i18n.tr("No network")
-            text: telepathyHelper.accountIds.length >= 2 ? i18n.tr("There is currently no network on %1").arg(messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
+            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
             Button {
                 objectName: "closeNoNetworkDialog"
                 text: i18n.tr("Close")
@@ -261,12 +262,13 @@ Page {
     Rectangle {
         id: accountList
         z: 1
+        clip: !multipleAccounts
         anchors {
             left: parent.left
             right: parent.right
             top: parent.top
         }
-        height: telepathyHelper.accountIds.length > 1 ? childrenRect.height : 0
+        height: multipleAccounts ? childrenRect.height : 0
         color: "white"
         Row {
             anchors {
@@ -659,7 +661,7 @@ Page {
             removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             confirmRemoval: true
-            accountLabel: telepathyHelper.accountIds.length > 1 ? messages.accounts[accountId] : ""
+            accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
             onClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
