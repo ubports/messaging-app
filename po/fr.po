@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-17 19:13+0000\n"
+"PO-Revision-Date: 2014-07-18 21:49+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
+"X-Launchpad-Export-Date: 2014-07-19 06:19+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -49,7 +49,7 @@ msgstr "Ajouter des contacts..."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "Ajouter un destinataire"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
@@ -70,7 +70,7 @@ msgstr "Annuler"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "Discussions"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
@@ -86,7 +86,7 @@ msgstr "Créer un nouveau contact"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
@@ -94,7 +94,7 @@ msgstr "Échec"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "Grouper"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
@@ -102,11 +102,11 @@ msgstr "Comment souhaitez-vous enregistrer le contact ?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "Aperçu de l'image"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "Nouvelle discussion"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -130,7 +130,7 @@ msgstr "Envoi…"
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Partager"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -142,7 +142,7 @@ msgstr "Veuillez réessayer"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Aperçu de la vidéo"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."

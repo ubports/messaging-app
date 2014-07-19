@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-05-15 13:04+0000\n"
-"Last-Translator: Jiri Grönroos <Unknown>\n"
+"PO-Revision-Date: 2014-07-18 15:05+0000\n"
+"Last-Translator: Timo Jyrinki <timo.jyrinki@canonical.com>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
+"X-Launchpad-Export-Date: 2014-07-19 06:19+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -49,7 +49,7 @@ msgstr "Lisää yhteytietoja..."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "Lisää vastaanottaja"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
@@ -70,7 +70,7 @@ msgstr "Peru"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "Keskustelut"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
@@ -86,7 +86,7 @@ msgstr "Luo uusi yhteystieto"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "Muokkaa"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
@@ -94,7 +94,7 @@ msgstr "Epäonnistui"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "Ryhmä"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
@@ -102,11 +102,11 @@ msgstr "Miten haluat tallentaa yhteystiedon?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "Kuvan esikatselu"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "Uusi keskustelu"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -114,7 +114,7 @@ msgstr "Uusi viesti"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
@@ -130,7 +130,7 @@ msgstr "Lähetetään..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Jaa"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -142,7 +142,7 @@ msgstr "Yritä uudelleen"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Videon esikatselu"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
