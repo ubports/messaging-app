@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-16 05:24+0000\n"
-"Last-Translator: Alfred Woo <joona0825@digutsoft.com>\n"
+"PO-Revision-Date: 2014-07-19 15:10+0000\n"
+"Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:18+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -46,7 +46,7 @@ msgstr "연락처 추가"
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "받는 사람 추가"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
@@ -58,93 +58,93 @@ msgstr "기존 연락처에 추가"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr ""
+msgstr "전화"
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "대화"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr ""
+msgstr "연락처"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr ""
+msgstr "복사"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr ""
+msgstr "새 연락처 추가"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "편집"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr ""
+msgstr "실패했습니다."
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "그룹"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "어떻게 연락처를 저장하시겠습니까?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "그림 미리 보기"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "새 대화"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr ""
+msgstr "새 메시지"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr ""
+msgstr "연락처 저장하기"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr ""
+msgstr "선택"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "보내는 중..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "공유"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr ""
+msgstr "오늘"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "다시 시도하세요"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "동영상 미리 보기"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr ""
+msgstr "메세지 작성..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr ""
+msgstr "어제"

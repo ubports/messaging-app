@@ -1,21 +1,20 @@
-# Polish translation for messaging-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Telugu translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-19 14:30+0000\n"
-"Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"PO-Revision-Date: 2014-07-19 10:20+0000\n"
+"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
+"Language-Team: Telugu <te@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2014-07-20 06:18+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
@@ -23,135 +22,132 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 godzina rozmowy"
-msgstr[1] "%1 godziny rozmowy"
-msgstr[2] "%1 godzin rozmowy"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 minuta rozmowy"
-msgstr[1] "%1 minuty rozmowy"
-msgstr[2] "%1 minut rozmowy"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 sekunda rozmowy"
-msgstr[1] "%1 sekundy rozmowy"
-msgstr[2] "%1 sekund rozmowy"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr "Dodaj"
+msgstr "జతచేయి"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr "Dodaj kontakty..."
+msgstr ""
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr "Dodaj odbiorcę"
+msgstr ""
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr "Dodaj do kontaktu"
+msgstr ""
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "Dodaj do istniejącego kontaktu"
+msgstr ""
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr "Połączenie"
+msgstr ""
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr "Anuluj"
+msgstr "రద్దుచేయి"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr "Rozmowy"
+msgstr "సంభాషణలు"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr "Kontakt"
+msgstr "పరిచయం"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr "Skopiuj"
+msgstr "నకలుతీయు"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "Stwórz nowy kontakt"
+msgstr "కొత్త పరిచయాన్ని సృష్టించు"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr "Edycja"
+msgstr "సవరించు"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr "Niepowodzenie"
+msgstr "విఫలమైంది"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr "Grupa"
+msgstr "సమూహం"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr "Jak chcesz zapisać kontakt?"
+msgstr ""
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr "Podgląd obrazu"
+msgstr "బొమ్మ మునుజూపు"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr "Nowa rozmowa"
+msgstr "కొత్త సంభాషణ"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr "Nowa wiadomość"
+msgstr "కొత్త సందేశం"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr "Zapisz"
+msgstr "భద్రపరుచు"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr "Zapisz kontakt"
+msgstr "పరిచయాన్ని భద్రపరుచు"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr "Wybierz"
+msgstr "ఎంచుకోండి"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr "Wysyłanie..."
+msgstr "పంపుతోంది..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr "Udostępnij"
+msgstr "పంచుకోండి"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "Dzisiaj"
+msgstr "నేడు"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr "Spróbuj ponownie"
+msgstr "మళ్ళీ ప్రయత్నించండి"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr "Podgląd obrazu"
+msgstr "వీడియో మునుజూపు"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr "Napisz wiadomość..."
+msgstr "ఒక సందేశాన్ని వ్రాయండి…"
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "Wczoraj"
+msgstr "నిన్న"
