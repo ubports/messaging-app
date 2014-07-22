@@ -8,9 +8,12 @@ Build-Depends: cmake,
                python-flake8,
                pkg-config,
                python3,
+               qml-module-qttest [i386 amd64 armhf],
                qt5-default,
                qtbase5-dev (>= 5.0),
                qtdeclarative5-dev (>= 5.0),
+               qtdeclarative5-dev-tools [i386 amd64 armhf],
+               qtdeclarative5-ubuntu-ui-toolkit-plugin [i386 amd64 armhf],
                qtpim5-dev,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
