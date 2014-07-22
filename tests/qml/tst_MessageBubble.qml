@@ -73,29 +73,33 @@ Item {
             changeIncomingMessageBubble.incoming = true;
         }
 
-        function test_incoming_message_bubble_must_use_incoming_source() {
+        function getFileName(filePath) {
+            return String(filePath).split('/').reverse()[0];
+        }
+
+        function test_incomingMessageBubbleMustUseIncomingSource() {
             var incomingMessageBubble = findChild(
                 root, 'incomingMessageBubble');
             compare(
-                incomingMessageBubble.source,
-                'assets/conversation_incoming.sci');
+                getFileName(incomingMessageBubble.source),
+                'conversation_incoming.sci');
         }
 
-        function test_outgoing_message_bubble_must_use_outgoing_source() {
+        function test_outgoingMessageBubbleMustUseOutgoingSource() {
             var outgoingMessageBubble = findChild(
                 root, 'outgoingMessageBubble');
             compare(
-                outgoingMessageBubble.source,
-                'assets/conversation_outgoing.sci');
+                getFileName(outgoingMessageBubble.source),
+                'conversation_outgoing.sci');
         }
 
-        function test_change_incoming_must_update_source() {
+        function test_changeIncomingMustUpdateSource() {
             var changeIncomingMessageBubble = findChild(
                 root, 'changeIncomingMessageBubble');
             changeIncomingMessageBubble.incoming = false;
             compare(
-                changeIncomingMessageBubble.source,
-                'assets/conversation_outgoing.sci');
+                getFileName(changeIncomingMessageBubble.source),
+                'conversation_outgoing.sci');
         }
     }
 }
