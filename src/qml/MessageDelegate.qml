@@ -103,7 +103,8 @@ Item {
                         return "MMS/MMSImage.qml"
                     } else if (startsWith(modelData.contentType, "video/")) {
                         return "MMS/MMSVideo.qml"
-                    } else if (startsWith(modelData.contentType, "application/smil")) {
+                    } else if (startsWith(modelData.contentType, "application/smil") ||
+                              startsWith(modelData.contentType, "application/x-smil")) {
                         console.log("Ignoring SMIL file")
                         return ""
                     } else if (startsWith(modelData.contentType, "text/plain") ) {
