@@ -259,7 +259,7 @@ Item {
             visible: running && !selectionMode
             // if temporarily failed or unknown status, then show the spinner
             running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown ||
-                      textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming && mmsText === ""
+                      textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
         }
 
         // FIXME: this is just a temporary workaround while we dont have the final design
