@@ -145,6 +145,27 @@ class MainView(toolkit_emulators.MainView):
             objectName='addContactButton',
         )
 
+    def get_toolbar_add_contact_icon(self):
+        """Return toolbar icon with name new-contact"""
+
+        return self.select_single(
+            'Icon',
+            name='new-contact',
+        )
+
+    def click_add_contact_icon(self):
+        """Click the add contact icon"""
+
+        icon = self.get_toolbar_add_contact_icon()
+        self.pointing_device.click_object(icon)
+
+    def get_contact_list_view(self):
+        """Returns the ContactListView object"""
+        return self.select_single(
+            'ContactListView',
+            objectName='newRecipientList'
+        )
+
     def get_toolbar_contact_profile_button(self):
         """Return toolbar button with objectName contactProfileButton"""
 
@@ -291,19 +312,13 @@ class MainView(toolkit_emulators.MainView):
 
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Add")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("addContactAction")
 
     def click_call_button(self):
         """Click call button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Call")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
+        header = self.get_header()
+        header.click_action_button("contactCallAction")
 
     def click_back_button(self):
         """Click back button from toolbar on messages page"""
@@ -312,6 +327,30 @@ class MainView(toolkit_emulators.MainView):
         button = toolbar.wait_select_single("ActionItem", text=u"Back")
         self.pointing_device.click_object(button)
         toolbar.animating.wait_for(False)
+
+    def click_add_to_contact_button(self):
+        """
+        Click the 'Add to existing contact' button
+        in the 'Save Contact' dialog.
+        """
+        button = self.wait_select_single('Button',
+                                         objectName="addToExistingContact")
+        self.pointing_device.click_object(button)
+
+    def click_create_new_contact_button(self):
+        """
+        Click the 'Create new contact' button
+        in the 'Save Contact' dialog
+        """
+        button = self.wait_select_single('Button',
+                                         objectName="createNewContact")
+        self.pointing_device.click_object(button)
+
+    def click_cancel_save_button(self):
+        " Click the 'Cancel' button in the 'Save Contact' dialog """
+        button = self.wait_select_single('Button',
+                                         objectName="cancelSave")
+        self.pointing_device.click_object(button)
 
     def click_threads_header_delete(self):
         """Click the header action 'Delete' on Messages view"""
@@ -349,6 +388,26 @@ class MainView(toolkit_emulators.MainView):
         message = self.get_message(text)
         message.swipe_to_delete()
         message.confirm_removal()
+
+    @autopilot_logging.log_action(logger.info)
+    def send_message(self, number, message):
+        """Write a new message and send it.
+
+        :param number: number of the contact to send message to.
+        :param message: the message to be sent.
+
+        """
+        self.start_new_message()
+        self.type_contact_phone_num(number)
+        self.type_message(message)
+        old_message_count = self.get_multiple_selection_list_view().count
+        self.click_send_button()
+
+        self.get_multiple_selection_list_view().count.wait_for(
+            old_message_count + 1)
+        thread_bubble = self.get_message(message)
+
+        return thread_bubble
 
 
 class PageWithBottomEdge(MainView):
@@ -390,7 +449,7 @@ class MainPage(PageWithBottomEdge):
             ThreadDelegate, objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
         root = self.get_root_instance()
-        return root.wait_select_single(Messages, threadId=thread.threadId)
+        return root.wait_select_single(Messages, participants=participants)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):

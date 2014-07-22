@@ -30,7 +30,7 @@ import "3rd_party/ba-linkify.js" as BaLinkify
 Item {
     id: messageDelegate
     property bool incoming: false
-    property string textColor: incoming ? "#333333" : "#752571"
+    property string textColor: incoming ? "#333333" : "white"
     property bool selectionMode: false
     property bool unread: false
     property alias confirmRemoval: internalDelegate.confirmRemoval
@@ -38,6 +38,7 @@ Item {
     property alias selected: internalDelegate.selected
     property variant activeAttachment
     property string mmsText: ""
+    property string accountLabel: ""
 
     anchors.left: parent ? parent.left : undefined
     anchors.right: parent ? parent.right: undefined
@@ -262,13 +263,26 @@ Item {
                       textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
         }
 
+        Label {
+            id: accountIndicator
+            anchors {
+                right: bubble.left
+                rightMargin: units.gu(0.5)
+                bottom: bubble.bottom
+            }
+            text: accountLabel
+            visible: !incoming
+            font.pixelSize: FontUtils.sizeToPixels("small")
+            color: "green"
+        }
+
         // FIXME: this is just a temporary workaround while we dont have the final design
         UbuntuShape {
             id: warningButton
             color: "yellow"
             height: units.gu(3)
             width: units.gu(3)
-            anchors.right: bubble.left
+            anchors.right: accountIndicator.left
             anchors.left: undefined
             anchors.verticalCenter: bubble.verticalCenter
             anchors.leftMargin: 0
@@ -355,7 +369,7 @@ Item {
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                     fontSize: "medium"
                     color: textColor
-                    opacity: incoming ? 1 : 0.9
+                    //opacity: incoming ? 1 : 0.9
                     text: textMessage !== "" ? parseText(textMessage) : parseText(mmsText)
                     onLinkActivated:  Qt.openUrlExternally(link)
                     function parseText(text) {

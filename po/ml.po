@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-09 15:13-0300\n"
+"POT-Creation-Date: 2014-06-17 11:13+0200\n"
 "PO-Revision-Date: 2013-11-22 04:17+0000\n"
 "Last-Translator: Stym alfaZ <Unknown>\n"
 "Language-Team: Malayalam <ml@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-06-17 06:50+0000\n"
-"X-Generator: Launchpad (build 17045)\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -32,13 +32,6 @@ msgid_plural "%1 minutes call"
 msgstr[0] "%1 മിനുട്ട് വിളി"
 msgstr[1] "%1 മിനുട്ട് വിളി"
 
-#: src/qml/Messages.qml:61
-#, qt-format
-msgid "%1 other"
-msgid_plural "%1 others"
-msgstr[0] ""
-msgstr[1] ""
-
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
@@ -46,107 +39,112 @@ msgid_plural "%1 seconds call"
 msgstr[0] "%1 സെക്കന്റ് വിളി"
 msgstr[1] "%1 സെക്കന്റ് വിളി"
 
-#: src/qml/Messages.qml:282
+#: src/qml/Messages.qml:409
 msgid "Add"
 msgstr ""
 
-#: src/qml/Messages.qml:242
-msgid "Add Contact"
-msgstr ""
-
-#: src/qml/MultiRecipientInput.qml:163
+#: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
 msgstr ""
 
-#: src/qml/MultiRecipientInput.qml:217
-msgid "Add contacts..."
+#: src/qml/NewRecipientPage.qml:27
+msgid "Add recipient"
 msgstr ""
 
-#: src/qml/Messages.qml:214
+#: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
 msgstr ""
 
-#: src/qml/Messages.qml:169 src/qml/messaging-app.qml:84
+#: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
 msgstr "നിലവിലുള്ള ബന്ധത്തിലേക്ക് ചേര്‍ക്കുക"
 
-#: src/qml/Messages.qml:306
+#: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
 msgstr "വിളിക്കുക"
 
-#: src/qml/MessageDelegate.qml:91 src/qml/Messages.qml:185
+#: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
+#: src/qml/Messages.qml:169
 msgid "Cancel"
 msgstr ""
 
-#: src/qml/MainPage.qml:51
-msgid "Compose"
-msgstr "രചിക്കുക"
+#: src/qml/MainPage.qml:31
+msgid "Chats"
+msgstr ""
 
-#: src/qml/Messages.qml:294
+#: src/qml/Messages.qml:438
 msgid "Contact"
 msgstr "ബന്ധം"
 
-#: src/qml/MessageDelegate.qml:59
+#: src/qml/MessageDelegate.qml:176
 msgid "Copy"
 msgstr ""
 
-#: src/qml/Messages.qml:177 src/qml/messaging-app.qml:86
+#: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
 msgstr "പുതിയ ബന്ധം സ്ഥാപിക്കുക"
 
-#: src/qml/MainPage.qml:84 src/qml/Messages.qml:386
-msgid "Delete"
-msgstr "നീക്കം ചെയ്യുക"
+#: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
+msgid "Edit"
+msgstr ""
 
-#: src/qml/MessageDelegate.qml:215
+#: src/qml/MessageDelegate.qml:300
 msgid "Failed"
 msgstr ""
 
-#: src/qml/Messages.qml:167
+#: src/qml/Messages.qml:74
+msgid "Group"
+msgstr ""
+
+#: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
 msgstr ""
 
-#: src/qml/MainPage.qml:29
-msgid "Messages"
-msgstr "സന്ദേശങ്ങൾ"
+#: src/qml/MMS/PreviewerImage.qml:25
+msgid "Image Preview"
+msgstr ""
 
-#: src/messaging-app.desktop.in:3
-msgid "Messaging"
-msgstr "സന്ദേശമയക്കല്‍"
+#: src/qml/MainPage.qml:39
+msgid "New Chat"
+msgstr ""
 
-#: src/messaging-app.desktop.in:4
-msgid "Messaging App"
-msgstr "സന്ദേശമയക്കല്‍ പ്രയോഗം"
-
-#: src/messaging-app.desktop.in:5
-msgid "Messaging application"
-msgstr "സന്ദേശമയക്കല്‍ പ്രയോഗം"
-
-#: src/qml/Messages.qml:64
+#: src/qml/Messages.qml:77
 msgid "New Message"
 msgstr "പുതിയ സന്ദേശം"
 
-#: src/qml/Messages.qml:166
+#: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
+msgid "Save"
+msgstr ""
+
+#: src/qml/Messages.qml:149
 msgid "Save contact"
 msgstr ""
 
-#: src/qml/MainPage.qml:42 src/qml/Messages.qml:273
+#: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
 msgstr "തെരഞ്ഞെടുക്കുക"
 
-#: src/qml/MessageDelegate.qml:213
+#: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
+msgstr ""
+
+#: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
+msgid "Share"
 msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
 msgstr "ഇന്ന്"
 
-#: src/qml/MessageDelegate.qml:83
+#: src/qml/MessageDelegate.qml:208
 msgid "Try again"
 msgstr ""
 
-#: src/qml/Messages.qml:474
+#: src/qml/MMS/PreviewerVideo.qml:25
+msgid "Video Preview"
+msgstr ""
+
+#: src/qml/Messages.qml:578
 msgid "Write a message..."
 msgstr "ഒരു സന്ദേശം എഴുതുക..."
 
