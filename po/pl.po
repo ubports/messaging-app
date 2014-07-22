@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-05-23 14:10+0000\n"
-"Last-Translator: Michał Radwański <radwanski.michal@outlook.com>\n"
+"PO-Revision-Date: 2014-07-19 14:30+0000\n"
+"Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:18+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -53,7 +53,7 @@ msgstr "Dodaj kontakty..."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "Dodaj odbiorcę"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
@@ -74,7 +74,7 @@ msgstr "Anuluj"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "Rozmowy"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
@@ -90,7 +90,7 @@ msgstr "Stwórz nowy kontakt"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "Edycja"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
@@ -98,7 +98,7 @@ msgstr "Niepowodzenie"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "Grupa"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
@@ -106,11 +106,11 @@ msgstr "Jak chcesz zapisać kontakt?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "Podgląd obrazu"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "Nowa rozmowa"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -118,7 +118,7 @@ msgstr "Nowa wiadomość"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "Zapisz"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
@@ -134,7 +134,7 @@ msgstr "Wysyłanie..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Udostępnij"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -146,7 +146,7 @@ msgstr "Spróbuj ponownie"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Podgląd obrazu"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
