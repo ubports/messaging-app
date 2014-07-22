@@ -15,6 +15,7 @@ Build-Depends: cmake,
                qtdeclarative5-dev-tools [i386 amd64 armhf],
                qtdeclarative5-ubuntu-ui-toolkit-plugin [i386 amd64 armhf],
                qtpim5-dev,
+               xvfb [i386 amd64 armhf],
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
