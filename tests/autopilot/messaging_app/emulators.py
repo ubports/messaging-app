@@ -146,11 +146,11 @@ class MainView(toolkit_emulators.MainView):
         )
 
     def get_toolbar_add_contact_icon(self):
-        """Return toolbar icon with name new-contact"""
+        """Return toolbar icon with name contact"""
 
         return self.select_single(
             'Icon',
-            name='new-contact',
+            name='contact',
         )
 
     def click_add_contact_icon(self):
