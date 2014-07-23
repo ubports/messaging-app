@@ -150,7 +150,7 @@ class MainView(toolkit_emulators.MainView):
 
         return self.select_single(
             'Icon',
-            name='contact',
+            objectName='addNewRecipientIcon',
         )
 
     def click_add_contact_icon(self):
