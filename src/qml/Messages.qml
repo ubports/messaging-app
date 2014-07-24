@@ -324,6 +324,7 @@ Page {
         }
         Icon {
             id: addIcon
+            objectName: "addNewRecipientIcon"
             visible: multiRecipient.visible
             height: units.gu(3)
             width: units.gu(3)
