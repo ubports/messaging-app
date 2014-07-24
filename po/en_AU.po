@@ -1,4 +1,4 @@
-# Hungarian translation for messaging-app
+# English (Australia) translation for messaging-app
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the messaging-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-23 10:23+0000\n"
-"Last-Translator: Úr Balázs <urbalazs@gmail.com>\n"
-"Language-Team: Hungarian <hu@li.org>\n"
+"PO-Revision-Date: 2014-07-24 04:06+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,132 +22,132 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 órás hívás"
-msgstr[1] "%1 órás hívás"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 perces hívás"
-msgstr[1] "%1 perces hívás"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 másodperces hívás"
-msgstr[1] "%1 másodperces hívás"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr "Hozzáadás"
+msgstr ""
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr "Kapcsolat hozzáadása"
+msgstr ""
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr "Címzett hozzáadása"
+msgstr ""
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr "Hozzáadás kapcsolathoz"
+msgstr ""
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "Hozzáadás létező kapcsolathoz"
+msgstr ""
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr "Hívás"
+msgstr ""
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr "Mégse"
+msgstr ""
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr "Csevegések"
+msgstr ""
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr "Kapcsolat"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr "Másolás"
+msgstr ""
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "Új kapcsolat létrehozása"
+msgstr ""
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr "Szerkesztés"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr "Sikertelen"
+msgstr ""
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr "Csoport"
+msgstr ""
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr "Hogyan szeretné meneteni a partnert?"
+msgstr ""
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr "Előnézeti kép"
+msgstr ""
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr "Új csevegés"
+msgstr ""
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr "Új üzenet"
+msgstr ""
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr "Mentés"
+msgstr ""
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr "Kapcsolat mentése"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr "Kiválasztás"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr "Küldés..."
+msgstr ""
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr "Megosztás"
+msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "Ma"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr "Próbálja újra"
+msgstr ""
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr "Videó előnézet"
+msgstr ""
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr "Üzenet írása..."
+msgstr ""
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "Tegnap"
+msgstr ""
