@@ -146,7 +146,7 @@ class MainView(toolkit_emulators.MainView):
         )
 
     def get_toolbar_add_contact_icon(self):
-        """Return toolbar icon with name contact"""
+        """Return toolbar icon to add contact"""
 
         return self.select_single(
             'Icon',
