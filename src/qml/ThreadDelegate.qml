@@ -46,8 +46,6 @@ ListItem.Empty {
     property string threadId: model.threadId
     property string textMessage: {
         // check if this is an mms, if so, search for the actual text
-        console.log(eventId)
-        console.log(eventTextAttachments)
         var imageCount = 0
         var videoCount = 0
         var contactCount = 0
