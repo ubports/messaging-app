@@ -19,7 +19,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 import QtContacts 5.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Content 0.1
@@ -153,7 +153,7 @@ Page {
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
         for (var i = 0; i < telepathyHelper.accountIds.length; i++) {
-            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i], 
+            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
                                                                  HistoryThreadModel.MatchPhoneNumber)
@@ -546,7 +546,6 @@ Page {
         back: ToolbarButton {
             action: Action {
                 onTriggered: {
-                    mainPage.temporaryProperties = null
                     mainStack.pop()
                 }
                 iconSource: "image://theme/back"
@@ -720,7 +719,7 @@ Page {
 
     Item {
         id: bottomPanel
-        anchors.bottom: keyboard.top
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
@@ -989,10 +988,6 @@ Page {
                 textEntry.text = ""
             }
         }
-    }
-
-    KeyboardRectangle {
-        id: keyboard
     }
 
     Scrollbar {

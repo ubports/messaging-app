@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
@@ -27,21 +27,20 @@ PageWithBottomEdge {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false
-    tools: selectionMode ? selectionToolbar : searching ? searchToolbar : regularToolbar
-    title: selectionMode ? i18n.tr("Edit") : i18n.tr("Chats")
-    __customHeaderContents: mainPage.searching ? searchField : null
-
-    bottomEdgeEnabled: !selectionMode
-    bottomEdgePageComponent: Messages {
-        active: false
-    }
-
-    bottomEdgeTitle: i18n.tr("New Chat")
     property alias threadCount: threadList.count
 
     function startSelection() {
         threadList.startSelection()
     }
+
+    state: selectionMode ? "select" : searching ? "search" : "default"
+    title: selectionMode ? i18n.tr(" ") : i18n.tr("Chats")
+
+    bottomEdgeEnabled: !selectionMode
+    bottomEdgePageComponent: Messages {
+        active: false
+    }
+    bottomEdgeTitle: i18n.tr("New Chat")
 
     TextField {
         id: searchField
@@ -62,13 +61,21 @@ PageWithBottomEdge {
         }
     }
 
-    ToolbarItems {
-        id: searchToolbar
-
-        visible: false
-        back: ToolbarButton {
-            visible: false
-            action: Action {
+    states: [
+        PageHeadState {
+            name: "default"
+            actions: Action {
+                objectName: "searchAction"
+                iconSource: "image://theme/search"
+                onTriggered: {
+                    mainPage.searching = true
+                    searchField.forceActiveFocus()
+                }
+            }
+        },
+        PageHeadState {
+            name: "search"
+            backAction: Action {
                 objectName: "cancelSearch"
                 visible: mainPage.searching
                 iconName: "close"
@@ -78,58 +85,31 @@ PageWithBottomEdge {
                     mainPage.searching = false
                 }
             }
-        }
-    }
+            contents: searchField
+        },
+        PageHeadState {
+            name: "selection"
 
-    ToolbarItems {
-        id: regularToolbar
-        visible: false
-        ToolbarButton {
-            id: searchButton
-            objectName: "searchButton"
-            action: Action {
-                objectName: "searchAction"
-                iconSource: "image://theme/search"
-                onTriggered: {
-                    mainPage.searching = true
-                    searchField.forceActiveFocus()
-                }
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: selectionToolbar
-        visible: false
-        back: ToolbarButton {
-            id: selectionModeCancelButton
-            objectName: "selectionModeCancelButton"
-            action: Action {
+            backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconSource: "image://theme/close"
+                iconName: "close"
                 onTriggered: threadList.cancelSelection()
             }
+            actions: [
+                Action {
+                    objectName: "selectionModeSelectAllAction"
+                    iconName: "select"
+                    onTriggered: threadList.selectAll()
+                },
+                Action {
+                    objectName: "selectionModeDeleteAction"
+                    enabled: threadList.selectedItems.count > 0
+                    iconName: "delete"
+                    onTriggered: threadList.endSelection()
+                }
+            ]
         }
-        ToolbarButton {
-            id: selectionModeSelectAllButton
-            objectName: "selectionModeSelectAllButton"
-            action: Action {
-                objectName: "selectionModeSelectAllAction"
-                iconSource: "image://theme/filter"
-                onTriggered: threadList.selectAll()
-            }
-        }
-        ToolbarButton {
-            id: selectionModeDeleteButton
-            objectName: "selectionModeDeleteButton"
-            action: Action {
-                objectName: "selectionModeDeleteAction"
-                enabled: threadList.selectedItems.count > 0
-                iconSource: "image://theme/delete"
-                onTriggered: threadList.endSelection()
-            }
-        }
-    }
+    ]
 
     HistoryThreadGroupingProxyModel {
         id: sortProxy
@@ -176,13 +156,7 @@ PageWithBottomEdge {
     MultipleSelectionListView {
         id: threadList
         objectName: "threadList"
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
-
+        anchors.fill: parent
         listModel: sortProxy
         section.property: "eventDate"
         spacing: searchField.text === "" ? units.gu(-2) : 0
@@ -222,10 +196,6 @@ PageWithBottomEdge {
             }
         }
 
-    }
-
-    KeyboardRectangle {
-        id: keyboard
     }
 
     Scrollbar {

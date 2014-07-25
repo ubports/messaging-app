@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.Telephony 0.1
 import QtContacts 5.0

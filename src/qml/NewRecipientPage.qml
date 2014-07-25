@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
@@ -48,12 +48,7 @@ Page {
     ContactListView {
         id: contactList
         objectName: "newRecipientList"
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
+        anchors.fill: parent
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
@@ -69,10 +64,6 @@ Page {
             Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
         }
-    }
-
-    KeyboardRectangle {
-        id: keyboard
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
