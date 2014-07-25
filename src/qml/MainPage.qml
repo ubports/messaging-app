@@ -146,6 +146,8 @@ PageWithBottomEdge {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
         }
+        filter: HistoryFilter {
+        }
     }
 
     Component {

@@ -44,6 +44,42 @@ ListItem.Empty {
     property bool unknownContact: delegateHelper.isUnknown
     property bool selectionMode: false
     property string threadId: model.threadId
+    property string textMessage: {
+        // check if this is an mms, if so, search for the actual text
+        console.log(eventId)
+        console.log(eventTextAttachments)
+        var imageCount = 0
+        var videoCount = 0
+        var contactCount = 0
+        var attachmentCount = 0
+        for (var i = 0; i < eventTextAttachments.length; i++) {
+            if (startsWith(eventTextAttachments[i].contentType, "text/plain")) {
+                return application.readTextFile(eventTextAttachments[i].filePath)
+            } else if (startsWith(eventTextAttachments[i].contentType, "image/")) {
+                imageCount++
+            } else if (startsWith(eventTextAttachments[i].contentType, "video/")) {
+                videoCount++
+            } else if (startsWith(eventTextAttachments[i].contentType, "text/vcard") ||
+                      startsWith(eventTextAttachments[i].contentType, "text/x-vcard")) {
+                contactCount++
+            }
+        }
+        attachmentCount = imageCount + videoCount + contactCount
+
+        if (imageCount > 0 && attachmentCount == imageCount) {
+            return i18n.tr("Attachment: %1 image", "Attachments: %s images").arg(imageCount)
+        }
+        if (videoCount > 0 && attachmentCount == videoCount) {
+            return i18n.tr("Attachment: %1 video", "Attachments: %s videos").arg(videoCount)
+        }
+        if (contactCount > 0 && attachmentCount == contactCount) {
+            return i18n.tr("Attachment: %1 contact", "Attachments: %s contacts").arg(contactCount)
+        }
+        if (attachmentCount > 0) {
+            return i18n.tr("Attachment: %1 file", "Attachments: %s files").arg(attachmentCount)
+        }
+        return eventTextMessage
+    }
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
@@ -176,7 +212,7 @@ ListItem.Empty {
         maximumLineCount: 2
         fontSize: "x-small"
         wrapMode: Text.WordWrap
-        text: eventTextMessage == undefined ? "" : eventTextMessage
+        text: textMessage
         font.weight: Font.Light
     }
     onItemRemoved: {
