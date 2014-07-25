@@ -30,6 +30,7 @@ MainView {
     width: units.gu(40)
     height: units.gu(71)
     useDeprecatedToolbar: false
+    anchorToKeyboard: true
     property string newPhoneNumber
 
     Component.onCompleted: {
@@ -144,18 +145,13 @@ MainView {
        }
     }
 
-    PageStack {
-        id: mainStack
-        objectName: "mainStack"
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
-    }
+    // WORKAROUND: we need this extra item to avoid the page to fill
+    Item {
+        anchors.fill: parent
+        PageStack {
+            id: mainStack
 
-    KeyboardRectangle {
-        id: keyboard
+            objectName: "mainStack"
+        }
     }
 }
