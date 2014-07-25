@@ -89,8 +89,6 @@ Page {
     }
 
     flickable: null
-    // we need to use isReady here to know if this is a bottom edge page or not.
-    __customHeaderContents: participants.length === 0 && isReady ? newMessageHeader : null
     property bool isReady: false
     signal ready
     onReady: {

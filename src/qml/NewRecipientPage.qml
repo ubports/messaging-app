@@ -28,21 +28,40 @@ Page {
 
     title: i18n.tr("Add recipient")
 
-    __customHeaderContents: TextField {
-        id: searchField
+    head {
+        contents: TextField {
+            id: searchField
 
-        anchors {
-            left: parent.left
-            leftMargin: units.gu(2)
-            right: parent.right
-            rightMargin: units.gu(2)
-            topMargin: units.gu(1.5)
-            bottomMargin: units.gu(1.5)
-            verticalCenter: parent.verticalCenter
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                right: parent.right
+                rightMargin: units.gu(2)
+                topMargin: units.gu(1.5)
+                bottomMargin: units.gu(1.5)
+                verticalCenter: parent.verticalCenter
+            }
+            onTextChanged: contactList.currentIndex = -1
+            inputMethodHints: Qt.ImhNoPredictiveText
+            placeholderText: i18n.tr("Search...")
         }
-        onTextChanged: contactList.currentIndex = -1
-        inputMethodHints: Qt.ImhNoPredictiveText
-        placeholderText: i18n.tr("Type to search by name or number")
+        sections.model: ["All", "Favorites"]
+    }
+
+    Connections {
+        target: newRecipientPage.head.sections
+        onSelectedIndexChanged: {
+            switch (newRecipientPage.head.sections.selectedIndex) {
+            case 0:
+                contactList.showAllContacts()
+                break;
+            case 1:
+                contactList.showFavoritesContacts()
+                break;
+            default:
+                break;
+            }
+        }
     }
 
     ContactListView {
