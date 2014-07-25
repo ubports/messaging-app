@@ -511,7 +511,6 @@ Page {
         PageHeadState {
             name: "newMessage"
             head: messages.head
-
             actions: [
                 Action {
                     objectName: "contactList"
@@ -600,6 +599,19 @@ Page {
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
         highlightFollowsCurrentItem: false
+        add: Transition {
+            UbuntuNumberAnimation {
+                properties: "anchors.leftMargin"
+                from: -width
+                to: 0
+            }
+            UbuntuNumberAnimation {
+                properties: "anchors.rightMargin"
+                from: -width
+                to: 0
+            }
+        }
+
         listDelegate: MessageDelegate {
             id: messageDelegate
             objectName: "message%1".arg(index)
