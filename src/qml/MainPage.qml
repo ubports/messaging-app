@@ -47,12 +47,11 @@ PageWithBottomEdge {
         visible: mainPage.searching
         anchors {
             left: parent.left
-            topMargin: units.gu(1.5)
-            rightMargin: units.gu(1.5)
-            bottomMargin: units.gu(1.5)
-            verticalCenter: parent.verticalCenter
+            right: parent.right
+            rightMargin: units.gu(2)
         }
         inputMethodHints: Qt.ImhNoPredictiveText
+        placeholderText: i18n.tr("Search...")
         onActiveFocusChanged: {
             if (!activeFocus) {
                 searchField.text = ""
@@ -64,17 +63,21 @@ PageWithBottomEdge {
     states: [
         PageHeadState {
             name: "default"
-            actions: Action {
-                objectName: "searchAction"
-                iconSource: "image://theme/search"
-                onTriggered: {
-                    mainPage.searching = true
-                    searchField.forceActiveFocus()
+            head: mainPage.head
+            actions: [
+                Action {
+                    objectName: "searchAction"
+                    iconName: "search"
+                    onTriggered: {
+                        mainPage.searching = true
+                        searchField.forceActiveFocus()
+                    }
                 }
-            }
+            ]
         },
         PageHeadState {
             name: "search"
+            head: mainPage.head
             backAction: Action {
                 objectName: "cancelSearch"
                 visible: mainPage.searching
@@ -89,7 +92,7 @@ PageWithBottomEdge {
         },
         PageHeadState {
             name: "selection"
-
+            head: mainPage.head
             backAction: Action {
                 objectName: "selectionModeCancelAction"
                 iconName: "close"
@@ -131,24 +134,21 @@ PageWithBottomEdge {
     Component {
         id: sectionDelegate
         Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: units.gu(5)
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+            height: units.gu(3)
             Label {
-                anchors.left: parent.left
-                anchors.leftMargin: units.gu(2)
-                anchors.verticalCenter: parent.verticalCenter
-                fontSize: "medium"
+                anchors.fill: parent
                 elide: Text.ElideRight
-                color: "#5d5d5d"
                 text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
                 verticalAlignment: Text.AlignVCenter
+                fontSize: "small"
             }
             ListItem.ThinDivider {
-                anchors.leftMargin: units.gu(2)
-                anchors.rightMargin: units.gu(2)
                 anchors.bottom: parent.bottom
-                opacity: 0.6
             }
         }
     }
@@ -159,17 +159,21 @@ PageWithBottomEdge {
         anchors.fill: parent
         listModel: sortProxy
         section.property: "eventDate"
-        spacing: searchField.text === "" ? units.gu(-2) : 0
+        //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
             objectName: "thread%1".arg(participants)
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: units.gu(8)
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
-            removable: !selectionMode
-            confirmRemoval: true
             searchTerm: mainPage.searching ? searchField.text : ""
-            onClicked: {
+            onItemClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
@@ -182,7 +186,7 @@ PageWithBottomEdge {
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }
-            onPressAndHold: {
+            onItemPressAndHold: {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }

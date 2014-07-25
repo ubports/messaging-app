@@ -18,16 +18,20 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
-ListItem.Empty {
+ListItemWithActions {
     id: delegate
+
     property bool groupChat: participants.length > 1
     property string searchTerm
+    property string phoneNumber: delegateHelper.phoneNumber
+    property bool unknownContact: delegateHelper.isUnknown
+    property bool selectionMode: false
+    property string threadId: model.threadId
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -40,14 +44,8 @@ ListItem.Empty {
             return firstRecipient + " +" + String(participants.length-1)
         return firstRecipient
     }
-    property string phoneNumber: delegateHelper.phoneNumber
-    property bool unknownContact: delegateHelper.isUnknown
-    property bool selectionMode: false
-    property string threadId: model.threadId
-    anchors.left: parent.left
-    anchors.right: parent.right
-    height: units.gu(10)
-    showDivider: false
+
+
     // WORKAROUND: history-service can't filter by contact names
     onSearchTermChanged: {
         var found = false
@@ -61,7 +59,17 @@ ListItem.Empty {
             found = true
         }
 
-        height = found ? units.gu(10) : 0
+        height = found ? units.gu(8) : 0
+    }
+
+    leftSideAction: Action {
+        iconName: "delete"
+        text: i18n.tr("Delete")
+        onTriggered: {
+            for (var i in threads) {
+                threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
+            }
+        }
     }
 
     // FIXME: the selected state should be handled by the UITK
@@ -98,7 +106,6 @@ ListItem.Empty {
             height: units.gu(3)
             width: units.gu(3)
             color: selected ? "white" : "grey"
-
             Behavior on color {
                 ColorAnimation {
                     duration: 100
@@ -113,14 +120,16 @@ ListItem.Empty {
         fallbackAvatarUrl: delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
         fallbackDisplayName: delegateHelper.alias
         showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
-
-        height: units.gu(6)
-        width: units.gu(6)
         anchors {
             left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+            topMargin: units.gu(1)
+            bottomMargin: units.gu(1)
             leftMargin: units.gu(2)
-            verticalCenter: parent.verticalCenter
         }
+        height: units.gu(6)
+        width: units.gu(6)
     }
 
     Label {
@@ -178,11 +187,6 @@ ListItem.Empty {
         wrapMode: Text.WordWrap
         text: eventTextMessage == undefined ? "" : eventTextMessage
         font.weight: Font.Light
-    }
-    onItemRemoved: {
-        for (var i in threads) {
-            threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
-        }
     }
 
     Item {
