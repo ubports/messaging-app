@@ -122,23 +122,6 @@ Page {
         }
         return i18n.tr("New Message")
     }
-    tools: {
-        if (selectionMode) {
-            return messagesToolbarSelectionMode
-        }
-
-        if (participants.length == 0) {
-            return messagesToolbarNewMessage
-        } else if (participants.length == 1) {
-            if (contactWatcher.isUnknown) {
-                return messagesToolbarUnknownContact
-            } else {
-                return messagesToolbarKnownContact
-            }
-        } else if (groupChat){
-            return messagesToolbarGroupChat
-        }
-    }
 
     Component.onCompleted: {
         updateFilters()
@@ -301,50 +284,6 @@ Page {
         }
     }
 
-    Item {
-        id: newMessageHeader
-        anchors {
-            left: parent.left
-            rightMargin: units.gu(1)
-            right: parent.right
-            bottom: parent.bottom
-        }
-        visible: participants.length == 0 && isReady && messages.active
-        MultiRecipientInput {
-            id: multiRecipient
-            objectName: "multiRecipient"
-            enabled: visible
-            width: childrenRect.width
-            anchors {
-                left: parent.left
-                right: addIcon.left
-                rightMargin: units.gu(1)
-                verticalCenter: parent.verticalCenter
-            }
-        }
-        Icon {
-            id: addIcon
-            objectName: "addNewRecipientIcon"
-            visible: multiRecipient.visible
-            height: units.gu(3)
-            width: units.gu(3)
-            anchors {
-                right: parent.right
-                verticalCenter: parent.verticalCenter
-            }
-
-            name: "contact"
-            color: "gray"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    Qt.inputMethod.hide()
-                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
-                }
-            }
-        }
-    }
-
     ContactListView {
         id: contactSearch
 
@@ -491,128 +430,139 @@ Page {
         updateFilters()
     }
 
-    ToolbarItems {
-        id: messagesToolbarSelectionMode
-        visible: false
-        back: ToolbarButton {
-            id: selectionModeCancelButton
-            objectName: "selectionModeCancelButton"
-            action: Action {
+    state: {
+        if (participants.length === 0 && isReady) {
+            return "newMessage"
+        } else if (selectionMode) {
+           return "selection"
+        } else if (participants.length == 1) {
+           if (contactWatcher.isUnknown) {
+               return "unknownContact"
+           } else {
+               return "knownContact"
+           }
+        } else if (groupChat){
+           return "groupChat"
+        }
+   }
+
+    states: [
+        PageHeadState {
+            name: "selection"
+            head: messages.head
+
+            backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconSource: "image://theme/close"
+                iconName: "close"
                 onTriggered: messageList.cancelSelection()
             }
-        }
-        ToolbarButton {
-            id: selectionModeSelectAllButton
-            objectName: "selectionModeSelectAllButton"
-            action: Action {
-                objectName: "selectionModeSelectAllAction"
-                iconSource: "image://theme/filter"
-                onTriggered: messageList.selectAll()
-            }
-        }
-        ToolbarButton {
-            id: selectionModeDeleteButton
-            objectName: "selectionModeDeleteButton"
-            action: Action {
-                objectName: "selectionModeDeleteAction"
-                enabled: messageList.selectedItems.count > 0
-                iconSource: "image://theme/delete"
-                onTriggered: messageList.endSelection()
-            }
-        }
-    }
 
-    ToolbarItems {
-        id: messagesToolbarGroupChat
-        visible: false
-        ToolbarButton {
-            id: groupChatButton
-            objectName: "groupChatButton"
-            action: Action {
-                objectName: "groupChatAction"
-                iconSource: "image://theme/contact-group"
-                onTriggered: {
-                    PopupUtils.open(participantsPopover, messages.header)
+            actions: [
+                Action {
+                    objectName: "selectionModeSelectAllAction"
+                    iconSource: "image://theme/filter"
+                    onTriggered: messageList.selectAll()
+                },
+                Action {
+                    objectName: "selectionModeDeleteAction"
+                    enabled: messageList.selectedItems.count > 0
+                    iconSource: "image://theme/delete"
+                    onTriggered: messageList.endSelection()
                 }
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "groupChat"
+            head: messages.head
 
-    ToolbarItems {
-        id: messagesToolbarNewMessage
-        visible: false
-        back: ToolbarButton {
-            action: Action {
-                onTriggered: {
-                    mainStack.pop()
+            actions: [
+                Action {
+                    objectName: "groupChatAction"
+                    iconName: "contact-group"
+                    onTriggered: PopupUtils.open(participantsPopover, messages.header)
                 }
-                iconSource: "image://theme/back"
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "unknowContact"
+            head: messages.head
 
-    ToolbarItems {
-        id: messagesToolbarUnknownContact
-        visible: false
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                objectName: "contactCallAction"
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+            actions: [
+                Action {
+                    objectName: "contactCallAction"
+                    visible: participants.length == 1
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                    }
+                },
+                Action {
+                    objectName: "addContactAction"
+                    visible: contactWatcher.isUnknown && participants.length == 1
+                    iconName: "new-contact"
+                    text: i18n.tr("Add")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                    }
                 }
-            }
-        }
-        ToolbarButton {
-            objectName: "addContactButton"
-            action: Action {
-                objectName: "addContactAction"
-                visible: contactWatcher.isUnknown && participants.length == 1
-                iconSource: "image://theme/new-contact"
-                text: i18n.tr("Add")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
-                }
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "newMessage"
+            head: messages.head
 
-    ToolbarItems {
-        id: messagesToolbarKnownContact
-        visible: false
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                objectName: "contactCallKnownAction"
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+            actions: [
+                Action {
+                    objectName: "contactList"
+                    iconName: "contact"
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
+                    }
+                }
+            ]
+
+            contents: MultiRecipientInput {
+                id: multiRecipient
+                objectName: "multiRecipient"
+                enabled: visible
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    rightMargin: units.gu(2)
                 }
             }
-        }
-        ToolbarButton {
-            objectName: "contactProfileButton"
-            action: Action {
-                objectName: "contactProfileAction"
-                visible: !contactWatcher.isUnknown && participants.length == 1
-                iconSource: "image://theme/contact"
-                text: i18n.tr("Contact")
-                onTriggered: {
-                    Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+        },
+        PageHeadState {
+            name: "knownContact"
+            head: messages.head
+
+            actions: [
+                Action {
+                    objectName: "contactCallKnownAction"
+                    visible: participants.length == 1
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                    }
+                },
+                Action {
+                    objectName: "contactProfileAction"
+                    visible: !contactWatcher.isUnknown && participants.length == 1
+                    iconSource: "image://theme/contact"
+                    text: i18n.tr("Contact")
+                    onTriggered: {
+                        Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+                    }
                 }
-            }
+            ]
         }
-    }
+    ]
 
     HistoryEventModel {
         id: eventModel
