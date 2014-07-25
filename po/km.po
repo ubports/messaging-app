@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2013-10-11 02:51+0000\n"
+"PO-Revision-Date: 2014-07-22 02:33+0000\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <km@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
+"X-Launchpad-Export-Date: 2014-07-23 07:01+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -38,19 +38,19 @@ msgstr[0] "ការ​ហៅ %1 វិនាទី"
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr ""
+msgstr "បន្ថែម​"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr ""
+msgstr "បន្ថែម​ទំនាក់ទំនង"
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "បន្ថែម​អ្នក​ទទួល"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr ""
+msgstr "បន្ថែម​ទៅទំនាក់ទំនង"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
@@ -63,11 +63,11 @@ msgstr "ហៅ"
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr ""
+msgstr "បោះ​បង់"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "ជជែក"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
@@ -75,7 +75,7 @@ msgstr "ទំនាក់ទំនង"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr ""
+msgstr "​ចម្លង"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
@@ -83,27 +83,27 @@ msgstr "បង្កើត​ទំនាក់ទំនង​ថ្មី"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "កែសម្រួល​"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr ""
+msgstr "បាន​បរាជ័យ"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "ក្រុម"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "តើអ្នក​ចង់​រក្សាទុក​ទំនាក់ទំនង​ដោយ​វិធី​ណា?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "មើល​រូបភាព​ជា​មុន"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "ការ​ជជែក​ថ្មី"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -111,11 +111,11 @@ msgstr "សារ​ថ្មី"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "រក្សា​​ទុក​​"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr ""
+msgstr "រក្សាទុក​ទំនាក់ទំនង"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
@@ -123,11 +123,11 @@ msgstr "ជ្រើស"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "កំពុង​ផ្ញើ..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "ចែក​រំលែក"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -135,11 +135,11 @@ msgstr "ថ្ងៃ​នេះ"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "ព្យាយាម​ម្ដងទៀត"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "មើល​វីដេអូ​ជា​មុន"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
