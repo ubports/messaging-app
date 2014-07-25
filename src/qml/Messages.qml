@@ -353,9 +353,6 @@ Page {
         ContactListView {
             id: contactSearch
 
-            //property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
-
-            //visible: searchEnabled
             detailToPick: ContactDetail.PhoneNumber
             clip: true
             z: 1
