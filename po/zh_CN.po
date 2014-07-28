@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-05-22 12:33+0000\n"
-"Last-Translator: Anthony Wong <anthony.wong@ubuntu.com>\n"
+"PO-Revision-Date: 2014-07-27 15:52+0000\n"
+"Last-Translator: Aron Xu <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-07-28 06:44+0000\n"
+"X-Generator: Launchpad (build 17131)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -83,7 +83,7 @@ msgstr "创建新联系人"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
@@ -111,7 +111,7 @@ msgstr "新信息"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
@@ -139,7 +139,7 @@ msgstr "请重试"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "视频预览"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."

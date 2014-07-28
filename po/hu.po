@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-23 10:23+0000\n"
-"Last-Translator: Úr Balázs <urbalazs@gmail.com>\n"
+"PO-Revision-Date: 2014-07-24 08:15+0000\n"
+"Last-Translator: Gabor Kelemen <kelemeng@openscope.org>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-24 06:32+0000\n"
+"X-Launchpad-Export-Date: 2014-07-25 07:54+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/qml/dateUtils.js:62
@@ -45,7 +45,7 @@ msgstr "Hozzáadás"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr "Kapcsolat hozzáadása"
+msgstr "Névjegyek hozzáadása"
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
@@ -53,11 +53,11 @@ msgstr "Címzett hozzáadása"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr "Hozzáadás kapcsolathoz"
+msgstr "Hozzáadás névjegyhez"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "Hozzáadás létező kapcsolathoz"
+msgstr "Hozzáadás létező névjegyhez"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
@@ -74,7 +74,7 @@ msgstr "Csevegések"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr "Kapcsolat"
+msgstr "Névjegy"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
@@ -82,7 +82,7 @@ msgstr "Másolás"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "Új kapcsolat létrehozása"
+msgstr "Új névjegy létrehozása"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
@@ -98,7 +98,7 @@ msgstr "Csoport"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr "Hogyan szeretné meneteni a partnert?"
+msgstr "Hogyan szeretné menteni a névjegyet?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -118,7 +118,7 @@ msgstr "Mentés"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr "Kapcsolat mentése"
+msgstr "Névjegy mentése"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"

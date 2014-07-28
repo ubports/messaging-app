@@ -58,8 +58,13 @@ Page {
             }
             var filePath = String(transfer.items[i].url).replace('file://', '')
             // get only the basename
-            attachment["name"] = filePath.split('/').reverse()[0]
             attachment["contentType"] = application.fileMimeType(filePath)
+            if (startsWith(attachment["contentType"], "text/vcard") ||
+                startsWith(attachment["contentType"], "text/x-vcard")) {
+                attachment["name"] = "contact.vcf"
+            } else {
+                attachment["name"] = filePath.split('/').reverse()[0]
+            }
             attachment["filePath"] = filePath
             attachments.append(attachment)
         }
@@ -345,30 +350,147 @@ Page {
         }
     }
 
-    ContactListView {
-        id: contactSearch
+    Component {
+        id: contactSearchComponent
 
-        property bool searchEnabled: multiRecipient.searchString !== "" && multiRecipient.focus
+        ContactListView {
+            id: contactSearch
 
-        visible: searchEnabled
-        detailToPick: ContactDetail.PhoneNumber
-        clip: true
-        z: 1
-        autoUpdate: false
-        filterTerm: multiRecipient.searchString
-        showSections: false
+            detailToPick: ContactDetail.PhoneNumber
+            clip: true
+            z: 1
+            autoUpdate: false
+            filterTerm: multiRecipient.searchString
+            showSections: false
 
-        states: [
-            State {
-                name: "empty"
-                when: contactSearch.count === 0
-                PropertyChanges {
-                    target: contactSearch
-                    height: 0
+            states: [
+                State {
+                    name: "empty"
+                    when: contactSearch.count === 0
+                    PropertyChanges {
+                        target: contactSearch
+                        height: 0
+                    }
+                }
+            ]
+
+            anchors {
+                top: accountList.bottom
+                topMargin: units.gu(1)
+                left: parent.left
+                right: parent.right
+                bottom: bottomPanel.top
+            }
+
+            Behavior on height {
+                UbuntuNumberAnimation { }
+            }
+
+            InvalidFilter {
+                id: invalidFilter
+            }
+
+            // clear list if it is invisible to save some memory
+            onVisibleChanged: {
+                if (visible && (filter != null)) {
+                    changeFilter(null)
+                    update()
+                } else if (!visible && filter != invalidFilter) {
+                    changeFilter(invalidFilter)
+                    update()
                 }
             }
-        ]
 
+            ContactDetailPhoneNumberTypeModel {
+                id: phoneTypeModel
+            }
+
+            listDelegate: Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+                height: phoneRepeater.count * units.gu(6)
+                Column {
+                    anchors.fill: parent
+                    spacing: units.gu(1)
+
+                    Repeater {
+                        id: phoneRepeater
+
+                        model: contact.phoneNumbers.length
+
+                        delegate: MouseArea {
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                            }
+                            height: units.gu(5)
+
+                            onClicked: {
+                                multiRecipient.addRecipient(contact.phoneNumbers[index].number)
+                                multiRecipient.clearSearch()
+                                multiRecipient.forceActiveFocus()
+                            }
+
+                            Column {
+                                anchors.fill: parent
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        right: parent.right
+                                    }
+                                    height: units.gu(2)
+                                    text: {
+                                        // this is necessary to keep the string in the original format
+                                        var originalText = contact.displayLabel.label
+                                        var lowerSearchText =  multiRecipient.searchString.toLowerCase()
+                                        var lowerText = originalText.toLowerCase()
+                                        var searchIndex = lowerText.indexOf(lowerSearchText)
+                                        if (searchIndex !== -1) {
+                                            var piece = originalText.substr(searchIndex, lowerSearchText.length)
+                                            return originalText.replace(piece, "<b>" + piece + "</b>")
+                                        } else {
+                                            return originalText
+                                        }
+                                    }
+                                    fontSize: "medium"
+                                    color: UbuntuColors.lightAubergine
+                                }
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        right: parent.right
+                                    }
+                                    height: units.gu(2)
+                                    text: {
+                                        var phoneDetail = contact.phoneNumbers[index]
+                                        return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
+                                                        .arg(phoneDetail.number)
+                                    }
+                                }
+                                Item {
+                                    anchors {
+                                        left: parent.left
+                                        right: parent.right
+                                    }
+                                    height: units.gu(1)
+                                }
+
+                                ListItem.ThinDivider {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Loader {
+        active: multiRecipient.searchString !== "" && multiRecipient.focus
+        sourceComponent: contactSearchComponent
         anchors {
             top: accountList.bottom
             topMargin: units.gu(1)
@@ -376,110 +498,7 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
-
-        Behavior on height {
-            UbuntuNumberAnimation { }
-        }
-
-        InvalidFilter {
-            id: invalidFilter
-        }
-
-        // clear list if it is invisible to save some memory
-        onVisibleChanged: {
-            if (visible && (filter != null)) {
-                changeFilter(null)
-                update()
-            } else if (!visible && filter != invalidFilter) {
-                changeFilter(invalidFilter)
-                update()
-            }
-        }
-
-        ContactDetailPhoneNumberTypeModel {
-            id: phoneTypeModel
-        }
-
-        listDelegate: Item {
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: units.gu(2)
-            }
-            height: phoneRepeater.count * units.gu(6)
-            Column {
-                anchors.fill: parent
-                spacing: units.gu(1)
-
-                Repeater {
-                    id: phoneRepeater
-
-                    model: contact.phoneNumbers.length
-
-                    delegate: MouseArea {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        height: units.gu(5)
-
-                        onClicked: {
-                            multiRecipient.addRecipient(contact.phoneNumbers[index].number)
-                            multiRecipient.clearSearch()
-                            multiRecipient.forceActiveFocus()
-                        }
-
-                        Column {
-                            anchors.fill: parent
-
-                            Label {
-                                anchors {
-                                    left: parent.left
-                                    right: parent.right
-                                }
-                                height: units.gu(2)
-                                text: {
-                                    // this is necessary to keep the string in the original format
-                                    var originalText = contact.displayLabel.label
-                                    var lowerSearchText =  multiRecipient.searchString.toLowerCase()
-                                    var lowerText = originalText.toLowerCase()
-                                    var searchIndex = lowerText.indexOf(lowerSearchText)
-                                    if (searchIndex !== -1) {
-                                        var piece = originalText.substr(searchIndex, lowerSearchText.length)
-                                        return originalText.replace(piece, "<b>" + piece + "</b>")
-                                    } else {
-                                        return originalText
-                                    }
-                                }
-                                fontSize: "medium"
-                                color: UbuntuColors.lightAubergine
-                            }
-                            Label {
-                                anchors {
-                                    left: parent.left
-                                    right: parent.right
-                                }
-                                height: units.gu(2)
-                                text: {
-                                    var phoneDetail = contact.phoneNumbers[index]
-                                    return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
-                                                    .arg(phoneDetail.number)
-                                }
-                            }
-                            Item {
-                                anchors {
-                                    left: parent.left
-                                    right: parent.right
-                                }
-                                height: units.gu(1)
-                            }
-
-                            ListItem.ThinDivider {}
-                        }
-                    }
-                }
-            }
-        }
+        z: 1
     }
 
     ContactWatcher {

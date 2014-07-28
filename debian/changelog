@@ -1,3 +1,10 @@
+messaging-app (0.1+14.10.20140725-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Ignore x-smil content-type. Enable spinner for mms (LP: #1347079)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 25 Jul 2014 20:19:55 +0000
+
 messaging-app (0.1+14.10.20140724.2-0ubuntu1) utopic; urgency=low
 
   [ CI bot ]

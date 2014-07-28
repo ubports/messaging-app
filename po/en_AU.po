@@ -8,146 +8,146 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-24 04:06+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-27 12:39+0000\n"
+"Last-Translator: zondayonda <Unknown>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-24 06:32+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-07-28 06:44+0000\n"
+"X-Generator: Launchpad (build 17131)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 hour call"
+msgstr[1] "%1 hours call"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 minute call"
+msgstr[1] "%1 minutes call"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 second call"
+msgstr[1] "%1 seconds call"
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr ""
+msgstr "Add contacts.."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "Add recipient"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr ""
+msgstr "Add to contact"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr ""
+msgstr "Add to existing contact"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr ""
+msgstr "Call"
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "Chats"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr ""
+msgstr "Copy"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr ""
+msgstr "Create new contact"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "Group"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "How do you want to save the contact?"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "Image Preview"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "New Chat"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr ""
+msgstr "New Message"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr ""
+msgstr "Save contact"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr ""
+msgstr "Select"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "Sending..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Share"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr ""
+msgstr "Today"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "Try again"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Video Preview"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr ""
+msgstr "Write a message..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr ""
+msgstr "Yesterday"
