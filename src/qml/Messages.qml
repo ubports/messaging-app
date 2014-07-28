@@ -460,13 +460,13 @@ Page {
             actions: [
                 Action {
                     objectName: "selectionModeSelectAllAction"
-                    iconSource: "image://theme/filter"
+                    iconName: "select"
                     onTriggered: messageList.selectAll()
                 },
                 Action {
                     objectName: "selectionModeDeleteAction"
                     enabled: messageList.selectedItems.count > 0
-                    iconSource: "image://theme/delete"
+                    iconName: "delete"
                     onTriggered: messageList.endSelection()
                 }
             ]

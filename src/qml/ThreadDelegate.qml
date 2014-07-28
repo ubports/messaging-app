@@ -30,7 +30,6 @@ ListItemWithActions {
     property string searchTerm
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
-    property bool selectionMode: false
     property string threadId: model.threadId
     property string groupChatLabel: {
         var firstRecipient
@@ -72,48 +71,6 @@ ListItemWithActions {
         }
     }
 
-    // FIXME: the selected state should be handled by the UITK
-    Item {
-        id: selection
-
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-            right: parent.right
-        }
-        width: visible ? units.gu(6) : 0
-        opacity: selectionMode ? 1.0 : 0.0
-        visible: opacity > 0.0
-
-        Behavior on width {
-            UbuntuNumberAnimation { }
-        }
-
-        Behavior on opacity {
-            UbuntuNumberAnimation { }
-        }
-
-        Rectangle {
-            id: selectionIndicator
-            anchors.fill: parent
-            color: "black"
-            opacity: 0.2
-        }
-
-        Icon {
-            anchors.centerIn: selectionIndicator
-            name: "select"
-            height: units.gu(3)
-            width: units.gu(3)
-            color: selected ? "white" : "grey"
-            Behavior on color {
-                ColorAnimation {
-                    duration: 100
-                }
-            }
-        }
-    }
-
     ContactAvatar {
         id: avatar
 
@@ -124,9 +81,6 @@ ListItemWithActions {
             left: parent.left
             top: parent.top
             bottom: parent.bottom
-            topMargin: units.gu(1)
-            bottomMargin: units.gu(1)
-            leftMargin: units.gu(2)
         }
         height: units.gu(6)
         width: units.gu(6)
@@ -136,13 +90,11 @@ ListItemWithActions {
         id: contactName
         anchors {
             top: avatar.top
-            topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
         }
-        font.weight: Font.Light
         fontSize: "medium"
-        color: "#752571"
+        color: UbuntuColors.lightAubergine
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
@@ -150,11 +102,9 @@ ListItemWithActions {
         id: time
         anchors {
             verticalCenter: contactName.verticalCenter
-            right: selection.left
-            rightMargin: units.gu(2)
+            right: parent.right
         }
         fontSize: "x-small"
-        color: "#5d5d5d"
         text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
     }
 
@@ -186,7 +136,6 @@ ListItemWithActions {
         fontSize: "x-small"
         wrapMode: Text.WordWrap
         text: eventTextMessage == undefined ? "" : eventTextMessage
-        font.weight: Font.Light
     }
 
     Item {

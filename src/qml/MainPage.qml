@@ -91,7 +91,7 @@ PageWithBottomEdge {
             contents: searchField
         },
         PageHeadState {
-            name: "selection"
+            name: "select"
             head: mainPage.head
             backAction: Action {
                 objectName: "selectionModeCancelAction"

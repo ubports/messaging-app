@@ -26,12 +26,13 @@ import Ubuntu.Content 0.1
 MainView {
     id: mainView
 
+    property string newPhoneNumber
+
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
     useDeprecatedToolbar: false
-    anchorToKeyboard: true
-    property string newPhoneNumber
+    anchorToKeyboard: false
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
@@ -147,11 +148,20 @@ MainView {
 
     // WORKAROUND: we need this extra item to avoid the page to fill
     Item {
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
         PageStack {
             id: mainStack
 
             objectName: "mainStack"
         }
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 }
