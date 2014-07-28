@@ -73,7 +73,6 @@ MMSBase {
             anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
             height: sourceSize.height < units.gu(20) ? sourceSize.height : units.gu(20)
             fillMode: Image.PreserveAspectFit
-            asynchronous: true
             smooth: true
             source: attachment.filePath
         }

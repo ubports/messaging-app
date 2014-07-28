@@ -620,7 +620,7 @@ Page {
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
         highlightFollowsCurrentItem: false
-        /*add: Transition {
+        add: Transition {
             UbuntuNumberAnimation {
                 properties: "anchors.leftMargin"
                 from: -width
@@ -631,7 +631,7 @@ Page {
                 from: -width
                 to: 0
             }
-        }*/
+        }
 
         listDelegate: MessageDelegate {
             id: messageDelegate
