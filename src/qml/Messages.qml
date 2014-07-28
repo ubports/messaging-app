@@ -441,6 +441,8 @@ Page {
            }
         } else if (groupChat){
            return "groupChat"
+        } else {
+            return ""
         }
    }
 
@@ -482,7 +484,7 @@ Page {
             ]
         },
         PageHeadState {
-            name: "unknowContact"
+            name: "unknownContact"
             head: messages.head
 
             actions: [
@@ -527,8 +529,8 @@ Page {
                 objectName: "multiRecipient"
                 enabled: visible
                 anchors {
-                    left: parent.left
-                    right: parent.right
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
                     rightMargin: units.gu(2)
                 }
             }
