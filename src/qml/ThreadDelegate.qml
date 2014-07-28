@@ -82,7 +82,6 @@ ListItemWithActions {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
-    showDivider: false
     // WORKAROUND: history-service can't filter by contact names
     onSearchTermChanged: {
         var found = false
@@ -175,11 +174,6 @@ ListItemWithActions {
         wrapMode: Text.WordWrap
         text: textMessage
         font.weight: Font.Light
-    }
-    onItemRemoved: {
-        for (var i in threads) {
-            threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
-        }
     }
 
     Item {

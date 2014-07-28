@@ -287,50 +287,6 @@ Page {
         }
     }
 
-    Item {
-        id: newMessageHeader
-        anchors {
-            left: parent.left
-            rightMargin: units.gu(1)
-            right: parent.right
-            bottom: parent.bottom
-        }
-        visible: participants.length == 0 && isReady && messages.active
-        MultiRecipientInput {
-            id: multiRecipient
-            objectName: "multiRecipient"
-            enabled: visible
-            width: childrenRect.width
-            anchors {
-                left: parent.left
-                right: addIcon.left
-                rightMargin: units.gu(1)
-                verticalCenter: parent.verticalCenter
-            }
-        }
-        Icon {
-            id: addIcon
-            objectName: "addNewRecipientIcon"
-            visible: multiRecipient.visible
-            height: units.gu(3)
-            width: units.gu(3)
-            anchors {
-                right: parent.right
-                verticalCenter: parent.verticalCenter
-            }
-
-            name: "contact"
-            color: "gray"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    Qt.inputMethod.hide()
-                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
-                }
-            }
-        }
-    }
-
     Component {
         id: contactSearchComponent
 
