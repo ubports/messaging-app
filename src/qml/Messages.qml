@@ -620,7 +620,7 @@ Page {
         verticalLayoutDirection: ListView.BottomToTop
         spacing: units.gu(2)
         highlightFollowsCurrentItem: false
-        add: Transition {
+        /*add: Transition {
             UbuntuNumberAnimation {
                 properties: "anchors.leftMargin"
                 from: -width
@@ -631,7 +631,7 @@ Page {
                 from: -width
                 to: 0
             }
-        }
+        }*/
 
         listDelegate: MessageDelegate {
             id: messageDelegate
@@ -639,9 +639,8 @@ Page {
             incoming: senderId != "self"
             selected: messageList.isSelected(messageDelegate)
             unread: newEvent
-            removable: !messages.selectionMode
+            //removable: !messages.selectionMode
             selectionMode: messages.selectionMode
-            confirmRemoval: true
             accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
             onClicked: {
                 if (messageList.isInSelectionMode) {

@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
+import Ubuntu.Contacts 0.1
 
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
@@ -33,8 +34,6 @@ Item {
     property string textColor: incoming ? "#333333" : "white"
     property bool selectionMode: false
     property bool unread: false
-    property alias confirmRemoval: internalDelegate.confirmRemoval
-    property alias removable: internalDelegate.removable
     property alias selected: internalDelegate.selected
     property variant activeAttachment
     property string mmsText: ""
@@ -91,7 +90,6 @@ Item {
         anchors.right: parent.right
         anchors.left: parent.left
         spacing: units.gu(2)
-        // TODO: we currently support only images as attachments
         Repeater {
             model: textMessageAttachments
             Loader {
@@ -133,14 +131,14 @@ Item {
                 }
                 Connections {
                     target: item
-                    onPressAndHold: {
+                    onItemPressAndHold: {
                         activeAttachment = modelData
                         PopupUtils.open(popoverSaveAttachmentComponent, item)
                     }
                 }
                 Connections {
                     target: item
-                    onClicked: {
+                    onItemClicked: {
                         if (item.previewer === "") {
                             activeAttachment = modelData
                             PopupUtils.open(popoverSaveAttachmentComponent, item)
@@ -156,19 +154,24 @@ Item {
         }
     }
 
-    ListItem.Empty {
+    ListItemWithActions {
         id: internalDelegate
         anchors.top: attachments.bottom        
         anchors.topMargin: textMessageAttachments.length > 0 ? units.gu(1) : undefined
         anchors.left: parent ? parent.left : undefined
         anchors.right: parent ? parent.right: undefined
         clip: true
-        height: (textMessage === "" && mmsText === "" && textMessageAttachments.length > 0) ? 0 : bubble.height + date.height
-        showDivider: false
-        highlightWhenPressed: false
-        onPressAndHold: PopupUtils.open(popoverMenuComponent, messageDelegate)
+        height: (textMessage === "" && mmsText === "" && textMessageAttachments.length > 0) ? 0 : bubble.height + units.gu(1) + date.height
+        onItemPressAndHold: PopupUtils.open(popoverMenuComponent, internalDelegate)
 
-        onClicked: messageDelegate.clicked()
+        onItemClicked: messageDelegate.clicked()
+        leftSideAction: Action {
+            iconName: "delete"
+            text: i18n.tr("Delete")
+            onTriggered: {
+                eventModel.removeEvent(accountId, threadId, eventId, type)
+            }
+        }
 
         Item {
             Component {
@@ -298,10 +301,6 @@ Item {
                 color: "black"
                 anchors.centerIn: parent
             }
-        }
-
-        onItemRemoved: {
-            eventModel.removeEvent(accountId, threadId, eventId, type)
         }
 
         Label {

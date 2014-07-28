@@ -17,11 +17,10 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components 0.1
 import ".."
 
-ListItem.Empty {
+MMSBase {
     id: vcardDelegate
     property var attachment
     property bool incoming
@@ -78,12 +77,8 @@ ListItem.Empty {
             }
         }
     ]
-    removable: true
-    confirmRemoval: true
-    height: bubble.height
+    height: bubble.height + units.gu(1)
     clip: true
-    showDivider: false
-    highlightWhenPressed: false
     MessageBubble {
         id: bubble
         incoming: vcardDelegate.incoming
