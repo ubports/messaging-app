@@ -32,7 +32,6 @@ BorderImage {
     property string messageText
     property var messageTimeStamp
 
-    readonly property double textWidth: Math.min(units.gu(27), textLabel.text.length * units.gu(1)) + border.left + border.right
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
@@ -66,7 +65,7 @@ BorderImage {
     onIncomingChanged: source = selectBubble()
     source: selectBubble()
     height: childrenRect.height + units.gu(2)
-    width: textWidth + units.gu(3)
+    width: childrenRect.width + units.gu(3)
 
     Label {
         id: senderName
