@@ -60,9 +60,8 @@ MMSBase {
     height: bubble.height + units.gu(1)
     clip: true
 
-    MessageBubble {
+    Item {
         id: bubble
-        incoming: imageDelegate.incoming
         anchors.top: parent.top
         width: image.width + units.gu(3)
         height: image.height + units.gu(2)

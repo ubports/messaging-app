@@ -59,9 +59,8 @@ MMSBase {
     ]
     height: bubble.height + units.gu(1)
     clip: true
-    MessageBubble {
+    Item {
         id: bubble
-        incoming: videoDelegate.incoming
         anchors.top: parent.top
         width: videoOutput.width + units.gu(3)
         height: videoOutput.height + units.gu(2)

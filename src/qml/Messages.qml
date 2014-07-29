@@ -618,40 +618,42 @@ Page {
         }
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
-        spacing: units.gu(2)
         highlightFollowsCurrentItem: false
-        add: Transition {
-            UbuntuNumberAnimation {
-                properties: "anchors.leftMargin"
-                from: -width
-                to: 0
-            }
-            UbuntuNumberAnimation {
-                properties: "anchors.rightMargin"
-                from: -width
-                to: 0
-            }
-        }
+//        add: Transition {
+//            UbuntuNumberAnimation {
+//                properties: "anchors.leftMargin"
+//                from: -width
+//                to: 0
+//            }leftSideAction: Action {
+
+//            UbuntuNumberAnimation {
+//                properties: "anchors.rightMargin"
+//                from: -width
+//                to: 0
+//            }
+//        }
 
         listDelegate: MessageDelegate {
             id: messageDelegate
             objectName: "message%1".arg(index)
             incoming: senderId != "self"
-            selected: messageList.isSelected(messageDelegate)
+            // TODO: we have several items inside
+            //selected: messageList.isSelected(messageDelegate)
             unread: newEvent
             //removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
-            onClicked: {
+            // TODO: need select only the item
+            onItemClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
                         messageList.deselectItem(messageDelegate)
                     }
                 }
             }
-            onTriggerSelectionMode: {
+            onItemPressAndHold: {
                 messageList.startSelection()
-                clicked()
+                messageList.selectItem(messageDelegate)
             }
 
             Component.onCompleted: {

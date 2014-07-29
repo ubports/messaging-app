@@ -26,6 +26,7 @@ MMSBase {
     property bool incoming
     property string previewer: ""
     property string textColor: incoming ? "#333333" : "#ffffff"
+
     anchors.left: parent.left
     anchors.right: parent.right
     state: incoming ? "incoming" : "outgoing"
@@ -78,10 +79,8 @@ MMSBase {
         }
     ]
     height: bubble.height + units.gu(1)
-    clip: true
-    MessageBubble {
+    Item {
         id: bubble
-        incoming: vcardDelegate.incoming
         anchors.top: parent.top
         width: image.width + units.gu(4)
         height: image.height + units.gu(2)
