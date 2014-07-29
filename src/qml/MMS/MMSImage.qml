@@ -60,13 +60,13 @@ MMSBase {
     height: bubble.height + units.gu(1)
     clip: true
 
-    Item {
+    UbuntuShape {
         id: bubble
         anchors.top: parent.top
         width: image.width + units.gu(3)
         height: image.height + units.gu(2)
 
-        Image {
+        image: Image {
             id: image
             anchors.centerIn: parent
             anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)

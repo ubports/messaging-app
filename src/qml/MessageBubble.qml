@@ -18,8 +18,9 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
-import "3rd_party/ba-linkify.js" as BaLinkify
 
+import "dateUtils.js" as DateUtils
+import "3rd_party/ba-linkify.js" as BaLinkify
 
 BorderImage {
     id: root
@@ -28,6 +29,7 @@ BorderImage {
     property bool error: false
     property alias sender: senderName.text
     property string messageText
+    property var messageTimeStamp
     readonly property double textWidth: Math.min(units.gu(27), textLabel.text.length * units.gu(1)) + border.left + border.right
 
     function selectBubble() {
@@ -56,16 +58,18 @@ BorderImage {
 
     onIncomingChanged: source = selectBubble()
     source: selectBubble()
-    height: senderName.height + textLabel.height + border.top + border.bottom
-    width: textWidth
+    height: childrenRect.height + units.gu(2)
+    width: textWidth + units.gu(3)
 
     Label {
         id: senderName
 
         anchors {
             top: parent.top
+            topMargin: units.gu(1)
             left: parent.left
-            leftMargin: border.left
+            leftMargin: incoming ? units.gu(2) : units.gu(1)
+
         }
         height: text === "" ? 0 : paintedHeight
         fontSize: "large"
@@ -76,11 +80,12 @@ BorderImage {
         id: textLabel
 
         anchors {
-            verticalCenter: parent.verticalCenter
+            top: senderName.bottom
+            topMargin: units.gu(1)
             left: parent.left
-            leftMargin: border.left
+            leftMargin: incoming ? units.gu(2) : units.gu(1)
             right: parent.right
-            rightMargin: border.right
+            rightMargin: incoming ? units.gu(1) : units.gu(1)
         }
         fontSize: "medium"
         height: text === "" ? 0 : paintedHeight
@@ -90,25 +95,29 @@ BorderImage {
         color: root.incoming ? UbuntuColors.darkGrey : "white"
     }
 
-//    Label {
-//        id: textTimestamp
+    Label {
+        id: textTimestamp
 
-//        anchors{
-//            bottom: parent.bottom
-//            left: parent.left
-//            leftMargin: border.left
-//        }
+        anchors{
+            top: textLabel.bottom
+            topMargin: units.gu(1)
+            left: parent.left
+            leftMargin: incoming ? units.gu(2) : units.gu(1)
+        }
 
-//        height: paintedHeight + units.gu(0.5)
-//        fontSize: "x-small"
-//        color: "#333333"
-//        text: {
-//            if (indicator.visible)
-//                i18n.tr("Sending...")
-//            else if (warningButton.visible)
-//                i18n.tr("Failed")
-//            else
-//                DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
-//        }
-//    }
+        height: paintedHeight
+        fontSize: "x-small"
+        color: root.incoming ? UbuntuColors.lightGrey : "white"
+        opacity: root.incoming ? 1.0 : 0.8
+        text: Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
+        /*
+            if (indicator.visible)
+                i18n.tr("Sending...")
+            else if (warningButton.visible)
+                i18n.tr("Failed")
+            else
+
+        }
+        */
+    }
 }

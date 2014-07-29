@@ -25,9 +25,6 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
 import Ubuntu.Contacts 0.1
 
-import "dateUtils.js" as DateUtils
-
-
 Item {
     id: messageDelegate
 
@@ -49,7 +46,7 @@ Item {
         right: parent ? parent.right: undefined
         //verticalCenter: parent ? parent.verticalCenter : undefined
     }
-    height: attachments.height + bubble.height
+    height: attachments.height + bubbleItem.height
 
 
     Column {
@@ -160,11 +157,10 @@ Item {
             anchors {
                 top: parent.top
                 left: incoming ? parent.left : undefined
-                leftMargin: units.gu(1)
                 right: incoming ? undefined : parent.right
-                rightMargin: units.gu(1)
             }
             messageText: textMessage !== "" ? textMessage : mmsText
+            messageTimeStamp: timestamp
             error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) && !incoming && !selectionMode
         }
     }
