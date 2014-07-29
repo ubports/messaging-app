@@ -619,19 +619,18 @@ Page {
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false
-//        add: Transition {
-//            UbuntuNumberAnimation {
-//                properties: "anchors.leftMargin"
-//                from: -width
-//                to: 0
-//            }leftSideAction: Action {
-
-//            UbuntuNumberAnimation {
-//                properties: "anchors.rightMargin"
-//                from: -width
-//                to: 0
-//            }
-//        }
+        /*add: Transition {
+            UbuntuNumberAnimation {
+                properties: "anchors.leftMargin"
+                from: -width
+                to: 0
+            }
+            UbuntuNumberAnimation {
+                properties: "anchors.rightMargin"
+                from: -width
+                to: 0
+            }
+        }*/
 
         listDelegate: MessageDelegate {
             id: messageDelegate

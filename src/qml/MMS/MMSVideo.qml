@@ -23,12 +23,7 @@ import ".."
 
 MMSBase {
     id: videoDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: "MMS/PreviewerVideo.qml"
-    anchors.left: parent.left
-    anchors.right: parent.right
-    state: incoming ? "incoming" : "outgoing"
+    previewer: "MMS/PreviewerVideo.qml"
     states: [
         State {
             name: "incoming"
@@ -58,7 +53,6 @@ MMSBase {
         }
     ]
     height: bubble.height + units.gu(1)
-    clip: true
     Item {
         id: bubble
         anchors.top: parent.top

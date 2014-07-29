@@ -23,7 +23,16 @@ ListItemWithActions {
     id: baseDelegate
 
     property bool parentSelected: false
+    property var timestamp
+    property var attachment
+    property bool incoming
+    property string previewer: ""
 
+    anchors.left: parent.left
+    anchors.right: parent.right
+    state: incoming ? "incoming" : "outgoing"
+    clip: true
+ 
     signal itemRemoved()
 
     leftSideAction: Action {

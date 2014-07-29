@@ -17,13 +17,11 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1
+import Ubuntu.Components 0.1
 import ".."
 
 MMSBase {
-    id: imageDelegate
-    previewer: "MMS/PreviewerImage.qml"
+    id: textDelegate
     states: [
         State {
             name: "incoming"
@@ -35,7 +33,7 @@ MMSBase {
             PropertyChanges {
                 target: bubble
                 anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: 0
+                anchors.rightMargin: units.gu(1)
             }
         },
         State {
@@ -47,34 +45,17 @@ MMSBase {
             }
             PropertyChanges {
                 target: bubble
-                anchors.leftMargin: 0
+                anchors.leftMargin: units.gu(1)
                 anchors.rightMargin: units.gu(1)
             }
         }
     ]
-
-    height: imageAttachment.height
-    UbuntuShape {
+    height: bubble.height + units.gu(1)
+    MessageBubble {
         id: bubble
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-            bottomMargin: units.gu(1) * -1
-        }
-        width: image.width
-        height: image.height
-
-        image: Image {
-            id: imageAttachment
-
-            readonly property bool portrait: sourceSize.height > sourceSize.width
-            readonly property double deisiredHeight: portrait ?  units.gu(18) :  units.gu(14)
-
-            height: sourceSize.height < deisiredHeight ? sourceSize.height : deisiredHeight
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            source: attachment.filePath
-            visible: false
-        }
+        incoming: textDelegate.incoming
+        anchors.top: parent.top
+        messageText: attachment ? application.readTextFile(attachment.filePath) : ""
+        messageTimeStamp: timestamp
     }
 }
