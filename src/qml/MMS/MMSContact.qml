@@ -22,6 +22,14 @@ import ".."
 
 MMSBase {
     id: vcardDelegate
+    property var attachment
+    property bool incoming
+    property string previewer: ""
+    property string textColor: incoming ? "#333333" : "#ffffff"
+
+    anchors.left: parent.left
+    anchors.right: parent.right
+    state: incoming ? "incoming" : "outgoing"
     states: [
         State {
             name: "incoming"

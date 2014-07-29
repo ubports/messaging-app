@@ -23,7 +23,11 @@ import ".."
 
 MMSBase {
     id: imageDelegate
-    previewer: "MMS/PreviewerImage.qml"
+    property var attachment
+    property bool incoming
+    property string previewer: "MMS/PreviewerImage.qml"
+
+    state: incoming ? "incoming" : "outgoing"
     states: [
         State {
             name: "incoming"

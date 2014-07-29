@@ -22,7 +22,13 @@ import ".."
 
 MMSBase {
     id: defaultDelegate
+    property var attachment
+    property bool incoming
+    property string previewer: ""
     property string textColor: incoming ? "#333333" : "#ffffff"
+    anchors.left: parent.left
+    anchors.right: parent.right
+    state: incoming ? "incoming" : "outgoing"
     states: [
         State {
             name: "incoming"
@@ -52,6 +58,7 @@ MMSBase {
         }
     ]
     height: bubble.height + units.gu(1)
+    clip: true
     Item {
         id: bubble
         anchors.top: parent.top

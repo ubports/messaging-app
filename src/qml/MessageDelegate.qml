@@ -32,6 +32,7 @@ Item {
     property string textColor: incoming ? "#333333" : "white"
     property bool unread: false
     property variant activeAttachment
+    property string mmsText: ""
     property string accountLabel: ""
     property bool selectionMode: false
     property bool selected: false
@@ -64,7 +65,7 @@ Item {
             left: parent.left
             right: parent.right
         }
-        //width: units.gu(30)
+        width: units.gu(30)
         height: childrenRect.height
         spacing: units.gu(1)
 
@@ -86,7 +87,8 @@ Item {
                         console.log("Ignoring SMIL file")
                         return ""
                     } else if (startsWith(modelData.contentType, "text/plain") ) {
-                        return "MMS/MMSText.qml"
+                        mmsText = application.readTextFile(modelData.filePath)
+                        return ""
                     } else if (startsWith(modelData.contentType, "text/vcard") ||
                               startsWith(modelData.contentType, "text/x-vcard")) {
                         return "MMS/MMSContact.qml"
@@ -99,7 +101,6 @@ Item {
                     if (status == Loader.Ready) {
                         item.attachment = modelData
                         item.incoming = incoming
-                        item.timestamp = timestamp
                     }
                 }
                 Connections {
@@ -153,7 +154,8 @@ Item {
             iconName: "delete"
             text: i18n.tr("Delete")
             onTriggered: {
-                eventModel.removeEvent(accountId, threadId, eventId, type)
+                // TODO: delete only the message
+                // eventModel.removeEvent(accountId, threadId, eventId, type)
             }
         }
         z: -1
@@ -172,7 +174,7 @@ Item {
                 right: incoming ? undefined : parent.right
             }
             visible: (messageText !== "")
-            messageText: textMessage !== "" ? textMessage : ""
+            messageText: textMessage !== "" ? textMessage : mmsText
             messageTimeStamp: timestamp
             messageStatus: textMessageStatus
         }

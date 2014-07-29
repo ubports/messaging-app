@@ -77,7 +77,6 @@ BorderImage {
             leftMargin: incoming ? units.gu(2) : units.gu(1)
 
         }
-        visible: text !== ""
         height: text === "" ? 0 : paintedHeight
         fontSize: "large"
         //color: Ubuntu.Colors.
@@ -91,7 +90,8 @@ BorderImage {
             topMargin: units.gu(1)
             left: parent.left
             leftMargin: incoming ? units.gu(2) : units.gu(1)
-            //rightMargin: incoming ? units.gu(1) : units.gu(1)
+            right: parent.right
+            rightMargin: incoming ? units.gu(1) : units.gu(1)
         }
         fontSize: "medium"
         height: text === "" ? 0 : paintedHeight
