@@ -638,13 +638,13 @@ Page {
             objectName: "message%1".arg(index)
             incoming: senderId != "self"
             // TODO: we have several items inside
-            //selected: messageList.isSelected(messageDelegate)
+            selected: messageList.isSelected(messageDelegate)
             unread: newEvent
-            //removable: !messages.selectionMode
             selectionMode: messages.selectionMode
             accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
             // TODO: need select only the item
             onItemClicked: {
+                console.debug("WILL SELECTED")
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
                         messageList.deselectItem(messageDelegate)

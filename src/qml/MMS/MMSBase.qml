@@ -21,6 +21,9 @@ import Ubuntu.Contacts 0.1
 
 ListItemWithActions {
     id: baseDelegate
+
+    property bool parentSelected: false
+
     signal itemRemoved()
 
     leftSideAction: Action {
@@ -28,4 +31,6 @@ ListItemWithActions {
         text: i18n.tr("Delete")
         onTriggered: baseDelegate.itemRemoved()
     }
+
+    color: parentSelected ? selectedColor : Theme.palette.normal.background
 }

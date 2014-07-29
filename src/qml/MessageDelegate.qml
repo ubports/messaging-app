@@ -35,9 +35,9 @@ Item {
     property string mmsText: ""
     property string accountLabel: ""
     property bool selectionMode: false
+    property bool selected: false
 
     signal resend()
-    signal clicked()
     signal itemPressAndHold(QtObject obj)
     signal itemClicked(QtObject obj)
 
@@ -46,13 +46,17 @@ Item {
         right: parent ? parent.right: undefined
         //verticalCenter: parent ? parent.verticalCenter : undefined
     }
-    height: attachments.height + bubbleItem.height
+    height: attachments.height + bubbleItem.height - (attachments.height > 0 ? units.gu(1) : 0)
 
-    Rectangle {
-        anchors.fill: attachments
-        color: "pink"
-    }
-
+//    Rectangle {
+//        anchors.fill: parent
+//        color: bubbleItem.selectedColor
+//        opacity: selected ? 1.0 : 0.0
+//        Behavior on opacity {
+//            UbuntuNumberAnimation {}
+//        }
+//        z: -1
+//    }
 
     Column {
         id: attachments
@@ -113,6 +117,11 @@ Item {
                         PopupUtils.open(popoverSaveAttachmentComponent, item)
                     }
                 }
+                Binding {
+                    target: item
+                    property: "parentSelected"
+                    value: messageDelegate.selected
+                }
                 Connections {
                     target: item
                     onItemClicked: {
@@ -140,7 +149,7 @@ Item {
             left: parent.left
             right: parent.right
         }
-        height: bubble.visible ? bubble.height + (attachments.height > 0 ? units.gu(1) : units.gu(2)) : 0
+        height: bubble.visible ? bubble.height + units.gu(2) : 0
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
@@ -151,6 +160,7 @@ Item {
         }
         z: -1
 
+        selected: messageDelegate.selected
         selectionMode: messageDelegate.selectionMode
         onItemPressAndHold: messageDelegate.itemPressAndHold(bubbleItem)
         onItemClicked: messageDelegate.itemClicked(bubbleItem)
@@ -168,25 +178,23 @@ Item {
             messageTimeStamp: timestamp
             messageStatus: textMessageStatus
         }
+
+        ActivityIndicator {
+            id: indicator
+
+            height: units.gu(2)
+            width: units.gu(2)
+            anchors {
+                right: bubble.left
+                verticalCenter: bubble.verticalCenter
+                rightMargin: units.gu(1)
+            }
+            visible: running && !selectionMode
+            // if temporarily failed or unknown status, then show the spinner
+            running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+        }
     }
-
-//    ActivityIndicator {
-//        id: indicator
-//        height: units.gu(3)
-//        width: units.gu(3)
-//        anchors {
-//            right: bubble.left
-//            verticalCenter: bubble.verticalCenter
-//            rightMargin: units.gu(1)
-//        }
-//        visible: running && !selectionMode
-//        // if temporarily failed or unknown status, then show the spinner
-//        running: (textMessageStatus == HistoryThreadModel.MessageStatusUnknown ||
-//                  textMessageStatus == HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
-//    }
-
-
-
 //        Label {
 //            id: accountIndicator
 //            anchors {
