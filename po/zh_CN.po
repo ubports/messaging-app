@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-27 15:52+0000\n"
-"Last-Translator: Aron Xu <Unknown>\n"
+"PO-Revision-Date: 2014-07-29 03:01+0000\n"
+"Last-Translator: Luo Lei <luolei@ubuntukylin.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-28 06:44+0000\n"
+"X-Launchpad-Export-Date: 2014-07-29 06:53+0000\n"
 "X-Generator: Launchpad (build 17131)\n"
 
 #: src/qml/dateUtils.js:62
@@ -46,7 +46,7 @@ msgstr "添加联系人.."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "添加收件人"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
@@ -91,7 +91,7 @@ msgstr "失败"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "群组"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
@@ -99,7 +99,7 @@ msgstr "怎样保存联系人？"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "图片预览"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
@@ -127,7 +127,7 @@ msgstr "正在发送..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
