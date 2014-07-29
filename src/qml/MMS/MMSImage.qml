@@ -62,7 +62,6 @@ MMSBase {
         id: bubble
         anchors {
             top: parent.top
-            topMargin: units.gu(1) * -1
             bottom: parent.bottom
             bottomMargin: units.gu(1) * -1
         }
