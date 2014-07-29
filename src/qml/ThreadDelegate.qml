@@ -144,6 +144,29 @@ ListItemWithActions {
         fontSize: "x-small"
         text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
     }
+ 
+    UbuntuShape {
+        id: unreadCountIndicator
+        height: units.gu(1.5)
+        width: height
+        anchors {
+            top: time.bottom
+            topMargin: units.gu(1)
+            right: parent.right
+            rightMargin: units.gu(2)
+        }
+        visible: unreadCount > 0
+        // FIXME
+        color: "black"
+        Label {
+            anchors.centerIn: parent
+            text: unreadCount
+            // FIXME
+            color: "white"
+            fontSize: "x-small"
+            font.weight: Font.Light
+        }
+    }
 
     // This is currently not being used in the new designs, but let's keep it here for now
     /*
