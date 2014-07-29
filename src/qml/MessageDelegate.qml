@@ -48,20 +48,22 @@ Item {
     }
     height: attachments.height + bubbleItem.height
 
+    Rectangle {
+        anchors.fill: attachments
+        color: "pink"
+    }
+
 
     Column {
         id: attachments
-
         anchors {
-            left: incoming ? parent.left : undefined
-            leftMargin: units.gu(1)
-            right: incoming ? undefined : parent.right
-            rightMargin: units.gu(1)
             top: parent.top
+            left: parent.left
+            right: parent.right
         }
         width: units.gu(30)
         height: childrenRect.height
-        spacing: units.gu(2)
+        spacing: units.gu(1)
 
         Repeater {
             model: textMessageAttachments
@@ -70,7 +72,7 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
-                height: item ? item.height : undefined
+                height: item ? item.height : 0
                 source: {
                     if (startsWith(modelData.contentType, "image/")) {
                         return "MMS/MMSImage.qml"
@@ -133,11 +135,12 @@ Item {
         id: bubbleItem
 
         anchors {
-            top: textMessageAttachments.bottom
+            top: attachments.bottom
+            topMargin: attachments.height > 0 ? (units.gu(1) * -1) : 0
             left: parent.left
             right: parent.right
         }
-        height: bubble.height + units.gu(2)
+        height: bubble.visible ? bubble.height + (attachments.height > 0 ? units.gu(1) : units.gu(2)) : 0
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
@@ -146,6 +149,7 @@ Item {
                 // eventModel.removeEvent(accountId, threadId, eventId, type)
             }
         }
+        z: -1
 
         selectionMode: messageDelegate.selectionMode
         onItemPressAndHold: messageDelegate.itemPressAndHold(bubbleItem)
@@ -159,9 +163,10 @@ Item {
                 left: incoming ? parent.left : undefined
                 right: incoming ? undefined : parent.right
             }
+            visible: (messageText !== "")
             messageText: textMessage !== "" ? textMessage : mmsText
             messageTimeStamp: timestamp
-            error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) && !incoming && !selectionMode
+            messageStatus: textMessageStatus
         }
     }
 
@@ -218,27 +223,4 @@ Item {
 //                anchors.centerIn: parent
 //            }
 //        }
-
-//        Label {
-//            id: date
-//            objectName: 'messageDate'
-//            anchors.top: parent.top
-//            anchors{
-//                right: bubble.right
-//                rightMargin: units.gu(2)
-//            }
-
-//            height: paintedHeight + units.gu(0.5)
-//            fontSize: "x-small"
-//            color: "#333333"
-//            text: {
-//                if (indicator.visible)
-//                    i18n.tr("Sending...")
-//                else if (warningButton.visible)
-//                    i18n.tr("Failed")
-//                else
-//                    DateUtils.friendlyDay(timestamp) + " " + Qt.formatDateTime(timestamp, "hh:mm AP")
-//            }
-//        }
-
 }

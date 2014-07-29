@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
+import Ubuntu.History 0.1
 
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
@@ -25,17 +26,23 @@ import "3rd_party/ba-linkify.js" as BaLinkify
 BorderImage {
     id: root
 
-    property bool incoming
-    property bool error: false
+    property int messageStatus: -1
+    property bool incoming: false
     property alias sender: senderName.text
     property string messageText
     property var messageTimeStamp
+
     readonly property double textWidth: Math.min(units.gu(27), textLabel.text.length * units.gu(1)) + border.left + border.right
+    readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+    readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
 
     function selectBubble() {
         var fileName = "assets/conversation_";
         if (error) {
             fileName += "error.sci"
+        } else if (sending) {
+            fileName += "pending.sci"
         } else if (incoming) {
             fileName += "incoming.sci";
         } else {
@@ -105,19 +112,11 @@ BorderImage {
             leftMargin: incoming ? units.gu(2) : units.gu(1)
         }
 
-        height: paintedHeight
+        visible: !root.sending
+        height: visible ? paintedHeight : 0
         fontSize: "x-small"
         color: root.incoming ? UbuntuColors.lightGrey : "white"
         opacity: root.incoming ? 1.0 : 0.8
         text: Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
-        /*
-            if (indicator.visible)
-                i18n.tr("Sending...")
-            else if (warningButton.visible)
-                i18n.tr("Failed")
-            else
-
-        }
-        */
     }
 }

@@ -26,8 +26,7 @@ MMSBase {
     property var attachment
     property bool incoming
     property string previewer: "MMS/PreviewerImage.qml"
-    anchors.left: parent.left
-    anchors.right: parent.right
+
     state: incoming ? "incoming" : "outgoing"
     states: [
         State {
@@ -40,7 +39,7 @@ MMSBase {
             PropertyChanges {
                 target: bubble
                 anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
+                anchors.rightMargin: 0
             }
         },
         State {
@@ -52,28 +51,35 @@ MMSBase {
             }
             PropertyChanges {
                 target: bubble
-                anchors.leftMargin: units.gu(1)
+                anchors.leftMargin: 0
                 anchors.rightMargin: units.gu(1)
             }
         }
     ]
-    height: bubble.height + units.gu(1)
-    clip: true
 
+    height: imageAttachment.height
     UbuntuShape {
         id: bubble
-        anchors.top: parent.top
-        width: image.width + units.gu(3)
-        height: image.height + units.gu(2)
+        anchors {
+            top: parent.top
+            topMargin: units.gu(1) * -1
+            bottom: parent.bottom
+            bottomMargin: units.gu(1) * -1
+        }
+        width: image.width
+        height: image.height
 
         image: Image {
-            id: image
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
-            height: sourceSize.height < units.gu(20) ? sourceSize.height : units.gu(20)
+            id: imageAttachment
+
+            readonly property bool portrait: sourceSize.height > sourceSize.width
+            readonly property double deisiredHeight: portrait ?  units.gu(18) :  units.gu(14)
+
+            height: sourceSize.height < deisiredHeight ? sourceSize.height : deisiredHeight
             fillMode: Image.PreserveAspectFit
             smooth: true
             source: attachment.filePath
+            visible: false
         }
     }
 }
