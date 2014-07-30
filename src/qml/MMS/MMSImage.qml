@@ -59,7 +59,6 @@ MMSBase {
         anchors {
             top: parent.top
             bottom: parent.bottom
-            bottomMargin: units.gu(1) * -1
         }
         width: image.width
         height: image.height

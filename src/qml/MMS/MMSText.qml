@@ -50,7 +50,7 @@ MMSBase {
             }
         }
     ]
-    height: bubble.height + units.gu(1)
+    height: bubble.height + units.gu(2)
     MessageBubble {
         id: bubble
         incoming: textDelegate.incoming

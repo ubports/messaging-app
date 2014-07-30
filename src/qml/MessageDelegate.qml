@@ -43,10 +43,8 @@ Item {
     anchors {
         left: parent ? parent.left : undefined
         right: parent ? parent.right: undefined
-        //verticalCenter: parent ? parent.verticalCenter : undefined
     }
-    height: attachments.height + bubbleItem.height - (attachments.height > 0 ? units.gu(1) : 0)
-
+    height: attachments.height + bubbleItem.height
 //    Rectangle {
 //        anchors.fill: parent
 //        color: bubbleItem.selectedColor
@@ -64,10 +62,8 @@ Item {
             left: parent.left
             right: parent.right
         }
-        //width: units.gu(30)
         height: childrenRect.height
-        spacing: units.gu(1)
-
+ 
         Repeater {
             model: textMessageAttachments
             Loader {
@@ -147,7 +143,8 @@ Item {
             left: parent.left
             right: parent.right
         }
-        height: bubble.visible ? bubble.height + units.gu(2) : 0
+        height: bubble.visible ? bubble.height + units.gu(1) : 0
+        clip: true
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
@@ -155,7 +152,6 @@ Item {
                 eventModel.removeEvent(accountId, threadId, eventId, type)
             }
         }
-        z: -1
 
         selected: messageDelegate.selected
         selectionMode: messageDelegate.selectionMode

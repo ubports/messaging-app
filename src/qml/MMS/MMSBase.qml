@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 
@@ -32,6 +32,7 @@ ListItemWithActions {
     anchors.right: parent.right
     state: incoming ? "incoming" : "outgoing"
     clip: true
+    defaultHeight: height
  
     signal itemRemoved()
 
