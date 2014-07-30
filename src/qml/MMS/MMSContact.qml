@@ -78,7 +78,7 @@ MMSBase {
             }
         }
     ]
-    height: bubble.height + units.gu(1)
+    height: bubble.height + units.gu(2)
     Item {
         id: bubble
         anchors.top: parent.top

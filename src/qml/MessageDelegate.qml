@@ -44,10 +44,8 @@ Item {
     anchors {
         left: parent ? parent.left : undefined
         right: parent ? parent.right: undefined
-        //verticalCenter: parent ? parent.verticalCenter : undefined
     }
     height: attachments.height + bubbleItem.height - (attachments.height > 0 ? units.gu(1) : 0)
-
     Column {
         id: attachments
         anchors {
@@ -55,9 +53,7 @@ Item {
             left: parent.left
             right: parent.right
         }
-        width: units.gu(30)
         height: childrenRect.height
-        spacing: units.gu(1)
 
         Repeater {
             model: textMessageAttachments
@@ -74,7 +70,6 @@ Item {
                         return "MMS/MMSVideo.qml"
                     } else if (startsWith(modelData.contentType, "application/smil") ||
                               startsWith(modelData.contentType, "application/x-smil")) {
-                        console.log("Ignoring SMIL file")
                         return ""
                     } else if (startsWith(modelData.contentType, "text/plain") ) {
                         mmsText = application.readTextFile(modelData.filePath)
@@ -139,7 +134,8 @@ Item {
             left: parent.left
             right: parent.right
         }
-        height: bubble.visible ? bubble.height + units.gu(2) : 0
+        height: bubble.visible ? bubble.height + units.gu(1) : 0
+        z: -1
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
@@ -148,7 +144,6 @@ Item {
                 // eventModel.removeEvent(accountId, threadId, eventId, type)
             }
         }
-        z: -1
 
         selected: messageDelegate.selected
         selectionMode: messageDelegate.selectionMode
