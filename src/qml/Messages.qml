@@ -581,6 +581,27 @@ Page {
     MultipleSelectionListView {
         id: messageList
         objectName: "messageList"
+
+        property var _currentSwipedItem: null
+
+        function updateSwippedItem(item)
+        {
+            if (item.swipping) {
+                return
+            }
+
+            if (item.swipeState !== "Normal") {
+                if (_currentSwipedItem !== item) {
+                    if (_currentSwipedItem) {
+                        _currentSwipedItem.resetSwipe()
+                    }
+                    _currentSwipedItem = item
+                }
+            } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
+                _currentSwipedItem = null
+            }
+        }
+        onFlickStarted: messageList.forceActiveFocus()
         clip: true
         anchors {
             top: parent.top

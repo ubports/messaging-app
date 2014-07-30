@@ -149,6 +149,8 @@ Item {
         selectionMode: messageDelegate.selectionMode
         onItemPressAndHold: messageDelegate.itemPressAndHold(bubbleItem)
         onItemClicked: messageDelegate.itemClicked(bubbleItem)
+        onSwippingChanged: messageList.updateSwippedItem(bubbleItem)
+        onSwipeStateChanged: messageList.updateSwippedItem(bubbleItem)
 
         MessageBubble {
             id: bubble

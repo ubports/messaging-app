@@ -65,4 +65,7 @@ ListItemWithActions {
             }
         }
     ]
+
+    onSwippingChanged: messageList.updateSwippedItem(baseDelegate)
+    onSwipeStateChanged: messageList.updateSwippedItem(baseDelegate)
 }
