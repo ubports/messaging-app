@@ -292,7 +292,7 @@ Page {
             ]
 
             anchors {
-                top: accountList.bottom
+                top: parent.top
                 topMargin: units.gu(1)
                 left: parent.left
                 right: parent.right
