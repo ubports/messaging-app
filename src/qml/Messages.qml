@@ -94,6 +94,7 @@ Page {
     }
 
     flickable: null
+
     property bool isReady: false
     signal ready
     onReady: {
@@ -609,7 +610,6 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
-        section.property: "accountLabel"
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false

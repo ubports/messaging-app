@@ -38,8 +38,6 @@ Item {
     property bool selectionMode: false
     property bool selected: false
 
-    property string previousAccount: ListView.previousSection
-
     signal resend()
     signal itemPressAndHold(QtObject obj)
     signal itemClicked(QtObject obj)
@@ -48,40 +46,7 @@ Item {
         left: parent ? parent.left : undefined
         right: parent ? parent.right: undefined
     }
-    height: section.height + attachments.height + bubbleItem.height
-
-    MessageSectionDelegate {
-        id: section
-
-        property bool accountSwitched: false
-        property bool dateSwitched: false
-
-        text: {
-            if (accountSwitched) {
-                return i18n.tr("You switched to %1 @ %2").arg(accountLabel).arg(DateUtils.friendlyDay(timestamp))
-            } else {
-                return DateUtils.friendlyDay(timestamp)
-            }
-        }
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            margins: section.visible ? units.gu(2) : 0
-        }
-
-        visible: accountSwitched || dateSwitched
-
-        Component.onCompleted: {
-            if ((index > 0) && (index < messageList.count)) {
-                //TODO: implement "get" function on model
-                // var data = model.get(index - 1)
-                accountSwitched = (previousAccount !== accountLabel)
-                dateSwitched = false //!DataUtils.areSameDay(data.timestamp, timestamp)
-                dateSwitched = dateSwitched || (index === (messageList.count -1)) // always show date section for the last item
-            }
-        }
-    }
+    height: section + attachments.height + bubbleItem.height
 
     Column {
         id: attachments
