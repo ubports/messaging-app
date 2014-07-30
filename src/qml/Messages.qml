@@ -609,13 +609,7 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
-        // TODO: workaround to add some extra space at the bottom and top
-        header: Item {
-            height: units.gu(2)
-        }
-        footer: Item {
-            height: units.gu(2)
-        }
+        section.property: "accountLabel"
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false

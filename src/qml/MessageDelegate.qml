@@ -18,12 +18,13 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
 import Ubuntu.Contacts 0.1
+
+import "dateUtils.js" as DateUtils
 
 Item {
     id: messageDelegate
@@ -37,6 +38,8 @@ Item {
     property bool selectionMode: false
     property bool selected: false
 
+    property string previousAccount: ListView.previousSection
+
     signal resend()
     signal itemPressAndHold(QtObject obj)
     signal itemClicked(QtObject obj)
@@ -45,11 +48,45 @@ Item {
         left: parent ? parent.left : undefined
         right: parent ? parent.right: undefined
     }
-    height: attachments.height + bubbleItem.height - (attachments.height > 0 ? units.gu(1) : 0)
+    height: section.height + attachments.height + bubbleItem.height
+
+    MessageSectionDelegate {
+        id: section
+
+        property bool accountSwitched: false
+        property bool dateSwitched: false
+
+        text: {
+            if (accountSwitched) {
+                return i18n.tr("You switched to %1 @ %2").arg(accountLabel).arg(DateUtils.friendlyDay(timestamp))
+            } else {
+                return DateUtils.friendlyDay(timestamp)
+            }
+        }
+
+        anchors {
+            left: parent.left
+            right: parent.right
+            margins: section.visible ? units.gu(2) : 0
+        }
+
+        visible: accountSwitched || dateSwitched
+
+        Component.onCompleted: {
+            if ((index > 0) && (index < messageList.count)) {
+                //TODO: implement "get" function on model
+                // var data = model.get(index - 1)
+                accountSwitched = (previousAccount !== accountLabel)
+                dateSwitched = false //!DataUtils.areSameDay(data.timestamp, timestamp)
+                dateSwitched = dateSwitched || (index === (messageList.count -1)) // always show date section for the last item
+            }
+        }
+    }
+
     Column {
         id: attachments
         anchors {
-            top: parent.top
+            top: section.bottom
             left: parent.left
             right: parent.right
         }
@@ -130,12 +167,10 @@ Item {
 
         anchors {
             top: attachments.bottom
-            topMargin: attachments.height > 0 ? (units.gu(1) * -1) : 0
             left: parent.left
             right: parent.right
         }
-        height: bubble.visible ? bubble.height + units.gu(1) : 0
-        z: -1
+        height: bubble.visible ? bubble.height + units.gu(2) : 0
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")

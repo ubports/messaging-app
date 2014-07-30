@@ -31,7 +31,6 @@ MMSBase {
         anchors {
             top: parent.top
             bottom: parent.bottom
-            bottomMargin: units.gu(-1)
         }
         width: image.width
         height: image.height
@@ -39,11 +38,8 @@ MMSBase {
         image: Image {
             id: imageAttachment
 
-            readonly property bool portrait: sourceSize.height > sourceSize.width
-            readonly property double deisiredHeight: portrait ?  units.gu(18) :  units.gu(14)
-
-            height: sourceSize.height < deisiredHeight ? sourceSize.height : deisiredHeight
-            fillMode: Image.PreserveAspectFit
+            height: Math.min(sourceSize.height, units.gu(14))
+            fillMode: Image.PreserveAspectCrop
             smooth: true
             source: attachment.filePath
             visible: false
