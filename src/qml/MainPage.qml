@@ -23,7 +23,7 @@ import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
 import "dateUtils.js" as DateUtils
 
-PageWithBottomEdge {
+LocalPageWithBottomEdge {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false

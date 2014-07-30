@@ -442,7 +442,19 @@ Page {
         } else {
             return ""
         }
-   }
+    }
+    
+    Action {
+        id: backButton
+        objectName: "backButton"
+        iconName: "back"
+        onTriggered: {
+            if (typeof mainPage !== 'undefined') {
+                mainPage.temporaryProperties = null
+            }
+            mainStack.pop()
+        }
+    }
 
     states: [
         PageHeadState {
@@ -472,6 +484,7 @@ Page {
         PageHeadState {
             name: "groupChat"
             head: messages.head
+            backAction: backButton
 
             actions: [
                 Action {
@@ -484,6 +497,7 @@ Page {
         PageHeadState {
             name: "unknownContact"
             head: messages.head
+            backAction: backButton
 
             actions: [
                 Action {
@@ -511,6 +525,7 @@ Page {
         PageHeadState {
             name: "newMessage"
             head: messages.head
+            backAction: backButton
             actions: [
                 Action {
                     objectName: "contactList"
@@ -520,6 +535,7 @@ Page {
                         mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
                     }
                 }
+
             ]
 
             contents: MultiRecipientInput {
@@ -536,7 +552,7 @@ Page {
         PageHeadState {
             name: "knownContact"
             head: messages.head
-
+            backAction: backButton
             actions: [
                 Action {
                     objectName: "contactCallKnownAction"
