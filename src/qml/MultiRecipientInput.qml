@@ -142,7 +142,7 @@ StyledItem {
                     width: units.gu(20)
                     hasClearButton: false
                     clip: false
-                    placeholderText: multiRecipientWidget.recipientCount  <= 0 ? i18n.tr("Add contacts..") :""
+                    placeholderText: multiRecipientWidget.recipientCount  <= 0 ? i18n.tr("Add contacts...") :""
                     font.family: "Ubuntu"
                     font.weight: Font.Light
                     color: "#752571"
