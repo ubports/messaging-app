@@ -34,6 +34,7 @@ Item {
     property bool unread: false
     property variant activeAttachment
     property string mmsText: ""
+    property string mmsTextId: ""
     property string accountLabel: ""
     property bool selectionMode: false
     property bool selected: false
@@ -63,8 +64,8 @@ Item {
             model: textMessageAttachments
             Loader {
                 anchors {
-                    left: parent.left
-                    right: parent.right
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
                 }
                 height: item ? item.height : 0
                 source: {
@@ -77,6 +78,7 @@ Item {
                         return ""
                     } else if (startsWith(modelData.contentType, "text/plain") ) {
                         mmsText = application.readTextFile(modelData.filePath)
+                        mmsTextId = modelData.attachmentId
                         return ""
                     } else if (startsWith(modelData.contentType, "text/vcard") ||
                               startsWith(modelData.contentType, "text/x-vcard")) {
@@ -96,6 +98,11 @@ Item {
                     target: item
                     onItemRemoved: {
                         console.log("attachment removed: " + modelData.attachmentId)
+                        if (textMessageAttachments.length == 1) {
+                            // this is the last attachment. remove the whole event
+                            eventModel.removeEvent(accountId, threadId, eventId, type)
+                            return
+                        }
                         eventModel.removeEventAttachment(accountId, threadId, eventId, type, modelData.attachmentId)
                     }
                 }
@@ -142,8 +149,15 @@ Item {
             iconName: "delete"
             text: i18n.tr("Delete")
             onTriggered: {
-                // TODO: delete only the message
-                // eventModel.removeEvent(accountId, threadId, eventId, type)
+                // check if this is an mms text and we have more attachments
+                if (mmsText !== "" && textMessageAttachments.length > 1) {
+                    // remove only the text attachment if we have more attachments
+                    eventModel.removeEventAttachment(accountId, threadId, eventId, type, mmsTextId)
+                    mmsText = ""
+                    mmsTextId = ""
+                    return
+                }
+                eventModel.removeEvent(accountId, threadId, eventId, type)
             }
         }
 
