@@ -31,6 +31,7 @@ BorderImage {
     property alias sender: senderName.text
     property string messageText
     property var messageTimeStamp
+    property int maxDelegateWidth: units.gu(30)
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
@@ -65,7 +66,16 @@ BorderImage {
     onIncomingChanged: source = selectBubble()
     source: selectBubble()
     height: childrenRect.height + units.gu(2)
-    width: childrenRect.width + units.gu(3)
+    width: {
+        var biggestItemWidth = senderName.width
+        if (textLabel.paintedWidth > biggestItemWidth) {
+            biggestItemWidth = textLabel.paintedWidth
+        }
+        if (textTimestamp.paintedWidth > biggestItemWidth) {
+            biggestItemWidth = textTimestamp.paintedWidth
+        }
+        return biggestItemWidth + units.gu(3)
+    }
 
     Label {
         id: senderName
@@ -75,7 +85,6 @@ BorderImage {
             topMargin: units.gu(1)
             left: parent.left
             leftMargin: incoming ? units.gu(2) : units.gu(1)
-
         }
         visible: text !== ""
         height: text === "" ? 0 : paintedHeight
@@ -91,8 +100,8 @@ BorderImage {
             topMargin: units.gu(1)
             left: parent.left
             leftMargin: incoming ? units.gu(2) : units.gu(1)
-            //rightMargin: incoming ? units.gu(1) : units.gu(1)
         }
+        width: maxDelegateWidth
         fontSize: "medium"
         height: text === "" ? 0 : paintedHeight
         onLinkActivated:  Qt.openUrlExternally(link)

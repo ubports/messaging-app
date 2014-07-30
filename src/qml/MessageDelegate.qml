@@ -83,7 +83,6 @@ Item {
                         return "MMS/MMSVideo.qml"
                     } else if (startsWith(modelData.contentType, "application/smil") ||
                               startsWith(modelData.contentType, "application/x-smil")) {
-                        console.log("Ignoring SMIL file")
                         return ""
                     } else if (startsWith(modelData.contentType, "text/plain") ) {
                         return "MMS/MMSText.qml"
