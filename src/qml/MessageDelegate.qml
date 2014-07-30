@@ -48,16 +48,6 @@ Item {
     }
     height: attachments.height + bubbleItem.height - (attachments.height > 0 ? units.gu(1) : 0)
 
-//    Rectangle {
-//        anchors.fill: parent
-//        color: bubbleItem.selectedColor
-//        opacity: selected ? 1.0 : 0.0
-//        Behavior on opacity {
-//            UbuntuNumberAnimation {}
-//        }
-//        z: -1
-//    }
-
     Column {
         id: attachments
         anchors {

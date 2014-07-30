@@ -23,39 +23,7 @@ import ".."
 
 MMSBase {
     id: imageDelegate
-    property var attachment
-    property bool incoming
     property string previewer: "MMS/PreviewerImage.qml"
-
-    state: incoming ? "incoming" : "outgoing"
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: 0
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: 0
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
 
     height: imageAttachment.height
     UbuntuShape {
