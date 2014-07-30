@@ -58,6 +58,8 @@ Item {
         height: childrenRect.height
 
         Repeater {
+            id: attachmentsRepeater
+
             model: textMessageAttachments
             Loader {
                 anchors {
@@ -165,57 +167,64 @@ Item {
             messageTimeStamp: timestamp
             messageStatus: textMessageStatus
         }
+    }
+
+    Item {
+        id: statusIcon
+
+        property var itemToAnchor: bubble.height > 0 ? bubble : attachmentsRepeater.itemAt(attachmentsRepeater.count - 1)
+
+        height: units.gu(4)
+        width: units.gu(4)
+        x: itemToAnchor ? (parent.width - itemToAnchor.width) - width - units.gu(3) : 0
+        y: itemToAnchor ? (parent.height - itemToAnchor.height - units.gu(3)) + (itemToAnchor.height / 2) : 0
+        visible: !incoming && !messageDelegate.selectionMode
 
         ActivityIndicator {
             id: indicator
 
+            anchors.centerIn: parent
             height: units.gu(2)
             width: units.gu(2)
-            anchors {
-                right: bubble.left
-                verticalCenter: bubble.verticalCenter
-                rightMargin: units.gu(1)
-            }
             visible: running && !selectionMode
             // if temporarily failed or unknown status, then show the spinner
             running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
+        }
+
+        Item {
+            id: retrybutton
+
+            anchors.fill: parent
+            Icon {
+                id: icon
+
+                name: "reload"
+                color: "red"
+                height: units.gu(2)
+                width: units.gu(2)
+                anchors {
+                    centerIn: parent
+                    verticalCenterOffset: units.gu(-1)
+                }
+            }
+
+            Label {
+                text: i18n.tr("Failed!")
+                fontSize: "small"
+                color: "red"
+                anchors {
+                    horizontalCenter: retrybutton.horizontalCenter
+                    top: icon.bottom
+                }
+            }
+            visible: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+            MouseArea {
+                id: retrybuttonMouseArea
+
+                anchors.fill: parent
+                onClicked: messageDelegate.resend()
+            }
         }
     }
-//        Label {
-//            id: accountIndicator
-//            anchors {
-//                right: bubble.left
-//                rightMargin: units.gu(0.5)
-//                bottom: bubble.bottom
-//            }
-//            text: accountLabel
-//            visible: !incoming
-//            font.pixelSize: FontUtils.sizeToPixels("small")
-//            color: "green"
-//
-//}
-
-        // FIXME: this is just a temporary workaround while we dont have the final design
-//        UbuntuShape {
-//            id: warningButton
-//            color: "yellow"
-//            height: units.gu(3)
-//            width: units.gu(3)
-//            anchors.right: accountIndicator.left
-//            anchors.left: undefined
-//            anchors.verticalCenter: bubble.verticalCenter
-//            anchors.leftMargin: 0
-//            anchors.rightMargin: units.gu(1)
-//            visible: (textMessageStatus == HistoryThreadModel.MessageStatusPermanentlyFailed) && !incoming && !selectionMode
-//            MouseArea {
-//                anchors.fill: parent
-//                onClicked: PopupUtils.open(popoverComponent, warningButton)
-//            }
-//            Label {
-//                text: "!"
-//                color: "black"
-//                anchors.centerIn: parent
-//            }
-//        }
 }
