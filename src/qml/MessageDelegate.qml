@@ -46,12 +46,12 @@ Item {
         left: parent ? parent.left : undefined
         right: parent ? parent.right: undefined
     }
-    height: section + attachments.height + bubbleItem.height
+    height: attachments.height + bubbleItem.height
 
     Column {
         id: attachments
         anchors {
-            top: section.bottom
+            top: parent.top
             left: parent.left
             right: parent.right
         }
