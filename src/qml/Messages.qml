@@ -246,45 +246,24 @@ Page {
         }
     }
 
-    Rectangle {
-        id: accountList
-        z: 1
-        clip: !multipleAccounts
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
+    head.sections.model: {
+        // does not show dual sim switch if there is only one sim
+        if (telepathyHelper.accountIds.length <= 1) {
+            return []
         }
-        height: multipleAccounts ? childrenRect.height : 0
-        color: "white"
-        Row {
-            anchors {
-                top: parent.top
-                horizontalCenter: parent.horizontalCenter
-            }
-            height: childrenRect.height
-            width: childrenRect.width
-            spacing: units.gu(2)
-            Repeater {
-                model: telepathyHelper.accountIds
-                delegate: Label {
-                    width: paintedWidth
-                    height: paintedHeight
-                    text: messages.accounts[modelData]
-                    font.pixelSize: FontUtils.sizeToPixels("small")
-                    color: messages.accountId == modelData ? "red" : "#5d5d5d"
-                    MouseArea {
-                        anchors {
-                            fill: parent
-                            // increase touch area
-                            leftMargin: units.gu(-1)
-                            rightMargin: units.gu(-1)
-                            bottomMargin: units.gu(-1)
-                        }
-                        onClicked: messages.accountId = modelData
-                    }
-                }
-            }
+
+        var accountNames = []
+        for(var i=0; i < telepathyHelper.accountIds.length; i++) {
+            var accountId = telepathyHelper.accountIds[i]
+            accountNames.push(messages.accounts[accountId])
+        }
+        return accountNames
+    }
+    head.sections.selectedIndex: Math.max(0, telepathyHelper.accountIds.indexOf(messages.accountId))
+    Connections {
+        target: messages.head.sections
+        onSelectedIndexChanged: {
+            messages.accountId = telepathyHelper.accountIds[head.sections.selectedIndex]
         }
     }
 
@@ -430,8 +409,7 @@ Page {
         active: multiRecipient.searchString !== "" && multiRecipient.focus
         sourceComponent: contactSearchComponent
         anchors {
-            top: accountList.bottom
-            topMargin: units.gu(1)
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -605,7 +583,7 @@ Page {
         objectName: "messageList"
         clip: true
         anchors {
-            top: accountList.bottom
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
