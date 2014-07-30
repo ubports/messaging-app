@@ -38,6 +38,7 @@ MMSBase {
         image: Image {
             id: imageAttachment
 
+            width: sourceSize.width > units.gu(30) ? units.gu(30) : sourceSize.width
             height: Math.min(sourceSize.height, units.gu(14))
             fillMode: Image.PreserveAspectCrop
             smooth: true
