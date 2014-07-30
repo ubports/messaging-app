@@ -22,14 +22,8 @@ import ".."
 
 MMSBase {
     id: vcardDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: ""
-    property string textColor: incoming ? "#333333" : "#ffffff"
+    property string previewer: "MMS/PreviewerContact.qml"
 
-    anchors.left: parent.left
-    anchors.right: parent.right
-    state: incoming ? "incoming" : "outgoing"
     states: [
         State {
             name: "incoming"
@@ -84,7 +78,6 @@ MMSBase {
         anchors.top: parent.top
         width: image.width + units.gu(4)
         height: image.height + units.gu(2)
-
         Icon {
             id: image
             height: units.gu(6)
@@ -98,6 +91,8 @@ MMSBase {
         id: contactName
         property string name: application.contactNameFromVCard(attachment.filePath)
         anchors.bottom: bubble.bottom
+        anchors.left: incoming ? bubble.right : undefined
+        anchors.right: !incoming ? bubble.left : undefined
         text: name !== "" ? name : i18n.tr("Unknown contact")
         height: paintedHeight
         width: paintedWidth
