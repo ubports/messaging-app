@@ -1,3 +1,16 @@
+messaging-app (0.1+14.10.20140730-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the account objects exposed from telephony QML plugin.
+
+  [ Leo Arias ]
+  * Added a suite of simple QML tests.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 30 Jul 2014 17:58:33 +0000
+
 messaging-app (0.1+14.10.20140725-0ubuntu1) utopic; urgency=low
 
   [ Tiago Salem Herrmann ]
