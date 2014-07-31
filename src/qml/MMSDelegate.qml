@@ -110,8 +110,8 @@ MessageDelegate {
             }
         }
     }
-
     height: attachmentsView.height
+    _lastItem: bubble.visible ? bubble : attachmentsRepeater.itemAt(attachmentsRepeater - 1)
     Column {
         id: attachmentsView
 
@@ -128,8 +128,6 @@ MessageDelegate {
 
             Loader {
                 id: attachmentLoader
-
-
                 states: [
                     State {
                         when: root.incoming
@@ -168,6 +166,9 @@ MessageDelegate {
                     if (status === Loader.Ready) {
                         attachmentLoader.item.incoming = root.incoming
                         attachmentLoader.item.attachment = modelData.data
+                        if (index === (attachmentsRepeater.count -1)) {
+                            root._lastItem = attachmentLoader.item
+                        }
                     }
                 }
 //                Connections {

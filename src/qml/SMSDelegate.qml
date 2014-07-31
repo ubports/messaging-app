@@ -41,6 +41,7 @@ MessageDelegate {
     }
 
     height: bubble.height
+    _lastItem: bubble
 
     MessageBubble {
         id: bubble

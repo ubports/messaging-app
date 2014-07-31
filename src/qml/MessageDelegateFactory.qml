@@ -19,18 +19,21 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
+import Ubuntu.History 0.1
 
 ListItemWithActions {
     id: root
 
     property bool incoming: false
     property string accountLabel: ""
-    property var _lastItem: messageDelegate
+    property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
 
     signal deleteMessage()
     signal resendMessage()
     signal copyMessage()
     signal showMessageDetails()
+
+    triggerActionOnMouseRelease: true
 
     anchors {
         left: parent ? parent.left : undefined
@@ -103,63 +106,60 @@ ListItemWithActions {
         }
     }
 
-//    Item {
-//        id: statusIcon
+    Item {
+        id: statusIcon
 
-//        anchors {
-//            right: _lastItem.left
-//            verticalCenter: _lastItem.verticalCenter
-//        }
+        height: units.gu(4)
+        width: units.gu(4)
+        x:  _lastItem ? (parent.width - _lastItem.width) - width  - units.gu(3) : 0
+        y: _lastItem ? (parent.height - _lastItem.height) + ((_lastItem.height - units.gu(4)) / 2) : 0
+        visible: !incoming && !selectionMode
 
-//        height: units.gu(4)
-//        width: units.gu(4)
-//        visible: !incoming && !messageDelegate.selectionMode
+        ActivityIndicator {
+            id: indicator
 
-//        ActivityIndicator {
-//            id: indicator
+            anchors.centerIn: parent
+            height: units.gu(2)
+            width: units.gu(2)
+            visible: running && !selectionMode
+            // if temporarily failed or unknown status, then show the spinner
+            running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
+        }
 
-//            anchors.centerIn: parent
-//            height: units.gu(2)
-//            width: units.gu(2)
-//            visible: running && !selectionMode
-//            // if temporarily failed or unknown status, then show the spinner
-//            running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-//                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
-//        }
+        Item {
+            id: retrybutton
 
-//        Item {
-//            id: retrybutton
+            anchors.fill: parent
+            Icon {
+                id: icon
 
-//            anchors.fill: parent
-//            Icon {
-//                id: icon
+                name: "reload"
+                color: "red"
+                height: units.gu(2)
+                width: units.gu(2)
+                anchors {
+                    centerIn: parent
+                    verticalCenterOffset: units.gu(-1)
+                }
+            }
 
-//                name: "reload"
-//                color: "red"
-//                height: units.gu(2)
-//                width: units.gu(2)
-//                anchors {
-//                    centerIn: parent
-//                    verticalCenterOffset: units.gu(-1)
-//                }
-//            }
+            Label {
+                text: i18n.tr("Failed!")
+                fontSize: "small"
+                color: "red"
+                anchors {
+                    horizontalCenter: retrybutton.horizontalCenter
+                    top: icon.bottom
+                }
+            }
+            visible: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+            MouseArea {
+                id: retrybuttonMouseArea
 
-//            Label {
-//                text: i18n.tr("Failed!")
-//                fontSize: "small"
-//                color: "red"
-//                anchors {
-//                    horizontalCenter: retrybutton.horizontalCenter
-//                    top: icon.bottom
-//                }
-//            }
-//            visible: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
-//            MouseArea {
-//                id: retrybuttonMouseArea
-
-//                anchors.fill: parent
-//                onClicked: messageDelegate.resend()
-//            }
-//        }
-//    }
+                anchors.fill: parent
+                onClicked: root.resendMessage()
+            }
+        }
+    }
 }
