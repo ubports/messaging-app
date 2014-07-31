@@ -14,6 +14,7 @@ Build-Depends: cmake,
                qtdeclarative5-dev (>= 5.0),
                qtdeclarative5-dev-tools,
                qtdeclarative5-ubuntu-ui-toolkit-plugin,
+	       qtdeclarative5-ubuntu-history0.1,
                qtpim5-dev,
                xvfb,
 Standards-Version: 3.9.4
