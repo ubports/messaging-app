@@ -109,8 +109,8 @@ BorderImage {
         anchors{
             top: textLabel.bottom
             topMargin: units.gu(0.5)
-            right: parent.right
-            rightMargin: !incoming ? units.gu(2) : units.gu(1)
+            left: parent.left
+            leftMargin: incoming ? units.gu(2) : units.gu(1)
         }
 
         visible: !root.sending
