@@ -25,7 +25,7 @@ MMSBase {
     id: imageDelegate
     property string previewer: "MMS/PreviewerImage.qml"
     onItemClicked: {
-        if(!bubble.contains(Qt.point(mouse.x, mouse.y))) {
+        if (checkClick(bubble, mouse)) {
             attachmentClicked()
         }
     }

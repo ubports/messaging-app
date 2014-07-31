@@ -29,7 +29,7 @@ MMSBase {
     anchors.left: parent.left
     anchors.right: parent.right
     onItemClicked: {
-        if(!bubble.contains(Qt.point(mouse.x, mouse.y))) {
+        if (checkClick(bubble, mouse)) {
             attachmentClicked()
         }
     }
