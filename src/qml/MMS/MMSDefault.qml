@@ -28,6 +28,12 @@ MMSBase {
     property string textColor: incoming ? "#333333" : "#ffffff"
     anchors.left: parent.left
     anchors.right: parent.right
+    onItemClicked: {
+        if(!bubble.contains(Qt.point(mouse.x, mouse.y))) {
+            attachmentClicked()
+        }
+    }
+
     state: incoming ? "incoming" : "outgoing"
     states: [
         State {

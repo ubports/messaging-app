@@ -24,11 +24,10 @@ import ".."
 MMSBase {
     id: imageDelegate
     property string previewer: "MMS/PreviewerImage.qml"
-    Component.onCompleted: {
-        visibleAttachments++
-    }
-    Component.onDestruction:  {
-        visibleAttachments--
+    onItemClicked: {
+        if(!bubble.contains(Qt.point(mouse.x, mouse.y))) {
+            attachmentClicked()
+        }
     }
 
     height: imageAttachment.height
@@ -50,10 +49,6 @@ MMSBase {
             smooth: true
             source: attachment.filePath
             visible: false
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: attachmentClicked()
         }
     }
 
