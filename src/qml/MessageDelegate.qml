@@ -40,7 +40,17 @@ Item {
         //virtual implemented by each Message type
     }
 
-    function resend()
+    function copyMessage()
+    {
+        //virtual implemented by each Message type
+    }
+
+    function resendMessage()
+    {
+        //virtual implemented by each Message type
+    }
+
+    function showMessageDetails(mouse)
     {
         //virtual implemented by each Message type
     }

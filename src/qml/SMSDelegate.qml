@@ -35,6 +35,11 @@ MessageDelegate {
         chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
     }
 
+    function copyMessage()
+    {
+        Clipboard.push(bubble.messageText)
+    }
+
     height: bubble.height
 
     MessageBubble {

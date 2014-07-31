@@ -29,6 +29,8 @@ ListItemWithActions {
 
     signal deleteMessage()
     signal resendMessage()
+    signal copyMessage()
+    signal showMessageDetails()
 
     anchors {
         left: parent ? parent.left : undefined
@@ -41,10 +43,23 @@ ListItemWithActions {
         onTriggered: deleteMessage()
     }
 
+    rightSideActions: [
+// TODO: implement message info view
+//        Action {
+//            iconName: "info"
+//            text: i18n.tr("Info")
+//            onTriggered: showMessageDetails()
+//        },
+        Action {
+            iconName: "edit-copy"
+            text: i18n.tr("Copy")
+            onTriggered: copyMessage()
+        }
+    ]
+
     height: loader.height + units.gu(2) //margin
 
     onItemClicked: {
-        console.debug("Point>>>>>>>>>.: " + mouse.x + "/" + mouse.x)
         if (loader.status === Loader.Ready) {
             loader.item.clicked(mouse)
         }
@@ -58,6 +73,8 @@ ListItemWithActions {
                 //signals
                 root.resendMessage.connect(item.resendMessage)
                 root.deleteMessage.connect(item.deleteMessage)
+                root.copyMessage.connect(item.copyMessage)
+                root.showMessageDetails(item.showMessageDetails)
             }
         }
         anchors {

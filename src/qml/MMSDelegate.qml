@@ -67,6 +67,13 @@ MessageDelegate {
         chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
     }
 
+    function copyMessage()
+    {
+        if (bubble.visible) {
+            Clipboard.push(bubble.messageText)
+        }
+    }
+
     onAttachmentsChanged: {
         dataAttachments = []
         textAttachements = []
