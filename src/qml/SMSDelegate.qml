@@ -17,36 +17,38 @@
  */
 
 import QtQuick 2.2
+import Ubuntu.Components 1.1
 
-Item {
-    id: messageDelegate
+import "dateUtils.js" as DateUtils
 
-    property bool incoming
-    property string accountLabel
-    property var attachments
-    property string accountId
-    property var threadId
-    property var eventId
-    property var type
-    property string text
-    property var messageStatus
-    property var timestamp
-
-    property var _lastItem: messageDelegate
-
+MessageDelegate {
+    id: root
 
     function deleteMessage()
     {
-        //virtual implemented by each Message type
+        eventModel.removeEvent(accountId, threadId, eventId, type)
     }
 
-    function resend()
+    function resendMessage()
     {
-        //virtual implemented by each Message type
+        eventModel.removeEvent(accountId, threadId, eventId, type)
+        chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
     }
 
-    function clicked(mouse)
-    {
-        //virtual implemented by each Message type
+    height: bubble.height
+
+    MessageBubble {
+        id: bubble
+
+        anchors {
+            top: parent.top
+            left: incoming ? parent.left : undefined
+            right: incoming ? undefined : parent.right
+        }
+        visible: (root.text !== "")
+        incoming: root.incoming
+        messageText: root.text
+        messageTimeStamp: root.timestamp
+        messageStatus: root.messageStatus
     }
 }

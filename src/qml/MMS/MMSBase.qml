@@ -19,53 +19,9 @@ import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 
-ListItemWithActions {
+Item {
     id: baseDelegate
 
     property var attachment
-    property bool parentSelected: false
-    property bool incoming
-
-    signal itemRemoved()
-
-    leftSideAction: Action {
-        iconName: "delete"
-        text: i18n.tr("Delete")
-        onTriggered: baseDelegate.itemRemoved()
-    }
-
-    color: parentSelected ? selectedColor : Theme.palette.normal.background
-    states: [
-        State {
-            when: incoming
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: 0
-            }
-        },
-        State {
-            when: !incoming
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: 0
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
-
-    onSwippingChanged: messageList.updateSwippedItem(baseDelegate)
-    onSwipeStateChanged: messageList.updateSwippedItem(baseDelegate)
+    property bool incoming: false
 }

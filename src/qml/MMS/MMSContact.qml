@@ -24,55 +24,8 @@ MMSBase {
     id: vcardDelegate
     property string previewer: "MMS/PreviewerContact.qml"
 
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-            AnchorChanges {
-                target: contactName
-                anchors.left: bubble.right
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: contactName
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-            AnchorChanges {
-                target: contactName
-                anchors.left: undefined
-                anchors.right: bubble.left
-            }
-            PropertyChanges {
-                target: contactName
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
     height: bubble.height + units.gu(2)
+
     Item {
         id: bubble
         anchors.top: parent.top

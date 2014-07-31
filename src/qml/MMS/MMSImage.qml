@@ -26,6 +26,8 @@ MMSBase {
     property string previewer: "MMS/PreviewerImage.qml"
 
     height: imageAttachment.height
+    width: imageAttachment.width
+
     UbuntuShape {
         id: bubble
         anchors {

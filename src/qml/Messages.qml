@@ -617,6 +617,7 @@ Page {
                 _currentSwipedItem = null
             }
         }
+        // hide keyboard as soon as the list start flickering
         onFlickStarted: messageList.forceActiveFocus()
         clip: true
         anchors {
@@ -641,18 +642,18 @@ Page {
             }
         }*/
 
-        listDelegate: MessageDelegate {
+        listDelegate: MessageDelegateFactory {
             id: messageDelegate
             objectName: "message%1".arg(index)
+
             incoming: senderId != "self"
             // TODO: we have several items inside
             selected: messageList.isSelected(messageDelegate)
-            unread: newEvent
             selectionMode: messages.selectionMode
             accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
+
             // TODO: need select only the item
             onItemClicked: {
-                console.debug("WILL SELECTED")
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
                         messageList.deselectItem(messageDelegate)
@@ -669,30 +670,8 @@ Page {
                     messages.markMessageAsRead(accountId, threadId, eventId, type);
                 }
             }
-            onResend: {
-                // resend this message and remove the old one
-                if (textMessageAttachments.length > 0) {
-                    var newAttachments = []
-                    for (var i = 0; i < textMessageAttachments.length; i++) {
-                        var attachment = []
-                        var item = textMessageAttachments[i]
-                        // we dont include smil files. they will be auto generated
-                        if (item.contentType.toLowerCase() == "application/smil") {
-                            continue
-                        }
-                        attachment.push(item.attachmentId)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
-                    }
-                    eventModel.removeEvent(accountId, threadId, eventId, type)
-                    chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
-                    return
-                }
-                eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
-            }
         }
+
         onSelectionDone: {
             for (var i=0; i < items.count; i++) {
                 var event = items.get(i).model
