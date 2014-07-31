@@ -25,11 +25,10 @@ MMSBase {
     id: vcardDelegate
     property string previewer: "MMS/PreviewerContact.qml"
     onItemClicked: {
-        if(!bubble.contains(Qt.point(mouse.x, mouse.y))) {
+        if (checkClick(bubble, mouse)) {
             attachmentClicked()
         }
     }
-
     states: [
         State {
             name: "incoming"

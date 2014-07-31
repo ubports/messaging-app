@@ -147,7 +147,7 @@ ListItemWithActions {
  
     UbuntuShape {
         id: unreadCountIndicator
-        height: units.gu(1.5)
+        height: units.gu(2)
         width: height
         anchors {
             top: time.bottom
@@ -156,12 +156,10 @@ ListItemWithActions {
             rightMargin: units.gu(2)
         }
         visible: unreadCount > 0
-        // FIXME
-        color: "black"
+        color: "#38b44a"
         Label {
             anchors.centerIn: parent
             text: unreadCount
-            // FIXME
             color: "white"
             fontSize: "x-small"
             font.weight: Font.Light

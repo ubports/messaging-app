@@ -30,6 +30,18 @@ ListItemWithActions {
     signal itemRemoved()
     signal attachmentClicked()
 
+    function checkClick(bubble, mouse) {
+        var itemX1 = bubble.x
+        var itemX2 = itemX1+bubble.width
+        var itemY1 = bubble.y
+        var itemY2 = itemY1+bubble.height
+        if (mouse.x >= itemX1 && mouse.x <= itemX2 &&
+            mouse.y >= itemY1 && mouse.y <= itemY2) {
+            return true
+        }
+        return false
+    }
+
     Component.onCompleted: {
         visibleAttachments++
     }
