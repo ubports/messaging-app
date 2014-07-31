@@ -276,6 +276,7 @@ Page {
             autoUpdate: false
             filterTerm: multiRecipient.searchString
             showSections: false
+            autoHideKeyboard: false
 
             states: [
                 State {
