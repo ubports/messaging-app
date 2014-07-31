@@ -120,7 +120,6 @@ Page {
         // avoid a binding on the expanded height value
         var expandedHeight = height;
         _areaWhenExpanded = expandedHeight;
-        console.log("AAAAAAAAAA")
     }
 
     onActiveChanged: {
