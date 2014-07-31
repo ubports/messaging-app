@@ -614,7 +614,6 @@ Page {
                 _currentSwipedItem = null
             }
         }
-        onFlickStarted: messageList.forceActiveFocus()
         clip: true
         anchors {
             top: parent.top
