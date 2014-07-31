@@ -30,6 +30,13 @@ ListItemWithActions {
     signal itemRemoved()
     signal attachmentClicked()
 
+    Component.onCompleted: {
+        visibleAttachments++
+    }
+    Component.onDestruction:  {
+        visibleAttachments--
+    }
+
     leftSideAction: Action {
         iconName: "delete"
         text: i18n.tr("Delete")
