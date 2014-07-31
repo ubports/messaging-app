@@ -95,6 +95,10 @@ MMSBase {
             source: video
             anchors.centerIn: parent
             anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
+            MouseArea {
+                anchors.fill: parent
+                onClicked: attachmentClicked()
+            }
         }
 
         Rectangle {

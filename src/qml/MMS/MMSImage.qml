@@ -24,6 +24,12 @@ import ".."
 MMSBase {
     id: imageDelegate
     property string previewer: "MMS/PreviewerImage.qml"
+    Component.onCompleted: {
+        visibleAttachments++
+    }
+    Component.onDestruction:  {
+        visibleAttachments--
+    }
 
     height: imageAttachment.height
     width: imageAttachment.width
@@ -47,5 +53,19 @@ MMSBase {
             source: attachment.filePath
             visible: false
         }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: attachmentClicked()
+        }
+    }
+
+    Loader {
+        active: (index == visibleAttachments-1) && !incoming && mmsText == "" && (inProgress || failed)
+        visible: active
+        height: active ? item.height : 0
+        sourceComponent: statusIcon
+        anchors.right: bubble.left
+        anchors.rightMargin: units.gu(1)
+        anchors.verticalCenter: bubble.verticalCenter
     }
 }

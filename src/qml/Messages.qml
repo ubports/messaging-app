@@ -31,10 +31,8 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    // FIXME this info must come from system settings or telephony-service
-    property var accounts: {"ofono/ofono/account0": "SIM 1", "ofono/ofono/account1": "SIM 2"}
-    property string accountId: telepathyHelper.accountIds[0]
-    property bool multipleAccounts: telepathyHelper.accountIds.length > 1
+    property QtObject account: telepathyHelper.accounts[0]
+    property bool multipleAccounts: telepathyHelper.accounts.length > 1
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -71,7 +69,7 @@ Page {
     }
 
     function checkNetwork() {
-        return telepathyHelper.isAccountConnected(messages.accountId)
+        return messages.account.connected;
     }
 
     ListModel {
@@ -139,7 +137,7 @@ Page {
         }
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        for (var i = 0; i < telepathyHelper.accountIds.length; i++) {
+        for (var i in telepathyHelper.accountIds) {
             var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
@@ -233,7 +231,7 @@ Page {
         Dialog {
             id: dialogue
             title: i18n.tr("No network")
-            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
+            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
             Button {
                 objectName: "closeNoNetworkDialog"
                 text: i18n.tr("Close")
@@ -248,22 +246,21 @@ Page {
 
     head.sections.model: {
         // does not show dual sim switch if there is only one sim
-        if (telepathyHelper.accountIds.length <= 1) {
+        if (!multipleAccounts) {
             return undefined
         }
 
         var accountNames = []
-        for(var i=0; i < telepathyHelper.accountIds.length; i++) {
-            var accountId = telepathyHelper.accountIds[i]
-            accountNames.push(messages.accounts[accountId])
+        for(var i=0; i < telepathyHelper.accounts.length; i++) {
+            accountNames.push(telepathyHelper.accounts[i].displayName)
         }
         return accountNames
     }
-    head.sections.selectedIndex: Math.max(0, telepathyHelper.accountIds.indexOf(messages.accountId))
+    head.sections.selectedIndex: Math.max(0, telepathyHelper.accounts.indexOf(messages.account))
     Connections {
         target: messages.head.sections
         onSelectedIndexChanged: {
-            messages.accountId = telepathyHelper.accountIds[head.sections.selectedIndex]
+            messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
         }
     }
 
@@ -617,8 +614,6 @@ Page {
                 _currentSwipedItem = null
             }
         }
-        // hide keyboard as soon as the list start flickering
-        onFlickStarted: messageList.forceActiveFocus()
         clip: true
         anchors {
             top: parent.top
@@ -651,7 +646,6 @@ Page {
             selected: messageList.isSelected(messageDelegate)
             selectionMode: messages.selectionMode
             accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
-
             // TODO: need select only the item
             onItemClicked: {
                 if (messageList.isInSelectionMode) {
@@ -920,16 +914,16 @@ Page {
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
-                if (messages.accountId == "") {
+                if (!messages.account) {
                     // FIXME: handle dual sim
-                    messages.accountId = telepathyHelper.accountIds[0]
+                    messages.account = telepathyHelper.accounts[0]
                 }
                 // dont change the participants list
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
                 }
                 // create the new thread and update the threadId list
-                eventModel.threadIdForParticipants(messages.accountId,
+                eventModel.threadIdForParticipants(messages.account.accountId,
                                                    HistoryThreadModel.EventTypeText,
                                                    participants,
                                                    HistoryThreadModel.MatchPhoneNumber,
@@ -947,13 +941,13 @@ Page {
                         attachment.push(item.filePath)
                         newAttachments.push(attachment)
                     }
-                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.accountId)
+                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
                     textEntry.text = ""
                     attachments.clear()
                     return
                 }
 
-                chatManager.sendMessage(participants, textEntry.text, messages.accountId)
+                chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
                 textEntry.text = ""
             }
         }
