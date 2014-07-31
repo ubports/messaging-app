@@ -164,10 +164,7 @@ Item {
                 }
                 Connections {
                     target: item
-                    onItemPressAndHold: {
-                        activeAttachment = modelData
-                        PopupUtils.open(popoverSaveAttachmentComponent, item)
-                    }
+                    onItemPressAndHold: itemPressAndHold(bubbleItem)
                 }
                 Binding {
                     target: item
