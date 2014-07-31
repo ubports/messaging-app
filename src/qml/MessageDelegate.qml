@@ -42,7 +42,7 @@ Item {
                                textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
     property bool failed: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     property int visibleAttachments: 0
- 
+
     signal resend()
     signal itemPressAndHold(QtObject obj)
     signal itemClicked(QtObject obj)
@@ -200,7 +200,12 @@ Item {
             left: parent.left
             right: parent.right
         }
-        height: bubble.visible ? bubble.height + units.gu(2) : 0
+        internalAnchors {
+            topMargin: 0
+            bottomMargin: 0
+        }
+
+        height: bubble.visible ? bubble.height  : 0
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")

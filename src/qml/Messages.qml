@@ -621,6 +621,12 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
+        // fake bottomMargin
+        header: Item {
+            height: units.gu(1)
+        }
+
+        spacing: units.gu(1)
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false

@@ -55,6 +55,11 @@ ListItemWithActions {
         onTriggered: baseDelegate.itemRemoved()
     }
 
+    internalAnchors {
+        topMargin: 0
+        bottomMargin: 0
+    }
+
     color: parentSelected ? selectedColor : Theme.palette.normal.background
     states: [
         State {
