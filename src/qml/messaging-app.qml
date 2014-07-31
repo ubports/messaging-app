@@ -146,22 +146,10 @@ MainView {
        }
     }
 
-    // WORKAROUND: we need this extra item to avoid the page to fill
-    Item {
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
-        PageStack {
-            id: mainStack
 
-            objectName: "mainStack"
-        }
-    }
+    PageStack {
+        id: mainStack
 
-    KeyboardRectangle {
-        id: keyboard
+        objectName: "mainStack"
     }
 }

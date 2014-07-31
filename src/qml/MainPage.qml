@@ -158,7 +158,13 @@ LocalPageWithBottomEdge {
     MultipleSelectionListView {
         id: threadList
         objectName: "threadList"
-        anchors.fill: parent
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
         listModel: sortProxy
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
@@ -202,6 +208,10 @@ LocalPageWithBottomEdge {
             }
         }
 
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     Scrollbar {

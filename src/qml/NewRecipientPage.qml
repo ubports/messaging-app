@@ -67,7 +67,12 @@ Page {
     ContactListView {
         id: contactList
         objectName: "newRecipientList"
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
@@ -88,4 +93,8 @@ Page {
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
     Component.onCompleted: parentPage.active = false
     Component.onDestruction: parentPage.active = true
+
+    KeyboardRectangle {
+        id: keyboard
+    }
 }
