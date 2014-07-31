@@ -1,3 +1,5 @@
+add_subdirectory(qml)
+
 set(AUTOPILOT_DIR autopilot/messaging_app)
 
 execute_process(COMMAND python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"

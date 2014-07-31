@@ -1,3 +1,5 @@
+project(qml)
+
 file(GLOB QML_JS_FILES *.qml *.js)
 
 set(QML_DIRS
