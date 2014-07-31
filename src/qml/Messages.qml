@@ -138,7 +138,7 @@ Page {
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
         for (var i in telepathyHelper.accountIds) {
-            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i], 
+            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
                                                                  HistoryThreadModel.MatchPhoneNumber)
@@ -246,7 +246,7 @@ Page {
 
     head.sections.model: {
         // does not show dual sim switch if there is only one sim
-        if (telepathyHelper.accounts.length <= 1) {
+        if (!multipleAccounts) {
             return undefined
         }
 
@@ -256,7 +256,7 @@ Page {
         }
         return accountNames
     }
-    head.sections.selectedIndex: Math.max(0, telepathyHelper.accountIds.indexOf(messages.accountId))
+    head.sections.selectedIndex: Math.max(0, telepathyHelper.accounts.indexOf(messages.account))
     Connections {
         target: messages.head.sections
         onSelectedIndexChanged: {
