@@ -31,8 +31,8 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property QtObject account: telepathyHelper.accounts[0]
-    property bool multipleAccounts: telepathyHelper.accounts.length > 1
+    property QtObject account: (telepathyHelper.accounts ? telepathyHelper.accounts[0] : null)
+    property bool multipleAccounts: (account && telepathyHelper.accounts.length > 1)
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -256,12 +256,10 @@ Page {
         }
         return accountNames
     }
-    head.sections.selectedIndex: Math.max(0, telepathyHelper.accounts.indexOf(messages.account))
+    head.sections.selectedIndex: multipleAccounts ? Math.max(0, telepathyHelper.accounts.indexOf(messages.account)) : 0
     Connections {
         target: messages.head.sections
-        onSelectedIndexChanged: {
-            messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
-        }
+        onSelectedIndexChanged: messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
     }
 
     Component {

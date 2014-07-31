@@ -26,6 +26,7 @@ MMSBase {
     property var attachment
     property bool incoming
     property string previewer: "MMS/PreviewerVideo.qml"
+
     anchors.left: parent.left
     anchors.right: parent.right
     state: incoming ? "incoming" : "outgoing"
