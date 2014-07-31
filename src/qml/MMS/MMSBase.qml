@@ -25,8 +25,10 @@ ListItemWithActions {
     property var attachment
     property bool parentSelected: false
     property bool incoming
+    property bool showInfo: false
 
     signal itemRemoved()
+    signal attachmentClicked()
 
     leftSideAction: Action {
         iconName: "delete"

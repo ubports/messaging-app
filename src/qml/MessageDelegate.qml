@@ -38,7 +38,11 @@ Item {
     property string accountLabel: ""
     property bool selectionMode: false
     property bool selected: false
-
+    property bool inProgress: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                               textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
+    property bool failed: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+    property int visibleAttachments: 0
+ 
     signal resend()
     signal itemPressAndHold(QtObject obj)
     signal itemClicked(QtObject obj)
@@ -49,6 +53,60 @@ Item {
     }
     height: attachments.height + bubbleItem.height
 
+    Component {
+        id: statusIcon
+        Item {
+            height: units.gu(4)
+            width: units.gu(4)
+            visible: !incoming && !messageDelegate.selectionMode
+            ActivityIndicator {
+                id: indicator
+
+                anchors.centerIn: parent
+                height: units.gu(2)
+                width: units.gu(2)
+                visible: running && !selectionMode
+                // if temporarily failed or unknown status, then show the spinner
+                running: inProgress
+            }
+
+            Item {
+                id: retrybutton
+
+                anchors.fill: parent
+                Icon {
+                    id: icon
+
+                    name: "reload"
+                    color: "red"
+                    height: units.gu(2)
+                    width: units.gu(2)
+                    anchors {
+                        centerIn: parent
+                        verticalCenterOffset: units.gu(-1)
+                    }
+                }
+
+                Label {
+                    text: i18n.tr("Failed!")
+                    fontSize: "small"
+                    color: "red"
+                    anchors {
+                        horizontalCenter: retrybutton.horizontalCenter
+                        top: icon.bottom
+                    }
+                }
+                visible: failed
+                MouseArea {
+                    id: retrybuttonMouseArea
+
+                    anchors.fill: parent
+                    onClicked: messageDelegate.resend()
+                }
+            }
+        }
+    }
+
     Column {
         id: attachments
         anchors {
@@ -57,7 +115,6 @@ Item {
             right: parent.right
         }
         height: childrenRect.height
-
         Repeater {
             id: attachmentsRepeater
 
@@ -97,13 +154,12 @@ Item {
                 Connections {
                     target: item
                     onItemRemoved: {
-                        console.log("attachment removed: " + modelData.attachmentId)
-                        if (textMessageAttachments.length == 1) {
+                        eventModel.removeEventAttachment(accountId, threadId, eventId, type, modelData.attachmentId)
+                        if (visibleAttachments == 1 && mmsText === "") {
                             // this is the last attachment. remove the whole event
                             eventModel.removeEvent(accountId, threadId, eventId, type)
                             return
                         }
-                        eventModel.removeEventAttachment(accountId, threadId, eventId, type, modelData.attachmentId)
                     }
                 }
                 Connections {
@@ -120,7 +176,7 @@ Item {
                 }
                 Connections {
                     target: item
-                    onItemClicked: {
+                    onAttachmentClicked: {
                         if (item.previewer === "") {
                             activeAttachment = modelData
                             PopupUtils.open(popoverSaveAttachmentComponent, item)
@@ -149,15 +205,19 @@ Item {
             iconName: "delete"
             text: i18n.tr("Delete")
             onTriggered: {
+                // if there are no attachments, remove the whole message
+                if (visibleAttachments == 0) {
+                    eventModel.removeEvent(accountId, threadId, eventId, type)
+                    return
+                }
                 // check if this is an mms text and we have more attachments
-                if (mmsText !== "" && textMessageAttachments.length > 1) {
+                if (mmsText !== "" && visibleAttachments > 1) {
                     // remove only the text attachment if we have more attachments
                     eventModel.removeEventAttachment(accountId, threadId, eventId, type, mmsTextId)
                     mmsText = ""
                     mmsTextId = ""
                     return
                 }
-                eventModel.removeEvent(accountId, threadId, eventId, type)
             }
         }
 
@@ -181,64 +241,15 @@ Item {
             messageTimeStamp: timestamp
             messageStatus: textMessageStatus
         }
-    }
 
-    Item {
-        id: statusIcon
-
-        property var itemToAnchor: bubble.height > 0 ? bubble : attachmentsRepeater.itemAt(attachmentsRepeater.count - 1)
-
-        height: units.gu(4)
-        width: units.gu(4)
-        x: itemToAnchor ? (parent.width - itemToAnchor.width) - width - units.gu(3) : 0
-        y: itemToAnchor ? (parent.height - itemToAnchor.height - units.gu(3)) + (itemToAnchor.height / 2) : 0
-        visible: !incoming && !messageDelegate.selectionMode
-
-        ActivityIndicator {
-            id: indicator
-
-            anchors.centerIn: parent
-            height: units.gu(2)
-            width: units.gu(2)
-            visible: running && !selectionMode
-            // if temporarily failed or unknown status, then show the spinner
-            running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
-        }
-
-        Item {
-            id: retrybutton
-
-            anchors.fill: parent
-            Icon {
-                id: icon
-
-                name: "reload"
-                color: "red"
-                height: units.gu(2)
-                width: units.gu(2)
-                anchors {
-                    centerIn: parent
-                    verticalCenterOffset: units.gu(-1)
-                }
-            }
-
-            Label {
-                text: i18n.tr("Failed!")
-                fontSize: "small"
-                color: "red"
-                anchors {
-                    horizontalCenter: retrybutton.horizontalCenter
-                    top: icon.bottom
-                }
-            }
-            visible: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
-            MouseArea {
-                id: retrybuttonMouseArea
-
-                anchors.fill: parent
-                onClicked: messageDelegate.resend()
-            }
+        Loader {
+            id: statusIconLoader
+            active: !incoming && !messageDelegate.selectionMode && bubble.visible && (inProgress || failed)
+            sourceComponent: statusIcon
+            anchors.right: bubble.left
+            anchors.rightMargin: units.gu(1)
+            anchors.verticalCenter: bubble.verticalCenter
         }
     }
+
 }

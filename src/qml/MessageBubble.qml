@@ -87,7 +87,7 @@ BorderImage {
         id: textLabel
 
         anchors {
-            top: senderName.bottom
+            top: sender == "" ? parent.top : senderName.bottom
             topMargin: units.gu(1)
             left: parent.left
             leftMargin: incoming ? units.gu(2) : units.gu(1)
@@ -108,14 +108,14 @@ BorderImage {
 
         anchors{
             top: textLabel.bottom
-            topMargin: units.gu(1)
-            left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
+            topMargin: units.gu(0.5)
+            right: parent.right
+            rightMargin: !incoming ? units.gu(2) : units.gu(1)
         }
 
         visible: !root.sending
         height: visible ? paintedHeight : 0
-        fontSize: "x-small"
+        fontSize: "xx-small"
         color: root.incoming ? UbuntuColors.lightGrey : "white"
         opacity: root.incoming ? 1.0 : 0.8
         text: Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
