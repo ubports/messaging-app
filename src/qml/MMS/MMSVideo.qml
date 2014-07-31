@@ -23,43 +23,12 @@ import ".."
 
 MMSBase {
     id: videoDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: "MMS/PreviewerVideo.qml"
 
+    previewer: "MMS/PreviewerVideo.qml"
     anchors.left: parent.left
     anchors.right: parent.right
-    state: incoming ? "incoming" : "outgoing"
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
     height: bubble.height + units.gu(1)
-    clip: true
+
     Item {
         id: bubble
         anchors.top: parent.top
@@ -96,10 +65,6 @@ MMSBase {
             source: video
             anchors.centerIn: parent
             anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
-            MouseArea {
-                anchors.fill: parent
-                onClicked: attachmentClicked()
-            }
         }
 
         Rectangle {

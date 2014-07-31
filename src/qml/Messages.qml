@@ -680,7 +680,7 @@ Page {
 
     Item {
         id: bottomPanel
-        anchors.bottom: parent.bottom
+        anchors.bottom: keyboard.top
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
@@ -949,6 +949,10 @@ Page {
                 textEntry.text = ""
             }
         }
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     Scrollbar {

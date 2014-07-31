@@ -18,13 +18,11 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1
-import ".."
 
 MMSBase {
     id: imageDelegate
-    property string previewer: "MMS/PreviewerImage.qml"
 
+    previewer: "MMS/PreviewerImage.qml"
     height: imageAttachment.height
     width: imageAttachment.width
 

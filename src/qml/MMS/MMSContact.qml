@@ -18,32 +18,28 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import ".."
+import Ubuntu.Contacts 0.1
 
 MMSBase {
     id: vcardDelegate
-    property string previewer: "MMS/PreviewerContact.qml"
 
+    previewer: "MMS/PreviewerContact.qml"
     height: bubble.height + units.gu(2)
 
     Item {
         id: bubble
         anchors.top: parent.top
-        width: image.width + units.gu(4)
-        height: image.height + units.gu(2)
-        Icon {
-            id: image
+        width: avatar.width
+        height: avatar.height
+        ContactAvatar {
+            id: avatar
+
+            fallbackAvatarUrl: "image://theme/contact"
+            fallbackDisplayName: contactName.name
+            anchors.centerIn: parent
             height: units.gu(6)
             width: units.gu(6)
-            name: "contact"
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
         }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: attachmentClicked()
-        }
-
     }
     Label {
         id: contactName
@@ -51,13 +47,10 @@ MMSBase {
         anchors.bottom: bubble.bottom
         anchors.left: incoming ? bubble.right : undefined
         anchors.right: !incoming ? bubble.left : undefined
+        anchors.rightMargin: !incoming ? units.gu(1) : undefined
+        anchors.leftMargin: incoming ? units.gu(1) : undefined
         text: name !== "" ? name : i18n.tr("Unknown contact")
         height: paintedHeight
         width: paintedWidth
-        MouseArea {
-            anchors.fill: parent
-            onClicked: attachmentClicked()
-        }
-
     }
 }

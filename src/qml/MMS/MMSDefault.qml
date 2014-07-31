@@ -22,43 +22,10 @@ import ".."
 
 MMSBase {
     id: defaultDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: ""
-    property string textColor: incoming ? "#333333" : "#ffffff"
+
     anchors.left: parent.left
     anchors.right: parent.right
-    state: incoming ? "incoming" : "outgoing"
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
     height: bubble.height + units.gu(1)
-    clip: true
     Item {
         id: bubble
         anchors.top: parent.top
