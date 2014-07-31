@@ -11,7 +11,7 @@ find_program(XVFB_RUN_BIN
 macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
     add_test(NAME ${TST_NAME}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${qml_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
+        COMMAND env QT_QPA_PLUGIN=minimal ${QMLTESTRUNNER_BIN} -import ${qml_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
     )
 endmacro()
 

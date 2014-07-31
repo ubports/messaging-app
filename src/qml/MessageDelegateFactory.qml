@@ -111,10 +111,14 @@ ListItemWithActions {
 
         height: units.gu(4)
         width: units.gu(4)
-        x:  _lastItem ? (parent.width - _lastItem.width) - width  - units.gu(3) : 0
-        y: _lastItem ? (parent.height - _lastItem.height) + ((_lastItem.height - units.gu(4)) / 2) : 0
-        visible: !incoming && !selectionMode
+        parent: _lastItem
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: parent.left
+            rightMargin: units.gu(2)
+        }
 
+        visible: !incoming && !selectionMode
         ActivityIndicator {
             id: indicator
 

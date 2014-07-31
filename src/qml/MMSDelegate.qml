@@ -18,13 +18,6 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.History 0.1
-import Ubuntu.Telephony 0.1
-import Ubuntu.Content 0.1
-import Ubuntu.Contacts 0.1
-
-import "dateUtils.js" as DateUtils
 
 MessageDelegate {
     id: root
@@ -55,7 +48,7 @@ MessageDelegate {
             var attachment = []
             var item = textMessageAttachments[i]
             // we dont include smil files. they will be auto generated
-            if (item.contentType.toLowerCase() == "application/smil") {
+            if (item.contentType.toLowerCase() === "application/smil") {
                 continue
             }
             attachment.push(item.attachmentId)
@@ -87,18 +80,18 @@ MessageDelegate {
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
             } else if (startsWith(attachment.contentType, "video/")) {
-// TODO: implement proper video attachment support
-//                dataAttachments.push({type: "video",
-//                                  data: attachment,
-//                                  delegateSource: "MMS/MMSVideo.qml",
-//                                 })
+                        // TODO: implement proper video attachment support
+                        //                dataAttachments.push({type: "video",
+                        //                                  data: attachment,
+                        //                                  delegateSource: "MMS/MMSVideo.qml",
+                        //                                 })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
-// TODO: implement support for this kind of attachment
-//                dataAttachments.push({type: "application",
-//                                  data: attachment,
-//                                  delegateSource: "",
-//                                 })
+                        // TODO: implement support for this kind of attachment
+                        //                dataAttachments.push({type: "application",
+                        //                                  data: attachment,
+                        //                                  delegateSource: "",
+                        //                                 })
             } else if (startsWith(attachment.contentType, "text/vcard") ||
                        startsWith(attachment.contentType, "text/x-vcard")) {
                 dataAttachments.push({"type": "vcard",
@@ -166,30 +159,8 @@ MessageDelegate {
                     if (status === Loader.Ready) {
                         attachmentLoader.item.incoming = root.incoming
                         attachmentLoader.item.attachment = modelData.data
-                        if (index === (attachmentsRepeater.count -1)) {
-                            root._lastItem = attachmentLoader.item
-                        }
                     }
                 }
-//                Connections {
-//                    target: status === Loader.Ready ? item : null
-//                    onItemRemoved: {
-//                        if (root.attachments.length === 1) {
-//                            // this is the last attachment. remove the whole event
-//                            eventModel.removeEvent(accountId, threadId, eventId, type)
-//                        } else {
-//                            eventModel.removeEventAttachment(accountId, threadId, eventId, type, modelData.attachmentId)
-//                        }
-//                    }
-//                }
-//                Connections {
-//                    target: item
-//                    onItemClicked: {
-//                        var properties = {}
-//                        properties["attachment"] = item.attachment
-//                        mainStack.push(Qt.resolvedUrl(item.previewer), properties)
-//                    }
-//                }
             }
         }
 

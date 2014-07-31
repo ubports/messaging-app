@@ -65,7 +65,7 @@ BorderImage {
 
     onIncomingChanged: source = selectBubble()
     source: selectBubble()
-    height: childrenRect.height + units.gu(2)
+    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
     width:  Math.min(units.gu(27),
                      Math.max(textLabel.text.length, textTimestamp.text.length) * units.gu(1))
             + border.left + border.right
@@ -108,7 +108,7 @@ BorderImage {
 
         anchors{
             top: textLabel.bottom
-            topMargin: units.gu(0.5)
+            topMargin: units.gu(1)
             left: parent.left
             leftMargin: incoming ? units.gu(2) : units.gu(1)
         }
