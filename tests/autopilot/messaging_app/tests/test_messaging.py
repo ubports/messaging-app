@@ -333,6 +333,10 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
 
         self.main_view.enable_messages_selection_mode()
         messages_page.select_messages(1, 2)
+
+        # Wait a few seconds before clicking the header
+        # to make sure the OSD is already gone
+        time.sleep(5)
         self.main_view.click_messages_header_delete()
 
         remaining_messages = messages_page.get_messages()
