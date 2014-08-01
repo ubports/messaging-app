@@ -85,6 +85,7 @@ BorderImage {
 
     Label {
         id: textLabel
+        objectName: "messageText"
 
         anchors {
             top: sender == "" ? parent.top : senderName.bottom
@@ -105,6 +106,7 @@ BorderImage {
 
     Label {
         id: textTimestamp
+        objectName: "messageDate"
 
         anchors{
             top: textLabel.bottom

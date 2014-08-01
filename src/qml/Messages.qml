@@ -274,6 +274,7 @@ Page {
             autoUpdate: false
             filterTerm: multiRecipient.searchString
             showSections: false
+            autoHideKeyboard: false
 
             states: [
                 State {
@@ -403,6 +404,7 @@ Page {
     Loader {
         active: multiRecipient.searchString !== "" && multiRecipient.focus
         sourceComponent: contactSearchComponent
+        clip: true
         anchors {
             top: parent.top
             left: parent.left
@@ -619,6 +621,12 @@ Page {
             right: parent.right
             bottom: bottomPanel.top
         }
+        // fake bottomMargin
+        header: Item {
+            height: units.gu(1)
+        }
+
+        spacing: units.gu(1)
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false
@@ -855,7 +863,8 @@ Page {
                 anchors.top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: units.gu(4)
+                // this value is to avoid letter being cut off
+                height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
                 autoSize: true
                 maximumLineCount: 0
@@ -889,7 +898,7 @@ Page {
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
             text: "Send"
-            color: "green"
+            color: enabled ? "#38b44a" : "#b2b2b2"
             width: units.gu(7)
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
