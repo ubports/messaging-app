@@ -88,6 +88,11 @@ Page {
             Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
         }
+        onAddDetailClicked: {
+            // FIXME: the extra space at the end is needed so contacts-app opens the right view
+            Qt.openUrlExternally("addressbook:///addphone?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId) + "&phone= ")
+            mainStack.pop()
+        }
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
