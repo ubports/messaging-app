@@ -80,10 +80,7 @@ class MainView(toolkit_emulators.MainView):
 
     def go_back(self):
         """Click back button from toolbar on messages page"""
-
-        button = self.wait_select_single("PageHeadButton",
-                                         objectName="customBackButton")
-        self.pointing_device.click_object(button)
+        self.get_header().click_custom_back_button()
 
     def click_header_action(self, action):
         """Click the action 'action' on the header"""
@@ -459,7 +456,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def get_messages_count(self):
         """Return the number of meesages."""
-        return self.select_single(
+        return self.wait_select_single(
             'MultipleSelectionListView', objectName='messageList').count
 
     @autopilot_logging.log_action(logger.info)
