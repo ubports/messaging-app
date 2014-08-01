@@ -111,9 +111,17 @@ ListItemWithActions {
     ContactAvatar {
         id: avatar
 
-        fallbackAvatarUrl: delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
+        fallbackAvatarUrl: {
+            if (groupChat) {
+                return "image://theme/contact-group"
+            } else if (delegateHelper.avatar !== "") {
+                return delegateHelper.avatar
+            } else {
+                return "image://theme/contact"
+            }
+        }
         fallbackDisplayName: delegateHelper.alias
-        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
+        showAvatarPicture: groupChat || (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
             left: parent.left
             top: parent.top
@@ -144,7 +152,7 @@ ListItemWithActions {
         fontSize: "x-small"
         text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
     }
- 
+
     UbuntuShape {
         id: unreadCountIndicator
         height: units.gu(2)
