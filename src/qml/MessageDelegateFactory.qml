@@ -84,7 +84,7 @@ ListItemWithActions {
     height: loader.height + units.gu(2) //margin
 
     onItemClicked: {
-        if (loader.status === Loader.Ready) {
+        if (!selectionMode && (loader.status === Loader.Ready)) {
             loader.item.clicked(mouse)
         }
     }

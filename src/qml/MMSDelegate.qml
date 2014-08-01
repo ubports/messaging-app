@@ -27,10 +27,6 @@ MessageDelegate {
 
     function clicked(mouse)
     {
-        if (selectionMode) {
-            return
-        }
-
         var childPoint = root.mapToItem(attachmentsView, mouse.x, mouse.y)
         var attachment = attachmentsView.childAt(childPoint.x, childPoint.y)
         if (attachment && attachment.item && attachment.item.previewer) {
