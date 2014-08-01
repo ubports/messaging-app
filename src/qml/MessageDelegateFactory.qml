@@ -27,6 +27,7 @@ ListItemWithActions {
     property bool incoming: false
     property string accountLabel: ""
     property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
+    property list<Action> _availableActions
 
     signal deleteMessage()
     signal resendMessage()
@@ -46,19 +47,39 @@ ListItemWithActions {
         onTriggered: deleteMessage()
     }
 
-    rightSideActions: [
-// TODO: implement message info view
-//        Action {
-//            iconName: "info"
-//            text: i18n.tr("Info")
-//            onTriggered: showMessageDetails()
-//        },
+    // WORKAROUND: to filter actions on rightSideActions property based on message status
+    _availableActions: [
         Action {
+            id: reloadAction
+
+            iconName: "reload"
+            text: i18n.tr("Retry")
+            onTriggered: resendMessage()
+        },
+        Action {
+            id: copyAction
+
             iconName: "edit-copy"
             text: i18n.tr("Copy")
             onTriggered: copyMessage()
         }
     ]
+
+    rightSideActions: {
+        var actions = []
+        if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
+            actions.push(reloadAction)
+        }
+        actions.push(copyAction)
+        return actions
+
+        // TODO: implement message info view
+        //        Action {
+        //            iconName: "info"
+        //            text: i18n.tr("Info")
+        //            onTriggered: showMessageDetails()
+        //        },
+    }
 
     height: loader.height + units.gu(2) //margin
 
@@ -118,7 +139,7 @@ ListItemWithActions {
             rightMargin: units.gu(2)
         }
 
-        visible: !incoming && !selectionMode
+        visible: !incoming && !selectionMode && !root.swipping && (root.swipeState === "Normal")
         ActivityIndicator {
             id: indicator
 
