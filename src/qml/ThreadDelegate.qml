@@ -135,6 +135,7 @@ ListItemWithActions {
         id: contactName
         anchors {
             top: avatar.top
+            topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
         }
