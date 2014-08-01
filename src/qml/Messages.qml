@@ -103,7 +103,7 @@ Page {
 
     title: {
         if (selectionMode) {
-            return i18n.tr("Edit")
+            return i18n.tr(" ")
         }
 
         if (landscape) {
