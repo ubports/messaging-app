@@ -139,20 +139,30 @@ ListItemWithActions {
             left: avatar.right
             leftMargin: units.gu(1)
         }
-        fontSize: "medium"
         color: UbuntuColors.lightAubergine
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
-    Label {
+    Row {
         id: time
+
         anchors {
             verticalCenter: contactName.verticalCenter
             right: parent.right
         }
-        fontSize: "x-small"
-        text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
+        Label {
+            fontSize: "x-small"
+            font.weight: Font.DemiBold
+            opacity: 0.70
+            text: Qt.formatDateTime(eventTimestamp,"h:mm")
+        }
+        Label {
+            fontSize: "x-small"
+            opacity: 0.70
+            text: Qt.formatDateTime(eventTimestamp," ap")
+        }
     }
+
 
     UbuntuShape {
         id: unreadCountIndicator
@@ -190,20 +200,18 @@ ListItemWithActions {
 
     Label {
         id: latestMessage
-        height: units.gu(3)
+
         anchors {
             top: contactName.bottom
             topMargin: units.gu(0.5)
             left: contactName.left
             right: time.left
             rightMargin: units.gu(3)
+            bottom: avatar.bottom
         }
         elide: Text.ElideRight
-        maximumLineCount: 2
         fontSize: "x-small"
-        wrapMode: Text.WordWrap
         text: textMessage
-        font.weight: Font.Light
     }
 
     Item {
