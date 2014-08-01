@@ -119,7 +119,7 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
-                return i18n.tr("Group (%1 members)").arg(participants.length)
+                return i18n.tr("Group (%1)").arg(participants.length)
             }
         }
         return i18n.tr("New Message")
