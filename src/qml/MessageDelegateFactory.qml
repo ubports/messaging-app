@@ -135,11 +135,12 @@ ListItemWithActions {
         parent: _lastItem
         anchors {
             verticalCenter: parent.verticalCenter
+            verticalCenterOffset: unit.gu(1)
             right: parent.left
             rightMargin: units.gu(2)
         }
 
-        visible: !incoming && !selectionMode && !root.swipping && (root.swipeState === "Normal")
+        visible: !incoming && !selectionMode
         ActivityIndicator {
             id: indicator
 
