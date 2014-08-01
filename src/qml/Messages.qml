@@ -292,7 +292,7 @@ Page {
                 topMargin: units.gu(1)
                 left: parent.left
                 right: parent.right
-                bottom: bottomPanel.top
+                bottom: parent.bottom
             }
 
             Behavior on height {
@@ -357,7 +357,7 @@ Page {
                                     }
                                     height: units.gu(2)
                                     text: {
-                                        // this is necessary to keep the string in the original format
+                                        // this is necessary to keep the string in the original foverdrawormat
                                         var originalText = contact.displayLabel.label
                                         var lowerSearchText =  multiRecipient.searchString.toLowerCase()
                                         var lowerText = originalText.toLowerCase()
@@ -402,16 +402,21 @@ Page {
     }
 
     Loader {
-        active: multiRecipient.searchString !== "" && multiRecipient.focus
-        sourceComponent: contactSearchComponent
+        id: searchListView
+
+        property int resultCount: (status === Loader.Ready) ? item.view.count : 0
+
+        sourceComponent: (multiRecipient.searchString !== "") && multiRecipient.focus ? contactSearchComponent : null
         clip: true
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
+            bottom: keyboard.top
         }
         z: 1
+        // WORKAROUND: we need to use opacity here visible FALSE cause the item to not load
+        opacity: (status === Loader.Ready) && (searchListView.resultCount > 0) ? 1.0 : 0.0
     }
 
     ContactWatcher {
@@ -692,7 +697,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
-        visible: !selectionMode
+        visible: !selectionMode && (searchListView.opacity === 0.0)
         clip: true
 
         Behavior on height {
