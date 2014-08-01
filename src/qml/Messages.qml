@@ -275,18 +275,6 @@ Page {
             filterTerm: multiRecipient.searchString
             showSections: false
             autoHideKeyboard: false
-
-            states: [
-                State {
-                    name: "empty"
-                    when: contactSearch.count === 0
-                    PropertyChanges {
-                        target: contactSearch
-                        height: 0
-                    }
-                }
-            ]
-
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
@@ -294,11 +282,6 @@ Page {
                 right: parent.right
                 bottom: parent.bottom
             }
-
-            Behavior on height {
-                UbuntuNumberAnimation { }
-            }
-
             InvalidFilter {
                 id: invalidFilter
             }
@@ -402,8 +385,6 @@ Page {
     }
 
     Loader {
-        id: searchListView
-
         property int resultCount: (status === Loader.Ready) ? item.view.count : 0
 
         sourceComponent: (multiRecipient.searchString !== "") && multiRecipient.focus ? contactSearchComponent : null
@@ -412,11 +393,19 @@ Page {
             top: parent.top
             left: parent.left
             right: parent.right
-            bottom: keyboard.top
         }
+        height: resultCount > 0 ? parent.height - keyboard.height : 0
         z: 1
         // WORKAROUND: we need to use opacity here visible FALSE cause the item to not load
-        opacity: (status === Loader.Ready) && (searchListView.resultCount > 0) ? 1.0 : 0.0
+        opacity: height > 0 ? 1.0 : 0.0
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: Theme.palette.normal.background
+        }
     }
 
     ContactWatcher {
@@ -697,7 +686,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
-        visible: !selectionMode && (searchListView.opacity === 0.0)
+        visible: !selectionMode
         clip: true
 
         Behavior on height {
@@ -872,7 +861,7 @@ Page {
                 height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
                 autoSize: true
-                maximumLineCount: 0
+                maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
