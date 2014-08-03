@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-31 15:57+0000\n"
+"PO-Revision-Date: 2014-08-02 15:57+0000\n"
 "Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-01 07:13+0000\n"
-"X-Generator: Launchpad (build 17141)\n"
+"X-Launchpad-Export-Date: 2014-08-03 06:13+0000\n"
+"X-Generator: Launchpad (build 17147)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -49,7 +49,7 @@ msgstr "Додај"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr "Додај у адресар..."
+msgstr "Додај у именик..."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
@@ -61,7 +61,7 @@ msgstr "Придодај постојећем"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "Придодај постојећој особи у адресару"
+msgstr "Придодај постојећој особи у именику"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
@@ -86,7 +86,7 @@ msgstr "Умножи"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "Додај у адресар"
+msgstr "Додај нову особу у именик"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
@@ -94,7 +94,7 @@ msgstr "Уреди"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr "Неуспело"
+msgstr "Неуспешно"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
@@ -114,44 +114,44 @@ msgstr "Ново ћаскање"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr ""
+msgstr "Нова порука"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "Сачувај"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr ""
+msgstr "Сачувај у именик"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr ""
+msgstr "Изабери"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "Шаље..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "Подели"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr ""
+msgstr "Данас"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "Покушај поново"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Преглед видеа"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr ""
+msgstr "Напиши поруку..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr ""
+msgstr "Јуче"
