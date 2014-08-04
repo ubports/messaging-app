@@ -125,6 +125,14 @@ ListItemWithActions {
                 setSource(Qt.resolvedUrl("SMSDelegate.qml"), initialProperties)
             }
         }
+
+        // keep binding of dynamic properties
+        Binding {
+            target: (loader.status == Loader.Ready) ? loader.item : null
+            property: "messageStatus"
+            value: textMessageStatus
+            when: (loader.status == Loader.Ready)
+        }
     }
 
     Item {

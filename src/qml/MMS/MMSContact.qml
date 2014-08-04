@@ -19,38 +19,68 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Contacts 0.1
+import Ubuntu.History 0.1
 
 MMSBase {
     id: vcardDelegate
 
-    previewer: "MMS/PreviewerContact.qml"
-    height: bubble.height + units.gu(2)
+    readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+    readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
 
-    Item {
+    previewer: "MMS/PreviewerContact.qml"
+    height: bubble.height
+    width: bubble.width
+
+    Rectangle {
         id: bubble
-        anchors.top: parent.top
-        width: avatar.width
-        height: avatar.height
+
+        width: avatar.width + contactName.width + units.gu(3)
+        height: avatar.height + units.gu(2)
+        color: {
+            if (error) {
+                return "#fc4949"
+            } else if (sending) {
+                return "#b2b2b2"
+            } else if (incoming) {
+                return "#ffffff"
+            } else {
+                return "#3fb24f"
+            }
+        }
+        radius: width * 0.05
+
         ContactAvatar {
             id: avatar
 
+            anchors {
+                top: parent.top
+                topMargin: units.gu(1)
+                left: parent.left
+                leftMargin: units.gu(1)
+            }
             fallbackAvatarUrl: "image://theme/contact"
             fallbackDisplayName: contactName.name
-            anchors.centerIn: parent
             height: units.gu(6)
             width: units.gu(6)
         }
-    }
-    Label {
-        id: contactName
-        property string name: application.contactNameFromVCard(attachment.filePath)
-        anchors.bottom: bubble.bottom
-        anchors.left: incoming ? bubble.right : undefined
-        anchors.right: !incoming ? bubble.left : undefined
-        anchors.rightMargin: !incoming ? units.gu(1) : undefined
-        anchors.leftMargin: incoming ? units.gu(1) : undefined
-        text: name !== "" ? name : i18n.tr("Unknown contact")
-        height: paintedHeight
-        width: paintedWidth
+
+        Label {
+            id: contactName
+
+            property string name: application.contactNameFromVCard(attachment.filePath)
+
+            anchors {
+                top: avatar.top
+                left: avatar.right
+                leftMargin: units.gu(1)
+            }
+
+            text: name !== "" ? name : i18n.tr("Unknown contact")
+            height: paintedHeight
+            width: paintedWidth
+            color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "white"
+        }
+
     }
 }

@@ -28,10 +28,7 @@ MMSBase {
 
     UbuntuShape {
         id: bubble
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-        }
+        anchors.top: parent.top
         width: image.width
         height: image.height
 
