@@ -46,11 +46,25 @@ MessageDelegate {
     MessageBubble {
         id: bubble
 
-        anchors {
-            top: parent.top
-            left: incoming ? parent.left : undefined
-            right: incoming ? undefined : parent.right
-        }
+        states: [
+            State {
+                name: "incoming"
+                when: incoming
+                AnchorChanges {
+                    target: bubble
+                    anchors.left: parent.left
+                }
+            },
+            State {
+                name: "outgoing"
+                when: !incoming
+                AnchorChanges {
+                    target: bubble
+                    anchors.right: parent.right
+                }
+            }
+
+        ]
         visible: (root.text !== "")
         incoming: root.incoming
         messageText: root.text

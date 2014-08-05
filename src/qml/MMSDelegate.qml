@@ -128,7 +128,6 @@ MessageDelegate {
                         AnchorChanges {
                             target: attachmentLoader
                             anchors.left: parent.left
-                            anchors.right: undefined
                         }
                         PropertyChanges {
                             target: attachmentLoader
@@ -141,7 +140,6 @@ MessageDelegate {
                         name: "outgoing"
                         AnchorChanges {
                             target: attachmentLoader
-                            anchors.left: undefined
                             anchors.right: parent.right
                         }
                         PropertyChanges {
@@ -159,6 +157,8 @@ MessageDelegate {
                     if (status === Loader.Ready) {
                         attachmentLoader.item.incoming = root.incoming
                         attachmentLoader.item.attachment = modelData.data
+                        attachmentLoader.item.timestamp = root.timestamp
+                        attachmentLoader.item.lastItem = (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
                     }
                 }
             }
@@ -168,10 +168,24 @@ MessageDelegate {
         MessageBubble {
             id: bubble
 
-            anchors {
-                left: root.incoming ? parent.left : undefined
-                right: root.incoming ? undefined : parent.right
-            }
+            states: [
+                State {
+                    when: root.incoming
+                    name: "incoming"
+                    AnchorChanges {
+                        target: bubble
+                        anchors.left: parent.left
+                    }
+                },
+                State {
+                    name: "outgoing"
+                    when: !root.incoming
+                    AnchorChanges {
+                        target: bubble
+                        anchors.right: parent.right
+                    }
+                }
+            ]
             visible: (root.textAttachements.length > 0)
             messageText: visible ? application.readTextFile(root.textAttachements[0].filePath) : ""
             messageTimeStamp: timestamp

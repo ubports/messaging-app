@@ -31,7 +31,7 @@ BorderImage {
     property alias sender: senderName.text
     property string messageText
     property var messageTimeStamp
-    property int maxDelegateWidth: units.gu(30)
+    property int maxDelegateWidth: units.gu(27)
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||

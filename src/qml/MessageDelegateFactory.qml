@@ -35,12 +35,7 @@ ListItemWithActions {
     signal showMessageDetails()
 
     triggerActionOnMouseRelease: true
-
-    anchors {
-        left: parent ? parent.left : undefined
-        right: parent ? parent.right: undefined
-    }
-
+    width: messageList.width
     leftSideAction: Action {
         iconName: "delete"
         text: i18n.tr("Delete")
@@ -81,7 +76,11 @@ ListItemWithActions {
         //        },
     }
 
-    height: loader.height + units.gu(2) //margin
+    height: loader.height
+    internalAnchors {
+        topMargin: 0
+        bottomMargin: 0
+    }
 
     onItemClicked: {
         if (!selectionMode && (loader.status === Loader.Ready)) {

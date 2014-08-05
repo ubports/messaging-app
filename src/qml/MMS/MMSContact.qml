@@ -48,7 +48,7 @@ MMSBase {
                 return "#3fb24f"
             }
         }
-        radius: width * 0.05
+        radius: height * 0.1
 
         ContactAvatar {
             id: avatar
@@ -71,16 +71,16 @@ MMSBase {
             property string name: application.contactNameFromVCard(attachment.filePath)
 
             anchors {
-                top: avatar.top
+                verticalCenter: avatar.verticalCenter
                 left: avatar.right
                 leftMargin: units.gu(1)
             }
 
             text: name !== "" ? name : i18n.tr("Unknown contact")
+            elide: Text.ElideRight
             height: paintedHeight
-            width: paintedWidth
+            width: Math.min(units.gu(27) - avatar.width,  text.length * units.gu(1))
             color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "white"
         }
-
     }
 }

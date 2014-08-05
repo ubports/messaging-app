@@ -42,5 +42,32 @@ MMSBase {
             source: attachment.filePath
             visible: false
         }
+
+        Rectangle {
+            visible: imageDelegate.lastItem
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 1.0; color: "gray" }
+            }
+
+            anchors {
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+            height: units.gu(2)
+            radius: bubble.height * 0.1
+            Label {
+                anchors{
+                    left: parent.left
+                    bottom: parent.bottom
+                    leftMargin: incoming ? units.gu(2) : units.gu(1)
+                    bottomMargin: units.gu(0.5)
+                }
+                fontSize: "xx-small"
+                text: Qt.formatDateTime(timestamp, "hh:mm AP")
+                color: "white"
+            }
+        }
     }
 }

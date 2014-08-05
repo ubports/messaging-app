@@ -23,4 +23,6 @@ Item {
     property var attachment
     property string previewer
     property bool incoming: false
+    property bool lastItem: false
+    property string timestamp
 }

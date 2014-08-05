@@ -31,7 +31,6 @@ Item {
     property string text
     property var messageStatus
     property var timestamp
-
     property var _lastItem: messageDelegate
 
 
