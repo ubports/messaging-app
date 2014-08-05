@@ -141,8 +141,8 @@ ListItemWithActions {
         width: units.gu(4)
         parent: _lastItem
         anchors {
-            verticalCenter: parent.verticalCenter
-            right: parent.left
+            verticalCenter: parent ? parent.verticalCenter : undefined
+            right: parent ? parent.left : undefined
             rightMargin: units.gu(2)
         }
 

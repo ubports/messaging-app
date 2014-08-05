@@ -121,6 +121,7 @@ MessageDelegate {
 
             Loader {
                 id: attachmentLoader
+                asynchronous: true
                 states: [
                     State {
                         when: root.incoming

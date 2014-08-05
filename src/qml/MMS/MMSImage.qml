@@ -41,6 +41,7 @@ MMSBase {
             smooth: true
             source: attachment.filePath
             visible: false
+            asynchronous: true
         }
 
         Rectangle {

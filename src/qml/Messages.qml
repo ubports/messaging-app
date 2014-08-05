@@ -28,6 +28,8 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
+import "dateUtils.js" as DateUtils
+
 Page {
     id: messages
     objectName: "messagesPage"
@@ -624,31 +626,51 @@ Page {
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false
-        listDelegate: MessageDelegateFactory {
-            id: messageDelegate
-            objectName: "message%1".arg(index)
+        listDelegate: Column {
+            spacing: section.visible ? units.gu(1) : 0
 
-            incoming: senderId != "self"
-            // TODO: we have several items inside
-            selected: messageList.isSelected(messageDelegate)
-            selectionMode: messages.selectionMode
-            accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
-            // TODO: need select only the item
-            onItemClicked: {
-                if (messageList.isInSelectionMode) {
-                    if (!messageList.selectItem(messageDelegate)) {
-                        messageList.deselectItem(messageDelegate)
+            MessageDateSection {
+                id: section
+
+                property var previousDate: (index < (sortProxy.count-1)) ? sortProxy.get(index+1).timestamp : -1
+                property bool sameDate: (previousDate !== -1) ? DateUtils.areSameDay(timestamp, previousDate) : false
+
+                text: DateUtils.friendlyDay(timestamp)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(2)
+                    rightMargin: units.gu(2)
+                }
+                visible: !sameDate
+            }
+
+            MessageDelegateFactory {
+                id: messageDelegate
+                objectName: "message%1".arg(index)
+
+                incoming: senderId != "self"
+                // TODO: we have several items inside
+                selected: messageList.isSelected(messageDelegate)
+                selectionMode: messages.selectionMode
+                accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
+                // TODO: need select only the item
+                onItemClicked: {
+                    if (messageList.isInSelectionMode) {
+                        if (!messageList.selectItem(messageDelegate)) {
+                            messageList.deselectItem(messageDelegate)
+                        }
                     }
                 }
-            }
-            onItemPressAndHold: {
-                messageList.startSelection()
-                messageList.selectItem(messageDelegate)
-            }
+                onItemPressAndHold: {
+                    messageList.startSelection()
+                    messageList.selectItem(messageDelegate)
+                }
 
-            Component.onCompleted: {
-                if (newEvent) {
-                    messages.markMessageAsRead(accountId, threadId, eventId, type);
+                Component.onCompleted: {
+                    if (newEvent) {
+                        messages.markMessageAsRead(accountId, threadId, eventId, type);
+                    }
                 }
             }
         }
