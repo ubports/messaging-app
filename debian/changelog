@@ -1,3 +1,25 @@
+messaging-app (0.1+14.10.20140805-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Visual update. Added qtdeclarative5-ubuntu-history0.1 as a build
+    dependency (necessary for unit tests). Created a new MMS source dir
+    with files necessary for MMS visual. .
+
+  [ Tiago Salem Herrmann ]
+  * Visual update. Added qtdeclarative5-ubuntu-history0.1 as a build
+    dependency (necessary for unit tests). Created a new MMS source dir
+    with files necessary for MMS visual. .
+
+  [ Renato Araujo Oliveira Filho ]
+  * Visual update. Added qtdeclarative5-ubuntu-history0.1 as a build
+    dependency (necessary for unit tests). Created a new MMS source dir
+    with files necessary for MMS visual. .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 05 Aug 2014 12:50:37 +0000
+
 messaging-app (0.1+14.10.20140730-0ubuntu1) utopic; urgency=low
 
   [ CI bot ]

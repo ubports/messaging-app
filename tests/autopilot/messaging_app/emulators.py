@@ -510,8 +510,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):
 
     def confirm_removal(self):
-        deleteButton = self.wait_select_single(
-            'Icon', name='delete')
+        deleteButton = self.wait_select_single(name='delete')
         self.pointing_device.click_object(deleteButton)
 
     def swipe_to_delete(self):

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-17 15:19+0000\n"
-"Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
+"PO-Revision-Date: 2014-08-01 17:03+0000\n"
+"Last-Translator: Gio <gio.scino@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-08-02 06:39+0000\n"
+"X-Generator: Launchpad (build 17147)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -106,7 +106,7 @@ msgstr "Anteprima immagine"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr "Novva conversazione"
+msgstr "Nuova conversazione"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
