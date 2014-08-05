@@ -32,6 +32,7 @@ BorderImage {
     property string messageText
     property var messageTimeStamp
     property int maxDelegateWidth: units.gu(27)
+    property string accountName
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
@@ -120,6 +121,18 @@ BorderImage {
         fontSize: "xx-small"
         color: root.incoming ? UbuntuColors.lightGrey : "white"
         opacity: root.incoming ? 1.0 : 0.8
-        text: Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
+        text: {
+            var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
+            if (root.accountName.length === 0) {
+                return str
+            }
+
+            if (root.incoming) {
+                st +=  " to %1".arg(root.accountName)
+            } else {
+                str += " @ %1".arg(root.accountName)
+            }
+            return str
+        }
     }
 }

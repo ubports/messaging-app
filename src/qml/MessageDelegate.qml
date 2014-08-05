@@ -22,14 +22,12 @@ Item {
     id: messageDelegate
 
     property bool incoming
-    property string accountLabel
     property var attachments
     property string accountId
     property var threadId
     property var eventId
     property var type
     property string text
-    property var messageStatus
     property var timestamp
     property var _lastItem: messageDelegate
 

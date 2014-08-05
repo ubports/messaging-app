@@ -69,6 +69,7 @@ MessageDelegate {
         incoming: root.incoming
         messageText: root.text
         messageTimeStamp: root.timestamp
-        messageStatus: root.messageStatus
+        messageStatus: textMessageStatus
+        accountName: accountLabel
     }
 }

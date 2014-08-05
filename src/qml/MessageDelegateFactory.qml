@@ -25,7 +25,8 @@ ListItemWithActions {
     id: root
 
     property bool incoming: false
-    property string accountLabel: ""
+    property string accountLabel: telepathyHelper.accounts[accountId].displayName
+    onAccountLabelChanged: console.debug("new account label" + accountLabel)
     property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
     property list<Action> _availableActions
 
@@ -115,7 +116,6 @@ ListItemWithActions {
                 "eventId": eventId,
                 "type": type,
                 "text": textMessage,
-                "messageStatus": textMessageStatus,
                 "timestamp": timestamp
             }
             if (textMessageAttachments.length > 0) {
@@ -123,14 +123,6 @@ ListItemWithActions {
             } else {
                 setSource(Qt.resolvedUrl("SMSDelegate.qml"), initialProperties)
             }
-        }
-
-        // keep binding of dynamic properties
-        Binding {
-            target: (loader.status == Loader.Ready) ? loader.item : null
-            property: "messageStatus"
-            value: textMessageStatus
-            when: (loader.status == Loader.Ready)
         }
     }
 
