@@ -17,17 +17,20 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
-ListItem.Empty {
+ListItemWithActions {
     id: delegate
+
     property bool groupChat: participants.length > 1
     property string searchTerm
+    property string phoneNumber: delegateHelper.phoneNumber
+    property bool unknownContact: delegateHelper.isUnknown
+    property string threadId: model.threadId
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -40,10 +43,8 @@ ListItem.Empty {
             return firstRecipient + " +" + String(participants.length-1)
         return firstRecipient
     }
-    property string phoneNumber: delegateHelper.phoneNumber
-    property bool unknownContact: delegateHelper.isUnknown
+
     property bool selectionMode: false
-    property string threadId: model.threadId
     property string textMessage: {
         // check if this is an mms, if so, search for the actual text
         var imageCount = 0
@@ -81,7 +82,6 @@ ListItem.Empty {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
-    showDivider: false
     // WORKAROUND: history-service can't filter by contact names
     onSearchTermChanged: {
         var found = false
@@ -95,48 +95,15 @@ ListItem.Empty {
             found = true
         }
 
-        height = found ? units.gu(10) : 0
+        height = found ? units.gu(8) : 0
     }
 
-    // FIXME: the selected state should be handled by the UITK
-    Item {
-        id: selection
-
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-            right: parent.right
-        }
-        width: visible ? units.gu(6) : 0
-        opacity: selectionMode ? 1.0 : 0.0
-        visible: opacity > 0.0
-
-        Behavior on width {
-            UbuntuNumberAnimation { }
-        }
-
-        Behavior on opacity {
-            UbuntuNumberAnimation { }
-        }
-
-        Rectangle {
-            id: selectionIndicator
-            anchors.fill: parent
-            color: "black"
-            opacity: 0.2
-        }
-
-        Icon {
-            anchors.centerIn: selectionIndicator
-            name: "select"
-            height: units.gu(3)
-            width: units.gu(3)
-            color: selected ? "white" : "grey"
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: 100
-                }
+    leftSideAction: Action {
+        iconName: "delete"
+        text: i18n.tr("Delete")
+        onTriggered: {
+            for (var i in threads) {
+                threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
             }
         }
     }
@@ -147,27 +114,24 @@ ListItem.Empty {
         fallbackAvatarUrl: delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
         fallbackDisplayName: delegateHelper.alias
         showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
-
-        height: units.gu(6)
-        width: units.gu(6)
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
-            verticalCenter: parent.verticalCenter
+            top: parent.top
+            bottom: parent.bottom
         }
+        height: units.gu(6)
+        width: units.gu(6)
     }
 
     Label {
         id: contactName
         anchors {
             top: avatar.top
-            topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
         }
-        font.weight: Font.Light
         fontSize: "medium"
-        color: "#752571"
+        color: UbuntuColors.lightAubergine
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
@@ -175,12 +139,31 @@ ListItem.Empty {
         id: time
         anchors {
             verticalCenter: contactName.verticalCenter
-            right: selection.left
-            rightMargin: units.gu(2)
+            right: parent.right
         }
         fontSize: "x-small"
-        color: "#5d5d5d"
         text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
+    }
+ 
+    UbuntuShape {
+        id: unreadCountIndicator
+        height: units.gu(2)
+        width: height
+        anchors {
+            top: time.bottom
+            topMargin: units.gu(1)
+            right: parent.right
+            rightMargin: units.gu(2)
+        }
+        visible: unreadCount > 0
+        color: "#38b44a"
+        Label {
+            anchors.centerIn: parent
+            text: unreadCount
+            color: "white"
+            fontSize: "x-small"
+            font.weight: Font.Light
+        }
     }
 
     // This is currently not being used in the new designs, but let's keep it here for now
@@ -212,11 +195,6 @@ ListItem.Empty {
         wrapMode: Text.WordWrap
         text: textMessage
         font.weight: Font.Light
-    }
-    onItemRemoved: {
-        for (var i in threads) {
-            threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
-        }
     }
 
     Item {

@@ -17,18 +17,22 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components 0.1
 import QtMultimedia 5.0
 import ".."
 
-ListItem.Empty {
+MMSBase {
     id: videoDelegate
     property var attachment
     property bool incoming
     property string previewer: "MMS/PreviewerVideo.qml"
     anchors.left: parent.left
     anchors.right: parent.right
+    onItemClicked: {
+        if (checkClick(bubble, mouse)) {
+            attachmentClicked()
+        }
+    }
     state: incoming ? "incoming" : "outgoing"
     states: [
         State {
@@ -58,15 +62,10 @@ ListItem.Empty {
             }
         }
     ]
-    removable: true
-    confirmRemoval: true
-    height: bubble.height
+    height: bubble.height + units.gu(1)
     clip: true
-    showDivider: false
-    highlightWhenPressed: false
-    MessageBubble {
+    Item {
         id: bubble
-        incoming: videoDelegate.incoming
         anchors.top: parent.top
         width: videoOutput.width + units.gu(3)
         height: videoOutput.height + units.gu(2)

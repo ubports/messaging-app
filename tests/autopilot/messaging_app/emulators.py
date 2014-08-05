@@ -18,8 +18,8 @@ from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
 from autopilot.platform import model
 from autopilot.introspection.dbus import StateNotFoundError
-
 from ubuntuuitoolkit import emulators as toolkit_emulators
+from ubuntuuitoolkit._custom_proxy_objects import _common
 
 
 logger = logging.getLogger(__name__)
@@ -77,6 +77,10 @@ class MainView(toolkit_emulators.MainView):
         """Return messages with objectName messagesPage"""
 
         return self.wait_select_single("MainPage", objectName="")
+
+    def go_back(self):
+        """Click back button from toolbar on messages page"""
+        self.get_header().click_custom_back_button()
 
     def click_header_action(self, action):
         """Click the action 'action' on the header"""
@@ -149,8 +153,8 @@ class MainView(toolkit_emulators.MainView):
         """Return toolbar icon to add contact"""
 
         return self.select_single(
-            'Icon',
-            objectName='addNewRecipientIcon',
+            'PageHeadButton',
+            objectName='contactList_header_button',
         )
 
     def click_add_contact_icon(self):
@@ -279,11 +283,6 @@ class MainView(toolkit_emulators.MainView):
         message = self.wait_select_single("MessageDelegate",
                                           objectName="message0")
         self.long_press(message)
-
-        # now click the popover action
-        select = self.wait_select_single("Standard",
-                                         objectName="popoverSelectAction")
-        self.pointing_device.click_object(select)
 
         # FIXME: there should be a better way to detect when the popover is
         # gone
@@ -420,7 +419,7 @@ class PageWithBottomEdge(MainView):
         """Bring the bottom edge page to the screen"""
         self.bottomEdgePageLoaded.wait_for(True)
         try:
-            action_item = self.wait_select_single('QQuickItem',
+            action_item = self.wait_select_single('UbuntuShape',
                                                   objectName='bottomEdgeTip')
             start_x = (action_item.globalRect.x +
                        (action_item.globalRect.width * 0.5))
@@ -457,7 +456,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def get_messages_count(self):
         """Return the number of meesages."""
-        return self.select_single(
+        return self.wait_select_single(
             'MultipleSelectionListView', objectName='messageList').count
 
     @autopilot_logging.log_action(logger.info)
@@ -508,18 +507,36 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return messages
 
 
-class ThreadDelegate(toolkit_emulators.Empty):
+class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):
+
+    def confirm_removal(self):
+        deleteButton = self.wait_select_single(name='delete')
+        self.pointing_device.click_object(deleteButton)
+
+    def swipe_to_delete(self):
+        x, y, width, height = self.globalRect
+        start_x = x + (width * 0.2)
+        stop_x = x + (width * 0.8)
+        start_y = stop_y = y + (height // 2)
+
+        self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
+
+    def active_action(self, action_index):
+        action_margin = ((self.actionWidth / 5) * 2)
+        x_offset = ((self.actionWidth + action_margin) * action_index)
+        x_offset += self.actionThreshold
+
+        x, y, width, height = self.globalRect
+        start_x = x + (width * 0.5)
+        stop_x = start_x - x_offset
+        start_y = stop_y = y + (height // 2)
+
+        self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
+
+
+class ThreadDelegate(ListItemWithActions):
     """Autopilot helper for ThreadDelegate."""
 
 
-class MessageDelegate(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class MessageDelegate(ListItemWithActions):
     """Autopilot helper for the MessageDelegate."""
-
-    def swipe_to_delete(self):
-        self._get_internal_list_item().swipe_to_delete()
-
-    def _get_internal_list_item(self):
-        return self.select_single(toolkit_emulators.Empty)
-
-    def confirm_removal(self):
-        self._get_internal_list_item().confirm_removal()

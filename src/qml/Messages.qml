@@ -19,7 +19,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 import QtContacts 5.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Content 0.1
@@ -92,8 +92,7 @@ Page {
     }
 
     flickable: null
-    // we need to use isReady here to know if this is a bottom edge page or not.
-    __customHeaderContents: participants.length === 0 && isReady ? newMessageHeader : null
+
     property bool isReady: false
     signal ready
     onReady: {
@@ -125,23 +124,6 @@ Page {
         }
         return i18n.tr("New Message")
     }
-    tools: {
-        if (selectionMode) {
-            return messagesToolbarSelectionMode
-        }
-
-        if (participants.length == 0) {
-            return messagesToolbarNewMessage
-        } else if (participants.length == 1) {
-            if (contactWatcher.isUnknown) {
-                return messagesToolbarUnknownContact
-            } else {
-                return messagesToolbarKnownContact
-            }
-        } else if (groupChat){
-            return messagesToolbarGroupChat
-        }
-    }
 
     Component.onCompleted: {
         updateFilters()
@@ -156,7 +138,7 @@ Page {
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
         for (var i in telepathyHelper.accountIds) {
-            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i], 
+            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
                                                                  HistoryThreadModel.MatchPhoneNumber)
@@ -262,89 +244,23 @@ Page {
         }
     }
 
-    Rectangle {
-        id: accountList
-        z: 1
-        clip: !multipleAccounts
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
+    head.sections.model: {
+        // does not show dual sim switch if there is only one sim
+        if (!multipleAccounts) {
+            return undefined
         }
-        height: multipleAccounts ? childrenRect.height : 0
-        color: "white"
-        Row {
-            anchors {
-                top: parent.top
-                horizontalCenter: parent.horizontalCenter
-            }
-            height: childrenRect.height
-            width: childrenRect.width
-            spacing: units.gu(2)
-            Repeater {
-                model: telepathyHelper.accounts
-                delegate: Label {
-                    width: paintedWidth
-                    height: paintedHeight
-                    text: modelData.displayName
-                    font.pixelSize: FontUtils.sizeToPixels("small")
-                    color: messages.account == modelData ? "red" : "#5d5d5d"
-                    MouseArea {
-                        anchors {
-                            fill: parent
-                            // increase touch area
-                            leftMargin: units.gu(-1)
-                            rightMargin: units.gu(-1)
-                            bottomMargin: units.gu(-1)
-                        }
-                        onClicked: messages.account = modelData
-                    }
-                }
-            }
+
+        var accountNames = []
+        for(var i=0; i < telepathyHelper.accounts.length; i++) {
+            accountNames.push(telepathyHelper.accounts[i].displayName)
         }
+        return accountNames
     }
-
-    Item {
-        id: newMessageHeader
-        anchors {
-            left: parent.left
-            rightMargin: units.gu(1)
-            right: parent.right
-            bottom: parent.bottom
-        }
-        visible: participants.length == 0 && isReady && messages.active
-        MultiRecipientInput {
-            id: multiRecipient
-            objectName: "multiRecipient"
-            enabled: visible
-            width: childrenRect.width
-            anchors {
-                left: parent.left
-                right: addIcon.left
-                rightMargin: units.gu(1)
-                verticalCenter: parent.verticalCenter
-            }
-        }
-        Icon {
-            id: addIcon
-            objectName: "addNewRecipientIcon"
-            visible: multiRecipient.visible
-            height: units.gu(3)
-            width: units.gu(3)
-            anchors {
-                right: parent.right
-                verticalCenter: parent.verticalCenter
-            }
-
-            name: "contact"
-            color: "gray"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    Qt.inputMethod.hide()
-                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
-                }
-            }
+    head.sections.selectedIndex: Math.max(0, telepathyHelper.accounts.indexOf(messages.account))
+    Connections {
+        target: messages.head.sections
+        onSelectedIndexChanged: {
+            messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
         }
     }
 
@@ -360,6 +276,7 @@ Page {
             autoUpdate: false
             filterTerm: multiRecipient.searchString
             showSections: false
+            autoHideKeyboard: false
 
             states: [
                 State {
@@ -373,7 +290,7 @@ Page {
             ]
 
             anchors {
-                top: accountList.bottom
+                top: parent.top
                 topMargin: units.gu(1)
                 left: parent.left
                 right: parent.right
@@ -489,9 +406,9 @@ Page {
     Loader {
         active: multiRecipient.searchString !== "" && multiRecipient.focus
         sourceComponent: contactSearchComponent
+        clip: true
         anchors {
-            top: accountList.bottom
-            topMargin: units.gu(1)
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -508,129 +425,156 @@ Page {
         updateFilters()
     }
 
-    ToolbarItems {
-        id: messagesToolbarSelectionMode
-        visible: false
-        back: ToolbarButton {
-            id: selectionModeCancelButton
-            objectName: "selectionModeCancelButton"
-            action: Action {
+    state: {
+        if (participants.length === 0 && isReady) {
+            return "newMessage"
+        } else if (selectionMode) {
+           return "selection"
+        } else if (participants.length == 1) {
+           if (contactWatcher.isUnknown) {
+               return "unknownContact"
+           } else {
+               return "knownContact"
+           }
+        } else if (groupChat){
+           return "groupChat"
+        } else {
+            return ""
+        }
+    }
+
+    Action {
+        id: backButton
+        objectName: "backButton"
+        iconName: "back"
+        onTriggered: {
+            if (typeof mainPage !== 'undefined') {
+                mainPage.temporaryProperties = null
+            }
+            mainStack.pop()
+        }
+    }
+
+    states: [
+        PageHeadState {
+            name: "selection"
+            head: messages.head
+
+            backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconSource: "image://theme/close"
+                iconName: "close"
                 onTriggered: messageList.cancelSelection()
             }
-        }
-        ToolbarButton {
-            id: selectionModeSelectAllButton
-            objectName: "selectionModeSelectAllButton"
-            action: Action {
-                objectName: "selectionModeSelectAllAction"
-                iconSource: "image://theme/filter"
-                onTriggered: messageList.selectAll()
-            }
-        }
-        ToolbarButton {
-            id: selectionModeDeleteButton
-            objectName: "selectionModeDeleteButton"
-            action: Action {
-                objectName: "selectionModeDeleteAction"
-                enabled: messageList.selectedItems.count > 0
-                iconSource: "image://theme/delete"
-                onTriggered: messageList.endSelection()
-            }
-        }
-    }
 
-    ToolbarItems {
-        id: messagesToolbarGroupChat
-        visible: false
-        ToolbarButton {
-            id: groupChatButton
-            objectName: "groupChatButton"
-            action: Action {
-                objectName: "groupChatAction"
-                iconSource: "image://theme/contact-group"
-                onTriggered: {
-                    PopupUtils.open(participantsPopover, messages.header)
+            actions: [
+                Action {
+                    objectName: "selectionModeSelectAllAction"
+                    iconName: "select"
+                    onTriggered: messageList.selectAll()
+                },
+                Action {
+                    objectName: "selectionModeDeleteAction"
+                    enabled: messageList.selectedItems.count > 0
+                    iconName: "delete"
+                    onTriggered: messageList.endSelection()
                 }
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "groupChat"
+            head: messages.head
+            backAction: backButton
 
-    ToolbarItems {
-        id: messagesToolbarNewMessage
-        visible: false
-        back: ToolbarButton {
-            action: Action {
-                onTriggered: {
-                    mainPage.temporaryProperties = null
-                    mainStack.pop()
+            actions: [
+                Action {
+                    objectName: "groupChatAction"
+                    iconName: "contact-group"
+                    onTriggered: PopupUtils.open(participantsPopover, messages.header)
                 }
-                iconSource: "image://theme/back"
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "unknownContact"
+            head: messages.head
+            backAction: backButton
 
-    ToolbarItems {
-        id: messagesToolbarUnknownContact
-        visible: false
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                objectName: "contactCallAction"
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+            actions: [
+                Action {
+                    objectName: "contactCallAction"
+                    visible: participants.length == 1
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                    }
+                },
+                Action {
+                    objectName: "addContactAction"
+                    visible: contactWatcher.isUnknown && participants.length == 1
+                    iconName: "new-contact"
+                    text: i18n.tr("Add")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                    }
                 }
-            }
-        }
-        ToolbarButton {
-            objectName: "addContactButton"
-            action: Action {
-                objectName: "addContactAction"
-                visible: contactWatcher.isUnknown && participants.length == 1
-                iconSource: "image://theme/new-contact"
-                text: i18n.tr("Add")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+            ]
+        },
+        PageHeadState {
+            name: "newMessage"
+            head: messages.head
+            backAction: backButton
+            actions: [
+                Action {
+                    objectName: "contactList"
+                    iconName: "contact"
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
+                    }
                 }
-            }
-        }
-    }
 
-    ToolbarItems {
-        id: messagesToolbarKnownContact
-        visible: false
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                objectName: "contactCallKnownAction"
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+            ]
+
+            contents: MultiRecipientInput {
+                id: multiRecipient
+                objectName: "multiRecipient"
+                enabled: visible
+                anchors {
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
+                    rightMargin: units.gu(2)
                 }
             }
-        }
-        ToolbarButton {
-            objectName: "contactProfileButton"
-            action: Action {
-                objectName: "contactProfileAction"
-                visible: !contactWatcher.isUnknown && participants.length == 1
-                iconSource: "image://theme/contact"
-                text: i18n.tr("Contact")
-                onTriggered: {
-                    Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+        },
+        PageHeadState {
+            name: "knownContact"
+            head: messages.head
+            backAction: backButton
+            actions: [
+                Action {
+                    objectName: "contactCallKnownAction"
+                    visible: participants.length == 1
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                    }
+                },
+                Action {
+                    objectName: "contactProfileAction"
+                    visible: !contactWatcher.isUnknown && participants.length == 1
+                    iconSource: "image://theme/contact"
+                    text: i18n.tr("Contact")
+                    onTriggered: {
+                        Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+                    }
                 }
-            }
+            ]
         }
-    }
+    ]
 
     HistoryEventModel {
         id: eventModel
@@ -652,44 +596,75 @@ Page {
     MultipleSelectionListView {
         id: messageList
         objectName: "messageList"
+
+        property var _currentSwipedItem: null
+
+        function updateSwippedItem(item)
+        {
+            if (item.swipping) {
+                return
+            }
+
+            if (item.swipeState !== "Normal") {
+                if (_currentSwipedItem !== item) {
+                    if (_currentSwipedItem) {
+                        _currentSwipedItem.resetSwipe()
+                    }
+                    _currentSwipedItem = item
+                }
+            } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
+                _currentSwipedItem = null
+            }
+        }
         clip: true
         anchors {
-            top: accountList.bottom
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
         }
-        // TODO: workaround to add some extra space at the bottom and top
+        // fake bottomMargin
         header: Item {
-            height: units.gu(2)
+            height: units.gu(1)
         }
-        footer: Item {
-            height: units.gu(2)
-        }
+
+        spacing: units.gu(1)
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
-        spacing: units.gu(2)
         highlightFollowsCurrentItem: false
+        /*add: Transition {
+            UbuntuNumberAnimation {
+                properties: "anchors.leftMargin"
+                from: -width
+                to: 0
+            }
+            UbuntuNumberAnimation {
+                properties: "anchors.rightMargin"
+                from: -width
+                to: 0
+            }
+        }*/
+
         listDelegate: MessageDelegate {
             id: messageDelegate
             objectName: "message%1".arg(index)
             incoming: senderId != "self"
+            // TODO: we have several items inside
             selected: messageList.isSelected(messageDelegate)
             unread: newEvent
-            removable: !messages.selectionMode
             selectionMode: messages.selectionMode
-            confirmRemoval: true
             accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-            onClicked: {
+            // TODO: need select only the item
+            onItemClicked: {
                 if (messageList.isInSelectionMode) {
                     if (!messageList.selectItem(messageDelegate)) {
                         messageList.deselectItem(messageDelegate)
                     }
                 }
             }
-            onTriggerSelectionMode: {
+            onItemPressAndHold: {
                 messageList.startSelection()
-                clicked()
+                messageList.selectItem(messageDelegate)
             }
 
             Component.onCompleted: {
@@ -912,7 +887,8 @@ Page {
                 anchors.top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: units.gu(4)
+                // this value is to avoid letter being cut off
+                height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
                 autoSize: true
                 maximumLineCount: 0
@@ -946,7 +922,7 @@ Page {
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
             text: "Send"
-            color: "green"
+            color: enabled ? "#38b44a" : "#b2b2b2"
             width: units.gu(7)
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")

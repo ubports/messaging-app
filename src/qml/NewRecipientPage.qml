@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
@@ -28,21 +28,40 @@ Page {
 
     title: i18n.tr("Add recipient")
 
-    __customHeaderContents: TextField {
-        id: searchField
+    head {
+        contents: TextField {
+            id: searchField
 
-        anchors {
-            left: parent.left
-            leftMargin: units.gu(2)
-            right: parent.right
-            rightMargin: units.gu(2)
-            topMargin: units.gu(1.5)
-            bottomMargin: units.gu(1.5)
-            verticalCenter: parent.verticalCenter
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                right: parent.right
+                rightMargin: units.gu(2)
+                topMargin: units.gu(1.5)
+                bottomMargin: units.gu(1.5)
+                verticalCenter: parent.verticalCenter
+            }
+            onTextChanged: contactList.currentIndex = -1
+            inputMethodHints: Qt.ImhNoPredictiveText
+            placeholderText: i18n.tr("Search...")
         }
-        onTextChanged: contactList.currentIndex = -1
-        inputMethodHints: Qt.ImhNoPredictiveText
-        placeholderText: i18n.tr("Type to search by name or number")
+        sections.model: ["All", "Favorites"]
+    }
+
+    Connections {
+        target: newRecipientPage.head.sections
+        onSelectedIndexChanged: {
+            switch (newRecipientPage.head.sections.selectedIndex) {
+            case 0:
+                contactList.showAllContacts()
+                break;
+            case 1:
+                contactList.showFavoritesContacts()
+                break;
+            default:
+                break;
+            }
+        }
     }
 
     ContactListView {
@@ -69,13 +88,18 @@ Page {
             Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
         }
-    }
-
-    KeyboardRectangle {
-        id: keyboard
+        onAddDetailClicked: {
+            // FIXME: the extra space at the end is needed so contacts-app opens the right view
+            Qt.openUrlExternally("addressbook:///addphone?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId) + "&phone= ")
+            mainStack.pop()
+        }
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
     Component.onCompleted: parentPage.active = false
     Component.onDestruction: parentPage.active = true
+
+    KeyboardRectangle {
+        id: keyboard
+    }
 }

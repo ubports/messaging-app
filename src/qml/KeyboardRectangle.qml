@@ -25,10 +25,6 @@ Item {
     anchors.bottom: parent.bottom
     height: Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
 
-    Behavior on height {
-        StandardAnimation { }
-    }
-
     function recursiveFindFocusedItem(parent) {
         if (parent.activeFocus) {
             return parent;

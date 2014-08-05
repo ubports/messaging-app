@@ -15,27 +15,55 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+import QtQuick 2.2
+import Ubuntu.Components 1.1
+import Ubuntu.Contacts 0.1
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
-import ".."
+ListItemWithActions {
+    id: baseDelegate
 
-MMSBase {
-    id: defaultDelegate
     property var attachment
+    property bool parentSelected: false
     property bool incoming
-    property string previewer: ""
-    property string textColor: incoming ? "#333333" : "#ffffff"
-    anchors.left: parent.left
-    anchors.right: parent.right
-    onItemClicked: {
-        if (checkClick(bubble, mouse)) {
-            attachmentClicked()
+    property bool showInfo: false
+
+    signal itemRemoved()
+    signal attachmentClicked()
+
+    function checkClick(bubble, mouse) {
+        var itemX1 = bubble.x
+        var itemX2 = itemX1+bubble.width
+        var itemY1 = bubble.y
+        var itemY2 = itemY1+bubble.height
+        if (mouse.x >= itemX1 && mouse.x <= itemX2 &&
+            mouse.y >= itemY1 && mouse.y <= itemY2) {
+            return true
         }
+        return false
     }
-    state: incoming ? "incoming" : "outgoing"
+
+    Component.onCompleted: {
+        visibleAttachments++
+    }
+    Component.onDestruction:  {
+        visibleAttachments--
+    }
+
+    leftSideAction: Action {
+        iconName: "delete"
+        text: i18n.tr("Delete")
+        onTriggered: baseDelegate.itemRemoved()
+    }
+
+    internalAnchors {
+        topMargin: 0
+        bottomMargin: 0
+    }
+
+    color: parentSelected ? selectedColor : Theme.palette.normal.background
     states: [
         State {
+            when: incoming
             name: "incoming"
             AnchorChanges {
                 target: bubble
@@ -45,10 +73,11 @@ MMSBase {
             PropertyChanges {
                 target: bubble
                 anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
+                anchors.rightMargin: 0
             }
         },
         State {
+            when: !incoming
             name: "outgoing"
             AnchorChanges {
                 target: bubble
@@ -57,28 +86,12 @@ MMSBase {
             }
             PropertyChanges {
                 target: bubble
-                anchors.leftMargin: units.gu(1)
+                anchors.leftMargin: 0
                 anchors.rightMargin: units.gu(1)
             }
         }
     ]
-    height: bubble.height + units.gu(1)
-    clip: true
-    Item {
-        id: bubble
-        anchors.top: parent.top
-        width: label.width + units.gu(4)
-        height: label.height + units.gu(2)
 
-        Label {
-            id: label
-            text: attachment.attachmentId
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
-            fontSize: "medium"
-            height: paintedHeight
-            color: textColor
-            opacity: incoming ? 1 : 0.9
-        }
-    }
+    onSwippingChanged: messageList.updateSwippedItem(baseDelegate)
+    onSwipeStateChanged: messageList.updateSwippedItem(baseDelegate)
 }

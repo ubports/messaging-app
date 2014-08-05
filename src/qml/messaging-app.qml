@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
@@ -26,11 +26,13 @@ import Ubuntu.Content 0.1
 MainView {
     id: mainView
 
+    property string newPhoneNumber
+
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
     useDeprecatedToolbar: false
-    property string newPhoneNumber
+    anchorToKeyboard: false
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
@@ -144,9 +146,10 @@ MainView {
        }
     }
 
+
     PageStack {
         id: mainStack
+
         objectName: "mainStack"
-        anchors.fill: parent
     }
 }

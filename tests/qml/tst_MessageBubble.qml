@@ -64,9 +64,6 @@ Item {
         when: windowShown
 
         function init() {
-            waitForRendering(incomingMessageBubble);
-            waitForRendering(outgoingMessageBubble);
-            waitForRendering(changeIncomingMessageBubble);
         }
 
         function cleanup() {
