@@ -651,7 +651,7 @@ Page {
                 // TODO: we have several items inside
                 selected: messageList.isSelected(messageDelegate)
                 selectionMode: messages.selectionMode
-                accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
+                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
                 // TODO: need select only the item
                 onItemClicked: {
                     if (messageList.isInSelectionMode) {

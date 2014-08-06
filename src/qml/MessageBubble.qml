@@ -68,7 +68,7 @@ BorderImage {
     source: selectBubble()
     height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.text.length, textTimestamp.text.length) * units.gu(1))
+                     Math.max(textLabel.text.length * units.gu(1), textTimestamp.width))
             + border.left + border.right
     Label {
         id: senderName
@@ -118,8 +118,9 @@ BorderImage {
 
         visible: !root.sending
         height: visible ? paintedHeight : 0
+        width: visible ? paintedWidth : 0
         fontSize: "xx-small"
-        color: root.incoming ? UbuntuColors.lightGrey : "white"
+        color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
         opacity: root.messageIncoming ? 1.0 : 0.8
         text: {
             var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
@@ -128,7 +129,7 @@ BorderImage {
             }
 
             if (root.messageIncoming) {
-                st +=  " to %1".arg(root.accountName)
+                str += " to %1".arg(root.accountName)
             } else {
                 str += " @ %1".arg(root.accountName)
             }

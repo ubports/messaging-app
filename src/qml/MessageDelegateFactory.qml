@@ -25,9 +25,9 @@ ListItemWithActions {
     id: root
 
     property bool incoming: false
-    property string accountLabel: telepathyHelper.accounts[accountId].displayName
     property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
     property list<Action> _availableActions
+    property string accountLabel
 
     signal deleteMessage()
     signal resendMessage()
@@ -108,7 +108,7 @@ ListItemWithActions {
         Component.onCompleted: {
             var initialProperties = {
                 "incoming": root.incoming,
-                "accountLabel": root.accountLabel,
+                "accountLabel": accountLabel,
                 "attachments": textMessageAttachments,
                 "accountId": accountId,
                 "threadId": threadId,
