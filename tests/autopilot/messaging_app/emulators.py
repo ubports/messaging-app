@@ -57,8 +57,8 @@ class MainView(toolkit_emulators.MainView):
         """
 
         time.sleep(2)  # message is not always found on slow emulator
-        for message in self.select_many(MessageDelegate):
-            for item in self.select_many('Label'):
+        for message in self.select_many(MessageDelegateFactory):
+            for item in message.select_many('Label'):
                 if "text" in item.get_properties():
                     if item.get_properties()['text'] == text:
                         return message
@@ -280,7 +280,7 @@ class MainView(toolkit_emulators.MainView):
     def enable_messages_selection_mode(self):
         """Enable the selection mode on the messages page by pressing and
         holding the first item"""
-        message = self.wait_select_single("MessageDelegate",
+        message = self.wait_select_single("MessageDelegateFactory",
                                           objectName="message0")
         self.long_press(message)
 
@@ -473,7 +473,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def _get_message_delegate(self, index):
         return self.wait_select_single(
-            'MessageDelegate', objectName='message{}'.format(index),
+            'MessageDelegateFactory', objectName='message{}'.format(index),
             unread=False)
 
     def _long_press_to_select_message(self, message):
@@ -537,5 +537,5 @@ class ThreadDelegate(ListItemWithActions):
     """Autopilot helper for ThreadDelegate."""
 
 
-class MessageDelegate(ListItemWithActions):
-    """Autopilot helper for the MessageDelegate."""
+class MessageDelegateFactory(ListItemWithActions):
+    """Autopilot helper for the MessageDelegateFactory."""
