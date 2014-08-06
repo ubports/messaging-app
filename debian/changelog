@@ -1,3 +1,11 @@
+messaging-app (0.1+14.10.20140806-0ubuntu1) utopic; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix getting the bottom edge tip item in the autopilot tests. (LP:
+    #1353420)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 06 Aug 2014 15:35:52 +0000
+
 messaging-app (0.1+14.10.20140805-0ubuntu1) utopic; urgency=low
 
   [ Ubuntu daily release ]
