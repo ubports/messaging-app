@@ -68,7 +68,7 @@ BorderImage {
     source: selectBubble()
     height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.text.length * units.gu(1), textTimestamp.width))
+                     Math.max(textLabel.contentWidth, textTimestamp.width))
             + border.left + border.right
     Label {
         id: senderName
@@ -93,8 +93,6 @@ BorderImage {
             topMargin: units.gu(1)
             left: parent.left
             leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
-            right: parent.right
-            rightMargin: root.messageIncoming ? units.gu(1) : units.gu(1)
         }
         width: maxDelegateWidth
         fontSize: "medium"
