@@ -191,7 +191,8 @@ MessageDelegate {
             messageText: visible ? application.readTextFile(root.textAttachements[0].filePath) : ""
             messageTimeStamp: root.timestamp
             messageStatus: textMessageStatus
-            accountName: accountLabel
+            messageIncoming: root.incoming
+            accountName: root.accountLabel
         }
     }
 }

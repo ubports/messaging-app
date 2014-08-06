@@ -26,7 +26,6 @@ ListItemWithActions {
 
     property bool incoming: false
     property string accountLabel: telepathyHelper.accounts[accountId].displayName
-    onAccountLabelChanged: console.debug("new account label" + accountLabel)
     property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
     property list<Action> _availableActions
 
@@ -77,10 +76,10 @@ ListItemWithActions {
         //        },
     }
 
-    height: loader.height
+    height: loader.height + units.gu(1)
     internalAnchors {
-        topMargin: 0
-        bottomMargin: 0
+        topMargin: units.gu(0.5)
+        bottomMargin: units.gu(0.5)
     }
 
     onItemClicked: {

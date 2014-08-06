@@ -27,7 +27,7 @@ BorderImage {
     id: root
 
     property int messageStatus: -1
-    property bool incoming: false
+    property bool messageIncoming: false
     property alias sender: senderName.text
     property string messageText
     property var messageTimeStamp
@@ -36,7 +36,7 @@ BorderImage {
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
 
     function selectBubble() {
         var fileName = "assets/conversation_";
@@ -44,7 +44,7 @@ BorderImage {
             fileName += "error.sci"
         } else if (sending) {
             fileName += "pending.sci"
-        } else if (incoming) {
+        } else if (messageIncoming) {
             fileName += "incoming.sci";
         } else {
             fileName += "outgoing.sci";
@@ -64,7 +64,7 @@ BorderImage {
         return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
     }
 
-    onIncomingChanged: source = selectBubble()
+    onMessageIncomingChanged: source = selectBubble()
     source: selectBubble()
     height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
     width:  Math.min(units.gu(27),
@@ -77,7 +77,7 @@ BorderImage {
             top: parent.top
             topMargin: units.gu(1)
             left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
+            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
         height: text === "" ? 0 : paintedHeight
         fontSize: "large"
@@ -92,9 +92,9 @@ BorderImage {
             top: sender == "" ? parent.top : senderName.bottom
             topMargin: units.gu(1)
             left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
+            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
             right: parent.right
-            rightMargin: incoming ? units.gu(1) : units.gu(1)
+            rightMargin: root.messageIncoming ? units.gu(1) : units.gu(1)
         }
         width: maxDelegateWidth
         fontSize: "medium"
@@ -102,7 +102,7 @@ BorderImage {
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
         wrapMode: Text.Wrap
-        color: root.incoming ? UbuntuColors.darkGrey : "white"
+        color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
     }
 
     Label {
@@ -113,21 +113,21 @@ BorderImage {
             top: textLabel.bottom
             topMargin: units.gu(1)
             left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
+            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
 
         visible: !root.sending
         height: visible ? paintedHeight : 0
         fontSize: "xx-small"
         color: root.incoming ? UbuntuColors.lightGrey : "white"
-        opacity: root.incoming ? 1.0 : 0.8
+        opacity: root.messageIncoming ? 1.0 : 0.8
         text: {
             var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
             if (root.accountName.length === 0) {
                 return str
             }
 
-            if (root.incoming) {
+            if (root.messageIncoming) {
                 st +=  " to %1".arg(root.accountName)
             } else {
                 str += " @ %1".arg(root.accountName)

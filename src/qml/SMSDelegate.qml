@@ -66,10 +66,10 @@ MessageDelegate {
 
         ]
         visible: (root.text !== "")
-        incoming: root.incoming
+        messageIncoming: root.incoming
         messageText: root.text
         messageTimeStamp: root.timestamp
+        accountName: root.accountLabel
         messageStatus: textMessageStatus
-        accountName: accountLabel
     }
 }

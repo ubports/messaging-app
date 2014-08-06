@@ -621,12 +621,12 @@ Page {
         header: Item {
             height: units.gu(1)
         }
-
-        spacing: units.gu(1)
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: false
         listDelegate: Column {
+            id: messageDelegate
+
             spacing: section.visible ? units.gu(1) : 0
 
             MessageDateSection {
@@ -646,9 +646,7 @@ Page {
             }
 
             MessageDelegateFactory {
-                id: messageDelegate
                 objectName: "message%1".arg(index)
-
                 incoming: senderId != "self"
                 // TODO: we have several items inside
                 selected: messageList.isSelected(messageDelegate)
