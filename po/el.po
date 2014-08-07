@@ -1,16 +1,16 @@
-# Spanish translation for messaging-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Greek translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-08-07 05:50+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2014-08-06 12:30+0000\n"
+"Last-Translator: George Christofis <geochr22@gmail.com>\n"
+"Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,132 +22,132 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "Llamada de %1 hora"
-msgstr[1] "Llamada de %1 horas"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "Llamada de %1 minuto"
-msgstr[1] "Llamada de %1 minutos"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "Llamada de %1 segundo"
-msgstr[1] "Llamada de %1 segundos"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr "Añadir"
+msgstr ""
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr "Añadir contactos..."
+msgstr "Προσθήκη επαφών.."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr "Añadir destinatario"
+msgstr "Προσθήκη παραλήπτη"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr "Añadir a contacto"
+msgstr "Προσθήκη στις επαφές"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr "Añadir a contacto existente"
+msgstr "Προσθήκη σε υφιστάμενη επαφή"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr "Llamar"
+msgstr "Κλήση"
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Ακύρωση"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr "Charlas"
+msgstr "Συνομιλίες"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
-msgstr "Contacto"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr "Copiar"
+msgstr "Αντιγραφή"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr "Crear contacto nuevo"
+msgstr ""
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr "Editar"
+msgstr "Επεξεργασία"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr "Falló"
+msgstr ""
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr "Grupo"
+msgstr ""
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr "¿Cómo quiere guardar el contacto?"
+msgstr ""
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr "Imagen previa"
+msgstr ""
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr "Charla nueva"
+msgstr "Νέα συνομιλία"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
-msgstr "Mensaje nuevo"
+msgstr "Νέο μήνυμα"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr "Guardar"
+msgstr "Αποθήκευση"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr "Guardar contacto"
+msgstr "Αποθήκευση επαφής"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
-msgstr "Seleccionar"
+msgstr ""
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr "Enviando…"
+msgstr "Γίνεται αποστολή..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr "Compartir"
+msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "Hoy"
+msgstr "Σήμερα"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr "Intentar de nuevo"
+msgstr "Προσπαθήστε ξανά"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr "Previsualizar vídeo"
+msgstr ""
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr "Escriba el mensaje…"
+msgstr ""
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "Ayer"
+msgstr ""
