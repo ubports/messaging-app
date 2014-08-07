@@ -122,7 +122,7 @@ LocalPageWithBottomEdge {
         anchors.rightMargin: units.gu(6)
         height: childrenRect.height
         anchors.verticalCenter: parent.verticalCenter
-        visible: threadCount == 0
+        visible: threadCount == 0 && !threadModel.canFetchMore
         Icon {
             id: emptyStateIcon
             anchors.top: emptyStateScreen.top
