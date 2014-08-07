@@ -42,7 +42,6 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
-    property bool pendingMessage: false
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
@@ -584,7 +583,6 @@ Page {
         id: sortProxy
         sourceModel: eventModel.filter ? eventModel : null
         sortRole: HistoryEventModel.TimestampRole
-        ascending: false
     }
 
     MultipleSelectionListView {
@@ -622,53 +620,48 @@ Page {
             height: units.gu(1)
         }
         listModel: participants.length > 0 ? sortProxy : null
-        verticalLayoutDirection: ListView.BottomToTop
-        highlightFollowsCurrentItem: false
-        listDelegate: Column {
-            id: messageDelegate
+        highlightFollowsCurrentItem: true
+        // keep the last item as currentItem
+        currentIndex: (count - 1)
 
-            spacing: section.visible ? units.gu(1) : 0
-
-            MessageDateSection {
-                id: section
-
-                property var previousDate: (index < (sortProxy.count-1)) ? sortProxy.get(index+1).timestamp : -1
-                property bool sameDate: (previousDate !== -1) ? DateUtils.areSameDay(timestamp, previousDate) : false
-
-                text: DateUtils.friendlyDay(timestamp)
+        section {
+            property: "date"
+            delegate: MessageDateSection {
+                text: DateUtils.friendlyDay(section)
                 anchors {
                     left: parent.left
                     right: parent.right
                     leftMargin: units.gu(2)
                     rightMargin: units.gu(2)
                 }
-                visible: !sameDate
+            }
+        }
+
+        listDelegate: MessageDelegateFactory {
+            id: messageDelegate
+
+            objectName: "message%1".arg(index)
+            incoming: senderId != "self"
+            // TODO: we have several items inside
+            selected: messageList.isSelected(messageDelegate)
+            selectionMode: messages.selectionMode
+            accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
+            // TODO: need select only the item
+            onItemClicked: {
+                if (messageList.isInSelectionMode) {
+                    if (!messageList.selectItem(messageDelegate)) {
+                        messageList.deselectItem(messageDelegate)
+                    }
+                }
+            }
+            onItemPressAndHold: {
+                messageList.startSelection()
+                messageList.selectItem(messageDelegate)
             }
 
-            MessageDelegateFactory {
-                objectName: "message%1".arg(index)
-                incoming: senderId != "self"
-                // TODO: we have several items inside
-                selected: messageList.isSelected(messageDelegate)
-                selectionMode: messages.selectionMode
-                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-                // TODO: need select only the item
-                onItemClicked: {
-                    if (messageList.isInSelectionMode) {
-                        if (!messageList.selectItem(messageDelegate)) {
-                            messageList.deselectItem(messageDelegate)
-                        }
-                    }
-                }
-                onItemPressAndHold: {
-                    messageList.startSelection()
-                    messageList.selectItem(messageDelegate)
-                }
-
-                Component.onCompleted: {
-                    if (newEvent) {
-                        messages.markMessageAsRead(accountId, threadId, eventId, type);
-                    }
+            Component.onCompleted: {
+                if (newEvent) {
+                    messages.markMessageAsRead(accountId, threadId, eventId, type);
                 }
             }
         }
@@ -679,10 +672,10 @@ Page {
                 eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
             }
         }
+
         onCountChanged: {
-            if (messages.pendingMessage) {
-                messageList.contentY = 0
-                messages.pendingMessage = false
+            if (currentIndex === -1) {
+                positionViewAtEnd()
             }
         }
     }
@@ -938,7 +931,6 @@ Page {
                                                    true)
 
                 updateFilters()
-                messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
