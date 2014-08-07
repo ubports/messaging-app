@@ -57,6 +57,18 @@ ListItemWithActions {
             iconName: "edit-copy"
             text: i18n.tr("Copy")
             onTriggered: copyMessage()
+        },
+        Action {
+            id: infoAction
+
+            iconName: "info"
+            text: i18n.tr("Info")
+            onTriggered: {
+                // FIXME: Is that the corect way to do that?
+                var messageType = textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
+                var messageInfo = {"type": messageType, "senderId": senderId, "timestamp": timestamp, "textReadTimestamp":  textReadTimestamp}
+                messageInfoDialog.showMessageInfo(messageInfo)
+            }
         }
     ]
 
@@ -66,14 +78,8 @@ ListItemWithActions {
             actions.push(reloadAction)
         }
         actions.push(copyAction)
+        actions.push(infoAction)
         return actions
-
-        // TODO: implement message info view
-        //        Action {
-        //            iconName: "info"
-        //            text: i18n.tr("Info")
-        //            onTriggered: showMessageDetails()
-        //        },
     }
 
     height: loader.height + units.gu(1)
@@ -183,6 +189,11 @@ ListItemWithActions {
                 anchors.fill: parent
                 onClicked: root.resendMessage()
             }
+        }
+
+
+        MessageInfoDialog {
+            id: messageInfoDialog
         }
     }
 }
