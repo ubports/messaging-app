@@ -34,7 +34,7 @@ Item {
 
         height: parent.height / 3
 
-        incoming: true
+        messageIncoming: true
     }
 
     MessageBubble {
@@ -44,7 +44,7 @@ Item {
         anchors.top: incomingMessageBubble.bottom
         height: parent.height / 3
 
-        incoming: false
+        messageIncoming: false
     }
 
     MessageBubble {
@@ -54,7 +54,7 @@ Item {
         anchors.top: outgoingMessageBubble.bottom
         height: parent.height / 3
 
-        incoming: true
+        messageIncoming: true
     }
 
     UbuntuTestCase {
@@ -67,7 +67,7 @@ Item {
         }
 
         function cleanup() {
-            changeIncomingMessageBubble.incoming = true;
+            changeIncomingMessageBubble.messageIncoming = true;
         }
 
         function getFileName(filePath) {
@@ -93,7 +93,7 @@ Item {
         function test_changeIncomingMustUpdateSource() {
             var changeIncomingMessageBubble = findChild(
                 root, 'changeIncomingMessageBubble');
-            changeIncomingMessageBubble.incoming = false;
+            changeIncomingMessageBubble.messageIncoming = false;
             compare(
                 getFileName(changeIncomingMessageBubble.source),
                 'conversation_outgoing.sci');
