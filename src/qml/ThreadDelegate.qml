@@ -111,9 +111,9 @@ ListItemWithActions {
     ContactAvatar {
         id: avatar
 
-        fallbackAvatarUrl: delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
+        fallbackAvatarUrl: groupChat ? "image://theme/contact-group" : delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
         fallbackDisplayName: delegateHelper.alias
-        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
+        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0) || groupChat
         anchors {
             left: parent.left
             top: parent.top
