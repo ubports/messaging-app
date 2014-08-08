@@ -66,7 +66,11 @@ ListItemWithActions {
             onTriggered: {
                 // FIXME: Is that the corect way to do that?
                 var messageType = textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                var messageInfo = {"type": messageType, "senderId": senderId, "timestamp": timestamp, "textReadTimestamp":  textReadTimestamp}
+                var messageInfo = {"type": messageType,
+                                   "senderId": senderId,
+                                   "timestamp": timestamp,
+                                   "textReadTimestamp": textReadTimestamp,
+                                   "status": textMessageStatus}
                 messageInfoDialog.showMessageInfo(messageInfo)
             }
         }

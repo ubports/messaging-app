@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.History 0.1
 
 
 Item {
@@ -41,18 +42,44 @@ Item {
         Dialog {
             id: dialogue
 
+            function statusToString(status)
+            {
+                switch(status)
+                {
+                case HistoryThreadModel.MessageStatusDelivered:
+                    return i18n.tr("Delivered")
+                case HistoryThreadModel.MessageStatusTemporarilyFailed:
+                    return i18n.tr("Temporarily Failed")
+                case HistoryThreadModel.MessageStatusPermanentlyFailed:
+                    return i18n.tr("Failed")
+                case HistoryThreadModel.MessageStatusAccepted:
+                    return i18n.tr("Accepted")
+                case HistoryThreadModel.MessageStatusRead:
+                    return i18n.tr("Read")
+                case HistoryThreadModel.MessageStatusDeleted:
+                    return i18n.tr("Deleted")
+                case HistoryThreadModel.MessageStatusPending:
+                    return i18n.tr("Pending")
+                case HistoryThreadModel.MessageStatusUnknown:
+                default:
+                    return i18n.tr("Unknown")
+                }
+            }
+
+
             title: i18n.tr("Message info")
 
             anchors.centerIn: parent
             height: childrenRect.height
             width: childrenRect.width
 
+
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type)
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("From")).arg(root.activeMessage.senderId !== "self" ? root.activeMessage.senderId : i18n.tr("Self"))
+                text: "<b>%1:</b> %2".arg(i18n.tr("From")).arg(root.activeMessage.senderId !== "self" ? root.activeMessage.senderId : i18n.tr("Myself"))
             }
 
             Label {
@@ -61,8 +88,17 @@ Item {
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Received")).arg(Qt.formatDateTime(root.activeMessage.textReadTimestamp, Qt.DefaultLocaleShortDate))
+                text: "<b>%1:</b> %2".arg(i18n.tr("Received")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate))
                 visible: (root.activeMessage.senderId !== "self")
+            }
+
+            Label {
+                text: "<b>%1:</b> %2".arg(i18n.tr("Read")).arg(Qt.formatDateTime(root.activeMessage.textReadTimestamp, Qt.DefaultLocaleShortDate))
+                visible: (root.activeMessage.senderId !== "self") && (root.activeMessage.textReadTimestamp > 0)
+            }
+
+            Label {
+                text: "<b>%1:</b> %2".arg(i18n.tr("Status")).arg(statusToString(root.activeMessage.status))
             }
 
             Button {
