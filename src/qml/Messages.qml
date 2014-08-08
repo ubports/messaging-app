@@ -583,6 +583,7 @@ Page {
         id: sortProxy
         sourceModel: eventModel.filter ? eventModel : null
         sortRole: HistoryEventModel.TimestampRole
+        ascending: false
     }
 
     MultipleSelectionListView {
@@ -620,48 +621,51 @@ Page {
             height: units.gu(1)
         }
         listModel: participants.length > 0 ? sortProxy : null
+        verticalLayoutDirection: ListView.BottomToTop
         highlightFollowsCurrentItem: true
+        currentIndex: 0
         // keep the last item as currentItem
-        currentIndex: (count - 1)
 
-        section {
-            property: "date"
-            delegate: MessageDateSection {
-                text: DateUtils.friendlyDay(section)
+        listDelegate: Column {
+            id: messageDelegate
+
+            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
+            // bellow the item
+            MessageDateSection {
+                text: DateUtils.friendlyDay(timestamp)
                 anchors {
                     left: parent.left
                     right: parent.right
                     leftMargin: units.gu(2)
                     rightMargin: units.gu(2)
                 }
+                visible: (index === messageList.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
             }
-        }
 
-        listDelegate: MessageDelegateFactory {
-            id: messageDelegate
-
-            objectName: "message%1".arg(index)
-            incoming: senderId != "self"
-            // TODO: we have several items inside
-            selected: messageList.isSelected(messageDelegate)
-            selectionMode: messages.selectionMode
-            accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-            // TODO: need select only the item
-            onItemClicked: {
-                if (messageList.isInSelectionMode) {
-                    if (!messageList.selectItem(messageDelegate)) {
-                        messageList.deselectItem(messageDelegate)
+            MessageDelegateFactory {
+                objectName: "message%1".arg(index)
+                incoming: senderId != "self"
+                // TODO: we have several items inside
+                selected: messageList.isSelected(messageDelegate)
+                selectionMode: messages.selectionMode
+                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
+                // TODO: need select only the item
+                onItemClicked: {
+                    if (messageList.isInSelectionMode) {
+                        if (!messageList.selectItem(messageDelegate)) {
+                            messageList.deselectItem(messageDelegate)
+                        }
                     }
                 }
-            }
-            onItemPressAndHold: {
-                messageList.startSelection()
-                messageList.selectItem(messageDelegate)
-            }
+                onItemPressAndHold: {
+                    messageList.startSelection()
+                    messageList.selectItem(messageDelegate)
+                }
 
-            Component.onCompleted: {
-                if (newEvent) {
-                    messages.markMessageAsRead(accountId, threadId, eventId, type);
+                Component.onCompleted: {
+                    if (newEvent) {
+                        messages.markMessageAsRead(accountId, threadId, eventId, type);
+                    }
                 }
             }
         }
@@ -674,9 +678,8 @@ Page {
         }
 
         onCountChanged: {
-            if (currentIndex === -1) {
-                positionViewAtEnd()
-            }
+            currentIndex = 0
+            positionViewAtBeginning()
         }
     }
 
