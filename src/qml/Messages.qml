@@ -31,8 +31,9 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property QtObject account: telepathyHelper.accounts[0]
-    property bool multipleAccounts: telepathyHelper.accounts.length > 1
+    // this property can be overriden by the user using the account switcher,
+    // in the suru divider
+    property QtObject account: mainView.defaultAccount
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -70,6 +71,13 @@ Page {
 
     function checkNetwork() {
         return messages.account.connected;
+    }
+
+    // this is necessary to automatically update the view when the
+    // default account changes in system settings
+    Connections {
+        target: mainView
+        onDefaultAccountChanged: account = mainView.defaultAccount
     }
 
     ListModel {
@@ -227,6 +235,24 @@ Page {
     }
 
     Component {
+        id: noSimCardSelectedDialog
+        Dialog {
+            id: dialogue
+            title: i18n.tr("No SIM card selected")
+            text: i18n.tr("You need to select a SIM card")
+            Button {
+                objectName: "closeNoSimCardSelectedDialog"
+                text: i18n.tr("Close")
+                color: UbuntuColors.orange
+                onClicked: {
+                    PopupUtils.close(dialogue)
+                    Qt.inputMethod.hide()
+                }
+            }
+        }
+    }
+
+    Component {
         id: noNetworkDialog
         Dialog {
             id: dialogue
@@ -244,6 +270,57 @@ Page {
         }
     }
 
+    Component {
+        id: setDefaultSimCardDialog
+        Dialog {
+            id: dialogue
+            text: i18n.tr("Change all Messaging associations to " + messages.account.displayName +"?")
+            Column {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                spacing: units.gu(2)
+                Row {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    spacing: units.gu(4)
+                    Button {
+                        objectName: "setDefaultSimCardDialogNo"
+                        text: i18n.tr("No")
+                        color: UbuntuColors.orange
+                        onClicked: {
+                            PopupUtils.close(dialogue)
+                            Qt.inputMethod.hide()
+                        }
+                    }
+                    Button {
+                        objectName: "setDefaultSimCardDialogYes"
+                        text: i18n.tr("Yes")
+                        color: UbuntuColors.orange
+                        onClicked: {
+                            telepathyHelper.setDefaultAccount(TelepathyHelper.Messaging, messages.account)
+                            PopupUtils.close(dialogue)
+                            Qt.inputMethod.hide()
+                        }
+                    }
+                }
+                Row {
+                    CheckBox {
+                        id: dontAskAgainCheckbox
+                        checked: false
+                        onCheckedChanged: settings.messagesDontAsk = checked
+                    }
+                    Label {
+                        text: i18n.tr("Don't ask again")
+                        anchors.verticalCenter: dontAskAgainCheckbox.verticalCenter
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: dontAskAgainCheckbox.checked = !dontAskAgainCheckbox.checked
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     head.sections.model: {
         // does not show dual sim switch if there is only one sim
         if (!multipleAccounts) {
@@ -256,7 +333,17 @@ Page {
         }
         return accountNames
     }
-    head.sections.selectedIndex: Math.max(0, telepathyHelper.accounts.indexOf(messages.account))
+    head.sections.selectedIndex: {
+        if (!messages.account) {
+            return -1
+        }
+        for (var i in telepathyHelper.accounts) {
+            if (telepathyHelper.accounts[i].accountId == messages.account.accountId) {
+                return i
+            }
+        }
+        return -1
+    }
     Connections {
         target: messages.head.sections
         onSelectedIndexChanged: {
@@ -935,19 +1022,25 @@ Page {
                 return false
             }
             onClicked: {
+                // check if at least one account is selected
+                if (!messages.account) {
+                    Qt.inputMethod.hide()
+                    PopupUtils.open(noSimCardSelectedDialog)
+                    return
+                }
                 if (!checkNetwork()) {
                     Qt.inputMethod.hide()
                     PopupUtils.open(noNetworkDialog)
                     return
                 }
+                if (!telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                    PopupUtils.open(setDefaultSimCardDialog)
+                }
+                return
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
-                }
-                if (!messages.account) {
-                    // FIXME: handle dual sim
-                    messages.account = telepathyHelper.accounts[0]
                 }
                 // dont change the participants list
                 if (participants.length == 0) {

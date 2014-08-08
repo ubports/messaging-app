@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.0
+import Qt.labs.settings 1.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
@@ -27,6 +28,16 @@ MainView {
     id: mainView
 
     property string newPhoneNumber
+    property bool multipleAccounts: telepathyHelper.accounts.length > 1
+    property QtObject defaultAccount: {
+        // we only use the default account property if we have more
+        // than one account, otherwise we use always the first one
+        if (multipleAccounts) {
+            return telepathyHelper.defaultMessagingAccount
+        } else {
+            return telepathyHelper.accounts[0]
+        }
+    }
 
     automaticOrientation: true
     width: units.gu(40)
@@ -38,6 +49,13 @@ MainView {
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+    }
+
+    Settings {
+        id: settings
+        category: "DualSim"
+        property bool messagesDontAsk: false
+        property int mainViewdontAskCount: 0
     }
 
     Component {
