@@ -44,7 +44,6 @@ ListItemWithActions {
         return firstRecipient
     }
 
-    property bool selectionMode: false
     property string textMessage: {
         // check if this is an mms, if so, search for the actual text
         var imageCount = 0
