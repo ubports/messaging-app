@@ -1036,7 +1036,6 @@ Page {
                 if (!telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
                     PopupUtils.open(setDefaultSimCardDialog)
                 }
-                return
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
