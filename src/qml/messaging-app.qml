@@ -125,7 +125,6 @@ MainView {
                             settings.mainViewDontAskCount++
                             Qt.inputMethod.hide()
                         }
-
                     }
                 }
             }
