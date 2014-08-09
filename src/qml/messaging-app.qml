@@ -74,6 +74,7 @@ MainView {
                 Row {
                     spacing: units.gu(4)
                     anchors.horizontalCenter: parent.horizontalCenter
+                    height: paintedHeight + units.gu(3)
                     Repeater {
                         model: telepathyHelper.accounts
                         delegate: Label {
@@ -93,6 +94,8 @@ MainView {
                 Label {
                     anchors.left: parent.left
                     anchors.right: parent.right
+                    height: paintedHeight + units.gu(6)
+                    verticalAlignment: Text.AlignVCenter
                     text: i18n.tr("Select a default SIM for all outgoing messages. You can always alter your choice in <a href=\"system_settings\">System Settings</a>.")
                     wrapMode: Text.WordWrap
                     onLinkActivated: {
