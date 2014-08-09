@@ -61,6 +61,12 @@ Item {
                 case HistoryThreadModel.MessageStatusPending:
                     return i18n.tr("Pending")
                 case HistoryThreadModel.MessageStatusUnknown:
+                    //FIXME: Received messages has Unknown status is that correct??
+                    if (root.activeMessage.senderId !== "self") {
+                        return i18n.tr("Received")
+                    } else {
+                        return i18n.tr("Unknown")
+                    }
                 default:
                     return i18n.tr("Unknown")
                 }
