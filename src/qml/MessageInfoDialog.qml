@@ -32,7 +32,7 @@ Item {
     {
         if (!activeDialog) {
             activeMessage = message
-            activeDialog = PopupUtils.open(messageInfoDialog, QuickUtils.rootItem(this))
+            activeDialog = PopupUtils.open(messageInfoDialog, messages)
         }
     }
 
@@ -41,6 +41,8 @@ Item {
 
         Dialog {
             id: dialogue
+
+            parent: messages
 
             function statusToString(status)
             {
@@ -78,7 +80,6 @@ Item {
             anchors.centerIn: parent
             height: childrenRect.height
             width: childrenRect.width
-
 
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type)
