@@ -22,6 +22,8 @@ import Ubuntu.Content 0.1
 import ".."
 
 Previewer {
-    title: application.contactNameFromVCard(attachment.filePath)
+    property string contactName: application.contactNameFromVCard(attachment.filePath)
+
+    title: contactName !== "" ? contactName : i18n.tr("Unknown contact")
     clip: true
 }
