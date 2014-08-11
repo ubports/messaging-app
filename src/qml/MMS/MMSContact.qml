@@ -16,27 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
 MMSBase {
     id: vcardDelegate
 
-    readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
-    readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+    readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+    readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                                     textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
 
     previewer: "MMS/PreviewerContact.qml"
-    height: bubble.height
-    width: bubble.width
+    height: units.gu(8)
+    width: units.gu(27)
 
     Rectangle {
         id: bubble
 
-        width: avatar.width + contactName.width + units.gu(3)
-        height: avatar.height + units.gu(2)
+        anchors.fill: parent
         color: {
             if (error) {
                 return "#fc4949"
@@ -56,13 +55,14 @@ MMSBase {
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
+                bottom: parent.bottom
+                bottomMargin: units.gu(1)
                 left: parent.left
                 leftMargin: units.gu(1)
             }
             fallbackAvatarUrl: "image://theme/contact"
             fallbackDisplayName: contactName.name
-            height: units.gu(6)
-            width: units.gu(6)
+            width: height
         }
 
         Label {
@@ -71,16 +71,18 @@ MMSBase {
             property string name: application.contactNameFromVCard(attachment.filePath)
 
             anchors {
-                verticalCenter: avatar.verticalCenter
                 left: avatar.right
                 leftMargin: units.gu(1)
+                top: avatar.top
+                bottom: avatar.bottom
+                right: parent.right
+                rightMargin: units.gu(1)
             }
 
+            verticalAlignment: Text.AlignVCenter
             text: name !== "" ? name : i18n.tr("Unknown contact")
             elide: Text.ElideRight
-            height: paintedHeight
-            width: Math.min(units.gu(27) - avatar.width,  text.length * units.gu(1))
-            color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "white"
+            color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
     }
 }

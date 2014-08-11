@@ -96,7 +96,7 @@ BorderImage {
         }
         width: maxDelegateWidth
         fontSize: "medium"
-        height: text === "" ? 0 : paintedHeight
+        height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
         wrapMode: Text.Wrap
@@ -115,7 +115,7 @@ BorderImage {
         }
 
         visible: !root.sending
-        height: visible ? paintedHeight : 0
+        height: units.gu(2)
         width: visible ? maxDelegateWidth : 0
         fontSize: "xx-small"
         color: root.messageIncoming ? UbuntuColors.lightGrey : "white"

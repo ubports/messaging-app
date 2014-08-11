@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 1.1
 
 MessageDelegate {
@@ -151,16 +151,14 @@ MessageDelegate {
                     }
                 ]
 
-                height: attachmentLoader.item ? attachmentLoader.item.height : 0
-                width: attachmentLoader.item ? attachmentLoader.item.width : 0
-                source: modelData.delegateSource
-                onStatusChanged: {
-                    if (status === Loader.Ready) {
-                        attachmentLoader.item.incoming = root.incoming
-                        attachmentLoader.item.attachment = modelData.data
-                        attachmentLoader.item.timestamp = root.timestamp
-                        attachmentLoader.item.lastItem = (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
+                Component.onCompleted: {
+                    var initialProperties = {
+                        "incoming": root.incoming,
+                        "attachment": modelData.data,
+                        "timestamp": timestamp,
+                        "lastItem": (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
                     }
+                    setSource(modelData.delegateSource, initialProperties)
                 }
             }
         }
@@ -168,6 +166,8 @@ MessageDelegate {
         // TODO: is possible to have more than one text ???
         MessageBubble {
             id: bubble
+
+            property string textData: application.readTextFile(root.textAttachements[0].filePath)
 
             states: [
                 State {
@@ -188,7 +188,7 @@ MessageDelegate {
                 }
             ]
             visible: (root.textAttachements.length > 0)
-            messageText: visible ? application.readTextFile(root.textAttachements[0].filePath) : ""
+            messageText: textData.length > 0 ? textData : i18n.tr("Missing message data")
             messageTimeStamp: root.timestamp
             messageStatus: textMessageStatus
             messageIncoming: root.incoming

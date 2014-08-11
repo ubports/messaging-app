@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 1.1
 
 MMSBase {
@@ -42,6 +42,14 @@ MMSBase {
             source: attachment.filePath
             visible: false
             asynchronous: true
+
+            onStatusChanged:  {
+                if (status === Image.Error) {
+                    source = "image://theme/image-missing"
+                    width = 128
+                    height = 128
+                }
+            }
         }
 
         Rectangle {
