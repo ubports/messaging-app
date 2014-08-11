@@ -1033,7 +1033,7 @@ Page {
                     PopupUtils.open(noNetworkDialog)
                     return
                 }
-                if (!telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
                     PopupUtils.open(setDefaultSimCardDialog)
                 }
                 // make sure we flush everything we have prepared in the OSK preedit
