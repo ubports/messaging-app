@@ -116,10 +116,11 @@ BorderImage {
 
         visible: !root.sending
         height: visible ? paintedHeight : 0
-        width: visible ? paintedWidth : 0
+        width: visible ? Math.min(paintedWidth, maxDelegateWidth) : 0
         fontSize: "xx-small"
         color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
         opacity: root.messageIncoming ? 1.0 : 0.8
+        elide: Text.ElideRight
         text: {
             var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
             if (root.accountName.length === 0) {
@@ -127,7 +128,7 @@ BorderImage {
             }
 
             if (root.messageIncoming) {
-                str += " to %1".arg(root.accountName)
+                str += " @ %1".arg(root.accountName)
             } else {
                 str += " @ %1".arg(root.accountName)
             }
