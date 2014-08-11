@@ -235,24 +235,6 @@ Page {
     }
 
     Component {
-        id: noSimCardSelectedDialog
-        Dialog {
-            id: dialogue
-            title: i18n.tr("No SIM card selected")
-            text: i18n.tr("You need to select a SIM card")
-            Button {
-                objectName: "closeNoSimCardSelectedDialog"
-                text: i18n.tr("Close")
-                color: UbuntuColors.orange
-                onClicked: {
-                    PopupUtils.close(dialogue)
-                    Qt.inputMethod.hide()
-                }
-            }
-        }
-    }
-
-    Component {
         id: noNetworkDialog
         Dialog {
             id: dialogue
