@@ -68,7 +68,7 @@ BorderImage {
     source: selectBubble()
     height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.contentWidth, textTimestamp.width))
+                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth))
             + border.left + border.right
     Label {
         id: senderName
@@ -116,7 +116,7 @@ BorderImage {
 
         visible: !root.sending
         height: visible ? paintedHeight : 0
-        width: visible ? Math.min(paintedWidth, maxDelegateWidth) : 0
+        width: visible ? maxDelegateWidth : 0
         fontSize: "xx-small"
         color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
         opacity: root.messageIncoming ? 1.0 : 0.8
@@ -126,12 +126,7 @@ BorderImage {
             if (root.accountName.length === 0) {
                 return str
             }
-
-            if (root.messageIncoming) {
-                str += " @ %1".arg(root.accountName)
-            } else {
-                str += " @ %1".arg(root.accountName)
-            }
+            str += " @ %1".arg(root.accountName)
             return str
         }
     }
