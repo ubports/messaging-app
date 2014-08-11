@@ -56,81 +56,10 @@ MainView {
         onSetupReady: {
             if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && 
                 settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
-                PopupUtils.open(noSimCardDefault)
+                PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }
     }
-
-    Component {
-        id: noSimCardDefault
-        Dialog {
-            id: dialogue
-            title: i18n.tr("Switch to default SIM:")
-            Column {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                spacing: units.gu(2)
-
-                Row {
-                    spacing: units.gu(4)
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: paintedHeight + units.gu(3)
-                    Repeater {
-                        model: telepathyHelper.accounts
-                        delegate: Label {
-                            text: modelData.displayName
-                            color: UbuntuColors.orange
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    PopupUtils.close(dialogue)
-                                    telepathyHelper.setDefaultAccount(TelepathyHelper.Messaging, modelData)
-                                }
-                            }
-                        }
-                    }
-                }
-
-                Label {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: paintedHeight + units.gu(6)
-                    verticalAlignment: Text.AlignVCenter
-                    text: i18n.tr("Select a default SIM for all outgoing messages. You can always alter your choice in <a href=\"system_settings\">System Settings</a>.")
-                    wrapMode: Text.WordWrap
-                    onLinkActivated: {
-                        PopupUtils.close(dialogue)
-                        Qt.openUrlExternally("settings:///system/cellular")
-                    }
-                }
-                Row {
-                    spacing: units.gu(4)
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Button {
-                        objectName: "noNoSimCardDefaultDialog"
-                        text: i18n.tr("No")
-                        color: UbuntuColors.orange
-                        onClicked: {
-                            settings.mainViewDontAskCount = 3
-                            PopupUtils.close(dialogue)
-                            Qt.inputMethod.hide()
-                        }
-                    }
-                    Button {
-                        objectName: "laterNoSimCardDefaultDialog"
-                        text: i18n.tr("Later")
-                        color: UbuntuColors.orange
-                        onClicked: {
-                            PopupUtils.close(dialogue)
-                            settings.mainViewDontAskCount++
-                            Qt.inputMethod.hide()
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 
     Settings {
         id: settings
