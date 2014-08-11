@@ -463,7 +463,13 @@ Page {
                 Action {
                     objectName: "selectionModeSelectAllAction"
                     iconName: "select"
-                    onTriggered: messageList.selectAll()
+                    onTriggered: {
+                        if (messageList.selectedItems.count === messageList.count) {
+                            messageList.clearSelection()
+                        } else {
+                            messageList.selectAll()
+                        }
+                    }
                 },
                 Action {
                     objectName: "selectionModeDeleteAction"
