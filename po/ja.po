@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-08-09 08:10+0000\n"
+"PO-Revision-Date: 2014-08-12 03:50+0000\n"
 "Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-10 06:04+0000\n"
+"X-Launchpad-Export-Date: 2014-08-12 06:43+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: src/qml/dateUtils.js:62
@@ -75,7 +75,7 @@ msgstr "連絡先"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
@@ -83,15 +83,15 @@ msgstr "新しい連絡先を作成"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "編集"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr ""
+msgstr "失敗しました"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "グループ"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
@@ -99,11 +99,11 @@ msgstr ""
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "画像のプレビュー"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "新しいチャット"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -111,7 +111,7 @@ msgstr "新しいメッセージ"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
@@ -123,11 +123,11 @@ msgstr "選択"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "送信中..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "共有"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -139,7 +139,7 @@ msgstr ""
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "動画のプレビュー"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
