@@ -39,6 +39,8 @@
 int main(int argc, char** argv)
 {
     QGuiApplication::setApplicationName("Messaging App");
+    QGuiApplication::setOrganizationName("com.ubuntu.messaging-app");
+
     MessagingApplication application(argc, argv);
 
     if (!application.setup()) {

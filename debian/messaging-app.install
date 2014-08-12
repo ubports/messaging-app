@@ -7,4 +7,5 @@ usr/share/messaging-app/*.js
 usr/share/messaging-app/assets
 usr/share/messaging-app/3rd_party
 usr/share/messaging-app/MMS/*.qml
+usr/share/messaging-app/Dialogs/*.qml
 usr/bin/*messaging-app*
