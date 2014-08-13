@@ -31,8 +31,9 @@ import QtContacts 5.0
 Page {
     id: messages
     objectName: "messagesPage"
-    property QtObject account: telepathyHelper.accounts[0]
-    property bool multipleAccounts: telepathyHelper.accounts.length > 1
+    // this property can be overriden by the user using the account switcher,
+    // in the suru divider
+    property QtObject account: mainView.defaultAccount
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -70,6 +71,13 @@ Page {
 
     function checkNetwork() {
         return messages.account.connected;
+    }
+
+    // this is necessary to automatically update the view when the
+    // default account changes in system settings
+    Connections {
+        target: mainView
+        onDefaultAccountChanged: account = mainView.defaultAccount
     }
 
     ListModel {
@@ -256,7 +264,17 @@ Page {
         }
         return accountNames
     }
-    head.sections.selectedIndex: Math.max(0, telepathyHelper.accounts.indexOf(messages.account))
+    head.sections.selectedIndex: {
+        if (!messages.account) {
+            return -1
+        }
+        for (var i in telepathyHelper.accounts) {
+            if (telepathyHelper.accounts[i].accountId == messages.account.accountId) {
+                return i
+            }
+        }
+        return -1
+    }
     Connections {
         target: messages.head.sections
         onSelectedIndexChanged: {
@@ -935,19 +953,24 @@ Page {
                 return false
             }
             onClicked: {
+                // check if at least one account is selected
+                if (!messages.account) {
+                    Qt.inputMethod.hide()
+                    PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+                    return
+                }
                 if (!checkNetwork()) {
                     Qt.inputMethod.hide()
                     PopupUtils.open(noNetworkDialog)
                     return
                 }
+                if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                    PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
+                }
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
-                }
-                if (!messages.account) {
-                    // FIXME: handle dual sim
-                    messages.account = telepathyHelper.accounts[0]
                 }
                 // dont change the participants list
                 if (participants.length == 0) {

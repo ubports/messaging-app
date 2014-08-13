@@ -375,6 +375,8 @@ class MainView(toolkit_emulators.MainView):
         """
         thread = self.get_thread_from_number(phone_number)
         thread.swipe_to_delete()
+        # wait for the animation to end
+        time.sleep(1)
         thread.confirm_removal()
 
     def delete_message(self, text):

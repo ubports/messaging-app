@@ -40,7 +40,7 @@ LocalPageWithBottomEdge {
     bottomEdgePageComponent: Messages {
         active: false
     }
-    bottomEdgeTitle: i18n.tr("New Chat")
+    bottomEdgeTitle: i18n.tr("Create new")
 
     TextField {
         id: searchField
@@ -113,6 +113,38 @@ LocalPageWithBottomEdge {
             ]
         }
     ]
+
+    Item { 
+        id: emptyStateScreen
+        anchors.left: parent.left
+        anchors.leftMargin: units.gu(6)
+        anchors.right: parent.right
+        anchors.rightMargin: units.gu(6)
+        height: childrenRect.height
+        anchors.verticalCenter: parent.verticalCenter
+        visible: threadCount == 0 && !threadModel.canFetchMore
+        Icon {
+            id: emptyStateIcon
+            anchors.top: emptyStateScreen.top
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: units.gu(5)
+            width: height
+            opacity: 0.3
+            name: "message"
+        }
+        Label {
+            id: emptyStateLabel
+            anchors.top: emptyStateIcon.bottom
+            anchors.topMargin: units.gu(2)
+            anchors.left: parent.left
+            anchors.right: parent.right
+            text: i18n.tr("Compose a new message by swiping up from the bottom of the screen.")
+            color: "#5d5d5d"
+            fontSize: "x-large"
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
 
     HistoryThreadGroupingProxyModel {
         id: sortProxy
