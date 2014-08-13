@@ -16,27 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1
-import ".."
 
 MMSBase {
     id: imageDelegate
-    property string previewer: "MMS/PreviewerImage.qml"
-    onItemClicked: {
-        if (checkClick(bubble, mouse)) {
-            attachmentClicked()
-        }
-    }
 
+    previewer: "MMS/PreviewerImage.qml"
     height: imageAttachment.height
+    width: imageAttachment.width
+
     UbuntuShape {
         id: bubble
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-        }
+        anchors.top: parent.top
         width: image.width
         height: image.height
 
@@ -49,16 +41,42 @@ MMSBase {
             smooth: true
             source: attachment.filePath
             visible: false
-        }
-    }
+            asynchronous: true
 
-    Loader {
-        active: (index == visibleAttachments-1) && !incoming && mmsText == "" && (inProgress || failed)
-        visible: active
-        height: active ? item.height : 0
-        sourceComponent: statusIcon
-        anchors.right: bubble.left
-        anchors.rightMargin: units.gu(1)
-        anchors.verticalCenter: bubble.verticalCenter
+            onStatusChanged:  {
+                if (status === Image.Error) {
+                    source = "image://theme/image-missing"
+                    width = 128
+                    height = 128
+                }
+            }
+        }
+
+        Rectangle {
+            visible: imageDelegate.lastItem
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 1.0; color: "gray" }
+            }
+
+            anchors {
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+            height: units.gu(2)
+            radius: bubble.height * 0.1
+            Label {
+                anchors{
+                    left: parent.left
+                    bottom: parent.bottom
+                    leftMargin: incoming ? units.gu(2) : units.gu(1)
+                    bottomMargin: units.gu(0.5)
+                }
+                fontSize: "xx-small"
+                text: Qt.formatDateTime(timestamp, "hh:mm AP")
+                color: "white"
+            }
+        }
     }
 }

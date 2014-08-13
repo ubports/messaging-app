@@ -16,12 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 import Ubuntu.Content 0.1
 import ".."
 
 Previewer {
-    title: application.contactNameFromVCard(attachment.filePath)
+    property string contactName: application.contactNameFromVCard(attachment.filePath)
+
+    title: contactName !== "" ? contactName : i18n.tr("Unknown contact")
     clip: true
 }

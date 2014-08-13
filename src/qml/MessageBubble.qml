@@ -27,15 +27,16 @@ BorderImage {
     id: root
 
     property int messageStatus: -1
-    property bool incoming: false
+    property bool messageIncoming: false
     property alias sender: senderName.text
     property string messageText
     property var messageTimeStamp
-    property int maxDelegateWidth: units.gu(30)
+    property int maxDelegateWidth: units.gu(27)
+    property string accountName
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+                                     messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
 
     function selectBubble() {
         var fileName = "assets/conversation_";
@@ -43,7 +44,7 @@ BorderImage {
             fileName += "error.sci"
         } else if (sending) {
             fileName += "pending.sci"
-        } else if (incoming) {
+        } else if (messageIncoming) {
             fileName += "incoming.sci";
         } else {
             fileName += "outgoing.sci";
@@ -63,11 +64,11 @@ BorderImage {
         return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
     }
 
-    onIncomingChanged: source = selectBubble()
+    onMessageIncomingChanged: source = selectBubble()
     source: selectBubble()
-    height: childrenRect.height + units.gu(2)
+    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.text.length, textTimestamp.text.length) * units.gu(1))
+                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth))
             + border.left + border.right
     Label {
         id: senderName
@@ -76,7 +77,7 @@ BorderImage {
             top: parent.top
             topMargin: units.gu(1)
             left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
+            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
         height: text === "" ? 0 : paintedHeight
         fontSize: "large"
@@ -91,17 +92,15 @@ BorderImage {
             top: sender == "" ? parent.top : senderName.bottom
             topMargin: units.gu(1)
             left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
-            right: parent.right
-            rightMargin: incoming ? units.gu(1) : units.gu(1)
+            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
         width: maxDelegateWidth
         fontSize: "medium"
-        height: text === "" ? 0 : paintedHeight
+        height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
         wrapMode: Text.Wrap
-        color: root.incoming ? UbuntuColors.darkGrey : "white"
+        color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
     }
 
     Label {
@@ -110,16 +109,25 @@ BorderImage {
 
         anchors{
             top: textLabel.bottom
-            topMargin: units.gu(0.5)
+            topMargin: units.gu(1)
             left: parent.left
-            leftMargin: incoming ? units.gu(2) : units.gu(1)
+            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
 
         visible: !root.sending
-        height: visible ? paintedHeight : 0
+        height: units.gu(2)
+        width: visible ? maxDelegateWidth : 0
         fontSize: "xx-small"
-        color: root.incoming ? UbuntuColors.lightGrey : "white"
-        opacity: root.incoming ? 1.0 : 0.8
-        text: Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
+        color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
+        opacity: root.messageIncoming ? 1.0 : 0.8
+        elide: Text.ElideRight
+        text: {
+            var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
+            if (root.accountName.length === 0) {
+                return str
+            }
+            str += " @ %1".arg(root.accountName)
+            return str
+        }
     }
 }

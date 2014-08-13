@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
@@ -44,7 +44,6 @@ ListItemWithActions {
         return firstRecipient
     }
 
-    property bool selectionMode: false
     property string textMessage: {
         // check if this is an mms, if so, search for the actual text
         var imageCount = 0
@@ -111,9 +110,17 @@ ListItemWithActions {
     ContactAvatar {
         id: avatar
 
-        fallbackAvatarUrl: groupChat ? "image://theme/contact-group" : delegateHelper.avatar !== "" ? delegateHelper.avatar : "image://theme/contact"
+        fallbackAvatarUrl: {
+            if (groupChat) {
+                return "image://theme/contact-group"
+            } else if (delegateHelper.avatar !== "") {
+                return delegateHelper.avatar
+            } else {
+                return "image://theme/contact"
+            }
+        }
         fallbackDisplayName: delegateHelper.alias
-        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0) || groupChat
+        showAvatarPicture: groupChat || (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
             left: parent.left
             top: parent.top
@@ -127,24 +134,35 @@ ListItemWithActions {
         id: contactName
         anchors {
             top: avatar.top
+            topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
         }
-        fontSize: "medium"
         color: UbuntuColors.lightAubergine
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
-    Label {
+    Row {
         id: time
+
         anchors {
             verticalCenter: contactName.verticalCenter
             right: parent.right
         }
-        fontSize: "x-small"
-        text: Qt.formatDateTime(eventTimestamp,"h:mm ap")
+        Label {
+            fontSize: "x-small"
+            font.weight: Font.DemiBold
+            opacity: 0.70
+            text: Qt.formatDateTime(eventTimestamp,"h:mm")
+        }
+        Label {
+            fontSize: "x-small"
+            opacity: 0.70
+            text: Qt.formatDateTime(eventTimestamp," ap")
+        }
     }
- 
+
+
     UbuntuShape {
         id: unreadCountIndicator
         height: units.gu(2)
@@ -181,20 +199,18 @@ ListItemWithActions {
 
     Label {
         id: latestMessage
-        height: units.gu(3)
+
         anchors {
             top: contactName.bottom
             topMargin: units.gu(0.5)
             left: contactName.left
             right: time.left
             rightMargin: units.gu(3)
+            bottom: avatar.bottom
         }
         elide: Text.ElideRight
-        maximumLineCount: 2
         fontSize: "x-small"
-        wrapMode: Text.WordWrap
         text: textMessage
-        font.weight: Font.Light
     }
 
     Item {

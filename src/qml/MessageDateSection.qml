@@ -18,16 +18,21 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
-import Ubuntu.Content 0.1
-import ".."
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
-Previewer {
-    title: i18n.tr("Image Preview")
-    clip: true
-    Image {
-        anchors.centerIn: parent
+Item {
+    property alias text: label.text
+
+    height: units.gu(3)
+    Label {
+        id: label
+
         anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
-        source: attachment.filePath
+        elide: Text.ElideRight
+        verticalAlignment: Text.AlignVCenter
+        fontSize: "small"
+    }
+    ListItem.ThinDivider {
+        anchors.bottom: parent.bottom
     }
 }

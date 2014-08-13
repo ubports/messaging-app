@@ -16,54 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 import QtMultimedia 5.0
 import ".."
 
 MMSBase {
     id: videoDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: "MMS/PreviewerVideo.qml"
+
+    previewer: "MMS/PreviewerVideo.qml"
     anchors.left: parent.left
     anchors.right: parent.right
-    onItemClicked: {
-        if (checkClick(bubble, mouse)) {
-            attachmentClicked()
-        }
-    }
-    state: incoming ? "incoming" : "outgoing"
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
     height: bubble.height + units.gu(1)
-    clip: true
+
     Item {
         id: bubble
         anchors.top: parent.top

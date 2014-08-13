@@ -16,93 +16,73 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
-import ".."
+import Ubuntu.History 0.1
 
 MMSBase {
     id: vcardDelegate
-    property string previewer: "MMS/PreviewerContact.qml"
-    onItemClicked: {
-        if (checkClick(bubble, mouse)) {
-            attachmentClicked()
-        }
-    }
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-            AnchorChanges {
-                target: contactName
-                anchors.left: bubble.right
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: contactName
-                anchors.leftMargin: units.gu(2)
-                anchors.rightMargin: units.gu(2)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-            AnchorChanges {
-                target: contactName
-                anchors.left: undefined
-                anchors.right: bubble.left
-            }
-            PropertyChanges {
-                target: contactName
-                anchors.leftMargin: units.gu(2)
-                anchors.rightMargin: units.gu(2)
-            }
-        }
-    ]
-    height: bubble.height + units.gu(2)
-    Item {
+
+    readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+    readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                                     textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+
+    previewer: "MMS/PreviewerContact.qml"
+    height: units.gu(8)
+    width: units.gu(27)
+
+    Rectangle {
         id: bubble
-        anchors.top: parent.top
-        width: avatar.width
-        height: avatar.height
+
+        anchors.fill: parent
+        color: {
+            if (error) {
+                return "#fc4949"
+            } else if (sending) {
+                return "#b2b2b2"
+            } else if (incoming) {
+                return "#ffffff"
+            } else {
+                return "#3fb24f"
+            }
+        }
+        radius: height * 0.1
+
         ContactAvatar {
             id: avatar
 
+            anchors {
+                top: parent.top
+                topMargin: units.gu(1)
+                bottom: parent.bottom
+                bottomMargin: units.gu(1)
+                left: parent.left
+                leftMargin: units.gu(1)
+            }
             fallbackAvatarUrl: "image://theme/contact"
             fallbackDisplayName: contactName.name
-            anchors.centerIn: parent
-            height: units.gu(6)
-            width: units.gu(6)
+            width: height
         }
-    }
-    Label {
-        id: contactName
-        property string name: application.contactNameFromVCard(attachment.filePath)
-        anchors.bottom: bubble.bottom
-        anchors.left: incoming ? bubble.right : undefined
-        anchors.right: !incoming ? bubble.left : undefined
-        anchors.rightMargin: !incoming ? units.gu(1) : undefined
-        anchors.leftMargin: incoming ? units.gu(1) : undefined
-        text: name !== "" ? name : i18n.tr("Unknown contact")
-        height: paintedHeight
-        width: paintedWidth
+
+        Label {
+            id: contactName
+
+            property string name: application.contactNameFromVCard(attachment.filePath)
+
+            anchors {
+                left: avatar.right
+                leftMargin: units.gu(1)
+                top: avatar.top
+                bottom: avatar.bottom
+                right: parent.right
+                rightMargin: units.gu(1)
+            }
+
+            verticalAlignment: Text.AlignVCenter
+            text: name !== "" ? name : i18n.tr("Unknown contact")
+            elide: Text.ElideRight
+            color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "#ffffff"
+        }
     }
 }

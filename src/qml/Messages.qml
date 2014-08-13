@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtQuick.Window 2.0
 import QtContacts 5.0
 import Ubuntu.Components 1.1
@@ -28,12 +28,16 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
+import "dateUtils.js" as DateUtils
+
 Page {
     id: messages
     objectName: "messagesPage"
+
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property QtObject account: mainView.defaultAccount
+
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -41,7 +45,6 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
-    property bool pendingMessage: false
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
@@ -111,7 +114,7 @@ Page {
 
     title: {
         if (selectionMode) {
-            return i18n.tr("Edit")
+            return i18n.tr(" ")
         }
 
         if (landscape) {
@@ -127,7 +130,7 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
-                return i18n.tr("Group (%1 members)").arg(participants.length)
+                return i18n.tr("Group (%1)").arg(participants.length)
             }
         }
         return i18n.tr("New Message")
@@ -269,7 +272,7 @@ Page {
             return -1
         }
         for (var i in telepathyHelper.accounts) {
-            if (telepathyHelper.accounts[i].accountId == messages.account.accountId) {
+            if (telepathyHelper.accounts[i].accountId === messages.account.accountId) {
                 return i
             }
         }
@@ -277,9 +280,7 @@ Page {
     }
     Connections {
         target: messages.head.sections
-        onSelectedIndexChanged: {
-            messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
-        }
+        onSelectedIndexChanged: messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
     }
 
     Component {
@@ -295,30 +296,13 @@ Page {
             filterTerm: multiRecipient.searchString
             showSections: false
             autoHideKeyboard: false
-
-            states: [
-                State {
-                    name: "empty"
-                    when: contactSearch.count === 0
-                    PropertyChanges {
-                        target: contactSearch
-                        height: 0
-                    }
-                }
-            ]
-
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
                 left: parent.left
                 right: parent.right
-                bottom: bottomPanel.top
+                bottom: parent.bottom
             }
-
-            Behavior on height {
-                UbuntuNumberAnimation { }
-            }
-
             InvalidFilter {
                 id: invalidFilter
             }
@@ -377,7 +361,7 @@ Page {
                                     }
                                     height: units.gu(2)
                                     text: {
-                                        // this is necessary to keep the string in the original format
+                                        // this is necessary to keep the string in the original foverdrawormat
                                         var originalText = contact.displayLabel.label
                                         var lowerSearchText =  multiRecipient.searchString.toLowerCase()
                                         var lowerText = originalText.toLowerCase()
@@ -422,16 +406,27 @@ Page {
     }
 
     Loader {
-        active: multiRecipient.searchString !== "" && multiRecipient.focus
-        sourceComponent: contactSearchComponent
+        property int resultCount: (status === Loader.Ready) ? item.view.count : 0
+
+        sourceComponent: (multiRecipient.searchString !== "") && multiRecipient.focus ? contactSearchComponent : null
         clip: true
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
         }
+        height: resultCount > 0 ? parent.height - keyboard.height : 0
         z: 1
+        // WORKAROUND: we need to use opacity here visible FALSE cause the item to not load
+        opacity: height > 0 ? 1.0 : 0.0
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: Theme.palette.normal.background
+        }
     }
 
     ContactWatcher {
@@ -488,7 +483,13 @@ Page {
                 Action {
                     objectName: "selectionModeSelectAllAction"
                     iconName: "select"
-                    onTriggered: messageList.selectAll()
+                    onTriggered: {
+                        if (messageList.selectedItems.count === messageList.count) {
+                            messageList.clearSelection()
+                        } else {
+                            messageList.selectAll()
+                        }
+                    }
                 },
                 Action {
                     objectName: "selectionModeDeleteAction"
@@ -645,86 +646,66 @@ Page {
         header: Item {
             height: units.gu(1)
         }
-
-        spacing: units.gu(1)
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
-        highlightFollowsCurrentItem: false
-        /*add: Transition {
-            UbuntuNumberAnimation {
-                properties: "anchors.leftMargin"
-                from: -width
-                to: 0
-            }
-            UbuntuNumberAnimation {
-                properties: "anchors.rightMargin"
-                from: -width
-                to: 0
-            }
-        }*/
+        highlightFollowsCurrentItem: true
+        currentIndex: 0
+        // keep the last item as currentItem
 
-        listDelegate: MessageDelegate {
+        listDelegate: Column {
             id: messageDelegate
-            objectName: "message%1".arg(index)
-            incoming: senderId != "self"
-            // TODO: we have several items inside
-            selected: messageList.isSelected(messageDelegate)
-            unread: newEvent
-            selectionMode: messages.selectionMode
-            accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-            // TODO: need select only the item
-            onItemClicked: {
-                if (messageList.isInSelectionMode) {
-                    if (!messageList.selectItem(messageDelegate)) {
-                        messageList.deselectItem(messageDelegate)
-                    }
+
+            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
+            // bellow the item
+            MessageDateSection {
+                text: DateUtils.friendlyDay(timestamp)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(2)
+                    rightMargin: units.gu(2)
                 }
-            }
-            onItemPressAndHold: {
-                messageList.startSelection()
-                messageList.selectItem(messageDelegate)
+                visible: (index === messageList.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
             }
 
-            Component.onCompleted: {
-                if (newEvent) {
-                    messages.markMessageAsRead(accountId, threadId, eventId, type);
-                }
-            }
-            onResend: {
-                // resend this message and remove the old one
-                if (textMessageAttachments.length > 0) {
-                    var newAttachments = []
-                    for (var i = 0; i < textMessageAttachments.length; i++) {
-                        var attachment = []
-                        var item = textMessageAttachments[i]
-                        // we dont include smil files. they will be auto generated
-                        if (item.contentType.toLowerCase() == "application/smil") {
-                            continue
+            MessageDelegateFactory {
+                objectName: "message%1".arg(index)
+                incoming: senderId != "self"
+                // TODO: we have several items inside
+                selected: messageList.isSelected(messageDelegate)
+                selectionMode: messages.selectionMode
+                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
+                // TODO: need select only the item
+                onItemClicked: {
+                    if (messageList.isInSelectionMode) {
+                        if (!messageList.selectItem(messageDelegate)) {
+                            messageList.deselectItem(messageDelegate)
                         }
-                        attachment.push(item.attachmentId)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
                     }
-                    eventModel.removeEvent(accountId, threadId, eventId, type)
-                    chatManager.sendMMS(participants, textMessage, newAttachments, messages.account.accountId)
-                    return
                 }
-                eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage, messages.account.accountId)
+                onItemPressAndHold: {
+                    messageList.startSelection()
+                    messageList.selectItem(messageDelegate)
+                }
+
+                Component.onCompleted: {
+                    if (newEvent) {
+                        messages.markMessageAsRead(accountId, threadId, eventId, type);
+                    }
+                }
             }
         }
+
         onSelectionDone: {
             for (var i=0; i < items.count; i++) {
                 var event = items.get(i).model
                 eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
             }
         }
+
         onCountChanged: {
-            if (messages.pendingMessage) {
-                messageList.contentY = 0
-                messages.pendingMessage = false
-            }
+            currentIndex = 0
+            positionViewAtBeginning()
         }
     }
 
@@ -909,7 +890,7 @@ Page {
                 height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
                 autoSize: true
-                maximumLineCount: 0
+                maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
@@ -984,7 +965,6 @@ Page {
                                                    true)
 
                 updateFilters()
-                messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {

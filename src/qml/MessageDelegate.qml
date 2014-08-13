@@ -16,242 +16,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.History 0.1
-import Ubuntu.Telephony 0.1
-import Ubuntu.Content 0.1
-import Ubuntu.Contacts 0.1
-
-import "dateUtils.js" as DateUtils
+import QtQuick 2.2
 
 Item {
     id: messageDelegate
+    objectName: "messageDelegate"
 
-    property alias incoming: bubble.incoming
-    property string textColor: incoming ? "#333333" : "white"
-    property bool unread: false
-    property variant activeAttachment
-    property string mmsText: ""
-    property string mmsTextId: ""
-    property string accountLabel: ""
-    property bool selectionMode: false
-    property bool selected: false
-    property bool inProgress: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                               textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
-    property bool failed: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
-    property int visibleAttachments: 0
+    property bool incoming
+    property var attachments
+    property string accountId
+    property var threadId
+    property var eventId
+    property var type
+    property string text
+    property var timestamp
+    property string accountLabel
+    property var _lastItem: messageDelegate
 
-    signal resend()
-    signal itemPressAndHold(QtObject obj)
-    signal itemClicked(QtObject obj)
 
-    anchors {
-        left: parent ? parent.left : undefined
-        right: parent ? parent.right: undefined
-    }
-    height: attachments.height + bubbleItem.height
-
-    Component {
-        id: statusIcon
-        Item {
-            height: units.gu(4)
-            width: units.gu(4)
-            visible: !incoming && !messageDelegate.selectionMode
-            ActivityIndicator {
-                id: indicator
-
-                anchors.centerIn: parent
-                height: units.gu(2)
-                width: units.gu(2)
-                visible: running && !selectionMode
-                // if temporarily failed or unknown status, then show the spinner
-                running: inProgress
-            }
-
-            Item {
-                id: retrybutton
-
-                anchors.fill: parent
-                Icon {
-                    id: icon
-
-                    name: "reload"
-                    color: "red"
-                    height: units.gu(2)
-                    width: units.gu(2)
-                    anchors {
-                        centerIn: parent
-                        verticalCenterOffset: units.gu(-1)
-                    }
-                }
-
-                Label {
-                    text: i18n.tr("Failed!")
-                    fontSize: "small"
-                    color: "red"
-                    anchors {
-                        horizontalCenter: retrybutton.horizontalCenter
-                        top: icon.bottom
-                    }
-                }
-                visible: failed
-                MouseArea {
-                    id: retrybuttonMouseArea
-
-                    anchors.fill: parent
-                    onClicked: messageDelegate.resend()
-                }
-            }
-        }
+    function deleteMessage()
+    {
+        //virtual implemented by each Message type
     }
 
-    Column {
-        id: attachments
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-        }
-        height: childrenRect.height
-        Repeater {
-            id: attachmentsRepeater
-
-            model: textMessageAttachments
-            Loader {
-                anchors {
-                    left: parent ? parent.left : undefined
-                    right: parent ? parent.right : undefined
-                }
-                height: item ? item.height : 0
-                source: {
-                    if (startsWith(modelData.contentType, "image/")) {
-                        return "MMS/MMSImage.qml"
-                    } else if (startsWith(modelData.contentType, "video/")) {
-                        return "MMS/MMSVideo.qml"
-                    } else if (startsWith(modelData.contentType, "application/smil") ||
-                              startsWith(modelData.contentType, "application/x-smil")) {
-                        return ""
-                    } else if (startsWith(modelData.contentType, "text/plain") ) {
-                        mmsText = application.readTextFile(modelData.filePath)
-                        mmsTextId = modelData.attachmentId
-                        return ""
-                    } else if (startsWith(modelData.contentType, "text/vcard") ||
-                              startsWith(modelData.contentType, "text/x-vcard")) {
-                        return "MMS/MMSContact.qml"
-                    } else {
-                        console.log("No MMS render for " + modelData.contentType)
-                        return "MMS/MMSDefault.qml"
-                    }
-                }
-                onStatusChanged: {
-                    if (status == Loader.Ready) {
-                        item.attachment = modelData
-                        item.incoming = incoming
-                    }
-                }
-                Connections {
-                    target: item
-                    onItemRemoved: {
-                        eventModel.removeEventAttachment(accountId, threadId, eventId, type, modelData.attachmentId)
-                        if (visibleAttachments == 1 && mmsText === "") {
-                            // this is the last attachment. remove the whole event
-                            eventModel.removeEvent(accountId, threadId, eventId, type)
-                            return
-                        }
-                    }
-                }
-                Connections {
-                    target: item
-                    onItemPressAndHold: itemPressAndHold(bubbleItem)
-                }
-                Binding {
-                    target: item
-                    property: "parentSelected"
-                    value: messageDelegate.selected
-                }
-                Connections {
-                    target: item
-                    onAttachmentClicked: {
-                        if (item.previewer === "") {
-                            activeAttachment = modelData
-                            PopupUtils.open(popoverSaveAttachmentComponent, item)
-                            return
-                        }
-
-                        var properties = {}
-                        properties["attachment"] = item.attachment
-                        mainStack.push(Qt.resolvedUrl(item.previewer), properties)
-                    }
-                }
-            }
-        }
+    function copyMessage()
+    {
+        //virtual implemented by each Message type
     }
 
-    ListItemWithActions {
-        id: bubbleItem
-
-        anchors {
-            top: attachments.bottom
-            left: parent.left
-            right: parent.right
-        }
-        internalAnchors {
-            topMargin: 0
-            bottomMargin: 0
-        }
-
-        height: bubble.visible ? bubble.height  : 0
-        leftSideAction: Action {
-            iconName: "delete"
-            text: i18n.tr("Delete")
-            onTriggered: {
-                // if there are no attachments, remove the whole message
-                if (visibleAttachments == 0) {
-                    eventModel.removeEvent(accountId, threadId, eventId, type)
-                    return
-                }
-                // check if this is an mms text and we have more attachments
-                if (mmsText !== "" && visibleAttachments > 1) {
-                    // remove only the text attachment if we have more attachments
-                    eventModel.removeEventAttachment(accountId, threadId, eventId, type, mmsTextId)
-                    mmsText = ""
-                    mmsTextId = ""
-                    return
-                }
-            }
-        }
-
-        selected: messageDelegate.selected
-        selectionMode: messageDelegate.selectionMode
-        onItemPressAndHold: messageDelegate.itemPressAndHold(bubbleItem)
-        onItemClicked: messageDelegate.itemClicked(bubbleItem)
-        onSwippingChanged: messageList.updateSwippedItem(bubbleItem)
-        onSwipeStateChanged: messageList.updateSwippedItem(bubbleItem)
-
-        MessageBubble {
-            id: bubble
-
-            anchors {
-                top: parent.top
-                left: incoming ? parent.left : undefined
-                right: incoming ? undefined : parent.right
-            }
-            visible: (messageText !== "")
-            messageText: textMessage !== "" ? textMessage : mmsText
-            messageTimeStamp: timestamp
-            messageStatus: textMessageStatus
-        }
-
-        Loader {
-            id: statusIconLoader
-            active: !incoming && !messageDelegate.selectionMode && bubble.visible && (inProgress || failed)
-            sourceComponent: statusIcon
-            anchors.right: bubble.left
-            anchors.rightMargin: units.gu(1)
-            anchors.verticalCenter: bubble.verticalCenter
-        }
+    function resendMessage()
+    {
+        //virtual implemented by each Message type
     }
 
+    function showMessageDetails(mouse)
+    {
+        //virtual implemented by each Message type
+    }
+
+    function clicked(mouse)
+    {
+        //virtual implemented by each Message type
+    }
 }
