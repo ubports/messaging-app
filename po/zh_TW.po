@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-07-22 17:06+0000\n"
+"PO-Revision-Date: 2014-08-14 16:17+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-23 07:01+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-08-15 06:28+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -131,7 +131,7 @@ msgstr "分享"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
-msgstr "今天"
+msgstr "今日"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
@@ -147,4 +147,4 @@ msgstr "撰寫訊息..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
-msgstr "昨天"
+msgstr "昨日"

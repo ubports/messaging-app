@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-08-12 03:50+0000\n"
+"PO-Revision-Date: 2014-08-15 01:15+0000\n"
 "Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-13 06:55+0000\n"
+"X-Launchpad-Export-Date: 2014-08-15 06:28+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: src/qml/dateUtils.js:62
@@ -135,7 +135,7 @@ msgstr "今日"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "やりなおす"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
