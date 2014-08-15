@@ -76,6 +76,12 @@ Page {
         return messages.account.connected;
     }
 
+    function onPhonePickedDuringSearch(phoneNumber) {
+        multiRecipient.addRecipient(phoneNumber)
+        multiRecipient.clearSearch()
+        multiRecipient.forceActiveFocus()
+    }
+
     // this is necessary to automatically update the view when the
     // default account changes in system settings
     Connections {
@@ -283,142 +289,21 @@ Page {
         onSelectedIndexChanged: messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
     }
 
-    Component {
-        id: contactSearchComponent
-
-        ContactListView {
-            id: contactSearch
-
-            detailToPick: ContactDetail.PhoneNumber
-            clip: true
-            z: 1
-            autoUpdate: false
-            filterTerm: multiRecipient.searchString
-            showSections: false
-            autoHideKeyboard: false
-            anchors {
-                top: parent.top
-                topMargin: units.gu(1)
-                left: parent.left
-                right: parent.right
-                bottom: parent.bottom
-            }
-            InvalidFilter {
-                id: invalidFilter
-            }
-
-            // clear list if it is invisible to save some memory
-            onVisibleChanged: {
-                if (visible && (filter != null)) {
-                    changeFilter(null)
-                    update()
-                } else if (!visible && filter != invalidFilter) {
-                    changeFilter(invalidFilter)
-                    update()
-                }
-            }
-
-            ContactDetailPhoneNumberTypeModel {
-                id: phoneTypeModel
-            }
-
-            listDelegate: Item {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-                height: phoneRepeater.count * units.gu(6)
-                Column {
-                    anchors.fill: parent
-                    spacing: units.gu(1)
-
-                    Repeater {
-                        id: phoneRepeater
-
-                        model: contact.phoneNumbers.length
-
-                        delegate: MouseArea {
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-                            }
-                            height: units.gu(5)
-
-                            onClicked: {
-                                multiRecipient.addRecipient(contact.phoneNumbers[index].number)
-                                multiRecipient.clearSearch()
-                                multiRecipient.forceActiveFocus()
-                            }
-
-                            Column {
-                                anchors.fill: parent
-
-                                Label {
-                                    anchors {
-                                        left: parent.left
-                                        right: parent.right
-                                    }
-                                    height: units.gu(2)
-                                    text: {
-                                        // this is necessary to keep the string in the original foverdrawormat
-                                        var originalText = contact.displayLabel.label
-                                        var lowerSearchText =  multiRecipient.searchString.toLowerCase()
-                                        var lowerText = originalText.toLowerCase()
-                                        var searchIndex = lowerText.indexOf(lowerSearchText)
-                                        if (searchIndex !== -1) {
-                                            var piece = originalText.substr(searchIndex, lowerSearchText.length)
-                                            return originalText.replace(piece, "<b>" + piece + "</b>")
-                                        } else {
-                                            return originalText
-                                        }
-                                    }
-                                    fontSize: "medium"
-                                    color: UbuntuColors.lightAubergine
-                                }
-                                Label {
-                                    anchors {
-                                        left: parent.left
-                                        right: parent.right
-                                    }
-                                    height: units.gu(2)
-                                    text: {
-                                        var phoneDetail = contact.phoneNumbers[index]
-                                        return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
-                                                        .arg(phoneDetail.number)
-                                    }
-                                }
-                                Item {
-                                    anchors {
-                                        left: parent.left
-                                        right: parent.right
-                                    }
-                                    height: units.gu(1)
-                                }
-
-                                ListItem.ThinDivider {}
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     Loader {
-        property int resultCount: (status === Loader.Ready) ? item.view.count : 0
+        id: searchListLoader
 
-        sourceComponent: (multiRecipient.searchString !== "") && multiRecipient.focus ? contactSearchComponent : null
+        property int resultCount: (status === Loader.Ready) ? item.count : 0
+
+        source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
+                Qt.resolvedUrl("ContactSearchList.qml") : ""
         clip: true
         anchors {
             top: parent.top
+            topMargin: units.gu(2)
             left: parent.left
             right: parent.right
         }
-        height: resultCount > 0 ? parent.height - keyboard.height : 0
         z: 1
-        // WORKAROUND: we need to use opacity here visible FALSE cause the item to not load
-        opacity: height > 0 ? 1.0 : 0.0
         Behavior on height {
             UbuntuNumberAnimation { }
         }
@@ -427,6 +312,40 @@ Page {
             anchors.fill: parent
             color: Theme.palette.normal.background
         }
+
+        Binding {
+            target: searchListLoader.item
+            property: "filterTerm"
+            value: multiRecipient.searchString
+            when: (searchListLoader.status === Loader.Ready)
+        }
+
+        Timer {
+            id: checkHeight
+
+            interval: 300
+            repeat: false
+            onTriggered: {
+                searchListLoader.height = searchListLoader.resultCount > 0 ? searchListLoader.parent.height - keyboard.height : 0
+            }
+        }
+
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                item.phonePicked.connect(messages.onPhonePickedDuringSearch)
+            }
+        }
+
+        // WORKAROUND: Contact model get all contacts removed in every search, to avoid the view to blick
+        // we will wait some msecs before reduce the size to 0 to confirm that there is no results on the view
+        onResultCountChanged: {
+            if (searchListLoader.resultCount > 0) {
+                searchListLoader.height = searchListLoader.parent.height - keyboard.height
+            } else {
+                checkHeight.restart()
+            }
+        }
+
     }
 
     ContactWatcher {
