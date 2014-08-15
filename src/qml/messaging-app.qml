@@ -28,14 +28,14 @@ MainView {
     id: mainView
 
     property string newPhoneNumber
-    property bool multipleAccounts: telepathyHelper.accounts.length > 1
+    property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
     property QtObject defaultAccount: {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
         if (multipleAccounts) {
             return telepathyHelper.defaultMessagingAccount
         } else {
-            return telepathyHelper.accounts[0]
+            return telepathyHelper.activeAccounts[0]
         }
     }
 
