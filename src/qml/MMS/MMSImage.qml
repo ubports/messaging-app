@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
+import Ubuntu.Thumbnailer 0.1
 
 MMSBase {
     id: imageDelegate
@@ -35,13 +36,17 @@ MMSBase {
         image: Image {
             id: imageAttachment
 
-            width: sourceSize.width > units.gu(30) ? units.gu(30) : sourceSize.width
-            height: Math.min(sourceSize.height, units.gu(14))
             fillMode: Image.PreserveAspectCrop
             smooth: true
+            //source: "image://thumbnailer/%1".arg(attachment.filePath)
             source: attachment.filePath
             visible: false
             asynchronous: true
+            height: Math.min(implicitHeight, units.gu(14))
+            width: Math.min(implicitWidth, units.gu(27))
+
+            sourceSize.width: units.gu(27)
+            sourceSize.height: units.gu(14)
 
             onStatusChanged:  {
                 if (status === Image.Error) {
