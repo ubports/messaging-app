@@ -32,7 +32,7 @@ Item {
     {
         if (!activeDialog) {
             activeMessage = message
-            activeDialog = PopupUtils.open(messageInfoDialog, messages)
+            activeDialog = PopupUtils.open(messageInfoDialog, QuickUtils.rootItem(this))
         }
     }
 
@@ -42,7 +42,7 @@ Item {
         Dialog {
             id: dialogue
 
-            parent: messages
+            parent: QuickUtils.rootItem(this)
 
             function statusToString(status)
             {
