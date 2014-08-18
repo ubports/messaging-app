@@ -31,6 +31,7 @@ Item {
     function showMessageInfo(message)
     {
         if (!activeDialog) {
+            Qt.inputMethod.hide()
             activeMessage = message
             activeDialog = PopupUtils.open(messageInfoDialog, QuickUtils.rootItem(this))
         }
