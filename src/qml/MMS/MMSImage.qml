@@ -18,7 +18,6 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
-import Ubuntu.Thumbnailer 0.1
 
 MMSBase {
     id: imageDelegate
