@@ -904,9 +904,4 @@ Page {
     MessageInfoDialog {
         id: messageInfoDialog
     }
-
-    Scrollbar {
-        flickableItem: messageList
-        align: Qt.AlignTrailing
-    }
 }

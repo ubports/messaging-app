@@ -56,8 +56,6 @@ MultipleSelectionListView {
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
     currentIndex: 0
-
-
     _availableActions: [
         Action {
             id: reloadAction
@@ -99,7 +97,7 @@ MultipleSelectionListView {
         // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
         // bellow the item
         MessageDateSection {
-            text: DateUtils.friendlyDay(timestamp)
+            text: visible ? DateUtils.friendlyDay(timestamp) : ""
             anchors {
                 left: parent.left
                 right: parent.right
@@ -139,12 +137,11 @@ MultipleSelectionListView {
                 root.startSelection()
                 root.selectItem(messageDelegate)
             }
-//                Component.onCompleted: {
-//                    if (newEvent) {
-//                        console.debug("New eventttttt")
-//                        messages.markMessageAsRead(accountId, threadId, eventId, type);
-//                    }
-//                }
+            Component.onCompleted: {
+                if (newEvent) {
+                    messages.markMessageAsRead(accountId, threadId, eventId, type);
+                }
+            }
         }
     }
 
