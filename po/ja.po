@@ -8,69 +8,66 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-17 11:13+0200\n"
-"PO-Revision-Date: 2014-01-18 15:17+0000\n"
-"Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
+"PO-Revision-Date: 2014-08-15 12:27+0000\n"
+"Last-Translator: Kentaro Kazuhama <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-08-16 06:51+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: src/qml/dateUtils.js:62
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1時間の通話"
 
 #: src/qml/dateUtils.js:64
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1分の通話"
 
 #: src/qml/dateUtils.js:66
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1秒の通話"
 
 #: src/qml/Messages.qml:409
 msgid "Add"
-msgstr ""
+msgstr "追加"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts.."
-msgstr ""
+msgstr "連絡先を追加する..."
 
 #: src/qml/NewRecipientPage.qml:27
 msgid "Add recipient"
-msgstr ""
+msgstr "メンバーを追加"
 
 #: src/qml/AddPhoneNumberToContactPage.qml:26
 msgid "Add to contact"
-msgstr ""
+msgstr "連絡先に追加"
 
 #: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
 msgid "Add to existing contact"
-msgstr ""
+msgstr "既存の連絡先に追加"
 
 #: src/qml/Messages.qml:397 src/qml/Messages.qml:426
 msgid "Call"
-msgstr ""
+msgstr "発信"
 
 #: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
 #: src/qml/Messages.qml:169
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: src/qml/MainPage.qml:31
 msgid "Chats"
-msgstr ""
+msgstr "チャット"
 
 #: src/qml/Messages.qml:438
 msgid "Contact"
@@ -78,35 +75,35 @@ msgstr "連絡先"
 
 #: src/qml/MessageDelegate.qml:176
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
 #: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
 msgid "Create new contact"
-msgstr ""
+msgstr "新しい連絡先を作成"
 
 #: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
 msgid "Edit"
-msgstr ""
+msgstr "編集"
 
 #: src/qml/MessageDelegate.qml:300
 msgid "Failed"
-msgstr ""
+msgstr "失敗しました"
 
 #: src/qml/Messages.qml:74
 msgid "Group"
-msgstr ""
+msgstr "グループ"
 
 #: src/qml/Messages.qml:150
 msgid "How do you want to save the contact?"
-msgstr ""
+msgstr "連絡先に保存しますか？"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "画像のプレビュー"
 
 #: src/qml/MainPage.qml:39
 msgid "New Chat"
-msgstr ""
+msgstr "新しいチャット"
 
 #: src/qml/Messages.qml:77
 msgid "New Message"
@@ -114,11 +111,11 @@ msgstr "新しいメッセージ"
 
 #: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/qml/Messages.qml:149
 msgid "Save contact"
-msgstr ""
+msgstr "連絡先を保存"
 
 #: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
 msgid "Select"
@@ -126,11 +123,11 @@ msgstr "選択"
 
 #: src/qml/MessageDelegate.qml:298
 msgid "Sending..."
-msgstr ""
+msgstr "送信中..."
 
 #: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
 msgid "Share"
-msgstr ""
+msgstr "共有"
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
@@ -138,15 +135,15 @@ msgstr "今日"
 
 #: src/qml/MessageDelegate.qml:208
 msgid "Try again"
-msgstr ""
+msgstr "やりなおす"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "動画のプレビュー"
 
 #: src/qml/Messages.qml:578
 msgid "Write a message..."
-msgstr ""
+msgstr "メッセージを書く..."
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
