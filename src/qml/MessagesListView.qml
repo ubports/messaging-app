@@ -22,6 +22,8 @@ import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
+import "dateUtils.js" as DateUtils
+
 MultipleSelectionListView {
     id: root
 
@@ -91,8 +93,23 @@ MultipleSelectionListView {
         }
     ]
 
-    listDelegate: MessageDelegateFactory {
-            id: messageDelegate
+    listDelegate: Column {
+        id: messageDelegate
+
+        // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
+        // bellow the item
+        MessageDateSection {
+            text: DateUtils.friendlyDay(timestamp)
+            anchors {
+                left: parent.left
+                right: parent.right
+                leftMargin: units.gu(2)
+                rightMargin: units.gu(2)
+            }
+            visible: (index === root.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
+        }
+
+        MessageDelegateFactory {
             objectName: "message%1".arg(index)
 
             incoming: senderId != "self"
@@ -128,6 +145,7 @@ MultipleSelectionListView {
 //                        messages.markMessageAsRead(accountId, threadId, eventId, type);
 //                    }
 //                }
+        }
     }
 
     onSelectionDone: {
