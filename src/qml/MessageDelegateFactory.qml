@@ -60,7 +60,6 @@ ListItemWithActions {
     Loader {
         id: loader
 
-
         anchors {
             left: parent.left
             right: parent.right
@@ -75,6 +74,18 @@ ListItemWithActions {
                 messageFactory.copyMessage.connect(item.copyMessage)
                 messageFactory.showMessageDetails(item.showMessageDetails)
             }
+        }
+        Binding {
+            target: loader.item
+            property: "messageData"
+            value: model
+            when: (loader.status === Loader.Ready)
+        }
+        Binding {
+            target: loader.item
+            property: "accountLabel"
+            value: accountLabel
+            when: (loader.status === Loader.Ready)
         }
     }
 
@@ -138,4 +149,6 @@ ListItemWithActions {
             }
         }
     }
+
+    Component.onCompleted: console.debug("FACTORY CREATED:" + messageFactory)
 }

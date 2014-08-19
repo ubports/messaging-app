@@ -91,9 +91,8 @@ MultipleSelectionListView {
         }
     ]
 
-    listDelegate: Column {
-        id: messageDelegate
-        MessageDelegateFactory {
+    listDelegate: MessageDelegateFactory {
+            id: messageDelegate
             objectName: "message%1".arg(index)
 
             incoming: senderId != "self"
@@ -129,7 +128,6 @@ MultipleSelectionListView {
 //                        messages.markMessageAsRead(accountId, threadId, eventId, type);
 //                    }
 //                }
-        }
     }
 
     onSelectionDone: {

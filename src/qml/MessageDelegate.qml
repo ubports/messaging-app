@@ -22,7 +22,11 @@ Item {
     id: messageDelegate
     objectName: "messageDelegate"
 
+    property var messageData: null
+    property bool incoming: (messageData && messageData.senderId !== "self")
+    property string accountLabel: ""
     property var _lastItem: messageDelegate
+
 
 
     function deleteMessage()

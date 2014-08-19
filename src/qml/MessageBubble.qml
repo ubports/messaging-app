@@ -64,6 +64,7 @@ BorderImage {
         return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
     }
 
+    asynchronous: true
     onMessageIncomingChanged: source = selectBubble()
     source: selectBubble()
     height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)

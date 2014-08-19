@@ -22,7 +22,7 @@ import Ubuntu.Components 1.1
 MessageDelegate {
     id: root
 
-    property var attachments: textMessageAttachments
+    property var attachments: messageData.textMessageAttachments
     property var dataAttachments: []
     property var textAttachements: []
 
@@ -39,7 +39,10 @@ MessageDelegate {
 
     function deleteMessage()
     {
-        eventModel.removeEvent(accountId, threadId, eventId, type)
+        eventModel.removeEvent(messageData.accountId,
+                               messageData.threadId,
+                               messageData.eventId,
+                               messageData.type)
     }
 
     function resendMessage()
@@ -47,7 +50,7 @@ MessageDelegate {
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
-            var item = textMessageAttachments[i]
+            var item = attachments[i]
             // we dont include smil files. they will be auto generated
             if (item.contentType.toLowerCase() === "application/smil") {
                 continue
@@ -57,7 +60,11 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        eventModel.removeEvent(accountId, threadId, eventId, type)
+        eventModel.removeEvent(messageData.accountId,
+                               messageData.threadId,
+                               messageData.eventId,
+                               messageData.type)
+        // FIXME: export this information for MessageDelegate
         chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
     }
 
@@ -69,14 +76,14 @@ MessageDelegate {
     }
 
     onAttachmentsChanged: {
-        dataAttachments = []
-        textAttachements = []
+        root.dataAttachments = []
+        root.textAttachements = []
         for (var i=0; i < attachments.length; i++) {
             var attachment = attachments[i]
             if (startsWith(attachment.contentType, "text/plain") ) {
-                textAttachements.push(attachment)
+                root.textAttachements.push(attachment)
             } else if (startsWith(attachment.contentType, "image/")) {
-                dataAttachments.push({"type": "image",
+                root.dataAttachments.push({"type": "image",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
@@ -95,13 +102,18 @@ MessageDelegate {
                         //                                 })
             } else if (startsWith(attachment.contentType, "text/vcard") ||
                        startsWith(attachment.contentType, "text/x-vcard")) {
-                dataAttachments.push({"type": "vcard",
+                root.dataAttachments.push({"type": "vcard",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSContact.qml"
                                     })
             } else {
                 console.log("No MMS render for " + attachment.contentType)
             }
+        }
+        attachmentsRepeater.model = root.dataAttachments
+        if (root.textAttachements.length > 0) {
+            bubble.textData = application.readTextFile(root.textAttachements[0].filePath)
+            bubble.visible = true
         }
     }
     height: attachmentsView.height
@@ -118,14 +130,13 @@ MessageDelegate {
 
         Repeater {
             id: attachmentsRepeater
-            model: dataAttachments
 
             Loader {
                 id: attachmentLoader
 
                 states: [
                     State {
-                        when: incoming
+                        when: root.incoming
                         name: "incoming"
                         AnchorChanges {
                             target: attachmentLoader
@@ -138,7 +149,7 @@ MessageDelegate {
                         }
                     },
                     State {
-                        when: !incoming
+                        when: !root.incoming
                         name: "outgoing"
                         AnchorChanges {
                             target: attachmentLoader
@@ -153,15 +164,15 @@ MessageDelegate {
                 ]
                 source: modelData.delegateSource
                 Binding {
-                    target: attachmentLoader.item
+                    target: attachmentLoader.item ? attachmentLoader.item : null
                     property: "attachment"
                     value: modelData.data
                     when: attachmentLoader.status === Loader.Ready
                 }
                 Binding {
-                    target: attachmentLoader.item
+                    target: attachmentLoader.item ? attachmentLoader.item : null
                     property: "lastItem"
-                    value: (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
+                    value: (index === (attachmentsRepeater.count - 1)) && (root.textAttachements.length === 0)
                     when: attachmentLoader.status === Loader.Ready
                 }
             }
@@ -171,7 +182,7 @@ MessageDelegate {
         MessageBubble {
             id: bubble
 
-            property string textData: root.textAttachements ? application.readTextFile(root.textAttachements[0].filePath) : ""
+            property string textData
 
             states: [
                 State {
@@ -191,12 +202,11 @@ MessageDelegate {
                     }
                 }
             ]
-            visible: (root.textAttachements.length > 0)
             messageText: textData.length > 0 ? textData : i18n.tr("Missing message data")
-            messageTimeStamp: timestamp
-            messageStatus: textMessageStatus
-            messageIncoming: incoming
-            accountName: accountLabel
+            messageTimeStamp: root.messageData.timestamp
+            messageStatus: root.messageData.textMessageStatus
+            messageIncoming: root.incoming
+            accountName: root.accountLabel
         }
     }
 }
