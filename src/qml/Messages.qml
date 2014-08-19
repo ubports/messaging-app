@@ -36,7 +36,7 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: mainView.defaultAccount
+    property QtObject account: mainView.account
 
     property variant participants: []
     property bool groupChat: participants.length > 1
@@ -80,7 +80,7 @@ Page {
     // default account changes in system settings
     Connections {
         target: mainView
-        onDefaultAccountChanged: account = mainView.defaultAccount
+        onAccountChanged: messages.account = mainView.account
     }
 
     ListModel {

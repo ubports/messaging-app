@@ -29,7 +29,9 @@ MainView {
 
     property string newPhoneNumber
     property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
-    property QtObject defaultAccount: {
+    property QtObject account: defaultAccount()
+
+    function defaultAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
         if (multipleAccounts) {
@@ -38,6 +40,21 @@ MainView {
             return telepathyHelper.activeAccounts[0]
         }
     }
+
+    Connections {
+        target: telepathyHelper
+        // restore default bindings if any system settings changed
+        onActiveAccountsChanged: {
+            for (var i in telepathyHelper.activeAccounts) {
+                if (telepathyHelper.activeAccounts[i] == account) {
+                    return;
+                }
+            }
+            account = Qt.binding(defaultAccount)
+        }
+        onDefaultMessagingAccountChanged: account = Qt.binding(defaultAccount)
+    }
+
 
     automaticOrientation: true
     width: units.gu(40)
