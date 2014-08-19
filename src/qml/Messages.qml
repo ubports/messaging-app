@@ -50,6 +50,7 @@ Page {
     property var sharedAttachmentsTransfer: []
     property string lastFilter: ""
     property string text: ""
+    property bool pendingMessage: false
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -704,8 +705,15 @@ Page {
         }
 
         onCountChanged: {
-            currentIndex = 0
-            positionViewAtBeginning()
+            // this is necessary because the model load the messages on demand
+            // the count will change as the user scroll back in the model, but
+            // we only want to move to beginner when a new message arrives or sent
+            // FIXME: we should consider only move to beginner if the model is already on last message
+            if (messages.pendingMessage) {
+                currentIndex = 0
+                positionViewAtBeginning()
+                messages.pendingMessage = false
+            }
         }
     }
 
@@ -965,6 +973,7 @@ Page {
                                                    true)
 
                 updateFilters()
+                messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
