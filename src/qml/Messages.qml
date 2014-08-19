@@ -93,6 +93,7 @@ Page {
         onPictureReceived: {
             var attachment = {}
             var filePath = String(pictureUrl).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
             attachment["name"] = filePath.split('/').reverse()[0]
             attachment["filePath"] = filePath
             attachments.append(attachment)
