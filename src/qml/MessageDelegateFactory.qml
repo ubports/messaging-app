@@ -22,12 +22,14 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
 ListItemWithActions {
-    id: root
+    id: messageFactory
 
     property bool incoming: false
-    property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
-    property list<Action> _availableActions
     property string accountLabel
+
+    // To be used by actions
+    property int _index: index
+    property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
 
     signal deleteMessage()
     signal resendMessage()
@@ -42,49 +44,6 @@ ListItemWithActions {
         onTriggered: deleteMessage()
     }
 
-    // WORKAROUND: to filter actions on rightSideActions property based on message status
-    _availableActions: [
-        Action {
-            id: reloadAction
-
-            iconName: "reload"
-            text: i18n.tr("Retry")
-            onTriggered: resendMessage()
-        },
-        Action {
-            id: copyAction
-
-            iconName: "edit-copy"
-            text: i18n.tr("Copy")
-            onTriggered: copyMessage()
-        },
-        Action {
-            id: infoAction
-
-            iconName: "info"
-            text: i18n.tr("Info")
-            onTriggered: {
-                // FIXME: Is that the corect way to do that?
-                var messageType = textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                var messageInfo = {"type": messageType,
-                                   "senderId": senderId,
-                                   "timestamp": timestamp,
-                                   "textReadTimestamp": textReadTimestamp,
-                                   "status": textMessageStatus}
-                messageInfoDialog.showMessageInfo(messageInfo)
-            }
-        }
-    ]
-
-    rightSideActions: {
-        var actions = []
-        if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-            actions.push(reloadAction)
-        }
-        actions.push(copyAction)
-        actions.push(infoAction)
-        return actions
-    }
 
     height: loader.height + units.gu(1)
     internalAnchors {
@@ -101,36 +60,20 @@ ListItemWithActions {
     Loader {
         id: loader
 
-        onStatusChanged:  {
-            if (status === Loader.Ready) {
-                //signals
-                root.resendMessage.connect(item.resendMessage)
-                root.deleteMessage.connect(item.deleteMessage)
-                root.copyMessage.connect(item.copyMessage)
-                root.showMessageDetails(item.showMessageDetails)
-            }
-        }
+
         anchors {
             left: parent.left
             right: parent.right
         }
+        source: textMessageAttachments.length > 0 ? Qt.resolvedUrl("MMSDelegate.qml") : Qt.resolvedUrl("SMSDelegate.qml")
         height: status == Loader.Ready ? item.height : 0
-        Component.onCompleted: {
-            var initialProperties = {
-                "incoming": root.incoming,
-                "accountLabel": accountLabel,
-                "attachments": textMessageAttachments,
-                "accountId": accountId,
-                "threadId": threadId,
-                "eventId": eventId,
-                "type": type,
-                "text": textMessage,
-                "timestamp": timestamp
-            }
-            if (textMessageAttachments.length > 0) {
-                setSource(Qt.resolvedUrl("MMSDelegate.qml"), initialProperties)
-            } else {
-                setSource(Qt.resolvedUrl("SMSDelegate.qml"), initialProperties)
+        onStatusChanged:  {
+            if (status === Loader.Ready) {
+                //signals
+                messageFactory.resendMessage.connect(item.resendMessage)
+                messageFactory.deleteMessage.connect(item.deleteMessage)
+                messageFactory.copyMessage.connect(item.copyMessage)
+                messageFactory.showMessageDetails(item.showMessageDetails)
             }
         }
     }
@@ -193,11 +136,6 @@ ListItemWithActions {
                 anchors.fill: parent
                 onClicked: root.resendMessage()
             }
-        }
-
-
-        MessageInfoDialog {
-            id: messageInfoDialog
         }
     }
 }

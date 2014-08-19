@@ -22,15 +22,6 @@ Item {
     id: messageDelegate
     objectName: "messageDelegate"
 
-    property bool incoming
-    property var attachments
-    property string accountId
-    property var threadId
-    property var eventId
-    property var type
-    property string text
-    property var timestamp
-    property string accountLabel
     property var _lastItem: messageDelegate
 
 

@@ -22,6 +22,7 @@ import Ubuntu.Components 1.1
 MessageDelegate {
     id: root
 
+    property var attachments: textMessageAttachments
     property var dataAttachments: []
     property var textAttachements: []
 
@@ -124,7 +125,7 @@ MessageDelegate {
 
                 states: [
                     State {
-                        when: root.incoming
+                        when: incoming
                         name: "incoming"
                         AnchorChanges {
                             target: attachmentLoader
@@ -137,7 +138,7 @@ MessageDelegate {
                         }
                     },
                     State {
-                        when: !root.incoming
+                        when: !incoming
                         name: "outgoing"
                         AnchorChanges {
                             target: attachmentLoader
@@ -150,15 +151,18 @@ MessageDelegate {
                         }
                     }
                 ]
-
-                Component.onCompleted: {
-                    var initialProperties = {
-                        "incoming": root.incoming,
-                        "attachment": modelData.data,
-                        "timestamp": timestamp,
-                        "lastItem": (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
-                    }
-                    setSource(modelData.delegateSource, initialProperties)
+                source: modelData.delegateSource
+                Binding {
+                    target: attachmentLoader.item
+                    property: "attachment"
+                    value: modelData.data
+                    when: attachmentLoader.status === Loader.Ready
+                }
+                Binding {
+                    target: attachmentLoader.item
+                    property: "lastItem"
+                    value: (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
+                    when: attachmentLoader.status === Loader.Ready
                 }
             }
         }
@@ -167,7 +171,7 @@ MessageDelegate {
         MessageBubble {
             id: bubble
 
-            property string textData: application.readTextFile(root.textAttachements[0].filePath)
+            property string textData: root.textAttachements ? application.readTextFile(root.textAttachements[0].filePath) : ""
 
             states: [
                 State {
@@ -189,10 +193,10 @@ MessageDelegate {
             ]
             visible: (root.textAttachements.length > 0)
             messageText: textData.length > 0 ? textData : i18n.tr("Missing message data")
-            messageTimeStamp: root.timestamp
+            messageTimeStamp: timestamp
             messageStatus: textMessageStatus
-            messageIncoming: root.incoming
-            accountName: root.accountLabel
+            messageIncoming: incoming
+            accountName: accountLabel
         }
     }
 }

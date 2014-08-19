@@ -50,7 +50,6 @@ Page {
     property var sharedAttachmentsTransfer: []
     property string lastFilter: ""
     property string text: ""
-    property bool pendingMessage: false
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -606,114 +605,17 @@ Page {
         }
     }
 
-    SortProxyModel {
-        id: sortProxy
-        sourceModel: eventModel.filter ? eventModel : null
-        sortRole: HistoryEventModel.TimestampRole
-        ascending: false
-    }
-
-    MultipleSelectionListView {
+    MessagesListView {
         id: messageList
         objectName: "messageList"
 
-        property var _currentSwipedItem: null
-
-        function updateSwippedItem(item)
-        {
-            if (item.swipping) {
-                return
-            }
-
-            if (item.swipeState !== "Normal") {
-                if (_currentSwipedItem !== item) {
-                    if (_currentSwipedItem) {
-                        _currentSwipedItem.resetSwipe()
-                    }
-                    _currentSwipedItem = item
-                }
-            } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
-                _currentSwipedItem = null
-            }
-        }
+        // because of the header
         clip: true
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
-        }
-        // fake bottomMargin
-        header: Item {
-            height: units.gu(1)
-        }
-        listModel: participants.length > 0 ? sortProxy : null
-        verticalLayoutDirection: ListView.BottomToTop
-        highlightFollowsCurrentItem: true
-        currentIndex: 0
-        // keep the last item as currentItem
-
-        listDelegate: Column {
-            id: messageDelegate
-
-            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
-            // bellow the item
-            MessageDateSection {
-                text: DateUtils.friendlyDay(timestamp)
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: units.gu(2)
-                    rightMargin: units.gu(2)
-                }
-                visible: (index === messageList.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
-            }
-
-            MessageDelegateFactory {
-                objectName: "message%1".arg(index)
-                incoming: senderId != "self"
-                // TODO: we have several items inside
-                selected: messageList.isSelected(messageDelegate)
-                selectionMode: messages.selectionMode
-                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-                // TODO: need select only the item
-                onItemClicked: {
-                    if (messageList.isInSelectionMode) {
-                        if (!messageList.selectItem(messageDelegate)) {
-                            messageList.deselectItem(messageDelegate)
-                        }
-                    }
-                }
-                onItemPressAndHold: {
-                    messageList.startSelection()
-                    messageList.selectItem(messageDelegate)
-                }
-
-                Component.onCompleted: {
-                    if (newEvent) {
-                        messages.markMessageAsRead(accountId, threadId, eventId, type);
-                    }
-                }
-            }
-        }
-
-        onSelectionDone: {
-            for (var i=0; i < items.count; i++) {
-                var event = items.get(i).model
-                eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
-            }
-        }
-
-        onCountChanged: {
-            // this is necessary because the model load the messages on demand
-            // the count will change as the user scroll back in the model, but
-            // we only want to move to beginner when a new message arrives or sent
-            // FIXME: we should consider only move to beginner if the model is already on last message
-            if (messages.pendingMessage) {
-                currentIndex = 0
-                positionViewAtBeginning()
-                messages.pendingMessage = false
-            }
         }
     }
 
@@ -973,7 +875,6 @@ Page {
                                                    true)
 
                 updateFilters()
-                messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
@@ -998,6 +899,10 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
+    }
+
+    MessageInfoDialog {
+        id: messageInfoDialog
     }
 
     Scrollbar {
