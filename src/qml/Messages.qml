@@ -87,18 +87,17 @@ Page {
         id: attachments
     }
 
-    Connections {
-        target: activeTransfer !== null ? activeTransfer : null
-        onStateChanged: {
-            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
-                        (activeTransfer.state === ContentTransfer.Aborted));
+    PictureImport {
+        id: pictureImporter
 
-            if (activeTransfer.state === ContentTransfer.Charged) {
-                if (activeTransfer.items.length > 0) {
-                    addAttachmentsToModel(activeTransfer)
-                    textEntry.forceActiveFocus()
-                }
-            }
+        onPictureReceived: {
+            var attachment = {}
+            var filePath = String(pictureUrl).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["filePath"] = filePath
+            attachments.append(attachment)
+            textEntry.forceActiveFocus()
         }
     }
 
@@ -173,13 +172,6 @@ Page {
     function markMessageAsRead(accountId, threadId, eventId, type) {
         chatManager.acknowledgeMessage(participants[0], eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
-    }
-
-    ContentPeer {
-        id: defaultSource
-        contentType: ContentType.Pictures
-        handler: ContentHandler.Source
-        selectionType: ContentTransfer.Single
     }
 
     Component {
@@ -738,7 +730,8 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    activeTransfer = defaultSource.request();
+                    Qt.inputMethod.hide()
+                    pictureImporter.requestNewPicture()
                 }
             }
         }
