@@ -130,6 +130,7 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
+                // TRANSLATORS: %1 refers to the number of participants in a group chat
                 return i18n.tr("Group (%1)").arg(participants.length)
             }
         }
