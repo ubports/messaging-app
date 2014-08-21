@@ -70,7 +70,8 @@ ListItemWithActions {
                                    "senderId": senderId,
                                    "timestamp": timestamp,
                                    "textReadTimestamp": textReadTimestamp,
-                                   "status": textMessageStatus}
+                                   "status": textMessageStatus,
+                                   "participants": messages.participants}
                 messageInfoDialog.showMessageInfo(messageInfo)
             }
         }
