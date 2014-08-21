@@ -37,12 +37,12 @@ MMSBase {
 
             fillMode: Image.PreserveAspectCrop
             smooth: true
-            //source: "image://thumbnailer/%1".arg(attachment.filePath)
             source: attachment.filePath
             visible: false
             asynchronous: true
             height: Math.min(implicitHeight, units.gu(14))
             width: Math.min(implicitWidth, units.gu(27))
+            cache: false
 
             sourceSize.width: units.gu(27)
             sourceSize.height: units.gu(14)

@@ -29,5 +29,8 @@ Previewer {
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
         source: attachment.filePath
+        cache: false
+        sourceSize.width: parent.width
+        sourceSize.height: parent.height
     }
 }
