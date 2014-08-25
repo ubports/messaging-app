@@ -77,15 +77,14 @@ MultipleSelectionListView {
             iconName: "info"
             text: i18n.tr("Info")
             onTriggered: {
-                console.debug("Value:" + value._index)
-                // FIXME: Is that the corect way to do that?
                 var messageData = listModel.get(value._index)
                 var messageType = messageData.textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
                 var messageInfo = {"type": messageType,
                                    "senderId": messageData.senderId,
                                    "timestamp": messageData.timestamp,
                                    "textReadTimestamp": messageData.textReadTimestamp,
-                                   "status": messageData.textMessageStatus}
+                                   "status": messageData.textMessageStatus,
+                                   "participants": messages.participants}
                 messageInfoDialog.showMessageInfo(messageInfo)
             }
         }

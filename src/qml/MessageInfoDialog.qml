@@ -20,6 +20,7 @@ import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneUtils
 
 
 Item {
@@ -74,6 +75,16 @@ Item {
                 }
             }
 
+            function getTargetName(message)
+            {
+                if (message.senderId !== "self") {
+                    return i18n.tr("Myself")
+                } else if (message.participants.length > 1) {
+                    return i18n.tr("Group")
+                } else {
+                    return PhoneUtils.PhoneUtils.format(message.participants[0])
+                }
+            }
 
             title: i18n.tr("Message info")
 
@@ -86,7 +97,20 @@ Item {
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("From")).arg(root.activeMessage.senderId !== "self" ? root.activeMessage.senderId : i18n.tr("Myself"))
+                text: "<b>%1:</b> %2".arg(i18n.tr("From"))
+                .arg(root.activeMessage.senderId !== "self" ?
+                     PhoneUtils.PhoneUtils.format(root.activeMessage.senderId) : i18n.tr("Myself"))
+            }
+
+            Label {
+                text: "<b>%1:</b> %2".arg(i18n.tr("To"))
+                                     .arg(getTargetName(root.activeMessage))
+            }
+            Repeater {
+                model: root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
+                Label {
+                    text: PhoneUtils.PhoneUtils.format(modelData)
+                }
             }
 
             Label {

@@ -44,7 +44,6 @@ ListItemWithActions {
         onTriggered: deleteMessage()
     }
 
-
     height: loader.height + units.gu(1)
     internalAnchors {
         topMargin: units.gu(0.5)
