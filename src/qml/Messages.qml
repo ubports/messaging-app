@@ -36,7 +36,7 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: mainView.defaultAccount
+    property QtObject account: mainView.account
 
     property variant participants: []
     property bool groupChat: participants.length > 1
@@ -80,25 +80,24 @@ Page {
     // default account changes in system settings
     Connections {
         target: mainView
-        onDefaultAccountChanged: account = mainView.defaultAccount
+        onAccountChanged: messages.account = mainView.account
     }
 
     ListModel {
         id: attachments
     }
 
-    Connections {
-        target: activeTransfer !== null ? activeTransfer : null
-        onStateChanged: {
-            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
-                        (activeTransfer.state === ContentTransfer.Aborted));
+    PictureImport {
+        id: pictureImporter
 
-            if (activeTransfer.state === ContentTransfer.Charged) {
-                if (activeTransfer.items.length > 0) {
-                    addAttachmentsToModel(activeTransfer)
-                    textEntry.forceActiveFocus()
-                }
-            }
+        onPictureReceived: {
+            var attachment = {}
+            var filePath = String(pictureUrl).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["filePath"] = filePath
+            attachments.append(attachment)
+            textEntry.forceActiveFocus()
         }
     }
 
@@ -173,13 +172,6 @@ Page {
     function markMessageAsRead(accountId, threadId, eventId, type) {
         chatManager.acknowledgeMessage(participants[0], eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
-    }
-
-    ContentPeer {
-        id: defaultSource
-        contentType: ContentType.Pictures
-        handler: ContentHandler.Source
-        selectionType: ContentTransfer.Single
     }
 
     Component {
@@ -262,8 +254,8 @@ Page {
         }
 
         var accountNames = []
-        for(var i=0; i < telepathyHelper.accounts.length; i++) {
-            accountNames.push(telepathyHelper.accounts[i].displayName)
+        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
         }
         return accountNames
     }
@@ -271,8 +263,8 @@ Page {
         if (!messages.account) {
             return -1
         }
-        for (var i in telepathyHelper.accounts) {
-            if (telepathyHelper.accounts[i].accountId === messages.account.accountId) {
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
                 return i
             }
         }
@@ -280,7 +272,7 @@ Page {
     }
     Connections {
         target: messages.head.sections
-        onSelectedIndexChanged: messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
+        onSelectedIndexChanged: messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
     }
 
     Component {
@@ -738,7 +730,8 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    activeTransfer = defaultSource.request();
+                    Qt.inputMethod.hide()
+                    pictureImporter.requestNewPicture()
                 }
             }
         }
