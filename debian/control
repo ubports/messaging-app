@@ -24,6 +24,7 @@ Homepage: https://launchpad.net/messaging-app
 # just go ahead. ~phablet-team will notice and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~phablet-team/messaging-app/trunk
 Vcs-Browser: https://bazaar.launchpad.net/~phablet-team/messaging-app/trunk/files
+X-Ubuntu-Use-Langpack: yes
 
 Package: messaging-app
 Architecture: any
