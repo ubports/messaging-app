@@ -65,7 +65,7 @@ MessageDelegate {
                                messageData.eventId,
                                messageData.type)
         // FIXME: export this information for MessageDelegate
-        chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
+        chatManager.sendMMS(participants, textMessage, newAttachments, messages.account.accountId)
     }
 
     function copyMessage()

@@ -39,7 +39,7 @@ MessageDelegate {
                                root.messageData.eventId,
                                root.messageData.type)
         // FIXME: export this information for MessageDelegate
-        chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
+        chatManager.sendMessage(messages.participants, textMessage, messages.account.accountId)
     }
 
     function copyMessage()

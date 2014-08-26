@@ -144,7 +144,7 @@ ListItemWithActions {
                 id: retrybuttonMouseArea
 
                 anchors.fill: parent
-                onClicked: root.resendMessage()
+                onClicked: messageFactory.resendMessage()
             }
         }
     }
