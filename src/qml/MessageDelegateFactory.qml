@@ -148,6 +148,4 @@ ListItemWithActions {
             }
         }
     }
-
-    Component.onCompleted: console.debug("FACTORY CREATED:" + messageFactory)
 }
