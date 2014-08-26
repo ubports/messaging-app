@@ -764,20 +764,25 @@ Page {
             Flow {
                 id: attachmentThumbnails
                 spacing: units.gu(1)
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-                anchors.topMargin: units.gu(1)
-                height: childrenRect.height
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    topMargin: units.gu(1)
+                    leftMargin: units.gu(1)
+                    rightMargin: units.gu(1)
+                }
+                height: childrenRect.height + units.gu(1)
+
                 Component {
                     id: thumbnailImage
                     UbuntuShape {
                         property int index
                         property string filePath
+
                         width: childrenRect.width
                         height: childrenRect.height
+
                         image: Image {
                             id: avatarImage
                             width: units.gu(8)
@@ -799,17 +804,48 @@ Page {
 
                 Component {
                     id: thumbnailContact
-                    UbuntuShape {
+                    Item {
+                        id: attachment
+
                         property int index
                         property string filePath
-                        width: childrenRect.width
-                        height: childrenRect.height
-                        Icon {
-                            anchors.centerIn: parent
-                            width: units.gu(6)
-                            height: units.gu(6)
-                            name: "contact"
+
+                        height: units.gu(8)
+                        width: textEntry.width
+
+                        ContactAvatar {
+                            id: avatar
+
+                            anchors {
+                                top: parent.top
+                                topMargin: units.gu(1)
+                                bottom: parent.bottom
+                                bottomMargin: units.gu(1)
+                                left: parent.left
+                            }
+                            fallbackAvatarUrl: "image://theme/contact"
+                            fallbackDisplayName: label.name
+                            width: height
                         }
+                        Label {
+                            id: label
+
+                            property string name: attachment.filePath != "" ? application.contactNameFromVCard(attachment.filePath) : ""
+
+                            anchors {
+                                left: avatar.right
+                                leftMargin: units.gu(1)
+                                top: avatar.top
+                                bottom: avatar.bottom
+                                right: parent.right
+                            }
+
+                            verticalAlignment: Text.AlignVCenter
+                            text: name !== "" ? name : i18n.tr("Unknown contact")
+                            elide: Text.ElideRight
+                            color: UbuntuColors.lightAubergine
+                        }
+
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
@@ -823,11 +859,14 @@ Page {
 
                 Component {
                     id: thumbnailUnknown
+
                     UbuntuShape {
                         property int index
                         property string filePath
-                        width: childrenRect.width
-                        height: childrenRect.height
+
+                        width: units.gu(8)
+                        height: units.gu(8)
+
                         Icon {
                             anchors.centerIn: parent
                             width: units.gu(6)
@@ -849,7 +888,6 @@ Page {
                     model: attachments
                     delegate: Loader {
                         height: units.gu(8)
-                        width: units.gu(8)
                         sourceComponent: {
                             var contentType = getContentType(filePath)
                             console.log(contentType)
@@ -874,11 +912,24 @@ Page {
                 }
             }
 
+            ListItem.ThinDivider {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    bottom: attachmentThumbnails.bottom
+                    leftMargin: units.gu(0.5)
+                    rightMargin: units.gu(0.5)
+                }
+                visible: attachments.count > 0
+            }
+
             TextArea {
                 id: messageTextArea
-                anchors.top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
+                anchors {
+                    top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
+                    left: parent.left
+                    right: parent.right
+                }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
