@@ -140,7 +140,7 @@ MessageDelegate {
                         name: "incoming"
                         AnchorChanges {
                             target: attachmentLoader
-                            anchors.left: parent.left
+                            anchors.left: parent ? parent.left : undefined
                         }
                         PropertyChanges {
                             target: attachmentLoader
@@ -153,7 +153,7 @@ MessageDelegate {
                         name: "outgoing"
                         AnchorChanges {
                             target: attachmentLoader
-                            anchors.right: parent.right
+                            anchors.right: parent ? parent.right : undefined
                         }
                         PropertyChanges {
                             target: attachmentLoader
