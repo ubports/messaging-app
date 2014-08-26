@@ -25,6 +25,7 @@ MessageDelegate {
     property var attachments: messageData.textMessageAttachments
     property var dataAttachments: []
     property var textAttachements: []
+    property string messageText: ""
 
     function clicked(mouse)
     {
@@ -112,12 +113,12 @@ MessageDelegate {
         }
         attachmentsRepeater.model = root.dataAttachments
         if (root.textAttachements.length > 0) {
-            bubble.textData = application.readTextFile(root.textAttachements[0].filePath)
-            bubble.visible = true
+            root.messageText = application.readTextFile(root.textAttachements[0].filePath)
+            bubbleLoader.active = true
         }
     }
     height: attachmentsView.height
-    _lastItem: bubble.visible ? bubble : attachmentsRepeater.itemAt(attachmentsRepeater - 1)
+    _lastItem: bubbleLoader.active ? bubbleLoader : attachmentsRepeater.itemAt(attachmentsRepeater - 1)
     Column {
         id: attachmentsView
 
@@ -178,35 +179,37 @@ MessageDelegate {
             }
         }
 
-        // TODO: is possible to have more than one text ???
-        MessageBubble {
-            id: bubble
+        Loader {
+            id: bubbleLoader
 
-            property string textData
+            source: Qt.resolvedUrl("MMSMessageBubble.qml")
+            active: false
 
             states: [
                 State {
-                    when: root.incoming
+                    when: incoming
                     name: "incoming"
                     AnchorChanges {
-                        target: bubble
+                        target: bubbleLoader
                         anchors.left: parent.left
                     }
                 },
                 State {
                     name: "outgoing"
-                    when: !root.incoming
+                    when: !incoming
                     AnchorChanges {
-                        target: bubble
+                        target: bubbleLoader
                         anchors.right: parent.right
                     }
                 }
             ]
-            messageText: textData.length > 0 ? textData : i18n.tr("Missing message data")
-            messageTimeStamp: root.messageData.timestamp
-            messageStatus: root.messageData.textMessageStatus
-            messageIncoming: root.incoming
-            accountName: root.accountLabel
+
+            Binding {
+                target: bubbleLoader.item
+                property: "messageText"
+                value: root.messageText.length > 0 ? root.messageText : i18n.tr("Missing message data")
+                when: bubbleLoader.status === Loader.Ready
+            }
         }
     }
 }
