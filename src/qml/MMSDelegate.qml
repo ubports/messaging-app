@@ -71,9 +71,7 @@ MessageDelegate {
 
     function copyMessage()
     {
-        if (bubble.visible) {
-            Clipboard.push(bubble.messageText)
-        }
+        Clipboard.push(root.messageText)
     }
 
     onAttachmentsChanged: {
