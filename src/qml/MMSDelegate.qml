@@ -118,7 +118,7 @@ MessageDelegate {
         }
     }
     height: attachmentsView.height
-    _lastItem: bubbleLoader.active ? bubbleLoader : attachmentsRepeater.itemAt(attachmentsRepeater - 1)
+    _lastItem: bubbleLoader.active ? bubbleLoader : attachmentsRepeater.itemAt(attachmentsRepeater.count - 1)
     Column {
         id: attachmentsView
 
