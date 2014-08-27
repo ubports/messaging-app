@@ -53,7 +53,7 @@ BorderImage {
     }
 
     function parseText(text) {
-        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[-. ]?([0-9]+)[-. ]?([0-9]+)[-. ]?([0-9]+))/img;
+        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[- ]?([0-9]+)[- ]?([0-9]+)[- ]?([0-9]+))/img;
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // replace line breaks
