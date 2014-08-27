@@ -94,11 +94,12 @@ BorderImage {
             left: parent.left
             leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
-        width: maxDelegateWidth
+        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
         fontSize: "medium"
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
+        textFormat: Text.RichText
         wrapMode: Text.Wrap
         color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
     }
