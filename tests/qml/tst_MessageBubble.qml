@@ -70,33 +70,23 @@ Item {
             changeIncomingMessageBubble.messageIncoming = true;
         }
 
-        function getFileName(filePath) {
-            return String(filePath).split('/').reverse()[0];
-        }
-
         function test_incomingMessageBubbleMustUseIncomingSource() {
             var incomingMessageBubble = findChild(
                 root, 'incomingMessageBubble');
-            compare(
-                getFileName(incomingMessageBubble.source),
-                'conversation_incoming.sci');
+            compare(incomingMessageBubble.color, "#ffffff")
         }
 
         function test_outgoingMessageBubbleMustUseOutgoingSource() {
             var outgoingMessageBubble = findChild(
                 root, 'outgoingMessageBubble');
-            compare(
-                getFileName(outgoingMessageBubble.source),
-                'conversation_outgoing.sci');
+            compare(outgoingMessageBubble.color, "#3fb24f")
         }
 
         function test_changeIncomingMustUpdateSource() {
             var changeIncomingMessageBubble = findChild(
                 root, 'changeIncomingMessageBubble');
             changeIncomingMessageBubble.messageIncoming = false;
-            compare(
-                getFileName(changeIncomingMessageBubble.source),
-                'conversation_outgoing.sci');
+            compare(changeIncomingMessageBubble.color, "#3fb24f")
         }
     }
 }
