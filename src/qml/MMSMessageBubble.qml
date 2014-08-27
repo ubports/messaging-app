@@ -25,4 +25,23 @@ MessageBubble {
     messageStatus: messageData.textMessageStatus
     messageIncoming: incoming
     accountName: accountLabel
+
+    states: [
+        State {
+            when: messageIncoming
+            name: "incoming"
+            AnchorChanges {
+                target: bubble
+                anchors.left: parent.left
+            }
+        },
+        State {
+            when: !messageIncoming
+            name: "outgoing"
+            AnchorChanges {
+                target: bubble
+                anchors.right: parent.right
+            }
+        }
+    ]
 }

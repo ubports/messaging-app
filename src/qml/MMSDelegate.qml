@@ -127,6 +127,7 @@ MessageDelegate {
         }
         height: childrenRect.height
 
+        spacing: units.gu(0.5)
         Repeater {
             id: attachmentsRepeater
 
