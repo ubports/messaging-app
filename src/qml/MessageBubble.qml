@@ -71,10 +71,6 @@ Rectangle {
         rightMargin: units.gu(1)
     }
 
-    Behavior on height {
-        UbuntuNumberAnimation {}
-    }
-
     Label {
         id: senderName
 
