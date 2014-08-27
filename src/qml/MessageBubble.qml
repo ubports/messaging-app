@@ -61,14 +61,18 @@ Rectangle {
             return "#3fb24f"
         }
     }
-    radius: height * 0.1
-    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
+    radius: 9
+    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(1.5)
     width:  Math.min(units.gu(27),
                      Math.max(textLabel.contentWidth, textTimestamp.contentWidth))
             + units.gu(3)
     anchors{
-        leftMargin: messageIncoming ? units.gu(2) : units.gu(1)
-        rightMargin: !messageIncoming ? units.gu(1) : units.gu(2)
+        leftMargin:  units.gu(1)
+        rightMargin: units.gu(1)
+    }
+
+    Behavior on height {
+        UbuntuNumberAnimation {}
     }
 
     Label {
@@ -76,13 +80,12 @@ Rectangle {
 
         anchors {
             top: parent.top
-            topMargin: units.gu(1)
+            topMargin: units.gu(0.5)
             left: parent.left
             leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
         height: text === "" ? 0 : paintedHeight
         fontSize: "large"
-        //color: Ubuntu.Colors.
     }
 
     Label {
@@ -91,9 +94,9 @@ Rectangle {
 
         anchors {
             top: sender == "" ? parent.top : senderName.bottom
-            topMargin: units.gu(1)
+            topMargin: sender == "" ? units.gu(0.5) : units.gu(1)
             left: parent.left
-            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
+            leftMargin: units.gu(1)
         }
         width: maxDelegateWidth
         fontSize: "medium"
@@ -123,6 +126,9 @@ Rectangle {
         opacity: root.messageIncoming ? 1.0 : 0.8
         elide: Text.ElideRight
         text: {
+            if (messageTimeStamp === "")
+                return ""
+
             var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
             if (root.accountName.length === 0) {
                 return str
@@ -140,7 +146,7 @@ Rectangle {
         asynchronous: true
         anchors {
             bottom: parent.bottom
-            bottomMargin: units.gu(1)
+            bottomMargin: units.gu(2)
         }
         width: units.gu(1)
         height: units.gu(1.5)

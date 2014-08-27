@@ -172,7 +172,7 @@ MessageDelegate {
                 Binding {
                     target: attachmentLoader.item ? attachmentLoader.item : null
                     property: "lastItem"
-                    value: (index === (attachmentsRepeater.count - 1)) && (root.textAttachements.length === 0)
+                    value: _lastItem === attachmentLoader
                     when: attachmentLoader.status === Loader.Ready
                 }
             }
