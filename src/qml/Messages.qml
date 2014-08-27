@@ -772,7 +772,7 @@ Page {
                     leftMargin: units.gu(1)
                     rightMargin: units.gu(1)
                 }
-                height: childrenRect.height + units.gu(1)
+                height: childrenRect.height
 
                 Component {
                     id: thumbnailImage
@@ -810,7 +810,7 @@ Page {
                         property int index
                         property string filePath
 
-                        height: units.gu(8)
+                        height: units.gu(6)
                         width: textEntry.width
 
                         ContactAvatar {
@@ -818,9 +818,7 @@ Page {
 
                             anchors {
                                 top: parent.top
-                                topMargin: units.gu(1)
                                 bottom: parent.bottom
-                                bottomMargin: units.gu(1)
                                 left: parent.left
                             }
                             fallbackAvatarUrl: "image://theme/contact"
@@ -913,12 +911,13 @@ Page {
             }
 
             ListItem.ThinDivider {
+                id: divider
+
                 anchors {
                     left: parent.left
                     right: parent.right
-                    bottom: attachmentThumbnails.bottom
-                    leftMargin: units.gu(0.5)
-                    rightMargin: units.gu(0.5)
+                    top: attachmentThumbnails.bottom
+                    margins: units.gu(0.5)
                 }
                 visible: attachments.count > 0
             }
