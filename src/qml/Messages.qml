@@ -748,7 +748,7 @@ Page {
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
-            height: attachments.count !== 0 ? fullSize + units.gu(1) : fullSize
+            height: attachments.count !== 0 ? fullSize + units.gu(1.5) : fullSize
             onActiveFocusChanged: {
                 if(activeFocus) {
                     messageTextArea.forceActiveFocus()
