@@ -62,7 +62,7 @@ Rectangle {
         }
     }
     radius: 9
-    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(1.5)
+    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(1)
     width:  Math.min(units.gu(27),
                      Math.max(textLabel.contentWidth, textTimestamp.contentWidth))
             + units.gu(3)
@@ -109,7 +109,7 @@ Rectangle {
 
         anchors{
             top: textLabel.bottom
-            topMargin: units.gu(1)
+            topMargin: units.gu(0.5)
             left: parent.left
             leftMargin: units.gu(1)
         }
