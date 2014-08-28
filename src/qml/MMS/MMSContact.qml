@@ -16,96 +16,73 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components 0.1
-import ".."
+import QtQuick 2.2
+import Ubuntu.Components 1.1
+import Ubuntu.Contacts 0.1
+import Ubuntu.History 0.1
 
-ListItem.Empty {
+MMSBase {
     id: vcardDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: ""
-    property string textColor: incoming ? "#333333" : "#ffffff"
-    anchors.left: parent.left
-    anchors.right: parent.right
-    state: incoming ? "incoming" : "outgoing"
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-            AnchorChanges {
-                target: contactName
-                anchors.left: bubble.right
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: contactName
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-            AnchorChanges {
-                target: contactName
-                anchors.left: undefined
-                anchors.right: bubble.left
-            }
-            PropertyChanges {
-                target: contactName
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
-    removable: true
-    confirmRemoval: true
-    height: bubble.height
-    clip: true
-    showDivider: false
-    highlightWhenPressed: false
-    MessageBubble {
-        id: bubble
-        incoming: vcardDelegate.incoming
-        anchors.top: parent.top
-        width: image.width + units.gu(4)
-        height: image.height + units.gu(2)
 
-        Icon {
-            id: image
-            height: units.gu(6)
-            width: units.gu(6)
-            name: "contact"
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
+    readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
+    readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                                     textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+
+    previewer: "MMS/PreviewerContact.qml"
+    height: units.gu(8)
+    width: units.gu(27)
+
+    Rectangle {
+        id: bubble
+
+        anchors.fill: parent
+        color: {
+            if (error) {
+                return "#fc4949"
+            } else if (sending) {
+                return "#b2b2b2"
+            } else if (incoming) {
+                return "#ffffff"
+            } else {
+                return "#3fb24f"
+            }
         }
-    }
-    Label {
-        id: contactName
-        property string name: application.contactNameFromVCard(attachment.filePath)
-        anchors.bottom: bubble.bottom
-        text: name !== "" ? name : i18n.tr("Unknown contact")
-        height: paintedHeight
-        width: paintedWidth
+        radius: height * 0.1
+
+        ContactAvatar {
+            id: avatar
+
+            anchors {
+                top: parent.top
+                topMargin: units.gu(1)
+                bottom: parent.bottom
+                bottomMargin: units.gu(1)
+                left: parent.left
+                leftMargin: units.gu(1)
+            }
+            fallbackAvatarUrl: "image://theme/contact"
+            fallbackDisplayName: contactName.name
+            width: height
+        }
+
+        Label {
+            id: contactName
+
+            property string name: application.contactNameFromVCard(attachment.filePath)
+
+            anchors {
+                left: avatar.right
+                leftMargin: units.gu(1)
+                top: avatar.top
+                bottom: avatar.bottom
+                right: parent.right
+                rightMargin: units.gu(1)
+            }
+
+            verticalAlignment: Text.AlignVCenter
+            text: name !== "" ? name : i18n.tr("Unknown contact")
+            elide: Text.ElideRight
+            color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "#ffffff"
+        }
     }
 }

@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.Telephony 0.1
 import QtContacts 5.0
@@ -142,7 +142,7 @@ StyledItem {
                     width: units.gu(20)
                     hasClearButton: false
                     clip: false
-                    placeholderText: i18n.tr("Add contacts..")
+                    placeholderText: multiRecipientWidget.recipientCount  <= 0 ? i18n.tr("Add contacts...") :""
                     font.family: "Ubuntu"
                     font.weight: Font.Light
                     color: "#752571"

@@ -16,10 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtQuick.Window 2.0
 import QtContacts 5.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Content 0.1
@@ -28,13 +28,16 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
+import "dateUtils.js" as DateUtils
+
 Page {
     id: messages
     objectName: "messagesPage"
-    // FIXME this info must come from system settings or telephony-service
-    property var accounts: {"ofono/ofono/account0": "SIM 1", "ofono/ofono/account1": "SIM 2"}
-    property string accountId: telepathyHelper.accountIds[0]
-    property bool multipleAccounts: telepathyHelper.accountIds.length > 1
+
+    // this property can be overriden by the user using the account switcher,
+    // in the suru divider
+    property QtObject account: mainView.account
+
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -42,7 +45,6 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
-    property bool pendingMessage: false
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
@@ -71,31 +73,36 @@ Page {
     }
 
     function checkNetwork() {
-        return telepathyHelper.isAccountConnected(messages.accountId)
+        return messages.account.connected;
+    }
+
+    // this is necessary to automatically update the view when the
+    // default account changes in system settings
+    Connections {
+        target: mainView
+        onAccountChanged: messages.account = mainView.account
     }
 
     ListModel {
         id: attachments
     }
 
-    Connections {
-        target: activeTransfer !== null ? activeTransfer : null
-        onStateChanged: {
-            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
-                        (activeTransfer.state === ContentTransfer.Aborted));
+    PictureImport {
+        id: pictureImporter
 
-            if (activeTransfer.state === ContentTransfer.Charged) {
-                if (activeTransfer.items.length > 0) {
-                    addAttachmentsToModel(activeTransfer)
-                    textEntry.forceActiveFocus()
-                }
-            }
+        onPictureReceived: {
+            var attachment = {}
+            var filePath = String(pictureUrl).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["filePath"] = filePath
+            attachments.append(attachment)
+            textEntry.forceActiveFocus()
         }
     }
 
     flickable: null
-    // we need to use isReady here to know if this is a bottom edge page or not.
-    __customHeaderContents: participants.length === 0 && isReady ? newMessageHeader : null
+
     property bool isReady: false
     signal ready
     onReady: {
@@ -106,7 +113,7 @@ Page {
 
     title: {
         if (selectionMode) {
-            return i18n.tr("Edit")
+            return i18n.tr(" ")
         }
 
         if (landscape) {
@@ -122,27 +129,10 @@ Page {
             if (participants.length == 1) {
                 return firstRecipient
             } else {
-                return i18n.tr("Group (%1 members)").arg(participants.length)
+                return i18n.tr("Group (%1)").arg(participants.length)
             }
         }
         return i18n.tr("New Message")
-    }
-    tools: {
-        if (selectionMode) {
-            return messagesToolbarSelectionMode
-        }
-
-        if (participants.length == 0) {
-            return messagesToolbarNewMessage
-        } else if (participants.length == 1) {
-            if (contactWatcher.isUnknown) {
-                return messagesToolbarUnknownContact
-            } else {
-                return messagesToolbarKnownContact
-            }
-        } else if (groupChat){
-            return messagesToolbarGroupChat
-        }
     }
 
     Component.onCompleted: {
@@ -157,8 +147,8 @@ Page {
         }
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        for (var i = 0; i < telepathyHelper.accountIds.length; i++) {
-            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i], 
+        for (var i in telepathyHelper.accountIds) {
+            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
                                                                  HistoryThreadModel.MatchPhoneNumber)
@@ -182,13 +172,6 @@ Page {
     function markMessageAsRead(accountId, threadId, eventId, type) {
         chatManager.acknowledgeMessage(participants[0], eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
-    }
-
-    ContentPeer {
-        id: defaultSource
-        contentType: ContentType.Pictures
-        handler: ContentHandler.Source
-        selectionType: ContentTransfer.Single
     }
 
     Component {
@@ -251,7 +234,7 @@ Page {
         Dialog {
             id: dialogue
             title: i18n.tr("No network")
-            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.accounts[messages.accountId]) : i18n.tr("There is currently no network.")
+            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
             Button {
                 objectName: "closeNoNetworkDialog"
                 text: i18n.tr("Close")
@@ -264,90 +247,32 @@ Page {
         }
     }
 
-    Rectangle {
-        id: accountList
-        z: 1
-        clip: !multipleAccounts
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
+    head.sections.model: {
+        // does not show dual sim switch if there is only one sim
+        if (!multipleAccounts) {
+            return undefined
         }
-        height: multipleAccounts ? childrenRect.height : 0
-        color: "white"
-        Row {
-            anchors {
-                top: parent.top
-                horizontalCenter: parent.horizontalCenter
-            }
-            height: childrenRect.height
-            width: childrenRect.width
-            spacing: units.gu(2)
-            Repeater {
-                model: telepathyHelper.accountIds
-                delegate: Label {
-                    width: paintedWidth
-                    height: paintedHeight
-                    text: messages.accounts[modelData]
-                    font.pixelSize: FontUtils.sizeToPixels("small")
-                    color: messages.accountId == modelData ? "red" : "#5d5d5d"
-                    MouseArea {
-                        anchors {
-                            fill: parent
-                            // increase touch area
-                            leftMargin: units.gu(-1)
-                            rightMargin: units.gu(-1)
-                            bottomMargin: units.gu(-1)
-                        }
-                        onClicked: messages.accountId = modelData
-                    }
-                }
-            }
+
+        var accountNames = []
+        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
         }
+        return accountNames
     }
-
-    Item {
-        id: newMessageHeader
-        anchors {
-            left: parent.left
-            rightMargin: units.gu(1)
-            right: parent.right
-            bottom: parent.bottom
+    head.sections.selectedIndex: {
+        if (!messages.account) {
+            return -1
         }
-        visible: participants.length == 0 && isReady && messages.active
-        MultiRecipientInput {
-            id: multiRecipient
-            objectName: "multiRecipient"
-            enabled: visible
-            width: childrenRect.width
-            anchors {
-                left: parent.left
-                right: addIcon.left
-                rightMargin: units.gu(1)
-                verticalCenter: parent.verticalCenter
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
+                return i
             }
         }
-        Icon {
-            id: addIcon
-            objectName: "addNewRecipientIcon"
-            visible: multiRecipient.visible
-            height: units.gu(3)
-            width: units.gu(3)
-            anchors {
-                right: parent.right
-                verticalCenter: parent.verticalCenter
-            }
-
-            name: "contact"
-            color: "gray"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    Qt.inputMethod.hide()
-                    mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
-                }
-            }
-        }
+        return -1
+    }
+    Connections {
+        target: messages.head.sections
+        onSelectedIndexChanged: messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
     }
 
     Component {
@@ -362,30 +287,14 @@ Page {
             autoUpdate: false
             filterTerm: multiRecipient.searchString
             showSections: false
-
-            states: [
-                State {
-                    name: "empty"
-                    when: contactSearch.count === 0
-                    PropertyChanges {
-                        target: contactSearch
-                        height: 0
-                    }
-                }
-            ]
-
+            autoHideKeyboard: false
             anchors {
-                top: accountList.bottom
+                top: parent.top
                 topMargin: units.gu(1)
                 left: parent.left
                 right: parent.right
-                bottom: bottomPanel.top
+                bottom: parent.bottom
             }
-
-            Behavior on height {
-                UbuntuNumberAnimation { }
-            }
-
             InvalidFilter {
                 id: invalidFilter
             }
@@ -444,7 +353,7 @@ Page {
                                     }
                                     height: units.gu(2)
                                     text: {
-                                        // this is necessary to keep the string in the original format
+                                        // this is necessary to keep the string in the original foverdrawormat
                                         var originalText = contact.displayLabel.label
                                         var lowerSearchText =  multiRecipient.searchString.toLowerCase()
                                         var lowerText = originalText.toLowerCase()
@@ -489,16 +398,27 @@ Page {
     }
 
     Loader {
-        active: multiRecipient.searchString !== "" && multiRecipient.focus
-        sourceComponent: contactSearchComponent
+        property int resultCount: (status === Loader.Ready) ? item.view.count : 0
+
+        sourceComponent: (multiRecipient.searchString !== "") && multiRecipient.focus ? contactSearchComponent : null
+        clip: true
         anchors {
-            top: accountList.bottom
-            topMargin: units.gu(1)
+            top: parent.top
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
         }
+        height: resultCount > 0 ? parent.height - keyboard.height : 0
         z: 1
+        // WORKAROUND: we need to use opacity here visible FALSE cause the item to not load
+        opacity: height > 0 ? 1.0 : 0.0
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: Theme.palette.normal.background
+        }
     }
 
     ContactWatcher {
@@ -510,129 +430,162 @@ Page {
         updateFilters()
     }
 
-    ToolbarItems {
-        id: messagesToolbarSelectionMode
-        visible: false
-        back: ToolbarButton {
-            id: selectionModeCancelButton
-            objectName: "selectionModeCancelButton"
-            action: Action {
+    state: {
+        if (participants.length === 0 && isReady) {
+            return "newMessage"
+        } else if (selectionMode) {
+           return "selection"
+        } else if (participants.length == 1) {
+           if (contactWatcher.isUnknown) {
+               return "unknownContact"
+           } else {
+               return "knownContact"
+           }
+        } else if (groupChat){
+           return "groupChat"
+        } else {
+            return ""
+        }
+    }
+
+    Action {
+        id: backButton
+        objectName: "backButton"
+        iconName: "back"
+        onTriggered: {
+            if (typeof mainPage !== 'undefined') {
+                mainPage.temporaryProperties = null
+            }
+            mainStack.pop()
+        }
+    }
+
+    states: [
+        PageHeadState {
+            name: "selection"
+            head: messages.head
+
+            backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconSource: "image://theme/close"
+                iconName: "close"
                 onTriggered: messageList.cancelSelection()
             }
-        }
-        ToolbarButton {
-            id: selectionModeSelectAllButton
-            objectName: "selectionModeSelectAllButton"
-            action: Action {
-                objectName: "selectionModeSelectAllAction"
-                iconSource: "image://theme/filter"
-                onTriggered: messageList.selectAll()
-            }
-        }
-        ToolbarButton {
-            id: selectionModeDeleteButton
-            objectName: "selectionModeDeleteButton"
-            action: Action {
-                objectName: "selectionModeDeleteAction"
-                enabled: messageList.selectedItems.count > 0
-                iconSource: "image://theme/delete"
-                onTriggered: messageList.endSelection()
-            }
-        }
-    }
 
-    ToolbarItems {
-        id: messagesToolbarGroupChat
-        visible: false
-        ToolbarButton {
-            id: groupChatButton
-            objectName: "groupChatButton"
-            action: Action {
-                objectName: "groupChatAction"
-                iconSource: "image://theme/contact-group"
-                onTriggered: {
-                    PopupUtils.open(participantsPopover, messages.header)
+            actions: [
+                Action {
+                    objectName: "selectionModeSelectAllAction"
+                    iconName: "select"
+                    onTriggered: {
+                        if (messageList.selectedItems.count === messageList.count) {
+                            messageList.clearSelection()
+                        } else {
+                            messageList.selectAll()
+                        }
+                    }
+                },
+                Action {
+                    objectName: "selectionModeDeleteAction"
+                    enabled: messageList.selectedItems.count > 0
+                    iconName: "delete"
+                    onTriggered: messageList.endSelection()
                 }
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "groupChat"
+            head: messages.head
+            backAction: backButton
 
-    ToolbarItems {
-        id: messagesToolbarNewMessage
-        visible: false
-        back: ToolbarButton {
-            action: Action {
-                onTriggered: {
-                    mainPage.temporaryProperties = null
-                    mainStack.pop()
+            actions: [
+                Action {
+                    objectName: "groupChatAction"
+                    iconName: "contact-group"
+                    onTriggered: PopupUtils.open(participantsPopover, messages.header)
                 }
-                iconSource: "image://theme/back"
-            }
-        }
-    }
+            ]
+        },
+        PageHeadState {
+            name: "unknownContact"
+            head: messages.head
+            backAction: backButton
 
-    ToolbarItems {
-        id: messagesToolbarUnknownContact
-        visible: false
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                objectName: "contactCallAction"
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+            actions: [
+                Action {
+                    objectName: "contactCallAction"
+                    visible: participants.length == 1
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                    }
+                },
+                Action {
+                    objectName: "addContactAction"
+                    visible: contactWatcher.isUnknown && participants.length == 1
+                    iconName: "new-contact"
+                    text: i18n.tr("Add")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                    }
                 }
-            }
-        }
-        ToolbarButton {
-            objectName: "addContactButton"
-            action: Action {
-                objectName: "addContactAction"
-                visible: contactWatcher.isUnknown && participants.length == 1
-                iconSource: "image://theme/new-contact"
-                text: i18n.tr("Add")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+            ]
+        },
+        PageHeadState {
+            name: "newMessage"
+            head: messages.head
+            backAction: backButton
+            actions: [
+                Action {
+                    objectName: "contactList"
+                    iconName: "contact"
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
+                    }
                 }
-            }
-        }
-    }
 
-    ToolbarItems {
-        id: messagesToolbarKnownContact
-        visible: false
-        ToolbarButton {
-            objectName: "contactCallButton"
-            action: Action {
-                objectName: "contactCallKnownAction"
-                visible: participants.length == 1
-                iconSource: "image://theme/call-start"
-                text: i18n.tr("Call")
-                onTriggered: {
-                    Qt.inputMethod.hide()
-                    Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+            ]
+
+            contents: MultiRecipientInput {
+                id: multiRecipient
+                objectName: "multiRecipient"
+                enabled: visible
+                anchors {
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
+                    rightMargin: units.gu(2)
                 }
             }
-        }
-        ToolbarButton {
-            objectName: "contactProfileButton"
-            action: Action {
-                objectName: "contactProfileAction"
-                visible: !contactWatcher.isUnknown && participants.length == 1
-                iconSource: "image://theme/contact"
-                text: i18n.tr("Contact")
-                onTriggered: {
-                    Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+        },
+        PageHeadState {
+            name: "knownContact"
+            head: messages.head
+            backAction: backButton
+            actions: [
+                Action {
+                    objectName: "contactCallKnownAction"
+                    visible: participants.length == 1
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                    }
+                },
+                Action {
+                    objectName: "contactProfileAction"
+                    visible: !contactWatcher.isUnknown && participants.length == 1
+                    iconSource: "image://theme/contact"
+                    text: i18n.tr("Contact")
+                    onTriggered: {
+                        Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+                    }
                 }
-            }
+            ]
         }
-    }
+    ]
 
     HistoryEventModel {
         id: eventModel
@@ -654,86 +607,97 @@ Page {
     MultipleSelectionListView {
         id: messageList
         objectName: "messageList"
+
+        property var _currentSwipedItem: null
+
+        function updateSwippedItem(item)
+        {
+            if (item.swipping) {
+                return
+            }
+
+            if (item.swipeState !== "Normal") {
+                if (_currentSwipedItem !== item) {
+                    if (_currentSwipedItem) {
+                        _currentSwipedItem.resetSwipe()
+                    }
+                    _currentSwipedItem = item
+                }
+            } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
+                _currentSwipedItem = null
+            }
+        }
         clip: true
         anchors {
-            top: accountList.bottom
+            top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
         }
-        // TODO: workaround to add some extra space at the bottom and top
+        // fake bottomMargin
         header: Item {
-            height: units.gu(2)
-        }
-        footer: Item {
-            height: units.gu(2)
+            height: units.gu(1)
         }
         listModel: participants.length > 0 ? sortProxy : null
         verticalLayoutDirection: ListView.BottomToTop
-        spacing: units.gu(2)
-        highlightFollowsCurrentItem: false
-        listDelegate: MessageDelegate {
+        highlightFollowsCurrentItem: true
+        currentIndex: 0
+        // keep the last item as currentItem
+
+        listDelegate: Column {
             id: messageDelegate
-            objectName: "message%1".arg(index)
-            incoming: senderId != "self"
-            selected: messageList.isSelected(messageDelegate)
-            unread: newEvent
-            removable: !messages.selectionMode
-            selectionMode: messages.selectionMode
-            confirmRemoval: true
-            accountLabel: multipleAccounts ? messages.accounts[accountId] : ""
-            onClicked: {
-                if (messageList.isInSelectionMode) {
-                    if (!messageList.selectItem(messageDelegate)) {
-                        messageList.deselectItem(messageDelegate)
-                    }
+
+            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
+            // bellow the item
+            MessageDateSection {
+                text: DateUtils.friendlyDay(timestamp)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(2)
+                    rightMargin: units.gu(2)
                 }
-            }
-            onTriggerSelectionMode: {
-                messageList.startSelection()
-                clicked()
+                visible: (index === messageList.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
             }
 
-            Component.onCompleted: {
-                if (newEvent) {
-                    messages.markMessageAsRead(accountId, threadId, eventId, type);
-                }
-            }
-            onResend: {
-                // resend this message and remove the old one
-                if (textMessageAttachments.length > 0) {
-                    var newAttachments = []
-                    for (var i = 0; i < textMessageAttachments.length; i++) {
-                        var attachment = []
-                        var item = textMessageAttachments[i]
-                        // we dont include smil files. they will be auto generated
-                        if (item.contentType.toLowerCase() == "application/smil") {
-                            continue
+            MessageDelegateFactory {
+                objectName: "message%1".arg(index)
+                incoming: senderId != "self"
+                // TODO: we have several items inside
+                selected: messageList.isSelected(messageDelegate)
+                selectionMode: messages.selectionMode
+                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
+                // TODO: need select only the item
+                onItemClicked: {
+                    if (messageList.isInSelectionMode) {
+                        if (!messageList.selectItem(messageDelegate)) {
+                            messageList.deselectItem(messageDelegate)
                         }
-                        attachment.push(item.attachmentId)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
                     }
-                    eventModel.removeEvent(accountId, threadId, eventId, type)
-                    chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
-                    return
                 }
-                eventModel.removeEvent(accountId, threadId, eventId, type)
-                chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
+                onItemPressAndHold: {
+                    messageList.startSelection()
+                    messageList.selectItem(messageDelegate)
+                }
+
+                Component.onCompleted: {
+                    if (newEvent) {
+                        messages.markMessageAsRead(accountId, threadId, eventId, type);
+                    }
+                }
             }
         }
+
         onSelectionDone: {
             for (var i=0; i < items.count; i++) {
                 var event = items.get(i).model
                 eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
             }
         }
+
         onCountChanged: {
-            if (messages.pendingMessage) {
-                messageList.contentY = 0
-                messages.pendingMessage = false
-            }
+            currentIndex = 0
+            positionViewAtBeginning()
         }
     }
 
@@ -766,7 +730,8 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    activeTransfer = defaultSource.request();
+                    Qt.inputMethod.hide()
+                    pictureImporter.requestNewPicture()
                 }
             }
         }
@@ -914,10 +879,11 @@ Page {
                 anchors.top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: units.gu(4)
+                // this value is to avoid letter being cut off
+                height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
                 autoSize: true
-                maximumLineCount: 0
+                maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: i18n.tr("Write a message...")
                 focus: textEntry.focus
                 font.family: "Ubuntu"
@@ -948,7 +914,7 @@ Page {
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
             text: i18n.tr("Send")
-            color: "green"
+            color: enabled ? "#38b44a" : "#b2b2b2"
             width: units.gu(7)
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
@@ -961,33 +927,37 @@ Page {
                 return false
             }
             onClicked: {
+                // check if at least one account is selected
+                if (!messages.account) {
+                    Qt.inputMethod.hide()
+                    PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+                    return
+                }
                 if (!checkNetwork()) {
                     Qt.inputMethod.hide()
                     PopupUtils.open(noNetworkDialog)
                     return
+                }
+                if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                    PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
                 }
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
-                if (messages.accountId == "") {
-                    // FIXME: handle dual sim
-                    messages.accountId = telepathyHelper.accountIds[0]
-                }
                 // dont change the participants list
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
                 }
                 // create the new thread and update the threadId list
-                eventModel.threadIdForParticipants(messages.accountId,
+                eventModel.threadIdForParticipants(messages.account.accountId,
                                                    HistoryThreadModel.EventTypeText,
                                                    participants,
                                                    HistoryThreadModel.MatchPhoneNumber,
                                                    true)
 
                 updateFilters()
-                messages.pendingMessage = true
                 if (attachments.count > 0) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
@@ -998,13 +968,13 @@ Page {
                         attachment.push(item.filePath)
                         newAttachments.push(attachment)
                     }
-                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.accountId)
+                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
                     textEntry.text = ""
                     attachments.clear()
                     return
                 }
 
-                chatManager.sendMessage(participants, textEntry.text, messages.accountId)
+                chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
                 textEntry.text = ""
             }
         }

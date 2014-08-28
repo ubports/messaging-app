@@ -1,3 +1,94 @@
+messaging-app (0.1+14.10.20140825-0ubuntu1) utopic; urgency=low
+
+  [ Martin Pitt ]
+  * Mark for using language packs
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 25 Aug 2014 06:37:43 +0000
+
+messaging-app (0.1+14.10.20140820-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Display only active accounts (sim card present).
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update Picture import functionality to import pictures from any
+    source. (LP: #1356543)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 20 Aug 2014 15:34:12 +0000
+
+messaging-app (0.1+14.10.20140813.2-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Do not update the .po files during `make`, update only the .pot
+    file.
+
+  [ Tiago Salem Herrmann ]
+  * Add initial dual sim settings. Add empty state screen.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed wrong icon for group chat. Implemented handling of not sent
+    sms/mms swipe for more options. RETRY for failed messages should go
+    as well into the left tug. Move selection tick to the center of the
+    item. Set a limit for message input field maximum height. Once user
+    types in a name into the “add contact” field and there is a matching
+    list, the “compose message” entry field can disappear. Handle the
+    message as only one item for swipe acctions. Created sections for
+    dates on chat window. Fixed vcard attachment visuals based on
+    designer spec. Make timestamp visible on image attachments if it is
+    the only item of the message. Display Account name together with
+    timestamp (Temporary solution). Show message info dialog .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 13 Aug 2014 22:25:02 +0000
+
+messaging-app (0.1+14.10.20140806-0ubuntu1) utopic; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix getting the bottom edge tip item in the autopilot tests. (LP:
+    #1353420)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 06 Aug 2014 15:35:52 +0000
+
+messaging-app (0.1+14.10.20140805-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Visual update. Added qtdeclarative5-ubuntu-history0.1 as a build
+    dependency (necessary for unit tests). Created a new MMS source dir
+    with files necessary for MMS visual. .
+
+  [ Tiago Salem Herrmann ]
+  * Visual update. Added qtdeclarative5-ubuntu-history0.1 as a build
+    dependency (necessary for unit tests). Created a new MMS source dir
+    with files necessary for MMS visual. .
+
+  [ Renato Araujo Oliveira Filho ]
+  * Visual update. Added qtdeclarative5-ubuntu-history0.1 as a build
+    dependency (necessary for unit tests). Created a new MMS source dir
+    with files necessary for MMS visual. .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 05 Aug 2014 12:50:37 +0000
+
+messaging-app (0.1+14.10.20140730-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the account objects exposed from telephony QML plugin.
+
+  [ Leo Arias ]
+  * Added a suite of simple QML tests.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 30 Jul 2014 17:58:33 +0000
+
 messaging-app (0.1+14.10.20140725-0ubuntu1) utopic; urgency=low
 
   [ Tiago Salem Herrmann ]

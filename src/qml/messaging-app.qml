@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Qt.labs.settings 1.0
+import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
@@ -26,16 +27,62 @@ import Ubuntu.Content 0.1
 MainView {
     id: mainView
 
+    property string newPhoneNumber
+    property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
+    property QtObject account: defaultAccount()
+
+    function defaultAccount() {
+        // we only use the default account property if we have more
+        // than one account, otherwise we use always the first one
+        if (multipleAccounts) {
+            return telepathyHelper.defaultMessagingAccount
+        } else {
+            return telepathyHelper.activeAccounts[0]
+        }
+    }
+
+    Connections {
+        target: telepathyHelper
+        // restore default bindings if any system settings changed
+        onActiveAccountsChanged: {
+            for (var i in telepathyHelper.activeAccounts) {
+                if (telepathyHelper.activeAccounts[i] == account) {
+                    return;
+                }
+            }
+            account = Qt.binding(defaultAccount)
+        }
+        onDefaultMessagingAccountChanged: account = Qt.binding(defaultAccount)
+    }
+
+
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
     useDeprecatedToolbar: false
-    property string newPhoneNumber
+    anchorToKeyboard: false
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
         mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+    }
+
+    Connections {
+        target: telepathyHelper
+        onSetupReady: {
+            if (multipleAccounts && !telepathyHelper.defaultMessagingAccount &&
+                settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
+                PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
+            }
+        }
+    }
+
+    Settings {
+        id: settings
+        category: "DualSim"
+        property bool messagesDontAsk: false
+        property int mainViewDontAskCount: 0
     }
 
     Component {
@@ -144,9 +191,10 @@ MainView {
        }
     }
 
+
     PageStack {
         id: mainStack
+
         objectName: "mainStack"
-        anchors.fill: parent
     }
 }

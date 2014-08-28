@@ -8,16 +8,23 @@ Build-Depends: cmake,
                python-flake8,
                pkg-config,
                python3,
+               qml-module-qttest,
                qt5-default,
                qtbase5-dev (>= 5.0),
                qtdeclarative5-dev (>= 5.0),
+               qtdeclarative5-dev-tools,
+               qtdeclarative5-gsettings1.0,
+               qtdeclarative5-ubuntu-ui-toolkit-plugin,
+               qtdeclarative5-ubuntu-history0.1,
                qtpim5-dev,
+               xvfb,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
 # just go ahead. ~phablet-team will notice and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~phablet-team/messaging-app/trunk
 Vcs-Browser: https://bazaar.launchpad.net/~phablet-team/messaging-app/trunk/files
+X-Ubuntu-Use-Langpack: yes
 
 Package: messaging-app
 Architecture: any
@@ -26,8 +33,9 @@ Depends: ${misc:Depends},
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          qtdeclarative5-ubuntu-history0.1 | qtdeclarative5-ubuntu-history-plugin,
          qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
-         qtdeclarative5-ubuntu-contacts0.1,
+         qtdeclarative5-ubuntu-contacts0.1 (>= 0.2+14.10.20140805),
          qtdeclarative5-qtcontacts-plugin,
+         qml-module-qt-labs-settings,
 Recommends: unity8 (>= 7.81.0~),
 Description: messaging application for Ubuntu
  An application to send and receive messages.

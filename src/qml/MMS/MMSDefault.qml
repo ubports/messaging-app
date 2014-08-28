@@ -16,57 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 import ".."
 
-ListItem.Empty {
+MMSBase {
     id: defaultDelegate
-    property var attachment
-    property bool incoming
-    property string previewer: ""
-    property string textColor: incoming ? "#333333" : "#ffffff"
+
     anchors.left: parent.left
     anchors.right: parent.right
-    state: incoming ? "incoming" : "outgoing"
-    states: [
-        State {
-            name: "incoming"
-            AnchorChanges {
-                target: bubble
-                anchors.left: parent.left
-                anchors.right: undefined
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        },
-        State {
-            name: "outgoing"
-            AnchorChanges {
-                target: bubble
-                anchors.left: undefined
-                anchors.right: parent.right
-            }
-            PropertyChanges {
-                target: bubble
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-            }
-        }
-    ]
-    removable: true
-    confirmRemoval: true
-    height: bubble.height
-    clip: true
-    showDivider: false
-    highlightWhenPressed: false
-    MessageBubble {
+    height: bubble.height + units.gu(1)
+    Item {
         id: bubble
-        incoming: defaultDelegate.incoming
         anchors.top: parent.top
         width: label.width + units.gu(4)
         height: label.height + units.gu(2)

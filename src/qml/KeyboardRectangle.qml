@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 
 Item {
     id: keyboardRect
@@ -24,10 +24,6 @@ Item {
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     height: Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
-
-    Behavior on height {
-        StandardAnimation { }
-    }
 
     function recursiveFindFocusedItem(parent) {
         if (parent.activeFocus) {

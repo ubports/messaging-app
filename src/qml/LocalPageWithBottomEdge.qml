@@ -62,8 +62,8 @@
 
 */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 
 Page {
     id: page
@@ -77,8 +77,8 @@ Page {
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
-    readonly property bool isReady: (tip.opacity === 0.0)
-    readonly property bool isCollapsed: (tip.opacity === 1.0)
+    readonly property bool isReady: (bottomEdge.y === 0)
+    readonly property bool isCollapsed: (bottomEdge.y === page.height)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
     property var temporaryProperties: null
 
@@ -144,6 +144,15 @@ Page {
         z: 1
     }
 
+    Timer {
+        id: hideIndicator
+
+        interval: 3000
+        running: true
+        repeat: false
+        onTriggered: tip.hiden = true
+    }
+
     Rectangle {
         id: bottomEdge
         objectName: "bottomEdge"
@@ -161,6 +170,47 @@ Page {
         height: page.height
         y: height
 
+        UbuntuShape {
+            id: tip
+            objectName: "bottomEdgeTip"
+
+            property bool hiden: false
+
+            readonly property double visiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -bottomEdge.tipHeight + (page.height - bottomEdge.y) : 0
+            readonly property double invisiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -units.gu(1) : 0
+
+            z: -1
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: hiden ? invisiblePosition : visiblePosition
+
+            width: tipLabel.paintedWidth + units.gu(6)
+            height: bottomEdge.tipHeight + units.gu(1)
+            color: Theme.palette.normal.overlay
+            Label {
+                id: tipLabel
+
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+                height: bottomEdge.tipHeight
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                opacity: tip.hiden ? 0.0 : 1.0
+                Behavior on opacity {
+                    UbuntuNumberAnimation {
+                        duration: UbuntuAnimation.SnapDuration
+                    }
+                }
+            }
+            Behavior on y {
+                UbuntuNumberAnimation {
+                    duration: UbuntuAnimation.SnapDuration
+                }
+            }
+        }
+
         Rectangle {
             id: shadow
 
@@ -170,6 +220,7 @@ Page {
             }
             height: units.gu(1)
             y: -height
+            z: -2
             opacity: 0.0
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
@@ -177,43 +228,17 @@ Page {
             }
         }
 
-        Item {
-            id: tipContainer
-            objectName: "bottomEdgeTip"
-
-            width: childrenRect.width
-            height: bottomEdge.tipHeight
-            clip: true
-            y: -bottomEdge.tipHeight
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            UbuntuShape {
-                id: tip
-
-                width: tipLabel.paintedWidth + units.gu(6)
-                height: bottomEdge.tipHeight + units.gu(1)
-                color: Theme.palette.normal.overlay
-                Label {
-                    id: tipLabel
-
-                    anchors {
-                        top: parent.top
-                        left: parent.left
-                        right: parent.right
-                    }
-                    height: bottomEdge.tipHeight
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                }
-            }
-        }
-
         MouseArea {
+            id: mouseArea
+
             preventStealing: true
-            drag.axis: Drag.YAxis
-            drag.target: bottomEdge
-            drag.minimumY: bottomEdge.pageStartY
-            drag.maximumY: page.height
+            drag {
+                axis: Drag.YAxis
+                target: bottomEdge
+                minimumY: bottomEdge.pageStartY
+                maximumY: page.height
+                threshold: 100
+            }
 
             anchors {
                 left: parent.left
@@ -232,17 +257,14 @@ Page {
                 }
             }
 
-            onPressed: {
-                bottomEdge.state = "floating"
-                bottomEdge.y -= bottomEdge.tipHeight
+            onClicked: {
+                tip.hiden = false
+                hideIndicator.restart()
             }
         }
 
-        Behavior on y {
-            UbuntuNumberAnimation {}
-        }
-
         state: "collapsed"
+        onStateChanged: console.debug("State Changed:" + state)
         states: [
             State {
                 name: "collapsed"
@@ -254,6 +276,10 @@ Page {
                     target: tip
                     opacity: 1.0
                 }
+                PropertyChanges {
+                    target: hideIndicator
+                    running: true
+                }
             },
             State {
                 name: "expanded"
@@ -262,15 +288,24 @@ Page {
                     y: bottomEdge.pageStartY
                 }
                 PropertyChanges {
-                    target: tip
-                    opacity: 0.0
+                    target: hideIndicator
+                    running: false
                 }
             },
             State {
                 name: "floating"
+                when: mouseArea.drag.active
                 PropertyChanges {
                     target: shadow
                     opacity: 1.0
+                }
+                PropertyChanges {
+                    target: hideIndicator
+                    running: false
+                }
+                PropertyChanges {
+                    target: tip
+                    hiden: false
                 }
             }
         ]
@@ -280,8 +315,8 @@ Page {
                 to: "expanded"
                 SequentialAnimation {
                     UbuntuNumberAnimation {
-                        targets: [bottomEdge,tip]
-                        properties: "y,opacity"
+                        target: bottomEdge
+                        property: "y"
                         duration: UbuntuAnimation.SlowDuration
                     }
                     ScriptAction {
@@ -295,14 +330,15 @@ Page {
                 SequentialAnimation {
                     ScriptAction {
                         script: {
+                            Qt.inputMethod.hide()
                             edgeLoader.item.parent = edgeLoader
                             edgeLoader.item.anchors.fill = edgeLoader
                             edgeLoader.item.active = false
                         }
                     }
                     UbuntuNumberAnimation {
-                        targets: [bottomEdge,tip]
-                        properties: "y,opacity"
+                        target: bottomEdge
+                        property: "y"
                         duration: UbuntuAnimation.SlowDuration
                     }
                     ScriptAction {
@@ -327,6 +363,9 @@ Page {
 
                             // load a new bottom page in memory
                             edgeLoader.active = true
+
+                            tip.hiden = false
+                            hideIndicator.restart()
                         }
                     }
                 }
@@ -335,8 +374,8 @@ Page {
                 from: "floating"
                 to: "collapsed"
                 UbuntuNumberAnimation {
-                    targets: [bottomEdge,tip]
-                    properties: "y,opacity"
+                    target: bottomEdge
+                    property: "opacity"
                 }
             }
         ]

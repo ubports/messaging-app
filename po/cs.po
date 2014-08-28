@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-17 11:13+0200\n"
+"POT-Creation-Date: 2014-08-28 07:10+0200\n"
 "PO-Revision-Date: 2014-01-08 09:16+0000\n"
 "Last-Translator: Tadeáš Pařík <tadeas.parik@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,8 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-08-28 06:29+0000\n"
+"X-Generator: Launchpad (build 17174)\n"
+
+#: src/qml/MainPage.qml:37 src/qml/Messages.qml:116
+msgid " "
+msgstr ""
 
 #: src/qml/dateUtils.js:62
 #, qt-format
@@ -42,115 +46,273 @@ msgstr[0] "%1 sekunda volání"
 msgstr[1] "%1 sekundy volání"
 msgstr[2] "%1 sekund volání"
 
-#: src/qml/Messages.qml:409
+#: src/qml/MessageInfoDialog.qml:58
+msgid "Accepted"
+msgstr ""
+
+#: src/qml/Messages.qml:527
 msgid "Add"
 msgstr ""
 
 #: src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts.."
+msgid "Add contacts..."
 msgstr ""
 
-#: src/qml/NewRecipientPage.qml:27
+#: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr ""
 
-#: src/qml/AddPhoneNumberToContactPage.qml:26
-msgid "Add to contact"
-msgstr ""
+#: src/qml/ThreadDelegate.qml:74
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %s contacts"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
-msgid "Add to existing contact"
-msgstr "Přidat do existujícího kontaktu"
+#: src/qml/ThreadDelegate.qml:77
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %s files"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/qml/Messages.qml:397 src/qml/Messages.qml:426
+#: src/qml/ThreadDelegate.qml:68
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %s images"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/ThreadDelegate.qml:71
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %s videos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/Messages.qml:517 src/qml/Messages.qml:571
 msgid "Call"
 msgstr "Volání"
 
-#: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
-#: src/qml/Messages.qml:169
+#: src/qml/MainPage.qml:85
 msgid "Cancel"
 msgstr ""
 
-#: src/qml/MainPage.qml:31
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
+msgid "Change all Messaging associations to "
+msgstr ""
+
+#: src/qml/MainPage.qml:37
 msgid "Chats"
 msgstr ""
 
-#: src/qml/Messages.qml:438
+#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
+#: src/qml/MessageInfoDialog.qml:112 src/qml/Messages.qml:240
+msgid "Close"
+msgstr ""
+
+#: src/qml/MainPage.qml:141
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr ""
+
+#: src/qml/Messages.qml:581
 msgid "Contact"
 msgstr "Kontakt"
 
-#: src/qml/MessageDelegate.qml:176
+#: src/qml/MessageDelegateFactory.qml:58
 msgid "Copy"
 msgstr ""
 
-#: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
-msgid "Create new contact"
-msgstr "Vytvořit nový kontakt"
-
-#: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
-msgid "Edit"
+#: src/qml/MainPage.qml:43
+msgid "Create new"
 msgstr ""
 
-#: src/qml/MessageDelegate.qml:300
+#: src/qml/MessageDelegateFactory.qml:41 src/qml/ThreadDelegate.qml:102
+msgid "Delete"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:62
+msgid "Deleted"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:52
+msgid "Delivered"
+msgstr ""
+
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
+msgid "Don't ask again"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:56
 msgid "Failed"
 msgstr ""
 
-#: src/qml/Messages.qml:74
-msgid "Group"
+#: src/qml/MessageDelegateFactory.qml:181
+msgid "Failed!"
 msgstr ""
 
-#: src/qml/Messages.qml:150
-msgid "How do you want to save the contact?"
+#: src/qml/MessageInfoDialog.qml:89
+msgid "From"
+msgstr ""
+
+#: src/qml/Messages.qml:132
+#, qt-format
+msgid "Group (%1)"
 msgstr ""
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
 msgstr ""
 
-#: src/qml/MainPage.qml:39
-msgid "New Chat"
+#: src/qml/MessageDelegateFactory.qml:65
+msgid "Info"
 msgstr ""
 
-#: src/qml/Messages.qml:77
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
+msgid "Later"
+msgstr ""
+
+#: src/qml/MessageDelegateFactory.qml:68
+msgid "MMS"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:78
+msgid "Message info"
+msgstr ""
+
+#: src/qml/MMSDelegate.qml:191
+msgid "Missing message data"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:89
+msgid "Myself"
+msgstr ""
+
+#: src/qml/Messages.qml:135
 msgid "New Message"
 msgstr "Nová zpráva"
 
-#: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
+msgid "No"
+msgstr ""
+
+#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+msgid "No SIM card selected"
+msgstr ""
+
+#: src/qml/Messages.qml:236
+msgid "No network"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:64
+msgid "Pending"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:60 src/qml/MessageInfoDialog.qml:103
+msgid "Read"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:68 src/qml/MessageInfoDialog.qml:98
+msgid "Received"
+msgstr ""
+
+#: src/qml/Messages.qml:190
+msgid "Remove"
+msgstr ""
+
+#: src/qml/MessageDelegateFactory.qml:51
+msgid "Retry"
+msgstr ""
+
+#: src/qml/MessageDelegateFactory.qml:68
+msgid "SMS"
+msgstr ""
+
+#: src/qml/MMS/Previewer.qml:32
 msgid "Save"
 msgstr ""
 
-#: src/qml/Messages.qml:149
-msgid "Save contact"
+#: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
+msgid "Search..."
 msgstr ""
 
-#: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
-msgid "Select"
-msgstr "Vybrat"
-
-#: src/qml/MessageDelegate.qml:298
-msgid "Sending..."
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
+msgid ""
+"Select a default SIM for all outgoing messages. You can always alter your "
+"choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
+#: src/qml/MessageInfoDialog.qml:93
+msgid "Sent"
+msgstr ""
+
+#: src/qml/MMS/Previewer.qml:45
 msgid "Share"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:108
+msgid "Status"
+msgstr ""
+
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Switch to default SIM:"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:54
+msgid "Temporarily Failed"
+msgstr ""
+
+#: src/qml/Messages.qml:237
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr ""
+
+#: src/qml/Messages.qml:237
+msgid "There is currently no network."
 msgstr ""
 
 #: src/qml/dateUtils.js:41
 msgid "Today"
 msgstr "Dnes"
 
-#: src/qml/MessageDelegate.qml:208
-msgid "Try again"
+#: src/qml/MessageInfoDialog.qml:85
+msgid "Type"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:70 src/qml/MessageInfoDialog.qml:73
+msgid "Unknown"
+msgstr ""
+
+#: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+msgid "Unknown contact"
 msgstr ""
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
 msgstr ""
 
-#: src/qml/Messages.qml:578
+#: src/qml/Messages.qml:887
 msgid "Write a message..."
 msgstr "Napsat zprávu..."
+
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Yes"
+msgstr ""
 
 #: src/qml/dateUtils.js:43
 msgid "Yesterday"
 msgstr "Včera"
+
+#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+msgid "You need to select a SIM card"
+msgstr ""
+
+#~ msgid "Add to existing contact"
+#~ msgstr "Přidat do existujícího kontaktu"
+
+#~ msgid "Create new contact"
+#~ msgstr "Vytvořit nový kontakt"
+
+#~ msgid "Select"
+#~ msgstr "Vybrat"

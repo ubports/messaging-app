@@ -35,8 +35,13 @@ if(XGETTEXT_EXECUTABLE)
                 --srcdir=${CMAKE_SOURCE_DIR} src/${DESKTOP_FILE}.in.in
         COMMAND ${XGETTEXT_EXECUTABLE} --c++ --qt --add-comments=TRANSLATORS --keyword=tr --keyword=tr:1,2 -D ${CMAKE_SOURCE_DIR} -s -p ${CMAKE_CURRENT_SOURCE_DIR} -o ${POT_FILE} ${I18N_SRCS}
     )
+
+    add_custom_target(translations
+        COMMENT "Updating translation files"
+    )
+    add_dependencies(translations ${POT_FILE})
     foreach(PO_FILE ${PO_FILES})
-       add_custom_command(TARGET ${POT_FILE}
+       add_custom_command(TARGET translations
             COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} ${PO_FILE} ${CMAKE_CURRENT_SOURCE_DIR}/${POT_FILE} -o ${PO_FILE}
        )
     endforeach(PO_FILE)
