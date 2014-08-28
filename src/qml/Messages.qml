@@ -113,7 +113,7 @@ Page {
 
     title: {
         if (selectionMode) {
-            return i18n.tr(" ")
+            return " "
         }
 
         if (landscape) {
