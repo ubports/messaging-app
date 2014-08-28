@@ -873,7 +873,7 @@ Page {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
-            text: "Send"
+            text: i18n.tr("Send")
             color: enabled ? "#38b44a" : "#b2b2b2"
             width: units.gu(7)
             height: units.gu(4)
