@@ -828,6 +828,7 @@ Page {
             width: units.gu(7)
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
+            activeFocusOnPress: false
             enabled: {
                if (participants.length > 0 || multiRecipient.recipientCount > 0) {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
