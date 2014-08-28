@@ -17,20 +17,31 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
-import Ubuntu.Content 0.1
-import ".."
 
-Previewer {
-    title: i18n.tr("Image Preview")
-    clip: true
-    Image {
-        anchors.centerIn: parent
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
-        source: attachment.filePath
-        cache: false
-        sourceSize.width: parent.width
-        sourceSize.height: parent.height
-    }
+MessageBubble {
+    id: bubble
+
+    messageTimeStamp: messageData.timestamp
+    messageStatus: messageData.textMessageStatus
+    messageIncoming: incoming
+    accountName: accountLabel
+
+    states: [
+        State {
+            when: messageIncoming
+            name: "incoming"
+            AnchorChanges {
+                target: bubble
+                anchors.left: parent.left
+            }
+        },
+        State {
+            when: !messageIncoming
+            name: "outgoing"
+            AnchorChanges {
+                target: bubble
+                anchors.right: parent.right
+            }
+        }
+    ]
 }

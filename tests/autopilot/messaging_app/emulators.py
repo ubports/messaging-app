@@ -105,7 +105,7 @@ class MainView(toolkit_emulators.MainView):
         """Return MultipleSelectionListView from the messages page"""
 
         page = self.get_messages_page()
-        return page.select_single('MultipleSelectionListView')
+        return page.select_single('MessagesListView')
 
     def get_newmessage_multirecipientinput(self):
         """Return MultiRecipientInput from the messages page"""
@@ -458,7 +458,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     def get_messages_count(self):
         """Return the number of meesages."""
         return self.wait_select_single(
-            'MultipleSelectionListView', objectName='messageList').count
+            'MessagesListView', objectName='messageList').count
 
     @autopilot_logging.log_action(logger.info)
     def select_messages(self, *indexes):

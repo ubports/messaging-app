@@ -9,9 +9,6 @@ export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 %:
 	dh $@ --parallel --fail-missing --with translations
 
-override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Debug
-
 override_dh_auto_test:
 	flake8  tests/autopilot/messaging_app/
 	cd obj-$(DEB_HOST_GNU_TYPE); ctest -V

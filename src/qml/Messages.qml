@@ -597,107 +597,17 @@ Page {
         }
     }
 
-    SortProxyModel {
-        id: sortProxy
-        sourceModel: eventModel.filter ? eventModel : null
-        sortRole: HistoryEventModel.TimestampRole
-        ascending: false
-    }
-
-    MultipleSelectionListView {
+    MessagesListView {
         id: messageList
         objectName: "messageList"
 
-        property var _currentSwipedItem: null
-
-        function updateSwippedItem(item)
-        {
-            if (item.swipping) {
-                return
-            }
-
-            if (item.swipeState !== "Normal") {
-                if (_currentSwipedItem !== item) {
-                    if (_currentSwipedItem) {
-                        _currentSwipedItem.resetSwipe()
-                    }
-                    _currentSwipedItem = item
-                }
-            } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
-                _currentSwipedItem = null
-            }
-        }
+        // because of the header
         clip: true
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
-        }
-        // fake bottomMargin
-        header: Item {
-            height: units.gu(1)
-        }
-        listModel: participants.length > 0 ? sortProxy : null
-        verticalLayoutDirection: ListView.BottomToTop
-        highlightFollowsCurrentItem: true
-        currentIndex: 0
-        // keep the last item as currentItem
-
-        listDelegate: Column {
-            id: messageDelegate
-
-            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
-            // bellow the item
-            MessageDateSection {
-                text: DateUtils.friendlyDay(timestamp)
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: units.gu(2)
-                    rightMargin: units.gu(2)
-                }
-                visible: (index === messageList.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
-            }
-
-            MessageDelegateFactory {
-                objectName: "message%1".arg(index)
-                incoming: senderId != "self"
-                // TODO: we have several items inside
-                selected: messageList.isSelected(messageDelegate)
-                selectionMode: messages.selectionMode
-                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-                // TODO: need select only the item
-                onItemClicked: {
-                    if (messageList.isInSelectionMode) {
-                        if (!messageList.selectItem(messageDelegate)) {
-                            messageList.deselectItem(messageDelegate)
-                        }
-                    }
-                }
-                onItemPressAndHold: {
-                    messageList.startSelection()
-                    messageList.selectItem(messageDelegate)
-                }
-
-                Component.onCompleted: {
-                    if (newEvent) {
-                        messages.markMessageAsRead(accountId, threadId, eventId, type);
-                    }
-                }
-            }
-        }
-
-        onSelectionDone: {
-            for (var i=0; i < items.count; i++) {
-                var event = items.get(i).model
-                eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
-            }
-        }
-
-        onCountChanged: {
-            currentIndex = 0
-            positionViewAtBeginning()
         }
     }
 
@@ -918,6 +828,7 @@ Page {
             width: units.gu(7)
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
+            activeFocusOnPress: false
             enabled: {
                if (participants.length > 0 || multiRecipient.recipientCount > 0) {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
@@ -984,8 +895,7 @@ Page {
         id: keyboard
     }
 
-    Scrollbar {
-        flickableItem: messageList
-        align: Qt.AlignTrailing
+    MessageInfoDialog {
+        id: messageInfoDialog
     }
 }

@@ -22,12 +22,14 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
 ListItemWithActions {
-    id: root
+    id: messageFactory
 
     property bool incoming: false
-    property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
-    property list<Action> _availableActions
     property string accountLabel
+
+    // To be used by actions
+    property int _index: index
+    property var _lastItem
 
     signal deleteMessage()
     signal resendMessage()
@@ -40,51 +42,6 @@ ListItemWithActions {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: deleteMessage()
-    }
-
-    // WORKAROUND: to filter actions on rightSideActions property based on message status
-    _availableActions: [
-        Action {
-            id: reloadAction
-
-            iconName: "reload"
-            text: i18n.tr("Retry")
-            onTriggered: resendMessage()
-        },
-        Action {
-            id: copyAction
-
-            iconName: "edit-copy"
-            text: i18n.tr("Copy")
-            onTriggered: copyMessage()
-        },
-        Action {
-            id: infoAction
-
-            iconName: "info"
-            text: i18n.tr("Info")
-            onTriggered: {
-                // FIXME: Is that the corect way to do that?
-                var messageType = textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                var messageInfo = {"type": messageType,
-                                   "senderId": senderId,
-                                   "timestamp": timestamp,
-                                   "textReadTimestamp": textReadTimestamp,
-                                   "status": textMessageStatus,
-                                   "participants": messages.participants}
-                messageInfoDialog.showMessageInfo(messageInfo)
-            }
-        }
-    ]
-
-    rightSideActions: {
-        var actions = []
-        if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-            actions.push(reloadAction)
-        }
-        actions.push(copyAction)
-        actions.push(infoAction)
-        return actions
     }
 
     height: loader.height + units.gu(1)
@@ -102,37 +59,38 @@ ListItemWithActions {
     Loader {
         id: loader
 
-        onStatusChanged:  {
-            if (status === Loader.Ready) {
-                //signals
-                root.resendMessage.connect(item.resendMessage)
-                root.deleteMessage.connect(item.deleteMessage)
-                root.copyMessage.connect(item.copyMessage)
-                root.showMessageDetails(item.showMessageDetails)
-            }
-        }
         anchors {
             left: parent.left
             right: parent.right
         }
+        source: textMessageAttachments.length > 0 ? Qt.resolvedUrl("MMSDelegate.qml") : Qt.resolvedUrl("SMSDelegate.qml")
         height: status == Loader.Ready ? item.height : 0
-        Component.onCompleted: {
-            var initialProperties = {
-                "incoming": root.incoming,
-                "accountLabel": accountLabel,
-                "attachments": textMessageAttachments,
-                "accountId": accountId,
-                "threadId": threadId,
-                "eventId": eventId,
-                "type": type,
-                "text": textMessage,
-                "timestamp": timestamp
+        onStatusChanged:  {
+            if (status === Loader.Ready) {
+                //signals
+                messageFactory.resendMessage.connect(item.resendMessage)
+                messageFactory.deleteMessage.connect(item.deleteMessage)
+                messageFactory.copyMessage.connect(item.copyMessage)
+                messageFactory.showMessageDetails(item.showMessageDetails)
             }
-            if (textMessageAttachments.length > 0) {
-                setSource(Qt.resolvedUrl("MMSDelegate.qml"), initialProperties)
-            } else {
-                setSource(Qt.resolvedUrl("SMSDelegate.qml"), initialProperties)
-            }
+        }
+        Binding {
+            target: loader.item
+            property: "messageData"
+            value: model
+            when: (loader.status === Loader.Ready)
+        }
+        Binding {
+            target: loader.item
+            property: "accountLabel"
+            value: accountLabel
+            when: (loader.status === Loader.Ready)
+        }
+        Binding {
+            target: messageFactory
+            property: "_lastItem"
+            value: loader.item._lastItem
+            when: (loader.status === Loader.Ready)
         }
     }
 
@@ -141,7 +99,7 @@ ListItemWithActions {
 
         height: units.gu(4)
         width: units.gu(4)
-        parent: _lastItem
+        parent: messageFactory._lastItem
         anchors {
             verticalCenter: parent ? parent.verticalCenter : undefined
             right: parent ? parent.left : undefined
@@ -192,13 +150,8 @@ ListItemWithActions {
                 id: retrybuttonMouseArea
 
                 anchors.fill: parent
-                onClicked: root.resendMessage()
+                onClicked: messageFactory.resendMessage()
             }
-        }
-
-
-        MessageInfoDialog {
-            id: messageInfoDialog
         }
     }
 }

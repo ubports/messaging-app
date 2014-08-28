@@ -82,7 +82,7 @@ MMSBase {
             verticalAlignment: Text.AlignVCenter
             text: name !== "" ? name : i18n.tr("Unknown contact")
             elide: Text.ElideRight
-            color: vcardDelegate.incoming ? UbuntuColors.darkGrey : "#ffffff"
+            color: incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
     }
 }
