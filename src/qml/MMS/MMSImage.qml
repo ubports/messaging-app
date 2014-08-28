@@ -45,7 +45,7 @@ MMSBase {
             cache: false
 
             sourceSize.width: units.gu(27)
-            sourceSize.height: units.gu(14)
+            sourceSize.height: units.gu(27)
 
             onStatusChanged:  {
                 if (status === Image.Error) {
