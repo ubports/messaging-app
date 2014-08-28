@@ -29,7 +29,7 @@ ListItemWithActions {
 
     // To be used by actions
     property int _index: index
-    property var _lastItem: loader.status === Loader.Ready ? loader.item._lastItem : null
+    property var _lastItem
 
     signal deleteMessage()
     signal resendMessage()
@@ -86,6 +86,12 @@ ListItemWithActions {
             value: accountLabel
             when: (loader.status === Loader.Ready)
         }
+        Binding {
+            target: messageFactory
+            property: "_lastItem"
+            value: loader.item._lastItem
+            when: (loader.status === Loader.Ready)
+        }
     }
 
     Item {
@@ -93,7 +99,7 @@ ListItemWithActions {
 
         height: units.gu(4)
         width: units.gu(4)
-        parent: _lastItem
+        parent: messageFactory._lastItem
         anchors {
             verticalCenter: parent ? parent.verticalCenter : undefined
             right: parent ? parent.left : undefined

@@ -25,9 +25,7 @@ Item {
     property var messageData: null
     property bool incoming: (messageData && messageData.senderId !== "self")
     property string accountLabel: ""
-    property var _lastItem: messageDelegate
-
-
+    property var _lastItem
 
     function deleteMessage()
     {

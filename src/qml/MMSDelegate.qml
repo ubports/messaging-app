@@ -113,10 +113,10 @@ MessageDelegate {
         if (root.textAttachements.length > 0) {
             root.messageText = application.readTextFile(root.textAttachements[0].filePath)
             bubbleLoader.active = true
+            root._lastItem = bubbleLoader
         }
     }
     height: attachmentsView.height
-    _lastItem: bubbleLoader.active ? bubbleLoader : attachmentsRepeater.itemAt(attachmentsRepeater.count - 1)
     Column {
         id: attachmentsView
 
@@ -127,9 +127,17 @@ MessageDelegate {
         }
         height: childrenRect.height
 
-        spacing: units.gu(0.5)
+        spacing: units.gu(0.1)
         Repeater {
             id: attachmentsRepeater
+
+            onCountChanged: {
+                if (bubbleLoader.active) {
+                    root._lastItem = bubbleLoader
+                } else {
+                    root._lastItem = itemAt(count - 1)
+                }
+            }
 
             Loader {
                 id: attachmentLoader
