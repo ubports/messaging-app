@@ -39,7 +39,7 @@ Rectangle {
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
 
     function parseText(text) {
-        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[-. ]?([0-9]+)[-. ]?([0-9]+)[-. ]?([0-9]+))/img;
+        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[- ]?([0-9]+)[- ]?([0-9]+)[- ]?([0-9]+))/img;
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // replace line breaks
@@ -94,11 +94,12 @@ Rectangle {
             left: parent.left
             leftMargin: units.gu(1)
         }
-        width: maxDelegateWidth
+        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
         fontSize: "medium"
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
+        textFormat: Text.RichText
         wrapMode: Text.Wrap
         color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
     }
