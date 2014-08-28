@@ -65,16 +65,16 @@ ListItemWithActions {
         attachmentCount = imageCount + videoCount + contactCount
 
         if (imageCount > 0 && attachmentCount == imageCount) {
-            return i18n.tr("Attachment: %1 image", "Attachments: %s images").arg(imageCount)
+            return i18n.tr("Attachment: %1 image", "Attachments: %1 images").arg(imageCount)
         }
         if (videoCount > 0 && attachmentCount == videoCount) {
-            return i18n.tr("Attachment: %1 video", "Attachments: %s videos").arg(videoCount)
+            return i18n.tr("Attachment: %1 video", "Attachments: %1 videos").arg(videoCount)
         }
         if (contactCount > 0 && attachmentCount == contactCount) {
-            return i18n.tr("Attachment: %1 contact", "Attachments: %s contacts").arg(contactCount)
+            return i18n.tr("Attachment: %1 contact", "Attachments: %1 contacts").arg(contactCount)
         }
         if (attachmentCount > 0) {
-            return i18n.tr("Attachment: %1 file", "Attachments: %s files").arg(attachmentCount)
+            return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
         }
         return eventTextMessage
     }
