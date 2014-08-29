@@ -28,25 +28,78 @@ Page {
 
     title: i18n.tr("Add recipient")
 
-    head {
-        contents: TextField {
-            id: searchField
+    TextField {
+        id: searchField
 
-            anchors {
-                left: parent.left
-                leftMargin: units.gu(2)
-                right: parent.right
-                rightMargin: units.gu(2)
-                topMargin: units.gu(1.5)
-                bottomMargin: units.gu(1.5)
-                verticalCenter: parent.verticalCenter
-            }
-            onTextChanged: contactList.currentIndex = -1
-            inputMethodHints: Qt.ImhNoPredictiveText
-            placeholderText: i18n.tr("Search...")
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+            topMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
         }
-        sections.model: ["All", "Favorites"]
+        onTextChanged: newRecipientPage.currentIndex = -1
+        inputMethodHints: Qt.ImhNoPredictiveText
+        placeholderText: i18n.tr("Search...")
+        visible: false
     }
+
+    state: "default"
+    states: [
+        PageHeadState {
+            id: defaultState
+
+            name: "default"
+            actions: [
+                Action {
+                    text: i18n.tr("Search")
+                    iconName: "search"
+                    onTriggered: {
+                        newRecipientPage.state = "searching"
+                        contactList.showAllContacts()
+                        searchField.forceActiveFocus()
+                    }
+                }
+            ]
+            PropertyChanges {
+                target: newRecipientPage.head
+                actions: defaultState.actions
+                sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
+            }
+            PropertyChanges {
+                target: searchField
+                text: ""
+                visible: false
+            }
+        },
+        PageHeadState {
+            id: searchingState
+
+            name: "searching"
+            backAction: Action {
+                iconName: "close"
+                text: i18n.tr("Cancel")
+                onTriggered: {
+                    newRecipientPage.forceActiveFocus()
+                    newRecipientPage.state = "default"
+                }
+            }
+
+            PropertyChanges {
+                target: newRecipientPage.head
+                backAction: searchingState.backAction
+                contents: searchField
+            }
+
+            PropertyChanges {
+                target: searchField
+                text: ""
+                visible: true
+            }
+        }
+    ]
 
     Connections {
         target: newRecipientPage.head.sections
@@ -73,6 +126,67 @@ Page {
             right: parent.right
             bottom: keyboard.top
         }
+
+        header: Item {
+            id: addNewContactButton
+            objectName: "addNewContact"
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: units.gu(8)
+
+            Rectangle {
+                anchors.fill: parent
+                color: Theme.palette.selected.background
+                opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
+            }
+
+            UbuntuShape {
+                id: addIcon
+
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    bottom: parent.bottom
+                    margins: units.gu(1)
+                }
+                width: height
+                radius: "medium"
+                color: Theme.palette.normal.overlay
+                Image {
+                    anchors.centerIn: parent
+                    width: units.gu(2)
+                    height: units.gu(2)
+                    source: "image://theme/add"
+                }
+            }
+
+            Label {
+                id: name
+
+                anchors {
+                    left: addIcon.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                    right: parent.right
+                    rightMargin: units.gu(2)
+                }
+                color: UbuntuColors.lightAubergine
+                // TRANSLATORS: this refers to creating a new contact
+                text: i18n.tr("+ Create New")
+                elide: Text.ElideRight
+            }
+
+            MouseArea {
+                id: addNewContactButtonArea
+
+                anchors.fill: parent
+                onClicked: Qt.openUrlExternally("addressbook:///create?callback=messaging-app.desktop&phone= ")
+            }
+        }
+
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
