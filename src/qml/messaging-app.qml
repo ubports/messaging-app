@@ -19,10 +19,10 @@
 import QtQuick 2.2
 import Qt.labs.settings 1.0
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
+import Ubuntu.History 0.1
 
 MainView {
     id: mainView
@@ -65,7 +65,6 @@ MainView {
     Component.onCompleted: {
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
-        mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
     Connections {
@@ -78,16 +77,32 @@ MainView {
         }
     }
 
+    // the model depends on dbus calls, so we instantiate it as earlier as possible
+    // to improve a bit the startup time
+    HistoryThreadGroupingProxyModel {
+        id: sortProxy
+        sortRole: HistoryThreadModel.LastEventTimestampRole
+        dynamicSortFilter: false
+        sourceModel: threadModel
+        ascending: false
+        groupingProperty: "participants"
+    }
+
+    HistoryThreadModel {
+        id: threadModel
+        type: HistoryThreadModel.EventTypeText
+        sort: HistorySort {
+            sortField: "lastEventTimestamp"
+            sortOrder: HistorySort.DescendingOrder
+        }
+        filter: HistoryFilter {}
+    }
+
     Settings {
         id: settings
         category: "DualSim"
         property bool messagesDontAsk: false
         property int mainViewDontAskCount: 0
-    }
-
-    Component {
-        id: resultComponent
-        ContentItem {}
     }
 
     Connections {
@@ -97,48 +112,6 @@ MainView {
             emptyStack()
             properties["sharedAttachmentsTransfer"] = transfer
             mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
-        }
-    }
-
-    Page {
-        id: picker
-        visible: false
-        property var curTransfer
-        property var url
-        property var handler
-        property var contentType: getContentType(url)
-
-        function __exportItems(url) {
-            if (picker.curTransfer.state === ContentTransfer.InProgress)
-            {
-                picker.curTransfer.items = [ resultComponent.createObject(mainView, {"url": url}) ];
-                picker.curTransfer.state = ContentTransfer.Charged;
-            }
-        }
-
-        ContentPeerPicker {
-            visible: parent.visible
-            contentType: picker.contentType
-            handler: picker.handler
-
-            onPeerSelected: {
-                picker.curTransfer = peer.request();
-                mainStack.pop();
-                if (picker.curTransfer.state === ContentTransfer.InProgress)
-                    picker.__exportItems(picker.url);
-            }
-            onCancelPressed: mainStack.pop();
-        }
-
-        Connections {
-            target: picker.curTransfer !== null ? picker.curTransfer : null
-            onStateChanged: {
-                console.log("curTransfer StateChanged: " + picker.curTransfer.state);
-                if (picker.curTransfer.state === ContentTransfer.InProgress)
-                {
-                    picker.__exportItems(picker.url);
-                }
-            }
         }
     }
 
@@ -196,5 +169,6 @@ MainView {
         id: mainStack
 
         objectName: "mainStack"
+        Component.onCompleted: mainStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 }

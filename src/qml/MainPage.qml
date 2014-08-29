@@ -19,7 +19,6 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
 import "dateUtils.js" as DateUtils
 
@@ -37,10 +36,14 @@ LocalPageWithBottomEdge {
     title: selectionMode ? " " : i18n.tr("Chats")
 
     bottomEdgeEnabled: !selectionMode && !searching
-    bottomEdgePageComponent: Messages {
-        active: false
-    }
     bottomEdgeTitle: i18n.tr("Create new")
+
+    Component.onCompleted: {
+        // avoid loading bottom edge during startup
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("Messages.qml"),
+                                           {active: false,
+                                            enabled: false})
+    }
 
     TextField {
         id: searchField
@@ -143,25 +146,6 @@ LocalPageWithBottomEdge {
             fontSize: "x-large"
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
-        }
-    }
-
-    HistoryThreadGroupingProxyModel {
-        id: sortProxy
-        sortRole: HistoryThreadModel.LastEventTimestampRole
-        sourceModel: threadModel
-        ascending: false
-        groupingProperty: "participants"
-    }
-
-    HistoryThreadModel {
-        id: threadModel
-        type: HistoryThreadModel.EventTypeText
-        sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
-        }
-        filter: HistoryFilter {
         }
     }
 

@@ -50,4 +50,51 @@ Page {
             }
         }
     }
+
+    Component {
+        id: resultComponent
+        ContentItem {}
+    }
+
+    Page {
+        id: picker
+        visible: false
+        property var curTransfer
+        property var url
+        property var handler
+        property var contentType: getContentType(url)
+
+        function __exportItems(url) {
+            if (picker.curTransfer.state === ContentTransfer.InProgress)
+            {
+                picker.curTransfer.items = [ resultComponent.createObject(mainView, {"url": url}) ];
+                picker.curTransfer.state = ContentTransfer.Charged;
+            }
+        }
+
+        ContentPeerPicker {
+            visible: parent.visible
+            contentType: picker.contentType
+            handler: picker.handler
+
+            onPeerSelected: {
+                picker.curTransfer = peer.request();
+                mainStack.pop();
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                    picker.__exportItems(picker.url);
+            }
+            onCancelPressed: mainStack.pop();
+        }
+
+        Connections {
+            target: picker.curTransfer !== null ? picker.curTransfer : null
+            onStateChanged: {
+                console.log("curTransfer StateChanged: " + picker.curTransfer.state);
+                if (picker.curTransfer.state === ContentTransfer.InProgress)
+                {
+                    picker.__exportItems(picker.url);
+                }
+            }
+        }
+    }
 }
