@@ -78,7 +78,7 @@ MMSBase {
                     bottomMargin: units.gu(0.5)
                 }
                 fontSize: "xx-small"
-                text: Qt.formatDateTime(timestamp, "hh:mm AP")
+                text: Qt.formatTime(timestamp).toLowerCase()
                 color: "white"
             }
         }
