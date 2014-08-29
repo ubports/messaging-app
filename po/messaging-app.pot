@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-28 11:46-0300\n"
+"POT-Creation-Date: 2014-08-29 07:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: src/qml/MainPage.qml:37 src/qml/Messages.qml:116
-msgid " "
-msgstr ""
 
 #: src/qml/dateUtils.js:65
 #, qt-format
@@ -62,28 +58,28 @@ msgstr ""
 #: src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 contact"
-msgid_plural "Attachments: %s contacts"
+msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
-msgid_plural "Attachments: %s files"
+msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
-msgid_plural "Attachments: %s images"
+msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
-msgid_plural "Attachments: %s videos"
+msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -144,7 +140,7 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:134
+#: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr ""
 
@@ -181,7 +177,7 @@ msgstr ""
 msgid "Message info"
 msgstr ""
 
-#: src/qml/MMSDelegate.qml:209
+#: src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr ""
 
@@ -244,6 +240,10 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
+#: src/qml/Messages.qml:876
+msgid "Send"
+msgstr ""
+
 #: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
 msgstr ""
@@ -290,6 +290,7 @@ msgid "Unknown"
 msgstr ""
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+#: src/qml/Messages.qml:752
 msgid "Unknown contact"
 msgstr ""
 
@@ -297,7 +298,7 @@ msgstr ""
 msgid "Video Preview"
 msgstr ""
 
-#: src/qml/Messages.qml:797
+#: src/qml/Messages.qml:847
 msgid "Write a message..."
 msgstr ""
 
