@@ -7,23 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-28 07:10+0200\n"
-"PO-Revision-Date: 2014-08-11 06:37+0000\n"
-"Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
+"POT-Creation-Date: 2014-08-29 07:54+0200\n"
+"PO-Revision-Date: 2014-08-29 18:08+0000\n"
+"Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-08-28 06:29+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: src/qml/MainPage.qml:37 src/qml/Messages.qml:116
-msgid " "
-msgstr ""
-
-#: src/qml/dateUtils.js:62
+#: src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
@@ -31,7 +27,7 @@ msgstr[0] "Convorbirea a durat %1 oră"
 msgstr[1] "Convorbirea a durat %1 ore"
 msgstr[2] "Convorbirea a durat %1 de ore"
 
-#: src/qml/dateUtils.js:64
+#: src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
@@ -39,7 +35,7 @@ msgstr[0] "Convorbirea a durat %1 minut"
 msgstr[1] "Convorbirea a durat %1 minute"
 msgstr[2] "Convorbirea a durat %1 de minute"
 
-#: src/qml/dateUtils.js:66
+#: src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
@@ -47,9 +43,9 @@ msgstr[0] "Convorbirea a durat %1 secundă"
 msgstr[1] "Convorbirea a durat %1 secunde"
 msgstr[2] "Convorbirea a durat %1 de secunde"
 
-#: src/qml/MessageInfoDialog.qml:58
+#: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
-msgstr ""
+msgstr "Acceptat"
 
 #: src/qml/Messages.qml:527
 msgid "Add"
@@ -57,7 +53,7 @@ msgstr "Adaugă"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
-msgstr ""
+msgstr "Adaugă contacte..."
 
 #: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -66,28 +62,28 @@ msgstr "Adaugă recipient"
 #: src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 contact"
-msgid_plural "Attachments: %s contacts"
+msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
-msgid_plural "Attachments: %s files"
+msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
-msgid_plural "Attachments: %s images"
+msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
-msgid_plural "Attachments: %s videos"
+msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -108,9 +104,9 @@ msgid "Chats"
 msgstr "Conversații"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: src/qml/MessageInfoDialog.qml:112 src/qml/Messages.qml:240
+#: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
 msgid "Close"
-msgstr ""
+msgstr "Închide"
 
 #: src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -120,7 +116,7 @@ msgstr ""
 msgid "Contact"
 msgstr "Contact"
 
-#: src/qml/MessageDelegateFactory.qml:58
+#: src/qml/MessagesListView.qml:71
 msgid "Copy"
 msgstr "Copiază"
 
@@ -128,66 +124,70 @@ msgstr "Copiază"
 msgid "Create new"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:41 src/qml/ThreadDelegate.qml:102
+#: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
-msgstr ""
+msgstr "Șterge"
 
-#: src/qml/MessageInfoDialog.qml:62
+#: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
-msgstr ""
+msgstr "Șters"
 
-#: src/qml/MessageInfoDialog.qml:52
+#: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
-msgstr ""
+msgstr "Livrat"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
-msgstr ""
+msgstr "Nu întreba din nou"
 
-#: src/qml/MessageInfoDialog.qml:56
+#: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
 msgstr "Eșec"
 
-#: src/qml/MessageDelegateFactory.qml:181
+#: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "Eșuat!"
 
-#: src/qml/MessageInfoDialog.qml:89
+#: src/qml/MessageInfoDialog.qml:100
 msgid "From"
-msgstr ""
+msgstr "De la"
+
+#: src/qml/MessageInfoDialog.qml:83
+msgid "Group"
+msgstr "Grup"
 
 #: src/qml/Messages.qml:132
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "Grup (%1)"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
 msgstr "Previzualizare imagine"
 
-#: src/qml/MessageDelegateFactory.qml:65
+#: src/qml/MessagesListView.qml:78
 msgid "Info"
-msgstr ""
+msgstr "Informații"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "Mai târziu"
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
-#: src/qml/MessageInfoDialog.qml:78
+#: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
-msgstr ""
+msgstr "Informații mesaj"
 
-#: src/qml/MMSDelegate.qml:191
+#: src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:89
+#: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
-msgstr ""
+msgstr "Eu"
 
 #: src/qml/Messages.qml:135
 msgid "New Message"
@@ -196,39 +196,39 @@ msgstr "Mesaj nou"
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "Nu a fost selectat un card SIM"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
-msgstr ""
+msgstr "Fără rețea"
 
-#: src/qml/MessageInfoDialog.qml:64
+#: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
-msgstr ""
+msgstr "În așteptare"
 
-#: src/qml/MessageInfoDialog.qml:60 src/qml/MessageInfoDialog.qml:103
+#: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
 msgid "Read"
-msgstr ""
+msgstr "Citit"
 
-#: src/qml/MessageInfoDialog.qml:68 src/qml/MessageInfoDialog.qml:98
+#: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
-msgstr ""
+msgstr "Primit"
 
 #: src/qml/Messages.qml:190
 msgid "Remove"
-msgstr ""
+msgstr "Șterge"
 
-#: src/qml/MessageDelegateFactory.qml:51
+#: src/qml/MessagesListView.qml:64
 msgid "Retry"
-msgstr ""
+msgstr "Încercați din nou"
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -236,7 +236,7 @@ msgstr "Salvează"
 
 #: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
 msgid "Search..."
-msgstr ""
+msgstr "Căutare...."
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
@@ -244,103 +244,76 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:93
+#: src/qml/Messages.qml:876
+msgid "Send"
+msgstr "Trimite"
+
+#: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
-msgstr ""
+msgstr "Trimis"
 
 #: src/qml/MMS/Previewer.qml:45
 msgid "Share"
 msgstr "Partajare"
 
-#: src/qml/MessageInfoDialog.qml:108
+#: src/qml/MessageInfoDialog.qml:132
 msgid "Status"
-msgstr ""
+msgstr "Stare"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "Schimbați la cardul SIM implicit:"
 
-#: src/qml/MessageInfoDialog.qml:54
+#: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
 msgstr ""
 
 #: src/qml/Messages.qml:237
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "În prezent nu există rețea pe %1"
 
 #: src/qml/Messages.qml:237
 msgid "There is currently no network."
-msgstr ""
+msgstr "Nu există rețea."
 
-#: src/qml/dateUtils.js:41
+#: src/qml/MessageInfoDialog.qml:106
+msgid "To"
+msgstr "Către"
+
+#: src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "Astăzi"
 
-#: src/qml/MessageInfoDialog.qml:85
+#: src/qml/MessageInfoDialog.qml:96
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
-#: src/qml/MessageInfoDialog.qml:70 src/qml/MessageInfoDialog.qml:73
+#: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
-msgstr ""
+msgstr "Necunoscut"
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+#: src/qml/Messages.qml:752
 msgid "Unknown contact"
-msgstr ""
+msgstr "Contact necunoscut"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
 msgstr "Previzualizare video"
 
-#: src/qml/Messages.qml:887
+#: src/qml/Messages.qml:847
 msgid "Write a message..."
 msgstr "Scrieți un mesaj..."
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
-#: src/qml/dateUtils.js:43
+#: src/qml/dateUtils.js:46
 msgid "Yesterday"
 msgstr "Ieri"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
-
-#~ msgid "Add to existing contact"
-#~ msgstr "Adaugă la un contact existent"
-
-#~ msgid "Add contacts.."
-#~ msgstr "Adăugare contacte..."
-
-#~ msgid "Add to contact"
-#~ msgstr "Adaugă la contact"
-
-#~ msgid "Create new contact"
-#~ msgstr "Creare contact nou"
-
-#~ msgid "New Chat"
-#~ msgstr "Conversație nouă"
-
-#~ msgid "Edit"
-#~ msgstr "Editare"
-
-#~ msgid "Group"
-#~ msgstr "Grup"
-
-#~ msgid "How do you want to save the contact?"
-#~ msgstr "Cum doriți să salvați contactul?"
-
-#~ msgid "Select"
-#~ msgstr "Selectați"
-
-#~ msgid "Try again"
-#~ msgstr "Încercați din nou"
-
-#~ msgid "Sending..."
-#~ msgstr "Se trimite..."
-
-#~ msgid "Save contact"
-#~ msgstr "Salvează contactul"
+msgstr "Trebuie să selectați un card SIM"

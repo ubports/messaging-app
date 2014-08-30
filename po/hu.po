@@ -7,45 +7,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-28 07:10+0200\n"
-"PO-Revision-Date: 2014-07-24 08:15+0000\n"
-"Last-Translator: Gabor Kelemen <kelemeng@openscope.org>\n"
+"POT-Creation-Date: 2014-08-29 07:54+0200\n"
+"PO-Revision-Date: 2014-08-29 12:16+0000\n"
+"Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-28 06:29+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: src/qml/MainPage.qml:37 src/qml/Messages.qml:116
-msgid " "
-msgstr ""
-
-#: src/qml/dateUtils.js:62
+#: src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
 msgstr[0] "%1 órás hívás"
 msgstr[1] "%1 órás hívás"
 
-#: src/qml/dateUtils.js:64
+#: src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
 msgstr[0] "%1 perces hívás"
 msgstr[1] "%1 perces hívás"
 
-#: src/qml/dateUtils.js:66
+#: src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 másodperces hívás"
 msgstr[1] "%1 másodperces hívás"
 
-#: src/qml/MessageInfoDialog.qml:58
+#: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
-msgstr ""
+msgstr "Elfogadva"
 
 #: src/qml/Messages.qml:527
 msgid "Add"
@@ -53,7 +49,7 @@ msgstr "Hozzáadás"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
-msgstr ""
+msgstr "Névjegy hozzáadása"
 
 #: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -62,30 +58,30 @@ msgstr "Címzett hozzáadása"
 #: src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 contact"
-msgid_plural "Attachments: %s contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Melléklet: %1 névjegy"
+msgstr[1] "Melléklet: %1 névjegy"
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
-msgid_plural "Attachments: %s files"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Melléklet: %1 fájl"
+msgstr[1] "Melléklet: %1 fájl"
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
-msgid_plural "Attachments: %s images"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Melléklet: %1 kép"
+msgstr[1] "Melléklet: %1 kép"
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
-msgid_plural "Attachments: %s videos"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Melléklet: %1 videó"
+msgstr[1] "Melléklet: %1 videó"
 
 #: src/qml/Messages.qml:517 src/qml/Messages.qml:571
 msgid "Call"
@@ -97,93 +93,97 @@ msgstr "Mégse"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
 msgid "Change all Messaging associations to "
-msgstr ""
+msgstr "Összes üzenetküldés hozzátársítás változtatása erre: "
 
 #: src/qml/MainPage.qml:37
 msgid "Chats"
 msgstr "Csevegések"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: src/qml/MessageInfoDialog.qml:112 src/qml/Messages.qml:240
+#: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
 msgid "Close"
-msgstr ""
+msgstr "Bezárás"
 
 #: src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Új üzenet írásához húzza az ujját felfelé a kijelző aljáról indulva."
 
 #: src/qml/Messages.qml:581
 msgid "Contact"
 msgstr "Névjegy"
 
-#: src/qml/MessageDelegateFactory.qml:58
+#: src/qml/MessagesListView.qml:71
 msgid "Copy"
 msgstr "Másolás"
 
 #: src/qml/MainPage.qml:43
 msgid "Create new"
-msgstr ""
+msgstr "Új készítése"
 
-#: src/qml/MessageDelegateFactory.qml:41 src/qml/ThreadDelegate.qml:102
+#: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
-msgstr ""
+msgstr "Törlés"
 
-#: src/qml/MessageInfoDialog.qml:62
+#: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
-msgstr ""
+msgstr "Törölt"
 
-#: src/qml/MessageInfoDialog.qml:52
+#: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
-msgstr ""
+msgstr "Kézbesített"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
-msgstr ""
+msgstr "Ne kérdezze többször"
 
-#: src/qml/MessageInfoDialog.qml:56
+#: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
 msgstr "Sikertelen"
 
-#: src/qml/MessageDelegateFactory.qml:181
+#: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "Sikertelen!"
 
-#: src/qml/MessageInfoDialog.qml:89
+#: src/qml/MessageInfoDialog.qml:100
 msgid "From"
-msgstr ""
+msgstr "Feladó"
+
+#: src/qml/MessageInfoDialog.qml:83
+msgid "Group"
+msgstr "Csoport"
 
 #: src/qml/Messages.qml:132
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "Csoport (%1)"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
 msgstr "Előnézeti kép"
 
-#: src/qml/MessageDelegateFactory.qml:65
+#: src/qml/MessagesListView.qml:78
 msgid "Info"
-msgstr ""
+msgstr "Információ"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "Később"
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
-
-#: src/qml/MessageInfoDialog.qml:78
-msgid "Message info"
-msgstr ""
-
-#: src/qml/MMSDelegate.qml:191
-msgid "Missing message data"
-msgstr ""
+msgstr "MMS"
 
 #: src/qml/MessageInfoDialog.qml:89
+msgid "Message info"
+msgstr "Üzenet információ"
+
+#: src/qml/MMSDelegate.qml:217
+msgid "Missing message data"
+msgstr "Hiányzó üzenetadat"
+
+#: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
-msgstr ""
+msgstr "Én"
 
 #: src/qml/Messages.qml:135
 msgid "New Message"
@@ -192,39 +192,39 @@ msgstr "Új üzenet"
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "Nincs SIM kártya kiválasztva"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
-msgstr ""
+msgstr "Nincs hálózat"
 
-#: src/qml/MessageInfoDialog.qml:64
+#: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
-msgstr ""
+msgstr "Függőben"
 
-#: src/qml/MessageInfoDialog.qml:60 src/qml/MessageInfoDialog.qml:103
+#: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
 msgid "Read"
-msgstr ""
+msgstr "Olvasás"
 
-#: src/qml/MessageInfoDialog.qml:68 src/qml/MessageInfoDialog.qml:98
+#: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
-msgstr ""
+msgstr "Megérkezett"
 
 #: src/qml/Messages.qml:190
 msgid "Remove"
-msgstr ""
+msgstr "Törlés"
 
-#: src/qml/MessageDelegateFactory.qml:51
+#: src/qml/MessagesListView.qml:64
 msgid "Retry"
-msgstr ""
+msgstr "Újra"
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -232,111 +232,90 @@ msgstr "Mentés"
 
 #: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
 msgid "Search..."
-msgstr ""
+msgstr "Keresés…"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Válassz ki a kimenő üzenetek alapértelmezett SIM kártyáját. Ezt később "
+"bármikor módosíthatja a <a "
+"href=\"system_settings\">Rendszerbeállításokban</a>."
 
-#: src/qml/MessageInfoDialog.qml:93
+#: src/qml/Messages.qml:876
+msgid "Send"
+msgstr "Küldés"
+
+#: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
-msgstr ""
+msgstr "Elküldött"
 
 #: src/qml/MMS/Previewer.qml:45
 msgid "Share"
 msgstr "Megosztás"
 
-#: src/qml/MessageInfoDialog.qml:108
+#: src/qml/MessageInfoDialog.qml:132
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "Alapértelmezett SIM kártyára váltás:"
 
-#: src/qml/MessageInfoDialog.qml:54
+#: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "Ideiglenes hiba"
 
 #: src/qml/Messages.qml:237
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "Jelenleg nincs hálózat ezen: %1"
 
 #: src/qml/Messages.qml:237
 msgid "There is currently no network."
-msgstr ""
+msgstr "Jelenleg nincs hálózat"
 
-#: src/qml/dateUtils.js:41
+#: src/qml/MessageInfoDialog.qml:106
+msgid "To"
+msgstr "Címzett"
+
+#: src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "Ma"
 
-#: src/qml/MessageInfoDialog.qml:85
+#: src/qml/MessageInfoDialog.qml:96
 msgid "Type"
-msgstr ""
+msgstr "Típus"
 
-#: src/qml/MessageInfoDialog.qml:70 src/qml/MessageInfoDialog.qml:73
+#: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
-msgstr ""
+msgstr "Ismeretlen"
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+#: src/qml/Messages.qml:752
 msgid "Unknown contact"
-msgstr ""
+msgstr "Ismeretlen névjegy"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
 msgstr "Videó előnézet"
 
-#: src/qml/Messages.qml:887
+#: src/qml/Messages.qml:847
 msgid "Write a message..."
 msgstr "Üzenet írása..."
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
-#: src/qml/dateUtils.js:43
+#: src/qml/dateUtils.js:46
 msgid "Yesterday"
 msgstr "Tegnap"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "Ki kell választania egy SIM kártyát"
 
-#~ msgid "Select"
-#~ msgstr "Kiválasztás"
-
-#~ msgid "Try again"
-#~ msgstr "Próbálja újra"
-
-#~ msgid "Sending..."
-#~ msgstr "Küldés..."
-
-#~ msgid "New Chat"
-#~ msgstr "Új csevegés"
-
-#~ msgid "Edit"
-#~ msgstr "Szerkesztés"
-
-#~ msgid "Group"
-#~ msgstr "Csoport"
-
-#~ msgid "Create new contact"
-#~ msgstr "Új névjegy létrehozása"
-
-#~ msgid "Add contacts.."
-#~ msgstr "Névjegyek hozzáadása"
-
-#~ msgid "How do you want to save the contact?"
-#~ msgstr "Hogyan szeretné menteni a névjegyet?"
-
-#~ msgid "Add to existing contact"
-#~ msgstr "Hozzáadás létező névjegyhez"
-
-#~ msgid "Save contact"
-#~ msgstr "Névjegy mentése"
-
-#~ msgid "Add to contact"
-#~ msgstr "Hozzáadás névjegyhez"
+#~ msgid " "
+#~ msgstr " "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-28 07:10+0200\n"
+"POT-Creation-Date: 2014-08-29 07:54+0200\n"
 "PO-Revision-Date: 2014-05-31 14:55+0000\n"
 "Last-Translator: Jānis-Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -15,14 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-28 06:29+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: src/qml/MainPage.qml:37 src/qml/Messages.qml:116
-msgid " "
-msgstr ""
-
-#: src/qml/dateUtils.js:62
+#: src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
@@ -30,7 +26,7 @@ msgstr[0] "%1 stunda zvans"
 msgstr[1] "%1 stundu zvans"
 msgstr[2] "%1 stundu zvans"
 
-#: src/qml/dateUtils.js:64
+#: src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
@@ -38,7 +34,7 @@ msgstr[0] "%1 minutes zvans"
 msgstr[1] "%1 minušu zvans"
 msgstr[2] "%1 minušu zvans"
 
-#: src/qml/dateUtils.js:66
+#: src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
@@ -46,7 +42,7 @@ msgstr[0] "%1 sekundes zvans"
 msgstr[1] "%1 sekunžu zvans"
 msgstr[2] "%1 sekunžu zvans"
 
-#: src/qml/MessageInfoDialog.qml:58
+#: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
 msgstr ""
 
@@ -65,28 +61,28 @@ msgstr ""
 #: src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 contact"
-msgid_plural "Attachments: %s contacts"
+msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
-msgid_plural "Attachments: %s files"
+msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
-msgid_plural "Attachments: %s images"
+msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
-msgid_plural "Attachments: %s videos"
+msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -107,7 +103,7 @@ msgid "Chats"
 msgstr ""
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: src/qml/MessageInfoDialog.qml:112 src/qml/Messages.qml:240
+#: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
 msgid "Close"
 msgstr ""
 
@@ -119,7 +115,7 @@ msgstr ""
 msgid "Contact"
 msgstr "Kontakts"
 
-#: src/qml/MessageDelegateFactory.qml:58
+#: src/qml/MessagesListView.qml:71
 msgid "Copy"
 msgstr "Kopēt"
 
@@ -127,15 +123,15 @@ msgstr "Kopēt"
 msgid "Create new"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:41 src/qml/ThreadDelegate.qml:102
+#: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:62
+#: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:52
+#: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
 msgstr ""
 
@@ -143,16 +139,20 @@ msgstr ""
 msgid "Don't ask again"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:56
+#: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
 msgstr "Neizdevās"
 
-#: src/qml/MessageDelegateFactory.qml:181
+#: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:89
+#: src/qml/MessageInfoDialog.qml:100
 msgid "From"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:83
+msgid "Group"
 msgstr ""
 
 #: src/qml/Messages.qml:132
@@ -164,7 +164,7 @@ msgstr ""
 msgid "Image Preview"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:65
+#: src/qml/MessagesListView.qml:78
 msgid "Info"
 msgstr ""
 
@@ -172,19 +172,19 @@ msgstr ""
 msgid "Later"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "MMS"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:78
+#: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
 msgstr ""
 
-#: src/qml/MMSDelegate.qml:191
+#: src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:89
+#: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
 msgstr ""
 
@@ -205,15 +205,15 @@ msgstr ""
 msgid "No network"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:64
+#: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:60 src/qml/MessageInfoDialog.qml:103
+#: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
 msgid "Read"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:68 src/qml/MessageInfoDialog.qml:98
+#: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
 msgstr ""
 
@@ -221,11 +221,11 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:51
+#: src/qml/MessagesListView.qml:64
 msgid "Retry"
 msgstr ""
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "SMS"
 msgstr ""
 
@@ -243,7 +243,11 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:93
+#: src/qml/Messages.qml:876
+msgid "Send"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
 msgstr ""
 
@@ -251,7 +255,7 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:108
+#: src/qml/MessageInfoDialog.qml:132
 msgid "Status"
 msgstr ""
 
@@ -259,7 +263,7 @@ msgstr ""
 msgid "Switch to default SIM:"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:54
+#: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
 msgstr ""
 
@@ -272,19 +276,24 @@ msgstr ""
 msgid "There is currently no network."
 msgstr ""
 
-#: src/qml/dateUtils.js:41
+#: src/qml/MessageInfoDialog.qml:106
+msgid "To"
+msgstr ""
+
+#: src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "Šodien"
 
-#: src/qml/MessageInfoDialog.qml:85
+#: src/qml/MessageInfoDialog.qml:96
 msgid "Type"
 msgstr ""
 
-#: src/qml/MessageInfoDialog.qml:70 src/qml/MessageInfoDialog.qml:73
+#: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
 msgstr ""
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+#: src/qml/Messages.qml:752
 msgid "Unknown contact"
 msgstr ""
 
@@ -292,7 +301,7 @@ msgstr ""
 msgid "Video Preview"
 msgstr ""
 
-#: src/qml/Messages.qml:887
+#: src/qml/Messages.qml:847
 msgid "Write a message..."
 msgstr "Rakstīt īsziņu"
 
@@ -300,37 +309,10 @@ msgstr "Rakstīt īsziņu"
 msgid "Yes"
 msgstr ""
 
-#: src/qml/dateUtils.js:43
+#: src/qml/dateUtils.js:46
 msgid "Yesterday"
 msgstr "Vakar"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr ""
-
-#~ msgid "Create new contact"
-#~ msgstr "Izveidot jaunu kontaktu"
-
-#~ msgid "Add to existing contact"
-#~ msgstr "Pievienot jau pastāvošam kontaktam"
-
-#~ msgid "Select"
-#~ msgstr "Izvēlēties"
-
-#~ msgid "Try again"
-#~ msgstr "Mēģināt vēlreiz"
-
-#~ msgid "Sending..."
-#~ msgstr "Sūta..."
-
-#~ msgid "Add contacts.."
-#~ msgstr "Pievienot kontaktus...."
-
-#~ msgid "Add to contact"
-#~ msgstr "Pievienot kontaktam"
-
-#~ msgid "Save contact"
-#~ msgstr "Saglabāt kontaktu"
-
-#~ msgid "How do you want to save the contact?"
-#~ msgstr "Kā vēlaties saglabāt kontaktu?"

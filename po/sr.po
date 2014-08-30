@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-28 07:10+0200\n"
-"PO-Revision-Date: 2014-08-04 09:30+0000\n"
+"POT-Creation-Date: 2014-08-29 07:54+0200\n"
+"PO-Revision-Date: 2014-08-28 20:33+0000\n"
 "Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-28 06:29+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: src/qml/MainPage.qml:37 src/qml/Messages.qml:116
-msgid " "
-msgstr ""
-
-#: src/qml/dateUtils.js:62
+#: src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
@@ -31,7 +27,7 @@ msgstr[0] "Позив од %1 сат"
 msgstr[1] "Позив од %1 сата"
 msgstr[2] "Позив од %1 сати"
 
-#: src/qml/dateUtils.js:64
+#: src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
@@ -39,7 +35,7 @@ msgstr[0] "Позив од %1 минут"
 msgstr[1] "Позив од %1 минута"
 msgstr[2] "Позив од %1 минута"
 
-#: src/qml/dateUtils.js:66
+#: src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
@@ -47,9 +43,9 @@ msgstr[0] "Позив од %1 секунде"
 msgstr[1] "Позив од %1 секунде"
 msgstr[2] "Позив од %1 секунди"
 
-#: src/qml/MessageInfoDialog.qml:58
+#: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
-msgstr ""
+msgstr "Прихваћена"
 
 #: src/qml/Messages.qml:527
 msgid "Add"
@@ -57,7 +53,7 @@ msgstr "Додај"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
-msgstr ""
+msgstr "Додај особе..."
 
 #: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -66,28 +62,28 @@ msgstr "Додај примаоца"
 #: src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 contact"
-msgid_plural "Attachments: %s contacts"
+msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
-msgid_plural "Attachments: %s files"
+msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
-msgid_plural "Attachments: %s images"
+msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
-msgid_plural "Attachments: %s videos"
+msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -101,93 +97,97 @@ msgstr "Откажи"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
 msgid "Change all Messaging associations to "
-msgstr ""
+msgstr "Промени све везе Порука са "
 
 #: src/qml/MainPage.qml:37
 msgid "Chats"
 msgstr "Ћаскања"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: src/qml/MessageInfoDialog.qml:112 src/qml/Messages.qml:240
+#: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Састави нову поруку повлачењем на горе са дна екрана."
 
 #: src/qml/Messages.qml:581
 msgid "Contact"
-msgstr "Прималац"
+msgstr "Особа"
 
-#: src/qml/MessageDelegateFactory.qml:58
+#: src/qml/MessagesListView.qml:71
 msgid "Copy"
 msgstr "Умножи"
 
 #: src/qml/MainPage.qml:43
 msgid "Create new"
-msgstr ""
+msgstr "Започни ново"
 
-#: src/qml/MessageDelegateFactory.qml:41 src/qml/ThreadDelegate.qml:102
+#: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
-msgstr ""
+msgstr "Обриши"
 
-#: src/qml/MessageInfoDialog.qml:62
+#: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
-msgstr ""
+msgstr "Обрисано"
 
-#: src/qml/MessageInfoDialog.qml:52
+#: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
-msgstr ""
+msgstr "Испоручено"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
-msgstr ""
+msgstr "Не питај поново"
 
-#: src/qml/MessageInfoDialog.qml:56
+#: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
 msgstr "Неуспешно"
 
-#: src/qml/MessageDelegateFactory.qml:181
+#: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "Неуспешно!"
 
-#: src/qml/MessageInfoDialog.qml:89
+#: src/qml/MessageInfoDialog.qml:100
 msgid "From"
+msgstr "Шаље"
+
+#: src/qml/MessageInfoDialog.qml:83
+msgid "Group"
 msgstr ""
 
 #: src/qml/Messages.qml:132
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "Група (%1)"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
 msgstr "Преглед слике"
 
-#: src/qml/MessageDelegateFactory.qml:65
+#: src/qml/MessagesListView.qml:78
 msgid "Info"
-msgstr ""
+msgstr "Подаци"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "Касније"
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
-
-#: src/qml/MessageInfoDialog.qml:78
-msgid "Message info"
-msgstr ""
-
-#: src/qml/MMSDelegate.qml:191
-msgid "Missing message data"
-msgstr ""
+msgstr "ММС"
 
 #: src/qml/MessageInfoDialog.qml:89
+msgid "Message info"
+msgstr "Подаци о поруци"
+
+#: src/qml/MMSDelegate.qml:217
+msgid "Missing message data"
+msgstr "Недостају подаци поруке"
+
+#: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
-msgstr ""
+msgstr "Ја"
 
 #: src/qml/Messages.qml:135
 msgid "New Message"
@@ -196,39 +196,39 @@ msgstr "Нова порука"
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "Није изабрана СИМ картица"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
-msgstr ""
+msgstr "Без мреже"
 
-#: src/qml/MessageInfoDialog.qml:64
+#: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
-msgstr ""
+msgstr "Чека се"
 
-#: src/qml/MessageInfoDialog.qml:60 src/qml/MessageInfoDialog.qml:103
+#: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
 msgid "Read"
-msgstr ""
+msgstr "Прочитана"
 
-#: src/qml/MessageInfoDialog.qml:68 src/qml/MessageInfoDialog.qml:98
+#: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
-msgstr ""
+msgstr "Примљена"
 
 #: src/qml/Messages.qml:190
 msgid "Remove"
-msgstr ""
+msgstr "Уклони"
 
-#: src/qml/MessageDelegateFactory.qml:51
+#: src/qml/MessagesListView.qml:64
 msgid "Retry"
-msgstr ""
+msgstr "Покушај поново"
 
-#: src/qml/MessageDelegateFactory.qml:68
+#: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "СМС"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -236,111 +236,89 @@ msgstr "Сачувај"
 
 #: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
 msgid "Search..."
-msgstr ""
+msgstr "Тражи..."
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Изаберите превасходну СИМ картицу за слање порука. Свој избор увек можете "
+"променити у <a href=\"system_settings\">Подешавањима система</a>."
 
-#: src/qml/MessageInfoDialog.qml:93
-msgid "Sent"
+#: src/qml/Messages.qml:876
+msgid "Send"
 msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:117
+msgid "Sent"
+msgstr "Послата"
 
 #: src/qml/MMS/Previewer.qml:45
 msgid "Share"
 msgstr "Подели"
 
-#: src/qml/MessageInfoDialog.qml:108
+#: src/qml/MessageInfoDialog.qml:132
 msgid "Status"
-msgstr ""
+msgstr "Стање"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "Пређи на подразумевану СИМ картицу:"
 
-#: src/qml/MessageInfoDialog.qml:54
+#: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "Привремено неуспешно"
 
 #: src/qml/Messages.qml:237
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "Тренутно нема мреже на %1"
 
 #: src/qml/Messages.qml:237
 msgid "There is currently no network."
+msgstr "Тренутно нема мреже."
+
+#: src/qml/MessageInfoDialog.qml:106
+msgid "To"
 msgstr ""
 
-#: src/qml/dateUtils.js:41
+#: src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "Данас"
 
-#: src/qml/MessageInfoDialog.qml:85
+#: src/qml/MessageInfoDialog.qml:96
 msgid "Type"
-msgstr ""
+msgstr "Врста"
 
-#: src/qml/MessageInfoDialog.qml:70 src/qml/MessageInfoDialog.qml:73
+#: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
-msgstr ""
+msgstr "Непознато"
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+#: src/qml/Messages.qml:752
 msgid "Unknown contact"
-msgstr ""
+msgstr "Непозната особа"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr "Преглед видеа"
+msgstr "Преглед снимка"
 
-#: src/qml/Messages.qml:887
+#: src/qml/Messages.qml:847
 msgid "Write a message..."
 msgstr "Напиши поруку..."
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
-#: src/qml/dateUtils.js:43
+#: src/qml/dateUtils.js:46
 msgid "Yesterday"
 msgstr "Јуче"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "Морате изабрати СИМ картицу"
 
-#~ msgid "New Chat"
-#~ msgstr "Ново ћаскање"
-
-#~ msgid "Edit"
-#~ msgstr "Уреди"
-
-#~ msgid "Group"
-#~ msgstr "Група"
-
-#~ msgid "How do you want to save the contact?"
-#~ msgstr "Како желите да сачувате податке о особи?"
-
-#~ msgid "Add to contact"
-#~ msgstr "Придодај постојећем"
-
-#~ msgid "Select"
-#~ msgstr "Изабери"
-
-#~ msgid "Try again"
-#~ msgstr "Покушај поново"
-
-#~ msgid "Sending..."
-#~ msgstr "Шаље..."
-
-#~ msgid "Save contact"
-#~ msgstr "Сачувај у именик"
-
-#~ msgid "Add to existing contact"
-#~ msgstr "Придодај постојећој особи у именику"
-
-#~ msgid "Create new contact"
-#~ msgstr "Додај нову особу у именик"
-
-#~ msgid "Add contacts.."
-#~ msgstr "Додај примаоце..."
+#~ msgid " "
+#~ msgstr " "
