@@ -41,8 +41,7 @@ LocalPageWithBottomEdge {
     Component.onCompleted: {
         // avoid loading bottom edge during startup
         mainPage.setBottomEdgePage(Qt.resolvedUrl("Messages.qml"),
-                                           {active: false,
-                                            enabled: false})
+                                           {active: false})
     }
 
     TextField {
