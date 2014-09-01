@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-08-15 12:27+0000\n"
+"PO-Revision-Date: 2014-09-01 04:06+0000\n"
 "Last-Translator: Kentaro Kazuhama <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Launchpad-Export-Date: 2014-09-01 07:33+0000\n"
 "X-Generator: Launchpad (build 17176)\n"
 
 #: src/qml/dateUtils.js:65
@@ -119,7 +119,7 @@ msgstr ""
 
 #: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
-msgstr ""
+msgstr "再び表示しない"
 
 #: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
@@ -147,7 +147,7 @@ msgstr ""
 
 #: src/qml/MessageInfoDialog.qml:83
 msgid "Group"
-msgstr ""
+msgstr "グループ"
 
 #: src/qml/Messages.qml:132
 #, qt-format
@@ -168,7 +168,7 @@ msgstr ""
 
 #: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -229,7 +229,7 @@ msgstr "保存"
 
 #: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
 msgid "Search..."
-msgstr ""
+msgstr "検索..."
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""

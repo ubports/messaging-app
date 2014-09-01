@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-07-21 12:53+0000\n"
+"PO-Revision-Date: 2014-09-01 07:00+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Launchpad-Export-Date: 2014-09-01 07:33+0000\n"
 "X-Generator: Launchpad (build 17176)\n"
 
 #: src/qml/dateUtils.js:65
@@ -41,7 +41,7 @@ msgstr[1] "%1 eilenn o pellgomz"
 
 #: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
-msgstr ""
+msgstr "Aprouet"
 
 #: src/qml/Messages.qml:527
 msgid "Add"
@@ -49,7 +49,7 @@ msgstr "Ouzhpennañ"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
-msgstr ""
+msgstr "Ouzhpennañ darempredoù..."
 
 #: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -59,29 +59,29 @@ msgstr "Ouzhpennañ un degemerer"
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pezh stag : %1 darempred"
+msgstr[1] "Pezhioù stag : %1 a zarempredoù"
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pezh stag : %1 restr"
+msgstr[1] "Pezhioù stag : %1 a restroù"
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pezh stag : %1 skeudenn"
+msgstr[1] "Pezhioù stag : %1 a skeudennoù"
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pezh stag : %1 video"
+msgstr[1] "Pezhioù stag : %1 a videoioù"
 
 #: src/qml/Messages.qml:517 src/qml/Messages.qml:571
 msgid "Call"
@@ -93,7 +93,7 @@ msgstr "Nullañ"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
 msgid "Change all Messaging associations to "
-msgstr ""
+msgstr "Cheñch an holl gevreadennoù postelerezh da "
 
 #: src/qml/MainPage.qml:37
 msgid "Chats"
@@ -102,11 +102,12 @@ msgstr "Kaozioù"
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
 msgid "Close"
-msgstr ""
+msgstr "Serriñ"
 
 #: src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
+"Sevel ur gemenadenn nevez o riklañ war-zu an nec'h adalek traoñ ar skramm."
 
 #: src/qml/Messages.qml:581
 msgid "Contact"
@@ -118,23 +119,23 @@ msgstr "Eilañ"
 
 #: src/qml/MainPage.qml:43
 msgid "Create new"
-msgstr ""
+msgstr "Krouiñ unan nevez"
 
 #: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
-msgstr ""
+msgstr "Diverkañ"
 
 #: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
-msgstr ""
+msgstr "Diverket"
 
 #: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
-msgstr ""
+msgstr "Kaset"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
-msgstr ""
+msgstr "Arabat goulenn en-dro"
 
 #: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
@@ -142,20 +143,20 @@ msgstr "C'hwitet"
 
 #: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "C'hwitet !"
 
 #: src/qml/MessageInfoDialog.qml:100
 msgid "From"
-msgstr ""
+msgstr "Digant"
 
 #: src/qml/MessageInfoDialog.qml:83
 msgid "Group"
-msgstr ""
+msgstr "Strollad"
 
 #: src/qml/Messages.qml:132
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "Strollad (%1)"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -163,27 +164,27 @@ msgstr "Rakwelet ar skeudenn"
 
 #: src/qml/MessagesListView.qml:78
 msgid "Info"
-msgstr ""
+msgstr "Titouroù"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "Diwezhatoc'h"
 
 #: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
-msgstr ""
+msgstr "Titouroù ar gemennadenn"
 
 #: src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
-msgstr ""
+msgstr "Diank eo titouroù ar gemennadenn"
 
 #: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
-msgstr ""
+msgstr "Me ma-unan"
 
 #: src/qml/Messages.qml:135
 msgid "New Message"
@@ -192,39 +193,39 @@ msgstr "Kemennadenn nevez"
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "N'eus bet diuzet kartenn SIM ebet"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
-msgstr ""
+msgstr "N'eus ket a rouedad"
 
 #: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
-msgstr ""
+msgstr "O c'hortoz"
 
 #: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
 msgid "Read"
-msgstr ""
+msgstr "Lenn"
 
 #: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
-msgstr ""
+msgstr "Resevet"
 
 #: src/qml/Messages.qml:190
 msgid "Remove"
-msgstr ""
+msgstr "Lemel"
 
 #: src/qml/MessagesListView.qml:64
 msgid "Retry"
-msgstr ""
+msgstr "Esaeañ en-dro"
 
 #: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -232,21 +233,24 @@ msgstr "Enrollañ"
 
 #: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
 msgid "Search..."
-msgstr ""
+msgstr "Klask..."
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Diuzit ur gartenn SIM dre ziouer evit an holl gemennadennoù a gasit. Gallout "
+"a reoc'h bepred cheñch ho tibab diwezhatoc'h e-barzh  <a "
+"href=\"system_settings\">Arventennoù ar reizhiad</a>."
 
 #: src/qml/Messages.qml:876
 msgid "Send"
-msgstr ""
+msgstr "Kas"
 
 #: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
-msgstr ""
+msgstr "Kaset"
 
 #: src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -254,28 +258,28 @@ msgstr "Rannañ"
 
 #: src/qml/MessageInfoDialog.qml:132
 msgid "Status"
-msgstr ""
+msgstr "Statud"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "Cheñch evit ar gartenn SIM dre ziouer :"
 
 #: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "C'hwitadenn evit ar poent"
 
 #: src/qml/Messages.qml:237
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "N'eus rouedad ebet evit bremañ war %1"
 
 #: src/qml/Messages.qml:237
 msgid "There is currently no network."
-msgstr ""
+msgstr "N'eus rouedad ebet evit bremañ"
 
 #: src/qml/MessageInfoDialog.qml:106
 msgid "To"
-msgstr ""
+msgstr "Da"
 
 #: src/qml/dateUtils.js:44
 msgid "Today"
@@ -283,16 +287,16 @@ msgstr "Hiziv"
 
 #: src/qml/MessageInfoDialog.qml:96
 msgid "Type"
-msgstr ""
+msgstr "Seurt"
 
 #: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
-msgstr ""
+msgstr "Dianav"
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
 #: src/qml/Messages.qml:752
 msgid "Unknown contact"
-msgstr ""
+msgstr "Darempred dianav"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -304,7 +308,7 @@ msgstr "Skrivañ ur gemennadenn..."
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: src/qml/dateUtils.js:46
 msgid "Yesterday"
@@ -312,4 +316,4 @@ msgstr "Dec'h"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "Ret eo deoc'h diuzañ ur gartenn SIM"

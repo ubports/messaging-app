@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-08-30 16:30+0000\n"
+"PO-Revision-Date: 2014-09-01 01:39+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-08-31 07:30+0000\n"
+"X-Launchpad-Export-Date: 2014-09-01 07:33+0000\n"
 "X-Generator: Launchpad (build 17176)\n"
 
 #: src/qml/dateUtils.js:65
@@ -93,7 +93,7 @@ msgstr "መሰረዣ"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
 msgid "Change all Messaging associations to "
-msgstr ""
+msgstr "ሁሉንም የተገናኙ መልእክቶች መቀየሪያ ወደ "
 
 #: src/qml/MainPage.qml:37
 msgid "Chats"
@@ -106,7 +106,7 @@ msgstr "መዝጊያ"
 
 #: src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ"
 
 #: src/qml/Messages.qml:581
 msgid "Contact"
@@ -130,7 +130,7 @@ msgstr "የጠፋ"
 
 #: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
-msgstr ""
+msgstr "ተልኳል"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
@@ -171,7 +171,7 @@ msgstr "በኋላ"
 
 #: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
+msgstr "ኤም ኤም ኤስ"
 
 #: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
@@ -183,7 +183,7 @@ msgstr "የ መልእክት ዳታ አልተገኘም"
 
 #: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
-msgstr ""
+msgstr "እኔ ራሴ"
 
 #: src/qml/Messages.qml:135
 msgid "New Message"
@@ -196,7 +196,7 @@ msgstr "አይ"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
@@ -212,7 +212,7 @@ msgstr "ያንብቡ"
 
 #: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
-msgstr ""
+msgstr "ተቀብለዋል"
 
 #: src/qml/Messages.qml:190
 msgid "Remove"
@@ -224,7 +224,7 @@ msgstr "እንደገና ይሞክሩ"
 
 #: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "ኤስ ኤም ኤስ"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -239,6 +239,8 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"ወደ ውጪ ለሚላኩ ጥሪዎች ነባር ሲም ይምረጡ: ምርጫዎትን በፈለጉ ጊዜ መቀየር ይችላሉ ከ <a "
+"href=\"ስርአት_ማሰናጃዎች\">ስርአት ማሰናጃዎች</a>."
 
 #: src/qml/Messages.qml:876
 msgid "Send"
@@ -258,20 +260,20 @@ msgstr "ሁኔታው"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "መቀየሪያ ወደ ነባር ሲም:"
 
 #: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "ለጊዜው ወድቋል"
 
 #: src/qml/Messages.qml:237
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "አሁን ምንም ኔትዎርክ አልተገኘም በ %1"
 
 #: src/qml/Messages.qml:237
 msgid "There is currently no network."
-msgstr ""
+msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 
 #: src/qml/MessageInfoDialog.qml:106
 msgid "To"
@@ -312,4 +314,4 @@ msgstr "ትናንትና"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "የ ሲም ካርድ መምረጥ አለብዎት"
