@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-08-28 20:33+0000\n"
+"PO-Revision-Date: 2014-09-01 13:23+0000\n"
 "Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-02 07:20+0000\n"
+"X-Generator: Launchpad (build 17192)\n"
 
 #: src/qml/dateUtils.js:65
 #, qt-format
@@ -63,29 +63,33 @@ msgstr "Додај примаоца"
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Прилог: %1 потсетница"
+msgstr[1] "Прилог: %1 потсетнице"
+msgstr[2] "Прилог: %1 потсетница"
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Прилог: %1 датотека"
+msgstr[1] "Прилог: %1 датотеке"
+msgstr[2] "Прилог: %1 датотека"
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Прилог: %1 слика"
+msgstr[1] "Прилог: %1 слике"
+msgstr[2] "Прилог: %1 слика"
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Прилог: %1 видео"
+msgstr[1] "Прилог: %1 видеа"
+msgstr[2] "Прилог: %1 видеа"
 
 #: src/qml/Messages.qml:517 src/qml/Messages.qml:571
 msgid "Call"
@@ -154,7 +158,7 @@ msgstr "Шаље"
 
 #: src/qml/MessageInfoDialog.qml:83
 msgid "Group"
-msgstr ""
+msgstr "Група"
 
 #: src/qml/Messages.qml:132
 #, qt-format
@@ -248,7 +252,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:876
 msgid "Send"
-msgstr ""
+msgstr "Пошаљи"
 
 #: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
@@ -281,7 +285,7 @@ msgstr "Тренутно нема мреже."
 
 #: src/qml/MessageInfoDialog.qml:106
 msgid "To"
-msgstr ""
+msgstr "За"
 
 #: src/qml/dateUtils.js:44
 msgid "Today"
@@ -319,6 +323,3 @@ msgstr "Јуче"
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Морате изабрати СИМ картицу"
-
-#~ msgid " "
-#~ msgstr " "

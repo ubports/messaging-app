@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-07-22 02:33+0000\n"
-"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"PO-Revision-Date: 2014-09-01 09:22+0000\n"
+"Last-Translator: Sok Sophea <sksophea@gmail.com>\n"
 "Language-Team: Khmer <km@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-02 07:20+0000\n"
+"X-Generator: Launchpad (build 17192)\n"
 
 #: src/qml/dateUtils.js:65
 #, qt-format
@@ -38,7 +38,7 @@ msgstr[0] "ការ​ហៅ %1 វិនាទី"
 
 #: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
-msgstr ""
+msgstr "ព្រម​ទទួល"
 
 #: src/qml/Messages.qml:527
 msgid "Add"
@@ -46,7 +46,7 @@ msgstr "បន្ថែម​"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
-msgstr ""
+msgstr "បន្ថែម​ទំនាក់ទំនង"
 
 #: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -56,29 +56,25 @@ msgstr "បន្ថែម​អ្នក​ទទួល"
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ឯកសារ​ភ្ជាប់៖ ទំនាក់ទំនង %1"
 
 #: src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ឯកសារ​ភ្ជាប់៖ ឯកសារ %1"
 
 #: src/qml/ThreadDelegate.qml:68
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ឯកសារ​ភ្ជាប់៖ រូបភាព %1"
 
 #: src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ឯកសារ​ភ្ជាប់៖ វីដេអូ %1"
 
 #: src/qml/Messages.qml:517 src/qml/Messages.qml:571
 msgid "Call"
@@ -90,7 +86,7 @@ msgstr "បោះ​បង់"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
 msgid "Change all Messaging associations to "
-msgstr ""
+msgstr "ប្ដូរ​សារ​ទាំងអស់​ដែល​ពាក់ព័ន្ធ​នឹង "
 
 #: src/qml/MainPage.qml:37
 msgid "Chats"
@@ -99,11 +95,11 @@ msgstr "ជជែក"
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
 msgid "Close"
-msgstr ""
+msgstr "បិទ"
 
 #: src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "តែង​សារ​ថ្មី​ដោយ​រុញ​ឡើង​ពី​បាត​អេក្រង់។"
 
 #: src/qml/Messages.qml:581
 msgid "Contact"
@@ -115,23 +111,23 @@ msgstr "​ចម្លង"
 
 #: src/qml/MainPage.qml:43
 msgid "Create new"
-msgstr ""
+msgstr "បង្កើត​ថ្មី"
 
 #: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
-msgstr ""
+msgstr "លុប"
 
 #: src/qml/MessageInfoDialog.qml:63
 msgid "Deleted"
-msgstr ""
+msgstr "បាន​លុប"
 
 #: src/qml/MessageInfoDialog.qml:53
 msgid "Delivered"
-msgstr ""
+msgstr "បាន​ប្រគល់"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
 msgid "Don't ask again"
-msgstr ""
+msgstr "កុំ​សួរ​ម្ដងទៀត"
 
 #: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
@@ -139,20 +135,20 @@ msgstr "បាន​បរាជ័យ"
 
 #: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "បរាជ័យ!"
 
 #: src/qml/MessageInfoDialog.qml:100
 msgid "From"
-msgstr ""
+msgstr "ពី"
 
 #: src/qml/MessageInfoDialog.qml:83
 msgid "Group"
-msgstr ""
+msgstr "ក្រុម"
 
 #: src/qml/Messages.qml:132
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "ក្រុម (%1)"
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -160,27 +156,27 @@ msgstr "មើល​រូបភាព​ជា​មុន"
 
 #: src/qml/MessagesListView.qml:78
 msgid "Info"
-msgstr ""
+msgstr "ព័ត៌មាន"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "ពេលក្រោយ"
 
 #: src/qml/MessagesListView.qml:81
 msgid "MMS"
-msgstr ""
+msgstr "សារ MMS"
 
 #: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
-msgstr ""
+msgstr "ព័ត៌មាន​សារ"
 
 #: src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
-msgstr ""
+msgstr "បាត់​ទិន្នន័យ​សារ"
 
 #: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
 msgid "Myself"
-msgstr ""
+msgstr "ខ្លួនខ្ញុំ"
 
 #: src/qml/Messages.qml:135
 msgid "New Message"
@@ -189,39 +185,39 @@ msgstr "សារ​ថ្មី"
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
 msgid "No"
-msgstr ""
+msgstr "ទេ"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "មិន​បាន​ជ្រើស​ស៊ីម​កាត"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
-msgstr ""
+msgstr "មិន​មាន​បណ្ដាញ"
 
 #: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
-msgstr ""
+msgstr "កំពុង​រង់ចាំ"
 
 #: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
 msgid "Read"
-msgstr ""
+msgstr "អាន"
 
 #: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
 msgid "Received"
-msgstr ""
+msgstr "បាន​ទទួល"
 
 #: src/qml/Messages.qml:190
 msgid "Remove"
-msgstr ""
+msgstr "លុបចេញ"
 
 #: src/qml/MessagesListView.qml:64
 msgid "Retry"
-msgstr ""
+msgstr "ព្យាយាម​ម្ដងទៀត"
 
 #: src/qml/MessagesListView.qml:81
 msgid "SMS"
-msgstr ""
+msgstr "សារ SMS"
 
 #: src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -229,21 +225,24 @@ msgstr "រក្សា​​ទុក​​"
 
 #: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
 msgid "Search..."
-msgstr ""
+msgstr "ស្វែងរក..."
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"ជ្រើស​ស៊ីម​លំនាំដើម​សម្រាប់​សារ​ចេញ​ទាំងអស់។ "
+"អ្នក​អាច​ប្ដូរ​ជម្រើស​បាន​នៅ​ក្នុង <a "
+"href=\"system_settings\">ការ​កំណត់​ប្រព័ន្ធ</a> ។"
 
 #: src/qml/Messages.qml:876
 msgid "Send"
-msgstr ""
+msgstr "ផ្ញើ"
 
 #: src/qml/MessageInfoDialog.qml:117
 msgid "Sent"
-msgstr ""
+msgstr "បានផ្ញើ"
 
 #: src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -251,28 +250,28 @@ msgstr "ចែក​រំលែក"
 
 #: src/qml/MessageInfoDialog.qml:132
 msgid "Status"
-msgstr ""
+msgstr "ស្ថានភាព"
 
 #: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "ប្ដូរ​ទៅ​ស៊ីម​លំនាំដើម៖"
 
 #: src/qml/MessageInfoDialog.qml:55
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "បាន​បរាជ័យ​ជា​បណ្ដោះអាសន្ន"
 
 #: src/qml/Messages.qml:237
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "បច្ចុប្បន្ន​មិន​មាន​សេវា​នៅ​លើ %1"
 
 #: src/qml/Messages.qml:237
 msgid "There is currently no network."
-msgstr ""
+msgstr "បច្ចុប្បន្ន​មិន​មាន​សេវា។"
 
 #: src/qml/MessageInfoDialog.qml:106
 msgid "To"
-msgstr ""
+msgstr "ជួន​ចំពោះ"
 
 #: src/qml/dateUtils.js:44
 msgid "Today"
@@ -280,16 +279,16 @@ msgstr "ថ្ងៃ​នេះ"
 
 #: src/qml/MessageInfoDialog.qml:96
 msgid "Type"
-msgstr ""
+msgstr "ប្រភេទ"
 
 #: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
-msgstr ""
+msgstr "មិន​ស្គាល់"
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
 #: src/qml/Messages.qml:752
 msgid "Unknown contact"
-msgstr ""
+msgstr "មិន​ស្គាល់​ទំនាក់ទំនង"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -301,7 +300,7 @@ msgstr "សរសេរ​សារ..."
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Yes"
-msgstr ""
+msgstr "បាទ/ចាស"
 
 #: src/qml/dateUtils.js:46
 msgid "Yesterday"
@@ -309,4 +308,4 @@ msgstr "ម្សិល​មិញ"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "អ្នក​ត្រូវ​ជ្រើស​ស៊ីម​កាត"
