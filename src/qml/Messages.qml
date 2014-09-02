@@ -37,6 +37,7 @@ Page {
     property QtObject account: mainView.account
 
     property variant participants: []
+    property variant previousParticipants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
@@ -149,6 +150,10 @@ Page {
             eventModel.filter = null
             return
         }
+        if (previousParticipants.join('') === participants.join('')) {
+            return
+        }
+        previousParticipants = participants
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
         for (var i in telepathyHelper.accountIds) {
