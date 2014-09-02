@@ -82,7 +82,6 @@ MainView {
     HistoryThreadGroupingProxyModel {
         id: sortProxy
         sortRole: HistoryThreadModel.LastEventTimestampRole
-        dynamicSortFilter: false
         sourceModel: threadModel
         ascending: false
         groupingProperty: "participants"
