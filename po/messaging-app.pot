@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-29 07:54+0200\n"
+"POT-Creation-Date: 2014-09-02 15:39-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,11 @@ msgid_plural "%1 seconds call"
 msgstr[0] ""
 msgstr[1] ""
 
+#. TRANSLATORS: this refers to creating a new contact
+#: src/qml/NewRecipientPage.qml:178
+msgid "+ Create New"
+msgstr ""
+
 #: src/qml/MessageInfoDialog.qml:59
 msgid "Accepted"
 msgstr ""
@@ -53,6 +58,10 @@ msgstr ""
 
 #: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
+msgstr ""
+
+#: src/qml/NewRecipientPage.qml:69
+msgid "All"
 msgstr ""
 
 #: src/qml/ThreadDelegate.qml:74
@@ -87,7 +96,7 @@ msgstr[1] ""
 msgid "Call"
 msgstr ""
 
-#: src/qml/MainPage.qml:85
+#: src/qml/MainPage.qml:85 src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr ""
 
@@ -142,6 +151,10 @@ msgstr ""
 
 #: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
+msgstr ""
+
+#: src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
 msgstr ""
 
 #: src/qml/MessageInfoDialog.qml:100
@@ -230,7 +243,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
+#: src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr ""
+
+#: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr ""
 
