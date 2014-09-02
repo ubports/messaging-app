@@ -34,7 +34,7 @@ LocalPageWithBottomEdge {
     }
 
     state: selectionMode ? "select" : searching ? "search" : "default"
-    title: selectionMode ? i18n.tr(" ") : i18n.tr("Chats")
+    title: selectionMode ? " " : i18n.tr("Chats")
 
     bottomEdgeEnabled: !selectionMode && !searching
     bottomEdgePageComponent: Messages {

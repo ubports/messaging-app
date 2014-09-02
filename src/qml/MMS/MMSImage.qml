@@ -35,13 +35,17 @@ MMSBase {
         image: Image {
             id: imageAttachment
 
-            width: sourceSize.width > units.gu(30) ? units.gu(30) : sourceSize.width
-            height: Math.min(sourceSize.height, units.gu(14))
             fillMode: Image.PreserveAspectCrop
             smooth: true
             source: attachment.filePath
             visible: false
             asynchronous: true
+            height: Math.min(implicitHeight, units.gu(14))
+            width: Math.min(implicitWidth, units.gu(27))
+            cache: false
+
+            sourceSize.width: units.gu(27)
+            sourceSize.height: units.gu(27)
 
             onStatusChanged:  {
                 if (status === Image.Error) {

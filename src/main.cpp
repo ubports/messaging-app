@@ -34,6 +34,10 @@
 #include "messagingapplication.h"
 #include "config.h"
 
+// WORKAROUND: to make easy to debug apps
+#include <QtQml/QQmlDebuggingEnabler>
+static QQmlDebuggingEnabler debuggingEnabler(false);
+
 // Temporarily disable the telepathy folks backend
 // as it doesn’t play well with QtFolks.
 int main(int argc, char** argv)

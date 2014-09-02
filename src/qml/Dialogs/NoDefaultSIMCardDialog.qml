@@ -35,7 +35,7 @@ Component {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: paintedHeight + units.gu(3)
                 Repeater {
-                    model: telepathyHelper.accounts
+                    model: telepathyHelper.activeAccounts
                     delegate: Label {
                         text: modelData.displayName
                         color: UbuntuColors.orange

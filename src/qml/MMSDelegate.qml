@@ -22,8 +22,10 @@ import Ubuntu.Components 1.1
 MessageDelegate {
     id: root
 
+    property var attachments: messageData.textMessageAttachments
     property var dataAttachments: []
     property var textAttachements: []
+    property string messageText: ""
 
     function clicked(mouse)
     {
@@ -38,7 +40,10 @@ MessageDelegate {
 
     function deleteMessage()
     {
-        eventModel.removeEvent(accountId, threadId, eventId, type)
+        eventModel.removeEvent(messageData.accountId,
+                               messageData.threadId,
+                               messageData.eventId,
+                               messageData.type)
     }
 
     function resendMessage()
@@ -46,7 +51,7 @@ MessageDelegate {
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
-            var item = textMessageAttachments[i]
+            var item = attachments[i]
             // we dont include smil files. they will be auto generated
             if (item.contentType.toLowerCase() === "application/smil") {
                 continue
@@ -56,26 +61,28 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        eventModel.removeEvent(accountId, threadId, eventId, type)
-        chatManager.sendMMS(participants, textMessage, newAttachments, messages.accountId)
+        eventModel.removeEvent(messageData.accountId,
+                               messageData.threadId,
+                               messageData.eventId,
+                               messageData.type)
+        // FIXME: export this information for MessageDelegate
+        chatManager.sendMMS(participants, textMessage, newAttachments, messages.account.accountId)
     }
 
     function copyMessage()
     {
-        if (bubble.visible) {
-            Clipboard.push(bubble.messageText)
-        }
+        Clipboard.push(root.messageText)
     }
 
     onAttachmentsChanged: {
-        dataAttachments = []
-        textAttachements = []
+        root.dataAttachments = []
+        root.textAttachements = []
         for (var i=0; i < attachments.length; i++) {
             var attachment = attachments[i]
             if (startsWith(attachment.contentType, "text/plain") ) {
-                textAttachements.push(attachment)
+                root.textAttachements.push(attachment)
             } else if (startsWith(attachment.contentType, "image/")) {
-                dataAttachments.push({"type": "image",
+                root.dataAttachments.push({"type": "image",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
@@ -94,7 +101,7 @@ MessageDelegate {
                         //                                 })
             } else if (startsWith(attachment.contentType, "text/vcard") ||
                        startsWith(attachment.contentType, "text/x-vcard")) {
-                dataAttachments.push({"type": "vcard",
+                root.dataAttachments.push({"type": "vcard",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSContact.qml"
                                     })
@@ -102,9 +109,14 @@ MessageDelegate {
                 console.log("No MMS render for " + attachment.contentType)
             }
         }
+        attachmentsRepeater.model = root.dataAttachments
+        if (root.textAttachements.length > 0) {
+            root.messageText = application.readTextFile(root.textAttachements[0].filePath)
+            bubbleLoader.active = true
+            root._lastItem = bubbleLoader
+        }
     }
     height: attachmentsView.height
-    _lastItem: bubble.visible ? bubble : attachmentsRepeater.itemAt(attachmentsRepeater - 1)
     Column {
         id: attachmentsView
 
@@ -115,20 +127,28 @@ MessageDelegate {
         }
         height: childrenRect.height
 
+        spacing: units.gu(0.1)
         Repeater {
             id: attachmentsRepeater
-            model: dataAttachments
+
+            onCountChanged: {
+                if (bubbleLoader.active) {
+                    root._lastItem = bubbleLoader
+                } else {
+                    root._lastItem = itemAt(count - 1)
+                }
+            }
 
             Loader {
                 id: attachmentLoader
-                asynchronous: true
+
                 states: [
                     State {
                         when: root.incoming
                         name: "incoming"
                         AnchorChanges {
                             target: attachmentLoader
-                            anchors.left: parent.left
+                            anchors.left: parent ? parent.left : undefined
                         }
                         PropertyChanges {
                             target: attachmentLoader
@@ -141,7 +161,7 @@ MessageDelegate {
                         name: "outgoing"
                         AnchorChanges {
                             target: attachmentLoader
-                            anchors.right: parent.right
+                            anchors.right: parent ? parent.right : undefined
                         }
                         PropertyChanges {
                             target: attachmentLoader
@@ -150,49 +170,53 @@ MessageDelegate {
                         }
                     }
                 ]
-
-                Component.onCompleted: {
-                    var initialProperties = {
-                        "incoming": root.incoming,
-                        "attachment": modelData.data,
-                        "timestamp": timestamp,
-                        "lastItem": (index === (attachmentsRepeater.count - 1)) && (textAttachements.length === 0)
-                    }
-                    setSource(modelData.delegateSource, initialProperties)
+                source: modelData.delegateSource
+                Binding {
+                    target: attachmentLoader.item ? attachmentLoader.item : null
+                    property: "attachment"
+                    value: modelData.data
+                    when: attachmentLoader.status === Loader.Ready
+                }
+                Binding {
+                    target: attachmentLoader.item ? attachmentLoader.item : null
+                    property: "lastItem"
+                    value: _lastItem === attachmentLoader
+                    when: attachmentLoader.status === Loader.Ready
                 }
             }
         }
 
-        // TODO: is possible to have more than one text ???
-        MessageBubble {
-            id: bubble
+        Loader {
+            id: bubbleLoader
 
-            property string textData: application.readTextFile(root.textAttachements[0].filePath)
+            source: Qt.resolvedUrl("MMSMessageBubble.qml")
+            active: false
 
             states: [
                 State {
-                    when: root.incoming
+                    when: incoming
                     name: "incoming"
                     AnchorChanges {
-                        target: bubble
+                        target: bubbleLoader
                         anchors.left: parent.left
                     }
                 },
                 State {
                     name: "outgoing"
-                    when: !root.incoming
+                    when: !incoming
                     AnchorChanges {
-                        target: bubble
+                        target: bubbleLoader
                         anchors.right: parent.right
                     }
                 }
             ]
-            visible: (root.textAttachements.length > 0)
-            messageText: textData.length > 0 ? textData : i18n.tr("Missing message data")
-            messageTimeStamp: root.timestamp
-            messageStatus: textMessageStatus
-            messageIncoming: root.incoming
-            accountName: root.accountLabel
+
+            Binding {
+                target: bubbleLoader.item
+                property: "messageText"
+                value: root.messageText.length > 0 ? root.messageText : i18n.tr("Missing message data")
+                when: bubbleLoader.status === Loader.Ready
+            }
         }
     }
 }
