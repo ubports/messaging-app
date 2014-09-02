@@ -84,6 +84,7 @@ Page {
                 onTriggered: {
                     newRecipientPage.forceActiveFocus()
                     newRecipientPage.state = "default"
+                    newRecipientPage.head.sections.selectedIndex = 0
                 }
             }
 
