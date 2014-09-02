@@ -36,7 +36,7 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: mainView.defaultAccount
+    property QtObject account: mainView.account
 
     property variant participants: []
     property bool groupChat: participants.length > 1
@@ -80,25 +80,24 @@ Page {
     // default account changes in system settings
     Connections {
         target: mainView
-        onDefaultAccountChanged: account = mainView.defaultAccount
+        onAccountChanged: messages.account = mainView.account
     }
 
     ListModel {
         id: attachments
     }
 
-    Connections {
-        target: activeTransfer !== null ? activeTransfer : null
-        onStateChanged: {
-            var done = ((activeTransfer.state === ContentTransfer.Charged) ||
-                        (activeTransfer.state === ContentTransfer.Aborted));
+    PictureImport {
+        id: pictureImporter
 
-            if (activeTransfer.state === ContentTransfer.Charged) {
-                if (activeTransfer.items.length > 0) {
-                    addAttachmentsToModel(activeTransfer)
-                    textEntry.forceActiveFocus()
-                }
-            }
+        onPictureReceived: {
+            var attachment = {}
+            var filePath = String(pictureUrl).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["filePath"] = filePath
+            attachments.append(attachment)
+            textEntry.forceActiveFocus()
         }
     }
 
@@ -114,7 +113,7 @@ Page {
 
     title: {
         if (selectionMode) {
-            return i18n.tr(" ")
+            return " "
         }
 
         if (landscape) {
@@ -173,13 +172,6 @@ Page {
     function markMessageAsRead(accountId, threadId, eventId, type) {
         chatManager.acknowledgeMessage(participants[0], eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
-    }
-
-    ContentPeer {
-        id: defaultSource
-        contentType: ContentType.Pictures
-        handler: ContentHandler.Source
-        selectionType: ContentTransfer.Single
     }
 
     Component {
@@ -262,8 +254,8 @@ Page {
         }
 
         var accountNames = []
-        for(var i=0; i < telepathyHelper.accounts.length; i++) {
-            accountNames.push(telepathyHelper.accounts[i].displayName)
+        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
         }
         return accountNames
     }
@@ -271,8 +263,8 @@ Page {
         if (!messages.account) {
             return -1
         }
-        for (var i in telepathyHelper.accounts) {
-            if (telepathyHelper.accounts[i].accountId === messages.account.accountId) {
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
                 return i
             }
         }
@@ -280,7 +272,7 @@ Page {
     }
     Connections {
         target: messages.head.sections
-        onSelectedIndexChanged: messages.account = telepathyHelper.accounts[head.sections.selectedIndex]
+        onSelectedIndexChanged: messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
     }
 
     Component {
@@ -605,107 +597,17 @@ Page {
         }
     }
 
-    SortProxyModel {
-        id: sortProxy
-        sourceModel: eventModel.filter ? eventModel : null
-        sortRole: HistoryEventModel.TimestampRole
-        ascending: false
-    }
-
-    MultipleSelectionListView {
+    MessagesListView {
         id: messageList
         objectName: "messageList"
 
-        property var _currentSwipedItem: null
-
-        function updateSwippedItem(item)
-        {
-            if (item.swipping) {
-                return
-            }
-
-            if (item.swipeState !== "Normal") {
-                if (_currentSwipedItem !== item) {
-                    if (_currentSwipedItem) {
-                        _currentSwipedItem.resetSwipe()
-                    }
-                    _currentSwipedItem = item
-                }
-            } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
-                _currentSwipedItem = null
-            }
-        }
+        // because of the header
         clip: true
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
-        }
-        // fake bottomMargin
-        header: Item {
-            height: units.gu(1)
-        }
-        listModel: participants.length > 0 ? sortProxy : null
-        verticalLayoutDirection: ListView.BottomToTop
-        highlightFollowsCurrentItem: true
-        currentIndex: 0
-        // keep the last item as currentItem
-
-        listDelegate: Column {
-            id: messageDelegate
-
-            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
-            // bellow the item
-            MessageDateSection {
-                text: DateUtils.friendlyDay(timestamp)
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: units.gu(2)
-                    rightMargin: units.gu(2)
-                }
-                visible: (index === messageList.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
-            }
-
-            MessageDelegateFactory {
-                objectName: "message%1".arg(index)
-                incoming: senderId != "self"
-                // TODO: we have several items inside
-                selected: messageList.isSelected(messageDelegate)
-                selectionMode: messages.selectionMode
-                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-                // TODO: need select only the item
-                onItemClicked: {
-                    if (messageList.isInSelectionMode) {
-                        if (!messageList.selectItem(messageDelegate)) {
-                            messageList.deselectItem(messageDelegate)
-                        }
-                    }
-                }
-                onItemPressAndHold: {
-                    messageList.startSelection()
-                    messageList.selectItem(messageDelegate)
-                }
-
-                Component.onCompleted: {
-                    if (newEvent) {
-                        messages.markMessageAsRead(accountId, threadId, eventId, type);
-                    }
-                }
-            }
-        }
-
-        onSelectionDone: {
-            for (var i=0; i < items.count; i++) {
-                var event = items.get(i).model
-                eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
-            }
-        }
-
-        onCountChanged: {
-            currentIndex = 0
-            positionViewAtBeginning()
         }
     }
 
@@ -738,7 +640,8 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    activeTransfer = defaultSource.request();
+                    Qt.inputMethod.hide()
+                    pictureImporter.requestNewPicture()
                 }
             }
         }
@@ -755,7 +658,7 @@ Page {
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
-            height: attachments.count !== 0 ? fullSize + units.gu(1) : fullSize
+            height: attachments.count !== 0 ? fullSize + units.gu(1.5) : fullSize
             onActiveFocusChanged: {
                 if(activeFocus) {
                     messageTextArea.forceActiveFocus()
@@ -771,20 +674,25 @@ Page {
             Flow {
                 id: attachmentThumbnails
                 spacing: units.gu(1)
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.leftMargin: units.gu(1)
-                anchors.rightMargin: units.gu(1)
-                anchors.topMargin: units.gu(1)
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    topMargin: units.gu(1)
+                    leftMargin: units.gu(1)
+                    rightMargin: units.gu(1)
+                }
                 height: childrenRect.height
+
                 Component {
                     id: thumbnailImage
                     UbuntuShape {
                         property int index
                         property string filePath
+
                         width: childrenRect.width
                         height: childrenRect.height
+
                         image: Image {
                             id: avatarImage
                             width: units.gu(8)
@@ -806,17 +714,46 @@ Page {
 
                 Component {
                     id: thumbnailContact
-                    UbuntuShape {
+                    Item {
+                        id: attachment
+
                         property int index
                         property string filePath
-                        width: childrenRect.width
-                        height: childrenRect.height
-                        Icon {
-                            anchors.centerIn: parent
-                            width: units.gu(6)
-                            height: units.gu(6)
-                            name: "contact"
+
+                        height: units.gu(6)
+                        width: textEntry.width
+
+                        ContactAvatar {
+                            id: avatar
+
+                            anchors {
+                                top: parent.top
+                                bottom: parent.bottom
+                                left: parent.left
+                            }
+                            fallbackAvatarUrl: "image://theme/contact"
+                            fallbackDisplayName: label.name
+                            width: height
                         }
+                        Label {
+                            id: label
+
+                            property string name: attachment.filePath != "" ? application.contactNameFromVCard(attachment.filePath) : ""
+
+                            anchors {
+                                left: avatar.right
+                                leftMargin: units.gu(1)
+                                top: avatar.top
+                                bottom: avatar.bottom
+                                right: parent.right
+                            }
+
+                            verticalAlignment: Text.AlignVCenter
+                            text: name !== "" ? name : i18n.tr("Unknown contact")
+                            elide: Text.ElideRight
+                            color: UbuntuColors.lightAubergine
+                        }
+
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
@@ -830,11 +767,14 @@ Page {
 
                 Component {
                     id: thumbnailUnknown
+
                     UbuntuShape {
                         property int index
                         property string filePath
-                        width: childrenRect.width
-                        height: childrenRect.height
+
+                        width: units.gu(8)
+                        height: units.gu(8)
+
                         Icon {
                             anchors.centerIn: parent
                             width: units.gu(6)
@@ -856,7 +796,6 @@ Page {
                     model: attachments
                     delegate: Loader {
                         height: units.gu(8)
-                        width: units.gu(8)
                         sourceComponent: {
                             var contentType = getContentType(filePath)
                             console.log(contentType)
@@ -881,11 +820,25 @@ Page {
                 }
             }
 
+            ListItem.ThinDivider {
+                id: divider
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: attachmentThumbnails.bottom
+                    margins: units.gu(0.5)
+                }
+                visible: attachments.count > 0
+            }
+
             TextArea {
                 id: messageTextArea
-                anchors.top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
+                anchors {
+                    top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
+                    left: parent.left
+                    right: parent.right
+                }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
                 style: MultiRecipientFieldStyle {}
@@ -920,11 +873,12 @@ Page {
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
-            text: "Send"
+            text: i18n.tr("Send")
             color: enabled ? "#38b44a" : "#b2b2b2"
             width: units.gu(7)
             height: units.gu(4)
             font.pixelSize: FontUtils.sizeToPixels("small")
+            activeFocusOnPress: false
             enabled: {
                if (participants.length > 0 || multiRecipient.recipientCount > 0) {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
@@ -991,8 +945,7 @@ Page {
         id: keyboard
     }
 
-    Scrollbar {
-        flickableItem: messageList
-        align: Qt.AlignTrailing
+    MessageInfoDialog {
+        id: messageInfoDialog
     }
 }

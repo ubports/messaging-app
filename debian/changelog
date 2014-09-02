@@ -1,3 +1,51 @@
+messaging-app (0.1+14.10.20140828.3-0ubuntu1) utopic; urgency=low
+
+  [ Bill Filler ]
+  * Mark the "Send" string for translation. This will require an update
+    of the .pot file too.
+
+  [ Martin Pitt ]
+  * Update POT
+  * Do not mark single space for translation, and fix wrong macros in
+    plural forms of "Attachments" strings.
+
+  [ David Planella ]
+  * Mark the "Send" string for translation. This will require an update
+    of the .pot file too.
+
+  [ Tiago Salem Herrmann ]
+  * Use rich text to avoid parsing errors. (LP: #1320126)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show destination numbers on MessageInfoDialog. (LP: #1359843)
+  * Limit the size of memory used by images on MMSImage.qml. Removed
+    scrollbar. Optimize messages page (Binding only message object
+    property for loaders.) (LP: #1356539)
+  * Update vcard visual on text field (before send it) (LP: #1359351)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 28 Aug 2014 21:59:34 +0000
+
+messaging-app (0.1+14.10.20140825-0ubuntu1) utopic; urgency=low
+
+  [ Martin Pitt ]
+  * Mark for using language packs
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 25 Aug 2014 06:37:43 +0000
+
+messaging-app (0.1+14.10.20140820-0ubuntu1) utopic; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Display only active accounts (sim card present).
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update Picture import functionality to import pictures from any
+    source. (LP: #1356543)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 20 Aug 2014 15:34:12 +0000
+
 messaging-app (0.1+14.10.20140813.2-0ubuntu1) utopic; urgency=low
 
   [ Ubuntu daily release ]

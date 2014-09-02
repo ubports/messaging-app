@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-17 11:13+0200\n"
+"POT-Creation-Date: 2014-08-29 07:54+0200\n"
 "PO-Revision-Date: 2014-08-06 12:30+0000\n"
 "Last-Translator: George Christofis <geochr22@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -15,139 +15,301 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-07 06:27+0000\n"
-"X-Generator: Launchpad (build 17147)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: src/qml/dateUtils.js:62
+#: src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/qml/dateUtils.js:64
+#: src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/qml/dateUtils.js:66
+#: src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/qml/Messages.qml:409
+#: src/qml/MessageInfoDialog.qml:59
+msgid "Accepted"
+msgstr ""
+
+#: src/qml/Messages.qml:527
 msgid "Add"
 msgstr ""
 
 #: src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts.."
-msgstr "Προσθήκη επαφών.."
+msgid "Add contacts..."
+msgstr ""
 
-#: src/qml/NewRecipientPage.qml:27
+#: src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "Προσθήκη παραλήπτη"
 
-#: src/qml/AddPhoneNumberToContactPage.qml:26
-msgid "Add to contact"
-msgstr "Προσθήκη στις επαφές"
+#: src/qml/ThreadDelegate.qml:74
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/qml/Messages.qml:152 src/qml/messaging-app.qml:137
-msgid "Add to existing contact"
-msgstr "Προσθήκη σε υφιστάμενη επαφή"
+#: src/qml/ThreadDelegate.qml:77
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/qml/Messages.qml:397 src/qml/Messages.qml:426
+#: src/qml/ThreadDelegate.qml:68
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/ThreadDelegate.qml:71
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/qml/Messages.qml:517 src/qml/Messages.qml:571
 msgid "Call"
 msgstr "Κλήση"
 
-#: src/qml/MainPage.qml:75 src/qml/MessageDelegate.qml:216
-#: src/qml/Messages.qml:169
+#: src/qml/MainPage.qml:85
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: src/qml/MainPage.qml:31
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
+msgid "Change all Messaging associations to "
+msgstr ""
+
+#: src/qml/MainPage.qml:37
 msgid "Chats"
 msgstr "Συνομιλίες"
 
-#: src/qml/Messages.qml:438
+#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
+#: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
+msgid "Close"
+msgstr ""
+
+#: src/qml/MainPage.qml:141
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr ""
+
+#: src/qml/Messages.qml:581
 msgid "Contact"
 msgstr ""
 
-#: src/qml/MessageDelegate.qml:176
+#: src/qml/MessagesListView.qml:71
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#: src/qml/Messages.qml:161 src/qml/messaging-app.qml:139
-msgid "Create new contact"
+#: src/qml/MainPage.qml:43
+msgid "Create new"
 msgstr ""
 
-#: src/qml/MainPage.qml:31 src/qml/Messages.qml:58
-msgid "Edit"
-msgstr "Επεξεργασία"
+#: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
+msgid "Delete"
+msgstr ""
 
-#: src/qml/MessageDelegate.qml:300
+#: src/qml/MessageInfoDialog.qml:63
+msgid "Deleted"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:53
+msgid "Delivered"
+msgstr ""
+
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
+msgid "Don't ask again"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:57
 msgid "Failed"
 msgstr ""
 
-#: src/qml/Messages.qml:74
+#: src/qml/MessageDelegateFactory.qml:140
+msgid "Failed!"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:100
+msgid "From"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:83
 msgid "Group"
 msgstr ""
 
-#: src/qml/Messages.qml:150
-msgid "How do you want to save the contact?"
+#: src/qml/Messages.qml:132
+#, qt-format
+msgid "Group (%1)"
 msgstr ""
 
 #: src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
 msgstr ""
 
-#: src/qml/MainPage.qml:39
-msgid "New Chat"
-msgstr "Νέα συνομιλία"
+#: src/qml/MessagesListView.qml:78
+msgid "Info"
+msgstr ""
 
-#: src/qml/Messages.qml:77
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
+msgid "Later"
+msgstr ""
+
+#: src/qml/MessagesListView.qml:81
+msgid "MMS"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:89
+msgid "Message info"
+msgstr ""
+
+#: src/qml/MMSDelegate.qml:217
+msgid "Missing message data"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
+msgid "Myself"
+msgstr ""
+
+#: src/qml/Messages.qml:135
 msgid "New Message"
 msgstr "Νέο μήνυμα"
 
-#: src/qml/MMS/Previewer.qml:32 src/qml/MessageDelegate.qml:61
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
+msgid "No"
+msgstr ""
+
+#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+msgid "No SIM card selected"
+msgstr ""
+
+#: src/qml/Messages.qml:236
+msgid "No network"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:65
+msgid "Pending"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
+msgid "Read"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
+msgid "Received"
+msgstr ""
+
+#: src/qml/Messages.qml:190
+msgid "Remove"
+msgstr ""
+
+#: src/qml/MessagesListView.qml:64
+msgid "Retry"
+msgstr ""
+
+#: src/qml/MessagesListView.qml:81
+msgid "SMS"
+msgstr ""
+
+#: src/qml/MMS/Previewer.qml:32
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: src/qml/Messages.qml:149
-msgid "Save contact"
-msgstr "Αποθήκευση επαφής"
-
-#: src/qml/MessageDelegate.qml:75 src/qml/MessageDelegate.qml:184
-msgid "Select"
+#: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
+msgid "Search..."
 msgstr ""
 
-#: src/qml/MessageDelegate.qml:298
-msgid "Sending..."
-msgstr "Γίνεται αποστολή..."
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
+msgid ""
+"Select a default SIM for all outgoing messages. You can always alter your "
+"choice in <a href=\"system_settings\">System Settings</a>."
+msgstr ""
 
-#: src/qml/MMS/Previewer.qml:45 src/qml/MessageDelegate.qml:68
+#: src/qml/Messages.qml:876
+msgid "Send"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:117
+msgid "Sent"
+msgstr ""
+
+#: src/qml/MMS/Previewer.qml:45
 msgid "Share"
 msgstr ""
 
-#: src/qml/dateUtils.js:41
+#: src/qml/MessageInfoDialog.qml:132
+msgid "Status"
+msgstr ""
+
+#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Switch to default SIM:"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:55
+msgid "Temporarily Failed"
+msgstr ""
+
+#: src/qml/Messages.qml:237
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr ""
+
+#: src/qml/Messages.qml:237
+msgid "There is currently no network."
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:106
+msgid "To"
+msgstr ""
+
+#: src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "Σήμερα"
 
-#: src/qml/MessageDelegate.qml:208
-msgid "Try again"
-msgstr "Προσπαθήστε ξανά"
+#: src/qml/MessageInfoDialog.qml:96
+msgid "Type"
+msgstr ""
+
+#: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
+msgid "Unknown"
+msgstr ""
+
+#: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
+#: src/qml/Messages.qml:752
+msgid "Unknown contact"
+msgstr ""
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
 msgstr ""
 
-#: src/qml/Messages.qml:578
+#: src/qml/Messages.qml:847
 msgid "Write a message..."
 msgstr ""
 
-#: src/qml/dateUtils.js:43
+#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Yes"
+msgstr ""
+
+#: src/qml/dateUtils.js:46
 msgid "Yesterday"
+msgstr ""
+
+#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+msgid "You need to select a SIM card"
 msgstr ""

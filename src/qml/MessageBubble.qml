@@ -23,7 +23,7 @@ import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
 
-BorderImage {
+Rectangle {
     id: root
 
     property int messageStatus: -1
@@ -38,22 +38,8 @@ BorderImage {
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
 
-    function selectBubble() {
-        var fileName = "assets/conversation_";
-        if (error) {
-            fileName += "error.sci"
-        } else if (sending) {
-            fileName += "pending.sci"
-        } else if (messageIncoming) {
-            fileName += "incoming.sci";
-        } else {
-            fileName += "outgoing.sci";
-        }
-        return fileName;
-    }
-
     function parseText(text) {
-        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[-. ]?([0-9]+)[-. ]?([0-9]+)[-. ]?([0-9]+))/img;
+        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[- ]?([0-9]+)[- ]?([0-9]+)[- ]?([0-9]+))/img;
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // replace line breaks
@@ -64,24 +50,38 @@ BorderImage {
         return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
     }
 
-    onMessageIncomingChanged: source = selectBubble()
-    source: selectBubble()
-    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(3)
+    color: {
+        if (error) {
+            return "#fc4949"
+        } else if (sending) {
+            return "#b2b2b2"
+        } else if (messageIncoming) {
+            return "#ffffff"
+        } else {
+            return "#3fb24f"
+        }
+    }
+    radius: 9
+    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(1)
     width:  Math.min(units.gu(27),
                      Math.max(textLabel.contentWidth, textTimestamp.contentWidth))
-            + border.left + border.right
+            + units.gu(3)
+    anchors{
+        leftMargin:  units.gu(1)
+        rightMargin: units.gu(1)
+    }
+
     Label {
         id: senderName
 
         anchors {
             top: parent.top
-            topMargin: units.gu(1)
+            topMargin: units.gu(0.5)
             left: parent.left
             leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
         }
         height: text === "" ? 0 : paintedHeight
         fontSize: "large"
-        //color: Ubuntu.Colors.
     }
 
     Label {
@@ -90,15 +90,16 @@ BorderImage {
 
         anchors {
             top: sender == "" ? parent.top : senderName.bottom
-            topMargin: units.gu(1)
+            topMargin: sender == "" ? units.gu(0.5) : units.gu(1)
             left: parent.left
-            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
+            leftMargin: units.gu(1)
         }
-        width: maxDelegateWidth
+        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
         fontSize: "medium"
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
+        textFormat: Text.RichText
         wrapMode: Text.Wrap
         color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
     }
@@ -109,9 +110,9 @@ BorderImage {
 
         anchors{
             top: textLabel.bottom
-            topMargin: units.gu(1)
+            topMargin: units.gu(0.5)
             left: parent.left
-            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
+            leftMargin: units.gu(1)
         }
 
         visible: !root.sending
@@ -122,6 +123,9 @@ BorderImage {
         opacity: root.messageIncoming ? 1.0 : 0.8
         elide: Text.ElideRight
         text: {
+            if (messageTimeStamp === "")
+                return ""
+
             var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
             if (root.accountName.length === 0) {
                 return str
@@ -129,5 +133,42 @@ BorderImage {
             str += " @ %1".arg(root.accountName)
             return str
         }
+    }
+
+    ColoredImage {
+        id: bubbleArrow
+
+        source: Qt.resolvedUrl("./assets/conversation_bubble_arrow.png")
+        color: root.color
+        asynchronous: true
+        anchors {
+            bottom: parent.bottom
+            bottomMargin: units.gu(2)
+        }
+        width: units.gu(1)
+        height: units.gu(1.5)
+
+        states: [
+            State {
+                when: root.messageIncoming
+                name: "incoming"
+                AnchorChanges {
+                    target: bubbleArrow
+                    anchors.right: root.left
+                }
+            },
+            State {
+                when: !root.messageIncoming
+                name: "outgoing"
+                AnchorChanges {
+                    target: bubbleArrow
+                    anchors.left: root.right
+                }
+                PropertyChanges {
+                    target: bubbleArrow
+                    mirror: true
+                }
+            }
+        ]
     }
 }

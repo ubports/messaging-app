@@ -26,13 +26,20 @@ MessageDelegate {
 
     function deleteMessage()
     {
-        eventModel.removeEvent(accountId, threadId, eventId, type)
+        eventModel.removeEvent(root.messageData.accountId,
+                               root.messageData.threadId,
+                               root.messageData.eventId,
+                               root.messageData.type)
     }
 
     function resendMessage()
     {
-        eventModel.removeEvent(accountId, threadId, eventId, type)
-        chatManager.sendMessage(messages.participants, textMessage, messages.accountId)
+        eventModel.removeEvent(root.messageData.accountId,
+                               root.messageData.threadId,
+                               root.messageData.eventId,
+                               root.messageData.type)
+        // FIXME: export this information for MessageDelegate
+        chatManager.sendMessage(messages.participants, textMessage, messages.account.accountId)
     }
 
     function copyMessage()
@@ -49,7 +56,7 @@ MessageDelegate {
         states: [
             State {
                 name: "incoming"
-                when: incoming
+                when: root.incoming
                 AnchorChanges {
                     target: bubble
                     anchors.left: parent.left
@@ -57,7 +64,7 @@ MessageDelegate {
             },
             State {
                 name: "outgoing"
-                when: !incoming
+                when: !root.incoming
                 AnchorChanges {
                     target: bubble
                     anchors.right: parent.right
@@ -65,11 +72,11 @@ MessageDelegate {
             }
 
         ]
-        visible: (root.text !== "")
+        visible: (messageText !== "")
         messageIncoming: root.incoming
-        messageText: root.text
-        messageTimeStamp: root.timestamp
+        messageText: root.messageData.textMessage
+        messageTimeStamp: root.messageData.timestamp
         accountName: root.accountLabel
-        messageStatus: textMessageStatus
+        messageStatus: root.messageData.textMessageStatus
     }
 }
