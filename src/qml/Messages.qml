@@ -153,7 +153,6 @@ Page {
         if (previousParticipants.join('') === participants.join('')) {
             return
         }
-        previousParticipants = participants
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
         for (var i in telepathyHelper.accountIds) {
@@ -175,6 +174,7 @@ Page {
             var finalString = componentUnion.arg(componentFilters)
             eventModel.filter = Qt.createQmlObject(finalString, eventModel)
             lastFilter = componentFilters
+            previousParticipants = participants
         }
     }
 

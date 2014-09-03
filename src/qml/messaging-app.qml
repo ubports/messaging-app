@@ -77,16 +77,6 @@ MainView {
         }
     }
 
-    // the model depends on dbus calls, so we instantiate it as earlier as possible
-    // to improve a bit the startup time
-    HistoryThreadGroupingProxyModel {
-        id: sortProxy
-        sortRole: HistoryThreadModel.LastEventTimestampRole
-        sourceModel: threadModel
-        ascending: false
-        groupingProperty: "participants"
-    }
-
     HistoryThreadModel {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
@@ -95,6 +85,32 @@ MainView {
             sortOrder: HistorySort.DescendingOrder
         }
         filter: HistoryFilter {}
+    }
+
+    // the model depends on dbus calls, so we instantiate it as earlier as possible
+    // to improve a bit the startup time
+    HistoryThreadGroupingProxyModel {
+        id: sortProxy
+        sortRole: HistoryThreadModel.LastEventTimestampRole
+        sourceModel: threadModel
+        ascending: false
+        groupingProperty: "participants"
+        // WORKAROUND: remove this once the sort model is replaced by something else.
+        // the dynamicSortFilter during startup causes bindings
+        // to be re-evaluated multiple times
+        dynamicSortFilter: false
+        onCountChanged: {
+            if (count > 0) {
+                timer.start()
+            }
+        }
+    }
+
+    Timer {
+        id: timer
+        repeat: false
+        interval: 10
+        onTriggered: sortProxy.dynamicSortFilter = true
     }
 
     Settings {
@@ -140,7 +156,7 @@ MainView {
     function startNewMessage() {
         var properties = {}
         emptyStack()
-        mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+        mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
     function startChat(phoneNumber) {

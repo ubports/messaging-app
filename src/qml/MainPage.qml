@@ -20,6 +20,7 @@ import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1
+import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
 LocalPageWithBottomEdge {
@@ -37,12 +38,7 @@ LocalPageWithBottomEdge {
 
     bottomEdgeEnabled: !selectionMode && !searching
     bottomEdgeTitle: i18n.tr("Create new")
-
-    Component.onCompleted: {
-        // avoid loading bottom edge during startup
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("Messages.qml"),
-                                           {active: false})
-    }
+    bottomEdgePageComponent: Messages { active: false }
 
     TextField {
         id: searchField
@@ -222,7 +218,6 @@ LocalPageWithBottomEdge {
                 }
             }
         }
-
     }
 
     KeyboardRectangle {
