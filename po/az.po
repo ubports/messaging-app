@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-01-06 19:06+0000\n"
-"Last-Translator: Emin Mastizada <emin25@ovi.com>\n"
+"PO-Revision-Date: 2014-09-03 11:28+0000\n"
+"Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-04 08:34+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: src/qml/dateUtils.js:65
 #, qt-format
@@ -45,7 +45,7 @@ msgstr ""
 
 #: src/qml/Messages.qml:527
 msgid "Add"
-msgstr ""
+msgstr "Əlavə Et"
 
 #: src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
@@ -89,7 +89,7 @@ msgstr "Zəng"
 
 #: src/qml/MainPage.qml:85
 msgid "Cancel"
-msgstr ""
+msgstr "İmtina"
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
 msgid "Change all Messaging associations to "
