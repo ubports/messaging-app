@@ -1,3 +1,40 @@
+messaging-app (0.1+14.10.20140904.1-0ubuntu1) utopic; urgency=low
+
+  [ Ugo Riboni ]
+  * Make sure the strings from the desktop file template are processed.
+    Use paths relative to the po dir in the .pot file to match
+    convention. Update the pot file.
+
+  [ Tiago Salem Herrmann ]
+  * Improve startup time (LP: #1325001)
+
+  [ Martin Pitt ]
+  * update POT
+
+  [ Pawel Stolowski ]
+  * Added X-Ubuntu-Default-Department-ID key to the desktop file. This
+    is required by click scope to support departments for preinstalled
+    applications.
+
+  [ Gustavo Pichorim Boiko ]
+  * Make sure the strings from the desktop file template are processed.
+    Use paths relative to the po dir in the .pot file to match
+    convention. Update the pot file.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Make sure the strings from the desktop file template are processed.
+    Use paths relative to the po dir in the .pot file to match
+    convention. Update the pot file.
+  * Replaced ContactListView used to display search result with a simple
+    ListView.
+  * Set root element as parent for MessageInfoDialog.
+  * Format the message timestamp using the current system locale. Make
+    sure that AM/PM format get correct formatted. (LP: #1353691)
+  * Added "+ Create new" button on contact list. Hide contact switch
+    "all" "favorites" during the search. (LP: #1234947)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 04 Sep 2014 18:26:42 +0000
+
 messaging-app (0.1+14.10.20140828.3-0ubuntu1) utopic; urgency=low
 
   [ Bill Filler ]
