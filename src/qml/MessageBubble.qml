@@ -126,7 +126,7 @@ Rectangle {
             if (messageTimeStamp === "")
                 return ""
 
-            var str = Qt.formatDateTime(messageTimeStamp, "hh:mm AP")
+            var str = Qt.formatTime(messageTimeStamp).toLowerCase()
             if (root.accountName.length === 0) {
                 return str
             }
