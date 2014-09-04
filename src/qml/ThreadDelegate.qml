@@ -31,6 +31,7 @@ ListItemWithActions {
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property string threadId: model.threadId
+    property QtObject contactWatcher: delegateHelper.contactWatcher
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -222,6 +223,7 @@ ListItemWithActions {
         property alias subTypes: phoneDetail.subTypes
         property alias contexts: phoneDetail.contexts
         property alias isUnknown: watcherInternal.isUnknown
+        property QtObject contactWatcher: watcherInternal
         property string phoneNumberSubTypeLabel: ""
 
         function updateSubTypeLabel() {

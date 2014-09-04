@@ -55,6 +55,8 @@ MultipleSelectionListView {
     listModel: participants.length > 0 ? sortProxy : null
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
+    // this is to keep the scrolling smooth
+    cacheBuffer: units.gu(10)*20
     currentIndex: 0
     _availableActions: [
         Action {

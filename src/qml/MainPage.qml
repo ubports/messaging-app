@@ -19,8 +19,8 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
+import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
 LocalPageWithBottomEdge {
@@ -37,10 +37,8 @@ LocalPageWithBottomEdge {
     title: selectionMode ? " " : i18n.tr("Chats")
 
     bottomEdgeEnabled: !selectionMode && !searching
-    bottomEdgePageComponent: Messages {
-        active: false
-    }
     bottomEdgeTitle: i18n.tr("Create new")
+    bottomEdgePageComponent: Messages { active: false }
 
     TextField {
         id: searchField
@@ -146,25 +144,6 @@ LocalPageWithBottomEdge {
         }
     }
 
-    HistoryThreadGroupingProxyModel {
-        id: sortProxy
-        sortRole: HistoryThreadModel.LastEventTimestampRole
-        sourceModel: threadModel
-        ascending: false
-        groupingProperty: "participants"
-    }
-
-    HistoryThreadModel {
-        id: threadModel
-        type: HistoryThreadModel.EventTypeText
-        sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
-        }
-        filter: HistoryFilter {
-        }
-    }
-
     Component {
         id: sectionDelegate
         Item {
@@ -223,6 +202,7 @@ LocalPageWithBottomEdge {
                     properties["accountId"] = accountId
                     properties["participants"] = participants
                     properties["keyboardFocus"] = false
+                    properties["contactWatcher"] = contactWatcher
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }
@@ -239,7 +219,6 @@ LocalPageWithBottomEdge {
                 }
             }
         }
-
     }
 
     KeyboardRectangle {
