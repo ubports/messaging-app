@@ -202,6 +202,7 @@ LocalPageWithBottomEdge {
                     properties["accountId"] = accountId
                     properties["participants"] = participants
                     properties["keyboardFocus"] = false
+                    properties["contactWatcher"] = contactWatcher
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }

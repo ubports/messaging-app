@@ -47,8 +47,17 @@ Page {
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
+    property QtObject contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
+
+    onContactWatcherChanged: {
+        if (!contactWatcher) {
+            // use the internal contactWatcher if the previous instance
+            // was deleted
+            contactWatcher = contactWatcherInternal
+        }
+    }
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -344,8 +353,15 @@ Page {
     }
 
     ContactWatcher {
-        id: contactWatcher
-        phoneNumber: participants.length > 0 ? participants[0] : ""
+        id: contactWatcherInternal
+        phoneNumber: {
+            if (contactWatcher != contactWatcherInternal || participants.length === 0) {
+                // dont update if we are using another contact watcher or the list
+                // of participants is empty
+                return ""
+            }
+            return participants[0]
+        }
     }
 
     onParticipantsChanged: {
