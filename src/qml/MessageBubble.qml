@@ -140,7 +140,7 @@ Rectangle {
 
         source: Qt.resolvedUrl("./assets/conversation_bubble_arrow.png")
         color: root.color
-        asynchronous: true
+        asynchronous: false
         anchors {
             bottom: parent.bottom
             bottomMargin: units.gu(2)
