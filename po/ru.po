@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-29 07:54+0200\n"
-"PO-Revision-Date: 2014-08-29 08:20+0000\n"
+"PO-Revision-Date: 2014-09-04 10:25+0000\n"
 "Last-Translator: Jay ZDLin <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-05 07:50+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: src/qml/dateUtils.js:65
 #, qt-format
@@ -126,7 +126,7 @@ msgstr "Копировать"
 
 #: src/qml/MainPage.qml:43
 msgid "Create new"
-msgstr ""
+msgstr "Создать"
 
 #: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
 msgid "Delete"
@@ -150,11 +150,11 @@ msgstr "Не удалось"
 
 #: src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "Не удалось!"
 
 #: src/qml/MessageInfoDialog.qml:100
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: src/qml/MessageInfoDialog.qml:83
 msgid "Group"
@@ -183,7 +183,7 @@ msgstr "MMS"
 
 #: src/qml/MessageInfoDialog.qml:89
 msgid "Message info"
-msgstr ""
+msgstr "Информация о сообщении"
 
 #: src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
@@ -208,7 +208,7 @@ msgstr "SIM-карта не выбрана"
 
 #: src/qml/Messages.qml:236
 msgid "No network"
-msgstr ""
+msgstr "Сеть отсутствует"
 
 #: src/qml/MessageInfoDialog.qml:65
 msgid "Pending"
@@ -247,6 +247,9 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Выберите СИМ-карту, используемую по умолчанию для всех исходящих сообщений. "
+"Вы в любое время можете изменить свой выбор в <a "
+"href=\"system_settings\">Настройках системы</a>."
 
 #: src/qml/Messages.qml:876
 msgid "Send"
@@ -295,12 +298,12 @@ msgstr "Тип"
 
 #: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестно"
 
 #: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
 #: src/qml/Messages.qml:752
 msgid "Unknown contact"
-msgstr ""
+msgstr "Неизвестный контакт"
 
 #: src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -312,7 +315,7 @@ msgstr "Новое сообщение..."
 
 #: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: src/qml/dateUtils.js:46
 msgid "Yesterday"
@@ -320,7 +323,4 @@ msgstr "Вчера"
 
 #: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
-
-#~ msgid " "
-#~ msgstr " "
+msgstr "Необходимо выбрать SIM-карту"
