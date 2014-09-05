@@ -880,7 +880,7 @@ Page {
             font.pixelSize: FontUtils.sizeToPixels("small")
             activeFocusOnPress: false
             enabled: {
-               if (participants.length > 0 || multiRecipient.recipientCount > 0) {
+               if (participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== "") {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
                         return true
                     }
@@ -907,6 +907,8 @@ Page {
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
+                // refresh the recipient list
+                multiRecipient.focus = false
                 // dont change the participants list
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
