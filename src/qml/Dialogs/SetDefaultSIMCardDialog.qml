@@ -25,7 +25,8 @@ Component {
     id: setDefaultSimCardDialog
     Dialog {
         id: dialogue
-        text: i18n.tr("Change all Messaging associations to " + messages.account.displayName +"?")
+        // TRANSLATORS: %1 refers to the SIM card name or account name
+        text: i18n.tr("Change all Messaging associations to %1?").arg(messages.account.displayName)
         Column {
             anchors.left: parent.left
             anchors.right: parent.right

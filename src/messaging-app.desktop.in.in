@@ -9,6 +9,7 @@ Terminal=false
 Icon=messaging-app
 MimeType=x-scheme-handler/contact;x-scheme-handler/call
 X-Ubuntu-Touch=true
+X-Ubuntu-Default-Department-ID=accessories
 X-Ubuntu-StageHint=SideStage
 X-Ubuntu-Single-Instance=true
 X-Screenshot=@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/assets/messaging-app-screenshot.png

@@ -31,6 +31,7 @@ ListItemWithActions {
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property string threadId: model.threadId
+    property QtObject contactWatcher: delegateHelper.contactWatcher
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -145,6 +146,9 @@ ListItemWithActions {
     Row {
         id: time
 
+        property string dateStr: Qt.formatTime(eventTimestamp)
+        property var dateParts: dateStr.split(' ')
+
         anchors {
             verticalCenter: contactName.verticalCenter
             right: parent.right
@@ -153,15 +157,16 @@ ListItemWithActions {
             fontSize: "x-small"
             font.weight: Font.DemiBold
             opacity: 0.70
-            text: Qt.formatDateTime(eventTimestamp,"h:mm")
+            text: time.dateParts[0]
         }
         Label {
             fontSize: "x-small"
             opacity: 0.70
-            text: Qt.formatDateTime(eventTimestamp," ap")
+            text: time.dateParts.length > 1 ? " " + time.dateParts[1].toLowerCase() : ""
+            // do not display this if the date format is 24h
+            visible: time.dateParts.length > 1
         }
     }
-
 
     UbuntuShape {
         id: unreadCountIndicator
@@ -222,6 +227,7 @@ ListItemWithActions {
         property alias subTypes: phoneDetail.subTypes
         property alias contexts: phoneDetail.contexts
         property alias isUnknown: watcherInternal.isUnknown
+        property QtObject contactWatcher: watcherInternal
         property string phoneNumberSubTypeLabel: ""
 
         function updateSubTypeLabel() {
