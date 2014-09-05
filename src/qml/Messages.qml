@@ -50,6 +50,7 @@ Page {
     property var sharedAttachmentsTransfer: []
     property string lastFilter: ""
     property string text: ""
+    property bool pendingMessage: false
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -595,6 +596,12 @@ Page {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
         }
+        onCountChanged: {
+            if (pendingMessage) {
+                pendingMessage = false
+                messageList.positionViewAtBeggining()
+            }
+        }
     }
 
     MessagesListView {
@@ -931,12 +938,14 @@ Page {
                         attachment.push(item.filePath)
                         newAttachments.push(attachment)
                     }
+                    pendingMessage = true
                     chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
                     textEntry.text = ""
                     attachments.clear()
                     return
                 }
 
+                pendingMessage = true
                 chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
                 textEntry.text = ""
             }
