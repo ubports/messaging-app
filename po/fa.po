@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-29 07:54+0200\n"
+"POT-Creation-Date: 2014-09-02 17:48-0300\n"
 "PO-Revision-Date: 2014-08-29 19:05+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -15,219 +15,238 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:45+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: src/qml/dateUtils.js:65
+#: ../src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
 msgstr[0] "%1 ساعت تماس"
 
-#: src/qml/dateUtils.js:67
+#: ../src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
 msgstr[0] "%1 دقیقه تماس"
 
-#: src/qml/dateUtils.js:69
+#: ../src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 ثانیه تماس"
 
-#: src/qml/MessageInfoDialog.qml:59
+#: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "پذیرفته‌‌شده"
 
-#: src/qml/Messages.qml:527
+#: ../src/qml/Messages.qml:466
 msgid "Add"
 msgstr "افزودن"
 
-#: src/qml/MultiRecipientInput.qml:145
+#: ../src/qml/MultiRecipientInput.qml:145
 msgid "Add contacts..."
 msgstr "افزودن مخاطبین…"
 
-#: src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "افزودن دریافت کننده"
 
-#: src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "ضمیمه: %1 مخاطب"
 
-#: src/qml/ThreadDelegate.qml:77
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "ضمیمه: %1 پرونده"
 
-#: src/qml/ThreadDelegate.qml:68
+#: ../src/qml/ThreadDelegate.qml:69
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "ضمیمه: %1 تصویر"
 
-#: src/qml/ThreadDelegate.qml:71
+#: ../src/qml/ThreadDelegate.qml:72
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "ضمیمه: %1 ویدیو"
 
-#: src/qml/Messages.qml:517 src/qml/Messages.qml:571
+#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
 msgid "Call"
 msgstr "تماس"
 
-#: src/qml/MainPage.qml:85
+#: ../src/qml/MainPage.qml:83 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:28
-msgid "Change all Messaging associations to "
-msgstr "تغییر همه‌ی انجمن‌های پیام رسانی به "
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr ""
 
-#: src/qml/MainPage.qml:37
+#: ../src/qml/MainPage.qml:37
 msgid "Chats"
 msgstr "گپ‌ها"
 
-#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: src/qml/MessageInfoDialog.qml:136 src/qml/Messages.qml:240
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
 msgid "Close"
 msgstr "بستن"
 
-#: src/qml/MainPage.qml:141
+#: ../src/qml/MainPage.qml:139
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "با لغزش به بالا از پایین صفحه، پیامی جدید بنویسید."
 
-#: src/qml/Messages.qml:581
+#: ../src/qml/Messages.qml:520
 msgid "Contact"
 msgstr "مخاطب"
 
-#: src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:73
 msgid "Copy"
 msgstr "رونوشت"
 
-#: src/qml/MainPage.qml:43
+#: ../src/qml/MainPage.qml:40
 msgid "Create new"
 msgstr "ایجاد جدید"
 
-#: src/qml/MessageDelegateFactory.qml:43 src/qml/ThreadDelegate.qml:102
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
 msgid "Delete"
 msgstr "حذف"
 
-#: src/qml/MessageInfoDialog.qml:63
+#: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
 msgstr "حذف شد"
 
-#: src/qml/MessageInfoDialog.qml:53
+#: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
 msgstr "رسیده"
 
-#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:63
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
 msgstr "دیگر پرسیده نشود"
 
-#: src/qml/MessageInfoDialog.qml:57
+#: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
 msgstr "شکست خورد"
 
-#: src/qml/MessageDelegateFactory.qml:140
+#: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr "شکست خورد!"
 
-#: src/qml/MessageInfoDialog.qml:100
+#: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
 msgstr "از"
 
-#: src/qml/MessageInfoDialog.qml:83
+#: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
 msgstr "گروه"
 
-#: src/qml/Messages.qml:132
+#. TRANSLATORS: %1 refers to the number of participants in a group chat
+#: ../src/qml/Messages.qml:147
 #, qt-format
 msgid "Group (%1)"
 msgstr "گروه (%1)"
 
-#: src/qml/MMS/PreviewerImage.qml:25
+#: ../src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
 msgstr "پیش‌نمایش تصویر"
 
-#: src/qml/MessagesListView.qml:78
+#: ../src/qml/MessagesListView.qml:80
 msgid "Info"
 msgstr "اطلاعات"
 
-#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
 msgstr "بعداً"
 
-#: src/qml/MessagesListView.qml:81
+#: ../src/qml/MessagesListView.qml:83
 msgid "MMS"
 msgstr "پیام چندرسانه‌ای"
 
-#: src/qml/MessageInfoDialog.qml:89
+#: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "اطّلاعات پیام"
 
-#: src/qml/MMSDelegate.qml:217
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr ""
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr ""
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr ""
+
+#: ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr ""
+
+#: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr "اطّلاعات پیام از دست‌رفته"
 
-#: src/qml/MessageInfoDialog.qml:81 src/qml/MessageInfoDialog.qml:102
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
 msgid "Myself"
 msgstr "خودم"
 
-#: src/qml/Messages.qml:135
+#: ../src/qml/Messages.qml:150
 msgid "New Message"
 msgstr "پیام جدید"
 
-#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
-#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:38
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "خیر"
 
-#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
 msgstr "سیم‌کارتی انتخاب نشده است"
 
-#: src/qml/Messages.qml:236
+#: ../src/qml/Messages.qml:255
 msgid "No network"
 msgstr "شبکه‌ای موجود نیست"
 
-#: src/qml/MessageInfoDialog.qml:65
+#: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "در انتظار"
 
-#: src/qml/MessageInfoDialog.qml:61 src/qml/MessageInfoDialog.qml:127
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
 msgstr "خوانده شده"
 
-#: src/qml/MessageInfoDialog.qml:69 src/qml/MessageInfoDialog.qml:122
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
 msgid "Received"
 msgstr "دریافتی"
 
-#: src/qml/Messages.qml:190
+#: ../src/qml/Messages.qml:209
 msgid "Remove"
 msgstr "برداشتن"
 
-#: src/qml/MessagesListView.qml:64
+#: ../src/qml/MessagesListView.qml:66
 msgid "Retry"
 msgstr "تلاش دوباره"
 
-#: src/qml/MessagesListView.qml:81
+#: ../src/qml/MessagesListView.qml:83
 msgid "SMS"
 msgstr "پیام کوتاه"
 
-#: src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/qml/MainPage.qml:54 src/qml/NewRecipientPage.qml:46
+#: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "جست‌وجو…"
 
-#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
@@ -235,79 +254,79 @@ msgstr ""
 "سیم‌کارت پیش‌فرضی را برای پیام‌های خروحی برگزینید. همواره می‌توانید "
 "انتخاباتان را در <a href=\"system_settings\">تنظیمات سامانه</a> عوض کنید."
 
-#: src/qml/Messages.qml:876
+#: ../src/qml/Messages.qml:815
 msgid "Send"
 msgstr "فرستادن"
 
-#: src/qml/MessageInfoDialog.qml:117
+#: ../src/qml/MessageInfoDialog.qml:118
 msgid "Sent"
 msgstr "ارسال شده"
 
-#: src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
 msgstr "به‌اشتراک گذاری"
 
-#: src/qml/MessageInfoDialog.qml:132
+#: ../src/qml/MessageInfoDialog.qml:133
 msgid "Status"
 msgstr "وضعیت"
 
-#: src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
 msgstr "عوض کردن به سیم‌کارت پیش‌گزیده:"
 
-#: src/qml/MessageInfoDialog.qml:55
+#: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "موقّتاً شکست خورد"
 
-#: src/qml/Messages.qml:237
+#: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "در حال حاضر شبکه‌ای روی %1 نیست"
 
-#: src/qml/Messages.qml:237
+#: ../src/qml/Messages.qml:256
 msgid "There is currently no network."
 msgstr "در حال حاضر شبکه‌ای موجود نیست."
 
-#: src/qml/MessageInfoDialog.qml:106
+#: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "به‌"
 
-#: src/qml/dateUtils.js:44
+#: ../src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "امروز"
 
-#: src/qml/MessageInfoDialog.qml:96
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "Type"
 msgstr "گونه"
 
-#: src/qml/MessageInfoDialog.qml:71 src/qml/MessageInfoDialog.qml:74
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
 msgstr "ناشناس"
 
-#: src/qml/MMS/MMSContact.qml:83 src/qml/MMS/PreviewerContact.qml:27
-#: src/qml/Messages.qml:752
+#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
+#: ../src/qml/Messages.qml:691
 msgid "Unknown contact"
 msgstr "مخاطب ناشناس"
 
-#: src/qml/MMS/PreviewerVideo.qml:25
+#: ../src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
 msgstr "پیش‌نمایش ویدیو"
 
-#: src/qml/Messages.qml:847
+#: ../src/qml/Messages.qml:786
 msgid "Write a message..."
 msgstr "نوشتن یک پیام…"
 
-#: src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
 msgstr "بله"
 
-#: src/qml/dateUtils.js:46
+#: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
 msgstr "دیروز"
 
-#: src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "باید یک سیم‌کارت برگزینید"
 
-#~ msgid " "
-#~ msgstr " "
+#~ msgid "Change all Messaging associations to "
+#~ msgstr "تغییر همه‌ی انجمن‌های پیام رسانی به "
