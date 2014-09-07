@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-08-30 09:19+0000\n"
+"PO-Revision-Date: 2014-09-06 15:39+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-07 06:57+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -95,7 +95,7 @@ msgstr "Mégse"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Chats"
@@ -182,19 +182,19 @@ msgstr "Üzenet információ"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Üzenetek;SMS;MMS;Szöveges Üzenet"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "Üzenetek"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "Üzenetküldő alkalmazás"
 
 #: ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "Üzenetküldő alkalmazás"
 
 #: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
@@ -322,7 +322,7 @@ msgstr "Videó előnézet"
 
 #: ../src/qml/Messages.qml:786
 msgid "Write a message..."
-msgstr "Üzenet írása..."
+msgstr "Üzenet írása…"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
