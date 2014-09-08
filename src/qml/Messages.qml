@@ -565,6 +565,12 @@ Page {
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
         visible: !selectionMode
         clip: true
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                messageTextArea.forceActiveFocus()
+            }
+        }
 
         Behavior on height {
             UbuntuNumberAnimation { }
