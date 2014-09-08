@@ -538,7 +538,7 @@ Page {
         onCountChanged: {
             if (pendingMessage) {
                 pendingMessage = false
-                messageList.positionViewAtBeggining()
+                messageList.positionViewAtBeginning()
             }
         }
     }
