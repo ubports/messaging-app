@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-08-29 19:05+0000\n"
+"PO-Revision-Date: 2014-09-07 19:08+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-08 06:58+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -88,7 +88,7 @@ msgstr "لغو"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "تغییر تمامی انجمن‌های پیام‌رسانی به %1؟"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Chats"
@@ -175,19 +175,19 @@ msgstr "اطّلاعات پیام"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "پیام‌ها;پیامک;MMS;پیام متنی;متن"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "پیام‌رسانی"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "اپ پیام‌رسان"
 
 #: ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "برنامه‌ی پیام‌رسان"
 
 #: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
