@@ -176,7 +176,7 @@ LocalPageWithBottomEdge {
             right: parent.right
             bottom: keyboard.top
         }
-        listModel: sortProxy
+        listModel: threadModel
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate

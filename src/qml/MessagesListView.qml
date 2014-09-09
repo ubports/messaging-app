@@ -52,7 +52,7 @@ MultipleSelectionListView {
     header: Item {
         height: units.gu(1)
     }
-    listModel: participants.length > 0 ? sortProxy : null
+    listModel: participants.length > 0 ? eventModel : null
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
     // this is to keep the scrolling smooth
@@ -105,7 +105,7 @@ MultipleSelectionListView {
                 leftMargin: units.gu(2)
                 rightMargin: units.gu(2)
             }
-            visible: (index === root.count) || !DateUtils.areSameDay(sortProxy.get(index+1).timestamp, timestamp)
+            visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
         }
 
         MessageDelegateFactory {
@@ -159,12 +159,5 @@ MultipleSelectionListView {
             currentIndex = 0
             positionViewAtBeginning()
         }
-    }
-
-    SortProxyModel {
-        id: sortProxy
-        sourceModel: eventModel.filter ? eventModel : null
-        sortRole: HistoryEventModel.TimestampRole
-        ascending: false
     }
 }
