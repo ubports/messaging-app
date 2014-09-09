@@ -85,6 +85,7 @@ MainView {
             sortOrder: HistorySort.DescendingOrder
         }
         filter: HistoryFilter {}
+        matchContacts: true
     }
 
     // the model depends on dbus calls, so we instantiate it as earlier as possible
