@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-08-30 06:14+0000\n"
+"PO-Revision-Date: 2014-09-08 17:09+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-09 07:54+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -197,19 +197,19 @@ msgstr "Podrobnosti sporočila"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Sporočila;SMS;MMS;Besedilna sporočila;Besedilo"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "Sporočanje"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "Program za sporočanje"
 
 #: ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "Program za sporočanje"
 
 #: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
