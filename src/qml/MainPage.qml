@@ -112,7 +112,7 @@ LocalPageWithBottomEdge {
         }
     ]
 
-    Item { 
+    Item {
         id: emptyStateScreen
         anchors.left: parent.left
         anchors.leftMargin: units.gu(6)
@@ -228,5 +228,10 @@ LocalPageWithBottomEdge {
     Scrollbar {
         flickableItem: threadList
         align: Qt.AlignTrailing
+    }
+
+    // emoji font
+    FontLoader {
+        source: Qt.resolvedUrl("assets/Symbola.ttf")
     }
 }
