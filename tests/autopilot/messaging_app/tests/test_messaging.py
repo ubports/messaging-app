@@ -16,7 +16,6 @@ import time
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, HasLength
-from testtools import skip
 
 from messaging_app import emulators
 from messaging_app import fixture_setup
