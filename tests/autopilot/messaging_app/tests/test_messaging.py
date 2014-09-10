@@ -111,7 +111,6 @@ class TestMessaging(BaseMessagingTestCase):
         # verify our text
         thread.wait_select_single('Label', text=message)
 
-    @skip("long press is currently invoking a context menu")
     def test_deleting_message_long_press(self):
         """Verify we can delete a message with a long press on the message"""
         phone_num = '555-555-4321'
@@ -124,12 +123,11 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.long_press(bubble)
 
         # select delete button
-        self.main_view.click_delete_dialog_button()
+        self.main_view.click_messages_header_delete()
 
         # verify message is deleted
         bubble.wait_until_destroyed()
 
-    @skip("long press is currently invoking a context menu")
     def test_cancel_deleting_message_long_press(self):
         """Verify we can cancel deleting a message with a long press"""
         phone_num = '5555551234'
@@ -140,7 +138,7 @@ class TestMessaging(BaseMessagingTestCase):
 
         # long press on bubble and verify cancel button does not delete message
         self.main_view.long_press(bubble)
-        self.main_view.click_cancel_dialog_button()
+        self.main_view.click_messages_header_cancel()
         time.sleep(5)  # on a slow machine it might return a false positive
         # the bubble must exist
         bubble = self.main_view.get_message(message)

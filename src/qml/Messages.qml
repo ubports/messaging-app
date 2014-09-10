@@ -808,6 +808,7 @@ Page {
 
         Button {
             id: sendButton
+            objectName: "sendButton"
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
             anchors.right: parent.right
