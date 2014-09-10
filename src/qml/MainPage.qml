@@ -229,9 +229,4 @@ LocalPageWithBottomEdge {
         flickableItem: threadList
         align: Qt.AlignTrailing
     }
-
-    // emoji font
-    FontLoader {
-        source: Qt.resolvedUrl("assets/Symbola.ttf")
-    }
 }
