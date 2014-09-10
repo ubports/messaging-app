@@ -142,7 +142,7 @@ StyledItem {
                     width: units.gu(20)
                     hasClearButton: false
                     clip: false
-                    placeholderText: multiRecipientWidget.recipientCount  <= 0 ? i18n.tr("Add contacts...") :""
+                    placeholderText: multiRecipientWidget.recipientCount  <= 0 ? i18n.tr("To:") :""
                     font.family: "Ubuntu"
                     font.weight: Font.Light
                     color: "#752571"
@@ -154,7 +154,14 @@ StyledItem {
                             text = ""
                         }
                     }
-                    onTextChanged: searchString = text
+                    onTextChanged: {
+                        if (text.substring(text.length -1, text.length) == ",") {
+                            addRecipient(text.substring(0, text.length - 1))
+                            text = ""
+                            return
+                        }
+                        searchString = text
+                    }
                     Keys.onReturnPressed: {
                         if (text == "")
                             return
