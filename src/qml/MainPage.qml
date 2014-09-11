@@ -182,7 +182,8 @@ LocalPageWithBottomEdge {
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
-            objectName: "thread%1".arg(participants)
+            // FIXME: find a better unique name
+            objectName: "thread%1".arg(participants[0].phoneNumber)
 
             anchors {
                 left: parent.left
