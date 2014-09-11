@@ -657,9 +657,11 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 mouse.accept = true
+                                Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -710,9 +712,11 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 mouse.accept = true
+                                Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -737,9 +741,11 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 mouse.accept = true
+                                Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
