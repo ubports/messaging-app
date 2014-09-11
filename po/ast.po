@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-09-01 19:12+0000\n"
+"PO-Revision-Date: 2014-09-10 12:26+0000\n"
 "Last-Translator: ivarela <ivarela@ubuntu.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-11 07:27+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -95,7 +95,7 @@ msgstr "Encaboxar"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "¿Camudar toles asociaciones de mensaxes a %1?"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Chats"
@@ -109,6 +109,8 @@ msgstr "Zarrar"
 #: ../src/qml/MainPage.qml:139
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
+"Redauta un mensaxe nuevu eslizando hacia arriba dende la parte inferior de "
+"la pantalla."
 
 #: ../src/qml/Messages.qml:520
 msgid "Contact"
@@ -182,23 +184,23 @@ msgstr "Info del mensaxe"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Mensaxes;SMS;MMS;Mensaxes de testu;Testu"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "Mensaxería"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "Aplicación Mensaxería"
 
 #: ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "Aplicación de mensaxería"
 
 #: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
-msgstr ""
+msgstr "Datos del mensaxe non disponibles"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
 msgid "Myself"
@@ -227,7 +229,7 @@ msgstr "Pendiente"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
-msgstr ""
+msgstr "Lleíos"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
 msgid "Received"
@@ -258,6 +260,8 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Escueyi la tarxeta SIM predeterminada pa tolos mensaxes qu'unvies. Vas poder "
+"camudar la opción n'<a href=\"system_settings\">Axustes del sistema</a>."
 
 #: ../src/qml/Messages.qml:815
 msgid "Send"
@@ -332,6 +336,3 @@ msgstr "Ayeri"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Tienes d'escoyer una tarxeta SIM"
-
-#~ msgid "Change all Messaging associations to "
-#~ msgstr "Camudar toles asociaciones de mensaxes a "

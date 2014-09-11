@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-07-18 11:50+0000\n"
+"PO-Revision-Date: 2014-09-10 16:33+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Gaelic; Scottish <gd@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-11 07:27+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -111,7 +111,7 @@ msgstr "Cabadaich"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
 msgid "Close"
-msgstr ""
+msgstr "Dùin"
 
 #: ../src/qml/MainPage.qml:139
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -131,11 +131,11 @@ msgstr ""
 
 #: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
 msgid "Delete"
-msgstr ""
+msgstr "Sguab às"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "Air a sguabadh às"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
@@ -143,7 +143,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "Na faighnich dhìom a-rithist"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -159,13 +159,13 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
-msgstr ""
+msgstr "Buidheann"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
 #: ../src/qml/Messages.qml:147
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "Buidheann (%1)"
 
 #: ../src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -173,15 +173,15 @@ msgstr "Ro-shealladh air dealbh"
 
 #: ../src/qml/MessagesListView.qml:80
 msgid "Info"
-msgstr ""
+msgstr "Fiosrachadh"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "Às a dhèidh seo"
 
 #: ../src/qml/MessagesListView.qml:83
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
@@ -218,7 +218,7 @@ msgstr "Teachdaireachd ùr"
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "Chan eil"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
@@ -230,7 +230,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr ""
+msgstr "Ri dhèiligeadh"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -242,15 +242,15 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:209
 msgid "Remove"
-msgstr ""
+msgstr "Thoir air falbh"
 
 #: ../src/qml/MessagesListView.qml:66
 msgid "Retry"
-msgstr ""
+msgstr "Feuch ris a-rithist"
 
 #: ../src/qml/MessagesListView.qml:83
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -258,7 +258,7 @@ msgstr "Sàbhail"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
-msgstr ""
+msgstr "Lorg..."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
@@ -268,11 +268,11 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:815
 msgid "Send"
-msgstr ""
+msgstr "Cuir"
 
 #: ../src/qml/MessageInfoDialog.qml:118
 msgid "Sent"
-msgstr ""
+msgstr "Air a chur"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -309,11 +309,11 @@ msgstr "An-diugh"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "Type"
-msgstr ""
+msgstr "Seòrsa"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "Neo-aithnichte"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:691
@@ -330,7 +330,7 @@ msgstr "Sgrìobh teachdaireachd..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "Tha"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-09-08 15:15+0000\n"
-"Last-Translator: Phillip Sz <Unknown>\n"
+"PO-Revision-Date: 2014-09-11 06:44+0000\n"
+"Last-Translator: Martin Pitt <martin.pitt@ubuntu.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-09 07:54+0000\n"
+"X-Launchpad-Export-Date: 2014-09-11 07:27+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -95,7 +95,7 @@ msgstr "Abbrechen"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "Alle Nachrichten zu %1 zuordnen?"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Chats"
@@ -184,7 +184,7 @@ msgstr "Nachrichteninfo"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Nachrichten;SMS;MMS;Textnachrichten;Text"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
