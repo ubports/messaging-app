@@ -200,6 +200,10 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    if (model.participants[0].alias) {
+                        properties["firstRecipientAlias"] = model.participants[0].alias;
+                    }
+
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }
