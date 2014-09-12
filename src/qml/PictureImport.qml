@@ -43,9 +43,7 @@ Item {
 
             property alias activeTransfer: signalConnections.target
 
-
             focus: true
-
             Rectangle {
                 anchors.fill: parent
 
@@ -53,7 +51,6 @@ Item {
                     id: peerPicker
 
                     anchors.fill: parent
-                    visible: dialogue.done
                     contentType: ContentHub.ContentType.Pictures
                     handler: ContentHub.ContentHandler.Source
 
@@ -71,7 +68,6 @@ Item {
             Connections {
                 id: signalConnections
 
-                target: dialogue.activeTransfer
                 onStateChanged: {
                     var done = ((dialogue.activeTransfer.state === ContentHub.ContentTransfer.Charged) ||
                                 (dialogue.activeTransfer.state === ContentHub.ContentTransfer.Aborted))
