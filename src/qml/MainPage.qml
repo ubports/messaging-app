@@ -176,13 +176,14 @@ LocalPageWithBottomEdge {
             right: parent.right
             bottom: keyboard.top
         }
-        listModel: sortProxy
+        listModel: threadModel
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
-            objectName: "thread%1".arg(participants)
+            // FIXME: find a better unique name
+            objectName: "thread%1".arg(participants[0].phoneNumber)
 
             anchors {
                 left: parent.left
@@ -200,6 +201,10 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    if (model.participants[0].alias) {
+                        properties["firstRecipientAlias"] = model.participants[0].alias;
+                    }
+
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }

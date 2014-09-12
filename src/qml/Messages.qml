@@ -118,6 +118,7 @@ Page {
             multiRecipient.forceFocus()
     }
 
+    property string firstRecipientAlias: ""
     title: {
         if (selectionMode) {
             return " "
@@ -127,14 +128,8 @@ Page {
             return ""
         }
         if (participants.length > 0) {
-            var firstRecipient = ""
-            if (contactWatcher.isUnknown) {
-                firstRecipient = contactWatcher.phoneNumber
-            } else {
-                firstRecipient = contactWatcher.alias
-            }
             if (participants.length == 1) {
-                return firstRecipient
+                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.phoneNumber
             } else {
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 return i18n.tr("Group (%1)").arg(participants.length)
@@ -348,14 +343,9 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        phoneNumber: {
-            if (contactWatcher != contactWatcherInternal || participants.length === 0) {
-                // dont update if we are using another contact watcher or the list
-                // of participants is empty
-                return ""
-            }
-            return participants[0]
-        }
+        phoneNumber: participants.length === 0 ? "" : participants[0]
+        onIsUnknownChanged: firstRecipientAlias = contactWatcherInternal.alias
+        onAliasChanged: firstRecipientAlias = contactWatcherInternal.alias
     }
 
     onParticipantsChanged: {
