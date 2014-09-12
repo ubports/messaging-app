@@ -26,12 +26,12 @@ import QtContacts 5.0
 ListItemWithActions {
     id: delegate
 
+    property var participant: participants ? participants[0] : {}
     property bool groupChat: participants.length > 1
     property string searchTerm
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property string threadId: model.threadId
-    property QtObject contactWatcher: delegateHelper.contactWatcher
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -40,8 +40,10 @@ ListItemWithActions {
             firstRecipient = delegateHelper.alias
         }
 
-        if (participants.length > 1)
-            return firstRecipient + " +" + String(participants.length-1)
+        if (participants.length > 1) {
+            // TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+            return i18n.tr("%1 + %2").arg(firstRecipient).arg(String(participants.length-1))
+        }
         return firstRecipient
     }
 
@@ -220,33 +222,34 @@ ListItemWithActions {
 
     Item {
         id: delegateHelper
-        property alias phoneNumber: watcherInternal.phoneNumber
-        property alias alias: watcherInternal.alias
-        property alias avatar: watcherInternal.avatar
-        property alias contactId: watcherInternal.contactId
+        property string phoneNumber: participant.phoneNumber
+        property string alias: participant.alias ? participant.alias : ""
+        property string avatar: participant.avatar ? participant.avatar : ""
+        property string contactId: participant.contactId ? participant.contactId : ""
         property alias subTypes: phoneDetail.subTypes
         property alias contexts: phoneDetail.contexts
-        property alias isUnknown: watcherInternal.isUnknown
-        property QtObject contactWatcher: watcherInternal
+        property bool isUnknown: contactId === ""
         property string phoneNumberSubTypeLabel: ""
 
         function updateSubTypeLabel() {
-            phoneNumberSubTypeLabel = isUnknown ? "" : phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label
+            var subLabel = "";
+            if (participant && participant.phoneNumber) {
+                var typeInfo = phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail))
+                if (typeInfo) {
+                    subLabel = typeInfo.label
+                }
+            }
+            phoneNumberSubTypeLabel = subLabel
         }
 
         onSubTypesChanged: updateSubTypeLabel();
         onContextsChanged: updateSubTypeLabel();
         onIsUnknownChanged: updateSubTypeLabel();
 
-        ContactWatcher {
-            id: watcherInternal
-            phoneNumber: participants[0]
-        }
-
         PhoneNumber {
             id: phoneDetail
-            contexts: watcherInternal.phoneNumberContexts
-            subTypes: watcherInternal.phoneNumberSubTypes
+            contexts: participant.phoneContexts ? participant.phoneContexts : []
+            subTypes: participant.phoneSubTypes ? participant.phoneSubTypes : []
         }
 
         ContactDetailPhoneNumberTypeModel {

@@ -198,11 +198,8 @@ LocalPageWithBottomEdge {
                         threadList.deselectItem(threadDelegate)
                     }
                 } else {
-                    var properties = {}
-                    properties["accountId"] = accountId
-                    properties["participants"] = participants
+                    var properties = model.properties
                     properties["keyboardFocus"] = false
-                    properties["contactWatcher"] = contactWatcher
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }

@@ -47,18 +47,10 @@ Page {
     property var activeTransfer: null
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
-    property QtObject contactWatcher: contactWatcherInternal
+    property alias contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
     property bool pendingMessage: false
-
-    onContactWatcherChanged: {
-        if (!contactWatcher) {
-            // use the internal contactWatcher if the previous instance
-            // was deleted
-            contactWatcher = contactWatcherInternal
-        }
-    }
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
