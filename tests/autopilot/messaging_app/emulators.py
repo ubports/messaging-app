@@ -123,7 +123,8 @@ class MainView(toolkit_emulators.MainView):
     def get_send_button(self):
         """Return Button with text Send"""
 
-        return self.get_messages_page().select_single('Button', text='Send')
+        return self.get_messages_page().select_single('Button',
+                                                      objectName='sendButton')
 
     def get_toolbar_back_button(self):
         """Return toolbar button with objectName back_toolbar_button"""
@@ -196,32 +197,6 @@ class MainView(toolkit_emulators.MainView):
             return self.wait_select_single('DialogButtons', visible=True)
         else:
             return self.select_many('DialogButtons', visible=False)
-
-    def get_visible_cancel_dialog_button(self):
-        """Return dialog Button with text Cancel"""
-
-        dialog_buttons = self.get_dialog_buttons()
-        return dialog_buttons.select_single('Button', text='Cancel')
-
-    def get_visible_delete_dialog_button(self):
-        """Return dialog Button with text Delete"""
-
-        dialog_buttons = self.get_dialog_buttons()
-        return dialog_buttons.select_single('Button', text='Delete')
-
-    def click_cancel_dialog_button(self):
-        """Click on dialog button cancel"""
-
-        button = self.get_visible_cancel_dialog_button()
-        self.pointing_device.click_object(button)
-        button.visible.wait_for(False)
-
-    def click_delete_dialog_button(self):
-        """Click on dialog button delete"""
-
-        button = self.get_visible_delete_dialog_button()
-        self.pointing_device.click_object(button)
-        button.visible.wait_for(False)
 
     def long_press(self, obj):
         """long press on object because press_duration is not honored on touch
