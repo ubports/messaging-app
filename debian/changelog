@@ -1,3 +1,29 @@
+messaging-app (0.1+14.10.20140912-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the contact info exposed in the history models instead of having
+    multiple instances of the contact watcher.
+  * Make sure phonesim is detected even when there are multiple modems.
+  * Remove the proxies that were being used for sorting and grouping of
+    threads and messages. The functionality is implemented directly on
+    history models themselves now.
+  * Do not rely on translatable strings for getting objects. Also, re-
+    enable tests that were previously disabled. (LP: #1346475)
+
+  [ Tiago Salem Herrmann ]
+  * enable the send button when any text is entered in the recipient
+    input field. scroll view to the bottom when sending messages. (LP:
+    #1346745)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Updated pot file.
+  * Fixed binding loop.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 12 Sep 2014 21:33:56 +0000
+
 messaging-app (0.1+14.10.20140904.1-0ubuntu1) utopic; urgency=low
 
   [ Ugo Riboni ]
