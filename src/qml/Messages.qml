@@ -128,7 +128,6 @@ Page {
         }
         if (participants.length > 0) {
             if (participants.length == 1) {
-                console.log("Using title: " + (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.phoneNumber);
                 return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.phoneNumber
             } else {
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
