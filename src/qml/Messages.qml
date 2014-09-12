@@ -50,6 +50,7 @@ Page {
     property QtObject contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
+    property bool pendingMessage: false
 
     onContactWatcherChanged: {
         if (!contactWatcher) {
@@ -534,6 +535,12 @@ Page {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
         }
+        onCountChanged: {
+            if (pendingMessage) {
+                pendingMessage = false
+                messageList.positionViewAtBeginning()
+            }
+        }
     }
 
     MessagesListView {
@@ -558,6 +565,12 @@ Page {
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
         visible: !selectionMode
         clip: true
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                messageTextArea.forceActiveFocus()
+            }
+        }
 
         Behavior on height {
             UbuntuNumberAnimation { }
@@ -644,9 +657,11 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 mouse.accept = true
+                                Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -697,9 +712,11 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 mouse.accept = true
+                                Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -724,9 +741,11 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 mouse.accept = true
+                                Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -819,7 +838,7 @@ Page {
             font.pixelSize: FontUtils.sizeToPixels("small")
             activeFocusOnPress: false
             enabled: {
-               if (participants.length > 0 || multiRecipient.recipientCount > 0) {
+               if (participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== "") {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
                         return true
                     }
@@ -846,6 +865,8 @@ Page {
                 if (textEntry.text == "" && attachments.count == 0) {
                     return
                 }
+                // refresh the recipient list
+                multiRecipient.focus = false
                 // dont change the participants list
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
@@ -868,12 +889,14 @@ Page {
                         attachment.push(item.filePath)
                         newAttachments.push(attachment)
                     }
+                    pendingMessage = true
                     chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
                     textEntry.text = ""
                     attachments.clear()
                     return
                 }
 
+                pendingMessage = true
                 chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
                 textEntry.text = ""
             }
