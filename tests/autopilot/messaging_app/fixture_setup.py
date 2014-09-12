@@ -7,6 +7,7 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
+import dbus
 import os
 import subprocess
 
@@ -67,13 +68,15 @@ class OfonoPhoneSIM(fixtures.Fixture):
 
     def _is_phonesim_running(self):
         try:
-            out = subprocess.check_output(
-                ['/usr/share/ofono/scripts/list-modems'],
-                stderr=subprocess.PIPE,
-                universal_newlines=True
-            )
-            return out.startswith('[ /phonesim ]')
-        except subprocess.CalledProcessError:
+            bus = dbus.SystemBus()
+            manager = dbus.Interface(bus.get_object('org.ofono', '/'),
+                                     'org.ofono.Manager')
+            modems = manager.GetModems()
+            for path, properties in modems:
+                if path == '/phonesim':
+                    return True
+            return False
+        except dbus.exceptions.DBusException:
             return False
 
     def _set_modem_on_phonesim(self):
