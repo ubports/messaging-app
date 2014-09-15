@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
 "PO-Revision-Date: 2014-09-06 13:38+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-07 06:57+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -39,6 +39,11 @@ msgid_plural "%1 seconds call"
 msgstr[0] "gesprek van %1 seconde"
 msgstr[1] "gesprek van %1 seconden"
 
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Geaccepteerd"
@@ -54,6 +59,10 @@ msgstr "Contacten toevoegen…"
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "Ontvanger toevoegen"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -146,6 +155,10 @@ msgstr "Mislukt"
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr "Mislukt!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -250,6 +263,10 @@ msgstr "Sms"
 msgid "Save"
 msgstr "Opslaan"
 
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr ""
+
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Zoeken…"
@@ -336,6 +353,3 @@ msgstr "Gisteren"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "U moet een simkaart selecteren"
-
-#~ msgid "Change all Messaging associations to "
-#~ msgstr "Alle berichtassociaties overzetten naar "

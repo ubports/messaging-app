@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
 "PO-Revision-Date: 2014-07-29 03:01+0000\n"
 "Last-Translator: Luo Lei <luolei@ubuntukylin.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:14+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -36,6 +36,11 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 秒通话"
 
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr ""
@@ -51,6 +56,10 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "添加收件人"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -141,6 +150,10 @@ msgstr "失败"
 
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
+msgstr ""
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:101
@@ -245,6 +258,10 @@ msgstr ""
 #: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
 msgstr "保存"
+
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."

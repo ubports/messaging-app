@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
 "PO-Revision-Date: 2014-09-06 15:54+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-07 06:57+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -39,6 +39,11 @@ msgid_plural "%1 seconds call"
 msgstr[0] "Anrop på %1 sekund"
 msgstr[1] "Anrop på %1 sekunder"
 
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Godkjent"
@@ -54,6 +59,10 @@ msgstr "Legg til kontakter …"
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "Legg til mottaker"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -145,6 +154,10 @@ msgstr "Mislyktes"
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr "Mislykket!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -249,6 +262,10 @@ msgstr "SMS"
 msgid "Save"
 msgstr "Lagre"
 
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr ""
+
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Søk …"
@@ -335,6 +352,3 @@ msgstr "I går"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Du må velge et SIM-kort"
-
-#~ msgid "Change all Messaging associations to "
-#~ msgstr "Endre alle meldingsassosiasjoner til "

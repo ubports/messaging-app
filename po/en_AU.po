@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
 "PO-Revision-Date: 2014-09-07 14:03+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-08 06:58+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:14+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -39,6 +39,11 @@ msgid_plural "%1 seconds call"
 msgstr[0] "%1 second call"
 msgstr[1] "%1 seconds call"
 
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Accepted"
@@ -54,6 +59,10 @@ msgstr "Add contacts..."
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "Add recipient"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -145,6 +154,10 @@ msgstr "Failed"
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr "Failed!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -249,6 +262,10 @@ msgstr "SMS"
 msgid "Save"
 msgstr "Save"
 
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr ""
+
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Search..."
@@ -334,6 +351,3 @@ msgstr "Yesterday"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "You need to select a SIM card"
-
-#~ msgid "Change all Messaging associations to "
-#~ msgstr "Change all Messaging associations to "

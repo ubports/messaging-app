@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
 "PO-Revision-Date: 2014-07-19 15:10+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -15,30 +15,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 시간 통화"
+msgstr[0] "%1시간 통화"
 
 #: ../src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 분 통화"
+msgstr[0] "%1분 통화"
 
 #: ../src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 초 통화"
+msgstr[0] "%1초 통화"
+
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr "+ 새 연락처"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "수락함"
 
 #: ../src/qml/Messages.qml:466
 msgid "Add"
@@ -52,33 +57,33 @@ msgstr ""
 msgid "Add recipient"
 msgstr "받는 사람 추가"
 
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr "모두"
+
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "첨부 파일: 연락처 %1"
 
 #: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "첨부 파일: 파일 %1"
 
 #: ../src/qml/ThreadDelegate.qml:69
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "첨부 파일: 이미지 %1"
 
 #: ../src/qml/ThreadDelegate.qml:72
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "첨부 파일: 비디오 %1"
 
 #: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
 msgid "Call"
@@ -92,7 +97,7 @@ msgstr "취소"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "%1와(과) 연관이 있는 모든 베시지를 바꾸시겠습니까?"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Chats"
@@ -101,11 +106,11 @@ msgstr "대화"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
 msgid "Close"
-msgstr ""
+msgstr "닫기"
 
 #: ../src/qml/MainPage.qml:139
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "화면 아래에서 위로 쓸어 올리면 새 메시지를 쓸 수 있습니다."
 
 #: ../src/qml/Messages.qml:520
 msgid "Contact"
@@ -117,89 +122,93 @@ msgstr "복사"
 
 #: ../src/qml/MainPage.qml:40
 msgid "Create new"
-msgstr ""
+msgstr "새 항목 만들기"
 
 #: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "삭제함"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr ""
+msgstr "전송함"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "다시 묻지 않기"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
-msgstr "실패했습니다."
+msgstr "실패함"
 
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
-msgstr ""
+msgstr "실패!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr "즐겨찾기"
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
-msgstr ""
+msgstr "보낸 사람"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
-msgstr ""
+msgstr "그룹"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
 #: ../src/qml/Messages.qml:147
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "그룹(%1)"
 
 #: ../src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr "그림 미리 보기"
+msgstr "이미지 미리 보기"
 
 #: ../src/qml/MessagesListView.qml:80
 msgid "Info"
-msgstr ""
+msgstr "정보"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "나중에"
 
 #: ../src/qml/MessagesListView.qml:83
 msgid "MMS"
-msgstr ""
+msgstr "멀티미디어 메시지 서비스(MMS)"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
-msgstr ""
+msgstr "메시지 정보"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Messages;메시지;SMS;단문 메시지;MM;멀티 메시지S;Text Messages;텍스트 메시지;Text;텍스트"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "메시지 보내기"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "메시지 프로그램"
 
 #: ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "메시지 프로그램"
 
 #: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
-msgstr ""
+msgstr "잃어버린 메시지 데어터"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
 msgid "Myself"
-msgstr ""
+msgstr "자신"
 
 #: ../src/qml/Messages.qml:150
 msgid "New Message"
@@ -208,61 +217,67 @@ msgstr "새 메시지"
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "아니요"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "선택한 심 카드가 없습니다."
 
 #: ../src/qml/Messages.qml:255
 msgid "No network"
-msgstr ""
+msgstr "네트워크 없음"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr ""
+msgstr "보류"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
-msgstr ""
+msgstr "읽기"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
 msgid "Received"
-msgstr ""
+msgstr "받음"
 
 #: ../src/qml/Messages.qml:209
 msgid "Remove"
-msgstr ""
+msgstr "제거"
 
 #: ../src/qml/MessagesListView.qml:66
 msgid "Retry"
-msgstr ""
+msgstr "다시 시도"
 
 #: ../src/qml/MessagesListView.qml:83
 msgid "SMS"
-msgstr ""
+msgstr "단문 메시지 서비스(SMS)"
 
 #: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
 msgstr "저장"
 
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr "검색"
+
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
-msgstr ""
+msgstr "검색..."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"모든 메시지를 보낼 기본 심 카드를 선택해주십시오. 이 선택은 <a href=\"system_settings\">시스템 설정</a>에서 "
+"언제나 바꿀 수 있습니다."
 
 #: ../src/qml/Messages.qml:815
 msgid "Send"
-msgstr ""
+msgstr "보내기"
 
 #: ../src/qml/MessageInfoDialog.qml:118
 msgid "Sent"
-msgstr ""
+msgstr "보냄"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -270,28 +285,28 @@ msgstr "공유"
 
 #: ../src/qml/MessageInfoDialog.qml:133
 msgid "Status"
-msgstr ""
+msgstr "상태"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "기본 심 카드로 전환:"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "일시적으로 실패함"
 
 #: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "현재 %1에 네트워크가 없습니다."
 
 #: ../src/qml/Messages.qml:256
 msgid "There is currently no network."
-msgstr ""
+msgstr "현재 네트워크가 없습니다."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
-msgstr ""
+msgstr "받는 사람"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -299,16 +314,16 @@ msgstr "오늘"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "Type"
-msgstr ""
+msgstr "형식"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "알 수 없음"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:691
 msgid "Unknown contact"
-msgstr ""
+msgstr "알 수 없는 연락처"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -316,11 +331,11 @@ msgstr "동영상 미리 보기"
 
 #: ../src/qml/Messages.qml:786
 msgid "Write a message..."
-msgstr "메세지 작성..."
+msgstr "메시지 쓰기..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "예"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
@@ -328,4 +343,4 @@ msgstr "어제"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "심 카드를 선택해야 합니다."

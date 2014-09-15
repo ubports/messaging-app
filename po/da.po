@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
 "PO-Revision-Date: 2014-07-22 15:44+0000\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -40,6 +40,11 @@ msgid_plural "%1 seconds call"
 msgstr[0] "%1 sekunds opkald"
 msgstr[1] "%1 sekunders opkald"
 
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr ""
@@ -55,6 +60,10 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "Tilføj modtager"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -145,6 +154,10 @@ msgstr "Mislykkedes"
 
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
+msgstr ""
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:101
@@ -249,6 +262,10 @@ msgstr ""
 #: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
 msgstr "Gem"
+
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."

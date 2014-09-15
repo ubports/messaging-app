@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-02 17:48-0300\n"
-"PO-Revision-Date: 2014-09-07 19:08+0000\n"
+"POT-Creation-Date: 2014-09-08 19:07-0300\n"
+"PO-Revision-Date: 2014-09-14 20:29+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-08 06:58+0000\n"
+"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -36,6 +36,11 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 ثانیه تماس"
 
+#. TRANSLATORS: this refers to creating a new contact
+#: ../src/qml/NewRecipientPage.qml:179
+msgid "+ Create New"
+msgstr "+ افزودن جدید"
+
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "پذیرفته‌‌شده"
@@ -51,6 +56,10 @@ msgstr "افزودن مخاطبین…"
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
 msgstr "افزودن دریافت کننده"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr "همه"
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -138,6 +147,10 @@ msgstr "شکست خورد"
 #: ../src/qml/MessageDelegateFactory.qml:140
 msgid "Failed!"
 msgstr "شکست خورد!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr "برگزیده‌ها"
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -242,6 +255,10 @@ msgstr "پیام کوتاه"
 msgid "Save"
 msgstr "ذخیره"
 
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr "جست‌وجو"
+
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "جست‌وجو…"
@@ -327,6 +344,3 @@ msgstr "دیروز"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "باید یک سیم‌کارت برگزینید"
-
-#~ msgid "Change all Messaging associations to "
-#~ msgstr "تغییر همه‌ی انجمن‌های پیام رسانی به "
