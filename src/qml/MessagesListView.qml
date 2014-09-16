@@ -60,20 +60,6 @@ MultipleSelectionListView {
     currentIndex: 0
     _availableActions: [
         Action {
-            id: reloadAction
-
-            iconName: "reload"
-            text: i18n.tr("Retry")
-            onTriggered: value.resendMessage()
-        },
-        Action {
-            id: copyAction
-
-            iconName: "edit-copy"
-            text: i18n.tr("Copy")
-            onTriggered: value.copyMessage()
-        },
-        Action {
             id: infoAction
 
             iconName: "info"
@@ -89,6 +75,20 @@ MultipleSelectionListView {
                                    "participants": messages.participants}
                 messageInfoDialog.showMessageInfo(messageInfo)
             }
+        },
+        Action {
+            id: reloadAction
+
+            iconName: "reload"
+            text: i18n.tr("Retry")
+            onTriggered: value.resendMessage()
+        },
+        Action {
+            id: copyAction
+
+            iconName: "edit-copy"
+            text: i18n.tr("Copy")
+            onTriggered: value.copyMessage()
         }
     ]
 
