@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-08 19:07-0300\n"
-"PO-Revision-Date: 2014-09-12 16:34+0000\n"
+"PO-Revision-Date: 2014-09-15 11:13+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
+"X-Launchpad-Export-Date: 2014-09-16 08:29+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: gd\n"
 
@@ -50,7 +50,7 @@ msgstr[3] "Gairm %1 diog"
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
 msgid "+ Create New"
-msgstr ""
+msgstr "+ Cruthaich fear ùr"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -70,7 +70,7 @@ msgstr "Cuir faightear ris"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "All"
-msgstr ""
+msgstr "Na h-uile"
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -175,7 +175,7 @@ msgstr "Dh'fhàillig leis!"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "Favorites"
-msgstr ""
+msgstr "Annsachdan"
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -283,7 +283,7 @@ msgstr "Sàbhail"
 
 #: ../src/qml/NewRecipientPage.qml:57
 msgid "Search"
-msgstr ""
+msgstr "Lorg"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."

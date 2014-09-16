@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-08 19:07-0300\n"
-"PO-Revision-Date: 2014-09-06 11:19+0000\n"
+"PO-Revision-Date: 2014-09-15 20:45+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
+"X-Launchpad-Export-Date: 2014-09-16 08:29+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/qml/dateUtils.js:65
@@ -42,7 +42,7 @@ msgstr[1] "%1 segundoko deia"
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
 msgid "+ Create New"
-msgstr ""
+msgstr "+ Sortu berria"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -62,7 +62,7 @@ msgstr "Gehitu hartzailea"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "All"
-msgstr ""
+msgstr "Guztiak"
 
 #: ../src/qml/ThreadDelegate.qml:75
 #, qt-format
@@ -157,7 +157,7 @@ msgstr "Huts eginda!"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "Favorites"
-msgstr ""
+msgstr "Gogokoak"
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -264,7 +264,7 @@ msgstr "Gorde"
 
 #: ../src/qml/NewRecipientPage.qml:57
 msgid "Search"
-msgstr ""
+msgstr "Bilatu"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
