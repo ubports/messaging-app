@@ -290,6 +290,7 @@ Page {
         source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
                 Qt.resolvedUrl("ContactSearchList.qml") : ""
         clip: true
+        visible: source != ""
         anchors {
             top: parent.top
             topMargin: units.gu(2)
