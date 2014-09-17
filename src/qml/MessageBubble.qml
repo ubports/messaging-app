@@ -46,7 +46,11 @@ Rectangle {
         text = text.replace(/(\n)+/g, '<br />');
         // check for links
         text = BaLinkify.linkify(text);
-        // linkify phone numbers
+        var htmlText = BaLinkify.linkify(text);
+        if (htmlText !== text) {
+            return htmlText
+        }
+        // linkify phone numbers if no web links were found
         return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
     }
 
