@@ -32,22 +32,7 @@ StyledItem {
     style: Theme.createStyleComponent("TextFieldStyle.qml", multiRecipientWidget)
     clip: true
     height: contactFlow.height
-    // FIXME - workaround for an sdk bug. the focus is being stolen when 
-    // tapping on any entry in the ContactSearchList
-    onActiveFocusChanged: {
-        timer.start()
-    }
-
-    Timer {
-        id: timer
-        repeat: false
-        interval: 100
-        onTriggered: {
-            addRecipient(searchString)
-            searchString = ""
-            multiRecipientWidget.focus = multiRecipientWidget.activeFocus
-        }
-    }
+    focus: activeFocus
 
     signal forceFocus()
 
@@ -163,6 +148,12 @@ StyledItem {
                     color: "#752571"
                     font.pixelSize: FontUtils.sizeToPixels("medium")
                     inputMethodHints: Qt.ImhNoPredictiveText
+                    onActiveFocusChanged: {
+                        if (!activeFocus && text !== "") {
+                            addRecipient(text)
+                            text = ""
+                        }
+                    }
                     onTextChanged: {
                         if (text.substring(text.length -1, text.length) == ",") {
                             addRecipient(text.substring(0, text.length - 1))
@@ -187,15 +178,6 @@ StyledItem {
                             contactSearchInput.forceActiveFocus()
                         }
                     }
-                    Connections {
-                        target: multiRecipientWidget
-                        onSearchStringChanged: {
-                            if (searchString == "") {
-                                text = ""
-                            }
-                        }
-                    }
-
                     Keys.onPressed: {
                         if (event.key === Qt.Key_Backspace && text == "" && recipientCount > 0) {
                             if (selectedIndex != -1) {
