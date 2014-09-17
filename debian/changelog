@@ -1,3 +1,23 @@
+messaging-app (0.1+14.10.20140917.1-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Update pot file.
+
+  [ Tiago Salem Herrmann ]
+  * Workaround focus problem in the MultiRecipientInput component. (LP:
+    #1369018)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Added Symbola font as dependency (LP: #1269017)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 17 Sep 2014 15:58:09 +0000
+
 messaging-app (0.1+14.10.20140912-0ubuntu1) utopic; urgency=low
 
   [ CI bot ]
