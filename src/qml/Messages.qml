@@ -295,6 +295,7 @@ Page {
             topMargin: units.gu(2)
             left: parent.left
             right: parent.right
+            bottom: bottomPanel.top
         }
         z: 1
         Behavior on height {
