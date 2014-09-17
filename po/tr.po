@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
 "PO-Revision-Date: 2014-07-21 20:30+0000\n"
 "Last-Translator: Volkan Gezer <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -15,8 +15,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:14+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -48,13 +54,9 @@ msgstr ""
 msgid "Accepted"
 msgstr ""
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Ekle"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -64,35 +66,35 @@ msgstr "Alıcı ekle"
 msgid "All"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Ara"
 
@@ -106,12 +108,8 @@ msgstr "İptal"
 msgid "Change all Messaging associations to %1?"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Sohbetler"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr ""
 
@@ -119,7 +117,7 @@ msgstr ""
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Kişi"
 
@@ -131,7 +129,7 @@ msgstr "Kopyala"
 msgid "Create new"
 msgstr ""
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr ""
 
@@ -168,7 +166,7 @@ msgid "Group"
 msgstr ""
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr ""
@@ -191,6 +189,10 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
+msgstr ""
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
 msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:4
@@ -217,7 +219,7 @@ msgstr ""
 msgid "Myself"
 msgstr ""
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Yeni İleti"
 
@@ -230,7 +232,7 @@ msgstr ""
 msgid "No SIM card selected"
 msgstr ""
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr ""
 
@@ -246,7 +248,7 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr ""
 
@@ -276,7 +278,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr ""
 
@@ -300,17 +302,21 @@ msgstr ""
 msgid "Temporarily Failed"
 msgstr ""
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr ""
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
+msgstr ""
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
 msgstr ""
 
 #: ../src/qml/dateUtils.js:44
@@ -326,7 +332,7 @@ msgid "Unknown"
 msgstr ""
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr ""
 
@@ -334,7 +340,7 @@ msgstr ""
 msgid "Video Preview"
 msgstr "Video Önizlemesi"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Bir ileti yazın..."
 
@@ -349,3 +355,6 @@ msgstr "Dün"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr ""
+
+#~ msgid "Chats"
+#~ msgstr "Sohbetler"

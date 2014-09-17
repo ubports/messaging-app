@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
 "PO-Revision-Date: 2014-09-15 05:48+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -16,8 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2014-09-16 08:29+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -55,13 +61,9 @@ msgstr "+ Ustvari nov"
 msgid "Accepted"
 msgstr "Sprejeto"
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Dodaj"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr "Dodaj stike ..."
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -71,7 +73,7 @@ msgstr "Dodaj prejemnika"
 msgid "All"
 msgstr "Vsi"
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -80,7 +82,7 @@ msgstr[1] "Priloga: %1 stik"
 msgstr[2] "Priloga: %1 stika"
 msgstr[3] "Priloga: %1 stiki"
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -89,7 +91,7 @@ msgstr[1] "Priloga: %1 datoteka"
 msgstr[2] "Priloga: %1 datoteki"
 msgstr[3] "Priloga: %1 datoteke"
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -98,7 +100,7 @@ msgstr[1] "Priloga: %1 slika"
 msgstr[2] "Priloga: %1 sliki"
 msgstr[3] "Priloga: %1 slike"
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -107,7 +109,7 @@ msgstr[1] "Priloga: %1 video"
 msgstr[2] "Priloga: %1 videa"
 msgstr[3] "Priloga: %1 videi"
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Kliči"
 
@@ -121,12 +123,8 @@ msgstr "Prekliči"
 msgid "Change all Messaging associations to %1?"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Klepeti"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr "Zapri"
 
@@ -134,7 +132,7 @@ msgstr "Zapri"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Sestavite novo sporočilo s potegom navzgor z dna zaslona."
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Stik"
 
@@ -146,7 +144,7 @@ msgstr "Kopiraj"
 msgid "Create new"
 msgstr "Ustvari novo"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -183,7 +181,7 @@ msgid "Group"
 msgstr "Skupina"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr "Skupina (%1)"
@@ -207,6 +205,10 @@ msgstr "MMS"
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "Podrobnosti sporočila"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -232,7 +234,7 @@ msgstr "Manjkajo podatki sporočila"
 msgid "Myself"
 msgstr "Jaz"
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Novo sporočilo"
 
@@ -245,7 +247,7 @@ msgstr "Ne"
 msgid "No SIM card selected"
 msgstr "Ni izbrane kartice SIM"
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr "Ni omrežja"
 
@@ -261,7 +263,7 @@ msgstr "Prebrano"
 msgid "Received"
 msgstr "Prejeto"
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr "Odstrani"
 
@@ -293,7 +295,7 @@ msgstr ""
 "Izberite privzeti SIM za vsa odhodna sporočila. Svojo izbiro lahko kadarkoli "
 "spremenite v <a href=\"system_settings\">Nastavitvah sistema</a>."
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr "Pošlji"
 
@@ -317,18 +319,22 @@ msgstr "Preklopi na privzeto SIM:"
 msgid "Temporarily Failed"
 msgstr "Začasno spodletelo"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Trenutno ni omrežja na %1"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr "Trenutno ni omrežja."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "Za"
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -343,7 +349,7 @@ msgid "Unknown"
 msgstr "Neznano"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr "Neznan stik"
 
@@ -351,7 +357,7 @@ msgstr "Neznan stik"
 msgid "Video Preview"
 msgstr "Predogled videa"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Napišite sporočilo ..."
 
@@ -366,3 +372,9 @@ msgstr "Včeraj"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Izbrati morate kartico SIM"
+
+#~ msgid "Chats"
+#~ msgstr "Klepeti"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Dodaj stike ..."

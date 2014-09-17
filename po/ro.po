@@ -7,17 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
-"PO-Revision-Date: 2014-09-06 09:57+0000\n"
-"Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"PO-Revision-Date: 2014-09-16 15:01+0000\n"
+"Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -46,19 +52,15 @@ msgstr[2] "Convorbirea a durat %1 de secunde"
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
 msgid "+ Create New"
-msgstr ""
+msgstr "+Creare contact nou"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Acceptat"
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Adaugă"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr "Adaugă contacte..."
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -66,9 +68,9 @@ msgstr "Adaugă recipient"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "All"
-msgstr ""
+msgstr "Tot"
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -76,7 +78,7 @@ msgstr[0] "Atașament: %1 contact"
 msgstr[1] "Atașamente: %1 contacte"
 msgstr[2] "Atașamente: %1 de contacte"
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -84,7 +86,7 @@ msgstr[0] "Atașamente: %1 fișier"
 msgstr[1] "Atașamente: %1 fișiere"
 msgstr[2] "Atașamente: %1 de fișiere"
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -92,7 +94,7 @@ msgstr[0] "Atașament: %1 fotografie"
 msgstr[1] "Atașament: %1 fotografii"
 msgstr[2] "Atașament: %1 de fotografii"
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -100,7 +102,7 @@ msgstr[0] "Atașament: %1 clip video"
 msgstr[1] "Atașament: %1 clipuri video"
 msgstr[2] "Atașament: %1 de clipuri video"
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Apel"
 
@@ -114,12 +116,8 @@ msgstr "Anulează"
 msgid "Change all Messaging associations to %1?"
 msgstr "Modificați toate mesajele asociate pe %1?"
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Conversații"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr "Închide"
 
@@ -127,7 +125,7 @@ msgstr "Închide"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Compuneți un mesaj nou prin glisare pornind din josul ecranului."
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Contact"
 
@@ -139,7 +137,7 @@ msgstr "Copiază"
 msgid "Create new"
 msgstr "Creează nou"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Șterge"
 
@@ -165,7 +163,7 @@ msgstr "Eșuat!"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "Favorites"
-msgstr ""
+msgstr "Favorite"
 
 #: ../src/qml/MessageInfoDialog.qml:101
 msgid "From"
@@ -176,7 +174,7 @@ msgid "Group"
 msgstr "Grup"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grup (%1)"
@@ -200,6 +198,10 @@ msgstr "MMS"
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "Informații mesaj"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -225,7 +227,7 @@ msgstr "Lipsă date mesaj"
 msgid "Myself"
 msgstr "Eu"
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Mesaj nou"
 
@@ -238,7 +240,7 @@ msgstr "Nu"
 msgid "No SIM card selected"
 msgstr "Nu a fost selectat un card SIM"
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr "Fără rețea"
 
@@ -254,7 +256,7 @@ msgstr "Citit"
 msgid "Received"
 msgstr "Primit"
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr "Șterge"
 
@@ -272,7 +274,7 @@ msgstr "Salvează"
 
 #: ../src/qml/NewRecipientPage.qml:57
 msgid "Search"
-msgstr ""
+msgstr "Căutare"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
@@ -287,7 +289,7 @@ msgstr ""
 "întotdeauna alegerea în <a href=\"system_settings\">Configurări de "
 "sistem</a>."
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr "Trimite"
 
@@ -311,18 +313,22 @@ msgstr "Schimbați la cardul SIM implicit:"
 msgid "Temporarily Failed"
 msgstr "Eșec temporar"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "În prezent nu există rețea pe %1"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr "Nu există rețea."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "Către"
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -337,7 +343,7 @@ msgid "Unknown"
 msgstr "Necunoscut"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr "Contact necunoscut"
 
@@ -345,7 +351,7 @@ msgstr "Contact necunoscut"
 msgid "Video Preview"
 msgstr "Previzualizare video"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Scrieți un mesaj..."
 
@@ -360,3 +366,9 @@ msgstr "Ieri"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Trebuie să selectați un card SIM"
+
+#~ msgid "Chats"
+#~ msgstr "Conversații"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Adaugă contacte..."

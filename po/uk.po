@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
 "PO-Revision-Date: 2014-09-06 10:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:14+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -52,13 +58,9 @@ msgstr "+ Створити"
 msgid "Accepted"
 msgstr "Прийнято"
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Додати"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr "Додати контакти…"
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -68,7 +70,7 @@ msgstr "Додати отримувача"
 msgid "All"
 msgstr "Усі"
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -76,7 +78,7 @@ msgstr[0] "Долучення: %1 запис контакту"
 msgstr[1] "Долучення: %1 записи контактів"
 msgstr[2] "Долучення: %1 записів контактів"
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -84,7 +86,7 @@ msgstr[0] "Долучення: %1 файл"
 msgstr[1] "Долучення: %1 файли"
 msgstr[2] "Долучення: %1 файлів"
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -92,7 +94,7 @@ msgstr[0] "Долучення: %1 зображення"
 msgstr[1] "Долучення: %1 зображення"
 msgstr[2] "Долучення: %1 зображень"
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -100,7 +102,7 @@ msgstr[0] "Долучення: %1 відео"
 msgstr[1] "Долучення: %1 відео"
 msgstr[2] "Долучення: %1 відео"
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Подзвонити"
 
@@ -114,12 +116,8 @@ msgstr "Скасувати"
 msgid "Change all Messaging associations to %1?"
 msgstr "Пов’язати увесь обмін повідомленнями з %1?"
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Спілкування"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr "Закрити"
 
@@ -127,7 +125,7 @@ msgstr "Закрити"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Створіть нове повідомлення рухом пальця з нижньої частини екрана."
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Контакт"
 
@@ -139,7 +137,7 @@ msgstr "Копіювати"
 msgid "Create new"
 msgstr "Створити"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Вилучити"
 
@@ -176,7 +174,7 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
@@ -200,6 +198,10 @@ msgstr "MMS"
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "Дані повідомлення"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr "Повідомлення"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -227,7 +229,7 @@ msgstr "Немає даних повідомлення"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Нове повідомлення"
 
@@ -240,7 +242,7 @@ msgstr "Ні"
 msgid "No SIM card selected"
 msgstr "Не вибрано SIM-картки"
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr "Немає мережі"
 
@@ -256,7 +258,7 @@ msgstr "Прочитане"
 msgid "Received"
 msgstr "Отримано"
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr "Вилучити"
 
@@ -289,7 +291,7 @@ msgstr ""
 "будь-коли змінити за допомогою <a href=\"system_settings\">Системних "
 "параметрів</a>."
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr "Надіслати"
 
@@ -313,18 +315,22 @@ msgstr "Перемкнутися на типову SIM-картку:"
 msgid "Temporarily Failed"
 msgstr "Тимчасова помилка"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Зараз на %1 немає доступу до мережі"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr "Зараз немає доступу до мережі."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "Отримувач"
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
+msgstr "Кому:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -339,7 +345,7 @@ msgid "Unknown"
 msgstr "Невідомий"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr "Невідомий контакт"
 
@@ -347,7 +353,7 @@ msgstr "Невідомий контакт"
 msgid "Video Preview"
 msgstr "Перегляд відео"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Створення повідомлення…"
 
@@ -362,3 +368,9 @@ msgstr "Вчора"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Вам слід вибрати SIM-картку"
+
+#~ msgid "Chats"
+#~ msgstr "Спілкування"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Додати контакти…"

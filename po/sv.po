@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
 "PO-Revision-Date: 2014-09-08 15:47+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -15,9 +15,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: sv\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -49,13 +55,9 @@ msgstr ""
 msgid "Accepted"
 msgstr "Accepterad"
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Lägg till"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr "Lägg till kontakter..."
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -65,35 +67,35 @@ msgstr "Lägg till mottagare"
 msgid "All"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Bilaga: %1 kontakt"
 msgstr[1] "Bilagor: %1 kontakter"
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Bilaga: %1 fil"
 msgstr[1] "Bilagor: %1 filer"
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Bilaga: %1 bild"
 msgstr[1] "Bilagor: %1 bilder"
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Bilaga: %1 videofilm"
 msgstr[1] "Bilagor: %1 videofilmer"
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Samtal"
 
@@ -107,12 +109,8 @@ msgstr "Avbryt"
 msgid "Change all Messaging associations to %1?"
 msgstr "Ändra alla associationer för Meddelanden till %1?"
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Chattar"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr "Stäng"
 
@@ -121,7 +119,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Skapa ett nytt meddelande genom att svepa uppåt från botten av skärmen."
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -133,7 +131,7 @@ msgstr "Kopiera"
 msgid "Create new"
 msgstr "Skapa ny"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Ta bort"
 
@@ -170,7 +168,7 @@ msgid "Group"
 msgstr "Grupp"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupp (%1)"
@@ -194,6 +192,10 @@ msgstr "MMS"
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "Meddelandeinfo"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -219,7 +221,7 @@ msgstr "Saknar meddelandedata"
 msgid "Myself"
 msgstr "Jag"
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Nytt meddelande"
 
@@ -232,7 +234,7 @@ msgstr "Nej"
 msgid "No SIM card selected"
 msgstr "Inget SIM-kort valt"
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr "Inget nätverk"
 
@@ -248,7 +250,7 @@ msgstr "Läs"
 msgid "Received"
 msgstr "Mottagna"
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -280,7 +282,7 @@ msgstr ""
 "Välj ett standard-SIM för alla utgående meddelanden. Du kan alltid ändra "
 "ditt val i <a href=\"system_settings\">Systeminställningar</a>."
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr "Skicka"
 
@@ -304,18 +306,22 @@ msgstr "Byt till standard-SIM:"
 msgid "Temporarily Failed"
 msgstr "Misslyckades temporärt"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Just nu finns inget nätverk på %1"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr "Just nu finns inget nätverk."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "Till"
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -330,7 +336,7 @@ msgid "Unknown"
 msgstr "Okänd"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr "Okänd kontakt"
 
@@ -338,7 +344,7 @@ msgstr "Okänd kontakt"
 msgid "Video Preview"
 msgstr "Förhandsvisa film"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Skriv ett meddelande…"
 
@@ -353,3 +359,9 @@ msgstr "Igår"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Du måste välja ett SIM-kort"
+
+#~ msgid "Chats"
+#~ msgstr "Chattar"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Lägg till kontakter..."

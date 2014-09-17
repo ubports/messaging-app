@@ -7,16 +7,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
-"PO-Revision-Date: 2014-09-14 22:35+0000\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"PO-Revision-Date: 2014-09-16 20:50+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -48,13 +54,9 @@ msgstr "+ Crear un novo"
 msgid "Accepted"
 msgstr "Aceptado"
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Engadir"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr "Engadir contactos..."
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -64,35 +66,35 @@ msgstr "Engadir destinatario"
 msgid "All"
 msgstr "Todos"
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Anexo: %1 contacto"
 msgstr[1] "Anexos: %1 contactos"
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Anexo: %1 ficheiro"
 msgstr[1] "Anexos: %1 ficheiros"
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Anexo: %1 imaxe"
 msgstr[1] "Anexos: %1 imaxes"
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Anexo: %1 vídeo"
 msgstr[1] "Anexos: %1 vídeos"
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Chamar"
 
@@ -106,12 +108,8 @@ msgstr "Cancelar"
 msgid "Change all Messaging associations to %1?"
 msgstr "Desexa cambiar todas as asociacións de mensaxería a %1?"
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Conversas"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr "Pechar"
 
@@ -119,7 +117,7 @@ msgstr "Pechar"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Escribir unha mensaxe esvarando o dedo desde o fondo da pantalla."
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Contacto"
 
@@ -131,7 +129,7 @@ msgstr "Copiar"
 msgid "Create new"
 msgstr "Crear unha nova"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -168,7 +166,7 @@ msgid "Group"
 msgstr "Grupo"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupo (%1)"
@@ -192,6 +190,10 @@ msgstr "MMS"
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "Información da mensaxe"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr "Mensaxes"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -217,7 +219,7 @@ msgstr "Faltan os datos da mensaxe"
 msgid "Myself"
 msgstr "Eu"
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Nova mensaxe"
 
@@ -230,7 +232,7 @@ msgstr "Non"
 msgid "No SIM card selected"
 msgstr "Non seleccionou a tarxeta SIM"
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr "Sen rede"
 
@@ -246,7 +248,7 @@ msgstr "Lidas"
 msgid "Received"
 msgstr "Recibidas"
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr "Eliminadas"
 
@@ -278,7 +280,7 @@ msgstr ""
 "Seleccione unha SIM predeterminada para as mensaxes saíntes. Pode cambiar a "
 "elección en <a href=\"system_settings\">Axustes do sistema</a>."
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr "Enviar"
 
@@ -302,18 +304,22 @@ msgstr "Cambiar á SIM predeterminada"
 msgid "Temporarily Failed"
 msgstr "Fallos temporais"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Actualmente non hai ningunha rede en %1"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr "Actualmente non hai ningunha rede."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "A"
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
+msgstr "Para:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -328,7 +334,7 @@ msgid "Unknown"
 msgstr "Descoñecido"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr "Contacto descoñecido"
 
@@ -336,7 +342,7 @@ msgstr "Contacto descoñecido"
 msgid "Video Preview"
 msgstr "Previsualizar vídeo"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Escribir unha mensaxe..."
 
@@ -351,3 +357,9 @@ msgstr "Onte"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Debe seleccionar unha tarxeta SIM"
+
+#~ msgid "Chats"
+#~ msgstr "Conversas"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Engadir contactos..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-08 19:07-0300\n"
+"POT-Creation-Date: 2014-09-16 17:16-0300\n"
 "PO-Revision-Date: 2014-09-09 09:42+0000\n"
 "Last-Translator: Jay ZDLin <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,8 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-09-15 07:13+0000\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:45
+#, qt-format
+msgid "%1 + %2"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -52,13 +58,9 @@ msgstr "+ Создать новый"
 msgid "Accepted"
 msgstr "Принято"
 
-#: ../src/qml/Messages.qml:466
+#: ../src/qml/Messages.qml:449
 msgid "Add"
 msgstr "Добавить"
-
-#: ../src/qml/MultiRecipientInput.qml:145
-msgid "Add contacts..."
-msgstr "Добавить контакты..."
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
@@ -68,7 +70,7 @@ msgstr "Добавить получателя"
 msgid "All"
 msgstr "Все"
 
-#: ../src/qml/ThreadDelegate.qml:75
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -76,7 +78,7 @@ msgstr[0] "Приложение: %1 контакт"
 msgstr[1] "Приложение: %1 контакта"
 msgstr[2] "Приложение: %1 контактов"
 
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -84,7 +86,7 @@ msgstr[0] "Приложение: %1 файл"
 msgstr[1] "Приложение: %1 файла"
 msgstr[2] "Приложение: %1 файлов"
 
-#: ../src/qml/ThreadDelegate.qml:69
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -92,7 +94,7 @@ msgstr[0] "Приложение: %1 изображение"
 msgstr[1] "Приложение: %1 изображения"
 msgstr[2] "Приложение: %1 изображений"
 
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -100,7 +102,7 @@ msgstr[0] "Приложение: %1 видео"
 msgstr[1] "Приложение: %1 видео"
 msgstr[2] "Приложение: %1 видео"
 
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:510
+#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
 msgid "Call"
 msgstr "Вызов"
 
@@ -114,12 +116,8 @@ msgstr "Отмена"
 msgid "Change all Messaging associations to %1?"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:37
-msgid "Chats"
-msgstr "Чаты"
-
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:259
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
 msgid "Close"
 msgstr "Закрыть"
 
@@ -127,7 +125,7 @@ msgstr "Закрыть"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/Messages.qml:520
+#: ../src/qml/Messages.qml:503
 msgid "Contact"
 msgstr "Контакт"
 
@@ -139,7 +137,7 @@ msgstr "Копировать"
 msgid "Create new"
 msgstr "Создать"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Удалить"
 
@@ -176,7 +174,7 @@ msgid "Group"
 msgstr "Группа"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:147
+#: ../src/qml/Messages.qml:135
 #, qt-format
 msgid "Group (%1)"
 msgstr "Группа (%1)"
@@ -200,6 +198,10 @@ msgstr "MMS"
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
 msgstr "Информация о сообщении"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr "Сообщения"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -225,7 +227,7 @@ msgstr "Отсутствуют данные о сообщении"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:150
+#: ../src/qml/Messages.qml:138
 msgid "New Message"
 msgstr "Создать сообщение"
 
@@ -238,7 +240,7 @@ msgstr "Нет"
 msgid "No SIM card selected"
 msgstr "SIM-карта не выбрана"
 
-#: ../src/qml/Messages.qml:255
+#: ../src/qml/Messages.qml:243
 msgid "No network"
 msgstr "Сеть отсутствует"
 
@@ -254,7 +256,7 @@ msgstr "Прочитать"
 msgid "Received"
 msgstr "Получено"
 
-#: ../src/qml/Messages.qml:209
+#: ../src/qml/Messages.qml:197
 msgid "Remove"
 msgstr "Удалить"
 
@@ -287,7 +289,7 @@ msgstr ""
 "Вы в любое время можете изменить свой выбор в <a "
 "href=\"system_settings\">Настройках системы</a>."
 
-#: ../src/qml/Messages.qml:815
+#: ../src/qml/Messages.qml:817
 msgid "Send"
 msgstr "Отправить"
 
@@ -311,18 +313,22 @@ msgstr "Переключиться на SIM-карту по умолчанию:"
 msgid "Temporarily Failed"
 msgstr "Временно не удаётся"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "В настоящий момент отсутствует доступ к сети %1"
 
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:244
 msgid "There is currently no network."
 msgstr "В настоящий момент сеть недоступна."
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
 msgstr "Кому"
+
+#: ../src/qml/MultiRecipientInput.qml:145
+msgid "To:"
+msgstr "Кому:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -337,7 +343,7 @@ msgid "Unknown"
 msgstr "Неизвестно"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:691
+#: ../src/qml/Messages.qml:688
 msgid "Unknown contact"
 msgstr "Неизвестный контакт"
 
@@ -345,7 +351,7 @@ msgstr "Неизвестный контакт"
 msgid "Video Preview"
 msgstr "Предпросмотр видео"
 
-#: ../src/qml/Messages.qml:786
+#: ../src/qml/Messages.qml:787
 msgid "Write a message..."
 msgstr "Новое сообщение..."
 
@@ -360,3 +366,9 @@ msgstr "Вчера"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Необходимо выбрать SIM-карту"
+
+#~ msgid "Chats"
+#~ msgstr "Чаты"
+
+#~ msgid "Add contacts..."
+#~ msgstr "Добавить контакты..."
