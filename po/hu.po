@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-15 12:41+0000\n"
+"PO-Revision-Date: 2014-09-17 08:33+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 + %2"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -54,7 +54,7 @@ msgstr "Új hozzáadása"
 msgid "Accepted"
 msgstr "Elfogadva"
 
-#: ../src/qml/Messages.qml:449
+#: ../src/qml/Messages.qml:451
 msgid "Add"
 msgstr "Hozzáadás"
 
@@ -94,7 +94,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Melléklet: %1 videó"
 msgstr[1] "Melléklet: %1 videó"
 
-#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:495
 msgid "Call"
 msgstr "Hívás"
 
@@ -117,7 +117,7 @@ msgstr "Bezárás"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Új üzenet írásához húzza az ujját felfelé a kijelző aljáról indulva."
 
-#: ../src/qml/Messages.qml:503
+#: ../src/qml/Messages.qml:505
 msgid "Contact"
 msgstr "Névjegy"
 
@@ -193,7 +193,7 @@ msgstr "Üzenet információ"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "Üzenetek"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -281,7 +281,7 @@ msgstr ""
 "bármikor módosíthatja a <a "
 "href=\"system_settings\">Rendszerbeállításokban</a>."
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:819
 msgid "Send"
 msgstr "Küldés"
 
@@ -320,7 +320,7 @@ msgstr "Címzett"
 
 #: ../src/qml/MultiRecipientInput.qml:145
 msgid "To:"
-msgstr ""
+msgstr "Címzett:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -335,7 +335,7 @@ msgid "Unknown"
 msgstr "Ismeretlen"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:688
+#: ../src/qml/Messages.qml:690
 msgid "Unknown contact"
 msgstr "Ismeretlen névjegy"
 
@@ -343,7 +343,7 @@ msgstr "Ismeretlen névjegy"
 msgid "Video Preview"
 msgstr "Videó előnézet"
 
-#: ../src/qml/Messages.qml:787
+#: ../src/qml/Messages.qml:789
 msgid "Write a message..."
 msgstr "Üzenet írása…"
 
@@ -358,9 +358,3 @@ msgstr "Tegnap"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Ki kell választania egy SIM kártyát"
-
-#~ msgid "Chats"
-#~ msgstr "Csevegések"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Névjegy hozzáadása"

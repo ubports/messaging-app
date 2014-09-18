@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-15 10:05+0000\n"
+"PO-Revision-Date: 2014-09-17 19:03+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 og %2 andre"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -54,7 +54,7 @@ msgstr "+ Lag ny"
 msgid "Accepted"
 msgstr "Godkjent"
 
-#: ../src/qml/Messages.qml:449
+#: ../src/qml/Messages.qml:451
 msgid "Add"
 msgstr "Legg til"
 
@@ -94,7 +94,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Vedlegg: %1 video"
 msgstr[1] "Vedlegg: %1 videoer"
 
-#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:495
 msgid "Call"
 msgstr "Ring"
 
@@ -117,7 +117,7 @@ msgstr "Lukk"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Skyv oppover fra bunnen av skjermen for å lage en ny melding."
 
-#: ../src/qml/Messages.qml:503
+#: ../src/qml/Messages.qml:505
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -193,7 +193,7 @@ msgstr "Meldingsinfo"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "Meldinger"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -281,7 +281,7 @@ msgstr ""
 "kan endre dette valget i <a "
 "href=\"system_settings\">Systeminnstillingene</a> når som helst."
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:819
 msgid "Send"
 msgstr "Send"
 
@@ -320,7 +320,7 @@ msgstr "Til"
 
 #: ../src/qml/MultiRecipientInput.qml:145
 msgid "To:"
-msgstr ""
+msgstr "Til:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -335,7 +335,7 @@ msgid "Unknown"
 msgstr "Ukjent"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:688
+#: ../src/qml/Messages.qml:690
 msgid "Unknown contact"
 msgstr "Ukjent kontakt"
 
@@ -343,7 +343,7 @@ msgstr "Ukjent kontakt"
 msgid "Video Preview"
 msgstr "Forhåndsvis video"
 
-#: ../src/qml/Messages.qml:787
+#: ../src/qml/Messages.qml:789
 msgid "Write a message..."
 msgstr "Skriv en melding …"
 
@@ -358,9 +358,3 @@ msgstr "I går"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Du må velge et SIM-kort"
-
-#~ msgid "Chats"
-#~ msgstr "Samtaler"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Legg til kontakter …"

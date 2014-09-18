@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -51,7 +51,7 @@ msgstr "+ افزودن جدید"
 msgid "Accepted"
 msgstr "پذیرفته‌‌شده"
 
-#: ../src/qml/Messages.qml:449
+#: ../src/qml/Messages.qml:451
 msgid "Add"
 msgstr "افزودن"
 
@@ -87,7 +87,7 @@ msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "ضمیمه: %1 ویدیو"
 
-#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:495
 msgid "Call"
 msgstr "تماس"
 
@@ -110,7 +110,7 @@ msgstr "بستن"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "با لغزش به بالا از پایین صفحه، پیامی جدید بنویسید."
 
-#: ../src/qml/Messages.qml:503
+#: ../src/qml/Messages.qml:505
 msgid "Contact"
 msgstr "مخاطب"
 
@@ -273,7 +273,7 @@ msgstr ""
 "سیم‌کارت پیش‌فرضی را برای پیام‌های خروحی برگزینید. همواره می‌توانید "
 "انتخاباتان را در <a href=\"system_settings\">تنظیمات سامانه</a> عوض کنید."
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:819
 msgid "Send"
 msgstr "فرستادن"
 
@@ -327,7 +327,7 @@ msgid "Unknown"
 msgstr "ناشناس"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:688
+#: ../src/qml/Messages.qml:690
 msgid "Unknown contact"
 msgstr "مخاطب ناشناس"
 
@@ -335,7 +335,7 @@ msgstr "مخاطب ناشناس"
 msgid "Video Preview"
 msgstr "پیش‌نمایش ویدیو"
 
-#: ../src/qml/Messages.qml:787
+#: ../src/qml/Messages.qml:789
 msgid "Write a message..."
 msgstr "نوشتن یک پیام…"
 
@@ -350,9 +350,3 @@ msgstr "دیروز"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "باید یک سیم‌کارت برگزینید"
-
-#~ msgid "Chats"
-#~ msgstr "گپ‌ها"
-
-#~ msgid "Add contacts..."
-#~ msgstr "افزودن مخاطبین…"

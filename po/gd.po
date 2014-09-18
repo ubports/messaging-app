@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-15 11:13+0000\n"
+"PO-Revision-Date: 2014-09-17 10:06+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: gd\n"
 
@@ -24,7 +24,7 @@ msgstr ""
 #: ../src/qml/ThreadDelegate.qml:45
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 + %2"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -62,7 +62,7 @@ msgstr "+ Cruthaich fear ùr"
 msgid "Accepted"
 msgstr "Air a ghabhail ris"
 
-#: ../src/qml/Messages.qml:449
+#: ../src/qml/Messages.qml:451
 msgid "Add"
 msgstr "Cuir ris"
 
@@ -110,7 +110,7 @@ msgstr[1] "Ceanglachain: %1 video"
 msgstr[2] "Ceanglachain: %1 videothan"
 msgstr[3] "Ceanglachain: %1 video"
 
-#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:495
 msgid "Call"
 msgstr "Gairm"
 
@@ -135,7 +135,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Grad-shlaighd suas o bhonn na sgrìn gus teachdaireachd ùr a sgrìobhadh."
 
-#: ../src/qml/Messages.qml:503
+#: ../src/qml/Messages.qml:505
 msgid "Contact"
 msgstr "Neach-aithne"
 
@@ -211,7 +211,7 @@ msgstr "Fiosrachadh na teachdaireachd"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "Teachdaireachdan"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -300,7 +300,7 @@ msgstr ""
 "roghainn agad atharrachadh ann an <a href=\"system_settings\">Roghainnean an "
 "t-Siostaim</a> uair sam bith."
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:819
 msgid "Send"
 msgstr "Cuir"
 
@@ -339,7 +339,7 @@ msgstr "Gu"
 
 #: ../src/qml/MultiRecipientInput.qml:145
 msgid "To:"
-msgstr ""
+msgstr "Gu:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -354,7 +354,7 @@ msgid "Unknown"
 msgstr "Neo-aithnichte"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:688
+#: ../src/qml/Messages.qml:690
 msgid "Unknown contact"
 msgstr "Neach neo-aithnichte"
 
@@ -362,7 +362,7 @@ msgstr "Neach neo-aithnichte"
 msgid "Video Preview"
 msgstr "Ro-shealladh air video"
 
-#: ../src/qml/Messages.qml:787
+#: ../src/qml/Messages.qml:789
 msgid "Write a message..."
 msgstr "Sgrìobh teachdaireachd..."
 
@@ -377,9 +377,3 @@ msgstr "An-dè"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Feumaidh tu cairt SIM a thaghadh"
-
-#~ msgid "Chats"
-#~ msgstr "Cabadaich"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Cuir luchd-aithne ris..."
