@@ -639,13 +639,12 @@ Page {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
+                            onPressAndHold: {
                                 mouse.accept = true
                                 Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
-                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
