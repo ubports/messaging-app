@@ -45,7 +45,6 @@ Rectangle {
         // replace line breaks
         text = text.replace(/(\n)+/g, '<br />');
         // check for links
-        text = BaLinkify.linkify(text);
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
             return htmlText
