@@ -333,7 +333,8 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
 
         # Wait a few seconds before clicking the header
         # to make sure the OSD is already gone
-        time.sleep(5)
+        # FIXME: check if there is a better way to detect OSD visibility
+        time.sleep(10)
         self.main_view.click_messages_header_delete()
 
         remaining_messages = messages_page.get_messages()
