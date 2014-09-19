@@ -1,3 +1,15 @@
+messaging-app (0.1+14.10.20140919-0ubuntu1) utopic; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Increase the time waiting for the OSD to hide.
+
+  [ Tiago Salem Herrmann ]
+  * Don't try to linkify phone numbers if web links are present. (LP:
+    #1367802)
+  * Fix auto-scrolling on the MultiRecipientInput widget. (LP: #1356811)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 19 Sep 2014 21:58:41 +0000
+
 messaging-app (0.1+14.10.20140917.1-0ubuntu1) utopic; urgency=low
 
   [ CI bot ]
