@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-15 05:48+0000\n"
+"PO-Revision-Date: 2014-09-19 05:42+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
+"X-Launchpad-Export-Date: 2014-09-19 08:10+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 + %2"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -61,7 +61,7 @@ msgstr "+ Ustvari nov"
 msgid "Accepted"
 msgstr "Sprejeto"
 
-#: ../src/qml/Messages.qml:449
+#: ../src/qml/Messages.qml:451
 msgid "Add"
 msgstr "Dodaj"
 
@@ -109,7 +109,7 @@ msgstr[1] "Priloga: %1 video"
 msgstr[2] "Priloga: %1 videa"
 msgstr[3] "Priloga: %1 videi"
 
-#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:495
 msgid "Call"
 msgstr "Kliči"
 
@@ -132,7 +132,7 @@ msgstr "Zapri"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Sestavite novo sporočilo s potegom navzgor z dna zaslona."
 
-#: ../src/qml/Messages.qml:503
+#: ../src/qml/Messages.qml:505
 msgid "Contact"
 msgstr "Stik"
 
@@ -208,7 +208,7 @@ msgstr "Podrobnosti sporočila"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -295,7 +295,7 @@ msgstr ""
 "Izberite privzeti SIM za vsa odhodna sporočila. Svojo izbiro lahko kadarkoli "
 "spremenite v <a href=\"system_settings\">Nastavitvah sistema</a>."
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:819
 msgid "Send"
 msgstr "Pošlji"
 
@@ -334,7 +334,7 @@ msgstr "Za"
 
 #: ../src/qml/MultiRecipientInput.qml:145
 msgid "To:"
-msgstr ""
+msgstr "Za:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -349,7 +349,7 @@ msgid "Unknown"
 msgstr "Neznano"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:688
+#: ../src/qml/Messages.qml:690
 msgid "Unknown contact"
 msgstr "Neznan stik"
 
@@ -357,7 +357,7 @@ msgstr "Neznan stik"
 msgid "Video Preview"
 msgstr "Predogled videa"
 
-#: ../src/qml/Messages.qml:787
+#: ../src/qml/Messages.qml:789
 msgid "Write a message..."
 msgstr "Napišite sporočilo ..."
 
@@ -372,9 +372,3 @@ msgstr "Včeraj"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Izbrati morate kartico SIM"
-
-#~ msgid "Chats"
-#~ msgstr "Klepeti"
-
-#~ msgid "Add contacts..."
-#~ msgstr "Dodaj stike ..."
