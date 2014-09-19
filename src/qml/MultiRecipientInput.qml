@@ -82,6 +82,12 @@ StyledItem {
         id: scrollableArea
         anchors.fill: parent
         contentWidth: contactFlow.width
+        // force content to scroll as the user types the number
+        onContentWidthChanged: {
+            if (scrollableArea.contentWidth > multiRecipientWidget.width) {
+                scrollableArea.contentX = scrollableArea.contentWidth - multiRecipientWidget.width
+            }
+        }
         flickableDirection: Flickable.HorizontalFlick
         Flow {
             id: contactFlow
@@ -134,15 +140,26 @@ StyledItem {
                 id: searchDelegate
                 TextField {
                     id: contactSearchInput
+                    // the following items are used to calculate the text size of the hint and text entry
+                    Label {
+                        id: hintLabel 
+                        visible: false
+                        text: i18n.tr("To:")
+                    }
+                    Label {
+                        id: textLabel
+                        visible: false
+                        text: contactSearchInput.text
+                    }
+ 
                     objectName: "contactSearchInput"
                     focus: true
                     style: MultiRecipientFieldStyle {}
                     height: units.gu(4)
-                    // FIXME: this size should be variable
-                    width: units.gu(20)
+                    width: text != "" ? textLabel.paintedWidth + units.gu(3) : hintLabel.paintedWidth + units.gu(3)
                     hasClearButton: false
                     clip: false
-                    placeholderText: multiRecipientWidget.recipientCount  <= 0 ? i18n.tr("To:") :""
+                    placeholderText: multiRecipientWidget.recipientCount <= 0 ? hintLabel.text : ""
                     font.family: "Ubuntu"
                     font.weight: Font.Light
                     color: "#752571"
