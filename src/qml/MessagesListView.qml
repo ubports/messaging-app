@@ -92,7 +92,24 @@ MultipleSelectionListView {
         }
     ]
 
-    listDelegate: Column {
+    listDelegate: Loader {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        width: item.width
+        
+        sourceComponent: textMessageType == 2 ? sectionDelegate : regularMessageDelegate
+    }
+
+    Component {
+        id: sectionDelegate
+        Label {
+            text: i18n.tr(message).arg(TelepathyHelper.accountForId(accountId).displayName) + " @ " + DateUtils.formatLogDate(timestamp)
+        }
+    }
+
+    Component {
+        id: regularMessageDelegate
+        Column {
         id: messageDelegate
 
         // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
@@ -144,6 +161,7 @@ MultipleSelectionListView {
                 }
             }
         }
+    }
     }
 
     onSelectionDone: {

@@ -857,12 +857,27 @@ Page {
                     participants = multiRecipient.recipients
                 }
                 // create the new thread and update the threadId list
-                eventModel.threadIdForParticipants(messages.account.accountId,
+                var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
                                                    HistoryThreadModel.EventTypeText,
                                                    participants,
                                                    HistoryThreadModel.MatchPhoneNumber,
                                                    true)
-
+                // this is just to make the string translatable
+                var fakeString = i18n.tr("You switched to %1")
+                for (var i=0; i < eventModel.count; i++) {
+                    var event = eventModel.get(i)
+                    if (event.senderId == "self" && event.accountId != messages.account.accountId) {
+                        // if the last outgoing message used a different accountId, add an
+                        // information event and quit the loop
+                        eventModel.writeTextInformationEvent(messages.account.accountId,
+                                                             participants,
+                                                             "You switched to %1")
+                        break;
+                    } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
+                        // in case last ougoing event used the same accountId, just skip
+                        break;
+                    }
+                }
                 updateFilters()
                 if (attachments.count > 0) {
                     var newAttachments = []
