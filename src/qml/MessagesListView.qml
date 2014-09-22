@@ -93,17 +93,33 @@ MultipleSelectionListView {
     ]
 
     listDelegate: Loader {
+        id: loader
         anchors.left: parent.left
         anchors.right: parent.right
-        width: item.width
+        height: status == Loader.Ready ? item.height : 0
         
         sourceComponent: textMessageType == 2 ? sectionDelegate : regularMessageDelegate
+        Binding {
+            target: loader.item
+            property: "messageData"
+            value: listModel.get(index)
+            when: (loader.status === Loader.Ready)
+        }
+        Binding {
+            target: loader.item
+            property: "index"
+            value: index
+            when: (loader.status === Loader.Ready)
+        }
     }
 
     Component {
         id: sectionDelegate
         Label {
-            text: i18n.tr(message).arg(TelepathyHelper.accountForId(accountId).displayName) + " @ " + DateUtils.formatLogDate(timestamp)
+            property var messageData: null
+            property int index: -1
+
+            text: i18n.tr(messageData.textMessage).arg(TelepathyHelper.accountForId(accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
         }
     }
 
@@ -111,6 +127,18 @@ MultipleSelectionListView {
         id: regularMessageDelegate
         Column {
         id: messageDelegate
+        anchors.left: parent.left
+        anchors.right: parent.right
+        property var messageData: null
+        property var timestamp: messageData.timestamp
+        property string senderId: messageData.senderId
+        property var textReadTimestamp: messageData.textReadTimestamp
+        property int textMessageStatus: messageData.textMessageStatus
+        property var textMessageAttachments: messageData.textMessageAttachments
+        property bool newEvent: messageData.newEvent
+        property string textMessage: messageData.textMessage
+        property string accountId: messageData.accountId
+        property int index: -1
 
         // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
         // bellow the item
