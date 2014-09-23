@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-20 06:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-23 07:21+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -319,7 +319,7 @@ msgstr "Agora mesmo nun hai rede"
 msgid "To"
 msgstr "Pa"
 
-#: ../src/qml/MultiRecipientInput.qml:145
+#: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
 msgstr "A:"
 
