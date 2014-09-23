@@ -112,6 +112,13 @@ MultipleSelectionListView {
             value: index
             when: (loader.status === Loader.Ready)
         }
+        Binding {
+            target: loader.item
+            property: "delegateItem"
+            value: loader
+            when: (loader.status === Loader.Ready)
+        }
+
     }
 
     Component {
@@ -119,6 +126,7 @@ MultipleSelectionListView {
         Item {
             property var messageData: null
             property int index: -1
+            property Item delegateItem
             height: sectionLabel.height
             anchors.left: parent.left
             anchors.right: parent.right
@@ -141,71 +149,69 @@ MultipleSelectionListView {
     Component {
         id: regularMessageDelegate
         Column {
-        id: messageDelegate
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: childrenRect.height
-        property var messageData: null
-        property var timestamp: messageData.timestamp
-        property string senderId: messageData.senderId
-        property var textReadTimestamp: messageData.textReadTimestamp
-        property int textMessageStatus: messageData.textMessageStatus
-        property var textMessageAttachments: messageData.textMessageAttachments
-        property bool newEvent: messageData.newEvent
-        property var textMessage: messageData.textMessage
-        property string accountId: messageData.accountId
-        property int index: -1
+            height: childrenRect.height
+            property var messageData: null
+            property Item delegateItem
+            property var timestamp: messageData.timestamp
+            property string senderId: messageData.senderId
+            property var textReadTimestamp: messageData.textReadTimestamp
+            property int textMessageStatus: messageData.textMessageStatus
+            property var textMessageAttachments: messageData.textMessageAttachments
+            property bool newEvent: messageData.newEvent
+            property var textMessage: messageData.textMessage
+            property string accountId: messageData.accountId
+            property int index: -1
 
-        // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
-        // bellow the item
-        MessageDateSection {
-            text: visible ? DateUtils.friendlyDay(timestamp) : ""
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: units.gu(2)
-                rightMargin: units.gu(2)
-            }
-            visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
-        }
-
-        MessageDelegateFactory {
-            objectName: "message%1".arg(index)
-
-            incoming: senderId != "self"
-            // TODO: we have several items inside
-            selected: root.isSelected(messageDelegate)
-            selectionMode: root.isInSelectionMode
-            accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-            rightSideActions: {
-                var actions = []
-                if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-                    actions.push(reloadAction)
+            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
+            // bellow the item
+            MessageDateSection {
+                text: visible ? DateUtils.friendlyDay(timestamp) : ""
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(2)
+                    rightMargin: units.gu(2)
                 }
-                actions.push(copyAction)
-                actions.push(infoAction)
-                return actions
+                visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
             }
 
-            // TODO: need select only the item
-            onItemClicked: {
-                if (root.isInSelectionMode) {
-                    if (!root.selectItem(messageDelegate)) {
-                        root.deselectItem(messageDelegate)
+            MessageDelegateFactory {
+                objectName: "message%1".arg(index)
+
+                incoming: senderId != "self"
+                // TODO: we have several items inside
+                selected: root.isSelected(delegateItem)
+                selectionMode: root.isInSelectionMode
+                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
+                rightSideActions: {
+                    var actions = []
+                    if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
+                        actions.push(reloadAction)
+                    }
+                    actions.push(copyAction)
+                    actions.push(infoAction)
+                    return actions
+                }
+
+                // TODO: need select only the item
+                onItemClicked: {
+                    if (root.isInSelectionMode) {
+                        if (!root.selectItem(delegateItem)) {
+                            root.deselectItem(delegateItem)
+                        }
+                    }
+                }
+                onItemPressAndHold: {
+                    root.startSelection()
+                    root.selectItem(delegateItem)
+                }
+                Component.onCompleted: {
+                    if (newEvent) {
+                        messages.markMessageAsRead(accountId, threadId, eventId, type);
                     }
                 }
             }
-            onItemPressAndHold: {
-                root.startSelection()
-                root.selectItem(messageDelegate)
-            }
-            Component.onCompleted: {
-                if (newEvent) {
-                    messages.markMessageAsRead(accountId, threadId, eventId, type);
-                }
-            }
         }
-    }
     }
 
     onSelectionDone: {
