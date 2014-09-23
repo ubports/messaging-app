@@ -103,7 +103,7 @@ MultipleSelectionListView {
         Binding {
             target: loader.item
             property: "messageData"
-            value: listModel.get(index)
+            value: model
             when: (loader.status === Loader.Ready)
         }
         Binding {
