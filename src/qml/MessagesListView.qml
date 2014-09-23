@@ -19,6 +19,7 @@
 import QtQuick 2.2
 
 import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
@@ -115,11 +116,25 @@ MultipleSelectionListView {
 
     Component {
         id: sectionDelegate
-        Label {
+        Item {
             property var messageData: null
             property int index: -1
-
-            text: i18n.tr(messageData.textMessage).arg(TelepathyHelper.accountForId(accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
+            height: sectionLabel.height
+            anchors.left: parent.left
+            anchors.right: parent.right
+            ListItem.ThinDivider {
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Label {
+                id: sectionLabel
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: paintedHeight
+                clip: true
+                text: i18n.tr(messageData.textMessage).arg(telepathyHelper.accountForId(messageData.accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
+                fontSize: "small"
+                horizontalAlignment: Text.AlignHCenter
+            }
         }
     }
 
@@ -129,6 +144,7 @@ MultipleSelectionListView {
         id: messageDelegate
         anchors.left: parent.left
         anchors.right: parent.right
+        height: childrenRect.height
         property var messageData: null
         property var timestamp: messageData.timestamp
         property string senderId: messageData.senderId
@@ -136,7 +152,7 @@ MultipleSelectionListView {
         property int textMessageStatus: messageData.textMessageStatus
         property var textMessageAttachments: messageData.textMessageAttachments
         property bool newEvent: messageData.newEvent
-        property string textMessage: messageData.textMessage
+        property var textMessage: messageData.textMessage
         property string accountId: messageData.accountId
         property int index: -1
 

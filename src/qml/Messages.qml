@@ -870,6 +870,7 @@ Page {
                         // if the last outgoing message used a different accountId, add an
                         // information event and quit the loop
                         eventModel.writeTextInformationEvent(messages.account.accountId,
+                                                             threadId,
                                                              participants,
                                                              "You switched to %1")
                         break;
