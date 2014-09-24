@@ -1,3 +1,17 @@
+messaging-app (0.1+14.10.20140924-0ubuntu1) 14.09; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * Changed swipe list item to not activate on mouse release. Changed
+    actions order on Message delegate. (LP: #1368337)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 24 Sep 2014 17:57:58 +0000
+
 messaging-app (0.1+14.10.20140919-0ubuntu1) utopic; urgency=low
 
   [ Gustavo Pichorim Boiko ]
