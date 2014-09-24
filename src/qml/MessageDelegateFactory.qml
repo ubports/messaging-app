@@ -36,7 +36,6 @@ ListItemWithActions {
     signal copyMessage()
     signal showMessageDetails()
 
-    triggerActionOnMouseRelease: true
     width: messageList.width
     leftSideAction: Action {
         iconName: "delete"
