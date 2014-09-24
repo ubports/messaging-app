@@ -99,128 +99,16 @@ MultipleSelectionListView {
         anchors.right: parent.right
         height: status == Loader.Ready ? item.height : 0
         
-        sourceComponent: textMessageType == 2 ? sectionDelegate : regularMessageDelegate
-        Binding {
-            target: loader.item
-            property: "messageData"
-            value: model
-            when: (loader.status === Loader.Ready)
-        }
-        Binding {
-            target: loader.item
-            property: "index"
-            value: index
-            when: (loader.status === Loader.Ready)
-        }
-        Binding {
-            target: loader.item
-            property: "delegateItem"
-            value: loader
-            when: (loader.status === Loader.Ready)
-        }
-
-    }
-
-    Component {
-        id: sectionDelegate
-        Item {
-            property var messageData: null
-            property int index: -1
-            property Item delegateItem
-            height: sectionLabel.height
-            anchors.left: parent.left
-            anchors.right: parent.right
-            ListItem.ThinDivider {
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            Label {
-                id: sectionLabel
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: paintedHeight
-                clip: true
-                text: i18n.tr(messageData.textMessage).arg(telepathyHelper.accountForId(messageData.accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
-                fontSize: "small"
-                horizontalAlignment: Text.AlignHCenter
-            }
-        }
-    }
-
-    Component {
-        id: regularMessageDelegate
-        Column {
-            height: childrenRect.height
-            property var messageData: null
-            property Item delegateItem
-            property var timestamp: messageData.timestamp
-            property string senderId: messageData.senderId
-            property var textReadTimestamp: messageData.textReadTimestamp
-            property int textMessageStatus: messageData.textMessageStatus
-            property var textMessageAttachments: messageData.textMessageAttachments
-            property bool newEvent: messageData.newEvent
-            property var textMessage: messageData.textMessage
-            property string accountId: messageData.accountId
-            property int index: -1
-
-            // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
-            // bellow the item
-            MessageDateSection {
-                text: visible ? DateUtils.friendlyDay(timestamp) : ""
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: units.gu(2)
-                    rightMargin: units.gu(2)
-                }
-                visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
-            }
-
-            MessageDelegateFactory {
-                objectName: "message%1".arg(index)
-
-                incoming: senderId != "self"
-                // TODO: we have several items inside
-                selected: root.isSelected(delegateItem)
-                selectionMode: root.isInSelectionMode
-                accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-                rightSideActions: {
-                    var actions = []
-                    if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-                        actions.push(reloadAction)
-                    }
-                    actions.push(copyAction)
-                    actions.push(infoAction)
-                    return actions
-                }
-
-                // TODO: need select only the item
-                onItemClicked: {
-                    if (root.isInSelectionMode) {
-                        if (!root.selectItem(delegateItem)) {
-                            root.deselectItem(delegateItem)
-                        }
-                    }
-                }
-                onItemPressAndHold: {
-                    root.startSelection()
-                    root.selectItem(delegateItem)
-                }
-                Component.onCompleted: {
-                    if (newEvent) {
-                        messages.markMessageAsRead(accountId, threadId, eventId, type);
-                    }
-                }
-            }
+        Component.onCompleted: {
+            var properties = {"messageData": model, "index": index, "delegateItem": loader}
+            var sourceFile = textMessageType == 2 ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
+            loader.setSource(sourceFile, properties)
         }
     }
 
     onSelectionDone: {
-        var selectedAll = (items.count == eventModel.count)
         for (var i=0; i < items.count; i++) {
             var event = items.get(i).model
-            if (event.textMessageType == 2 && !selectedAll) {
-                continue
-            }
             eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
         }
     }
