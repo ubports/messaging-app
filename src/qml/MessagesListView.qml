@@ -101,7 +101,7 @@ MultipleSelectionListView {
         
         Component.onCompleted: {
             var properties = {"messageData": model, "index": index, "delegateItem": loader}
-            var sourceFile = textMessageType == 2 ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
+            var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
         }
     }
