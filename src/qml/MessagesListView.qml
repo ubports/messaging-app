@@ -215,8 +215,12 @@ MultipleSelectionListView {
     }
 
     onSelectionDone: {
+        var selectedAll = (items.count == eventModel.count)
         for (var i=0; i < items.count; i++) {
             var event = items.get(i).model
+            if (event.textMessageType == 2 && !selectedAll) {
+                continue
+            }
             eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
         }
     }
