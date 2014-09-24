@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-23 04:44+0000\n"
+"PO-Revision-Date: 2014-09-24 05:06+0000\n"
 "Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-23 07:21+0000\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:41+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -109,6 +109,8 @@ msgstr "ياپ"
 #: ../src/qml/MainPage.qml:139
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
+"يېڭى خەت يېزىش ئۈچۈن ئېكراننىڭ ئاستىدىن ئۈستىگە قارىتىپ تەز سىيرىسىڭىز "
+"بولىدۇ."
 
 #: ../src/qml/Messages.qml:505
 msgid "Contact"
@@ -206,7 +208,7 @@ msgstr "ئۇچۇر پروگراممىسى"
 
 #: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
-msgstr ""
+msgstr "ئۇچۇرنىڭ مەزمۇنى يوقالغان"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
 msgid "Myself"
@@ -270,6 +272,9 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"بارلىق ئۇچۇرلارنى ئەۋەتىشتە ئىشلىتىلىدىغان كۆڭۈلدىكى SIM نى تاللايدۇ. بۇنى "
+"<a href=\"system_settings\">سىستېما تەڭشىكى</a> دە ھەرقاچان ئۆزگەرتكىلى "
+"بولىدۇ."
 
 #: ../src/qml/Messages.qml:819
 msgid "Send"
