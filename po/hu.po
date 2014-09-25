@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-17 08:33+0000\n"
+"PO-Revision-Date: 2014-09-24 15:36+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:48+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -287,7 +287,7 @@ msgstr "Küldés"
 
 #: ../src/qml/MessageInfoDialog.qml:118
 msgid "Sent"
-msgstr "Elküldött"
+msgstr "Elküldve"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -318,7 +318,7 @@ msgstr "Jelenleg nincs hálózat"
 msgid "To"
 msgstr "Címzett"
 
-#: ../src/qml/MultiRecipientInput.qml:145
+#: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
 msgstr "Címzett:"
 
