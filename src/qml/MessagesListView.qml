@@ -104,6 +104,13 @@ MultipleSelectionListView {
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
         }
+
+        Binding {
+            target: loader.item
+            property: "index"
+            value: index
+            when: (loader.status === Loader.Ready)
+        }
     }
 
     onSelectionDone: {
