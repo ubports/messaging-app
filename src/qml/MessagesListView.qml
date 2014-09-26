@@ -100,7 +100,7 @@ MultipleSelectionListView {
         height: status == Loader.Ready ? item.height : 0
         
         Component.onCompleted: {
-            var properties = {"messageData": model, "index": index, "delegateItem": loader}
+            var properties = {"messageData": model}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
         }
@@ -109,6 +109,13 @@ MultipleSelectionListView {
             target: loader.item
             property: "index"
             value: index
+            when: (loader.status === Loader.Ready)
+        }
+
+        Binding {
+            target: loader.item
+            property: "delegateItem"
+            value: loader
             when: (loader.status === Loader.Ready)
         }
     }
