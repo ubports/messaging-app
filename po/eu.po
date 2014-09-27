@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-17 20:35+0000\n"
+"PO-Revision-Date: 2014-09-26 16:46+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-27 06:34+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -121,7 +121,7 @@ msgstr "Idatzi mezu berri bat hatza pantailaren behealdetik gorantz pasaz."
 msgid "Contact"
 msgstr "Kontaktua"
 
-#: ../src/qml/MessagesListView.qml:73
+#: ../src/qml/MessagesListView.qml:90
 msgid "Copy"
 msgstr "Kopiatu"
 
@@ -129,7 +129,7 @@ msgstr "Kopiatu"
 msgid "Create new"
 msgstr "Sortu berria"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Ezabatu"
 
@@ -149,9 +149,9 @@ msgstr "Ez galdetu berriro"
 msgid "Failed"
 msgstr "Huts egin du"
 
-#: ../src/qml/MessageDelegateFactory.qml:140
+#: ../src/qml/MessageDelegateFactory.qml:139
 msgid "Failed!"
-msgstr "Huts eginda!"
+msgstr "Hutseginda!"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "Favorites"
@@ -175,7 +175,7 @@ msgstr "Taldea (%1)"
 msgid "Image Preview"
 msgstr "Irudiaren aurrebista"
 
-#: ../src/qml/MessagesListView.qml:80
+#: ../src/qml/MessagesListView.qml:66
 msgid "Info"
 msgstr "Informazioa"
 
@@ -183,7 +183,7 @@ msgstr "Informazioa"
 msgid "Later"
 msgstr "Geroago"
 
-#: ../src/qml/MessagesListView.qml:83
+#: ../src/qml/MessagesListView.qml:69
 msgid "MMS"
 msgstr "MMSa"
 
@@ -252,11 +252,11 @@ msgstr "Jasota"
 msgid "Remove"
 msgstr "Kendu"
 
-#: ../src/qml/MessagesListView.qml:66
+#: ../src/qml/MessagesListView.qml:83
 msgid "Retry"
 msgstr "Saiatu berriz"
 
-#: ../src/qml/MessagesListView.qml:83
+#: ../src/qml/MessagesListView.qml:69
 msgid "SMS"
 msgstr "SMSa"
 
@@ -286,7 +286,7 @@ msgstr "Bidali"
 
 #: ../src/qml/MessageInfoDialog.qml:118
 msgid "Sent"
-msgstr "Bidalita"
+msgstr "Noiz"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -317,7 +317,7 @@ msgstr "Une honetan ez dago sarerik."
 msgid "To"
 msgstr "Nori"
 
-#: ../src/qml/MultiRecipientInput.qml:145
+#: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
 msgstr "Nori:"
 
