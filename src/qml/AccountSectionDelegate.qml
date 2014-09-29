@@ -28,10 +28,8 @@ ListItemWithActions {
     property var messageData: null
     property int index: -1
     property Item delegateItem
-    selected: root.isSelected(delegateItem)
-    selectionMode: root.isInSelectionMode
 
-    height: selectionMode ? sectionLabel.height + units.gu(3) : sectionLabel.height + units.gu(2)
+    height: sectionLabel.height + units.gu(2)
     anchors.left: parent.left
     anchors.right: parent.right
     ListItem.ThinDivider {

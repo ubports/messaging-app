@@ -121,14 +121,18 @@ MultipleSelectionListView {
     }
 
     onSelectionDone: {
+        var removeDividers = (items.count == eventModel.count)
         for (var i=0; i < items.count; i++) {
             var event = items.get(i).model
+            if (!removeDividers && event.textMessageType == HistoryThreadModel.MessageTypeInformation) {
+                continue;
+            }
             eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
         }
     }
 
     onCountChanged: {
-        // list is in the bootom we should scroll to the new message
+        // list is in the bottom we should scroll to the new message
         if (Math.abs(height + contentY) < units.gu(3)) {
             currentIndex = 0
             positionViewAtBeginning()
