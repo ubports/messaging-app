@@ -837,14 +837,22 @@ Page {
                     PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
                     return
                 }
+
+                if (messages.account.simLocked) {
+                    PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
+                    return
+                }
+
                 if (!checkNetwork()) {
                     Qt.inputMethod.hide()
                     PopupUtils.open(noNetworkDialog)
                     return
                 }
+
                 if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
                     PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
                 }
+
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
