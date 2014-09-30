@@ -63,7 +63,7 @@ ListItemWithActions {
         anchors.horizontalCenter: parent.horizontalCenter
         height: paintedHeight
         clip: true
-        text: i18n.tr(messageData.textMessage).arg(telepathyHelper.accountForId(messageData.accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
+        text: i18n.tr("You switched to %1").arg(telepathyHelper.accountForId(messageData.accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
         fontSize: "x-small"
         horizontalAlignment: Text.AlignHCenter
     }

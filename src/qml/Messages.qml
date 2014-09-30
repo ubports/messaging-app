@@ -862,8 +862,6 @@ Page {
                                                    participants,
                                                    HistoryThreadModel.MatchPhoneNumber,
                                                    true)
-                // this is just to make the string translatable
-                var fakeString = i18n.tr("You switched to %1")
                 for (var i=0; i < eventModel.count; i++) {
                     var event = eventModel.get(i)
                     if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -872,7 +870,7 @@ Page {
                         eventModel.writeTextInformationEvent(messages.account.accountId,
                                                              threadId,
                                                              participants,
-                                                             "You switched to %1")
+                                                             "")
                         break;
                     } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
                         // in case last ougoing event used the same accountId, just skip
