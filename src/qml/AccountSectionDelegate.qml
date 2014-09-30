@@ -63,7 +63,10 @@ ListItemWithActions {
         anchors.horizontalCenter: parent.horizontalCenter
         height: paintedHeight
         clip: true
-        text: i18n.tr("You switched to %1").arg(telepathyHelper.accountForId(messageData.accountId).displayName) + " @ " + DateUtils.formatLogDate(messageData.timestamp)
+        // TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+        text: i18n.tr("You switched to %1 @ %2")
+              .arg(telepathyHelper.accountForId(messageData.accountId).displayName)
+              .arg(DateUtils.formatLogDate(messageData.timestamp))
         fontSize: "x-small"
         horizontalAlignment: Text.AlignHCenter
     }
