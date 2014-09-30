@@ -82,6 +82,7 @@ Page {
         }
 
         if (messages.account.simLocked) {
+            Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
             return false
         }
@@ -854,6 +855,7 @@ Page {
                 }
 
                 if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                    Qt.inputMethod.hide()
                     PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
                 }
 
