@@ -73,8 +73,26 @@ Page {
         }
     }
 
-    function checkNetwork() {
-        return messages.account.connected;
+    function sendMessageSanityCheck() {
+        // check if at least one account is selected
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+            return false
+        }
+
+        if (messages.account.simLocked) {
+            PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
+            return false
+        }
+
+        if (!messages.account.connected) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(noNetworkDialog)
+            return false
+        }
+
+        return true
     }
 
     function onPhonePickedDuringSearch(phoneNumber) {
@@ -831,21 +849,7 @@ Page {
                 return false
             }
             onClicked: {
-                // check if at least one account is selected
-                if (!messages.account) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
-                    return
-                }
-
-                if (messages.account.simLocked) {
-                    PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
-                    return
-                }
-
-                if (!checkNetwork()) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(noNetworkDialog)
+                if (!sendMessageSanityCheck()) {
                     return
                 }
 

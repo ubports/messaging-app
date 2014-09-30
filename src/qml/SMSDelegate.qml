@@ -34,6 +34,10 @@ MessageDelegate {
 
     function resendMessage()
     {
+        if (!sendMessageSanityCheck()) {
+            return
+        }
+
         eventModel.removeEvent(root.messageData.accountId,
                                root.messageData.threadId,
                                root.messageData.eventId,
