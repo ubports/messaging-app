@@ -135,6 +135,17 @@ Page {
         }
     }
 
+    InverseMouseArea {
+        anchors.fill: edgeLoader.item
+        sensingArea: mainView
+        enabled: !tip.hidden
+        onPressed: {
+            mouse.accepted = false
+            page.focus = false
+        }
+        z: 1
+    }
+
     Rectangle {
         id: bgVisual
 
