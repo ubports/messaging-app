@@ -34,7 +34,7 @@ Component {
                 anchors.right: parent.right
                 height: paintedHeight
                 verticalAlignment: Text.AlignVCenter
-                text: i18n.tr("Please unlock your SIM card to call or send a message. You can revisit your SIM card settings in <a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>.")
+                text: i18n.tr("Please unlock your SIM card to call or send a message. You can unlock your SIM card from the Network Indicator at the top of the screen or by visiting <a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>.")
                 wrapMode: Text.WordWrap
                 onLinkActivated: {
                     PopupUtils.close(dialogue)
