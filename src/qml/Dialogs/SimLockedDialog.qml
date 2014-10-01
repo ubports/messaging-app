@@ -45,14 +45,15 @@ Component {
                 spacing: units.gu(4)
                 anchors.horizontalCenter: parent.horizontalCenter
                 Button {
-                    objectName: "cancelSimLockedDialog"
-                    text: i18n.tr("Cancel")
+                    objectName: "okSimLockedDialog"
+                    text: i18n.tr("Ok")
                     color: UbuntuColors.orange
                     onClicked: {
                         PopupUtils.close(dialogue)
                     }
                 }
-                Button {
+                // Please, reenable this once lp:1374215 gets fixed
+                /*Button {
                     objectName: "unlockSimLockedDialog"
                     text: i18n.tr("Unlock")
                     color: UbuntuColors.orange
@@ -60,7 +61,7 @@ Component {
                         PopupUtils.close(dialogue)
                         telepathyHelper.unlockSimCards()
                     }
-                }
+                }*/
             }
         }
     }
