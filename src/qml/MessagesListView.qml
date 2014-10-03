@@ -30,6 +30,7 @@ MultipleSelectionListView {
 
     property var _currentSwipedItem: null
     property list<Action> _availableActions
+    property string lastEventId: ""
 
     function updateSwippedItem(item)
     {
@@ -105,6 +106,18 @@ MultipleSelectionListView {
             loader.setSource(sourceFile, properties)
         }
 
+        onStatusChanged: {
+            if (status == Loader.Ready) {
+                // This way we scroll the list always when a new message
+                // is inserted at the top of the model. This is also done in onCountChanged,
+                // but we need to do it here again as the delegate might not exist at that time.
+                if (index == 0) {
+                    currentIndex = 0
+                    positionViewAtBeginning()
+                }
+            }
+        }
+
         Binding {
             target: loader.item
             property: "index"
@@ -130,10 +143,14 @@ MultipleSelectionListView {
             eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
         }
     }
-
     onCountChanged: {
-        // list is in the bottom we should scroll to the new message
-        if (Math.abs(height + contentY) < units.gu(3)) {
+        if (count == 0) {
+            lastEventId = ""
+            return
+        }
+        // scroll listview to the latest message
+        if (lastEventId !== eventModel.get(0).eventId) {
+            lastEventId = eventModel.get(0).eventId
             currentIndex = 0
             positionViewAtBeginning()
         }
