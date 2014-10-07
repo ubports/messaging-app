@@ -30,7 +30,6 @@ MultipleSelectionListView {
 
     property var _currentSwipedItem: null
     property list<Action> _availableActions
-    property string lastEventId: ""
 
     function updateSwippedItem(item)
     {
@@ -56,6 +55,7 @@ MultipleSelectionListView {
     }
     listModel: participants.length > 0 ? eventModel : null
     verticalLayoutDirection: ListView.BottomToTop
+    highlightFollowsCurrentItem: true
     // this is to keep the scrolling smooth
     cacheBuffer: units.gu(10)*20
     currentIndex: 0
@@ -130,14 +130,10 @@ MultipleSelectionListView {
             eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
         }
     }
+
     onCountChanged: {
-        if (count == 0) {
-            lastEventId = ""
-            return
-        }
-        // scroll listview to the latest message
-        if (lastEventId !== eventModel.get(0).eventId) {
-            lastEventId = eventModel.get(0).eventId
+        // list is in the bottom we should scroll to the new message
+        if (Math.abs(height + contentY) < units.gu(3)) {
             currentIndex = 0
             positionViewAtBeginning()
         }
