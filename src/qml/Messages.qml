@@ -73,8 +73,27 @@ Page {
         }
     }
 
-    function checkNetwork() {
-        return messages.account.connected;
+    function sendMessageSanityCheck() {
+        // check if at least one account is selected
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+            return false
+        }
+
+        if (messages.account.simLocked) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
+            return false
+        }
+
+        if (!messages.account.connected) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(noNetworkDialog)
+            return false
+        }
+
+        return true
     }
 
     function onPhonePickedDuringSearch(phoneNumber) {
@@ -830,20 +849,15 @@ Page {
                 return false
             }
             onClicked: {
-                // check if at least one account is selected
-                if (!messages.account) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+                if (!sendMessageSanityCheck()) {
                     return
                 }
-                if (!checkNetwork()) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(noNetworkDialog)
-                    return
-                }
+
                 if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                    Qt.inputMethod.hide()
                     PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
                 }
+
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
