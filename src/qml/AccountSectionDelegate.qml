@@ -28,6 +28,7 @@ ListItemWithActions {
     property var messageData: null
     property int index: -1
     property Item delegateItem
+    property string accountLabel: multipleAccounts ? telepathyHelper.accountForId(messageData.accountId).displayName : ""
 
     height: sectionLabel.height + units.gu(2)
     anchors.left: parent.left
@@ -65,7 +66,7 @@ ListItemWithActions {
         clip: true
         // TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
         text: i18n.tr("You switched to %1 @ %2")
-              .arg(telepathyHelper.accountForId(messageData.accountId).displayName)
+              .arg(accountLabel)
               .arg(DateUtils.formatLogDate(messageData.timestamp))
         fontSize: "x-small"
         horizontalAlignment: Text.AlignHCenter
