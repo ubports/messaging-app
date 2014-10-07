@@ -19,6 +19,7 @@
 import QtQuick 2.2
 
 import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
@@ -92,69 +93,46 @@ MultipleSelectionListView {
         }
     ]
 
-    listDelegate: Column {
-        id: messageDelegate
-
-        // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
-        // bellow the item
-        MessageDateSection {
-            text: visible ? DateUtils.friendlyDay(timestamp) : ""
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: units.gu(2)
-                rightMargin: units.gu(2)
-            }
-            visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
+    listDelegate: Loader {
+        id: loader
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: status == Loader.Ready ? item.height : 0
+        
+        Component.onCompleted: {
+            var properties = {"messageData": model}
+            var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
+            loader.setSource(sourceFile, properties)
         }
 
-        MessageDelegateFactory {
-            objectName: "message%1".arg(index)
+        Binding {
+            target: loader.item
+            property: "index"
+            value: index
+            when: (loader.status === Loader.Ready)
+        }
 
-            incoming: senderId != "self"
-            // TODO: we have several items inside
-            selected: root.isSelected(messageDelegate)
-            selectionMode: root.isInSelectionMode
-            accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
-            rightSideActions: {
-                var actions = []
-                if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-                    actions.push(reloadAction)
-                }
-                actions.push(copyAction)
-                actions.push(infoAction)
-                return actions
-            }
-
-            // TODO: need select only the item
-            onItemClicked: {
-                if (root.isInSelectionMode) {
-                    if (!root.selectItem(messageDelegate)) {
-                        root.deselectItem(messageDelegate)
-                    }
-                }
-            }
-            onItemPressAndHold: {
-                root.startSelection()
-                root.selectItem(messageDelegate)
-            }
-            Component.onCompleted: {
-                if (newEvent) {
-                    messages.markMessageAsRead(accountId, threadId, eventId, type);
-                }
-            }
+        Binding {
+            target: loader.item
+            property: "delegateItem"
+            value: loader
+            when: (loader.status === Loader.Ready)
         }
     }
 
     onSelectionDone: {
+        var removeDividers = (items.count == eventModel.count)
         for (var i=0; i < items.count; i++) {
             var event = items.get(i).model
+            if (!removeDividers && event.textMessageType == HistoryThreadModel.MessageTypeInformation) {
+                continue;
+            }
             eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
         }
     }
 
     onCountChanged: {
-        // list is in the bootom we should scroll to the new message
+        // list is in the bottom we should scroll to the new message
         if (Math.abs(height + contentY) < units.gu(3)) {
             currentIndex = 0
             positionViewAtBeginning()

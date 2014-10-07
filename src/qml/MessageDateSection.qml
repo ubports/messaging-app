@@ -34,5 +34,7 @@ Item {
     }
     ListItem.ThinDivider {
         anchors.bottom: parent.bottom
+        anchors.rightMargin: 0
+        anchors.leftMargin: 0
     }
 }
