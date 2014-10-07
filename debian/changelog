@@ -1,3 +1,25 @@
+messaging-app (0.1+14.10.20141007.1-0ubuntu1) 14.09; urgency=low
+
+  [ Bill Filler ]
+  * use header in splash screen (LP: #1378379)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Ship the messaging-app icon together with the package (LP: #1365408)
+
+  [ Tiago Salem Herrmann ]
+  * Add initial support for the new information messageType. Notify
+    users when the active sim card was switched. (LP: #1356950)
+  * Don't show the attachment popup on onClicked(). Update bottom edge
+    behavior (LP: #1368718)
+  * Add support for sim lock. (LP: #1371661)
+  * Fix black image in the mms preview. (LP: #1373462)
+  * Make conversations view header fixed.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 07 Oct 2014 16:58:07 +0000
+
 messaging-app (0.1+14.10.20140924-0ubuntu1) 14.09; urgency=low
 
   [ CI bot ]
