@@ -56,7 +56,6 @@ MultipleSelectionListView {
     }
     listModel: participants.length > 0 ? eventModel : null
     verticalLayoutDirection: ListView.BottomToTop
-    highlightFollowsCurrentItem: true
     // this is to keep the scrolling smooth
     cacheBuffer: units.gu(10)*20
     currentIndex: 0
@@ -104,18 +103,6 @@ MultipleSelectionListView {
             var properties = {"messageData": model}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
-        }
-
-        onStatusChanged: {
-            if (status == Loader.Ready) {
-                // This way we scroll the list always when a new message
-                // is inserted at the top of the model. This is also done in onCountChanged,
-                // but we need to do it here again as the delegate might not exist at that time.
-                if (index == 0) {
-                    currentIndex = 0
-                    positionViewAtBeginning()
-                }
-            }
         }
 
         Binding {
