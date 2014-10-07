@@ -35,6 +35,7 @@ LocalPageWithBottomEdge {
 
     state: selectionMode ? "select" : searching ? "search" : "default"
     title: selectionMode ? " " : i18n.tr("Messages")
+    flickable: null
 
     bottomEdgeEnabled: !selectionMode && !searching
     bottomEdgeTitle: i18n.tr("Create new")
@@ -177,6 +178,7 @@ LocalPageWithBottomEdge {
             bottom: keyboard.top
         }
         listModel: threadModel
+        clip: true
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
