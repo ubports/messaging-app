@@ -73,8 +73,27 @@ Page {
         }
     }
 
-    function checkNetwork() {
-        return messages.account.connected;
+    function sendMessageSanityCheck() {
+        // check if at least one account is selected
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+            return false
+        }
+
+        if (messages.account.simLocked) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
+            return false
+        }
+
+        if (!messages.account.connected) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(noNetworkDialog)
+            return false
+        }
+
+        return true
     }
 
     function onPhonePickedDuringSearch(phoneNumber) {
@@ -633,19 +652,20 @@ Page {
                             id: avatarImage
                             width: units.gu(8)
                             height: units.gu(8)
+                            sourceSize.height: height
+                            sourceSize.width: width
                             fillMode: Image.PreserveAspectCrop
                             source: filePath
                             asynchronous: true
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
+                            onPressAndHold: {
                                 mouse.accept = true
                                 Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
-                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -831,20 +851,15 @@ Page {
                 return false
             }
             onClicked: {
-                // check if at least one account is selected
-                if (!messages.account) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+                if (!sendMessageSanityCheck()) {
                     return
                 }
-                if (!checkNetwork()) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(noNetworkDialog)
-                    return
-                }
+
                 if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+                    Qt.inputMethod.hide()
                     PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
                 }
+
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
@@ -857,12 +872,26 @@ Page {
                     participants = multiRecipient.recipients
                 }
                 // create the new thread and update the threadId list
-                eventModel.threadIdForParticipants(messages.account.accountId,
+                var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
                                                    HistoryThreadModel.EventTypeText,
                                                    participants,
                                                    HistoryThreadModel.MatchPhoneNumber,
                                                    true)
-
+                for (var i=0; i < eventModel.count; i++) {
+                    var event = eventModel.get(i)
+                    if (event.senderId == "self" && event.accountId != messages.account.accountId) {
+                        // if the last outgoing message used a different accountId, add an
+                        // information event and quit the loop
+                        eventModel.writeTextInformationEvent(messages.account.accountId,
+                                                             threadId,
+                                                             participants,
+                                                             "")
+                        break;
+                    } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
+                        // in case last ougoing event used the same accountId, just skip
+                        break;
+                    }
+                }
                 updateFilters()
                 if (attachments.count > 0) {
                     var newAttachments = []

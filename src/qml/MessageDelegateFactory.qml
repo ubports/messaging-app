@@ -76,7 +76,7 @@ ListItemWithActions {
         Binding {
             target: loader.item
             property: "messageData"
-            value: model
+            value: messageData
             when: (loader.status === Loader.Ready)
         }
         Binding {

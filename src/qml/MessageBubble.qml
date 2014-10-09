@@ -130,7 +130,7 @@ Rectangle {
                 return ""
 
             var str = Qt.formatTime(messageTimeStamp).toLowerCase()
-            if (root.accountName.length === 0) {
+            if (root.accountName.length === 0 || !root.messageIncoming) {
                 return str
             }
             str += " @ %1".arg(root.accountName)

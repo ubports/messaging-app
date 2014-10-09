@@ -48,6 +48,10 @@ MessageDelegate {
 
     function resendMessage()
     {
+        if (!sendMessageSanityCheck()) {
+            return
+        }
+
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
