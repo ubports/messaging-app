@@ -129,7 +129,7 @@ Rectangle {
             if (messageTimeStamp === "")
                 return ""
 
-            var str = Qt.formatTime(messageTimeStamp).toLowerCase()
+            var str = Qt.formatTime(messageTimeStamp, Qt.DefaultLocaleShortDate)
             if (root.accountName.length === 0 || !root.messageIncoming) {
                 return str
             }

@@ -145,29 +145,16 @@ ListItemWithActions {
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
-    Row {
+    Label {
         id: time
-
-        property string dateStr: Qt.formatTime(eventTimestamp)
-        property var dateParts: dateStr.split(' ')
 
         anchors {
             verticalCenter: contactName.verticalCenter
             right: parent.right
         }
-        Label {
-            fontSize: "x-small"
-            font.weight: Font.DemiBold
-            opacity: 0.70
-            text: time.dateParts[0]
-        }
-        Label {
-            fontSize: "x-small"
-            opacity: 0.70
-            text: time.dateParts.length > 1 ? " " + time.dateParts[1].toLowerCase() : ""
-            // do not display this if the date format is 24h
-            visible: time.dateParts.length > 1
-        }
+
+        text: Qt.formatTime(eventTimestamp, Qt.DefaultLocaleShortDate)
+        fontSize: "small"
     }
 
     UbuntuShape {
