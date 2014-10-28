@@ -1,3 +1,14 @@
+messaging-app (0.1+14.10.20141028~rtm-0ubuntu1) 14.09; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Tiago Salem Herrmann ]
+  * Show sim card display names on sim divider even when the sim card is
+    removed. (LP: #1382588)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 28 Oct 2014 00:13:38 +0000
+
 messaging-app (0.1+14.10.20141007.1-0ubuntu1) 14.09; urgency=low
 
   [ Bill Filler ]
