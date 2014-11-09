@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
@@ -38,8 +39,13 @@ Rectangle {
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
 
+    // XXXX: should be hoisted
+    function getCountryCode() {
+        var localeName = Qt.locale().name
+        return localeName.substr(localeName.length - 2, 2)
+    }
+
     function parseText(text) {
-        var phoneExp = /(\+?([0-9]+[ ]?)?\(?([0-9]+)\)?[- ]?([0-9]+)[- ]?([0-9]+)[- ]?([0-9]+))/img;
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // replace line breaks
@@ -49,8 +55,13 @@ Rectangle {
         if (htmlText !== text) {
             return htmlText
         }
+
         // linkify phone numbers if no web links were found
-        return text.replace(phoneExp, '<a href="tel:///$1">$1</a>');
+        var phoneNumbers = PhoneNumber.PhoneUtils.matchInText(text, getCountryCode())
+        for (var i = 0; i < phoneNumbers.length; ++i) {
+            text = text.replace(phoneNumbers[i], '<a href="tel:///$1">$1</a>')
+        }
+        return text
     }
 
     color: {
