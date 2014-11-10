@@ -30,7 +30,6 @@ Package: messaging-app
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         qtdeclarative5-ubuntu-telephony-phonenumber0.1,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          qtdeclarative5-ubuntu-history0.1 | qtdeclarative5-ubuntu-history-plugin,
          qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
