@@ -1,3 +1,10 @@
+messaging-app (0.1+15.04.20141110-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Make the time displaying consistent with dialer-app. (LP: #1375890)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 10 Nov 2014 13:26:11 +0000
+
 messaging-app (0.1+14.10.20141028~rtm-0ubuntu1) 14.09; urgency=low
 
   [ Ubuntu daily release ]
