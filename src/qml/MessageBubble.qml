@@ -19,7 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.History 0.1
-import Ubuntu.Telephony 0.1 as Telephony
+import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
@@ -57,7 +57,7 @@ Rectangle {
         }
 
         // linkify phone numbers if no web links were found
-        var phoneNumbers = Telephony.PhoneUtils.matchInText(text, getCountryCode())
+        var phoneNumbers = PhoneNumber.PhoneUtils.matchInText(text, getCountryCode())
         for (var i = 0; i < phoneNumbers.length; ++i) {
             text = text.replace(phoneNumbers[i], '<a href="tel:///$1">$1</a>')
         }
