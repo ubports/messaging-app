@@ -45,6 +45,10 @@ Rectangle {
         return localeName.substr(localeName.length - 2, 2)
     }
 
+    function formatTelSchemeWith(phoneNumber) {
+        return '<a href="tel:///' + phoneNumber + '">' + phoneNumber + '</a>'
+    }
+
     function parseText(text) {
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
@@ -59,7 +63,8 @@ Rectangle {
         // linkify phone numbers if no web links were found
         var phoneNumbers = PhoneNumber.PhoneUtils.matchInText(text, getCountryCode())
         for (var i = 0; i < phoneNumbers.length; ++i) {
-            text = text.replace(phoneNumbers[i], '<a href="tel:///$1">$1</a>')
+            var currentNumber = phoneNumbers[i]
+            text = text.replace(currentNumber, formatTelSchemeWith(currentNumber))
         }
         return text
     }
