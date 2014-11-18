@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-19 08:10+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-18 06:57+0000\n"
+"X-Generator: Launchpad (build 17241)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -54,7 +54,7 @@ msgstr "+ Crear nuevo"
 msgid "Accepted"
 msgstr "Aceptado"
 
-#: ../src/qml/Messages.qml:451
+#: ../src/qml/Messages.qml:470
 msgid "Add"
 msgstr "Añadir"
 
@@ -94,11 +94,11 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Adjunto: %1 vídeo"
 msgstr[1] "Adjuntos: %1 vídeos"
 
-#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:495
+#: ../src/qml/Messages.qml:460 ../src/qml/Messages.qml:514
 msgid "Call"
 msgstr "Llamar"
 
-#: ../src/qml/MainPage.qml:83 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:84 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -109,29 +109,29 @@ msgid "Change all Messaging associations to %1?"
 msgstr "¿Cambiar todas las asociaciones de mensajes a %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:266
 msgid "Close"
 msgstr "Cerrar"
 
-#: ../src/qml/MainPage.qml:139
+#: ../src/qml/MainPage.qml:140
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Redacte un mensaje nuevo deslizando hacia arriba desde la parte inferior de "
 "la pantalla."
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:524
 msgid "Contact"
 msgstr "Contacto"
 
-#: ../src/qml/MessagesListView.qml:73
+#: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../src/qml/MainPage.qml:40
+#: ../src/qml/MainPage.qml:41
 msgid "Create new"
 msgstr "Crear nuevo"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -151,7 +151,7 @@ msgstr "No preguntar otra vez"
 msgid "Failed"
 msgstr "Falló"
 
-#: ../src/qml/MessageDelegateFactory.qml:140
+#: ../src/qml/MessageDelegateFactory.qml:139
 msgid "Failed!"
 msgstr "¡Falló!"
 
@@ -168,7 +168,7 @@ msgid "Group"
 msgstr "Grupo"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:135
+#: ../src/qml/Messages.qml:154
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupo (%1)"
@@ -177,7 +177,7 @@ msgstr "Grupo (%1)"
 msgid "Image Preview"
 msgstr "Imagen previa"
 
-#: ../src/qml/MessagesListView.qml:80
+#: ../src/qml/MessagesListView.qml:67
 msgid "Info"
 msgstr "Información"
 
@@ -185,7 +185,7 @@ msgstr "Información"
 msgid "Later"
 msgstr "Luego"
 
-#: ../src/qml/MessagesListView.qml:83
+#: ../src/qml/MessagesListView.qml:70
 msgid "MMS"
 msgstr "MMS"
 
@@ -213,7 +213,7 @@ msgstr "Aplicación Mensajería"
 msgid "Messaging application"
 msgstr "Aplicación Mensajería"
 
-#: ../src/qml/MMSDelegate.qml:217
+#: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
 msgstr "Datos del mensaje no disponibles"
 
@@ -221,7 +221,7 @@ msgstr "Datos del mensaje no disponibles"
 msgid "Myself"
 msgstr "Yo"
 
-#: ../src/qml/Messages.qml:138
+#: ../src/qml/Messages.qml:157
 msgid "New Message"
 msgstr "Mensaje nuevo"
 
@@ -234,7 +234,7 @@ msgstr "No"
 msgid "No SIM card selected"
 msgstr "No se seleccionó ninguna SIM"
 
-#: ../src/qml/Messages.qml:243
+#: ../src/qml/Messages.qml:262
 msgid "No network"
 msgstr "Sin servicio"
 
@@ -250,15 +250,15 @@ msgstr "Leídos"
 msgid "Received"
 msgstr "Recibidos"
 
-#: ../src/qml/Messages.qml:197
+#: ../src/qml/Messages.qml:216
 msgid "Remove"
 msgstr "Quitar"
 
-#: ../src/qml/MessagesListView.qml:66
+#: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Reintentar"
 
-#: ../src/qml/MessagesListView.qml:83
+#: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
 msgstr "SMS"
 
@@ -270,7 +270,7 @@ msgstr "Guardar"
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:53 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Buscar…"
 
@@ -283,7 +283,7 @@ msgstr ""
 "cambiar la opción en <a href=\"system_settings\">Configuración del "
 "sistema</a>."
 
-#: ../src/qml/Messages.qml:819
+#: ../src/qml/Messages.qml:839
 msgid "Send"
 msgstr "Enviar"
 
@@ -307,12 +307,12 @@ msgstr "Cambiar a la SIM predeterminada:"
 msgid "Temporarily Failed"
 msgstr "Falló temporalmente"
 
-#: ../src/qml/Messages.qml:244
+#: ../src/qml/Messages.qml:263
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Actualmente sin servicio en %1"
 
-#: ../src/qml/Messages.qml:244
+#: ../src/qml/Messages.qml:263
 msgid "There is currently no network."
 msgstr "No hay servicio actualmente."
 
@@ -320,7 +320,7 @@ msgstr "No hay servicio actualmente."
 msgid "To"
 msgstr "Para"
 
-#: ../src/qml/MultiRecipientInput.qml:145
+#: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
 msgstr "A:"
 
@@ -337,7 +337,7 @@ msgid "Unknown"
 msgstr "Desconocido"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:710
 msgid "Unknown contact"
 msgstr "Contacto desconocido"
 
@@ -345,7 +345,7 @@ msgstr "Contacto desconocido"
 msgid "Video Preview"
 msgstr "Previsualizar vídeo"
 
-#: ../src/qml/Messages.qml:789
+#: ../src/qml/Messages.qml:809
 msgid "Write a message..."
 msgstr "Escriba el mensaje…"
 

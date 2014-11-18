@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-10-11 05:13+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-18 06:57+0000\n"
+"X-Generator: Launchpad (build 17241)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -49,7 +49,7 @@ msgstr "+ 新規作成"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "受理済み"
 
 #: ../src/qml/Messages.qml:470
 msgid "Add"
@@ -186,7 +186,7 @@ msgstr "メッセージの詳細"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "メッセージ"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -194,23 +194,23 @@ msgstr "Messages;SMS;MMS;Text Messages;Text;メッセージ;テキスト;チャ�
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "メッセージング"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "メッセージアプリ"
 
 #: ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "メッセージアプリ"
 
 #: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
-msgstr ""
+msgstr "メッセージデータがありません"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
 msgid "Myself"
-msgstr ""
+msgstr "自分"
 
 #: ../src/qml/Messages.qml:157
 msgid "New Message"
@@ -219,7 +219,7 @@ msgstr "新しいメッセージ"
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
@@ -231,23 +231,23 @@ msgstr "ネットワークなし"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr ""
+msgstr "保留中"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
-msgstr ""
+msgstr "読む"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
 msgid "Received"
-msgstr ""
+msgstr "受信済み"
 
 #: ../src/qml/Messages.qml:216
 msgid "Remove"
-msgstr ""
+msgstr "削除"
 
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
-msgstr ""
+msgstr "再試行"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -259,7 +259,7 @@ msgstr "保存"
 
 #: ../src/qml/NewRecipientPage.qml:57
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: ../src/qml/MainPage.qml:53 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
@@ -270,14 +270,16 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"すべてのメッセージ送信で利用する標準のSIMを選択してください。<a "
+"href=\"system_settings\">システム設定</a>でいつでも変更できます。"
 
 #: ../src/qml/Messages.qml:839
 msgid "Send"
-msgstr ""
+msgstr "送信"
 
 #: ../src/qml/MessageInfoDialog.qml:118
 msgid "Sent"
-msgstr ""
+msgstr "送信しました"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -285,7 +287,7 @@ msgstr "共有"
 
 #: ../src/qml/MessageInfoDialog.qml:133
 msgid "Status"
-msgstr ""
+msgstr "状態"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -298,19 +300,19 @@ msgstr "一時的な失敗"
 #: ../src/qml/Messages.qml:263
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "%1には現在ネットワークがありません"
 
 #: ../src/qml/Messages.qml:263
 msgid "There is currently no network."
-msgstr ""
+msgstr "現在ネットワークがありません"
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
-msgstr ""
+msgstr "宛先"
 
 #: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
-msgstr ""
+msgstr "宛先："
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -318,16 +320,16 @@ msgstr "今日"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "Type"
-msgstr ""
+msgstr "種類"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "不明"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:710
 msgid "Unknown contact"
-msgstr ""
+msgstr "不明な連絡先"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -339,7 +341,7 @@ msgstr "メッセージを書く..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"

@@ -9,14 +9,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
 "PO-Revision-Date: 2014-05-31 14:55+0000\n"
-"Last-Translator: Jānis-Marks Gailis <jm-gailis@fai-vianet.fr>\n"
+"Last-Translator: Jānis Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:20+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-18 06:57+0000\n"
+"X-Generator: Launchpad (build 17241)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -57,7 +57,7 @@ msgstr "+ Izveidot jaunu"
 msgid "Accepted"
 msgstr "Pieņemts"
 
-#: ../src/qml/Messages.qml:449
+#: ../src/qml/Messages.qml:470
 msgid "Add"
 msgstr "Pievienot"
 
@@ -97,11 +97,11 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/Messages.qml:439 ../src/qml/Messages.qml:493
+#: ../src/qml/Messages.qml:460 ../src/qml/Messages.qml:514
 msgid "Call"
 msgstr "Piezvanīt"
 
-#: ../src/qml/MainPage.qml:83 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:84 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -112,27 +112,27 @@ msgid "Change all Messaging associations to %1?"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:247
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:266
 msgid "Close"
 msgstr "Aizvērt"
 
-#: ../src/qml/MainPage.qml:139
+#: ../src/qml/MainPage.qml:140
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/Messages.qml:503
+#: ../src/qml/Messages.qml:524
 msgid "Contact"
 msgstr "Kontakts"
 
-#: ../src/qml/MessagesListView.qml:73
+#: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Kopēt"
 
-#: ../src/qml/MainPage.qml:40
+#: ../src/qml/MainPage.qml:41
 msgid "Create new"
 msgstr "Izveidot jaunu"
 
-#: ../src/qml/MessageDelegateFactory.qml:43 ../src/qml/ThreadDelegate.qml:105
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Dzēst"
 
@@ -152,7 +152,7 @@ msgstr "Vairs nejautāt"
 msgid "Failed"
 msgstr "Neizdevās"
 
-#: ../src/qml/MessageDelegateFactory.qml:140
+#: ../src/qml/MessageDelegateFactory.qml:139
 msgid "Failed!"
 msgstr "Neizdevās !"
 
@@ -169,7 +169,7 @@ msgid "Group"
 msgstr "Grupa"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:135
+#: ../src/qml/Messages.qml:154
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupa (%1)"
@@ -178,7 +178,7 @@ msgstr "Grupa (%1)"
 msgid "Image Preview"
 msgstr "Attēla Pirmsapskate"
 
-#: ../src/qml/MessagesListView.qml:80
+#: ../src/qml/MessagesListView.qml:67
 msgid "Info"
 msgstr "Info"
 
@@ -186,7 +186,7 @@ msgstr "Info"
 msgid "Later"
 msgstr "Vēlāk"
 
-#: ../src/qml/MessagesListView.qml:83
+#: ../src/qml/MessagesListView.qml:70
 msgid "MMS"
 msgstr "MMS"
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Messaging application"
 msgstr ""
 
-#: ../src/qml/MMSDelegate.qml:217
+#: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
 msgstr ""
 
@@ -222,7 +222,7 @@ msgstr ""
 msgid "Myself"
 msgstr "Es"
 
-#: ../src/qml/Messages.qml:138
+#: ../src/qml/Messages.qml:157
 msgid "New Message"
 msgstr "Jauna Ziņa"
 
@@ -235,7 +235,7 @@ msgstr ""
 msgid "No SIM card selected"
 msgstr "Nav izvēlēta neviena SIM karte"
 
-#: ../src/qml/Messages.qml:243
+#: ../src/qml/Messages.qml:262
 msgid "No network"
 msgstr "Nav tīkla"
 
@@ -251,15 +251,15 @@ msgstr "Lasīts"
 msgid "Received"
 msgstr "Saņemts"
 
-#: ../src/qml/Messages.qml:197
+#: ../src/qml/Messages.qml:216
 msgid "Remove"
 msgstr "Izņemt"
 
-#: ../src/qml/MessagesListView.qml:66
+#: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Mēģināt vēlreiz"
 
-#: ../src/qml/MessagesListView.qml:83
+#: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
 msgstr "SMS"
 
@@ -271,7 +271,7 @@ msgstr "Saglabāt"
 msgid "Search"
 msgstr "Meklēt"
 
-#: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:53 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Meklēt..."
 
@@ -281,7 +281,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:839
 msgid "Send"
 msgstr "Sūtīt"
 
@@ -305,12 +305,12 @@ msgstr "Pariet uz noklusējuma SIM:"
 msgid "Temporarily Failed"
 msgstr ""
 
-#: ../src/qml/Messages.qml:244
+#: ../src/qml/Messages.qml:263
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Šobrīd nav tīkla uz %1"
 
-#: ../src/qml/Messages.qml:244
+#: ../src/qml/Messages.qml:263
 msgid "There is currently no network."
 msgstr "Šobrīd nav tīkla."
 
@@ -318,7 +318,7 @@ msgstr "Šobrīd nav tīkla."
 msgid "To"
 msgstr "Uz"
 
-#: ../src/qml/MultiRecipientInput.qml:145
+#: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
 msgstr ""
 
@@ -335,7 +335,7 @@ msgid "Unknown"
 msgstr "Nezināms"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:688
+#: ../src/qml/Messages.qml:710
 msgid "Unknown contact"
 msgstr "Nezināms kontakts"
 
@@ -343,7 +343,7 @@ msgstr "Nezināms kontakts"
 msgid "Video Preview"
 msgstr "Video priekšskatījums"
 
-#: ../src/qml/Messages.qml:787
+#: ../src/qml/Messages.qml:809
 msgid "Write a message..."
 msgstr "Rakstīt īsziņu"
 
@@ -358,9 +358,3 @@ msgstr "Vakar"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr ""
-
-#~ msgid "Add contacts..."
-#~ msgstr "Pievienot kontaktus..."
-
-#~ msgid "Chats"
-#~ msgstr "Tērzēšana"
