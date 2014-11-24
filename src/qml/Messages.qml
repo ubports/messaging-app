@@ -893,7 +893,9 @@ Page {
                     }
                 }
                 updateFilters()
-                if (attachments.count > 0) {
+                // FIXME: check if the mms group chat is enabled 
+                var isMMS = attachments.count > 0 || participants.length > 1
+                if (isMMS) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
                         var attachment = []
