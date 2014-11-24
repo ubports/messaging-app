@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
+import Ubuntu.Telephony 0.1
 
 MessageDelegate {
     id: root
@@ -221,6 +222,18 @@ MessageDelegate {
                 value: root.messageText.length > 0 ? root.messageText : i18n.tr("Missing message data")
                 when: bubbleLoader.status === Loader.Ready
             }
+            Binding {
+                target: bubbleLoader.item
+                property: "sender"
+                value: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
+                when: bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+            }
+ 
+            ContactWatcher {
+                id: contactWatcher
+                phoneNumber: participants.length > 1 && messageData.senderId !== "self" ? messageData.senderId : ""
+            }
+ 
         }
     }
 }
