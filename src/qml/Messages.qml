@@ -893,9 +893,9 @@ Page {
                     }
                 }
                 updateFilters()
-                // FIXME: check if the mms group chat is enabled 
-                var isMMS = attachments.count > 0 || participants.length > 1
-                if (isMMS) {
+                var isMMS = attachments.count > 0
+                var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
+                if (isMMS || isMmsGroupChat) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
                         var attachment = []
