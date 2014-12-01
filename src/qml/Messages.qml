@@ -895,7 +895,9 @@ Page {
                 updateFilters()
                 var isMMS = attachments.count > 0
                 var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
-                if (isMMS || isMmsGroupChat) {
+                // mms group chat only works if we known our own phone number
+                var isSelfContactKnown = account.selfContactId != ""
+                if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
                         var attachment = []
