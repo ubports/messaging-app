@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-12-03 10:21+0000\n"
+"PO-Revision-Date: 2014-12-05 10:19+0000\n"
 "Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-12-04 06:35+0000\n"
+"X-Launchpad-Export-Date: 2014-12-06 06:39+0000\n"
 "X-Generator: Launchpad (build 17274)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -317,15 +317,15 @@ msgstr "Brak zasięgu dla %1"
 
 #: ../src/qml/Messages.qml:263
 msgid "There is currently no network."
-msgstr ""
+msgstr "Brak połączenia z siecią"
 
 #: ../src/qml/MessageInfoDialog.qml:107
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 #: ../src/qml/MultiRecipientInput.qml:147
 msgid "To:"
-msgstr ""
+msgstr "Do:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -333,11 +333,11 @@ msgstr "Dzisiaj"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "Nieznany"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:710
