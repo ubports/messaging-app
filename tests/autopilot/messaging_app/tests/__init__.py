@@ -37,7 +37,10 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     # Don't use keyboard on desktop
     if model() == 'Desktop':
-        subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
+        try:
+            subprocess.call(['/sbin/initctl', 'stop', 'maliit-server'])
+        except:
+            pass
 
     if model() == 'Desktop':
         scenarios = [
@@ -50,36 +53,39 @@ class MessagingAppTestCase(AutopilotTestCase):
 
     local_location = '../../src/messaging-app'
 
-    def setUp(self):
+    def setUp(self, parameter=""):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(MessagingAppTestCase, self).setUp()
 
         subprocess.call(['pkill', 'messaging-app'])
 
         if os.path.exists(self.local_location):
-            self.launch_test_local()
+            self.launch_test_local(parameter)
         else:
-            self.launch_test_installed()
+            self.launch_test_installed(parameter)
 
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
 
-    def launch_test_local(self):
+    def launch_test_local(self, parameter):
         self.app = self.launch_test_application(
             self.local_location,
             '--test-contacts',
+            parameter,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
-    def launch_test_installed(self):
+    def launch_test_installed(self, parameter):
         if model() == 'Desktop':
             self.app = self.launch_test_application(
                 'messaging-app',
                 '--test-contacts',
+                parameter,
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
             self.app = self.launch_upstart_application(
                 'messaging-app',
                 '--test-contacts',
+                parameter,
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     @property
