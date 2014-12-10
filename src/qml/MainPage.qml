@@ -38,7 +38,7 @@ LocalPageWithBottomEdge {
     flickable: null
 
     bottomEdgeEnabled: !selectionMode && !searching
-    bottomEdgeTitle: i18n.tr("Create new")
+    bottomEdgeTitle: i18n.tr("+")
     bottomEdgePageComponent: Messages { active: false }
 
     TextField {
