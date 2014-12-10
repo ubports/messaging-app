@@ -117,8 +117,9 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_textarea(self):
         """Return TextArea with blank objectName"""
 
-        return self.get_messages_page().select_single('TextArea',
-                                                      objectName='')
+        return self.get_messages_page().select_single(
+            'TextArea',
+            objectName='messageTextArea')
 
     def get_send_button(self):
         """Return Button with text Send"""
@@ -480,6 +481,10 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
                 'Label', objectName='messageText').text
             messages.append((date, text))
         return messages
+
+    def get_text_area_text(self):
+        return self.wait_select_single(
+            'TextArea', objectName='messageTextArea').text
 
 
 class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):

@@ -796,6 +796,7 @@ Page {
 
             TextArea {
                 id: messageTextArea
+                objectName: "messageTextArea"
                 anchors {
                     top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
                     left: parent.left

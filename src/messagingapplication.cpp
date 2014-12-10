@@ -20,6 +20,7 @@
 
 #include <QDir>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QDebug>
 #include <QStringList>
 #include <QQuickItem>
@@ -36,6 +37,7 @@
 #include <QVersitReader>
 
 using namespace QtVersit;
+#define Pair QPair<QString,QString>
 
 static void printUsage(const QStringList& arguments)
 {
@@ -184,10 +186,18 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
+    QString text;
     QUrl url(arg);
     QString scheme = url.scheme();
     // Remove the first "/"
     QString value = url.path().right(url.path().length() -1);
+    QUrlQuery query(url);
+    Q_FOREACH(const Pair &item, query.queryItems()) {
+        if (item.first == "text") {
+            text = item.second;
+            break;
+        }
+    }
 
     QQuickItem *mainView = m_view->rootObject();
     if (!mainView) {
@@ -196,7 +206,7 @@ void MessagingApplication::parseArgument(const QString &arg)
 
     if (scheme == "message") {
         if (!value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text));
         } else {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         }
