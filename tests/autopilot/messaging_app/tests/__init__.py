@@ -69,7 +69,6 @@ class MessagingAppTestCase(AutopilotTestCase):
     def launch_test_local(self, parameter):
         self.app = self.launch_test_application(
             self.local_location,
-            '--test-contacts',
             parameter,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
@@ -78,12 +77,9 @@ class MessagingAppTestCase(AutopilotTestCase):
         if model() == 'Desktop':
             self.app = self.launch_test_application(
                 'messaging-app',
-                '--test-contacts',
                 parameter,
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
-            # this method does not take more than one argument
-            parameter = '--test-contacts ' + parameter
             self.app = self.launch_upstart_application(
                 'messaging-app',
                 parameter,
