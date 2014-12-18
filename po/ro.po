@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-11-29 06:50+0000\n"
-"X-Generator: Launchpad (build 17267)\n"
+"X-Launchpad-Export-Date: 2014-12-18 06:50+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -289,7 +289,7 @@ msgstr ""
 "întotdeauna alegerea în <a href=\"system_settings\">Configurări de "
 "sistem</a>."
 
-#: ../src/qml/Messages.qml:839
+#: ../src/qml/Messages.qml:840
 msgid "Send"
 msgstr "Trimite"
 
@@ -351,7 +351,7 @@ msgstr "Contact necunoscut"
 msgid "Video Preview"
 msgstr "Previzualizare video"
 
-#: ../src/qml/Messages.qml:809
+#: ../src/qml/Messages.qml:810
 msgid "Write a message..."
 msgstr "Scrieți un mesaj..."
 

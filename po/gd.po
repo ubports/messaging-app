@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-11-29 06:50+0000\n"
-"X-Generator: Launchpad (build 17267)\n"
+"X-Launchpad-Export-Date: 2014-12-18 06:50+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: gd\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -300,7 +300,7 @@ msgstr ""
 "roghainn agad atharrachadh ann an <a href=\"system_settings\">Roghainnean an "
 "t-Siostaim</a> uair sam bith."
 
-#: ../src/qml/Messages.qml:839
+#: ../src/qml/Messages.qml:840
 msgid "Send"
 msgstr "Cuir"
 
@@ -362,7 +362,7 @@ msgstr "Neach neo-aithnichte"
 msgid "Video Preview"
 msgstr "Ro-shealladh air video"
 
-#: ../src/qml/Messages.qml:809
+#: ../src/qml/Messages.qml:810
 msgid "Write a message..."
 msgstr "Sgrìobh teachdaireachd..."
 

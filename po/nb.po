@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-29 06:50+0000\n"
-"X-Generator: Launchpad (build 17267)\n"
+"X-Launchpad-Export-Date: 2014-12-18 06:50+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -281,7 +281,7 @@ msgstr ""
 "kan endre dette valget i <a "
 "href=\"system_settings\">Systeminnstillingene</a> når som helst."
 
-#: ../src/qml/Messages.qml:839
+#: ../src/qml/Messages.qml:840
 msgid "Send"
 msgstr "Send"
 
@@ -343,7 +343,7 @@ msgstr "Ukjent kontakt"
 msgid "Video Preview"
 msgstr "Forhåndsvis video"
 
-#: ../src/qml/Messages.qml:809
+#: ../src/qml/Messages.qml:810
 msgid "Write a message..."
 msgstr "Skriv en melding …"
 
