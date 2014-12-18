@@ -82,9 +82,10 @@ class MessagingAppTestCase(AutopilotTestCase):
                 parameter,
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
         else:
+            # this method does not take more than one argument
+            parameter = '--test-contacts ' + parameter
             self.app = self.launch_upstart_application(
                 'messaging-app',
-                '--test-contacts',
                 parameter,
                 emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
