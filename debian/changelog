@@ -1,3 +1,10 @@
+messaging-app (0.1+15.04.20141219-0ubuntu1) vivid; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * launch_upstart_application() does not take more than one argument.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 19 Dec 2014 15:22:08 +0000
+
 messaging-app (0.1+15.04.20141210-0ubuntu1) vivid; urgency=low
 
   [ Ubuntu daily release ]
