@@ -104,9 +104,7 @@ ListItemWithActions {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: {
-            for (var i in threads) {
-                threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
-            }
+            threadModel.removeThreads(model.threads);
         }
     }
 

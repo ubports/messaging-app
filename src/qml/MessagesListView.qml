@@ -122,12 +122,16 @@ MultipleSelectionListView {
 
     onSelectionDone: {
         var removeDividers = (items.count == eventModel.count)
+        var events = [];
         for (var i=0; i < items.count; i++) {
             var event = items.get(i).model
             if (!removeDividers && event.textMessageType == HistoryThreadModel.MessageTypeInformation) {
                 continue;
             }
-            eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
+            events.push(event.properties);
+        }
+        if (events.length > 0) {
+            eventModel.removeEvents(events);
         }
     }
 
