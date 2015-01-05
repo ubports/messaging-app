@@ -50,6 +50,7 @@ Page {
     property alias contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
+    property string latestEventId: ""
     property bool pendingMessage: false
 
     function addAttachmentsToModel(transfer) {
@@ -539,6 +540,16 @@ Page {
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
+            if (count == 0) {
+                latestEventId = ""
+                return
+            }
+            if (latestEventId == "") {
+                latestEventId = eventModel.get(0).eventId
+            } else if (latestEventId != eventModel.get(0).eventId) {
+                latestEventId = eventModel.get(0).eventId
+                messageList.positionViewAtBeginning()
+            }
             if (pendingMessage) {
                 pendingMessage = false
                 messageList.positionViewAtBeginning()
