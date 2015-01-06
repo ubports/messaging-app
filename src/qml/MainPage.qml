@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -216,11 +216,16 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
+            var threadsToRemove = [];
             for (var i=0; i < items.count; i++) {
                 var threads = items.get(i).model.threads
                 for (var j in threads) {
-                    threadModel.removeThread(threads[j].accountId, threads[j].threadId, threads[j].type)
+                    threadsToRemove.push(threads[j]);
                 }
+            }
+
+            if (threadsToRemove.length > 0) {
+                threadModel.removeThreads(threadsToRemove);
             }
         }
     }
