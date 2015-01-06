@@ -1,3 +1,11 @@
+messaging-app (0.1+15.04.20150106-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Remove multiple entries all at once instead of using multiple calls.
+    (LP: #1404286)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 06 Jan 2015 17:53:44 +0000
+
 messaging-app (0.1+15.04.20141210-0ubuntu1) vivid; urgency=low
 
   [ Ubuntu daily release ]
