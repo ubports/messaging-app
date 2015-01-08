@@ -22,6 +22,7 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
+import Ubuntu.History 0.1
 
 ListItemWithActions {
     id: delegate
@@ -84,21 +85,6 @@ ListItemWithActions {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
-    // WORKAROUND: history-service can't filter by contact names
-    onSearchTermChanged: {
-        var found = false
-        var searchTermLowerCase = searchTerm.toLowerCase()
-        if (searchTerm !== "") {
-            if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
-            || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
-                found = true
-            }
-        } else {
-            found = true
-        }
-
-        height = found ? units.gu(8) : 0
-    }
 
     leftSideAction: Action {
         iconName: "delete"
@@ -217,6 +203,46 @@ ListItemWithActions {
         property alias contexts: phoneDetail.contexts
         property bool isUnknown: contactId === ""
         property string phoneNumberSubTypeLabel: ""
+        property var searchHistoryFilter: HistoryIntersectionFilter {
+            HistoryFilter { filterProperty: "threadId"; filterValue: model.threadId }
+            HistoryFilter { filterProperty: "accountId"; filterValue: model.accountId }
+            HistoryFilter { filterProperty: "message"; filterValue: searchTerm; matchFlags: HistoryFilter.MatchContains }
+        }
+        // WORKAROUND: history-service can't filter by contact names
+        Connections {
+            target: delegate
+            onSearchTermChanged: {
+                var found = false
+                var searchTermLowerCase = searchTerm.toLowerCase()
+                if (searchTerm !== "") {
+                    if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
+                    || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
+                        found = true
+                    } else {
+                        searchEventModel.filter = delegateHelper.searchHistoryFilter
+                    }
+                } else {
+                    searchEventModel.filter = null
+                    found = true
+                }
+
+                delegate.height = found ? units.gu(8) : 0
+            }
+        }
+
+        HistoryEventModel {
+            id: searchEventModel
+            type: HistoryThreadModel.EventTypeText
+            onCountChanged: {
+                if (count > 0) {
+                    delegate.height = units.gu(8)
+                } else if (searchTerm == "") {
+                    delegate.height = units.gu(8)
+                } else {
+                    delegate.height = 0
+                }
+            }
+        }
 
         function updateSubTypeLabel() {
             var subLabel = "";
