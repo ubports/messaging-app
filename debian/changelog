@@ -1,3 +1,10 @@
+messaging-app (0.1+15.04.20150108-0ubuntu1) vivid; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Scroll new messages into view. (LP: #1373479)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 08 Jan 2015 21:33:54 +0000
+
 messaging-app (0.1+15.04.20150106-0ubuntu1) vivid; urgency=low
 
   [ Gustavo Pichorim Boiko ]
