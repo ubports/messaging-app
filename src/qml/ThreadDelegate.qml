@@ -33,6 +33,10 @@ ListItemWithActions {
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property string threadId: model.threadId
+    property var displayedEvent: null
+    property var displayedEventTextAttachments: displayedEvent ? displayedEvent.textMessageAttachments : eventTextAttachments
+    property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : eventTimestamp
+    property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -54,15 +58,15 @@ ListItemWithActions {
         var videoCount = 0
         var contactCount = 0
         var attachmentCount = 0
-        for (var i = 0; i < eventTextAttachments.length; i++) {
-            if (startsWith(eventTextAttachments[i].contentType, "text/plain")) {
-                return application.readTextFile(eventTextAttachments[i].filePath)
-            } else if (startsWith(eventTextAttachments[i].contentType, "image/")) {
+        for (var i = 0; i < displayedEventTextAttachments.length; i++) {
+            if (startsWith(displayedEventTextAttachments[i].contentType, "text/plain")) {
+                return application.readTextFile(displayedEventTextAttachments[i].filePath)
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "image/")) {
                 imageCount++
-            } else if (startsWith(eventTextAttachments[i].contentType, "video/")) {
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "video/")) {
                 videoCount++
-            } else if (startsWith(eventTextAttachments[i].contentType, "text/vcard") ||
-                      startsWith(eventTextAttachments[i].contentType, "text/x-vcard")) {
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "text/vcard") ||
+                      startsWith(displayedEventTextAttachments[i].contentType, "text/x-vcard")) {
                 contactCount++
             }
         }
@@ -80,7 +84,7 @@ ListItemWithActions {
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
         }
-        return eventTextMessage
+        return displayedEventTextMessage
     }
     anchors.left: parent.left
     anchors.right: parent.right
@@ -139,7 +143,7 @@ ListItemWithActions {
             right: parent.right
         }
 
-        text: Qt.formatTime(eventTimestamp, Qt.DefaultLocaleShortDate)
+        text: Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
         fontSize: "small"
     }
 
@@ -236,9 +240,12 @@ ListItemWithActions {
             onCountChanged: {
                 if (count > 0) {
                     delegate.height = units.gu(8)
+                    delegate.displayedEvent = searchEventModel.get(0)
                 } else if (searchTerm == "") {
                     delegate.height = units.gu(8)
+                    delegate.displayedEvent = null
                 } else {
+                    delegate.displayedEvent = null
                     delegate.height = 0
                 }
             }
