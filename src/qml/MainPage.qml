@@ -203,6 +203,9 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    if (displayedEvent != null) {
+                        properties["scrollToEventId"] = displayedEvent.eventId
+                    }
                     if (model.participants[0].alias) {
                         properties["firstRecipientAlias"] = model.participants[0].alias;
                     }
