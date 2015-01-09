@@ -50,8 +50,8 @@ Page {
     property alias contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
-    property bool pendingMessage: false
     property string scrollToEventId: ""
+    property string latestEventId: ""
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -540,8 +540,14 @@ Page {
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
-            if (pendingMessage) {
-                pendingMessage = false
+            if (count == 0) {
+                latestEventId = ""
+                return
+            }
+            if (latestEventId == "") {
+                latestEventId = eventModel.get(0).eventId
+            } else if (latestEventId != eventModel.get(0).eventId) {
+                latestEventId = eventModel.get(0).eventId
                 messageList.positionViewAtBeginning()
             }
             if (scrollToEventId !== "") {
@@ -931,14 +937,12 @@ Page {
                         attachment.push(item.filePath)
                         newAttachments.push(attachment)
                     }
-                    pendingMessage = true
                     chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
                     textEntry.text = ""
                     attachments.clear()
                     return
                 }
 
-                pendingMessage = true
                 chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
                 textEntry.text = ""
             }

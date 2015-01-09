@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -26,10 +26,7 @@ MessageDelegate {
 
     function deleteMessage()
     {
-        eventModel.removeEvent(root.messageData.accountId,
-                               root.messageData.threadId,
-                               root.messageData.eventId,
-                               root.messageData.type)
+        eventModel.removeEvents([root.messageData.properties]);
     }
 
     function resendMessage()
@@ -38,10 +35,7 @@ MessageDelegate {
             return
         }
 
-        eventModel.removeEvent(root.messageData.accountId,
-                               root.messageData.threadId,
-                               root.messageData.eventId,
-                               root.messageData.type)
+        eventModel.removeEvents([root.messageData.properties]);
         // FIXME: export this information for MessageDelegate
         chatManager.sendMessage(messages.participants, textMessage, messages.account.accountId)
     }

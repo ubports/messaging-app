@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -94,9 +94,7 @@ ListItemWithActions {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: {
-            for (var i in threads) {
-                threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
-            }
+            threadModel.removeThreads(model.threads);
         }
     }
 
