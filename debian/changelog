@@ -1,3 +1,36 @@
+messaging-app (0.1+15.04.20150108-0ubuntu1) vivid; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Scroll new messages into view. (LP: #1373479)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 08 Jan 2015 21:33:54 +0000
+
+messaging-app (0.1+15.04.20150106-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Remove multiple entries all at once instead of using multiple calls.
+    (LP: #1404286)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 06 Jan 2015 17:53:44 +0000
+
+messaging-app (0.1+15.04.20141219-0ubuntu1) vivid; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * launch_upstart_application() does not take more than one argument.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 19 Dec 2014 15:22:08 +0000
+
+messaging-app (0.1+15.04.20141210-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Tiago Salem Herrmann ]
+  * Read text property from url-dispatcher. (LP: #1382623)
+  * Change bottom edge label to match design specs. (LP: #1391586)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 10 Dec 2014 17:58:37 +0000
+
 messaging-app (0.1+15.04.20141121-0ubuntu1) vivid; urgency=low
 
   [ Ubuntu daily release ]

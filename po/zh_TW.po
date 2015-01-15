@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-11-20 06:27+0000\n"
-"X-Generator: Launchpad (build 17252)\n"
+"X-Launchpad-Export-Date: 2015-01-14 06:48+0000\n"
+"X-Generator: Launchpad (build 17298)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -204,7 +204,7 @@ msgstr "訊息程式"
 msgid "Messaging application"
 msgstr "訊息應用程式"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:215
 msgid "Missing message data"
 msgstr "缺少訊息資訊"
 
@@ -271,7 +271,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr "為外發的訊息選取預設 SIM 卡。以後可在<a href=\"system_settings\">系統設定</a>修改。"
 
-#: ../src/qml/Messages.qml:839
+#: ../src/qml/Messages.qml:840
 msgid "Send"
 msgstr "傳送"
 
@@ -333,7 +333,7 @@ msgstr "聯絡人不明"
 msgid "Video Preview"
 msgstr "影片預覽"
 
-#: ../src/qml/Messages.qml:809
+#: ../src/qml/Messages.qml:810
 msgid "Write a message..."
 msgstr "撰寫訊息..."
 
