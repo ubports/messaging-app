@@ -221,10 +221,10 @@ ListItemWithActions {
                     || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
                         found = true
                     } else {
-                        searchEventModel.filter = delegateHelper.searchHistoryFilter
+                        searchEventModelLoader.active = true
                     }
                 } else {
-                    searchEventModel.filter = null
+                    searchEventModelLoader.active = false
                     found = true
                 }
 
@@ -232,19 +232,29 @@ ListItemWithActions {
             }
         }
 
-        HistoryEventModel {
-            id: searchEventModel
-            type: HistoryThreadModel.EventTypeText
-            onCountChanged: {
-                if (count > 0) {
-                    delegate.height = units.gu(8)
-                    delegate.displayedEvent = searchEventModel.get(0)
-                } else if (searchTerm == "") {
-                    delegate.height = units.gu(8)
-                    delegate.displayedEvent = null
-                } else {
-                    delegate.displayedEvent = null
-                    delegate.height = 0
+        Loader {
+            id: searchEventModelLoader
+            active: false
+            sourceComponent: searchEventModelComponent
+        }
+
+        Component {
+            id: searchEventModelComponent
+            HistoryEventModel {
+                id: eventModel
+                type: HistoryThreadModel.EventTypeText
+                filter: delegateHelper.searchHistoryFilter
+                onCountChanged: {
+                    if (count > 0) {
+                        delegate.height = units.gu(8)
+                        delegate.displayedEvent = eventModel.get(0)
+                    } else if (searchTerm == "") {
+                        delegate.height = units.gu(8)
+                        delegate.displayedEvent = null
+                    } else {
+                        delegate.displayedEvent = null
+                        delegate.height = 0
+                    }
                 }
             }
         }
