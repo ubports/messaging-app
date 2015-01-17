@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: 2014-09-17 23:22+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-01-14 06:47+0000\n"
-"X-Generator: Launchpad (build 17298)\n"
+"X-Launchpad-Export-Date: 2015-01-17 07:06+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -44,6 +44,10 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 ሰከንድ ጥሪ"
 msgstr[1] "%1 ሰከንዶች ጥሪ"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr ""
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -124,10 +128,6 @@ msgstr "ግንኙነት"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "ኮፒ"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "አዲስ መፍጠሪያ"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -236,9 +236,20 @@ msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
 msgid "No network"
 msgstr "ኔትዎርክ አልተገኘም"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "ያልተወሰነ"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -255,6 +266,10 @@ msgstr "ማስወገጃ"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "እንደገና ይሞክሩ"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -280,7 +295,7 @@ msgstr ""
 "ወደ ውጪ ለሚላኩ ጥሪዎች ነባር ሲም ይምረጡ: ምርጫዎትን በፈለጉ ጊዜ መቀየር ይችላሉ ከ <a "
 "href=\"ስርአት_ማሰናጃዎች\">ስርአት ማሰናጃዎች</a>."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "መላኪያ"
 
@@ -334,7 +349,7 @@ msgid "Unknown"
 msgstr "ያልታወቀ"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "ያልታወቀ ግንኙነት"
 
@@ -342,7 +357,7 @@ msgstr "ያልታወቀ ግንኙነት"
 msgid "Video Preview"
 msgstr "የ ቪዲዮ ቅድመ እይታ"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "መልእክት መጻፊያ..."
 
@@ -357,3 +372,12 @@ msgstr "ትናንትና"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "የ ሲም ካርድ መምረጥ አለብዎት"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr ""
+
+#~ msgid "Create new"
+#~ msgstr "አዲስ መፍጠሪያ"
