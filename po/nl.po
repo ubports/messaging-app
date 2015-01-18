@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-01-16 15:26-0200\n"
-"PO-Revision-Date: 2014-09-17 12:56+0000\n"
-"Last-Translator: Maarten Lankhorst <maarten.lankhorst@canonical.com>\n"
+"PO-Revision-Date: 2015-01-17 10:52+0000\n"
+"Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Launchpad-Export-Date: 2015-01-18 05:03+0000\n"
 "X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -47,7 +47,7 @@ msgstr[1] "gesprek van %1 seconden"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -239,7 +239,7 @@ msgstr "Geen netwerk"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -251,6 +251,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"U dient uw simkaart te deblokkeren om te kunnen bellen of een bericht te "
+"sturen. U kunt uw simkaart deblokkeren via het netwerkmenu bovenin in het "
+"scherm of door naar <a href=\"system_settings\">Systeeminstellingen &gt; "
+"Beveiliging &amp; Privacy</a> te gaan."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -270,7 +274,7 @@ msgstr "Opnieuw proberen"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "Simkaart is geblokkeerd"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -379,7 +383,7 @@ msgstr "U moet een simkaart selecteren"
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "U bent gewisseld naar %1 @ %2"
 
 #~ msgid "Create new"
 #~ msgstr "Nieuw aanmaken"
