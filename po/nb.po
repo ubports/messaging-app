@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-01-16 15:26-0200\n"
-"PO-Revision-Date: 2014-09-17 19:03+0000\n"
+"PO-Revision-Date: 2015-01-18 21:30+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
 "X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -47,7 +47,7 @@ msgstr[1] "Anrop på %1 sekunder"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -238,7 +238,7 @@ msgstr "Intet nettverk"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -250,6 +250,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"Lås opp SIM-kortet for å ringe eller sende melding. Du kan låse opp SIM-"
+"kortet fra nettverksindikatoren på toppen av skjermen, eller ved å gå til <a "
+"href=\"system_settings\">Systeminnstillinger &gt; Personvern og "
+"sikkerhet</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -269,7 +273,7 @@ msgstr "Prøv igjen"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "SIM-kortet er låst"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
