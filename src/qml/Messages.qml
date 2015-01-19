@@ -51,6 +51,7 @@ Page {
     property string lastFilter: ""
     property string text: ""
     property string scrollToEventId: ""
+    property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
 
     function addAttachmentsToModel(transfer) {
@@ -108,6 +109,16 @@ Page {
     Connections {
         target: mainView
         onAccountChanged: messages.account = mainView.account
+    }
+
+    ActivityIndicator {
+        id: activityIndicator
+        anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+        running: isSearching
+        visible: running
     }
 
     ListModel {
@@ -550,7 +561,7 @@ Page {
                 latestEventId = eventModel.get(0).eventId
                 messageList.positionViewAtBeginning()
             }
-            if (scrollToEventId !== "") {
+            if (isSearching) {
                 // if we ask for more items manually listview will stop working,
                 // so we only set again once the item was found
                 messageList.listModel = null
@@ -568,7 +579,7 @@ Page {
                     }
                 }
 
-                if (eventModel.canFetchMore && scrollToEventId !== "") {
+                if (eventModel.canFetchMore && isSearching) {
                     eventModel.fetchMore()
                 } else {
                     // event not found
@@ -582,6 +593,7 @@ Page {
     MessagesListView {
         id: messageList
         objectName: "messageList"
+        visible: !isSearching
 
         // because of the header
         clip: true
