@@ -23,6 +23,7 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 import Ubuntu.History 0.1
+import "dateUtils.js" as DateUtils
 
 ListItemWithActions {
     id: delegate
@@ -141,7 +142,13 @@ ListItemWithActions {
             right: parent.right
         }
 
-        text: Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
+        text: {
+            if (!displayedEvent) {
+                Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
+            } else {
+                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"))
+            }
+        }
         fontSize: "small"
     }
 
@@ -224,6 +231,7 @@ ListItemWithActions {
                         searchEventModelLoader.active = true
                     }
                 } else {
+                    delegate.displayedEvent = null
                     searchEventModelLoader.active = false
                     found = true
                 }
@@ -235,6 +243,7 @@ ListItemWithActions {
         Loader {
             id: searchEventModelLoader
             active: false
+            asynchronous: true
             sourceComponent: searchEventModelComponent
         }
 
