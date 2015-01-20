@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-01-16 15:26-0200\n"
-"PO-Revision-Date: 2014-09-18 15:35+0000\n"
-"Last-Translator: Víctor R. Ruiz <Unknown>\n"
+"PO-Revision-Date: 2015-01-19 23:36+0000\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Launchpad-Export-Date: 2015-01-20 07:30+0000\n"
 "X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -47,7 +47,7 @@ msgstr[1] "Llamada de %1 segundos"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -240,7 +240,7 @@ msgstr "Sin servicio"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "Aceptar"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -252,6 +252,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"Desbloquee la tarjeta SIM para llamar o enviar un mensaje. Puede hacerlo "
+"desde el indicador de red en la parte superior de la pantalla o visitando <a "
+"href=\"system_settings\">Configuración del sistema &gt; Seguridad y "
+"privacidad</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
