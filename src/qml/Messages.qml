@@ -580,7 +580,7 @@ Page {
                 }
 
                 if (eventModel.canFetchMore && isSearching) {
-                    eventModel.fetchMore()
+                    fetchMoreTimer.running = true
                 } else {
                     // event not found
                     scrollToEventId = ""
@@ -588,6 +588,14 @@ Page {
                 }
             }
         }
+    }
+
+    Timer {
+       id: fetchMoreTimer
+       running: false
+       interval: 100
+       repeat: false
+       onTriggered: eventModel.fetchMore()
     }
 
     MessagesListView {
@@ -611,7 +619,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
-        visible: !selectionMode
+        visible: !selectionMode && !isSearching
         clip: true
         MouseArea {
             anchors.fill: parent
