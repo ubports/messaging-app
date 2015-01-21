@@ -179,6 +179,7 @@ LocalPageWithBottomEdge {
         }
         listModel: threadModel
         clip: true
+        cacheBuffer: threadList.height * 2
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate

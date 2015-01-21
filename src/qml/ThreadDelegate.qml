@@ -99,6 +99,12 @@ ListItemWithActions {
         }
     }
 
+    Component.onCompleted: {
+        if (searchTerm !== "") {
+            delegateHelper.updateSearch()
+        }
+    }
+
     ContactAvatar {
         id: avatar
 
@@ -217,26 +223,31 @@ ListItemWithActions {
             HistoryFilter { filterProperty: "accountId"; filterValue: model.accountId }
             HistoryFilter { filterProperty: "message"; filterValue: searchTerm; matchFlags: HistoryFilter.MatchContains }
         }
+
+        function updateSearch() {
+            var found = false
+            var searchTermLowerCase = searchTerm.toLowerCase()
+            if (searchTerm !== "") {
+                if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
+                || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
+                    found = true
+                } else {
+                    searchEventModelLoader.active = true
+                }
+            } else {
+                delegate.displayedEvent = null
+                searchEventModelLoader.active = false
+                found = true
+            }
+
+            delegate.height = found ? units.gu(8) : 0
+        }
+
         // WORKAROUND: history-service can't filter by contact names
         Connections {
             target: delegate
             onSearchTermChanged: {
-                var found = false
-                var searchTermLowerCase = searchTerm.toLowerCase()
-                if (searchTerm !== "") {
-                    if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
-                    || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
-                        found = true
-                    } else {
-                        searchEventModelLoader.active = true
-                    }
-                } else {
-                    delegate.displayedEvent = null
-                    searchEventModelLoader.active = false
-                    found = true
-                }
-
-                delegate.height = found ? units.gu(8) : 0
+                delegateHelper.updateSearch()
             }
         }
 
