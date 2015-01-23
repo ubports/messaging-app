@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: 2014-09-14 07:43+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-07 06:18+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -44,6 +44,10 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 sekunnin puhelu"
 msgstr[1] "%1 sekunnin puhelu"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -124,10 +128,6 @@ msgstr "Yhteystieto"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Kopioi"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "Luo uusi"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -213,7 +213,7 @@ msgstr "Viestisovellus"
 msgid "Messaging application"
 msgstr "Viestisovellus"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:215
 msgid "Missing message data"
 msgstr "Viestidata puuttuu"
 
@@ -238,9 +238,24 @@ msgstr "SIM-korttia ei havaittu"
 msgid "No network"
 msgstr "Ei verkkoa"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "OK"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "Odottaa"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Avaa SIM-kortin lukitus soittaaksesi tai lähettääksesi viestejä. Voit avata "
+"lukituksen verkkoilmaisimesta näytön yläosasta tai menemällä <a "
+"href=\"system_settings\">Järjestelmän asetukset &gt; Turvallisuus ja "
+"yksityisyys</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -257,6 +272,10 @@ msgstr "Poista"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Yritä uudelleen"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "SIM-kortti on lukittu"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -282,7 +301,7 @@ msgstr ""
 "Valitse oletus-SIM kaikille lähteville viesteille. Voi muuttaa asetusta <a "
 "href=\"system_settings\">Järjestelmän asetuksissa</a>."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "Lähetä"
 
@@ -336,7 +355,7 @@ msgid "Unknown"
 msgstr "Tuntematon"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "Tuntematon yhteystieto"
 
@@ -344,7 +363,7 @@ msgstr "Tuntematon yhteystieto"
 msgid "Video Preview"
 msgstr "Videon esikatselu"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "Kirjoita viesti..."
 
@@ -359,3 +378,12 @@ msgstr "Eilen"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Valitse SIM-kortti"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Vaihdoit SIM-korttiin %1 %2"
+
+#~ msgid "Create new"
+#~ msgstr "Luo uusi"

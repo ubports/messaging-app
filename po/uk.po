@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: 2014-09-06 10:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-01-07 06:18+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -48,6 +48,10 @@ msgid_plural "%1 seconds call"
 msgstr[0] "%1-секундний дзвінок"
 msgstr[1] "%1-секундний дзвінок"
 msgstr[2] "%1-секундний дзвінок"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -133,10 +137,6 @@ msgstr "Контакт"
 msgid "Copy"
 msgstr "Копіювати"
 
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "Створити"
-
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
 msgstr "Вилучити"
@@ -221,7 +221,7 @@ msgstr "Програма для обміну повідомленнями"
 msgid "Messaging application"
 msgstr "Програма для обміну повідомленнями"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:215
 msgid "Missing message data"
 msgstr "Немає даних повідомлення"
 
@@ -246,9 +246,25 @@ msgstr "Не вибрано SIM-картки"
 msgid "No network"
 msgstr "Немає мережі"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Гаразд"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "В очікуванні"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Будь ласка, розблокуйте вашу SIM-картку, щоб мати змогу дзвонити або "
+"надсилати повідомлення. Розблокувати картку можна за допомогою індикатора "
+"мережі у верхній частині екрана або за допомогою сторінки <a "
+"href=\"system_settings\">Системні параметра &gt; Безпека &amp; "
+"Конфіденційність</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -265,6 +281,10 @@ msgstr "Вилучити"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Повторити"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "SIM-картку заблоковано"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -291,7 +311,7 @@ msgstr ""
 "будь-коли змінити за допомогою <a href=\"system_settings\">Системних "
 "параметрів</a>."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "Надіслати"
 
@@ -345,7 +365,7 @@ msgid "Unknown"
 msgstr "Невідомий"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "Невідомий контакт"
 
@@ -353,7 +373,7 @@ msgstr "Невідомий контакт"
 msgid "Video Preview"
 msgstr "Перегляд відео"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "Створення повідомлення…"
 
@@ -368,3 +388,12 @@ msgstr "Вчора"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Вам слід вибрати SIM-картку"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Ви перемкнулися на %1 о %2"
+
+#~ msgid "Create new"
+#~ msgstr "Створити"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: 2014-07-19 15:10+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-01-07 06:18+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -41,6 +41,10 @@ msgstr[0] "%1분 통화"
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1초 통화"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr ""
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -117,10 +121,6 @@ msgstr "연락처"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "복사"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "새 항목 만들기"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -204,7 +204,7 @@ msgstr "메시지 프로그램"
 msgid "Messaging application"
 msgstr "메시지 프로그램"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:215
 msgid "Missing message data"
 msgstr "잃어버린 메시지 데어터"
 
@@ -229,9 +229,22 @@ msgstr "선택한 심 카드가 없습니다."
 msgid "No network"
 msgstr "네트워크 없음"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "확인"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "보류"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"통화를 하거나 메시지를 보내려면 심 카드의 잠금 상태를 해제해주십시오. 심 카드의 잠긴 상태는 상단의 네트워크를 표시나 <a "
+"href=\"system_settings\">시스템 설정 &gt; 보안 &amp; 사생활 보호</a>에서 해제할 수 있습니다."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -248,6 +261,10 @@ msgstr "제거"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "다시 시도"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "심 카드가 잠져있습니다."
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -273,7 +290,7 @@ msgstr ""
 "모든 메시지를 보낼 기본 심 카드를 선택해주십시오. 이 선택은 <a href=\"system_settings\">시스템 설정</a>에서 "
 "언제나 바꿀 수 있습니다."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "보내기"
 
@@ -327,7 +344,7 @@ msgid "Unknown"
 msgstr "알 수 없음"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "알 수 없는 연락처"
 
@@ -335,7 +352,7 @@ msgstr "알 수 없는 연락처"
 msgid "Video Preview"
 msgstr "동영상 미리 보기"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "메시지 쓰기..."
 
@@ -350,3 +367,12 @@ msgstr "어제"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "심 카드를 선택해야 합니다."
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "%1(으)로 %2에 전환했습니다."
+
+#~ msgid "Create new"
+#~ msgstr "새 항목 만들기"
