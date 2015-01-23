@@ -22,6 +22,8 @@ from messaging_app import fixture_setup
 from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
+import ubuntuuitoolkit
+
 
 class BaseMessagingTestCase(MessagingAppTestCase):
 
@@ -202,7 +204,7 @@ class TestMessaging(BaseMessagingTestCase):
         helpers.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
-        mess_thread = self.thread_list.wait_select_single(
+        search_thread = self.thread_list.wait_select_single(
             'Label',
             text='letters@'  # phonesim sends text with number as letters@
         )
@@ -297,6 +299,62 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.delete_message(message)
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
+
+    def test_search_for_message(self):
+        # receive an sms message
+        helpers.receive_sms('08151', 'Ubuntu')
+        helpers.receive_sms('08152', 'Ubuntu1')
+        helpers.receive_sms('08153', 'Ubuntu2')
+        helpers.receive_sms('08154', 'Ubuntu22')
+        helpers.receive_sms('08155', 'Ubuntu23')
+
+
+        # verify that we got the message
+        self.assertThat(self.thread_list.count, Eventually(Equals(5)))
+        threads = self.thread_list.select_many('ThreadDelegate')
+
+        self.main_view.click_header_action('searchAction')
+        text_field = self.main_view.select_single(
+            ubuntuuitoolkit.TextField,
+            objectName='searchField')
+ 
+        #self.keyboard.type(str("Ubuntu2"), delay=0.2)
+        text_field.write('Ubuntu2')
+
+        # time to perform the search
+        time.sleep(2)
+        count = 0
+        for thread in threads:
+            if thread.height != 0:
+                count+=1
+
+        self.assertThat(count, Equals(3))
+
+        text_field.clear()
+
+        text_field.write('Ubuntu1')
+
+        # time to perform the search
+        time.sleep(2)
+        count = 0
+        for thread in threads:
+            if thread.height != 0:
+                count+=1
+
+        self.assertThat(count, Equals(1))
+
+        text_field.clear()
+
+        text_field.write('Ubuntu')
+
+        # time to perform the search
+        time.sleep(2)
+        count = 0
+        for thread in threads:
+            if thread.height != 0:
+                count+=1
+
+        self.assertThat(count, Equals(5))
 
 
 class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):

@@ -43,6 +43,7 @@ LocalPageWithBottomEdge {
 
     TextField {
         id: searchField
+        objectName: "searchField"
         visible: mainPage.searching
         anchors {
             left: parent.left
