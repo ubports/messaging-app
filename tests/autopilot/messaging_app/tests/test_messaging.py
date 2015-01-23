@@ -204,7 +204,7 @@ class TestMessaging(BaseMessagingTestCase):
         helpers.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
-        search_thread = self.thread_list.wait_select_single(
+        mess_thread = self.thread_list.wait_select_single(
             'Label',
             text='letters@'  # phonesim sends text with number as letters@
         )
