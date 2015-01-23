@@ -326,15 +326,15 @@ class TestMessaging(BaseMessagingTestCase):
             objectName='searchField')
 
         text_field.write('Ubuntu2')
-        self.assertThat(count_visible_threads(threads), Equals(3))
+        self.assertThat(count_visible_threads(threads), Eventually(Equals(3)))
 
         text_field.clear()
         text_field.write('Ubuntu1')
-        self.assertThat(count_visible_threads(threads), Equals(1))
+        self.assertThat(count_visible_threads(threads), Eventually(Equals(1)))
 
         text_field.clear()
         text_field.write('Ubuntu')
-        self.assertThat(count_visible_threads(threads), Equals(5))
+        self.assertThat(count_visible_threads(threads), Eventually(Equals(5)))
 
 
 class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
