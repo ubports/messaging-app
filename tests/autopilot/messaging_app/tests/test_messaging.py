@@ -341,10 +341,12 @@ class TestMessaging(BaseMessagingTestCase):
 
         text_field.clear()
         text_field.write('%')
-        # as we are testing for items NOT to appear, there is no other way other than
-        # sleeping for awhile before checking if the threads are visible
+        # as we are testing for items NOT to appear, there is no other way
+        # other than sleeping for awhile before checking if the threads are
+        # visible
         time.sleep(5)
         self.assertThat(count_visible_threads(threads), Equals(0))
+
 
 class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
 
