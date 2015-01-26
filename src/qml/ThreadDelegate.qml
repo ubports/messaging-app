@@ -218,11 +218,13 @@ ListItemWithActions {
         property alias contexts: phoneDetail.contexts
         property bool isUnknown: contactId === ""
         property string phoneNumberSubTypeLabel: ""
-        property var searchHistoryFilter: HistoryIntersectionFilter {
+        property string latestFilter: ""
+        property var searchHistoryFilter
+        property var searchHistoryFilterString: 'import Ubuntu.History 0.1; HistoryIntersectionFilter {
             HistoryFilter { filterProperty: "threadId"; filterValue: model.threadId }
-            HistoryFilter { filterProperty: "accountId"; filterValue: model.accountId }
             HistoryFilter { filterProperty: "message"; filterValue: searchTerm; matchFlags: HistoryFilter.MatchContains }
-        }
+            HistoryUnionFilter { %1 }
+        }'
 
         function updateSearch() {
             var found = false
@@ -232,6 +234,20 @@ ListItemWithActions {
                 || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
                     found = true
                 } else {
+                    var componentFilters = ""
+                    for(var i in model.threads) {
+                        var filterValue = model.threads[i].threadId
+                        if (filterValue === "") {
+                            continue
+                        }
+                        componentFilters += 'HistoryFilter { filterProperty: "threadId"; filterValue: "%1" } '.arg(filterValue)
+                    }
+                    var finalString = searchHistoryFilterString.arg(componentFilters)
+                    if (finalString !== latestFilter) {
+                        delegateHelper.searchHistoryFilter = Qt.createQmlObject(finalString, searchEventModelLoader)
+                        latestFilter = finalString
+                    }
+ 
                     searchEventModelLoader.active = true
                 }
             } else {
