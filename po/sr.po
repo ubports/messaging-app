@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: 2014-09-24 13:20+0000\n"
 "Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-01-14 06:47+0000\n"
-"X-Generator: Launchpad (build 17298)\n"
+"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -48,6 +48,10 @@ msgid_plural "%1 seconds call"
 msgstr[0] "Позив од %1 секунде"
 msgstr[1] "Позив од %1 секунде"
 msgstr[2] "Позив од %1 секунди"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr ""
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -132,10 +136,6 @@ msgstr "Особа"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Умножи"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "Започни ново"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -244,9 +244,20 @@ msgstr "Није изабрана СИМ картица"
 msgid "No network"
 msgstr "Без мреже"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "Чека се"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -263,6 +274,10 @@ msgstr "Уклони"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Покушај поново"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -288,7 +303,7 @@ msgstr ""
 "Изаберите превасходну СИМ картицу за слање порука. Свој избор увек можете "
 "променити у <a href=\"system_settings\">Подешавањима система</a>."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "Шаљи"
 
@@ -342,7 +357,7 @@ msgid "Unknown"
 msgstr "Непознато"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "Непозната особа"
 
@@ -350,7 +365,7 @@ msgstr "Непозната особа"
 msgid "Video Preview"
 msgstr "Преглед снимка"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "Напиши поруку..."
 
@@ -365,3 +380,12 @@ msgstr "Јуче"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Морате изабрати СИМ картицу"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr ""
+
+#~ msgid "Create new"
+#~ msgstr "Започни ново"

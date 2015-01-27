@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 16:22-0200\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,6 +44,10 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] ""
 msgstr[1] ""
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr ""
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -123,10 +127,6 @@ msgstr ""
 
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
-msgstr ""
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
 msgstr ""
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Messaging application"
 msgstr ""
 
-#: ../src/qml/MMSDelegate.qml:222
+#: ../src/qml/MMSDelegate.qml:215
 msgid "Missing message data"
 msgstr ""
 
@@ -293,7 +293,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:839
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr ""
 
@@ -347,7 +347,7 @@ msgid "Unknown"
 msgstr ""
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr ""
 
@@ -355,7 +355,7 @@ msgstr ""
 msgid "Video Preview"
 msgstr ""
 
-#: ../src/qml/Messages.qml:809
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr ""
 

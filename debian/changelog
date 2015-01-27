@@ -1,3 +1,27 @@
+messaging-app (0.1+15.04.20150127-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Test that search terms are properly escaped.
+
+  [ Tiago Salem Herrmann ]
+  * Generate filters dynamically using a UnionFilter with all grouped
+    threads. (LP: #1414675)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 27 Jan 2015 13:54:07 +0000
+
+messaging-app (0.1+15.04.20150123-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Update pot file.
+
+  [ Tiago Salem Herrmann ]
+  * Query thread messages when searchTerm changes. (LP: #1376793)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 23 Jan 2015 16:56:44 +0000
+
 messaging-app (0.1+15.04.20150108-0ubuntu1) vivid; urgency=low
 
   [ Tiago Salem Herrmann ]

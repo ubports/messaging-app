@@ -43,6 +43,7 @@ LocalPageWithBottomEdge {
 
     TextField {
         id: searchField
+        objectName: "searchField"
         visible: mainPage.searching
         anchors {
             left: parent.left
@@ -179,6 +180,7 @@ LocalPageWithBottomEdge {
         }
         listModel: threadModel
         clip: true
+        cacheBuffer: threadList.height * 2
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
@@ -203,6 +205,9 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    if (displayedEvent != null) {
+                        properties["scrollToEventId"] = displayedEvent.eventId
+                    }
                     if (model.participants[0].alias) {
                         properties["firstRecipientAlias"] = model.participants[0].alias;
                     }

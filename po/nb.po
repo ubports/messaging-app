@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-17 19:03+0000\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
+"PO-Revision-Date: 2015-01-18 21:30+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-14 06:47+0000\n"
-"X-Generator: Launchpad (build 17298)\n"
+"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -44,6 +44,10 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "Anrop på %1 sekund"
 msgstr[1] "Anrop på %1 sekunder"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -124,10 +128,6 @@ msgstr "Kontakt"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Kopier"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "Lag ny"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -236,9 +236,24 @@ msgstr "Intet SIM-kort er valgt"
 msgid "No network"
 msgstr "Intet nettverk"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "OK"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "Venter"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Lås opp SIM-kortet for å ringe eller sende melding. Du kan låse opp SIM-"
+"kortet fra nettverksindikatoren på toppen av skjermen, eller ved å gå til <a "
+"href=\"system_settings\">Systeminnstillinger &gt; Personvern og "
+"sikkerhet</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -255,6 +270,10 @@ msgstr "Fjern"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Prøv igjen"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "SIM-kortet er låst"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -281,7 +300,7 @@ msgstr ""
 "kan endre dette valget i <a "
 "href=\"system_settings\">Systeminnstillingene</a> når som helst."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "Send"
 
@@ -335,7 +354,7 @@ msgid "Unknown"
 msgstr "Ukjent"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "Ukjent kontakt"
 
@@ -343,7 +362,7 @@ msgstr "Ukjent kontakt"
 msgid "Video Preview"
 msgstr "Forhåndsvis video"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "Skriv en melding …"
 
@@ -358,3 +377,12 @@ msgstr "I går"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Du må velge et SIM-kort"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "%2 byttet du til %1"
+
+#~ msgid "Create new"
+#~ msgstr "Lag ny"

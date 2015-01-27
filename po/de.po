@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
 "PO-Revision-Date: 2014-09-22 18:08+0000\n"
 "Last-Translator: Niklas Wenzel <nikwen.developer@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-14 06:47+0000\n"
-"X-Generator: Launchpad (build 17298)\n"
+"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -44,6 +44,10 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "Anfrufdauer %1 Sekunde"
 msgstr[1] "Anfrufdauer %1 Sekunden"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -126,10 +130,6 @@ msgstr "Kontakt"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Kopieren"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "Neu erstellen"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -238,9 +238,25 @@ msgstr "Keine SIM-Karte ausgewählt"
 msgid "No network"
 msgstr "Kein Netz"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Ok"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "In Arbeit"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Bitte Ihre SIM-Karte entsperren, um einen Anruf zu tätigen oder eine "
+"Nachrich zu senden. Sie können Ihre SIM-Karte von der Netzwerkanzeige am "
+"oberen Bildschirmrand oder durch Öffnen von <a "
+"href=\"system_settings\">Sytemeinstellungen &gt; Sicherheit &amp; "
+"Datenschutz</a> entsperren."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -257,6 +273,10 @@ msgstr "Entfernen"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Erneut versuchen"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "SIM-Karte ist gesperrt"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -283,7 +303,7 @@ msgstr ""
 "jederzeit in  den <a href=\"system_settings\">Systemeinstellungen</a> "
 "geändert werden."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "Senden"
 
@@ -337,7 +357,7 @@ msgid "Unknown"
 msgstr "Unbekannt"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "Unbekannter Kontakt"
 
@@ -345,7 +365,7 @@ msgstr "Unbekannter Kontakt"
 msgid "Video Preview"
 msgstr "Video-Vorschau"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "Schreiben Sie eine Nachricht …"
 
@@ -360,3 +380,12 @@ msgstr "Gestern"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Sie müssen eine SIM-Karte auswählen"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Sie haben zu %1 gewechselt um %2"
+
+#~ msgid "Create new"
+#~ msgstr "Neu erstellen"

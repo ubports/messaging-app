@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 17:16-0300\n"
-"PO-Revision-Date: 2014-09-17 14:01+0000\n"
+"POT-Creation-Date: 2015-01-16 15:26-0200\n"
+"PO-Revision-Date: 2015-01-17 12:22+0000\n"
 "Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2015-01-14 06:47+0000\n"
-"X-Generator: Launchpad (build 17298)\n"
+"X-Launchpad-Export-Date: 2015-01-18 05:03+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:45
@@ -48,6 +48,10 @@ msgid_plural "%1 seconds call"
 msgstr[0] "Convorbirea a durat %1 secundă"
 msgstr[1] "Convorbirea a durat %1 secunde"
 msgstr[2] "Convorbirea a durat %1 de secunde"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/qml/NewRecipientPage.qml:179
@@ -132,10 +136,6 @@ msgstr "Contact"
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
 msgstr "Copiază"
-
-#: ../src/qml/MainPage.qml:41
-msgid "Create new"
-msgstr "Creează nou"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
 msgid "Delete"
@@ -244,9 +244,24 @@ msgstr "Nu a fost selectat un card SIM"
 msgid "No network"
 msgstr "Fără rețea"
 
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Ok"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "În așteptare"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Deblocați cardul SIM pentru a efectua un apel saupentru a trimite un mesaj. "
+"Puteți debloca cardul SIM din indicatorul de rețea din partea de sus a "
+"ecranului sau vizitând <a href=\"system_settings\">Configurări sistem &gt; "
+"Securitate &amp; Confidențialitate</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
@@ -263,6 +278,10 @@ msgstr "Șterge"
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
 msgstr "Încercați din nou"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "Cardul SIM este blocat"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -289,7 +308,7 @@ msgstr ""
 "întotdeauna alegerea în <a href=\"system_settings\">Configurări de "
 "sistem</a>."
 
-#: ../src/qml/Messages.qml:840
+#: ../src/qml/Messages.qml:846
 msgid "Send"
 msgstr "Trimite"
 
@@ -343,7 +362,7 @@ msgid "Unknown"
 msgstr "Necunoscut"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:710
+#: ../src/qml/Messages.qml:716
 msgid "Unknown contact"
 msgstr "Contact necunoscut"
 
@@ -351,7 +370,7 @@ msgstr "Contact necunoscut"
 msgid "Video Preview"
 msgstr "Previzualizare video"
 
-#: ../src/qml/Messages.qml:810
+#: ../src/qml/Messages.qml:816
 msgid "Write a message..."
 msgstr "Scrieți un mesaj..."
 
@@ -366,3 +385,12 @@ msgstr "Ieri"
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
 msgstr "Trebuie să selectați un card SIM"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Ați schimbat la %1 @ %2"
+
+#~ msgid "Create new"
+#~ msgstr "Creează nou"

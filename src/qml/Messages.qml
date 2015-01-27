@@ -50,6 +50,8 @@ Page {
     property alias contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
+    property string scrollToEventId: ""
+    property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
 
     function addAttachmentsToModel(transfer) {
@@ -107,6 +109,16 @@ Page {
     Connections {
         target: mainView
         onAccountChanged: messages.account = mainView.account
+    }
+
+    ActivityIndicator {
+        id: activityIndicator
+        anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+        running: isSearching
+        visible: running
     }
 
     ListModel {
@@ -549,12 +561,47 @@ Page {
                 latestEventId = eventModel.get(0).eventId
                 messageList.positionViewAtBeginning()
             }
+            if (isSearching) {
+                // if we ask for more items manually listview will stop working,
+                // so we only set again once the item was found
+                messageList.listModel = null
+                // always check last 15 items
+                var maxItems = 15
+                for (var i = count-1; count >= i; i--) {
+                    if (--maxItems < 0) {
+                        break;
+                    }
+                    if (eventModel.get(i).eventId == scrollToEventId) {
+                        scrollToEventId = ""
+                        messageList.listModel = eventModel
+                        messageList.positionViewAtIndex(i, ListView.Center)
+                        return;
+                    }
+                }
+
+                if (eventModel.canFetchMore && isSearching) {
+                    fetchMoreTimer.running = true
+                } else {
+                    // event not found
+                    scrollToEventId = ""
+                    messageList.listModel = eventModel
+                }
+            }
         }
+    }
+
+    Timer {
+       id: fetchMoreTimer
+       running: false
+       interval: 100
+       repeat: false
+       onTriggered: eventModel.fetchMore()
     }
 
     MessagesListView {
         id: messageList
         objectName: "messageList"
+        visible: !isSearching
 
         // because of the header
         clip: true
@@ -568,11 +615,11 @@ Page {
 
     Item {
         id: bottomPanel
-        anchors.bottom: keyboard.top
+        anchors.bottom: isSearching ? parent.bottom : keyboard.top
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
-        visible: !selectionMode
+        visible: !selectionMode && !isSearching
         clip: true
         MouseArea {
             anchors.fill: parent
