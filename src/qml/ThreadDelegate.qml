@@ -218,11 +218,18 @@ ListItemWithActions {
         property alias contexts: phoneDetail.contexts
         property bool isUnknown: contactId === ""
         property string phoneNumberSubTypeLabel: ""
-        property var searchHistoryFilter: HistoryIntersectionFilter {
-            HistoryFilter { filterProperty: "threadId"; filterValue: model.threadId }
-            HistoryFilter { filterProperty: "accountId"; filterValue: model.accountId }
+        property string latestFilter: ""
+        property var searchHistoryFilter
+        property var searchHistoryFilterString: 'import Ubuntu.History 0.1; 
+            HistoryUnionFilter { 
+                %1 
+            }'
+        property var searchIntersectionFilter: 'HistoryIntersectionFilter {
+            HistoryFilter { filterProperty: "accountId"; filterValue: \'%1\' }
+            HistoryFilter { filterProperty: "threadId"; filterValue: \'%2\' }
             HistoryFilter { filterProperty: "message"; filterValue: searchTerm; matchFlags: HistoryFilter.MatchContains }
         }
+        '
 
         function updateSearch() {
             var found = false
@@ -232,6 +239,16 @@ ListItemWithActions {
                 || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
                     found = true
                 } else {
+                    var componentFilters = ""
+                    for(var i in model.threads) {
+                        componentFilters += searchIntersectionFilter.arg(model.threads[i].accountId).arg(model.threads[i].threadId)
+                    }
+                    var finalString = searchHistoryFilterString.arg(componentFilters)
+                    if (finalString !== latestFilter) {
+                        delegateHelper.searchHistoryFilter = Qt.createQmlObject(finalString, searchEventModelLoader)
+                        latestFilter = finalString
+                    }
+ 
                     searchEventModelLoader.active = true
                 }
             } else {
