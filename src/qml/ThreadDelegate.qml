@@ -220,11 +220,16 @@ ListItemWithActions {
         property string phoneNumberSubTypeLabel: ""
         property string latestFilter: ""
         property var searchHistoryFilter
-        property var searchHistoryFilterString: 'import Ubuntu.History 0.1; HistoryIntersectionFilter {
-            HistoryFilter { filterProperty: "threadId"; filterValue: model.threadId }
+        property var searchHistoryFilterString: 'import Ubuntu.History 0.1; 
+            HistoryUnionFilter { 
+                %1 
+            }'
+        property var searchIntersectionFilter: 'HistoryIntersectionFilter {
+            HistoryFilter { filterProperty: "accountId"; filterValue: \'%1\' }
+            HistoryFilter { filterProperty: "threadId"; filterValue: \'%2\' }
             HistoryFilter { filterProperty: "message"; filterValue: searchTerm; matchFlags: HistoryFilter.MatchContains }
-            HistoryUnionFilter { %1 }
-        }'
+        }
+        '
 
         function updateSearch() {
             var found = false
@@ -236,11 +241,7 @@ ListItemWithActions {
                 } else {
                     var componentFilters = ""
                     for(var i in model.threads) {
-                        var filterValue = model.threads[i].threadId
-                        if (filterValue === "") {
-                            continue
-                        }
-                        componentFilters += 'HistoryFilter { filterProperty: "threadId"; filterValue: "%1" } '.arg(filterValue)
+                        componentFilters += searchIntersectionFilter.arg(model.threads[i].accountId).arg(model.threads[i].threadId)
                     }
                     var finalString = searchHistoryFilterString.arg(componentFilters)
                     if (finalString !== latestFilter) {
