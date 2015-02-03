@@ -81,7 +81,7 @@ LocalPageWithBottomEdge {
             backAction: Action {
                 objectName: "cancelSearch"
                 visible: mainPage.searching
-                iconName: "close"
+                iconName: "back"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     searchField.text = ""
@@ -95,7 +95,7 @@ LocalPageWithBottomEdge {
             head: mainPage.head
             backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconName: "close"
+                iconName: "back"
                 onTriggered: threadList.cancelSelection()
             }
             actions: [

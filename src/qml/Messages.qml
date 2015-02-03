@@ -422,7 +422,7 @@ Page {
 
             backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconName: "close"
+                iconName: "back"
                 onTriggered: messageList.cancelSelection()
             }
 
