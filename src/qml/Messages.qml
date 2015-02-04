@@ -208,7 +208,7 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
-        chatManager.acknowledgeMessage(participants[0], eventId, accountId)
+        chatManager.acknowledgeMessage(participants, eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
@@ -947,7 +947,11 @@ Page {
                     }
                 }
                 updateFilters()
-                if (attachments.count > 0) {
+                var isMMS = attachments.count > 0
+                var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
+                // mms group chat only works if we known our own phone number
+                var isSelfContactKnown = account.selfContactId != ""
+                if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
                         var attachment = []

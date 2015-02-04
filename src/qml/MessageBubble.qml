@@ -81,9 +81,9 @@ Rectangle {
         }
     }
     radius: 9
-    height: senderName.height + textLabel.height + textTimestamp.height + units.gu(1)
+    height: senderName.height + senderName.anchors.topMargin + textLabel.height + textTimestamp.height + units.gu(1)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth))
+                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth, senderName.contentWidth))
             + units.gu(3)
     anchors{
         leftMargin:  units.gu(1)
@@ -95,12 +95,13 @@ Rectangle {
 
         anchors {
             top: parent.top
-            topMargin: units.gu(0.5)
+            topMargin: height != 0 ? units.gu(0.5) : 0
             left: parent.left
-            leftMargin: root.messageIncoming ? units.gu(2) : units.gu(1)
+            leftMargin: units.gu(1)
         }
         height: text === "" ? 0 : paintedHeight
-        fontSize: "large"
+        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
+        fontSize: "small"
     }
 
     Label {
