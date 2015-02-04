@@ -136,7 +136,7 @@ MainView {
         mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
-    function startChat(phoneNumber, text) {
+    function startChat(phoneNumbers, text) {
         var properties = {}
         var participants = phoneNumbers.split(";")
         properties["participants"] = participants
