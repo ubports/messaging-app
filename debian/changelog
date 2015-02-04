@@ -1,3 +1,10 @@
+messaging-app (0.1+15.04.20150204-0ubuntu1) vivid; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Add initial MMS group chat support. (LP: #1415458)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 04 Feb 2015 21:11:18 +0000
+
 messaging-app (0.1+15.04.20150127-0ubuntu1) vivid; urgency=low
 
   [ Gustavo Pichorim Boiko ]
