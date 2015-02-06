@@ -55,7 +55,7 @@ class FillCustomSmsHistory(fixtures.Fixture):
 
     history_service_dir = os.path.expanduser("~/.local/share/history-service/")
     history_db = "history.sqlite"
-    testdata_sys = "/usr/share/python3/dist-packages/messaging_app/testdata/"
+    testdata_sys = "/usr/lib/python3/dist-packages/messaging_app/testdata/"
     testdata_local = "messaging_app/testdata/"
 
     prefilled_history_local = os.path.join(testdata_local, history_db)
