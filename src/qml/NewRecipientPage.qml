@@ -130,8 +130,6 @@ Page {
 
         showAddNewButton: true
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
-        onAddNewContactClicked: Qt.openUrlExternally("addressbook:///create?callback=messaging-app.desktop&phone= ")
-        onInfoRequested: mainView.viewContact(contact.contactId)
 
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
@@ -144,6 +142,8 @@ Page {
             }
             mainStack.pop()
         }
+
+        onAddNewContactClicked: Qt.openUrlExternally("addressbook:///create?callback=messaging-app.desktop&phone= ")
         onInfoRequested: {
             Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
