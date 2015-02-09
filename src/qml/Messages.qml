@@ -97,6 +97,94 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
+    function sendMessage(text, participants, attachments) {
+        // check if at least one account is selected
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+            return false
+        }
+
+        // create the new thread and update the threadId list
+        var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
+                                           HistoryThreadModel.EventTypeText,
+                                           participants,
+                                           HistoryThreadModel.MatchPhoneNumber,
+                                           true)
+        for (var i=0; i < eventModel.count; i++) {
+            var event = eventModel.get(i)
+            if (event.senderId == "self" && event.accountId != messages.account.accountId) {
+                // if the last outgoing message used a different accountId, add an
+                // information event and quit the loop
+                eventModel.writeTextInformationEvent(messages.account.accountId,
+                                                     threadId,
+                                                     participants,
+                                                     "")
+                break;
+            } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
+                // in case last ougoing event used the same accountId, just skip
+                break;
+            }
+        }
+
+        if (!sendMessageNetworkCheck()) {
+            // we can't simply send the message as the handler checks for
+            // connection state. while this is not fixed, we generate the event here
+            // and insert it into the history service
+            var event = {}
+            var timestamp = new Date()
+            var tmpEventId = timestamp.toISOString()
+            event["accountId"] = messages.account.accountId
+            event["threadId"] = threadId
+            event["eventId"] =  tmpEventId
+            event["type"] = HistoryEventModel.MessageTypeText
+            event["participants"] = participants
+            event["senderId"] = "self"
+            event["timestamp"] = timestamp
+            event["newEvent"] = false
+            event["message"] = text
+            event["messageStatus"] = HistoryEventModel.MessageStatusPermanentlyFailed
+            event["readTimestamp"] = timestamp;
+            event["subject"] = ""; // we dont support subject yet
+            if (attachments.length > 0) {
+                event["messageType"] = HistoryEventModel.MessageTypeMultiPart
+                var newAttachments = []
+                for (var i = 0; i < attachments.length; i++) {
+                    var attachment = {}
+                    var item = attachments[i]
+                    attachment["accountId"] = messages.account.accountId
+                    attachment["threadId"] = threadId
+                    attachment["eventId"] = tmpEventId
+                    attachment["attachmentId"] = item[0]
+                    attachment["contentType"] = item[1]
+                    attachment["filePath"] = item[2]
+                    attachment["status"] = HistoryEventModel.AttachmentDownloaded
+                    newAttachments.push(attachment)
+                }
+                event["attachments"] = newAttachments
+            } else {
+                event["messageType"] = HistoryEventModel.MessageTypeText
+            }
+            eventModel.writeEvents([event]);
+        } else {
+            var isMMS = attachments.length > 0
+            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
+            // mms group chat only works if we know our own phone number
+            var isSelfContactKnown = account.selfContactId != ""
+            if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
+                chatManager.sendMMS(participants, text, attachments, messages.account.accountId)
+            } else {
+                chatManager.sendMessage(participants, text, messages.account.accountId)
+            }
+        }
+
+        if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
+        }
+        return true
+    }
+
     // this is necessary to automatically update the view when the
     // default account changes in system settings
     Connections {
@@ -898,18 +986,6 @@ Page {
                 return false
             }
             onClicked: {
-                // check if at least one account is selected
-                if (!messages.account) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
-                    return
-                }
-
-                if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
-                }
-
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
@@ -921,94 +997,29 @@ Page {
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
                 }
-                // create the new thread and update the threadId list
-                var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
-                                                   HistoryThreadModel.EventTypeText,
-                                                   participants,
-                                                   HistoryThreadModel.MatchPhoneNumber,
-                                                   true)
-                for (var i=0; i < eventModel.count; i++) {
-                    var event = eventModel.get(i)
-                    if (event.senderId == "self" && event.accountId != messages.account.accountId) {
-                        // if the last outgoing message used a different accountId, add an
-                        // information event and quit the loop
-                        eventModel.writeTextInformationEvent(messages.account.accountId,
-                                                             threadId,
-                                                             participants,
-                                                             "")
-                        break;
-                    } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
-                        // in case last ougoing event used the same accountId, just skip
-                        break;
-                    }
-                }
+
                 updateFilters()
 
-                if (!sendMessageNetworkCheck()) {
-                    // we can't simply send the message as the handler checks for
-                    // connection state. while this is not fixed, we generate the event here
-                    // and insert it into the history service
-                    var event = {}
-                    var timestamp = new Date()
-                    var tmpEventId = timestamp.toISOString()
-                    event["accountId"] = messages.account.accountId
-                    event["threadId"] = threadId
-                    event["eventId"] =  tmpEventId
-                    event["type"] = HistoryEventModel.MessageTypeText
-                    event["participants"] = participants
-                    event["senderId"] = "self"
-                    event["timestamp"] = timestamp
-                    event["newEvent"] = false
-                    event["message"] = textEntry.text
-                    event["messageStatus"] = HistoryEventModel.MessageStatusPermanentlyFailed
-                    event["readTimestamp"] = timestamp;
-                    event["subject"] = ""; // we dont support subject yet
-                    if (attachments.count > 0) {
-                        event["messageType"] = HistoryEventModel.MessageTypeMultiPart
-                        var newAttachments = []
-                        for (var i = 0; i < attachments.count; i++) {
-                            var attachment = {}
-                            var item = attachments.get(i)
-                            attachment["accountId"] = accountId
-                            attachment["threadId"] = threadId
-                            attachment["eventId"] = tmpEventId
-                            attachment["attachmentId"] = item.name
-                            attachment["contentType"] = item.contentType
-                            attachment["filePath"] = item.contentType
-                            attachment["status"] = HistoryEventModel.AttachmentDownloaded
-                            newAttachments.push(attachment)
-                        }
-                        event["attachments"] = newAttachments
-                    } else {
-                        event["messageType"] = HistoryEventModel.MessageTypeText
+                var newAttachments = []
+                for (var i = 0; i < attachments.count; i++) {
+                    var attachment = []
+                    var item = attachments.get(i)
+                    // we dont include smil files. they will be auto generated 
+                    if (item.contentType.toLowerCase() === "application/smil") {
+                        continue
                     }
-                    eventModel.writeEvents([event]);
-
-                    return
+                    attachment.push(item.name)
+                    attachment.push(item.contentType)
+                    attachment.push(item.filePath)
+                    newAttachments.push(attachment)
                 }
 
-                var isMMS = attachments.count > 0
-                var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
-                // mms group chat only works if we know our own phone number
-                var isSelfContactKnown = account.selfContactId != ""
-                if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
-                    var newAttachments = []
-                    for (var i = 0; i < attachments.count; i++) {
-                        var attachment = []
-                        var item = attachments.get(i)
-                        attachment.push(item.name)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
-                    }
-                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
+                // if sendMessage succeeds it means the message was either sent or
+                // injected into the history service so the user can retry later
+                if (sendMessage(textEntry.text, participants, newAttachments)) {
                     textEntry.text = ""
                     attachments.clear()
-                    return
                 }
-
-                chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
-                textEntry.text = ""
             }
         }
     }
