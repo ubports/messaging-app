@@ -998,8 +998,6 @@ Page {
                     participants = multiRecipient.recipients
                 }
 
-                updateFilters()
-
                 var newAttachments = []
                 for (var i = 0; i < attachments.count; i++) {
                     var attachment = []
@@ -1020,6 +1018,7 @@ Page {
                     textEntry.text = ""
                     attachments.clear()
                 }
+                updateFilters()
             }
         }
     }
