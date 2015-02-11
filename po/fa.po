@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-05 07:41+0000\n"
+"X-Launchpad-Export-Date: 2015-02-07 07:31+0000\n"
 "X-Generator: Launchpad (build 17331)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -204,7 +204,7 @@ msgstr "اپ پیام‌رسان"
 msgid "Messaging application"
 msgstr "برنامه‌ی پیام‌رسان"
 
-#: ../src/qml/MMSDelegate.qml:215
+#: ../src/qml/MMSDelegate.qml:216
 msgid "Missing message data"
 msgstr "اطّلاعات پیام از دست‌رفته"
 
@@ -292,7 +292,7 @@ msgstr ""
 "سیم‌کارت پیش‌فرضی را برای پیام‌های خروحی برگزینید. همواره می‌توانید "
 "انتخاباتان را در <a href=\"system_settings\">تنظیمات سامانه</a> عوض کنید."
 
-#: ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:893
 msgid "Send"
 msgstr "فرستادن"
 
@@ -346,7 +346,7 @@ msgid "Unknown"
 msgstr "ناشناس"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:757
+#: ../src/qml/Messages.qml:763
 msgid "Unknown contact"
 msgstr "مخاطب ناشناس"
 
@@ -354,7 +354,7 @@ msgstr "مخاطب ناشناس"
 msgid "Video Preview"
 msgstr "پیش‌نمایش ویدیو"
 
-#: ../src/qml/Messages.qml:857
+#: ../src/qml/Messages.qml:863
 msgid "Write a message..."
 msgstr "نوشتن یک پیام…"
 

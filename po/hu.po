@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-01-16 15:26-0200\n"
-"PO-Revision-Date: 2015-01-17 08:36+0000\n"
+"PO-Revision-Date: 2015-02-06 13:48+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-18 05:03+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-02-07 07:31+0000\n"
+"X-Generator: Launchpad (build 17331)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:45
+#: ../src/qml/ThreadDelegate.qml:51
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -58,7 +58,7 @@ msgstr "Új hozzáadása"
 msgid "Accepted"
 msgstr "Elfogadva"
 
-#: ../src/qml/Messages.qml:470
+#: ../src/qml/Messages.qml:482
 msgid "Add"
 msgstr "Hozzáadás"
 
@@ -70,39 +70,39 @@ msgstr "Címzett hozzáadása"
 msgid "All"
 msgstr "Összes"
 
-#: ../src/qml/ThreadDelegate.qml:77
+#: ../src/qml/ThreadDelegate.qml:83
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Melléklet: %1 névjegy"
 msgstr[1] "Melléklet: %1 névjegy"
 
-#: ../src/qml/ThreadDelegate.qml:80
+#: ../src/qml/ThreadDelegate.qml:86
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Melléklet: %1 fájl"
 msgstr[1] "Melléklet: %1 fájl"
 
-#: ../src/qml/ThreadDelegate.qml:71
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Melléklet: %1 kép"
 msgstr[1] "Melléklet: %1 kép"
 
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Melléklet: %1 videó"
 msgstr[1] "Melléklet: %1 videó"
 
-#: ../src/qml/Messages.qml:460 ../src/qml/Messages.qml:514
+#: ../src/qml/Messages.qml:472 ../src/qml/Messages.qml:526
 msgid "Call"
 msgstr "Hívás"
 
-#: ../src/qml/MainPage.qml:84 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:85 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -113,15 +113,15 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:266
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:278
 msgid "Close"
 msgstr "Bezárás"
 
-#: ../src/qml/MainPage.qml:140
+#: ../src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Új üzenet írásához húzza az ujját felfelé a kijelző aljáról indulva."
 
-#: ../src/qml/Messages.qml:524
+#: ../src/qml/Messages.qml:536
 msgid "Contact"
 msgstr "Névjegy"
 
@@ -129,7 +129,7 @@ msgstr "Névjegy"
 msgid "Copy"
 msgstr "Másolás"
 
-#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
 msgid "Delete"
 msgstr "Törlés"
 
@@ -166,7 +166,7 @@ msgid "Group"
 msgstr "Csoport"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:154
+#: ../src/qml/Messages.qml:166
 #, qt-format
 msgid "Group (%1)"
 msgstr "Csoport (%1)"
@@ -211,7 +211,7 @@ msgstr "Üzenetküldő alkalmazás"
 msgid "Messaging application"
 msgstr "Üzenetküldő alkalmazás"
 
-#: ../src/qml/MMSDelegate.qml:215
+#: ../src/qml/MMSDelegate.qml:216
 msgid "Missing message data"
 msgstr "Hiányzó üzenetadat"
 
@@ -219,7 +219,7 @@ msgstr "Hiányzó üzenetadat"
 msgid "Myself"
 msgstr "Én"
 
-#: ../src/qml/Messages.qml:157
+#: ../src/qml/Messages.qml:169
 msgid "New Message"
 msgstr "Új üzenet"
 
@@ -232,7 +232,7 @@ msgstr "Nem"
 msgid "No SIM card selected"
 msgstr "Nincs SIM kártya kiválasztva"
 
-#: ../src/qml/Messages.qml:262
+#: ../src/qml/Messages.qml:274
 msgid "No network"
 msgstr "Nincs hálózat"
 
@@ -257,13 +257,13 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
 msgid "Read"
-msgstr "Olvasás"
+msgstr "Olvasva"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
 msgid "Received"
-msgstr "Megérkezett"
+msgstr "Fogadva"
 
-#: ../src/qml/Messages.qml:216
+#: ../src/qml/Messages.qml:228
 msgid "Remove"
 msgstr "Törlés"
 
@@ -287,7 +287,7 @@ msgstr "Mentés"
 msgid "Search"
 msgstr "Keresés"
 
-#: ../src/qml/MainPage.qml:53 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Keresés…"
 
@@ -300,7 +300,7 @@ msgstr ""
 "bármikor módosíthatja a <a "
 "href=\"system_settings\">Rendszerbeállításokban</a>."
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:893
 msgid "Send"
 msgstr "Küldés"
 
@@ -324,12 +324,12 @@ msgstr "Alapértelmezett SIM kártyára váltás:"
 msgid "Temporarily Failed"
 msgstr "Ideiglenes hiba"
 
-#: ../src/qml/Messages.qml:263
+#: ../src/qml/Messages.qml:275
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Jelenleg nincs hálózat ezen: %1"
 
-#: ../src/qml/Messages.qml:263
+#: ../src/qml/Messages.qml:275
 msgid "There is currently no network."
 msgstr "Jelenleg nincs hálózat"
 
@@ -354,7 +354,7 @@ msgid "Unknown"
 msgstr "Ismeretlen"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:716
+#: ../src/qml/Messages.qml:763
 msgid "Unknown contact"
 msgstr "Ismeretlen névjegy"
 
@@ -362,7 +362,7 @@ msgstr "Ismeretlen névjegy"
 msgid "Video Preview"
 msgstr "Videó előnézet"
 
-#: ../src/qml/Messages.qml:816
+#: ../src/qml/Messages.qml:863
 msgid "Write a message..."
 msgstr "Üzenet írása…"
 
