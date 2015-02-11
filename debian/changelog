@@ -1,3 +1,18 @@
+messaging-app (0.1+15.04.20150211-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk
+
+  [ Omer Akram ]
+  * Provide a pre-populated database for search test so that we don't
+    conflict with the On Screen Display Notification (LP: #1418074)
+
+  [ Tiago Salem Herrmann ]
+  * Inject messages into the history service when it is impossible to
+    send them. (LP: #1417353)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 11 Feb 2015 18:09:01 +0000
+
 messaging-app (0.1+15.04.20150204-0ubuntu1) vivid; urgency=medium
 
   [ Tiago Salem Herrmann ]
