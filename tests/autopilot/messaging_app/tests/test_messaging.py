@@ -300,53 +300,6 @@ class TestMessaging(BaseMessagingTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
-    def test_search_for_message(self):
-        def count_visible_threads(threads):
-            count = 0
-            for thread in threads:
-                if thread.height != 0:
-                    count += 1
-            return count
-
-        # populate history
-        helpers.receive_sms('08151', 'Ubuntu')
-        helpers.receive_sms('08152', 'Ubuntu1')
-        helpers.receive_sms('08153', 'Ubuntu2')
-        helpers.receive_sms('08154', 'Ubuntu22')
-        helpers.receive_sms('08155', 'Ubuntu23')
-
-        # verify that we got the messages
-        self.assertThat(self.thread_list.count, Eventually(Equals(5)))
-        threads = self.thread_list.select_many('ThreadDelegate')
-
-        # tap search
-        self.main_view.click_header_action('searchAction')
-        text_field = self.main_view.select_single(
-            ubuntuuitoolkit.TextField,
-            objectName='searchField')
-
-        text_field.write('Ubuntu2')
-        self.assertThat(
-            lambda: count_visible_threads(threads), Eventually(Equals(3)))
-
-        text_field.clear()
-        text_field.write('Ubuntu1')
-        self.assertThat(
-            lambda: count_visible_threads(threads), Eventually(Equals(1)))
-
-        text_field.clear()
-        text_field.write('Ubuntu')
-        self.assertThat(
-            lambda: count_visible_threads(threads), Eventually(Equals(5)))
-
-        text_field.clear()
-        text_field.write('%')
-        # as we are testing for items NOT to appear, there is no other way
-        # other than sleeping for awhile before checking if the threads are
-        # visible
-        time.sleep(5)
-        self.assertThat(count_visible_threads(threads), Equals(0))
-
 
 class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
 
@@ -391,6 +344,56 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
         _, remaining_message_text = remaining_messages[0]
         self.assertEqual(
             remaining_message_text, self.messages[0])
+
+
+class MessagingTestSearch(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_testdata_db=True)
+        self.useFixture(test_setup)
+        super(MessagingTestSearch, self).setUp()
+        self.thread_list = self.app.select_single(objectName='threadList')
+
+    def test_search_for_message(self):
+        def count_visible_threads(threads):
+            count = 0
+            for thread in threads:
+                if thread.height != 0:
+                    count += 1
+            return count
+
+        # verify that we got the messages
+        self.assertThat(self.thread_list.count, Eventually(Equals(5)))
+        threads = self.thread_list.select_many('ThreadDelegate')
+
+        # tap search
+        self.main_view.click_header_action('searchAction')
+        text_field = self.main_view.select_single(
+            ubuntuuitoolkit.TextField,
+            objectName='searchField')
+
+        text_field.write('Ubuntu2')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(3)))
+
+        text_field.clear()
+        text_field.write('Ubuntu1')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(1)))
+
+        text_field.clear()
+        text_field.write('Ubuntu')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(5)))
+
+        text_field.clear()
+        text_field.write('%')
+        # as we are testing for items NOT to appear, there is no other way
+        # other than sleeping for awhile before checking if the threads are
+        # visible
+        time.sleep(5)
+        self.assertThat(count_visible_threads(threads), Equals(0))
 
 
 class MessagingTestCaseWithArgument(MessagingAppTestCase):
