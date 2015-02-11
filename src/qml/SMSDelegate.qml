@@ -31,13 +31,9 @@ MessageDelegate {
 
     function resendMessage()
     {
-        if (!sendMessageSanityCheck()) {
-            return
-        }
-
         eventModel.removeEvents([root.messageData.properties]);
         // FIXME: export this information for MessageDelegate
-        chatManager.sendMessage(messages.participants, textMessage, messages.account.accountId)
+        messages.sendMessage(textMessage, messages.participants, [])
     }
 
     function copyMessage()

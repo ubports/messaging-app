@@ -46,10 +46,7 @@ MessageDelegate {
 
     function resendMessage()
     {
-        if (!sendMessageSanityCheck()) {
-            return
-        }
-
+        eventModel.removeEvents([messageData.properties]);
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
@@ -63,9 +60,7 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        eventModel.removeEvents([messageData.properties]);
-        // FIXME: export this information for MessageDelegate
-        chatManager.sendMMS(participants, textMessage, newAttachments, messages.account.accountId)
+        messages.sendMessage(textMessage, participants, newAttachments)
     }
 
     function copyMessage()
