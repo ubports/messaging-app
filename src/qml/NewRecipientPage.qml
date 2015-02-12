@@ -128,65 +128,8 @@ Page {
             bottom: keyboard.top
         }
 
-        header: Item {
-            id: addNewContactButton
-            objectName: "addNewContact"
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: units.gu(8)
-
-            Rectangle {
-                anchors.fill: parent
-                color: Theme.palette.selected.background
-                opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
-            }
-
-            UbuntuShape {
-                id: addIcon
-
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: units.gu(1)
-                }
-                width: height
-                radius: "medium"
-                color: Theme.palette.normal.overlay
-                Image {
-                    anchors.centerIn: parent
-                    width: units.gu(2)
-                    height: units.gu(2)
-                    source: "image://theme/add"
-                }
-            }
-
-            Label {
-                id: name
-
-                anchors {
-                    left: addIcon.right
-                    leftMargin: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
-                color: UbuntuColors.lightAubergine
-                // TRANSLATORS: this refers to creating a new contact
-                text: i18n.tr("+ Create New")
-                elide: Text.ElideRight
-            }
-
-            MouseArea {
-                id: addNewContactButtonArea
-
-                anchors.fill: parent
-                onClicked: Qt.openUrlExternally("addressbook:///create?callback=messaging-app.desktop&phone= ")
-            }
-        }
+        showAddNewButton: true
+        showImportOptions: (contactList.count === 0) && (filterTerm == "")
 
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
@@ -199,6 +142,8 @@ Page {
             }
             mainStack.pop()
         }
+
+        onAddNewContactClicked: Qt.openUrlExternally("addressbook:///create?callback=messaging-app.desktop&phone= ")
         onInfoRequested: {
             Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
             mainStack.pop()
