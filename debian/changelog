@@ -1,3 +1,17 @@
+messaging-app (0.1+15.04.20150212-0ubuntu1) vivid; urgency=medium
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the standard back button on searching and multi selecting
+    instead of the X. (LP: #1373494)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show import contact options if contact list is empty. (LP: #1417341)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 12 Feb 2015 00:58:44 +0000
+
 messaging-app (0.1+15.04.20150211-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
