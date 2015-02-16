@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-01-16 15:26-0200\n"
-"PO-Revision-Date: 2015-02-15 06:32+0000\n"
+"PO-Revision-Date: 2015-02-15 06:39+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-15 06:34+0000\n"
+"X-Launchpad-Export-Date: 2015-02-16 06:51+0000\n"
 "X-Generator: Launchpad (build 17341)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -342,43 +342,43 @@ msgstr "ਵੱਲ:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
-msgstr ""
+msgstr "ਅੱਜ"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "Type"
-msgstr ""
+msgstr "ਕਿਸਮ"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "ਅਣਜਾਣ"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:757
 msgid "Unknown contact"
-msgstr ""
+msgstr "ਅਣਪਛਾਤਾ ਸੰਪਰਕ"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "ਵਿਡੀਓ ਝਲਕ"
 
 #: ../src/qml/Messages.qml:857
 msgid "Write a message..."
-msgstr ""
+msgstr "ਇੱਕ ਸੁਨੇਹਾ ਲਿਖੋ..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "ਹਾਂ"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
-msgstr ""
+msgstr "ਕੱਲ੍ਹ"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "ਤੁਹਾਨੂੰ ਸਿਮ ਚੁਣਨ ਦੀ ਲੋੜ"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "ਤੁਸੀਂ %1 @ %2 ਵਿੱਚ ਬਦਲੋ"
