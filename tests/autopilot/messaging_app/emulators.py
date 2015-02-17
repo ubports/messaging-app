@@ -433,8 +433,7 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def get_messages_count(self):
         """Return the number of meesages."""
-        return self.wait_select_single(
-            'MessagesListView', objectName='messageList').count
+        return self.get_list_view().count
 
     @autopilot_logging.log_action(logger.info)
     def select_messages(self, *indexes):
@@ -448,6 +447,14 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         for index in indexes:
             message_delegate = self._get_message_delegate(index)
             self.pointing_device.click_object(message_delegate)
+
+    def scroll_list(self):
+        list_view = self.get_list_view()
+        x, y, width, height = list_view.globalRect
+        start_x = stop_x = x + (width / 2)
+        start_y = y + 10
+        stop_y = y + height - 10
+        self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
 
     def _get_message_delegate(self, index):
         return self.wait_select_single(
@@ -485,6 +492,11 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     def get_text_area_text(self):
         return self.wait_select_single(
             'TextArea', objectName='messageTextArea').text
+
+    def get_list_view(self):
+        """Returns the messages list view"""
+        return self.wait_select_single(
+            'MessagesListView', objectName='messageList')
 
 
 class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):

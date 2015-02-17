@@ -24,7 +24,6 @@ from messaging_app.tests import MessagingAppTestCase
 
 import ubuntuuitoolkit
 
-
 class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
@@ -307,13 +306,12 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
         super(MessagingTestCaseWithExistingThread, self).setUp()
         self.main_page = self.main_view.select_single(emulators.MainPage)
         self.number = '5555559876'
-        self.messages = self.receive_messages()
 
-    def receive_messages(self):
-        # send 3 messages. Reversed because on the QML, the one with the
-        # 0 index is the latest received.
+    def receive_messages(self, count=3):
+        # send the required number of messages. Reversed because on the QML,
+        # the one with the 0 index is the latest received.
         messages = []
-        message_indexes = list(reversed(range(3)))
+        message_indexes = list(reversed(range(count)))
         for index in message_indexes:
             message_text = 'test message {}'.format(index)
             helpers.receive_sms(
@@ -328,6 +326,7 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
 
     def test_delete_multiple_messages(self):
         """Verify we can delete multiple messages"""
+        messages = self.receive_messages(3)
         messages_page = self.main_page.open_thread(self.number)
 
         self.main_view.enable_messages_selection_mode()
@@ -343,7 +342,22 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
         self.assertThat(remaining_messages, HasLength(1))
         _, remaining_message_text = remaining_messages[0]
         self.assertEqual(
-            remaining_message_text, self.messages[0])
+            remaining_message_text, messages[0])
+
+    def test_scroll_to_new_message(self):
+        """Verify that the messages view is scrolled to display a new message"""
+        messages = self.receive_messages(20)
+        messages_page = self.main_page.open_thread(self.number)
+
+        # scroll the list to display older messages
+        messages_page.scroll_list()
+
+        # now receive a new message
+        message = self.receive_messages(1)
+
+        # and make sure that the list gets scrolled to the new message again
+        list_view = messages_page.get_list_view()
+        self.assertThat(list_view.atYEnd, Eventually(Equals(True)))
 
 
 class MessagingTestSearch(MessagingAppTestCase):
