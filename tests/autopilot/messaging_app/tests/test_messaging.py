@@ -24,6 +24,7 @@ from messaging_app.tests import MessagingAppTestCase
 
 import ubuntuuitoolkit
 
+
 class BaseMessagingTestCase(MessagingAppTestCase):
 
     def setUp(self):
@@ -345,15 +346,15 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
             remaining_message_text, messages[0])
 
     def test_scroll_to_new_message(self):
-        """Verify that the messages view is scrolled to display a new message"""
-        messages = self.receive_messages(20)
+        """Verify that the view is scrolled to display a new message"""
+        self.receive_messages(20)
         messages_page = self.main_page.open_thread(self.number)
 
         # scroll the list to display older messages
         messages_page.scroll_list()
 
         # now receive a new message
-        message = self.receive_messages(1)
+        self.receive_messages(1)
 
         # and make sure that the list gets scrolled to the new message again
         list_view = messages_page.get_list_view()
