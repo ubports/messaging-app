@@ -114,7 +114,7 @@ ListItemWithActions {
             width: units.gu(2)
             visible: running && !selectionMode
             // if temporarily failed or unknown status, then show the spinner
-            running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+            running: !incoming && (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                       textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
         }
 
