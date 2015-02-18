@@ -1,3 +1,16 @@
+messaging-app (0.1+15.04.20150218-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Test that new messages are scrolled into view.
+
+  [ Tiago Salem Herrmann ]
+  * Disable spinner for incoming messages. (LP: #1420976)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Feb 2015 12:23:38 +0000
+
 messaging-app (0.1+15.04.20150212-0ubuntu1) vivid; urgency=medium
 
   [ Ubuntu daily release ]
