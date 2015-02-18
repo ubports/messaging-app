@@ -39,13 +39,6 @@ class BaseMessagingTestCase(MessagingAppTestCase):
         self.assertThat(self.thread_list.visible, Equals(True))
         self.assertThat(self.thread_list.count, Equals(0))
 
-    def tearDown(self):
-        super(BaseMessagingTestCase, self).tearDown()
-
-        # on desktop, notify-osd may generate persistent popups (like for "SMS
-        # received"), don't make that stay around for the tests
-        subprocess.call(['pkill', '-f', 'notify-osd'])
-
 
 class TestMessaging(BaseMessagingTestCase):
     """Tests for the communication panel."""
@@ -301,12 +294,16 @@ class TestMessaging(BaseMessagingTestCase):
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
 
-class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
+class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 
     def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_testdata_db=True)
+        self.useFixture(test_setup)
+
         super(MessagingTestCaseWithExistingThread, self).setUp()
         self.main_page = self.main_view.select_single(emulators.MainPage)
-        self.number = '5555559876'
+        self.number = '08154'
 
     def receive_messages(self, count=3):
         # send the required number of messages. Reversed because on the QML,
@@ -321,33 +318,29 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
             # Prepend to make sure that the indexes match.
             messages.insert(0, message_text)
         # Wait for the thread.
-        self.assertThat(
-            self.main_page.get_thread_count, Eventually(Equals(1)))
+        self.main_page.get_thread_from_number(self.number)
         return messages
 
     def test_delete_multiple_messages(self):
         """Verify we can delete multiple messages"""
-        messages = self.receive_messages(3)
         messages_page = self.main_page.open_thread(self.number)
+        messages = messages_page.get_messages()
 
         self.main_view.enable_messages_selection_mode()
         messages_page.select_messages(1, 2)
 
-        # Wait a few seconds before clicking the header
-        # to make sure the OSD is already gone
-        # FIXME: check if there is a better way to detect OSD visibility
-        time.sleep(10)
         self.main_view.click_messages_header_delete()
 
         remaining_messages = messages_page.get_messages()
         self.assertThat(remaining_messages, HasLength(1))
-        _, remaining_message_text = remaining_messages[0]
+        remaining_message = remaining_messages[0]
         self.assertEqual(
-            remaining_message_text, messages[0])
+            remaining_message, messages[0])
 
     def test_scroll_to_new_message(self):
         """Verify that the view is scrolled to display a new message"""
-        self.receive_messages(20)
+        # use the number of an existing thread to avoid OSD problems
+        self.number = '08155'
         messages_page = self.main_page.open_thread(self.number)
 
         # scroll the list to display older messages
@@ -367,6 +360,7 @@ class MessagingTestSearch(MessagingAppTestCase):
         test_setup = fixture_setup.MessagingTestEnvironment(
             use_testdata_db=True)
         self.useFixture(test_setup)
+
         super(MessagingTestSearch, self).setUp()
         self.thread_list = self.app.select_single(objectName='threadList')
 
@@ -395,12 +389,17 @@ class MessagingTestSearch(MessagingAppTestCase):
         text_field.clear()
         text_field.write('Ubuntu1')
         self.assertThat(
-            lambda: count_visible_threads(threads), Eventually(Equals(1)))
+            lambda: count_visible_threads(threads), Eventually(Equals(2)))
 
         text_field.clear()
         text_field.write('Ubuntu')
         self.assertThat(
             lambda: count_visible_threads(threads), Eventually(Equals(5)))
+
+        text_field.clear()
+        text_field.write('08154')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(1)))
 
         text_field.clear()
         text_field.write('%')
