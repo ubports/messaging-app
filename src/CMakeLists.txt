@@ -17,7 +17,10 @@ qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick Versit)
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${NOTIFY_INCLUDE_DIRS}
     )
+
+target_link_libraries(${MESSAGING_APP} ${NOTIFY_LIBRARIES})
 
 install(TARGETS ${MESSAGING_APP}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

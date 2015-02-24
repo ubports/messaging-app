@@ -18,6 +18,8 @@
 
 #include "messagingapplication.h"
 
+#include <libnotify/notify.h>
+
 #include <QDir>
 #include <QUrl>
 #include <QUrlQuery>
@@ -270,3 +272,16 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
     return QString();
 }
 
+void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)
+{
+    NotifyNotification *notification = notify_notification_new("",
+                                                               message.toStdString().c_str(),
+                                                               icon.toStdString().c_str());
+    notify_notification_set_urgency(notification, NOTIFY_URGENCY_LOW);
+
+    GError *error = NULL;
+    if (!notify_notification_show(notification, &error)) {
+        qWarning() << "Failed to show notification:" << error->message;
+        g_error_free (error);
+    }
+}
