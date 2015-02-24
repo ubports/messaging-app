@@ -66,7 +66,7 @@ MessageDelegate {
     function copyMessage()
     {
         Clipboard.push(root.messageText)
-        application.showNotificationMessage(i18n.tr("Text message copied to clipboard"))
+        application.showNotificationMessage(i18n.tr("Text message copied to clipboard"), "edit-copy")
     }
 
     onAttachmentsChanged: {

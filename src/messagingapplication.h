@@ -39,7 +39,7 @@ public Q_SLOTS:
     QString readTextFile(const QString &fileName);
     QString fileMimeType(const QString &fileName);
     QString contactNameFromVCard(const QString &fileName);
-    void showNotificationMessage(const QString &message, const QString &icon = QString::null);
+    void showNotificationMessage(const QString &message, const QString &icon = QString());
 
 private Q_SLOTS:
     void onViewStatusChanged(QQuickView::Status status);

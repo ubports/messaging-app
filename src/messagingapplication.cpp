@@ -41,6 +41,10 @@
 using namespace QtVersit;
 #define Pair QPair<QString,QString>
 
+namespace C {
+#include <libintl.h>
+}
+
 static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
@@ -156,6 +160,7 @@ bool MessagingApplication::setup()
     } else {
         m_view->show();
     }
+    notify_init(C::gettext("Messaging application"));
 
     return true;
 }
@@ -274,8 +279,8 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
 
 void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)
 {
-    NotifyNotification *notification = notify_notification_new("",
-                                                               message.toStdString().c_str(),
+    NotifyNotification *notification = notify_notification_new(message.toStdString().c_str(),
+                                                               NULL,
                                                                icon.toStdString().c_str());
     notify_notification_set_urgency(notification, NOTIFY_URGENCY_LOW);
 
