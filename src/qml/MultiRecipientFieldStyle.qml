@@ -16,6 +16,6 @@
 
 import Ubuntu.Components.Themes.Ambiance 1.0
 
-TextAreaStyle {
+TextFieldStyle {
     background: null
 }
