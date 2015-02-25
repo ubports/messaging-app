@@ -80,7 +80,7 @@ MessageDelegate {
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
-            } else if (startsWith(attachment.contentType, "video/")) {
+            //} else if (startsWith(attachment.contentType, "video/")) {
                         // TODO: implement proper video attachment support
                         //                dataAttachments.push({type: "video",
                         //                                  data: attachment,
@@ -88,11 +88,7 @@ MessageDelegate {
                         //                                 })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
-                        // TODO: implement support for this kind of attachment
-                        //                dataAttachments.push({type: "application",
-                        //                                  data: attachment,
-                        //                                  delegateSource: "",
-                        //                                 })
+                // smil files will always be ignored here
             } else if (startsWith(attachment.contentType, "text/vcard") ||
                        startsWith(attachment.contentType, "text/x-vcard")) {
                 root.dataAttachments.push({"type": "vcard",
@@ -100,7 +96,10 @@ MessageDelegate {
                                       "delegateSource": "MMS/MMSContact.qml"
                                     })
             } else {
-                console.log("No MMS render for " + attachment.contentType)
+                root.dataAttachments.push({"type": "default",
+                                      "data": attachment,
+                                      "delegateSource": "MMS/MMSDefault.qml"
+                                    })
             }
         }
         attachmentsRepeater.model = root.dataAttachments

@@ -23,24 +23,39 @@ import ".."
 MMSBase {
     id: defaultDelegate
 
-    anchors.left: parent.left
-    anchors.right: parent.right
-    height: bubble.height + units.gu(1)
-    Item {
-        id: bubble
-        anchors.top: parent.top
-        width: label.width + units.gu(4)
-        height: label.height + units.gu(2)
+    height: units.gu(15)
+    width: units.gu(27)
 
-        Label {
-            id: label
-            text: attachment.attachmentId
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
-            fontSize: "medium"
-            height: paintedHeight
-            color: textColor
-            opacity: incoming ? 1 : 0.9
-        }
+    Image {
+        id: unknownAttachmentImage
+        fillMode: Image.PreserveAspectFit
+        anchors.centerIn: shape
+        anchors.verticalCenterOffset: -unknownAttachmentLabel.height/2
+        smooth: true
+        source: Qt.resolvedUrl("../assets/transfer-unsupported01.svg")
+        asynchronous: true
+        height: Math.min(implicitHeight, units.gu(8))
+        width: Math.min(implicitWidth, units.gu(27))
+        cache: false
+
+        //sourceSize.width: units.gu(27)
+        //sourceSize.height: units.gu(27)
+    }
+
+    Label {
+        id: unknownAttachmentLabel
+        color: "gray"
+        text: i18n.tr("File type not supported")
+        anchors.horizontalCenter: unknownAttachmentImage.horizontalCenter
+        anchors.top: unknownAttachmentImage.bottom
+    }
+
+    UbuntuShape {
+        id: shape
+        anchors.top: parent.top
+        width: parent.width
+        height: parent.height
+        color: "gray"
+        opacity: 0.2
     }
 }
