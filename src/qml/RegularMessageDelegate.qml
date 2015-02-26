@@ -60,7 +60,16 @@ Column {
             if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
                 actions.push(reloadAction)
             }
-            actions.push(copyAction)
+            var hasTextAttachments = false
+            for (var i=0; i < textMessageAttachments.length; i++) {
+                if (startsWith(textMessageAttachments[i].contentType, "text/plain")) {
+                    hasTextAttachments = true
+                    break
+                }
+            }
+            if (messageData.textMessage !== "" || hasTextAttachments) {
+                actions.push(copyAction)
+            }
             actions.push(infoAction)
             return actions
         }
