@@ -289,4 +289,5 @@ void MessagingApplication::showNotificationMessage(const QString &message, const
         qWarning() << "Failed to show notification:" << error->message;
         g_error_free (error);
     }
+    g_object_unref(G_OBJECT(notification));
 }
