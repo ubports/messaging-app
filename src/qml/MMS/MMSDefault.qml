@@ -23,8 +23,17 @@ import ".."
 MMSBase {
     id: defaultDelegate
 
+    property string unknownLabel: {
+        if (startsWith(attachment.contentType, "audio/") ) {
+            return i18n.tr("Audio attachment not supported")
+            root.textAttachements.push(attachment)
+        } else if (startsWith(attachment.contentType, "video/")) {
+            return i18n.tr("Video attachment not supported")
+        }
+        return i18n.tr("File type not supported") 
+    }
     height: units.gu(15)
-    width: units.gu(27)
+    width: Math.max(unknownAttachmentLabel.paintedWidth+units.gu(2), units.gu(27))
 
     Image {
         id: unknownAttachmentImage
@@ -33,19 +42,16 @@ MMSBase {
         anchors.verticalCenterOffset: -unknownAttachmentLabel.height/2
         smooth: true
         source: Qt.resolvedUrl("../assets/transfer-unsupported01.svg")
-        asynchronous: true
+        asynchronous: false
         height: Math.min(implicitHeight, units.gu(8))
         width: Math.min(implicitWidth, units.gu(27))
         cache: false
-
-        //sourceSize.width: units.gu(27)
-        //sourceSize.height: units.gu(27)
     }
 
     Label {
         id: unknownAttachmentLabel
         color: "gray"
-        text: i18n.tr("File type not supported")
+        text: unknownLabel
         anchors.horizontalCenter: unknownAttachmentImage.horizontalCenter
         anchors.top: unknownAttachmentImage.bottom
     }
