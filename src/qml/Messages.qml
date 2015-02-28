@@ -740,7 +740,7 @@ Page {
             property alias text: messageTextArea.text
             property alias inputMethodComposing: messageTextArea.inputMethodComposing
             property int fullSize: attachmentThumbnails.height + messageTextArea.height
-            style: Theme.createStyleComponent("TextFieldStyle.qml", textEntry)
+            style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
             anchors.left: attachButton.right
@@ -938,7 +938,7 @@ Page {
                 }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
-                style: MultiRecipientFieldStyle {}
+                style: LocalTextAreaStyle {}
                 autoSize: true
                 maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: i18n.tr("Write a message...")
