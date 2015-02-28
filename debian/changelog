@@ -1,3 +1,21 @@
+messaging-app (0.1+15.04.20150228-0ubuntu1) vivid; urgency=medium
+
+  [ Bill Filler ]
+  * Enable MMSDefault for unknown attachment types added:
+    src/qml/assets/transfer-unsupported01.svg
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Tiago Salem Herrmann ]
+  * Enable MMSDefault for unknown attachment types added:
+    src/qml/assets/transfer-unsupported01.svg
+  * Show short notification when messages are copied to clipboard. (LP:
+    #1426058, #1417350)
+  * Use the proper style for TextField. (LP: #1426036)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Sat, 28 Feb 2015 04:08:32 +0000
+
 messaging-app (0.1+15.04.20150218-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
