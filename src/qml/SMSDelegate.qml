@@ -39,6 +39,7 @@ MessageDelegate {
     function copyMessage()
     {
         Clipboard.push(bubble.messageText)
+        application.showNotificationMessage(i18n.tr("Text message copied to clipboard"), "edit-copy")
     }
 
     height: bubble.height
