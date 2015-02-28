@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-16 15:26-0200\n"
+"POT-Creation-Date: 2015-02-26 15:10-0300\n"
 "PO-Revision-Date: 2014-09-24 09:12+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-01-17 07:07+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:45
+#: ../src/qml/ThreadDelegate.qml:51
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -49,16 +49,11 @@ msgstr[1] "%1 eilenn o pellgomz"
 msgid "+"
 msgstr ""
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/qml/NewRecipientPage.qml:179
-msgid "+ Create New"
-msgstr "+ Krouiñ unan nevez"
-
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Aprouet"
 
-#: ../src/qml/Messages.qml:470
+#: ../src/qml/Messages.qml:563
 msgid "Add"
 msgstr "Ouzhpennañ"
 
@@ -70,39 +65,39 @@ msgstr "Ouzhpennañ un degemerer"
 msgid "All"
 msgstr "An holl anezho"
 
-#: ../src/qml/ThreadDelegate.qml:77
+#: ../src/qml/ThreadDelegate.qml:83
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Pezh stag : %1 darempred"
 msgstr[1] "Pezhioù stag : %1 a zarempredoù"
 
-#: ../src/qml/ThreadDelegate.qml:80
+#: ../src/qml/ThreadDelegate.qml:86
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Pezh stag : %1 restr"
 msgstr[1] "Pezhioù stag : %1 a restroù"
 
-#: ../src/qml/ThreadDelegate.qml:71
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Pezh stag : %1 skeudenn"
 msgstr[1] "Pezhioù stag : %1 a skeudennoù"
 
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Pezh stag : %1 video"
 msgstr[1] "Pezhioù stag : %1 a videoioù"
 
-#: ../src/qml/Messages.qml:460 ../src/qml/Messages.qml:514
+#: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
 msgid "Call"
 msgstr "Pellgomz"
 
-#: ../src/qml/MainPage.qml:84 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:85 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "Nullañ"
 
@@ -113,16 +108,16 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Cheñch an holl gevreadurioù kemennerezh da %1 ?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:266
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "Serriñ"
 
-#: ../src/qml/MainPage.qml:140
+#: ../src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Sevel ur gemenadenn nevez o riklañ war-zu an nec'h adalek traoñ ar skramm."
 
-#: ../src/qml/Messages.qml:524
+#: ../src/qml/Messages.qml:617
 msgid "Contact"
 msgstr "Darempred"
 
@@ -130,7 +125,7 @@ msgstr "Darempred"
 msgid "Copy"
 msgstr "Eilañ"
 
-#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
 msgid "Delete"
 msgstr "Diverkañ"
 
@@ -167,7 +162,7 @@ msgid "Group"
 msgstr "Strollad"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:154
+#: ../src/qml/Messages.qml:247
 #, qt-format
 msgid "Group (%1)"
 msgstr "Strollad (%1)"
@@ -208,11 +203,11 @@ msgstr "Kemennerezh"
 msgid "Messaging App"
 msgstr "Arload kemennerezh"
 
-#: ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Arload kemennerezh"
 
-#: ../src/qml/MMSDelegate.qml:215
+#: ../src/qml/MMSDelegate.qml:212
 msgid "Missing message data"
 msgstr "Diank eo titouroù ar gemennadenn"
 
@@ -220,7 +215,7 @@ msgstr "Diank eo titouroù ar gemennadenn"
 msgid "Myself"
 msgstr "Me ma-unan"
 
-#: ../src/qml/Messages.qml:157
+#: ../src/qml/Messages.qml:250
 msgid "New Message"
 msgstr "Kemennadenn nevez"
 
@@ -233,7 +228,7 @@ msgstr "Ket"
 msgid "No SIM card selected"
 msgstr "N'eus bet diuzet kartenn SIM ebet"
 
-#: ../src/qml/Messages.qml:262
+#: ../src/qml/Messages.qml:355
 msgid "No network"
 msgstr "N'eus ket a rouedad"
 
@@ -260,7 +255,7 @@ msgstr "Lenn"
 msgid "Received"
 msgstr "Resevet"
 
-#: ../src/qml/Messages.qml:216
+#: ../src/qml/Messages.qml:309
 msgid "Remove"
 msgstr "Lemel"
 
@@ -284,7 +279,7 @@ msgstr "Enrollañ"
 msgid "Search"
 msgstr "Klask"
 
-#: ../src/qml/MainPage.qml:53 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Klask..."
 
@@ -297,7 +292,7 @@ msgstr ""
 "a reoc'h bepred cheñch ho tibab diwezhatoc'h e-barzh  <a "
 "href=\"system_settings\">Arventennoù ar reizhiad</a>."
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:974
 msgid "Send"
 msgstr "Kas"
 
@@ -321,12 +316,16 @@ msgstr "Cheñch evit ar gartenn SIM dre ziouer :"
 msgid "Temporarily Failed"
 msgstr "C'hwitadenn evit ar poent"
 
-#: ../src/qml/Messages.qml:263
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
+#: ../src/qml/Messages.qml:356
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "N'eus rouedad ebet evit bremañ war %1"
 
-#: ../src/qml/Messages.qml:263
+#: ../src/qml/Messages.qml:356
 msgid "There is currently no network."
 msgstr "N'eus rouedad ebet evit bremañ"
 
@@ -351,7 +350,7 @@ msgid "Unknown"
 msgstr "Dianav"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:716
+#: ../src/qml/Messages.qml:844
 msgid "Unknown contact"
 msgstr "Darempred dianav"
 
@@ -359,7 +358,7 @@ msgstr "Darempred dianav"
 msgid "Video Preview"
 msgstr "Rakwelet ar video"
 
-#: ../src/qml/Messages.qml:816
+#: ../src/qml/Messages.qml:944
 msgid "Write a message..."
 msgstr "Skrivañ ur gemennadenn..."
 
@@ -383,3 +382,6 @@ msgstr ""
 
 #~ msgid "Create new"
 #~ msgstr "Krouiñ unan nevez"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Krouiñ unan nevez"

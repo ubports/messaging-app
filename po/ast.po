@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-16 15:26-0200\n"
+"POT-Creation-Date: 2015-02-26 15:10-0300\n"
 "PO-Revision-Date: 2015-02-13 17:04+0000\n"
 "Last-Translator: ivarela <ivarela@ubuntu.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-14 06:34+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -48,11 +48,6 @@ msgstr[1] "Llamada de %1 segundos"
 #: ../src/qml/MainPage.qml:41
 msgid "+"
 msgstr "+"
-
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/qml/NewRecipientPage.qml:179
-msgid "+ Create New"
-msgstr "+ Crear nuevu"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -209,11 +204,11 @@ msgstr "Mensaxería"
 msgid "Messaging App"
 msgstr "Aplicación Mensaxería"
 
-#: ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Aplicación de mensaxería"
 
-#: ../src/qml/MMSDelegate.qml:211
+#: ../src/qml/MMSDelegate.qml:212
 msgid "Missing message data"
 msgstr "Datos del mensaxe non disponibles"
 
@@ -325,6 +320,10 @@ msgstr "Cambiar a SIM por defeutu:"
 msgid "Temporarily Failed"
 msgstr "Fallu temporal"
 
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
 #: ../src/qml/Messages.qml:356
 #, qt-format
 msgid "There is currently no network on %1"
@@ -387,3 +386,6 @@ msgstr "Cambiasti a %1 @ %2"
 
 #~ msgid "Create new"
 #~ msgstr "Crear nuevu"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Crear nuevu"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-16 15:26-0200\n"
+"POT-Creation-Date: 2015-02-26 15:10-0300\n"
 "PO-Revision-Date: 2015-02-19 15:19+0000\n"
 "Last-Translator: igosoft <igosoft@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-02-20 06:06+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,16 +53,11 @@ msgstr[2] "%1 sekund rozmowy"
 msgid "+"
 msgstr "+"
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/qml/NewRecipientPage.qml:179
-msgid "+ Create New"
-msgstr "+ Utwórz nowy"
-
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Zaakceptowano"
 
-#: ../src/qml/Messages.qml:482
+#: ../src/qml/Messages.qml:563
 msgid "Add"
 msgstr "Dodaj"
 
@@ -106,7 +101,7 @@ msgstr[0] "Załącznik: %1 film"
 msgstr[1] "Załączniki: %1 filmy"
 msgstr[2] "Załączniki: %1 filmów"
 
-#: ../src/qml/Messages.qml:472 ../src/qml/Messages.qml:526
+#: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
 msgid "Call"
 msgstr "Połączenie"
 
@@ -121,7 +116,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Czy zmienić wszystkie powiązania wiadomości dla %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:278
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "Zamknij"
 
@@ -129,7 +124,7 @@ msgstr "Zamknij"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Utwórz nową wiadomość przeciągając palcem z dołu ekranu."
 
-#: ../src/qml/Messages.qml:536
+#: ../src/qml/Messages.qml:617
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -174,7 +169,7 @@ msgid "Group"
 msgstr "Grupa"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:166
+#: ../src/qml/Messages.qml:247
 #, qt-format
 msgid "Group (%1)"
 msgstr "Osób w grupie: (%1)"
@@ -215,11 +210,11 @@ msgstr "Wiadomości"
 msgid "Messaging App"
 msgstr "Wiadomości"
 
-#: ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Menedżer wiadomości"
 
-#: ../src/qml/MMSDelegate.qml:215
+#: ../src/qml/MMSDelegate.qml:212
 msgid "Missing message data"
 msgstr "Brak części wiadomości"
 
@@ -227,7 +222,7 @@ msgstr "Brak części wiadomości"
 msgid "Myself"
 msgstr "Ja"
 
-#: ../src/qml/Messages.qml:169
+#: ../src/qml/Messages.qml:250
 msgid "New Message"
 msgstr "Nowa wiadomość"
 
@@ -240,7 +235,7 @@ msgstr "Nie"
 msgid "No SIM card selected"
 msgstr "Brak karty SIM"
 
-#: ../src/qml/Messages.qml:274
+#: ../src/qml/Messages.qml:355
 msgid "No network"
 msgstr "Brak sieci"
 
@@ -271,7 +266,7 @@ msgstr "Przeczytane"
 msgid "Received"
 msgstr "Odebrane"
 
-#: ../src/qml/Messages.qml:228
+#: ../src/qml/Messages.qml:309
 msgid "Remove"
 msgstr "Usuń"
 
@@ -307,7 +302,7 @@ msgstr ""
 "Proszę wybrać domyślną kartę SIM dla wszystkich wysyłanych wiadomości. Wybór "
 "można zmienić w <a href=\"system_settings\">ustawieniach systemu</a>."
 
-#: ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:974
 msgid "Send"
 msgstr "Wyślij"
 
@@ -331,12 +326,16 @@ msgstr "Przełącz na domyślną kartę SIM"
 msgid "Temporarily Failed"
 msgstr "W tej chwili nie udało się wykonać operacji"
 
-#: ../src/qml/Messages.qml:275
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
+#: ../src/qml/Messages.qml:356
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Brak zasięgu dla %1"
 
-#: ../src/qml/Messages.qml:275
+#: ../src/qml/Messages.qml:356
 msgid "There is currently no network."
 msgstr "Brak połączenia z siecią"
 
@@ -361,7 +360,7 @@ msgid "Unknown"
 msgstr "Nieznany"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:757
+#: ../src/qml/Messages.qml:844
 msgid "Unknown contact"
 msgstr "Nieznany kontakt"
 
@@ -369,7 +368,7 @@ msgstr "Nieznany kontakt"
 msgid "Video Preview"
 msgstr "Podgląd obrazu"
 
-#: ../src/qml/Messages.qml:857
+#: ../src/qml/Messages.qml:944
 msgid "Write a message..."
 msgstr "Napisz wiadomość..."
 
@@ -390,6 +389,9 @@ msgstr "Należy wybrać kartę SIM"
 #, qt-format
 msgid "You switched to %1 @ %2"
 msgstr "Przełączono na %1 @ %2"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Utwórz nowy"
 
 #~ msgid "Create new"
 #~ msgstr "Utwórz nową"

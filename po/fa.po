@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-16 15:26-0200\n"
+"POT-Creation-Date: 2015-02-26 15:10-0300\n"
 "PO-Revision-Date: 2015-02-04 01:21+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-07 07:31+0000\n"
-"X-Generator: Launchpad (build 17331)\n"
+"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -46,16 +46,11 @@ msgstr[0] "%1 ثانیه تماس"
 msgid "+"
 msgstr "+"
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/qml/NewRecipientPage.qml:179
-msgid "+ Create New"
-msgstr "+ افزودن جدید"
-
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "پذیرفته‌‌شده"
 
-#: ../src/qml/Messages.qml:482
+#: ../src/qml/Messages.qml:563
 msgid "Add"
 msgstr "افزودن"
 
@@ -91,7 +86,7 @@ msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "ضمیمه: %1 ویدیو"
 
-#: ../src/qml/Messages.qml:472 ../src/qml/Messages.qml:526
+#: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
 msgid "Call"
 msgstr "تماس"
 
@@ -106,7 +101,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "تغییر تمامی انجمن‌های پیام‌رسانی به %1؟"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:278
+#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "بستن"
 
@@ -114,7 +109,7 @@ msgstr "بستن"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "با لغزش به بالا از پایین صفحه، پیامی جدید بنویسید."
 
-#: ../src/qml/Messages.qml:536
+#: ../src/qml/Messages.qml:617
 msgid "Contact"
 msgstr "مخاطب"
 
@@ -159,7 +154,7 @@ msgid "Group"
 msgstr "گروه"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:166
+#: ../src/qml/Messages.qml:247
 #, qt-format
 msgid "Group (%1)"
 msgstr "گروه (%1)"
@@ -200,11 +195,11 @@ msgstr "پیام‌رسانی"
 msgid "Messaging App"
 msgstr "اپ پیام‌رسان"
 
-#: ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "برنامه‌ی پیام‌رسان"
 
-#: ../src/qml/MMSDelegate.qml:216
+#: ../src/qml/MMSDelegate.qml:212
 msgid "Missing message data"
 msgstr "اطّلاعات پیام از دست‌رفته"
 
@@ -212,7 +207,7 @@ msgstr "اطّلاعات پیام از دست‌رفته"
 msgid "Myself"
 msgstr "خودم"
 
-#: ../src/qml/Messages.qml:169
+#: ../src/qml/Messages.qml:250
 msgid "New Message"
 msgstr "پیام جدید"
 
@@ -225,7 +220,7 @@ msgstr "خیر"
 msgid "No SIM card selected"
 msgstr "سیم‌کارتی انتخاب نشده است"
 
-#: ../src/qml/Messages.qml:274
+#: ../src/qml/Messages.qml:355
 msgid "No network"
 msgstr "شبکه‌ای موجود نیست"
 
@@ -256,7 +251,7 @@ msgstr "خوانده شده"
 msgid "Received"
 msgstr "دریافتی"
 
-#: ../src/qml/Messages.qml:228
+#: ../src/qml/Messages.qml:309
 msgid "Remove"
 msgstr "برداشتن"
 
@@ -292,7 +287,7 @@ msgstr ""
 "سیم‌کارت پیش‌فرضی را برای پیام‌های خروحی برگزینید. همواره می‌توانید "
 "انتخاباتان را در <a href=\"system_settings\">تنظیمات سامانه</a> عوض کنید."
 
-#: ../src/qml/Messages.qml:893
+#: ../src/qml/Messages.qml:974
 msgid "Send"
 msgstr "فرستادن"
 
@@ -316,12 +311,16 @@ msgstr "عوض کردن به سیم‌کارت پیش‌گزیده:"
 msgid "Temporarily Failed"
 msgstr "موقّتاً شکست خورد"
 
-#: ../src/qml/Messages.qml:275
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
+#: ../src/qml/Messages.qml:356
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "در حال حاضر شبکه‌ای روی %1 نیست"
 
-#: ../src/qml/Messages.qml:275
+#: ../src/qml/Messages.qml:356
 msgid "There is currently no network."
 msgstr "در حال حاضر شبکه‌ای موجود نیست."
 
@@ -346,7 +345,7 @@ msgid "Unknown"
 msgstr "ناشناس"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:763
+#: ../src/qml/Messages.qml:844
 msgid "Unknown contact"
 msgstr "مخاطب ناشناس"
 
@@ -354,7 +353,7 @@ msgstr "مخاطب ناشناس"
 msgid "Video Preview"
 msgstr "پیش‌نمایش ویدیو"
 
-#: ../src/qml/Messages.qml:863
+#: ../src/qml/Messages.qml:944
 msgid "Write a message..."
 msgstr "نوشتن یک پیام…"
 
@@ -378,3 +377,6 @@ msgstr "شما در %2 به %1 تغییر یافتید"
 
 #~ msgid "Create new"
 #~ msgstr "ایجاد جدید"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ افزودن جدید"
