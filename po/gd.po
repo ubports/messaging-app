@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 "Language: gd\n"
 
@@ -125,7 +125,7 @@ msgstr ""
 "A bheil thu airson gach co-cheangal nan teachdaireachd atharrachadh gu %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "Dùin"
 
@@ -170,7 +170,7 @@ msgstr "Dh'fhàillig leis!"
 msgid "Favorites"
 msgstr "Annsachdan"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "O"
 
@@ -225,11 +225,11 @@ msgstr "Aplacaid nan teachdaireachdan"
 msgid "Messaging application"
 msgstr "Aplacaid nan teachdaireachdan"
 
-#: ../src/qml/MMSDelegate.qml:212
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "Tha dàta na teachdaireachd a dhìth"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "Mi fhìn"
 
@@ -269,11 +269,11 @@ msgstr ""
 "aig barr na sgrìn no le bhith a' tadhal air <a "
 "href=\"system_settings\">Roghainnean an t-siostaim ⁊ prìobhaideachd</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "Air a leughadh"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "Air a faighinn"
 
@@ -318,7 +318,7 @@ msgstr ""
 msgid "Send"
 msgstr "Cuir"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Air a chur"
 
@@ -326,7 +326,7 @@ msgstr "Air a chur"
 msgid "Share"
 msgstr "Co-roinn"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Staid"
 
@@ -351,7 +351,7 @@ msgstr "Chan eil lìonra air %1 an-dràsta"
 msgid "There is currently no network."
 msgstr "Chan eil lìonra ann an-dràsta."
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "Gu"
 
@@ -363,7 +363,7 @@ msgstr "Gu:"
 msgid "Today"
 msgstr "An-diugh"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "Seòrsa"
 

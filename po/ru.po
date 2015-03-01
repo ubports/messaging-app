@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -116,7 +116,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Привязать все сообщения к %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "Закрыть"
 
@@ -161,7 +161,7 @@ msgstr "Не удалось!"
 msgid "Favorites"
 msgstr "Избранное"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "От"
 
@@ -215,11 +215,11 @@ msgstr "Приложение для обмена сообщениями"
 msgid "Messaging application"
 msgstr "Приложение, позволяющее обмениваться сообщениями"
 
-#: ../src/qml/MMSDelegate.qml:212
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "Отсутствуют данные о сообщении"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "Я"
 
@@ -258,11 +258,11 @@ msgstr ""
 "Разблокировать SIM-карту можно через индикатор сети вверху экрана или через "
 "<a href=\"system_settings\">Параметры системы &gt; Защита и приватность</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "Прочитать"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "Получено"
 
@@ -307,7 +307,7 @@ msgstr ""
 msgid "Send"
 msgstr "Отправить"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Отправлено"
 
@@ -315,7 +315,7 @@ msgstr "Отправлено"
 msgid "Share"
 msgstr "Поделиться"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Статус"
 
@@ -340,7 +340,7 @@ msgstr "В настоящий момент отсутствует доступ �
 msgid "There is currently no network."
 msgstr "В настоящий момент сеть недоступна."
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "Кому"
 
@@ -352,7 +352,7 @@ msgstr "Кому:"
 msgid "Today"
 msgstr "Сегодня"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "Тип"
 

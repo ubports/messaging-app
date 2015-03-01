@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -108,7 +108,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "Bezárás"
 
@@ -152,7 +152,7 @@ msgstr "Sikertelen!"
 msgid "Favorites"
 msgstr "Kedvencek"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "Feladó"
 
@@ -206,11 +206,11 @@ msgstr "Üzenetküldő alkalmazás"
 msgid "Messaging application"
 msgstr "Üzenetküldő alkalmazás"
 
-#: ../src/qml/MMSDelegate.qml:212
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "Hiányzó üzenetadat"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "Én"
 
@@ -250,11 +250,11 @@ msgstr ""
 "href=\"system_settings\">Rendszerbeállítások &gt; Biztonság és "
 "magánszféra</a> alá."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "Olvasva"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "Fogadva"
 
@@ -299,7 +299,7 @@ msgstr ""
 msgid "Send"
 msgstr "Küldés"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Elküldve"
 
@@ -307,7 +307,7 @@ msgstr "Elküldve"
 msgid "Share"
 msgstr "Megosztás"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Állapot"
 
@@ -332,7 +332,7 @@ msgstr "Jelenleg nincs hálózat ezen: %1"
 msgid "There is currently no network."
 msgstr "Jelenleg nincs hálózat"
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "Címzett"
 
@@ -344,7 +344,7 @@ msgstr "Címzett:"
 msgid "Today"
 msgstr "Ma"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "Típus"
 

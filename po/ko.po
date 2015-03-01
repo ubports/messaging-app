@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -101,7 +101,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "%1와(과) 연관이 있는 모든 베시지를 바꾸시겠습니까?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "닫기"
 
@@ -145,7 +145,7 @@ msgstr "실패!"
 msgid "Favorites"
 msgstr "즐겨찾기"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "보낸 사람"
 
@@ -199,11 +199,11 @@ msgstr "메시지 프로그램"
 msgid "Messaging application"
 msgstr "메시지 프로그램"
 
-#: ../src/qml/MMSDelegate.qml:212
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "잃어버린 메시지 데어터"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "자신"
 
@@ -241,11 +241,11 @@ msgstr ""
 "통화를 하거나 메시지를 보내려면 심 카드의 잠금 상태를 해제해주십시오. 심 카드의 잠긴 상태는 상단의 네트워크를 표시나 <a "
 "href=\"system_settings\">시스템 설정 &gt; 보안 &amp; 사생활 보호</a>에서 해제할 수 있습니다."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "읽기"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "받음"
 
@@ -289,7 +289,7 @@ msgstr ""
 msgid "Send"
 msgstr "보내기"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "보냄"
 
@@ -297,7 +297,7 @@ msgstr "보냄"
 msgid "Share"
 msgstr "공유"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "상태"
 
@@ -322,7 +322,7 @@ msgstr "현재 %1에 네트워크가 없습니다."
 msgid "There is currently no network."
 msgstr "현재 네트워크가 없습니다."
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "받는 사람"
 
@@ -334,7 +334,7 @@ msgstr "받는 사람:"
 msgid "Today"
 msgstr "오늘"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "형식"
 

@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -101,7 +101,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "تغییر تمامی انجمن‌های پیام‌رسانی به %1؟"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "بستن"
 
@@ -145,7 +145,7 @@ msgstr "شکست خورد!"
 msgid "Favorites"
 msgstr "برگزیده‌ها"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "از"
 
@@ -199,11 +199,11 @@ msgstr "اپ پیام‌رسان"
 msgid "Messaging application"
 msgstr "برنامه‌ی پیام‌رسان"
 
-#: ../src/qml/MMSDelegate.qml:212
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "اطّلاعات پیام از دست‌رفته"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "خودم"
 
@@ -243,11 +243,11 @@ msgstr ""
 "href=\"system_settings\">تنظیمات سامانه &gt; امنیت &amp; محرمانگی</a> انجام "
 "دهید."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "خوانده شده"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "دریافتی"
 
@@ -291,7 +291,7 @@ msgstr ""
 msgid "Send"
 msgstr "فرستادن"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "ارسال شده"
 
@@ -299,7 +299,7 @@ msgstr "ارسال شده"
 msgid "Share"
 msgstr "به‌اشتراک گذاری"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "وضعیت"
 
@@ -324,7 +324,7 @@ msgstr "در حال حاضر شبکه‌ای روی %1 نیست"
 msgid "There is currently no network."
 msgstr "در حال حاضر شبکه‌ای موجود نیست."
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "به‌"
 
@@ -336,7 +336,7 @@ msgstr "به :"
 msgid "Today"
 msgstr "امروز"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "گونه"
 

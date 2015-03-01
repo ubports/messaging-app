@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-28 06:18+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -108,7 +108,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Desexa cambiar todas as asociacións de mensaxería a %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
 msgid "Close"
 msgstr "Pechar"
 
@@ -152,7 +152,7 @@ msgstr "Fallou!"
 msgid "Favorites"
 msgstr "Favoritos"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "De"
 
@@ -206,11 +206,11 @@ msgstr "Aplicativo de mensaxería"
 msgid "Messaging application"
 msgstr "Aplicativo de mensaxería"
 
-#: ../src/qml/MMSDelegate.qml:212
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "Faltan os datos da mensaxe"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "Eu"
 
@@ -250,11 +250,11 @@ msgstr ""
 "a <a href=\"system_settings\">Axustes do sistema &gt; Seguranza &amp; "
 "Privacidade</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "Lidas"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "Recibidas"
 
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Send"
 msgstr "Enviar"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Enviadas"
 
@@ -306,7 +306,7 @@ msgstr "Enviadas"
 msgid "Share"
 msgstr "Compartir"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Estado"
 
@@ -331,7 +331,7 @@ msgstr "Actualmente non hai ningunha rede en %1"
 msgid "There is currently no network."
 msgstr "Actualmente non hai ningunha rede."
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "A"
 
@@ -343,7 +343,7 @@ msgstr "Para:"
 msgid "Today"
 msgstr "Hoxe"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "Tipo"
 
