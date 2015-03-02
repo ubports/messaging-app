@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2014-11-19 14:34+0000\n"
-"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"PO-Revision-Date: 2015-03-01 11:16+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-03-02 05:38+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -44,7 +44,7 @@ msgstr[0] "通話 %1 秒"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -98,7 +98,7 @@ msgstr "取消"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "是否要將所有簡訊動作轉用 %1？"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
@@ -226,7 +226,7 @@ msgstr "沒有網路"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "確定"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -238,6 +238,8 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"請解鎖您的 SIM 卡以撥打電話或傳送簡訊。您可以從螢幕頂端的「網路指示器」，或是前往 <a href=\"system_settings\">系統設定 "
+"&gt; 安全與隱私</a> 解鎖 SIM 卡。"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
@@ -257,7 +259,7 @@ msgstr "重試"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "SIM 卡已鎖定"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -307,7 +309,7 @@ msgstr "暫時失敗"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "文字訊息已複製到剪貼簿"
 
 #: ../src/qml/Messages.qml:356
 #, qt-format
@@ -367,7 +369,7 @@ msgstr "要選取 SIM 卡"
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "您已切換到 %1 @ %2"
 
 #~ msgid "Create new"
 #~ msgstr "建立新"
