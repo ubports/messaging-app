@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2015-01-17 12:22+0000\n"
+"PO-Revision-Date: 2015-03-03 20:00+0000\n"
 "Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-03-04 05:56+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -329,7 +329,7 @@ msgstr "Eșec temporar"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "Textul mesajului a fost copiat in clipboard"
 
 #: ../src/qml/Messages.qml:356
 #, qt-format

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2015-02-27 00:38+0000\n"
+"PO-Revision-Date: 2015-03-03 12:14+0000\n"
 "Last-Translator: Akerbeltz <fios@akerbeltz.org>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-03-04 05:56+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 "Language: gd\n"
 
@@ -340,7 +340,7 @@ msgstr "Dh'fhàillig leis gu sealach"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "Chaidh lethbhreac dhen teachdaireachd a chur air an stòr-bhòrd"
 
 #: ../src/qml/Messages.qml:356
 #, qt-format
