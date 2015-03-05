@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2014-10-02 11:26+0000\n"
-"Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
+"PO-Revision-Date: 2015-03-04 17:18+0000\n"
+"Last-Translator: Rafael Neri <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-03-05 06:02+0000\n"
+"X-Generator: Launchpad (build 17374)\n"
 "Language: pt_BR\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -91,8 +91,8 @@ msgstr[1] "Anexos: %1 imagens"
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anexo: %1 vídeo"
+msgstr[1] "Anexos: %1 vídeos"
 
 #: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
 msgid "Call"
@@ -128,15 +128,15 @@ msgstr "Copiar"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
 msgid "Delete"
-msgstr ""
+msgstr "Excluir"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "Excluído"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr ""
+msgstr "Entregue"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
@@ -210,11 +210,11 @@ msgstr "Aplicativo de mensagens"
 
 #: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
-msgstr ""
+msgstr "Faltando dados da mensagem"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
-msgstr ""
+msgstr "Eu"
 
 #: ../src/qml/Messages.qml:250
 msgid "New Message"
@@ -235,7 +235,7 @@ msgstr "Sem rede"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -258,7 +258,7 @@ msgstr "Recebido"
 
 #: ../src/qml/Messages.qml:309
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
@@ -266,7 +266,7 @@ msgstr "Repetir"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "Cartão SIM está bloqueado"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -308,20 +308,20 @@ msgstr "Estado"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "Mudar para SIM padrão:"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "Falhou temporariamente"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "Mensagem de texto copiada para a área de transferência"
 
 #: ../src/qml/Messages.qml:356
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "Nenhuma rede encontrada em %1"
 
 #: ../src/qml/Messages.qml:356
 msgid "There is currently no network."
