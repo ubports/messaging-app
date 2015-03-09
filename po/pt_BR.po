@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2015-03-04 17:18+0000\n"
-"Last-Translator: Rafael Neri <Unknown>\n"
+"PO-Revision-Date: 2015-03-08 20:43+0000\n"
+"Last-Translator: Tiago Hillebrandt <tiagohillebrandt@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-03-05 06:02+0000\n"
-"X-Generator: Launchpad (build 17374)\n"
+"X-Launchpad-Export-Date: 2015-03-09 06:00+0000\n"
+"X-Generator: Launchpad (build 17383)\n"
 "Language: pt_BR\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -250,7 +250,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
-msgstr ""
+msgstr "Ler"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
@@ -289,6 +289,9 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Selecione um cartão SIM padrão para todas as mensagens enviadas. Você sempre "
+"pode alterar a sua escolha em <a href=\"system_settings\">Configurações do "
+"sistema</a>."
 
 #: ../src/qml/Messages.qml:974
 msgid "Send"
@@ -341,7 +344,7 @@ msgstr "Hoje"
 
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
@@ -376,7 +379,7 @@ msgstr "Você precisa selecionar um cartão SIM"
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "Você trocou para %1 @ %2"
 
 #~ msgid "+ Create New"
 #~ msgstr "+ Criar novo"
