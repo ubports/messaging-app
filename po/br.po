@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2014-09-24 09:12+0000\n"
+"PO-Revision-Date: 2015-03-13 12:42+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-03-14 05:32+0000\n"
+"X-Generator: Launchpad (build 17389)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -47,7 +47,7 @@ msgstr[1] "%1 eilenn o pellgomz"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -234,7 +234,7 @@ msgstr "N'eus ket a rouedad"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "Mat eo"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -246,6 +246,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"Dibrennit ho kartenn SIM evit pellgomz pe kas ur gemennadenn, mar plij. "
+"Gallout a rit dibrennañ ho kartenn SIM adalek ar merker rouedad e krec'h ar "
+"skramm pe mont da <a href=\"system_settings\">Arventennoù ar reizhiad &gt; "
+"Surentez ha buhez prevez</a>"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
@@ -265,7 +269,7 @@ msgstr "Esaeañ en-dro"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "Prennet eo ar gartenn SIM"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
@@ -318,7 +322,7 @@ msgstr "C'hwitadenn evit ar poent"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "Testenn eilet er golver"
 
 #: ../src/qml/Messages.qml:356
 #, qt-format
@@ -378,7 +382,7 @@ msgstr "Ret eo deoc'h diuzañ ur gartenn SIM"
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "Aet oc'h eus %1 da %2"
 
 #~ msgid "Create new"
 #~ msgstr "Krouiñ unan nevez"
