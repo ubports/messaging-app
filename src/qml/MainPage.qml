@@ -211,7 +211,6 @@ LocalPageWithBottomEdge {
                     if (model.participants[0].alias) {
                         properties["firstRecipientAlias"] = model.participants[0].alias;
                     }
-
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }
