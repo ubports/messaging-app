@@ -73,6 +73,7 @@ MainView {
         onSetupReady: {
             if (multipleAccounts && !telepathyHelper.defaultMessagingAccount &&
                 settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
+                // FIXME: soon it will be more than just SIM cards, update the dialog accordingly
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }
@@ -86,6 +87,7 @@ MainView {
             sortOrder: HistorySort.DescendingOrder
         }
         filter: HistoryFilter {}
+        // FIXME: once we support more messaging backends, we might need to increase the granularity of the filters
         groupingProperty: "participants"
         matchContacts: true
     }
@@ -136,9 +138,9 @@ MainView {
         mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
-    function startChat(phoneNumbers, text) {
+    function startChat(identifiers, text) {
         var properties = {}
-        var participants = phoneNumbers.split(";")
+        var participants = identifiers.split(";")
         properties["participants"] = participants
         properties["text"] = text
         emptyStack()

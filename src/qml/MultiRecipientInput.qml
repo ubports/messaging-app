@@ -43,16 +43,16 @@ StyledItem {
         z: 1
     }
 
-    function addRecipient(phoneNumber) {
+    function addRecipient(identifier) {
         for (var i = 0; i<recipientModel.count; i++) {
             // FIXME: replace by a phone number comparison method
-            if (recipientModel.get(i).phoneNumber === phoneNumber) {
+            if (recipientModel.get(i).identifier === identifier) {
                 // FIXME: we should warn the user about this duplicate
                 return
             }
         }
 
-        recipientModel.insert(recipientCount, { "phoneNumber": phoneNumber })
+        recipientModel.insert(recipientCount, { "identifier": identifier })
         scrollableArea.contentX = contactFlow.width
 
     }
@@ -68,12 +68,12 @@ StyledItem {
             var i
             var tmp = []
             for(i = 0; i< recipientModel.count-1; i++) {
-                tmp.push(recipientModel.get(i).phoneNumber)
+                tmp.push(recipientModel.get(i).identifier)
             }
             recipients = tmp
         }
         ListElement {
-            phoneNumber: ""
+            identifier: ""
             searchItem: true
         }
     }
@@ -115,11 +115,11 @@ StyledItem {
                     }
                     property string contactName: {
                         if (contactWatcher.isUnknown) {
-                            return contactWatcher.phoneNumber
+                            return contactWatcher.identifier
                         }
                         return contactWatcher.alias
                     }
-                    property alias phoneNumber: contactWatcher.phoneNumber
+                    property alias identifier: contactWatcher.identifier
                     property int index
                     property bool selected: selectedIndex == index
                     property string separator: index == recipientCount-1 ? "" : ","
@@ -133,6 +133,7 @@ StyledItem {
                     verticalAlignment: Text.AlignVCenter
                     ContactWatcher {
                         id: contactWatcher
+                        addressableFields: messages.account.addressableVCardFields
                     }
                 }
             }
@@ -233,9 +234,9 @@ StyledItem {
                     }
                     Binding {
                         target: item
-                        property: "phoneNumber"
-                        value: phoneNumber
-                        when: (phoneNumber && status == Loader.Ready)
+                        property: "identifier"
+                        value: identifier
+                        when: (identifier && status == Loader.Ready)
                     }
                     Binding {
                         target: item

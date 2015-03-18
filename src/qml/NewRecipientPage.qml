@@ -132,12 +132,14 @@ Page {
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
 
         filterTerm: searchField.text
+        // FIXME: support picking more details
         detailToPick: ContactDetail.PhoneNumber
         onDetailClicked: {
             if (action === "message" || action === "") {
                 multiRecipient.addRecipient(detail.number)
                 multiRecipient.forceActiveFocus()
             } else if (action === "call") {
+                // FIXME: support other things than just phone numbers
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             }
             mainStack.pop()
