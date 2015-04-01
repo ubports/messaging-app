@@ -187,7 +187,7 @@ LocalPageWithBottomEdge {
         listDelegate: ThreadDelegate {
             id: threadDelegate
             // FIXME: find a better unique name
-            objectName: "thread%1".arg(participants[0].phoneNumber)
+            objectName: "thread%1".arg(participants[0].identifier)
 
             anchors {
                 left: parent.left
