@@ -192,6 +192,11 @@ Page {
         onAccountChanged: messages.account = mainView.account
     }
 
+    Connections {
+        target: telepathyHelper
+        onAccountsChanged: updateFilters()
+    }
+
     ActivityIndicator {
         id: activityIndicator
         anchors {
