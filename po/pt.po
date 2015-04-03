@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-03-18 06:10+0000\n"
-"X-Generator: Launchpad (build 17403)\n"
+"X-Launchpad-Export-Date: 2015-04-03 05:46+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Aceite"
 
-#: ../src/qml/Messages.qml:563
+#: ../src/qml/Messages.qml:557
 msgid "Add"
 msgstr "Adicionar"
 
@@ -93,7 +93,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Anexo: %1 vídeo"
 msgstr[1] "Anexos: %1 vídeos"
 
-#: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
+#: ../src/qml/Messages.qml:546 ../src/qml/Messages.qml:604
 msgid "Call"
 msgstr "Ligar"
 
@@ -108,7 +108,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Alterar todas as associações de mensagens para %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:366
 msgid "Close"
 msgstr "Fechar"
 
@@ -116,7 +116,7 @@ msgstr "Fechar"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Escrever uma nova mensagem ao deslizar para cima do fundo do ecrã."
 
-#: ../src/qml/Messages.qml:617
+#: ../src/qml/Messages.qml:615
 msgid "Contact"
 msgstr "Contacto"
 
@@ -161,7 +161,7 @@ msgid "Group"
 msgstr "Grupo"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:247
+#: ../src/qml/Messages.qml:251
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupo (%1)"
@@ -200,7 +200,7 @@ msgstr "Mensagens"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr "Aplicação de mensagens"
+msgstr "App de mensagens"
 
 #: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
@@ -214,7 +214,7 @@ msgstr "Falta informação na mensagem"
 msgid "Myself"
 msgstr "Eu"
 
-#: ../src/qml/Messages.qml:250
+#: ../src/qml/Messages.qml:254
 msgid "New Message"
 msgstr "Mensagem nova"
 
@@ -227,7 +227,7 @@ msgstr "Não"
 msgid "No SIM card selected"
 msgstr "Cartão SIM não selecionado."
 
-#: ../src/qml/Messages.qml:355
+#: ../src/qml/Messages.qml:362
 msgid "No network"
 msgstr "Sem rede"
 
@@ -258,9 +258,9 @@ msgstr "Ler"
 msgid "Received"
 msgstr "Recebida"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:315
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Remover"
 
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
@@ -295,7 +295,7 @@ msgstr ""
 "alterar a sua escolha nas <a href=\"system_settings\">Definições do "
 "Sistema</a>."
 
-#: ../src/qml/Messages.qml:974
+#: ../src/qml/Messages.qml:972
 msgid "Send"
 msgstr "Enviar"
 
@@ -323,12 +323,12 @@ msgstr "Falha temporária"
 msgid "Text message copied to clipboard"
 msgstr "Texto copiado para a área de transferência"
 
-#: ../src/qml/Messages.qml:356
+#: ../src/qml/Messages.qml:363
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Atualmente não existe nenhuma rede em %1"
 
-#: ../src/qml/Messages.qml:356
+#: ../src/qml/Messages.qml:363
 msgid "There is currently no network."
 msgstr "Atualmente não existe nenhuma rede."
 
@@ -336,7 +336,7 @@ msgstr "Atualmente não existe nenhuma rede."
 msgid "To"
 msgstr "Para"
 
-#: ../src/qml/MultiRecipientInput.qml:147
+#: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
 msgstr "Para:"
 
@@ -353,7 +353,7 @@ msgid "Unknown"
 msgstr "Desconhecido"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:844
+#: ../src/qml/Messages.qml:842
 msgid "Unknown contact"
 msgstr "Contacto desconhecido"
 
@@ -361,7 +361,7 @@ msgstr "Contacto desconhecido"
 msgid "Video Preview"
 msgstr "Pré-visualizar vídeo"
 
-#: ../src/qml/Messages.qml:944
+#: ../src/qml/Messages.qml:942
 msgid "Write a message..."
 msgstr "Escrever mensagem..."
 
