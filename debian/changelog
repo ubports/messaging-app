@@ -1,3 +1,11 @@
+messaging-app (0.1+15.04.20150318-0ubuntu1) vivid; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Change messaging-app to add basic support for accounts not based on
+    phone number.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Mar 2015 17:44:40 +0000
+
 messaging-app (0.1+15.04.20150228-0ubuntu1) vivid; urgency=medium
 
   [ Bill Filler ]

@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-04-03 05:46+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: is\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Accepted"
 msgstr "Samþykkt"
 
-#: ../src/qml/Messages.qml:563
+#: ../src/qml/Messages.qml:557
 msgid "Add"
 msgstr "Bæta við"
 
@@ -96,7 +96,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Viðhengi: %1 myndskeið"
 msgstr[1] "Viðhengi: %1 myndskeið"
 
-#: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
+#: ../src/qml/Messages.qml:546 ../src/qml/Messages.qml:604
 msgid "Call"
 msgstr "Hringja"
 
@@ -111,7 +111,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:366
 msgid "Close"
 msgstr "Loka"
 
@@ -119,7 +119,7 @@ msgstr "Loka"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/Messages.qml:617
+#: ../src/qml/Messages.qml:615
 msgid "Contact"
 msgstr "Tengiliður"
 
@@ -164,7 +164,7 @@ msgid "Group"
 msgstr "Hópur"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:247
+#: ../src/qml/Messages.qml:251
 #, qt-format
 msgid "Group (%1)"
 msgstr "Hópur (%1)"
@@ -217,7 +217,7 @@ msgstr ""
 msgid "Myself"
 msgstr "Sjálf/ur"
 
-#: ../src/qml/Messages.qml:250
+#: ../src/qml/Messages.qml:254
 msgid "New Message"
 msgstr "Ný skilaboð"
 
@@ -230,7 +230,7 @@ msgstr "Ekkert"
 msgid "No SIM card selected"
 msgstr ""
 
-#: ../src/qml/Messages.qml:355
+#: ../src/qml/Messages.qml:362
 msgid "No network"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:315
 msgid "Remove"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:974
+#: ../src/qml/Messages.qml:972
 msgid "Send"
 msgstr ""
 
@@ -319,12 +319,12 @@ msgstr ""
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:356
+#: ../src/qml/Messages.qml:363
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr ""
 
-#: ../src/qml/Messages.qml:356
+#: ../src/qml/Messages.qml:363
 msgid "There is currently no network."
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "To"
 msgstr ""
 
-#: ../src/qml/MultiRecipientInput.qml:147
+#: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgid "Unknown"
 msgstr ""
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:844
+#: ../src/qml/Messages.qml:842
 msgid "Unknown contact"
 msgstr ""
 
@@ -357,7 +357,7 @@ msgstr ""
 msgid "Video Preview"
 msgstr "Forskoðun myndskeiðs"
 
-#: ../src/qml/Messages.qml:944
+#: ../src/qml/Messages.qml:942
 msgid "Write a message..."
 msgstr "Skrifa skilaboð..."
 

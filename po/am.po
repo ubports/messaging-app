@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-03-01 05:31+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-04-03 05:46+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "ተቀብያለሁ"
 
-#: ../src/qml/Messages.qml:563
+#: ../src/qml/Messages.qml:557
 msgid "Add"
 msgstr "መጨመሪያ"
 
@@ -93,7 +93,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "ማያያዣ: %1 ቪዲዮ"
 msgstr[1] "ማያያዣዎች: %1 ቪዲዮዎች"
 
-#: ../src/qml/Messages.qml:553 ../src/qml/Messages.qml:607
+#: ../src/qml/Messages.qml:546 ../src/qml/Messages.qml:604
 msgid "Call"
 msgstr "ጥሪ"
 
@@ -108,7 +108,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "ሁሉንም የተዛመዱ መልእክቶች መቀየሪያ ወደ %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:359
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:366
 msgid "Close"
 msgstr "መዝጊያ"
 
@@ -116,7 +116,7 @@ msgstr "መዝጊያ"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ"
 
-#: ../src/qml/Messages.qml:617
+#: ../src/qml/Messages.qml:615
 msgid "Contact"
 msgstr "ግንኙነት"
 
@@ -161,7 +161,7 @@ msgid "Group"
 msgstr "ቡድን"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:247
+#: ../src/qml/Messages.qml:251
 #, qt-format
 msgid "Group (%1)"
 msgstr "ቡድን (%1)"
@@ -214,7 +214,7 @@ msgstr "የ መልእክት ዳታ አልተገኘም"
 msgid "Myself"
 msgstr "እኔ ራሴ"
 
-#: ../src/qml/Messages.qml:250
+#: ../src/qml/Messages.qml:254
 msgid "New Message"
 msgstr "አዲስ መልእክት"
 
@@ -227,7 +227,7 @@ msgstr "አይ"
 msgid "No SIM card selected"
 msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
 
-#: ../src/qml/Messages.qml:355
+#: ../src/qml/Messages.qml:362
 msgid "No network"
 msgstr "ኔትዎርክ አልተገኘም"
 
@@ -257,7 +257,7 @@ msgstr "ያንብቡ"
 msgid "Received"
 msgstr "ተቀብለዋል"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:315
 msgid "Remove"
 msgstr "ማስወገጃ"
 
@@ -293,7 +293,7 @@ msgstr ""
 "ወደ ውጪ ለሚላኩ ጥሪዎች ነባር ሲም ይምረጡ: ምርጫዎትን በፈለጉ ጊዜ መቀየር ይችላሉ ከ <a "
 "href=\"ስርአት_ማሰናጃዎች\">ስርአት ማሰናጃዎች</a>."
 
-#: ../src/qml/Messages.qml:974
+#: ../src/qml/Messages.qml:972
 msgid "Send"
 msgstr "መላኪያ"
 
@@ -321,12 +321,12 @@ msgstr "ለጊዜው ወድቋል"
 msgid "Text message copied to clipboard"
 msgstr "የ ጽሁፍ መልእክት ወደ ቁራጭ ሰሌዳ ኮፒ ተደርጓል"
 
-#: ../src/qml/Messages.qml:356
+#: ../src/qml/Messages.qml:363
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "አሁን ምንም ኔትዎርክ አልተገኘም በ %1"
 
-#: ../src/qml/Messages.qml:356
+#: ../src/qml/Messages.qml:363
 msgid "There is currently no network."
 msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 
@@ -334,7 +334,7 @@ msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 msgid "To"
 msgstr "ለ"
 
-#: ../src/qml/MultiRecipientInput.qml:147
+#: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
 msgstr "ለ:"
 
@@ -351,7 +351,7 @@ msgid "Unknown"
 msgstr "ያልታወቀ"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:844
+#: ../src/qml/Messages.qml:842
 msgid "Unknown contact"
 msgstr "ያልታወቀ ግንኙነት"
 
@@ -359,7 +359,7 @@ msgstr "ያልታወቀ ግንኙነት"
 msgid "Video Preview"
 msgstr "የ ቪዲዮ ቅድመ እይታ"
 
-#: ../src/qml/Messages.qml:944
+#: ../src/qml/Messages.qml:942
 msgid "Write a message..."
 msgstr "መልእክት መጻፊያ..."
 
