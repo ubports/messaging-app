@@ -210,8 +210,7 @@ ListItemWithActions {
 
     Item {
         id: delegateHelper
-        // FIXME: change history-service to rename phone number to identifier
-        property string phoneNumber: participant.phoneNumber
+        property string phoneNumber: participant.identifier
         property string alias: participant.alias ? participant.alias : ""
         property string avatar: participant.avatar ? participant.avatar : ""
         property string contactId: participant.contactId ? participant.contactId : ""
