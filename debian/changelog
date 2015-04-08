@@ -1,3 +1,14 @@
+messaging-app (0.1+15.04.20150408-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Gustavo Pichorim Boiko ]
+  * Sync with the latest changes in history-service to support matching
+    other contact fields.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 08 Apr 2015 22:02:51 +0000
+
 messaging-app (0.1+15.04.20150318-0ubuntu1) vivid; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
