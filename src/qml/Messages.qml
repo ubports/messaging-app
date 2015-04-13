@@ -91,6 +91,7 @@ Page {
         return true
     }
 
+    // FIXME: support more stuff than just phone number
     function onPhonePickedDuringSearch(phoneNumber) {
         multiRecipient.addRecipient(phoneNumber)
         multiRecipient.clearSearch()
@@ -109,7 +110,8 @@ Page {
         var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
                                            HistoryThreadModel.EventTypeText,
                                            participants,
-                                           HistoryThreadModel.MatchPhoneNumber,
+                                           messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                                              : HistoryThreadModel.MatchCaseSensitive,
                                            true)
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
@@ -171,6 +173,7 @@ Page {
             var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
+            // FIXME: maybe move this to telepathy-ofono itself and treat as just sendMessage on the app?
             if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
                 chatManager.sendMMS(participants, text, attachments, messages.account.accountId)
             } else {
@@ -178,6 +181,7 @@ Page {
             }
         }
 
+        // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
         if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
@@ -246,7 +250,7 @@ Page {
         }
         if (participants.length > 0) {
             if (participants.length == 1) {
-                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.phoneNumber
+                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.identifier
             } else {
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 return i18n.tr("Group (%1)").arg(participants.length)
@@ -270,11 +274,13 @@ Page {
         }
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        for (var i in telepathyHelper.accountIds) {
-            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
+        for (var i in telepathyHelper.accounts) {
+            var account = telepathyHelper.accounts[i];
+            var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
-                                                                 HistoryThreadModel.MatchPhoneNumber)
+                                                                 account.type === AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                                                            : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
                 continue
             }
@@ -341,11 +347,12 @@ Page {
                         width: popover.width
                         ListItem.Standard {
                             id: listItem
-                            text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
+                            text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
                         }
                         ContactWatcher {
                             id: contactWatcher
-                            phoneNumber: modelData
+                            identifier: modelData
+                            addressableFields: messages.account.addressableVCardFields
                         }
                     }
                 }
@@ -462,31 +469,14 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        phoneNumber: participants.length === 0 ? "" : participants[0]
+        identifier: participants.length === 0 ? "" : participants[0]
         onIsUnknownChanged: firstRecipientAlias = contactWatcherInternal.alias
         onAliasChanged: firstRecipientAlias = contactWatcherInternal.alias
+        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
     onParticipantsChanged: {
         updateFilters()
-    }
-
-    state: {
-        if (participants.length === 0 && isReady) {
-            return "newMessage"
-        } else if (selectionMode) {
-           return "selection"
-        } else if (participants.length == 1) {
-           if (contactWatcher.isUnknown) {
-               return "unknownContact"
-           } else {
-               return "knownContact"
-           }
-        } else if (groupChat){
-           return "groupChat"
-        } else {
-            return ""
-        }
     }
 
     Action {
@@ -505,6 +495,7 @@ Page {
         PageHeadState {
             name: "selection"
             head: messages.head
+            when: selectionMode
 
             backAction: Action {
                 objectName: "selectionModeCancelAction"
@@ -535,6 +526,7 @@ Page {
         PageHeadState {
             name: "groupChat"
             head: messages.head
+            when: groupChat
             backAction: backButton
 
             actions: [
@@ -548,6 +540,7 @@ Page {
         PageHeadState {
             name: "unknownContact"
             head: messages.head
+            when: participants.length == 1 && contactWatcher.isUnknown
             backAction: backButton
 
             actions: [
@@ -558,7 +551,8 @@ Page {
                     text: i18n.tr("Call")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
                     }
                 },
                 Action {
@@ -568,7 +562,8 @@ Page {
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.identifier));
                     }
                 }
             ]
@@ -576,6 +571,7 @@ Page {
         PageHeadState {
             name: "newMessage"
             head: messages.head
+            when: participants.length === 0 && isReady
             backAction: backButton
             actions: [
                 Action {
@@ -603,6 +599,7 @@ Page {
         PageHeadState {
             name: "knownContact"
             head: messages.head
+            when: participants.length == 1 && !contactWatcher.isUnknown
             backAction: backButton
             actions: [
                 Action {
@@ -612,7 +609,8 @@ Page {
                     text: i18n.tr("Call")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
                     }
                 },
                 Action {
