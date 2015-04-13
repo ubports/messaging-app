@@ -1,3 +1,11 @@
+messaging-app (0.1+15.04.20150413-0ubuntu1) vivid; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Update history filters when telepathy accounts change. (LP:
+    #1439718)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 13 Apr 2015 13:13:22 +0000
+
 messaging-app (0.1+15.04.20150408-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
