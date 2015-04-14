@@ -56,6 +56,10 @@ Page {
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
+            if (String(transfer.items[i].text).length > 0) {
+                messages.text = String(transfer.items[i].text)
+                continue
+            }
             var attachment = {}
             if (!startsWith(String(transfer.items[i].url),"file://")) {
                 messages.text = String(transfer.items[i].url)
