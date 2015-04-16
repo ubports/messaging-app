@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-04-03 05:46+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-16 05:30+0000\n"
+"X-Generator: Launchpad (build 17428)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Aprouet"
 
-#: ../src/qml/Messages.qml:557
+#: ../src/qml/Messages.qml:562
 msgid "Add"
 msgstr "Ouzhpennañ"
 
@@ -93,7 +93,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Pezh stag : %1 video"
 msgstr[1] "Pezhioù stag : %1 a videoioù"
 
-#: ../src/qml/Messages.qml:546 ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
 msgid "Call"
 msgstr "Pellgomz"
 
@@ -108,7 +108,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Cheñch an holl gevreadurioù kemennerezh da %1 ?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:366
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
 msgid "Close"
 msgstr "Serriñ"
 
@@ -117,7 +117,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Sevel ur gemenadenn nevez o riklañ war-zu an nec'h adalek traoñ ar skramm."
 
-#: ../src/qml/Messages.qml:615
+#: ../src/qml/Messages.qml:620
 msgid "Contact"
 msgstr "Darempred"
 
@@ -162,7 +162,7 @@ msgid "Group"
 msgstr "Strollad"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:251
+#: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "Group (%1)"
 msgstr "Strollad (%1)"
@@ -215,7 +215,7 @@ msgstr "Diank eo titouroù ar gemennadenn"
 msgid "Myself"
 msgstr "Me ma-unan"
 
-#: ../src/qml/Messages.qml:254
+#: ../src/qml/Messages.qml:259
 msgid "New Message"
 msgstr "Kemennadenn nevez"
 
@@ -228,7 +228,7 @@ msgstr "Ket"
 msgid "No SIM card selected"
 msgstr "N'eus bet diuzet kartenn SIM ebet"
 
-#: ../src/qml/Messages.qml:362
+#: ../src/qml/Messages.qml:367
 msgid "No network"
 msgstr "N'eus ket a rouedad"
 
@@ -259,7 +259,7 @@ msgstr "Lenn"
 msgid "Received"
 msgstr "Resevet"
 
-#: ../src/qml/Messages.qml:315
+#: ../src/qml/Messages.qml:320
 msgid "Remove"
 msgstr "Lemel"
 
@@ -296,7 +296,7 @@ msgstr ""
 "a reoc'h bepred cheñch ho tibab diwezhatoc'h e-barzh  <a "
 "href=\"system_settings\">Arventennoù ar reizhiad</a>."
 
-#: ../src/qml/Messages.qml:972
+#: ../src/qml/Messages.qml:977
 msgid "Send"
 msgstr "Kas"
 
@@ -324,12 +324,12 @@ msgstr "C'hwitadenn evit ar poent"
 msgid "Text message copied to clipboard"
 msgstr "Testenn eilet er golver"
 
-#: ../src/qml/Messages.qml:363
+#: ../src/qml/Messages.qml:368
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "N'eus rouedad ebet evit bremañ war %1"
 
-#: ../src/qml/Messages.qml:363
+#: ../src/qml/Messages.qml:368
 msgid "There is currently no network."
 msgstr "N'eus rouedad ebet evit bremañ"
 
@@ -354,7 +354,7 @@ msgid "Unknown"
 msgstr "Dianav"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:842
+#: ../src/qml/Messages.qml:847
 msgid "Unknown contact"
 msgstr "Darempred dianav"
 
@@ -362,7 +362,7 @@ msgstr "Darempred dianav"
 msgid "Video Preview"
 msgstr "Rakwelet ar video"
 
-#: ../src/qml/Messages.qml:942
+#: ../src/qml/Messages.qml:947
 msgid "Write a message..."
 msgstr "Skrivañ ur gemennadenn..."
 
