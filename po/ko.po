@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-03 05:46+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-16 05:30+0000\n"
+"X-Generator: Launchpad (build 17428)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -50,7 +50,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "수락함"
 
-#: ../src/qml/Messages.qml:557
+#: ../src/qml/Messages.qml:562
 msgid "Add"
 msgstr "추가"
 
@@ -86,7 +86,7 @@ msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "첨부 파일: 비디오 %1"
 
-#: ../src/qml/Messages.qml:546 ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
 msgid "Call"
 msgstr "전화"
 
@@ -101,7 +101,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "%1와(과) 연관이 있는 모든 베시지를 바꾸시겠습니까?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:366
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
 msgid "Close"
 msgstr "닫기"
 
@@ -109,7 +109,7 @@ msgstr "닫기"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "화면 아래에서 위로 쓸어 올리면 새 메시지를 쓸 수 있습니다."
 
-#: ../src/qml/Messages.qml:615
+#: ../src/qml/Messages.qml:620
 msgid "Contact"
 msgstr "연락처"
 
@@ -154,7 +154,7 @@ msgid "Group"
 msgstr "그룹"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:251
+#: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "Group (%1)"
 msgstr "그룹(%1)"
@@ -207,7 +207,7 @@ msgstr "잃어버린 메시지 데어터"
 msgid "Myself"
 msgstr "자신"
 
-#: ../src/qml/Messages.qml:254
+#: ../src/qml/Messages.qml:259
 msgid "New Message"
 msgstr "새 메시지"
 
@@ -220,7 +220,7 @@ msgstr "아니요"
 msgid "No SIM card selected"
 msgstr "선택한 심 카드가 없습니다."
 
-#: ../src/qml/Messages.qml:362
+#: ../src/qml/Messages.qml:367
 msgid "No network"
 msgstr "네트워크 없음"
 
@@ -249,7 +249,7 @@ msgstr "읽기"
 msgid "Received"
 msgstr "받음"
 
-#: ../src/qml/Messages.qml:315
+#: ../src/qml/Messages.qml:320
 msgid "Remove"
 msgstr "제거"
 
@@ -285,7 +285,7 @@ msgstr ""
 "모든 메시지를 보낼 기본 심 카드를 선택해주십시오. 이 선택은 <a href=\"system_settings\">시스템 설정</a>에서 "
 "언제나 바꿀 수 있습니다."
 
-#: ../src/qml/Messages.qml:972
+#: ../src/qml/Messages.qml:977
 msgid "Send"
 msgstr "보내기"
 
@@ -313,12 +313,12 @@ msgstr "일시적으로 실패함"
 msgid "Text message copied to clipboard"
 msgstr "텍스트 메시지를 클립 보드에 복사했습니다."
 
-#: ../src/qml/Messages.qml:363
+#: ../src/qml/Messages.qml:368
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "현재 %1에 네트워크가 없습니다."
 
-#: ../src/qml/Messages.qml:363
+#: ../src/qml/Messages.qml:368
 msgid "There is currently no network."
 msgstr "현재 네트워크가 없습니다."
 
@@ -343,7 +343,7 @@ msgid "Unknown"
 msgstr "알 수 없음"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:842
+#: ../src/qml/Messages.qml:847
 msgid "Unknown contact"
 msgstr "알 수 없는 연락처"
 
@@ -351,7 +351,7 @@ msgstr "알 수 없는 연락처"
 msgid "Video Preview"
 msgstr "동영상 미리 보기"
 
-#: ../src/qml/Messages.qml:942
+#: ../src/qml/Messages.qml:947
 msgid "Write a message..."
 msgstr "메시지 쓰기..."
 

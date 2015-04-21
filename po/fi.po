@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-03 05:46+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-16 05:30+0000\n"
+"X-Generator: Launchpad (build 17428)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Hyväksytty"
 
-#: ../src/qml/Messages.qml:557
+#: ../src/qml/Messages.qml:562
 msgid "Add"
 msgstr "Lisää"
 
@@ -93,7 +93,7 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Liite: %1 video"
 msgstr[1] "Liitteet: %1 videota"
 
-#: ../src/qml/Messages.qml:546 ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
 msgid "Call"
 msgstr "Puhelu"
 
@@ -108,7 +108,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Muutetaanko kaikki viestintäyhteydet SIM-korttiin/tiliin %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:366
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
 msgid "Close"
 msgstr "Sulje"
 
@@ -116,7 +116,7 @@ msgstr "Sulje"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Luo uusi viesti pyyhkäisemällä näytön alaosasta ylöspäin."
 
-#: ../src/qml/Messages.qml:615
+#: ../src/qml/Messages.qml:620
 msgid "Contact"
 msgstr "Yhteystieto"
 
@@ -161,7 +161,7 @@ msgid "Group"
 msgstr "Ryhmä"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:251
+#: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "Group (%1)"
 msgstr "Ryhmä (%1)"
@@ -216,7 +216,7 @@ msgstr "Viestidata puuttuu"
 msgid "Myself"
 msgstr "Minä"
 
-#: ../src/qml/Messages.qml:254
+#: ../src/qml/Messages.qml:259
 msgid "New Message"
 msgstr "Uusi viesti"
 
@@ -229,7 +229,7 @@ msgstr "Ei"
 msgid "No SIM card selected"
 msgstr "SIM-korttia ei havaittu"
 
-#: ../src/qml/Messages.qml:362
+#: ../src/qml/Messages.qml:367
 msgid "No network"
 msgstr "Ei verkkoa"
 
@@ -260,7 +260,7 @@ msgstr "Luettu"
 msgid "Received"
 msgstr "Vastaanotettu"
 
-#: ../src/qml/Messages.qml:315
+#: ../src/qml/Messages.qml:320
 msgid "Remove"
 msgstr "Poista"
 
@@ -296,7 +296,7 @@ msgstr ""
 "Valitse oletus-SIM kaikille lähteville viesteille. Voi muuttaa asetusta <a "
 "href=\"system_settings\">Järjestelmän asetuksissa</a>."
 
-#: ../src/qml/Messages.qml:972
+#: ../src/qml/Messages.qml:977
 msgid "Send"
 msgstr "Lähetä"
 
@@ -324,12 +324,12 @@ msgstr "Epäonnistui väliaikaisesti"
 msgid "Text message copied to clipboard"
 msgstr "Tekstiviesti kopioitu leikepöydälle"
 
-#: ../src/qml/Messages.qml:363
+#: ../src/qml/Messages.qml:368
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Ei verkkoa juuri nyt - %1"
 
-#: ../src/qml/Messages.qml:363
+#: ../src/qml/Messages.qml:368
 msgid "There is currently no network."
 msgstr "Ei verkkoa juuri nyt."
 
@@ -354,7 +354,7 @@ msgid "Unknown"
 msgstr "Tuntematon"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:842
+#: ../src/qml/Messages.qml:847
 msgid "Unknown contact"
 msgstr "Tuntematon yhteystieto"
 
@@ -362,7 +362,7 @@ msgstr "Tuntematon yhteystieto"
 msgid "Video Preview"
 msgstr "Videon esikatselu"
 
-#: ../src/qml/Messages.qml:942
+#: ../src/qml/Messages.qml:947
 msgid "Write a message..."
 msgstr "Kirjoita viesti..."
 
