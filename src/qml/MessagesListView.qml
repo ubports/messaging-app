@@ -95,15 +95,22 @@ MultipleSelectionListView {
 
     listDelegate: Loader {
         id: loader
+
+        function sourceFile() {
+            if (textMessageType == HistoryThreadModel.MessageTypeInormation) {
+                return "AccountSectionDelegate.qml"
+            } else {
+                return "RegularMessageDelegate.qml"
+            }
+        }
+
         anchors.left: parent.left
         anchors.right: parent.right
         height: status == Loader.Ready ? item.height : 0
-        
         Component.onCompleted: {
-            var properties = {"messageData": model}
-            var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
-            loader.setSource(sourceFile, properties)
+            loader.setSource(sourceFile(), {"messageData": listModel.get(index) })
         }
+        source: sourceFile()
 
         Binding {
             target: loader.item
