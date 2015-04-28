@@ -264,6 +264,12 @@ Page {
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
+    onActiveChanged: {
+        if (eventModel.count > 0){
+            swipeItemDemo.enable()
+        }
+    }
+
     function updateFilters() {
         if (participants.length == 0) {
             eventModel.filter = null
@@ -1005,7 +1011,7 @@ Page {
                 for (var i = 0; i < attachments.count; i++) {
                     var attachment = []
                     var item = attachments.get(i)
-                    // we dont include smil files. they will be auto generated 
+                    // we dont include smil files. they will be auto generated
                     if (item.contentType.toLowerCase() === "application/smil") {
                         continue
                     }
@@ -1032,5 +1038,12 @@ Page {
 
     MessageInfoDialog {
         id: messageInfoDialog
+    }
+
+    SwipeItemDemo {
+        id: swipeItemDemo
+
+        parent: QuickUtils.rootItem(this)
+        anchors.fill: parent
     }
 }
