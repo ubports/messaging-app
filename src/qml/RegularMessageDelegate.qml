@@ -34,12 +34,6 @@ Column {
     property string accountId: messageData.accountId
     property int index: -1
 
-    onIndexChanged: {
-        messageData = listModel.get(index)
-        if (newEvent) {
-            messages.markMessageAsRead(accountId, threadId, eventId, type);
-        }
-    }
     // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
     // bellow the item
     MessageDateSection {
