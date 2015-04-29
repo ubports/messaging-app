@@ -1043,6 +1043,9 @@ Page {
 
     SwipeItemDemo {
         id: swipeItemDemo
+        objectName: "swipeItemDemo"
+
+        property bool parentActive: messages.active
 
         parent: QuickUtils.rootItem(this)
         anchors.fill: parent

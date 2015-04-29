@@ -58,6 +58,7 @@ Loader {
 
             Button {
                 id: gotItButton
+                objectName: "gotItButton"
 
                 anchors {
                     bottom: dragTitle.top

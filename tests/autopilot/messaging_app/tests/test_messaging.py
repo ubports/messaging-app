@@ -422,3 +422,59 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
         self.messages_view = self.main_view.select_single(
             emulators.Messages,
             text='text message')
+
+
+class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment(use_empty_config=True)
+        self.useFixture(test_setup)
+
+        super(MessagingTestSwipeToDeleteDemo, self).setUp()
+
+    def test_write_new_message_with_tutorial(self):
+        """Verify if the tutorial appears after send a message"""
+        phone_num = '123'
+        message = 'hello from Ubuntu'
+        self.main_view.send_message(phone_num, message)
+        self.main_view.close_osk()
+
+        messages_page = self.main_view.get_messages_page()
+        swipe_item_demo = self.main_view.get_swipe_item_demo()
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
+        got_it_button = swipe_item_demo.select_single(
+            'Button',
+            objectName='gotItButton')
+        self.pointing_device.click_object(got_it_button)
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
+
+    def test_receive_new_message_with_tutorial(self):
+        """Verify if the tutorial appears after receive a message"""
+        thread_list = self.app.select_single(objectName='threadList')
+        self.assertThat(thread_list.visible, Equals(True))
+        self.assertThat(thread_list.count, Equals(0))
+        
+        number = '5555555678'
+        message = 'open me'
+        # receive message
+        helpers.receive_sms(number, message)
+        # verify that we got the message
+        self.assertThat(thread_list.count, Eventually(Equals(1)))
+
+        # click message thread
+        mess_thread = thread_list.wait_select_single('Label', text=number)
+        self.pointing_device.click_object(mess_thread)
+
+        swipe_item_demo = self.main_view.get_swipe_item_demo()
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
+        got_it_button = swipe_item_demo.select_single(
+            'Button',
+            objectName='gotItButton')
+        self.pointing_device.click_object(got_it_button)
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
+
+
