@@ -292,6 +292,25 @@ class TestMessaging(BaseMessagingTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
+    def test_check_multiple_messages_received(self):
+        """Verify that received messages are correctly displayed"""
+        main_page = self.main_view.select_single(emulators.MainPage)
+        recipient = '123456'
+        helpers.receive_sms(recipient, 'first message')
+
+        # wait for the thread
+        main_page.get_thread_from_number(recipient)
+        messages_page = main_page.open_thread(recipient)
+
+        for i in list(reversed(range(10))):
+            helpers.receive_sms(recipient, 'message %s' % i)
+
+        messages = messages_page.get_messages()
+
+        for i in range(10):
+            expectedMessage = 'message %s' % i
+            self.assertThat(messages[i][1], Equals(expectedMessage))
+
 
 class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 
