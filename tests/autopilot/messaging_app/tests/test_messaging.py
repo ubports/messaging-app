@@ -427,7 +427,8 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
 class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
 
     def setUp(self):
-        test_setup = fixture_setup.MessagingTestEnvironment(use_empty_config=True)
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_empty_config=True)
         self.useFixture(test_setup)
 
         super(MessagingTestSwipeToDeleteDemo, self).setUp()
@@ -439,7 +440,6 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         self.main_view.send_message(phone_num, message)
         self.main_view.close_osk()
 
-        messages_page = self.main_view.get_messages_page()
         swipe_item_demo = self.main_view.get_swipe_item_demo()
         self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
         self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
@@ -455,7 +455,7 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         thread_list = self.app.select_single(objectName='threadList')
         self.assertThat(thread_list.visible, Equals(True))
         self.assertThat(thread_list.count, Equals(0))
-        
+
         number = '5555555678'
         message = 'open me'
         # receive message
@@ -476,5 +476,3 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         self.pointing_device.click_object(got_it_button)
         self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
         self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
-
-
