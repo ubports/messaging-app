@@ -186,6 +186,7 @@ Page {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
         }
+        swipeItemDemo.enable()
         return true
     }
 
@@ -265,7 +266,7 @@ Page {
     }
 
     onActiveChanged: {
-        if (eventModel.count > 0){
+        if (active && (eventModel.count > 0)){
             swipeItemDemo.enable()
         }
     }
