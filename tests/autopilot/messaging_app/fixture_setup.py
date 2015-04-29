@@ -12,7 +12,6 @@ import os
 import subprocess
 import shutil
 import tempfile
-import shutil
 
 import fixtures
 
@@ -96,8 +95,10 @@ class UseEmptyConfiguration(fixtures.Fixture):
 
     def setUp(self):
         super(UseEmptyConfiguration, self).setUp()
-        self.user_config_dir = tempfile.mkdtemp(suffix='', prefix='messaging-app')
-        self.app_config_dir = self.user_config_dir + '/com.ubuntu.messaging-app/'
+        self.user_config_dir = tempfile.mkdtemp(
+            suffix='', prefix='messaging-app')
+        self.app_config_dir = (
+            self.user_config_dir + '/com.ubuntu.messaging-app/')
         os.makedirs(self.app_config_dir)
         os.environ['XDG_CONFIG_HOME'] = self.user_config_dir
 
@@ -107,10 +108,10 @@ class UseEmptyConfiguration(fixtures.Fixture):
 
 
 class UseDefaultConfiguration(UseEmptyConfiguration):
-    
+
     def setUp(self):
         super(UseDefaultConfiguration, self).setUp()
-        config_file_path = self.app_config_dir + '/MessagingApp.conf'
+        config_file_path = (self.app_config_dir + '/MessagingApp.conf')
         with open(config_file_path, 'w') as config_file:
             config_file.write('[General]\nhintNecessary=false\n')
 
