@@ -30,6 +30,7 @@ MultipleSelectionListView {
 
     property var _currentSwipedItem: null
     property list<Action> _availableActions
+    property string latestEventId: ""
 
     function updateSwippedItem(item)
     {
@@ -136,9 +137,14 @@ MultipleSelectionListView {
     }
 
     onCountChanged: {
-        // list is in the bottom we should scroll to the new message
-        if (Math.abs(height + contentY) < units.gu(3)) {
-            currentIndex = 0
+        if (count == 0) {
+            latestEventId = ""
+            return
+        }
+        if (latestEventId == "") {
+            latestEventId = eventModel.get(0).eventId
+        } else if (latestEventId != eventModel.get(0).eventId) {
+            latestEventId = eventModel.get(0).eventId
             positionViewAtBeginning()
         }
     }
