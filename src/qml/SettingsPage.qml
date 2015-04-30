@@ -51,6 +51,7 @@ Page {
             }
             Switch {
                 id: checkbox
+                objectName: modelData.name
                 anchors.right: parent.right
                 anchors.rightMargin: units.gu(2)
                 anchors.verticalCenter: parent.verticalCenter

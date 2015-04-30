@@ -14,7 +14,7 @@ from __future__ import absolute_import
 import time
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, HasLength
+from testtools.matchers import Equals, HasLength, Not
 
 from messaging_app import emulators
 from messaging_app import fixture_setup
@@ -22,6 +22,7 @@ from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
 import ubuntuuitoolkit
+from gi.repository import Gio
 
 
 class BaseMessagingTestCase(MessagingAppTestCase):
@@ -422,3 +423,33 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
         self.messages_view = self.main_view.select_single(
             emulators.Messages,
             text='text message')
+
+
+class MessagingTestSettings(MessagingAppTestCase):
+
+    def setUp(self):
+        super(MessagingTestSettings, self).setUp()
+
+    def test_mms_group_chat_settings(self):
+        gsettings = Gio.Settings.new('com.ubuntu.phone')
+        key = 'mms-group-chat-enabled'
+
+        settingsPage = self.main_view.open_settings_page()
+        self.assertThat(settingsPage.visible, Eventually(Equals(True)))
+        option = settingsPage.get_mms_group_chat()
+
+        # read the current value and make sure the checkbox reflects it
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked, Equals(settingsValue))
+
+        # now toggle it and check that the value changes
+        oldValue = settingsValue
+        settingsPage.toggle_mms_group_chat()
+        self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
+
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked,
+                        Eventually(Equals(gsettings.get_boolean(key))))
+
+        # just reset it to the previous value
+        settingsPage.toggle_mms_group_chat()
