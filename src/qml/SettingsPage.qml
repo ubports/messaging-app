@@ -24,7 +24,6 @@ import GSettings 1.0
 Page {
     id: settingsPage
     title: i18n.tr("Settings")
-    head.sections.model: [ i18n.tr("General") ]
     property var settingsModel: [
         { "name": "mmsGroupChatEnabled",
           "description": i18n.tr("Enable MMS group chat")
