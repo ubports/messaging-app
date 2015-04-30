@@ -136,6 +136,13 @@ MultipleSelectionListView {
         }
     }
 
+    Timer {
+        id: newMessageTimer
+        interval: 50
+        repeat: false
+        onTriggered: positionViewAtBeginning()
+    } 
+
     onCountChanged: {
         if (count == 0) {
             latestEventId = ""
@@ -145,7 +152,7 @@ MultipleSelectionListView {
             latestEventId = eventModel.get(0).eventId
         } else if (latestEventId != eventModel.get(0).eventId) {
             latestEventId = eventModel.get(0).eventId
-            positionViewAtBeginning()
+            newMessageTimer.start()
         }
     }
 }
