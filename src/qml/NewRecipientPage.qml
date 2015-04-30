@@ -23,8 +23,21 @@ import QtContacts 5.0
 
 Page {
     id: newRecipientPage
+
     property Item multiRecipient: null
     property Item parentPage: null
+    property string phoneToAdd: ""
+    property QtObject contactIndex: null
+
+    function moveListToContact(contact)
+    {
+        if (active) {
+            newRecipientPage.contactIndex = null
+            contactList.positionViewAtContact(contact)
+        } else {
+            newRecipientPage.contactIndex = contact
+        }
+    }
 
     title: i18n.tr("Add recipient")
 
@@ -102,6 +115,59 @@ Page {
         }
     ]
 
+    ContactListView {
+        id: contactList
+        objectName: "newRecipientList"
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
+
+        showAddNewButton: true
+        showImportOptions: (contactList.count === 0) && (filterTerm == "")
+
+        filterTerm: searchField.text
+        detailToPick: newRecipientPage.phoneToAdd === "" ? ContactDetail.PhoneNumber : -1
+        onDetailClicked: {
+            if (contactsPage.phoneToAdd != "") {
+                mainView.addPhoneToContact(contact.contactId, contactsPage.phoneToAdd, contactsPage)
+                return
+            }
+
+            if (action === "message" || action === "") {
+                multiRecipient.addRecipient(detail.number)
+                multiRecipient.forceActiveFocus()
+            } else if (action === "call") {
+                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+            }
+
+            mainStack.pop()
+        }
+
+        onAddNewContactClicked: {
+            var newContact = ContactsJS.createEmptyContact(newRecipientPage.phoneToAdd, newRecipientPage)
+            pageStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                           { model: contactList.listModel,
+                             contact: newContact,
+                             initialFocusSection: (newRecipientPage.phoneToAdd != "" ? "phones" : "name"),
+                             contactListPage: newRecipientPage
+                           })
+        }
+
+        onAddDetailClicked: mainView.addPhoneToContact(contact.contactId, " ", newRecipientPage)
+        onInfoRequested: mainView.showContactDetails(contact.contactId)
+    }
+
+    // WORKAROUND: This is necessary to make the header visible from a bottom edge page
+    Component.onCompleted: parentPage.active = false
+    Component.onDestruction: parentPage.active = true
+
+    KeyboardRectangle {
+        id: keyboard
+    }
+
     Connections {
         target: newRecipientPage.head.sections
         onSelectedIndexChanged: {
@@ -118,48 +184,13 @@ Page {
         }
     }
 
-    ContactListView {
-        id: contactList
-        objectName: "newRecipientList"
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
-
-        showAddNewButton: true
-        showImportOptions: (contactList.count === 0) && (filterTerm == "")
-
-        filterTerm: searchField.text
-        detailToPick: ContactDetail.PhoneNumber
-        onDetailClicked: {
-            if (action === "message" || action === "") {
-                multiRecipient.addRecipient(detail.number)
-                multiRecipient.forceActiveFocus()
-            } else if (action === "call") {
-                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+    Connections {
+        target: contactList.listModel
+        onContactsChanged: {
+            if (newRecipientPage.contactIndex) {
+                contactList.positionViewAtContact(newRecipientPage.contactIndex)
+                newRecipientPage.contactIndex = null
             }
-            mainStack.pop()
         }
-
-        onAddNewContactClicked: Qt.openUrlExternally("addressbook:///create?callback=messaging-app.desktop&phone= ")
-        onInfoRequested: {
-            Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId))
-            mainStack.pop()
-        }
-        onAddDetailClicked: {
-            // FIXME: the extra space at the end is needed so contacts-app opens the right view
-            Qt.openUrlExternally("addressbook:///addphone?callback=messaging-app.desktop&id=" + encodeURIComponent(contact.contactId) + "&phone= ")
-            mainStack.pop()
-        }
-    }
-
-    // WORKAROUND: This is necessary to make the header visible from a bottom edge page
-    Component.onCompleted: parentPage.active = false
-    Component.onDestruction: parentPage.active = true
-
-    KeyboardRectangle {
-        id: keyboard
     }
 }

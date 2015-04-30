@@ -563,7 +563,7 @@ Page {
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                        mainView.addPhoneToContact("", contactWatcher.phoneNumber, null)
                     }
                 }
             ]
@@ -616,7 +616,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+                        mainView.showContactDetails(contactWatcher.contactId)
                     }
                 }
             ]
@@ -1002,7 +1002,7 @@ Page {
                 for (var i = 0; i < attachments.count; i++) {
                     var attachment = []
                     var item = attachments.get(i)
-                    // we dont include smil files. they will be auto generated 
+                    // we dont include smil files. they will be auto generated
                     if (item.contentType.toLowerCase() === "application/smil") {
                         continue
                     }

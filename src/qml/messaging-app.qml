@@ -42,6 +42,30 @@ MainView {
         }
     }
 
+    function showContactDetails(contactId) {
+        mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                       { "contactId": contactId })
+    }
+
+    function addNewContact(phoneNumber, contactListPage) {
+        mainStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                       { "contactId": contactId,
+                         "addPhoneToContact": phoneNumber,
+                         "contactListPage": contactListPage })
+    }
+
+    function addPhoneToContact(contactId, phoneNumber, contactListPage) {
+        if (contactId === "") {
+            mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
+                           { "phoneToAdd": phoneNumber })
+        } else {
+            mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                           { "contactId": contactId,
+                             "addPhoneToContact": phoneNumber,
+                             "contactListPage": contactListPage })
+        }
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
