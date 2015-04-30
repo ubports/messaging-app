@@ -14,6 +14,7 @@ import shutil
 import tempfile
 
 import fixtures
+from ubuntuuitoolkit import fixture_setup
 
 
 class MessagingTestEnvironment(fixtures.Fixture):
@@ -100,7 +101,12 @@ class UseEmptyConfiguration(fixtures.Fixture):
         self.app_config_dir = (
             self.user_config_dir + '/com.ubuntu.messaging-app/')
         os.makedirs(self.app_config_dir)
-        os.environ['XDG_CONFIG_HOME'] = self.user_config_dir
+        self.useFixture(
+            fixtures.EnvironmentVariable('XDG_CONFIG_HOME', newvalue=self.user_config_dir)
+        )
+        self.useFixture(
+            fixture_setup.InitctlEnvironmentVariable(XDG_CONFIG_HOME=self.user_config_dir)
+        )
 
     def tearDown(self):
         super(UseEmptyConfiguration, self).tearDown()
