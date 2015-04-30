@@ -1,3 +1,61 @@
+messaging-app (0.1+15.04.20150413-0ubuntu1) vivid; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Update history filters when telepathy accounts change. (LP:
+    #1439718)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 13 Apr 2015 13:13:22 +0000
+
+messaging-app (0.1+15.04.20150408-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Gustavo Pichorim Boiko ]
+  * Sync with the latest changes in history-service to support matching
+    other contact fields.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 08 Apr 2015 22:02:51 +0000
+
+messaging-app (0.1+15.04.20150318-0ubuntu1) vivid; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Change messaging-app to add basic support for accounts not based on
+    phone number.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Mar 2015 17:44:40 +0000
+
+messaging-app (0.1+15.04.20150228-0ubuntu1) vivid; urgency=medium
+
+  [ Bill Filler ]
+  * Enable MMSDefault for unknown attachment types added:
+    src/qml/assets/transfer-unsupported01.svg
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Tiago Salem Herrmann ]
+  * Enable MMSDefault for unknown attachment types added:
+    src/qml/assets/transfer-unsupported01.svg
+  * Show short notification when messages are copied to clipboard. (LP:
+    #1426058, #1417350)
+  * Use the proper style for TextField. (LP: #1426036)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Sat, 28 Feb 2015 04:08:32 +0000
+
+messaging-app (0.1+15.04.20150218-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Test that new messages are scrolled into view.
+
+  [ Tiago Salem Herrmann ]
+  * Disable spinner for incoming messages. (LP: #1420976)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Feb 2015 12:23:38 +0000
+
 messaging-app (0.1+15.04.20150212-0ubuntu1) vivid; urgency=medium
 
   [ Ubuntu daily release ]

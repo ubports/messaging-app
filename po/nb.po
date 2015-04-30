@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-16 15:26-0200\n"
-"PO-Revision-Date: 2015-01-18 21:30+0000\n"
+"POT-Creation-Date: 2015-02-26 15:10-0300\n"
+"PO-Revision-Date: 2015-03-03 12:12+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-04-16 05:30+0000\n"
+"X-Generator: Launchpad (build 17428)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:45
+#: ../src/qml/ThreadDelegate.qml:51
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 og %2 andre"
@@ -49,16 +49,11 @@ msgstr[1] "Anrop på %1 sekunder"
 msgid "+"
 msgstr "+"
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/qml/NewRecipientPage.qml:179
-msgid "+ Create New"
-msgstr "+ Lag ny"
-
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Godkjent"
 
-#: ../src/qml/Messages.qml:470
+#: ../src/qml/Messages.qml:562
 msgid "Add"
 msgstr "Legg til"
 
@@ -70,39 +65,39 @@ msgstr "Legg til mottaker"
 msgid "All"
 msgstr "Alt"
 
-#: ../src/qml/ThreadDelegate.qml:77
+#: ../src/qml/ThreadDelegate.qml:83
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Vedlegg: %1 kontakt"
 msgstr[1] "Vedlegg: %1 kontakter"
 
-#: ../src/qml/ThreadDelegate.qml:80
+#: ../src/qml/ThreadDelegate.qml:86
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Vedlegg: %1 fil"
 msgstr[1] "Vedlegg: %1 filer"
 
-#: ../src/qml/ThreadDelegate.qml:71
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Vedlegg: %1 bilde"
 msgstr[1] "Vedlegg: %1 bilder"
 
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Vedlegg: %1 video"
 msgstr[1] "Vedlegg: %1 videoer"
 
-#: ../src/qml/Messages.qml:460 ../src/qml/Messages.qml:514
+#: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
 msgid "Call"
 msgstr "Ring"
 
-#: ../src/qml/MainPage.qml:84 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:85 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -113,15 +108,15 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Vil du endre standard SIM-kort for meldinger til %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:137 ../src/qml/Messages.qml:266
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
 msgid "Close"
 msgstr "Lukk"
 
-#: ../src/qml/MainPage.qml:140
+#: ../src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Skyv oppover fra bunnen av skjermen for å lage en ny melding."
 
-#: ../src/qml/Messages.qml:524
+#: ../src/qml/Messages.qml:620
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -129,7 +124,7 @@ msgstr "Kontakt"
 msgid "Copy"
 msgstr "Kopier"
 
-#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:105
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
 msgid "Delete"
 msgstr "Slett"
 
@@ -157,7 +152,7 @@ msgstr "Mislykket!"
 msgid "Favorites"
 msgstr "Favoritter"
 
-#: ../src/qml/MessageInfoDialog.qml:101
+#: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "Fra"
 
@@ -166,7 +161,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:154
+#: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "Group (%1)"
 msgstr "Gruppe (%1)"
@@ -207,19 +202,19 @@ msgstr "Meldinger"
 msgid "Messaging App"
 msgstr "Meldingsprogram"
 
-#: ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Meldingsprogram"
 
-#: ../src/qml/MMSDelegate.qml:215
+#: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
 msgstr "Meldingsdata mangler"
 
-#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:103
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
 msgstr "Meg selv"
 
-#: ../src/qml/Messages.qml:157
+#: ../src/qml/Messages.qml:259
 msgid "New Message"
 msgstr "Ny melding"
 
@@ -232,7 +227,7 @@ msgstr "Nei"
 msgid "No SIM card selected"
 msgstr "Intet SIM-kort er valgt"
 
-#: ../src/qml/Messages.qml:262
+#: ../src/qml/Messages.qml:367
 msgid "No network"
 msgstr "Intet nettverk"
 
@@ -255,15 +250,15 @@ msgstr ""
 "href=\"system_settings\">Systeminnstillinger &gt; Personvern og "
 "sikkerhet</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:128
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
 msgstr "Les"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:123
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
 msgstr "Mottatt"
 
-#: ../src/qml/Messages.qml:216
+#: ../src/qml/Messages.qml:320
 msgid "Remove"
 msgstr "Fjern"
 
@@ -287,7 +282,7 @@ msgstr "Lagre"
 msgid "Search"
 msgstr "Søk"
 
-#: ../src/qml/MainPage.qml:53 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
 msgstr "Søk …"
 
@@ -300,11 +295,11 @@ msgstr ""
 "kan endre dette valget i <a "
 "href=\"system_settings\">Systeminnstillingene</a> når som helst."
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:977
 msgid "Send"
 msgstr "Send"
 
-#: ../src/qml/MessageInfoDialog.qml:118
+#: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Sendt"
 
@@ -312,7 +307,7 @@ msgstr "Sendt"
 msgid "Share"
 msgstr "Del"
 
-#: ../src/qml/MessageInfoDialog.qml:133
+#: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Status"
 
@@ -324,20 +319,24 @@ msgstr "Bytt til standard SIM-kort:"
 msgid "Temporarily Failed"
 msgstr "Midlertidig mislykket"
 
-#: ../src/qml/Messages.qml:263
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr "Melding kopiert til utklippstavle"
+
+#: ../src/qml/Messages.qml:368
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Telefonnettet på %1 er utilgjengelig"
 
-#: ../src/qml/Messages.qml:263
+#: ../src/qml/Messages.qml:368
 msgid "There is currently no network."
 msgstr "Telefonnettet er utilgjengelig."
 
-#: ../src/qml/MessageInfoDialog.qml:107
+#: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
 msgstr "Til"
 
-#: ../src/qml/MultiRecipientInput.qml:147
+#: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
 msgstr "Til:"
 
@@ -345,7 +344,7 @@ msgstr "Til:"
 msgid "Today"
 msgstr "I dag"
 
-#: ../src/qml/MessageInfoDialog.qml:97
+#: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
 msgstr "Type"
 
@@ -354,7 +353,7 @@ msgid "Unknown"
 msgstr "Ukjent"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:716
+#: ../src/qml/Messages.qml:847
 msgid "Unknown contact"
 msgstr "Ukjent kontakt"
 
@@ -362,7 +361,7 @@ msgstr "Ukjent kontakt"
 msgid "Video Preview"
 msgstr "Forhåndsvis video"
 
-#: ../src/qml/Messages.qml:816
+#: ../src/qml/Messages.qml:947
 msgid "Write a message..."
 msgstr "Skriv en melding …"
 
@@ -386,3 +385,6 @@ msgstr "%2 byttet du til %1"
 
 #~ msgid "Create new"
 #~ msgstr "Lag ny"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Lag ny"

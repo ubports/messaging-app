@@ -23,32 +23,11 @@ class MessagingTestEnvironment(fixtures.Fixture):
     def setUp(self):
         super(MessagingTestEnvironment, self).setUp()
         self.useFixture(OfonoPhoneSIM())
-        self.useFixture(BackupHistory())
         if self.use_testdata_db:
             self.useFixture(FillCustomSmsHistory())
+        else:
+            self.useFixture(UseEmptySmsHistory())
         self.useFixture(RespawnService())
-
-
-class BackupHistory(fixtures.Fixture):
-
-    def setUp(self):
-        super(BackupHistory, self).setUp()
-        self.addCleanup(self._restore_history)
-        self._backup_history()
-
-    def _backup_history(self):
-        self.history = os.path.expanduser(
-            '~/.local/share/history-service/history.sqlite')
-        if os.path.exists(self.history):
-            os.rename(self.history, self.history + '.orig')
-
-    def _restore_history(self):
-        try:
-            os.unlink(self.history)
-        except OSError:
-            pass
-        if os.path.exists(self.history + '.orig'):
-            os.rename(self.history + '.orig', self.history)
 
 
 class FillCustomSmsHistory(fixtures.Fixture):
@@ -57,27 +36,52 @@ class FillCustomSmsHistory(fixtures.Fixture):
     history_db = "history.sqlite"
     testdata_sys = "/usr/lib/python3/dist-packages/messaging_app/testdata/"
     testdata_local = "messaging_app/testdata/"
+    database_path = '/tmp/' + history_db
 
     prefilled_history_local = os.path.join(testdata_local, history_db)
     prefilled_history_system = os.path.join(testdata_sys, history_db)
 
     def setUp(self):
         super(FillCustomSmsHistory, self).setUp()
-        self.addCleanup(self._clear_test_data())
-        self._copy_test_data_history()
+        self.addCleanup(self._clear_test_data)
+        self.addCleanup(self._kill_service_to_respawn)
+        self._clear_test_data()
+        self._prepare_history_data()
+        self._kill_service_to_respawn()
+        self._start_service_with_custom_data()
 
-    def _copy_test_data_history(self):
+    def _prepare_history_data(self):
         if os.path.exists(self.prefilled_history_local):
-            shutil.copy(
-                self.prefilled_history_local, self.history_service_dir)
+            shutil.copy(self.prefilled_history_local, self.database_path)
         else:
-            shutil.copy(
-                self.prefilled_history_system, self.history_service_dir)
+            shutil.copy(self.prefilled_history_system, self.database_path)
 
     def _clear_test_data(self):
-        test_data = os.path.join(self.history_service_dir, self.history_db)
-        if os.path.exists(test_data):
-            os.remove(test_data)
+        if os.path.exists(self.database_path):
+            os.remove(self.database_path)
+
+    def _kill_service_to_respawn(self):
+        subprocess.call(['pkill', 'history-daemon'])
+
+    def _start_service_with_custom_data(self):
+        os.environ['HISTORY_SQLITE_DBPATH'] = self.database_path
+        with open(os.devnull, 'w') as devnull:
+            subprocess.Popen(['history-daemon'], stderr=devnull)
+
+
+class UseEmptySmsHistory(FillCustomSmsHistory):
+    database_path = ':memory:'
+
+    def setUp(self):
+        super(UseEmptySmsHistory, self).setUp()
+
+    def _prepare_history_data(self):
+        # just avoid doing anything
+        self.database_path = ':memory:'
+
+    def _clear_test_data(self):
+        # don't do anything
+        self.database_path = ''
 
 
 class RespawnService(fixtures.Fixture):
@@ -88,8 +92,10 @@ class RespawnService(fixtures.Fixture):
         self._kill_services_to_respawn()
 
     def _kill_services_to_respawn(self):
-        subprocess.call(['pkill', 'history-daemon'])
         subprocess.call(['pkill', '-f', 'telephony-service-handler'])
+        # on desktop, notify-osd may generate persistent popups (like for "SMS
+        # received"), don't make that stay around for the tests
+        subprocess.call(['pkill', '-f', 'notify-osd'])
 
 
 class OfonoPhoneSIM(fixtures.Fixture):

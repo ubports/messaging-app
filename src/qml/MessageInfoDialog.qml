@@ -89,10 +89,6 @@ Item {
 
             title: i18n.tr("Message info")
 
-            anchors.centerIn: parent
-            height: childrenRect.height
-            width: childrenRect.width
-
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type)
             }
