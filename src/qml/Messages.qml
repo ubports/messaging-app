@@ -616,7 +616,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        mainView.showContactDetails(contactWatcher.contactId)
+                        mainView.showContactDetails(contactWatcher.contactId, null)
                     }
                 }
             ]

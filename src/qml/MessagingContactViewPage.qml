@@ -100,4 +100,18 @@ ContactViewPage {
             }
         }
     }
+
+    onActionTrigerred: {
+        if (action === "message") {
+            if (root.contactListPage) {
+                var list = root.contactListPage
+                list.addRecipient(detail.value(0))
+            } else {
+                console.warn("Action message without contactList")
+            }
+        } else {
+            Qt.openUrlExternally(("%1:///%2").arg(action).arg(detail.value(0)))
+        }
+        pageStack.pop()
+    }
 }

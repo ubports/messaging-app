@@ -30,6 +30,7 @@ MainView {
     property string newPhoneNumber
     property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
     property QtObject account: defaultAccount()
+
     activeFocusOnPress: false
 
     function defaultAccount() {
@@ -42,9 +43,10 @@ MainView {
         }
     }
 
-    function showContactDetails(contactId) {
+    function showContactDetails(contactId, contactListPage) {
         mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                       { "contactId": contactId })
+                       { "contactId": contactId,
+                         "contactListPage": contactListPage })
     }
 
     function addNewContact(phoneNumber, contactListPage) {

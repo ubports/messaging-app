@@ -39,6 +39,13 @@ Page {
         }
     }
 
+    function addRecipient(phoneNumber)
+    {
+        multiRecipient.addRecipient(phoneNumber)
+        multiRecipient.forceActiveFocus()
+        mainStack.pop()
+    }
+
     title: i18n.tr("Add recipient")
 
     TextField {
@@ -131,14 +138,14 @@ Page {
         filterTerm: searchField.text
         detailToPick: newRecipientPage.phoneToAdd === "" ? ContactDetail.PhoneNumber : -1
         onDetailClicked: {
-            if (contactsPage.phoneToAdd != "") {
-                mainView.addPhoneToContact(contact.contactId, contactsPage.phoneToAdd, contactsPage)
+            if (newRecipientPage.phoneToAdd != "") {
+                mainView.addPhoneToContact(contact.contactId, newRecipientPage.phoneToAdd, newRecipientPage)
                 return
             }
 
             if (action === "message" || action === "") {
-                multiRecipient.addRecipient(detail.number)
-                multiRecipient.forceActiveFocus()
+                newRecipientPage.addRecipient(detail.number)
+                return
             } else if (action === "call") {
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             }
@@ -157,7 +164,7 @@ Page {
         }
 
         onAddDetailClicked: mainView.addPhoneToContact(contact.contactId, " ", newRecipientPage)
-        onInfoRequested: mainView.showContactDetails(contact.contactId)
+        onInfoRequested: mainView.showContactDetails(contact.contactId, newRecipientPage)
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
