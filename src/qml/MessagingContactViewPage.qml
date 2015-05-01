@@ -108,7 +108,6 @@ ContactViewPage {
                 list.addRecipient(detail.value(0))
             } else {
                 console.warn("Action message without contactList")
-                pageStack.pop()
                 mainView.startChat(detail.value(0), "")
                 return
             }
