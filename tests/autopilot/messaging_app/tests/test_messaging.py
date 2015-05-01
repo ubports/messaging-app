@@ -447,6 +447,9 @@ class MessagingTestSettings(MessagingAppTestCase):
         settingsPage.toggle_mms_group_chat()
         self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
 
+        # give it some time
+        time.sleep(2)
+
         settingsValue = gsettings.get_boolean(key)
         self.assertThat(option.checked,
                         Eventually(Equals(gsettings.get_boolean(key))))
