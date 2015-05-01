@@ -202,7 +202,7 @@ Loader {
                 PropertyAction {
                     target: dragMessage
                     property: "text"
-                    value: i18n.tr("Swipe to reveal more actions")
+                    value: i18n.tr("Swipe to reveal actions")
                 }
 
                 PropertyAction {
@@ -224,26 +224,29 @@ Loader {
                         property: "opacity"
                         from: 0
                         to: 1
-                        duration: 1000
+                        duration: UbuntuAnimation.SleepyDuration
                     }
                 }
 
                 PauseAnimation {
-                    duration: 1000
+                    duration: UbuntuAnimation.SleepyDuration
                 }
 
-                PropertyAction {
-                    target: dragTitle
-                    property: "opacity"
-                    value: 0
-                }
+                ParallelAnimation {
+                    PropertyAnimation {
+                        target: dragTitle
+                        property: "opacity"
+                        to: 0
+                        duration: UbuntuAnimation.SlowDuration
+                    }
 
-                PropertyAnimation {
-                    target: listItem
-                    property: "xPos"
-                    from: slideAnimation.leftToRightXpos
-                    to: 0
-                    duration: 1000
+                    PropertyAnimation {
+                        target: listItem
+                        property: "xPos"
+                        from: slideAnimation.leftToRightXpos
+                        to: 0
+                        duration: UbuntuAnimation.SleepyDuration
+                    }
                 }
 
                 PropertyAction {
@@ -264,33 +267,36 @@ Loader {
                         property: "xPos"
                         from: 0
                         to: slideAnimation.rightToLeftXpos
-                        duration: 1000
+                        duration: UbuntuAnimation.SleepyDuration
                     }
                     PropertyAnimation {
                         target: dragTitle
                         property: "opacity"
                         from: 0
                         to: 1
-                        duration: 500
+                        duration: UbuntuAnimation.SlowDuration
                     }
                 }
 
                 PauseAnimation {
-                    duration: 1000
+                    duration: UbuntuAnimation.SleepyDuration
                 }
 
-                PropertyAction {
-                    target: dragTitle
-                    property: "opacity"
-                    value: 0
-                }
+                ParallelAnimation {
+                    PropertyAnimation {
+                        target: dragTitle
+                        property: "opacity"
+                        to: 0
+                        duration: UbuntuAnimation.SlowDuration
+                    }
 
-                PropertyAnimation {
-                    target: listItem
-                    property: "xPos"
-                    from: slideAnimation.rightToLeftXpos
-                    to: 0
-                    duration: 1000
+                    PropertyAnimation {
+                        target: listItem
+                        property: "xPos"
+                        from: slideAnimation.rightToLeftXpos
+                        to: 0
+                        duration: UbuntuAnimation.SleepyDuration
+                    }
                 }
             }
 
