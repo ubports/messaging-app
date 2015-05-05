@@ -1,0 +1,386 @@
+# Interlingua translation for messaging-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-02-26 15:10-0300\n"
+"PO-Revision-Date: 2015-05-04 06:04+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Interlingua <ia@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2015-05-05 05:47+0000\n"
+"X-Generator: Launchpad (build 17474)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:51
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
+
+#: ../src/qml/dateUtils.js:65
+#, qt-format
+msgid "%1 hour call"
+msgid_plural "%1 hours call"
+msgstr[0] "%1 ora del appello"
+msgstr[1] "%1 oras del appello"
+
+#: ../src/qml/dateUtils.js:67
+#, qt-format
+msgid "%1 minute call"
+msgid_plural "%1 minutes call"
+msgstr[0] ""
+msgstr[1] "%1 minutas del appello"
+
+#: ../src/qml/dateUtils.js:69
+#, qt-format
+msgid "%1 second call"
+msgid_plural "%1 seconds call"
+msgstr[0] "%1 secundo del appello"
+msgstr[1] "%1 secundos del appello"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
+
+#: ../src/qml/MessageInfoDialog.qml:60
+msgid "Accepted"
+msgstr "Acceptate"
+
+#: ../src/qml/Messages.qml:562
+msgid "Add"
+msgstr "Adder"
+
+#: ../src/qml/NewRecipientPage.qml:29
+msgid "Add recipient"
+msgstr "Adder le recipiente"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr "Toto"
+
+#: ../src/qml/ThreadDelegate.qml:83
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Alligato: %1 contacto"
+msgstr[1] "Alligatos: %1 contactos"
+
+#: ../src/qml/ThreadDelegate.qml:86
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Alligato: %1 file"
+msgstr[1] "Attachments: %1 files"
+
+#: ../src/qml/ThreadDelegate.qml:77
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Alligato: %1 imagine"
+msgstr[1] "Alligatos: %1 imagines"
+
+#: ../src/qml/ThreadDelegate.qml:80
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Alligato: %1 video"
+msgstr[1] "Alligatos: %1 videos"
+
+#: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
+msgid "Call"
+msgstr "Appello"
+
+#: ../src/qml/MainPage.qml:85 ../src/qml/NewRecipientPage.qml:83
+msgid "Cancel"
+msgstr "Cancellar"
+
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr "Cambiar tote le associationes de messages a %1?"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
+msgid "Close"
+msgstr "Clauder"
+
+#: ../src/qml/MainPage.qml:141
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr "Componer un nove message per striar in alto ab le fundo del schermo."
+
+#: ../src/qml/Messages.qml:620
+msgid "Contact"
+msgstr "Contacto"
+
+#: ../src/qml/MessagesListView.qml:91
+msgid "Copy"
+msgstr "Copiar"
+
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
+msgid "Delete"
+msgstr "Deler"
+
+#: ../src/qml/MessageInfoDialog.qml:64
+msgid "Deleted"
+msgstr "Delite"
+
+#: ../src/qml/MessageInfoDialog.qml:54
+msgid "Delivered"
+msgstr "Delivrate"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+msgid "Don't ask again"
+msgstr "Non demandar de novo"
+
+#: ../src/qml/MessageInfoDialog.qml:58
+msgid "Failed"
+msgstr "Fallite"
+
+#: ../src/qml/MessageDelegateFactory.qml:139
+msgid "Failed!"
+msgstr "Fallite!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr "Favoritos"
+
+#: ../src/qml/MessageInfoDialog.qml:97
+msgid "From"
+msgstr "Ex"
+
+#: ../src/qml/MessageInfoDialog.qml:84
+msgid "Group"
+msgstr "Gruppo"
+
+#. TRANSLATORS: %1 refers to the number of participants in a group chat
+#: ../src/qml/Messages.qml:256
+#, qt-format
+msgid "Group (%1)"
+msgstr "Gruppo (%1)"
+
+#: ../src/qml/MMS/PreviewerImage.qml:25
+msgid "Image Preview"
+msgstr "Pre-visualisation del imagine"
+
+#: ../src/qml/MessagesListView.qml:67
+msgid "Info"
+msgstr "Informationes"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
+msgid "Later"
+msgstr "Plus tarde"
+
+#: ../src/qml/MessagesListView.qml:70
+msgid "MMS"
+msgstr "MMS"
+
+#: ../src/qml/MessageInfoDialog.qml:90
+msgid "Message info"
+msgstr "Informationes del message"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr "Messages"
+
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr "Messages;SMS;MMS;Messages de texto;Texto"
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr "Messages"
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr "Application de messages"
+
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr "Application de messages"
+
+#: ../src/qml/MMSDelegate.qml:211
+msgid "Missing message data"
+msgstr "Datos del message perdite"
+
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
+msgid "Myself"
+msgstr "Me ipse"
+
+#: ../src/qml/Messages.qml:259
+msgid "New Message"
+msgstr "Nove message"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
+msgid "No"
+msgstr "Non"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+msgid "No SIM card selected"
+msgstr "Nulle carta SIM seligite"
+
+#: ../src/qml/Messages.qml:367
+msgid "No network"
+msgstr "Nulle rete"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "OK"
+
+#: ../src/qml/MessageInfoDialog.qml:66
+msgid "Pending"
+msgstr "Pendente"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Per favor libera tu carta SIM pro appellar o mandar un message. Tu pote "
+"liberar tu carta SIM per le indicator de rete al alto del schermo o per "
+"visitar <a href=\\\"system_settings\\\">Preparationes del systema &gt; "
+"Securitate &amp; Privacitate</a>."
+
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
+msgid "Read"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
+msgid "Received"
+msgstr "Recipite"
+
+#: ../src/qml/Messages.qml:320
+msgid "Remove"
+msgstr "Remover"
+
+#: ../src/qml/MessagesListView.qml:84
+msgid "Retry"
+msgstr "Re-provar"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "Le carta SIM es blocate"
+
+#: ../src/qml/MessagesListView.qml:70
+msgid "SMS"
+msgstr "SMS"
+
+#: ../src/qml/MMS/Previewer.qml:32
+msgid "Save"
+msgstr "Salvar"
+
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr "Cercar"
+
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+msgid "Search..."
+msgstr "Cerca..."
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
+msgid ""
+"Select a default SIM for all outgoing messages. You can always alter your "
+"choice in <a href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Seliger un SIM base pro tote le messages in egresso. Tu pote sempre variar "
+"tu selection in <a href=\\\"system_settings\\\">Preferentias del systema</a>."
+
+#: ../src/qml/Messages.qml:977
+msgid "Send"
+msgstr "Inviar"
+
+#: ../src/qml/MessageInfoDialog.qml:114
+msgid "Sent"
+msgstr "Expedite"
+
+#: ../src/qml/MMS/Previewer.qml:45
+msgid "Share"
+msgstr "Compartir"
+
+#: ../src/qml/MessageInfoDialog.qml:129
+msgid "Status"
+msgstr "Stato"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Switch to default SIM:"
+msgstr "Commutar al SIM base:"
+
+#: ../src/qml/MessageInfoDialog.qml:56
+msgid "Temporarily Failed"
+msgstr "Mancate temporarimente"
+
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
+#: ../src/qml/Messages.qml:368
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr "Actualmente il ha nulle rete sur %1"
+
+#: ../src/qml/Messages.qml:368
+msgid "There is currently no network."
+msgstr "Actualmente il ha nulle rete."
+
+#: ../src/qml/MessageInfoDialog.qml:103
+msgid "To"
+msgstr "A"
+
+#: ../src/qml/MultiRecipientInput.qml:148
+msgid "To:"
+msgstr "A:"
+
+#: ../src/qml/dateUtils.js:44
+msgid "Today"
+msgstr "Hodie"
+
+#: ../src/qml/MessageInfoDialog.qml:93
+msgid "Type"
+msgstr "Typo"
+
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
+msgid "Unknown"
+msgstr "Incognite"
+
+#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
+#: ../src/qml/Messages.qml:847
+msgid "Unknown contact"
+msgstr "Contacto incognite"
+
+#: ../src/qml/MMS/PreviewerVideo.qml:25
+msgid "Video Preview"
+msgstr "Pre-visualisation del video"
+
+#: ../src/qml/Messages.qml:947
+msgid "Write a message..."
+msgstr "Scriber un message..."
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
+msgid "Yes"
+msgstr "Si"
+
+#: ../src/qml/dateUtils.js:46
+msgid "Yesterday"
+msgstr "Heri"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+msgid "You need to select a SIM card"
+msgstr "Selige un carta SIM"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Tu ha commutate al %1 @ %2"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Crea nove"
