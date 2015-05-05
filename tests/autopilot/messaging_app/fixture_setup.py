@@ -102,10 +102,12 @@ class UseEmptyConfiguration(fixtures.Fixture):
             self.user_config_dir + '/com.ubuntu.messaging-app/')
         os.makedirs(self.app_config_dir)
         self.useFixture(
-            fixtures.EnvironmentVariable('XDG_CONFIG_HOME', newvalue=self.user_config_dir)
+            fixtures.EnvironmentVariable(
+                'XDG_CONFIG_HOME', newvalue=self.user_config_dir)
         )
         self.useFixture(
-            fixture_setup.InitctlEnvironmentVariable(XDG_CONFIG_HOME=self.user_config_dir)
+            fixture_setup.InitctlEnvironmentVariable(
+                XDG_CONFIG_HOME=self.user_config_dir)
         )
 
     def tearDown(self):
