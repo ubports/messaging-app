@@ -52,6 +52,8 @@ Loader {
         id: listItemDemoComponent
 
         Rectangle {
+            id: rectangleContents
+
             color: "black"
             opacity: 0.0
             anchors.fill: parent
