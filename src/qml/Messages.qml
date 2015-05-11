@@ -185,8 +185,12 @@ Page {
         if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
+        } else {
+            // FIXME: We only show the swipe tutorial after select the default sim card to avoid problems with the dialog
+            // Since the dialog will be removed soon we do not expend time refactoring the code to make it visible after the dialog
+            swipeItemDemo.enable()
         }
-        swipeItemDemo.enable()
+
         return true
     }
 
@@ -1049,5 +1053,10 @@ Page {
 
         parent: QuickUtils.rootItem(this)
         anchors.fill: parent
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                Qt.inputMethod.hide()
+            }
+        }
     }
 }
