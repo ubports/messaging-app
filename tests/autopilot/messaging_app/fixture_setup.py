@@ -188,7 +188,7 @@ class UseMemoryContactBackend(fixtures.Fixture):
 
 
 class PreloadVcards(fixtures.Fixture):
-    VCARD_PATH_BIN = "/usr/share/messagin-app/vcards/vcard.vcf"
+    VCARD_PATH_BIN = "/usr/share/messaging-app/vcards/vcard.vcf"
     VCARD_PATH_DEV = os.path.abspath("../data/vcard.vcf")
 
     def setUp(self):
