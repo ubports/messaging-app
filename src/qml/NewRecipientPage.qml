@@ -23,6 +23,7 @@ import QtContacts 5.0
 
 Page {
     id: newRecipientPage
+    objectName: "newRecipientPage"
 
     property Item multiRecipient: null
     property Item parentPage: null
@@ -138,9 +139,14 @@ Page {
         filterTerm: searchField.text
         onContactClicked: {
             if (newRecipientPage.phoneToAdd != "") {
-                mainView.addPhoneToContact(contact.contactId, newRecipientPage.phoneToAdd, newRecipientPage)
+                mainView.addPhoneToContact(contact.contactId,
+                                           newRecipientPage.phoneToAdd,
+                                           newRecipientPage,
+                                           contactList.listModel)
             } else {
-                mainView.showContactDetails(contact.contactId, newRecipientPage)
+                mainView.showContactDetails(contact.contactId,
+                                            newRecipientPage,
+                                            contactList.listModel)
             }
         }
 
@@ -156,7 +162,12 @@ Page {
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
-    Component.onCompleted: parentPage.active = false
+    Component.onCompleted: {
+        parentPage.active = false
+        if (QTCONTACTS_PRELOAD_VCARD !== "") {
+            contactList.listModel.importContacts("file://" + QTCONTACTS_PRELOAD_VCARD)
+        }
+    }
     Component.onDestruction: parentPage.active = true
 
     KeyboardRectangle {

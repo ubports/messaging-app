@@ -11,14 +11,17 @@ import dbus
 import os
 import subprocess
 import shutil
+import tempfile
 
 import fixtures
+from ubuntuuitoolkit import fixture_setup
 
 
 class MessagingTestEnvironment(fixtures.Fixture):
 
-    def __init__(self, use_testdata_db=False):
+    def __init__(self, use_testdata_db=False, use_empty_config=False):
         self.use_testdata_db = use_testdata_db
+        self.use_empty_config = use_empty_config
 
     def setUp(self):
         super(MessagingTestEnvironment, self).setUp()
@@ -27,6 +30,11 @@ class MessagingTestEnvironment(fixtures.Fixture):
             self.useFixture(FillCustomSmsHistory())
         else:
             self.useFixture(UseEmptySmsHistory())
+        # check for the configuration file
+        if self.use_empty_config:
+            self.useFixture(UseEmptyConfiguration())
+        else:
+            self.useFixture(UseDefaultConfiguration())
         self.useFixture(RespawnService())
 
 
@@ -84,6 +92,38 @@ class UseEmptySmsHistory(FillCustomSmsHistory):
         self.database_path = ''
 
 
+class UseEmptyConfiguration(fixtures.Fixture):
+
+    def setUp(self):
+        super(UseEmptyConfiguration, self).setUp()
+        self.user_config_dir = tempfile.mkdtemp(
+            suffix='', prefix='messaging-app')
+        self.app_config_dir = (
+            self.user_config_dir + '/com.ubuntu.messaging-app/')
+        os.makedirs(self.app_config_dir)
+        self.useFixture(
+            fixtures.EnvironmentVariable(
+                'XDG_CONFIG_HOME', newvalue=self.user_config_dir)
+        )
+        self.useFixture(
+            fixture_setup.InitctlEnvironmentVariable(
+                XDG_CONFIG_HOME=self.user_config_dir)
+        )
+
+    def tearDown(self):
+        super(UseEmptyConfiguration, self).tearDown()
+        shutil.rmtree(self.user_config_dir)
+
+
+class UseDefaultConfiguration(UseEmptyConfiguration):
+
+    def setUp(self):
+        super(UseDefaultConfiguration, self).setUp()
+        config_file_path = (self.app_config_dir + '/MessagingApp.conf')
+        with open(config_file_path, 'w') as config_file:
+            config_file.write('[General]\nhintNecessary=false\n')
+
+
 class RespawnService(fixtures.Fixture):
 
     def setUp(self):
@@ -131,3 +171,38 @@ class OfonoPhoneSIM(fixtures.Fixture):
             ['mc-tool', 'update', 'ofono/ofono/account0',
              'string:modem-objpath=/ril_0'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
+
+
+
+class UseMemoryContactBackend(fixtures.Fixture):
+
+    def setUp(self):
+        super().setUp()
+        self.useFixture(
+            fixtures.EnvironmentVariable(
+                'QTCONTACTS_MANAGER_OVERRIDE', newvalue='memory')
+        )
+        self.useFixture(
+            fixture_setup.InitctlEnvironmentVariable(
+                QTCONTACTS_MANAGER_OVERRIDE='memory')
+        )
+
+
+class PreloadVcards(fixtures.Fixture):
+    VCARD_PATH_BIN = "/usr/share/messagin-app/vcards/vcard.vcf"
+    VCARD_PATH_DEV = os.path.abspath("../data/vcard.vcf")
+
+    def setUp(self):
+        super().setUp()
+        vcard_full_path = PreloadVcards.VCARD_PATH_BIN
+        if os.path.isfile(PreloadVcards.VCARD_PATH_DEV):
+            vcard_full_path = PreloadVcards.VCARD_PATH_DEV
+
+        self.useFixture(
+            fixtures.EnvironmentVariable(
+                'QTCONTACTS_PRELOAD_VCARD', newvalue=vcard_full_path)
+        )
+        self.useFixture(
+            fixture_setup.InitctlEnvironmentVariable(
+                QTCONTACTS_PRELOAD_VCARD=vcard_full_path)
+        )

@@ -185,7 +185,12 @@ Page {
         if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
+        } else {
+            // FIXME: We only show the swipe tutorial after select the default sim card to avoid problems with the dialog
+            // Since the dialog will be removed soon we do not expend time refactoring the code to make it visible after the dialog
+            swipeItemDemo.enable()
         }
+
         return true
     }
 
@@ -262,6 +267,12 @@ Page {
     Component.onCompleted: {
         updateFilters()
         addAttachmentsToModel(sharedAttachmentsTransfer)
+    }
+
+    onActiveChanged: {
+        if (active && (eventModel.count > 0)){
+            swipeItemDemo.enable()
+        }
     }
 
     function updateFilters() {
@@ -563,7 +574,7 @@ Page {
                     onTriggered: {
                         Qt.inputMethod.hide()
                         // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact("", contactWatcher.identifier, null)
+                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
                     }
                 }
             ]
@@ -619,7 +630,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        mainView.showContactDetails(contactWatcher.contactId, null)
+                        mainView.showContactDetails(contactWatcher.contactId, null, null)
                     }
                 }
             ]
@@ -1032,5 +1043,20 @@ Page {
 
     MessageInfoDialog {
         id: messageInfoDialog
+    }
+
+    SwipeItemDemo {
+        id: swipeItemDemo
+        objectName: "swipeItemDemo"
+
+        property bool parentActive: messages.active
+
+        parent: QuickUtils.rootItem(this)
+        anchors.fill: parent
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                Qt.inputMethod.hide()
+            }
+        }
     }
 }

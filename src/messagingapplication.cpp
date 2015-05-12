@@ -149,6 +149,10 @@ bool MessagingApplication::setup()
         m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
     }
 
+    // used by autopilot tests to load vcards during tests
+    QByteArray testData = qgetenv("QTCONTACTS_PRELOAD_VCARD");
+    m_view->rootContext()->setContextProperty("QTCONTACTS_PRELOAD_VCARD", testData);
+
     QString pluginPath = ubuntuPhonePluginPath();
     if (!pluginPath.isNull()) {
         m_view->engine()->addImportPath(pluginPath);
