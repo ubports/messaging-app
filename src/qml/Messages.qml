@@ -563,7 +563,7 @@ Page {
                     onTriggered: {
                         Qt.inputMethod.hide()
                         // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact("", contactWatcher.identifier, null)
+                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
                     }
                 }
             ]
@@ -619,7 +619,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        mainView.showContactDetails(contactWatcher.contactId, null)
+                        mainView.showContactDetails(contactWatcher.contactId, null, null)
                     }
                 }
             ]

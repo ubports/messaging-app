@@ -43,10 +43,11 @@ MainView {
         }
     }
 
-    function showContactDetails(contactId, contactListPage) {
+    function showContactDetails(contactId, contactListPage, contactsModel) {
         mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
                        { "contactId": contactId,
-                         "contactListPage": contactListPage })
+                         "contactListPage": contactListPage,
+                         "model": contactsModel})
     }
 
     function addNewContact(phoneNumber, contactListPage) {
@@ -56,7 +57,7 @@ MainView {
                          "contactListPage": contactListPage })
     }
 
-    function addPhoneToContact(contactId, phoneNumber, contactListPage) {
+    function addPhoneToContact(contactId, phoneNumber, contactListPage, contactsModel) {
         if (contactId === "") {
             mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
                            { "phoneToAdd": phoneNumber })
@@ -64,7 +65,8 @@ MainView {
             mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
                            { "contactId": contactId,
                              "addPhoneToContact": phoneNumber,
-                             "contactListPage": contactListPage })
+                             "contactListPage": contactListPage,
+                             "model": contactsModel})
         }
     }
 

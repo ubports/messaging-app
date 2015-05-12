@@ -422,3 +422,39 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
         self.messages_view = self.main_view.select_single(
             emulators.Messages,
             text='text message')
+
+
+class MessagingTestSendAMessageFromContactView(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
+        qcontact_memory = fixture_setup.UseMemoryContactBackend()
+        self.useFixture(qcontact_memory)
+
+        preload_vcards = fixture_setup.PreloadVcards()
+        self.useFixture(preload_vcards)
+
+        super(MessagingTestSendAMessageFromContactView, self).setUp()
+
+    def test_message_a_contact_from_contact_view(self):
+        # start a new message
+        self.main_view.start_new_message()
+        self.main_view.click_add_contact_icon()
+
+        # select the first phone from first contact in the list
+        new_recipient_page = self.main_view.get_new_recipient_page()
+        contact_view_page = new_recipient_page.open_contact(0)
+        contact_view_page.message_phone(0)
+
+        # message page became active again
+        messages_page = self.main_view.get_messages_page()
+        self.assertThat(messages_page.active, Eventually(Equals(True)))
+
+        # check if the contact was added in the recipient list
+        multircpt_entry = self.main_view.get_newmessage_multirecipientinput()
+        self.assertThat(
+            multircpt_entry.get_properties()['recipientCount'],
+            Eventually(Equals(1))
+        )

@@ -36,6 +36,24 @@ ContactViewPage {
     property string addPhoneToContact: ""
     property var contactListPage: null
 
+    function addPhoneToContactImpl(contact, phoneNumber)
+    {
+        var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + phoneNumber.trim() + "\" }"
+        var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
+        if (newDetail) {
+            contact.addDetail(newDetail)
+            pageStack.push(root.contactEditorPageURL,
+                           { model: root.model,
+                             contact: contact,
+                             initialFocusSection: "phones",
+                             newDetails: [newDetail],
+                             contactListPage: root.contactListPage })
+            root.addPhoneToContact = ""
+        } else {
+            console.warn("Fail to create phone number detail")
+        }
+    }
+
     head.actions: [
         Action {
             objectName: "share"
@@ -60,14 +78,6 @@ ContactViewPage {
         }
     ]
 
-    model: ContactModel {
-        id: sourceModel
-
-        manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") &&
-                  (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
-        autoUpdate: false
-    }
-
     extensions: ContactDetailSyncTargetView {
         contact: root.contact
         anchors {
@@ -77,27 +87,21 @@ ContactViewPage {
         height: implicitHeight
     }
 
-    onContactRemoved: pageStack.pop()
 
     Component {
         id: contactShareComponent
         ContactSharePage {}
     }
 
-    onContactFetched: {
-        if (root.addPhoneToContact != "") {
-            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact.trim() + "\" }"
-            var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
-            if (newDetail) {
-                contact.addDetail(newDetail)
-                pageStack.push(root.contactEditorPageURL,
-                               { model: root.model,
-                                 contact: contact,
-                                 initialFocusSection: "phones",
-                                 newDetails: [newDetail],
-                                 contactListPage: root.contactListPage })
-                root.addPhoneToContact = ""
-            }
+    Component {
+        id: contactModelComponent
+
+        ContactModel {
+            id: contactModelHelper
+
+            manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") &&
+                      (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+            autoUpdate: false
         }
     }
 
@@ -115,5 +119,26 @@ ContactViewPage {
             Qt.openUrlExternally(("%1:///%2").arg(action).arg(detail.value(0)))
         }
         pageStack.pop()
+    }
+    onContactRemoved: pageStack.pop()
+    onContactFetched: {
+        root.contact = contact
+        if (root.active && root.addPhoneToContact != "") {
+            root.addPhoneToContactImpl(contact, root.addPhoneToContact)
+            root.addPhoneToContact = ""
+        }
+    }
+
+    onActiveChanged: {
+        if (active && root.contact && root.addPhoneToContact != "") {
+            root.addPhoneToContactImpl(contact, root.addPhoneToContact)
+            root.addPhoneToContact = ""
+        }
+    }
+
+    Component.onCompleted: {
+        if (!root.model) {
+            root.model = contactModelComponent.createObject(root)
+        }
     }
 }

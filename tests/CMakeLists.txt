@@ -1,4 +1,5 @@
 add_subdirectory(qml)
+add_subdirectory(data)
 
 set(AUTOPILOT_DIR autopilot/messaging_app)
 

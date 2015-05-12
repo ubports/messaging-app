@@ -20,6 +20,7 @@ from autopilot.platform import model
 from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from ubuntuuitoolkit._custom_proxy_objects import _common
+from address_book_app import address_book
 
 
 logger = logging.getLogger(__name__)
@@ -386,6 +387,14 @@ class MainView(toolkit_emulators.MainView):
 
         return thread_bubble
 
+    def _get_page(self, page_type, page_name):
+        page = self.wait_select_single(
+            page_type, objectName=page_name, active=True)
+        return page
+
+    def get_new_recipient_page(self):
+        return self._get_page(NewRecipientPage, 'newRecipientPage')
+
 
 class PageWithBottomEdge(MainView):
     """An emulator class that makes it easy to interact with the bottom edge
@@ -532,3 +541,47 @@ class ThreadDelegate(ListItemWithActions):
 
 class MessageDelegateFactory(ListItemWithActions):
     """Autopilot helper for the MessageDelegateFactory."""
+
+
+class MessagingContactViewPage(address_book.ContactViewPage):
+    """Autopilot custom proxy object for MessagingContactViewPage components."""
+
+    def message_phone(self, index):
+        phone_group = self.select_single(
+            'ContactDetailGroupWithTypeView',
+            objectName='phones')
+
+        call_buttons = phone_group.select_many(
+            "ActionButton",
+            objectName="message-contact")
+        self.pointing_device.click_object(call_buttons[index])
+
+
+class NewRecipientPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot custom proxy object for NewRecipientPage components."""
+
+    def _click_button(self, button):
+        """Generic way to click a button"""
+        self.visible.wait_for(True)
+        button.visible.wait_for(True)
+        self.pointing_device.click_object(button)
+        return button
+
+    def open_contact(self, index):
+        contact_delegate = self._get_contact_delegate(index)
+        self.pointing_device.click_object(contact_delegate)
+        contact_delegate.state.wait_for('expanded')
+        details_button = contact_delegate.wait_select_single(
+            objectName='infoIcon')
+        self.pointing_device.click_object(details_button)
+        return self.get_root_instance().select_single(
+            MessagingContactViewPage, objectName='contactViewPage')
+
+    def _get_contact_delegate(self, index):
+        contact_delegates = self._get_sorted_contact_delegates()
+        return contact_delegates[index]
+
+    def _get_sorted_contact_delegates(self):
+        contact_delegates = self.select_many('ContactDelegate', visible=True)
+        return sorted(
+            contact_delegates, key=lambda delegate: delegate.globalRect.y)
