@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2014-01-08 09:16+0000\n"
-"Last-Translator: Tadeáš Pařík <tadeas.parik@gmail.com>\n"
+"PO-Revision-Date: 2015-05-11 18:05+0000\n"
+"Last-Translator: Vojtěch Daněk <vdanek@outlook.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-16 05:30+0000\n"
-"X-Generator: Launchpad (build 17428)\n"
+"X-Launchpad-Export-Date: 2015-05-12 05:32+0000\n"
+"X-Generator: Launchpad (build 17487)\n"
+"Language: cs\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -50,51 +51,55 @@ msgstr[2] "%1 sekund volání"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "Přijato"
 
 #: ../src/qml/Messages.qml:562
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: ../src/qml/NewRecipientPage.qml:29
 msgid "Add recipient"
-msgstr ""
+msgstr "Přidat příjemce"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "All"
-msgstr ""
+msgstr "Všechno"
 
 #: ../src/qml/ThreadDelegate.qml:83
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Přiložit: %1 kontakt"
+msgstr[1] "Přiložit: %1 kontakty"
+msgstr[2] "Přiložit: %1 kontaktů"
 
 #: ../src/qml/ThreadDelegate.qml:86
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Přiložit: %1 soubor"
+msgstr[1] "Přiložit: %1 soubory"
+msgstr[2] "Přiložit: %1 souborů"
 
 #: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Přiložit: %1 obrazek"
+msgstr[1] "Přiložit: %1 obrazky"
+msgstr[2] "Přiložit: %1 obrazků"
 
 #: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Přiložit: %1 video"
+msgstr[1] "Přiložit: %1 videa"
+msgstr[2] "Přiložit: %1 videí"
 
 #: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
 msgid "Call"
@@ -102,22 +107,23 @@ msgstr "Volání"
 
 #: ../src/qml/MainPage.qml:85 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "Změnit všechny zprávy spojené s %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: ../src/qml/MainPage.qml:141
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
+"Potáhněte prstem ze spodu obrazovky pro vytvoření nové textové zprávy."
 
 #: ../src/qml/Messages.qml:620
 msgid "Contact"
@@ -125,97 +131,97 @@ msgstr "Kontakt"
 
 #: ../src/qml/MessagesListView.qml:91
 msgid "Copy"
-msgstr ""
+msgstr "Kopírovat"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "Smazáno"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr ""
+msgstr "Doručeno"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "Neptat se znovu"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
-msgstr ""
+msgstr "Chyba"
 
 #: ../src/qml/MessageDelegateFactory.qml:139
 msgid "Failed!"
-msgstr ""
+msgstr "Chyba!"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "Favorites"
-msgstr ""
+msgstr "Oblíbené"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
-msgstr ""
+msgstr "Skupina"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
 #: ../src/qml/Messages.qml:256
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "Skupina (%1)"
 
 #: ../src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
-msgstr ""
+msgstr "Náhled obrázku"
 
 #: ../src/qml/MessagesListView.qml:67
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "Později"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
-msgstr ""
+msgstr "Informace zprávy"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "Zprávy"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Zprávy;SMS;MMS;Textové Zprávy;Text"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "Zprávy"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "Aplikace zpráv"
 
 #: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "Aplikace zpráv"
 
 #: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
-msgstr ""
+msgstr "Chybí data zpráv"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
-msgstr ""
+msgstr "Já"
 
 #: ../src/qml/Messages.qml:259
 msgid "New Message"
@@ -224,23 +230,23 @@ msgstr "Nová zpráva"
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "Nebyla zvolena SIM karta"
 
 #: ../src/qml/Messages.qml:367
 msgid "No network"
-msgstr ""
+msgstr "Žádná síť"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr ""
+msgstr "Čeká"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -248,42 +254,46 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"Prosím, odemkněte vaši SIM kartu pro možnost volání či zasílání zpráv. "
+"Učiňte tak buď pomocí aplikace Network Indicator, nacházejícího se na horní "
+"ploše displeje, či navštivte <a href=\"system_settings\">System Settings "
+"&gt; Security &amp; Privacy</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
-msgstr ""
+msgstr "Číst"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
-msgstr ""
+msgstr "Doručené"
 
 #: ../src/qml/Messages.qml:320
 msgid "Remove"
-msgstr ""
+msgstr "Odstranit"
 
 #: ../src/qml/MessagesListView.qml:84
 msgid "Retry"
-msgstr ""
+msgstr "Znovu"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "SIM karta je zamčená"
 
 #: ../src/qml/MessagesListView.qml:70
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: ../src/qml/NewRecipientPage.qml:57
 msgid "Search"
-msgstr ""
+msgstr "Hledat"
 
 #: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
-msgstr ""
+msgstr "Hledat..."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
@@ -293,69 +303,70 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:977
 msgid "Send"
-msgstr ""
+msgstr "Odeslat"
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
-msgstr ""
+msgstr "Odesláno"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
-msgstr ""
+msgstr "Sdílet"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "Přepnout na výchozí SIM:"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "Dočasně selhalo."
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "Textová zpráva zkopírována do schránky"
 
 #: ../src/qml/Messages.qml:368
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "V současné době není dostupná síť na %1"
 
 #: ../src/qml/Messages.qml:368
 msgid "There is currently no network."
-msgstr ""
+msgstr "V současné době není dostupná síť."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
-msgstr ""
+msgstr "Komu"
 
 #: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
-msgstr ""
+msgstr "Komu:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
 msgstr "Dnes"
 
+# Nejsem si jistý, jestli jde o slovo „psát“ nebo „druh“.
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
-msgstr ""
+msgstr "Druh"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámé"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:847
 msgid "Unknown contact"
-msgstr ""
+msgstr "Neznámý kontakt"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
-msgstr ""
+msgstr "Náhled videa"
 
 #: ../src/qml/Messages.qml:947
 msgid "Write a message..."
@@ -363,7 +374,7 @@ msgstr "Napsat zprávu..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
@@ -371,10 +382,10 @@ msgstr "Včera"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "Není zapotřebí zvolit SIM kartu"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "Přepnuli jste %1 @ %2"
