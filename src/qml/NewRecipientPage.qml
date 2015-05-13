@@ -139,12 +139,12 @@ Page {
         filterTerm: searchField.text
         onContactClicked: {
             if (newRecipientPage.phoneToAdd != "") {
-                mainView.addPhoneToContact(contact.contactId,
+                mainView.addPhoneToContact(contact,
                                            newRecipientPage.phoneToAdd,
                                            newRecipientPage,
                                            contactList.listModel)
             } else {
-                mainView.showContactDetails(contact.contactId,
+                mainView.showContactDetails(contact,
                                             newRecipientPage,
                                             contactList.listModel)
             }

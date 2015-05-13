@@ -43,11 +43,18 @@ MainView {
         }
     }
 
-    function showContactDetails(contactId, contactListPage, contactsModel) {
+    function showContactDetails(contact, contactListPage, contactsModel) {
+        var initialProperties =  { "contactListPage": contactListPage,
+                                   "model": contactsModel}
+
+        if (typeof(contact) == 'string') {
+            initialProperties['contactId'] = contact
+        } else {
+            initialProperties['contact'] = contact
+        }
+
         mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                       { "contactId": contactId,
-                         "contactListPage": contactListPage,
-                         "model": contactsModel})
+                       initialProperties)
     }
 
     function addNewContact(phoneNumber, contactListPage) {
@@ -57,16 +64,21 @@ MainView {
                          "contactListPage": contactListPage })
     }
 
-    function addPhoneToContact(contactId, phoneNumber, contactListPage, contactsModel) {
-        if (contactId === "") {
+    function addPhoneToContact(contact, phoneNumber, contactListPage, contactsModel) {
+        if (contact === "") {
             mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
                            { "phoneToAdd": phoneNumber })
         } else {
+            var initialProperties = { "addPhoneToContact": phoneNumber,
+                                      "contactListPage": contactListPage,
+                                      "model": contactsModel }
+            if (typeof(contact) == 'string') {
+                initialProperties['contactId'] = contact
+            } else {
+                initialProperties['contact'] = contact
+            }
             mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                           { "contactId": contactId,
-                             "addPhoneToContact": phoneNumber,
-                             "contactListPage": contactListPage,
-                             "model": contactsModel})
+                           initialProperties)
         }
     }
 
