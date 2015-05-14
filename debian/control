@@ -48,6 +48,7 @@ Package: messaging-app-autopilot
 Architecture: all
 Section: debug
 Depends: ${misc:Depends},
+         address-book-app-autopilot,
          autopilot-qt5,
          libqt5test5,
          libqt5widgets5,
