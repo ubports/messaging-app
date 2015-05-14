@@ -188,7 +188,8 @@ class UseMemoryContactBackend(fixtures.Fixture):
 
 
 class PreloadVcards(fixtures.Fixture):
-    VCARD_PATH_BIN = "/usr/lib/python3/dist-packages/messaging_app/testdata/vcard.vcf"
+    AUTOPILOT_DIR = "/usr/lib/python3/dist-packages/messaging_app"
+    VCARD_PATH_BIN = ("%s/testdata/vcard.vcf" % AUTOPILOT_DIR)
     VCARD_PATH_DEV = os.path.abspath("../data/vcard.vcf")
 
     def setUp(self):
