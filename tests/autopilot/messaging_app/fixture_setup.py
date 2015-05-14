@@ -173,7 +173,6 @@ class OfonoPhoneSIM(fixtures.Fixture):
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
 
 
-
 class UseMemoryContactBackend(fixtures.Fixture):
 
     def setUp(self):

@@ -548,7 +548,7 @@ class MessageDelegateFactory(ListItemWithActions):
 
 
 class MessagingContactViewPage(address_book.ContactViewPage):
-    """Autopilot custom proxy object for MessagingContactViewPage components."""
+    """Autopilot custom proxy object for MessagingContactViewPage component."""
 
     def message_phone(self, index):
         phone_group = self.select_single(
