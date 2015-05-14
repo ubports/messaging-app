@@ -1,2 +1,2 @@
 usr/lib/python*/dist-packages/messaging_app/*
-usr/share/messaging-app/vcards/*
+usr/lib/python*/dist-packages/messaging_app/testdata/*

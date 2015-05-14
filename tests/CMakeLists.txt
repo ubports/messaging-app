@@ -1,6 +1,3 @@
-add_subdirectory(qml)
-add_subdirectory(data)
-
 set(AUTOPILOT_DIR autopilot/messaging_app)
 
 file(GLOB AUTOPILOT_PY_FILES ${AUTOPILOT_DIR}/*.py ${AUTOPILOT_DIR}/tests/*.py)
@@ -14,3 +11,6 @@ execute_process(COMMAND python3 -c "from distutils.sysconfig import get_python_l
 install(DIRECTORY ${AUTOPILOT_DIR}
     DESTINATION ${PYTHON_PACKAGE_DIR}
     )
+
+add_subdirectory(qml)
+add_subdirectory(data)

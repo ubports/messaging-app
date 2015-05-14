@@ -5,6 +5,6 @@ set(AUTOPILOT_DATA
 )
 
 install(FILES ${AUTOPILOT_DATA}
-    DESTINATION ${MESSAGING_APP_DIR}/vcards
+    DESTINATION ${PYTHON_PACKAGE_DIR}/messaging_app/testdata/
 )
 
