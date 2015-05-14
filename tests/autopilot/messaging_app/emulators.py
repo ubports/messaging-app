@@ -394,6 +394,10 @@ class MainView(toolkit_emulators.MainView):
         self.click_threads_header_settings()
         return self.wait_select_single(SettingsPage)
 
+    def get_swipe_item_demo(self):
+        return self.wait_select_single(
+            'SwipeItemDemo', objectName='swipeItemDemo', parentActive=True)
+
 
 class PageWithBottomEdge(MainView):
     """An emulator class that makes it easy to interact with the bottom edge
