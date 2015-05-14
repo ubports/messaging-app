@@ -1,3 +1,10 @@
+messaging-app (0.1+15.04.20150511-0ubuntu1) vivid; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show a swipe item demo during the first launch. (LP: #1417359)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 11 May 2015 19:18:49 +0000
+
 messaging-app (0.1+15.04.20150413-0ubuntu1) vivid; urgency=medium
 
   [ Tiago Salem Herrmann ]
