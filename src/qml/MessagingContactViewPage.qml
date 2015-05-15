@@ -106,7 +106,7 @@ ContactViewPage {
     }
 
     onActionTrigerred: {
-        if (action === "message") {
+        if ((action === "message") || (action == "default")) {
             if (root.contactListPage) {
                 var list = root.contactListPage
                 list.addRecipient(detail.value(0))
@@ -116,7 +116,7 @@ ContactViewPage {
                 return
             }
         } else {
-            Qt.openUrlExternally(("%1:///%2").arg(action).arg(detail.value(0)))
+            Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
         }
         pageStack.pop()
     }
