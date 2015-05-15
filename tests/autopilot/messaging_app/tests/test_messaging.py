@@ -310,6 +310,9 @@ class TestMessaging(BaseMessagingTestCase):
         for i in list(reversed(range(10))):
             helpers.receive_sms(recipient, 'message %s' % i)
 
+        list_view = messages_page.get_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(11)))
+
         messages = messages_page.get_messages()
 
         for i in range(10):
