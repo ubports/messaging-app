@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-26 15:10-0300\n"
-"PO-Revision-Date: 2015-05-11 18:05+0000\n"
+"PO-Revision-Date: 2015-05-14 07:58+0000\n"
 "Last-Translator: Vojtěch Daněk <vdanek@outlook.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-05-13 05:30+0000\n"
+"X-Launchpad-Export-Date: 2015-05-15 05:30+0000\n"
 "X-Generator: Launchpad (build 17493)\n"
 "Language: cs\n"
 
@@ -23,7 +23,7 @@ msgstr ""
 #: ../src/qml/ThreadDelegate.qml:51
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 + %2"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
@@ -300,6 +300,8 @@ msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Zvolte výchozí SIM kartu pro všechny odchozí textové zprávy. Své rozhodnuté "
+"vždy můžete změnit v <a href=\"system_settings\">Nastavení systému</a>."
 
 #: ../src/qml/Messages.qml:977
 msgid "Send"
