@@ -60,7 +60,7 @@ ContactViewPage {
             text: i18n.tr("Share")
             iconName: "share"
             onTriggered: {
-                pageStack.push(root.contactShareComponent,
+                pageStack.push(contactShareComponent,
                                { contactModel: root.model,
                                  contacts: [root.contact] })
             }
