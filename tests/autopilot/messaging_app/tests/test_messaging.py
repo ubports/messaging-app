@@ -14,9 +14,8 @@ from __future__ import absolute_import
 import time
 
 from autopilot.matchers import Eventually
-from autopilot.platform import model
 from testtools.matchers import Equals, HasLength
-from testtools import skipIf
+from testtools import skip
 
 from messaging_app import emulators
 from messaging_app import fixture_setup
@@ -296,7 +295,7 @@ class TestMessaging(BaseMessagingTestCase):
 
     # FIXME: copy and use MockNotificationSystem fixture from dialer-app
     # once bug #1453958 is fixed
-    @skipIf(model() != "Desktop", "Disabled due to bug #1453958")
+    @skip("Disabled due to bug #1453958")
     def test_check_multiple_messages_received(self):
         """Verify that received messages are correctly displayed"""
         main_page = self.main_view.select_single(emulators.MainPage)
