@@ -1,3 +1,14 @@
+messaging-app (0.1+15.04.20150520-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Do not access data from the model onCountChanged. Use ListView
+    onCountChanged instead. (LP: #1449594, #1449598)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 20 May 2015 13:27:15 +0000
+
 messaging-app (0.1+15.04.20150511-0ubuntu1) vivid; urgency=medium
 
   [ Renato Araujo Oliveira Filho ]
