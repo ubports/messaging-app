@@ -335,6 +335,10 @@ class MainView(toolkit_emulators.MainView):
         """Click the header action 'Cancel' on Messages view"""
         self.get_header().click_custom_back_button()
 
+    def click_threads_header_settings(self):
+        """Click the header action 'Settings' on main view"""
+        self.click_header_action('settingsAction')
+
     def click_messages_header_delete(self):
         """Click the header action 'Delete' on Messages view"""
         self.click_header_action('selectionModeDeleteAction')
@@ -385,6 +389,10 @@ class MainView(toolkit_emulators.MainView):
         thread_bubble = self.get_message(message)
 
         return thread_bubble
+
+    def open_settings_page(self):
+        self.click_threads_header_settings()
+        return self.wait_select_single(SettingsPage)
 
     def get_swipe_item_demo(self):
         return self.wait_select_single(
@@ -501,6 +509,16 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         """Returns the messages list view"""
         return self.wait_select_single(
             'MessagesListView', objectName='messageList')
+
+
+class SettingsPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for the settings page"""
+
+    def get_mms_group_chat(self):
+        return self.wait_select_single(objectName="mmsGroupChatEnabled")
+
+    def toggle_mms_group_chat(self):
+        self.pointing_device.click_object(self.get_mms_group_chat())
 
 
 class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):
