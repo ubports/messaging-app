@@ -344,6 +344,7 @@ Page {
 
         Popover {
             id: popover
+            anchorToKeyboard: false
             Column {
                 id: containerLayout
                 anchors {
