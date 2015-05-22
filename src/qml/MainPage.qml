@@ -72,6 +72,11 @@ LocalPageWithBottomEdge {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
                     }
+                },
+                Action {
+                    text: i18n.tr("Settings")
+                    iconName: "settings"
+                    onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
                 }
             ]
         },
