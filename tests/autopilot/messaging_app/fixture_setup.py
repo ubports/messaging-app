@@ -12,6 +12,8 @@ import os
 import subprocess
 import shutil
 import tempfile
+import dbusmock
+from autopilot.platform import model
 
 import fixtures
 from ubuntuuitoolkit import fixture_setup
@@ -36,6 +38,7 @@ class MessagingTestEnvironment(fixtures.Fixture):
         else:
             self.useFixture(UseDefaultConfiguration())
         self.useFixture(RespawnService())
+        self.useFixture(MockNotificationSystem())
 
 
 class FillCustomSmsHistory(fixtures.Fixture):
@@ -171,3 +174,35 @@ class OfonoPhoneSIM(fixtures.Fixture):
             ['mc-tool', 'update', 'ofono/ofono/account0',
              'string:modem-objpath=/ril_0'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
+
+class MockNotificationSystem(fixtures.Fixture):
+
+    def setUp(self):
+        super().setUp()
+
+        # only mock the notification system on desktop, on ubuntu touch the
+        # notification dbus service is embedded into unity
+        if model() == 'Desktop':
+            self.addCleanup(self._stop_mock)
+            self._kill_notification_service()
+            # start the mock service
+            (self.process, self.obj) = \
+                dbusmock.DBusTestCase.spawn_server_template(
+                    'notification_daemon')
+        else:
+            self.addCleanup(self._clear_existing_notifications)
+
+    def _stop_mock(self):
+        self.process.terminate()
+        self.process.wait()
+
+    def _kill_notification_service(self):
+        """Kill the notification daemon."""
+        subprocess.call(['pkill', '-f', 'notify-osd'])
+
+    def _clear_existing_notifications(self):
+        """Kill processes that might be displaying notifications"""
+        bus = dbus.SessionBus()
+        indicator = bus.get_object('com.canonical.TelephonyServiceIndicator',
+                                   '/com/canonical/TelephonyServiceIndicator')
+        indicator.ClearNotifications()

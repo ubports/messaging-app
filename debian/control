@@ -53,6 +53,7 @@ Depends: ${misc:Depends},
          libqt5widgets5,
          messaging-app (>= ${binary:Version}),
          python3-autopilot,
+         python3-dbusmock,
          ubuntu-ui-toolkit-autopilot,
          ofono-phonesim-autostart,
 Description: autopilot tests for messaging-app
