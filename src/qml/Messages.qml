@@ -357,7 +357,8 @@ Page {
                         height: childrenRect.height
                         width: popover.width
                         ListItem.Standard {
-                            id: listItem
+                            id: participant
+                            objectName: "participant%1".arg(index)
                             text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
                             onClicked: {
                                 PopupUtils.close(popover)

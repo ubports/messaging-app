@@ -87,7 +87,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can write and send a new text message"""
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message(phone_num, message)
+        self.main_view.send_message([phone_num], message)
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -109,7 +109,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can delete a message with a long press on the message"""
         phone_num = '555-555-4321'
         message = 'delete me'
-        bubble = self.main_view.send_message(phone_num, message)
+        bubble = self.main_view.send_message([phone_num], message)
 
         self.main_view.close_osk()
 
@@ -126,7 +126,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can cancel deleting a message with a long press"""
         phone_num = '5555551234'
         message = 'do not delete'
-        bubble = self.main_view.send_message(phone_num, message)
+        bubble = self.main_view.send_message([phone_num], message)
 
         self.main_view.close_osk()
 
@@ -159,7 +159,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can use the toolbar to delete a message"""
         phone_num = '555-555-4321'
         message = 'delete me'
-        bubble = self.main_view.send_message(phone_num, message)
+        bubble = self.main_view.send_message([phone_num], message)
 
         self.main_view.close_osk()
 
@@ -174,7 +174,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we only delete messages that have been selected"""
         phone_num = '555-555-4321'
         message = 'delete me'
-        self.main_view.send_message(phone_num, message)
+        self.main_view.send_message([phone_num], message)
 
         self.main_view.close_osk()
 
@@ -214,7 +214,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can cancel deleting a message thread"""
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message(phone_num, message)
+        self.main_view.send_message([phone_num], message)
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -245,7 +245,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can delete a message thread"""
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message(phone_num, message)
+        self.main_view.send_message([phone_num], message)
 
         # switch back to main page with thread list
         self.main_view.close_osk()
@@ -286,7 +286,7 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can delete a message by swiping right"""
         phone_num = '555-555-4321'
         message = 'delete me okay'
-        self.main_view.send_message(phone_num, message)
+        self.main_view.send_message([phone_num], message)
 
         # delete message
         self.main_view.delete_message(message)
@@ -318,6 +318,16 @@ class TestMessaging(BaseMessagingTestCase):
             expectedMessage = 'message %s' % i
             self.assertThat(messages[i][1], Equals(expectedMessage))
 
+    def test_open_new_conversation_with_group_participant(self):
+        recipient_list = ["123", "321"]
+        self.main_view.send_message(recipient_list, "hello from Ubuntu")
+        self.main_view.click_header_action('groupChatAction')
+
+        participant = self.main_view.select_single(
+            objectName='participant1')
+        self.pointing_device.click_object(participant)
+
+        self.main_view.wait_select_single(emulators.Messages, title=recipient_list[1])
 
 class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 
@@ -463,7 +473,7 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         """Verify if the tutorial appears after send a message"""
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message(phone_num, message)
+        self.main_view.send_message([phone_num], message)
         self.main_view.close_osk()
 
         swipe_item_demo = self.main_view.get_swipe_item_demo()
