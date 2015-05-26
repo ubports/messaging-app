@@ -327,7 +327,11 @@ class TestMessaging(BaseMessagingTestCase):
             objectName='participant1')
         self.pointing_device.click_object(participant)
 
-        self.main_view.wait_select_single(emulators.Messages, title=recipient_list[1])
+        # We use 'title' here because participants is variant and not
+        # accessible from here
+        self.main_view.wait_select_single(emulators.Messages,
+                                          title=recipient_list[1])
+
 
 class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 

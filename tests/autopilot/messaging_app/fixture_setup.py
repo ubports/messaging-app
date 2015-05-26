@@ -175,6 +175,7 @@ class OfonoPhoneSIM(fixtures.Fixture):
              'string:modem-objpath=/ril_0'])
         subprocess.call(['mc-tool', 'reconnect', 'ofono/ofono/account0'])
 
+
 class MockNotificationSystem(fixtures.Fixture):
 
     def setUp(self):
