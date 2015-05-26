@@ -359,6 +359,10 @@ Page {
                         ListItem.Standard {
                             id: listItem
                             text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
+                            onClicked: {
+                                PopupUtils.close(popover)
+                                mainView.startChat(contactWatcher.identifier)
+                            }
                         }
                         ContactWatcher {
                             id: contactWatcher
@@ -544,7 +548,7 @@ Page {
                 Action {
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, messages.header)
+                    onTriggered: PopupUtils.open(participantsPopover, screenTop)
                 }
             ]
         },
@@ -683,6 +687,18 @@ Page {
        onTriggered: eventModel.fetchMore()
     }
 
+    // this item is used as parent of the participants popup. using
+    // messages.header as parent was hanging the app
+    Item {
+        id: screenTop
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: 0
+    }
+
     MessagesListView {
         id: messageList
         objectName: "messageList"
@@ -691,7 +707,7 @@ Page {
         // because of the header
         clip: true
         anchors {
-            top: parent.top
+            top: screenTop.bottom
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
