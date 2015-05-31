@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-08 04:34+0000\n"
+"PO-Revision-Date: 2015-05-30 22:25+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-05-31 05:31+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -139,7 +139,7 @@ msgstr "دیگر پرسیده نشود"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "فعّال کردن گپ گروهی MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -163,7 +163,7 @@ msgstr "از"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "گرفتم"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -313,7 +313,7 @@ msgstr "ارسال شده"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "تنظیمات"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -325,11 +325,11 @@ msgstr "وضعیت"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "برای حذف بکشید"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "برای آشکار شدن عمل‌ها بکشید"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -387,7 +387,7 @@ msgstr "پیوست‌های ویدیویی پشتیبانی نمی‌شوند"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "به اپ پیام‌رسانی اوبونتویتان خوش آمدید."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."

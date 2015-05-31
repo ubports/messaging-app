@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-05-14 07:58+0000\n"
+"PO-Revision-Date: 2015-05-30 09:28+0000\n"
 "Last-Translator: Vojtěch Daněk <vdanek@outlook.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-05-31 05:31+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 "Language: cs\n"
 
@@ -103,7 +103,7 @@ msgstr[2] "Přiložit: %1 videí"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Přiložený audio soubor není podporován"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -155,7 +155,7 @@ msgstr "Neptat se znovu"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Povolit skupinový MMS chat"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -171,7 +171,7 @@ msgstr "Oblíbené"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Soubor není podporován"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -179,7 +179,7 @@ msgstr "Od"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Hotovo"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -329,7 +329,7 @@ msgstr "Odesláno"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Nastavení"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -341,7 +341,7 @@ msgstr "Stav"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Smazat přetáhnutím"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
@@ -400,11 +400,11 @@ msgstr "Náhled videa"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Video soubor není podporován"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Vítejte v aplikaci Ubuntu zpráv."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
