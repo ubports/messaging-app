@@ -14,7 +14,8 @@ from __future__ import absolute_import
 import time
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, HasLength
+from testtools.matchers import Equals, HasLength, Not
+from testtools import skip
 
 from messaging_app import emulators
 from messaging_app import fixture_setup
@@ -22,6 +23,7 @@ from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
 import ubuntuuitoolkit
+from gi.repository import Gio
 
 
 class BaseMessagingTestCase(MessagingAppTestCase):
@@ -292,6 +294,31 @@ class TestMessaging(BaseMessagingTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
+    # FIXME: copy and use MockNotificationSystem fixture from dialer-app
+    # once bug #1453958 is fixed
+    @skip("Disabled due to bug #1453958")
+    def test_check_multiple_messages_received(self):
+        """Verify that received messages are correctly displayed"""
+        main_page = self.main_view.select_single(emulators.MainPage)
+        recipient = '123456'
+        helpers.receive_sms(recipient, 'first message')
+
+        # wait for the thread
+        main_page.get_thread_from_number(recipient)
+        messages_page = main_page.open_thread(recipient)
+
+        for i in list(reversed(range(10))):
+            helpers.receive_sms(recipient, 'message %s' % i)
+
+        list_view = messages_page.get_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(11)))
+
+        messages = messages_page.get_messages()
+
+        for i in range(10):
+            expectedMessage = 'message %s' % i
+            self.assertThat(messages[i][1], Equals(expectedMessage))
+
 
 class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 
@@ -422,6 +449,39 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
         self.messages_view = self.main_view.select_single(
             emulators.Messages,
             text='text message')
+
+
+class MessagingTestSettings(MessagingAppTestCase):
+
+    def setUp(self):
+        super(MessagingTestSettings, self).setUp()
+
+    def test_mms_group_chat_settings(self):
+        gsettings = Gio.Settings.new('com.ubuntu.phone')
+        key = 'mms-group-chat-enabled'
+
+        settingsPage = self.main_view.open_settings_page()
+        self.assertThat(settingsPage.visible, Eventually(Equals(True)))
+        option = settingsPage.get_mms_group_chat()
+
+        # read the current value and make sure the checkbox reflects it
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked, Equals(settingsValue))
+
+        # now toggle it and check that the value changes
+        oldValue = settingsValue
+        settingsPage.toggle_mms_group_chat()
+        self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
+
+        # give it some time
+        time.sleep(2)
+
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked,
+                        Eventually(Equals(gsettings.get_boolean(key))))
+
+        # just reset it to the previous value
+        settingsPage.toggle_mms_group_chat()
 
 
 class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):

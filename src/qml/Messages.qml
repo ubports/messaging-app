@@ -344,6 +344,7 @@ Page {
 
         Popover {
             id: popover
+            anchorToKeyboard: false
             Column {
                 id: containerLayout
                 anchors {
@@ -646,16 +647,6 @@ Page {
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
-            if (count == 0) {
-                latestEventId = ""
-                return
-            }
-            if (latestEventId == "") {
-                latestEventId = eventModel.get(0).eventId
-            } else if (latestEventId != eventModel.get(0).eventId) {
-                latestEventId = eventModel.get(0).eventId
-                messageList.positionViewAtBeginning()
-            }
             if (isSearching) {
                 // if we ask for more items manually listview will stop working,
                 // so we only set again once the item was found

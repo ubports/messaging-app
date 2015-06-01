@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-26 15:10-0300\n"
+"POT-Creation-Date: 2015-05-29 18:21+0200\n"
 "PO-Revision-Date: 2014-09-26 16:46+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-16 05:30+0000\n"
-"X-Generator: Launchpad (build 17428)\n"
+"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Generator: Launchpad (build 17532)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Accepted"
 msgstr "Onartuta"
 
-#: ../src/qml/Messages.qml:562
+#: ../src/qml/Messages.qml:574
 msgid "Add"
 msgstr "Gehitu"
 
@@ -93,11 +93,15 @@ msgid_plural "Attachments: %1 videos"
 msgstr[0] "Eranskina: bideo %1"
 msgstr[1] "Eranskinak: %1 bideo"
 
-#: ../src/qml/Messages.qml:551 ../src/qml/Messages.qml:609
+#: ../src/qml/MMS/MMSDefault.qml:28
+msgid "Audio attachment not supported"
+msgstr ""
+
+#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
 msgstr "Deitu"
 
-#: ../src/qml/MainPage.qml:85 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
 msgid "Cancel"
 msgstr "Utzi"
 
@@ -108,19 +112,19 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Aldatu mezularitzako asoziazio guztiak %1(e)ra?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:371
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
 msgid "Close"
 msgstr "Itxi"
 
-#: ../src/qml/MainPage.qml:141
+#: ../src/qml/MainPage.qml:147
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Idatzi mezu berri bat hatza pantailaren behealdetik gorantz pasaz."
 
-#: ../src/qml/Messages.qml:620
+#: ../src/qml/Messages.qml:632
 msgid "Contact"
 msgstr "Kontaktua"
 
-#: ../src/qml/MessagesListView.qml:91
+#: ../src/qml/MessagesListView.qml:92 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Kopiatu"
 
@@ -140,11 +144,15 @@ msgstr "Bidalita"
 msgid "Don't ask again"
 msgstr "Ez galdetu berriro"
 
+#: ../src/qml/SettingsPage.qml:29
+msgid "Enable MMS group chat"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
 msgstr "Huts egin du"
 
-#: ../src/qml/MessageDelegateFactory.qml:139
+#: ../src/qml/MessageDelegateFactory.qml:144
 msgid "Failed!"
 msgstr "Hutseginda!"
 
@@ -152,16 +160,24 @@ msgstr "Hutseginda!"
 msgid "Favorites"
 msgstr "Gogokoak"
 
+#: ../src/qml/MMS/MMSDefault.qml:33
+msgid "File type not supported"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
 msgstr "Nork"
+
+#: ../src/qml/SwipeItemDemo.qml:78
+msgid "Got it"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
 msgstr "Taldea"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:256
+#: ../src/qml/Messages.qml:261
 #, qt-format
 msgid "Group (%1)"
 msgstr "Taldea (%1)"
@@ -170,7 +186,7 @@ msgstr "Taldea (%1)"
 msgid "Image Preview"
 msgstr "Irudiaren aurrebista"
 
-#: ../src/qml/MessagesListView.qml:67
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Informazioa"
 
@@ -178,7 +194,7 @@ msgstr "Informazioa"
 msgid "Later"
 msgstr "Geroago"
 
-#: ../src/qml/MessagesListView.qml:70
+#: ../src/qml/MessagesListView.qml:71
 msgid "MMS"
 msgstr "MMSa"
 
@@ -214,7 +230,7 @@ msgstr "Mezuaren datuak faltan"
 msgid "Myself"
 msgstr "Ni"
 
-#: ../src/qml/Messages.qml:259
+#: ../src/qml/Messages.qml:264
 msgid "New Message"
 msgstr "Mezu berria"
 
@@ -227,7 +243,7 @@ msgstr "Ez"
 msgid "No SIM card selected"
 msgstr "Ez da SIM txartelik hautatu"
 
-#: ../src/qml/Messages.qml:367
+#: ../src/qml/Messages.qml:379
 msgid "No network"
 msgstr "Sarerik ez"
 
@@ -254,11 +270,11 @@ msgstr "Irakurrita"
 msgid "Received"
 msgstr "Jasota"
 
-#: ../src/qml/Messages.qml:320
+#: ../src/qml/Messages.qml:331
 msgid "Remove"
 msgstr "Kendu"
 
-#: ../src/qml/MessagesListView.qml:84
+#: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Saiatu berriz"
 
@@ -266,7 +282,7 @@ msgstr "Saiatu berriz"
 msgid "SIM Card is locked"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:70
+#: ../src/qml/MessagesListView.qml:71
 msgid "SMS"
 msgstr "SMSa"
 
@@ -290,13 +306,17 @@ msgstr ""
 "Hautatu irteerako mezu guztientzako SIM lehenetsia. Edonoiz alda dezakezu "
 "aukera hau <a href=\"system_settings\">Sistemaren ezarpenetatik</a>."
 
-#: ../src/qml/Messages.qml:977
+#: ../src/qml/Messages.qml:979
 msgid "Send"
 msgstr "Bidali"
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Noiz"
+
+#: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
+msgid "Settings"
+msgstr ""
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -305,6 +325,14 @@ msgstr "Partekatu"
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Egoera"
+
+#: ../src/qml/SwipeItemDemo.qml:256
+msgid "Swipe to delete"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:206
+msgid "Swipe to reveal actions"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -318,12 +346,12 @@ msgstr "Behin behinean huts egin du"
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:368
+#: ../src/qml/Messages.qml:380
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Une honetan ez dago sarerik %1(e)n"
 
-#: ../src/qml/Messages.qml:368
+#: ../src/qml/Messages.qml:380
 msgid "There is currently no network."
 msgstr "Une honetan ez dago sarerik."
 
@@ -348,7 +376,7 @@ msgid "Unknown"
 msgstr "Ezezaguna"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:847
+#: ../src/qml/Messages.qml:849
 msgid "Unknown contact"
 msgstr "Kontaktu ezezaguna"
 
@@ -356,7 +384,15 @@ msgstr "Kontaktu ezezaguna"
 msgid "Video Preview"
 msgstr "Bideoaren aurrebista"
 
-#: ../src/qml/Messages.qml:947
+#: ../src/qml/MMS/MMSDefault.qml:31
+msgid "Video attachment not supported"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:161
+msgid "Welcome to your Ubuntu messaging app."
+msgstr ""
+
+#: ../src/qml/Messages.qml:949
 msgid "Write a message..."
 msgstr "Idatzi mezua..."
 
