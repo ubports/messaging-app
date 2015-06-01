@@ -137,26 +137,17 @@ Page {
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
 
         filterTerm: searchField.text
-        // FIXME: support picking more details
-        detailToPick: newRecipientPage.phoneToAdd === "" ? ContactDetail.PhoneNumber : -1
-        onDetailClicked: {
+        onContactClicked: {
             if (newRecipientPage.phoneToAdd != "") {
-                mainView.addPhoneToContact(contact.contactId,
+                mainView.addPhoneToContact(contact,
                                            newRecipientPage.phoneToAdd,
                                            newRecipientPage,
                                            contactList.listModel)
-                return
+            } else {
+                mainView.showContactDetails(contact,
+                                            newRecipientPage,
+                                            contactList.listModel)
             }
-
-            if (action === "message" || action === "") {
-                newRecipientPage.addRecipient(detail.number)
-                return
-            } else if (action === "call") {
-                // FIXME: support other things than just phone numbers
-                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
-            }
-
-            mainStack.pop()
         }
 
         onAddNewContactClicked: {
@@ -168,14 +159,6 @@ Page {
                              contactListPage: newRecipientPage
                            })
         }
-
-        onAddDetailClicked: mainView.addPhoneToContact(contact.contactId,
-                                                       " ",
-                                                       newRecipientPage,
-                                                       contactList.listModel)
-        onInfoRequested: mainView.showContactDetails(contact.contactId,
-                                                     newRecipientPage,
-                                                     contactList.listModel)
     }
 
     // WORKAROUND: This is necessary to make the header visible from a bottom edge page
