@@ -575,7 +575,7 @@ Page {
                     onTriggered: {
                         Qt.inputMethod.hide()
                         // FIXME: support other things than just phone numbers
-                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.identifier));
+                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
                     }
                 }
             ]
@@ -631,7 +631,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+                        mainView.showContactDetails(contactWatcher.contactId, null, null)
                     }
                 }
             ]

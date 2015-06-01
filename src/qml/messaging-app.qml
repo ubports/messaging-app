@@ -30,6 +30,7 @@ MainView {
     property string newPhoneNumber
     property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
     property QtObject account: defaultAccount()
+
     activeFocusOnPress: false
 
     function defaultAccount() {
@@ -39,6 +40,33 @@ MainView {
             return telepathyHelper.defaultMessagingAccount
         } else {
             return telepathyHelper.activeAccounts[0]
+        }
+    }
+
+    function showContactDetails(contactId, contactListPage, contactsModel) {
+        mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                       { "contactId": contactId,
+                         "contactListPage": contactListPage,
+                         "model": contactsModel})
+    }
+
+    function addNewContact(phoneNumber, contactListPage) {
+        mainStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                       { "contactId": contactId,
+                         "addPhoneToContact": phoneNumber,
+                         "contactListPage": contactListPage })
+    }
+
+    function addPhoneToContact(contactId, phoneNumber, contactListPage, contactsModel) {
+        if (contactId === "") {
+            mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
+                           { "phoneToAdd": phoneNumber })
+        } else {
+            mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                           { "contactId": contactId,
+                             "addPhoneToContact": phoneNumber,
+                             "contactListPage": contactListPage,
+                             "model": contactsModel})
         }
     }
 

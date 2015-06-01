@@ -32,11 +32,11 @@ Package: messaging-app
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         qtdeclarative5-ubuntu-addressbook0.1,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          qtdeclarative5-ubuntu-telephony-phonenumber0.1,
          qtdeclarative5-ubuntu-history0.1 | qtdeclarative5-ubuntu-history-plugin,
          qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
-         qtdeclarative5-ubuntu-contacts0.1 (>= 0.2+14.10.20140805),
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-gsettings1.0,
          qml-module-qt-labs-settings,
@@ -49,6 +49,7 @@ Package: messaging-app-autopilot
 Architecture: all
 Section: debug
 Depends: ${misc:Depends},
+         address-book-app-autopilot,
          autopilot-qt5,
          libqt5test5,
          libqt5widgets5,
