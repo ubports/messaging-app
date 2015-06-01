@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2014-09-14 15:42+0000\n"
+"PO-Revision-Date: 2015-05-31 20:16+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-06-01 05:35+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -148,7 +148,7 @@ msgstr "Ne plus demander"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Activer les MMS pour la messagerie en groupe"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -323,7 +323,7 @@ msgstr "Envoyé"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -335,11 +335,11 @@ msgstr "État"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Faites glisser pour supprimer"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Faites glisser pour dévoiler des actions"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -397,7 +397,7 @@ msgstr "Pièce jointe vidéo non prise en charge"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Bienvenue dans votre application de messagerie sur Ubuntu."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
