@@ -102,6 +102,8 @@ ContactViewPage {
             manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") &&
                       (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
             autoUpdate: false
+            // make sure that the model is empty (no extra contact loaded)
+            filter: InvalidFilter {}
         }
     }
 
