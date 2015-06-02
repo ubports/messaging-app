@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-06 14:25+0000\n"
-"Last-Translator: alexisme <alexanderc.spa@openmailbox.org>\n"
+"PO-Revision-Date: 2015-06-01 20:49+0000\n"
+"Last-Translator: Niklas Wenzel <nikwen.developer@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-06-02 05:36+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -148,7 +148,7 @@ msgstr "Nicht erneut fragen"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "MMS-Gruppenchats aktivieren"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -172,7 +172,7 @@ msgstr "Von"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Verstanden"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -324,7 +324,7 @@ msgstr "Gesendet"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
