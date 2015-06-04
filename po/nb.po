@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-03 12:12+0000\n"
+"PO-Revision-Date: 2015-06-01 10:05+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-06-02 05:36+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -95,7 +95,7 @@ msgstr[1] "Vedlegg: %1 videoer"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Lyd-vedlegg støttes ikke"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -146,7 +146,7 @@ msgstr "Ikke spør igjen"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Slå på MMS-gruppesamtale"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -162,7 +162,7 @@ msgstr "Favoritter"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Filtypen støttes ikke"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -170,7 +170,7 @@ msgstr "Fra"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Skjønner"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -321,7 +321,7 @@ msgstr "Sendt"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -333,11 +333,11 @@ msgstr "Status"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Dra for å slette"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Dra for å vise handlinger"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -391,11 +391,11 @@ msgstr "Forhåndsvis video"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Video-vedlegg støttes ikke"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Velkommen til Ubuntus meldingsprogram."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."

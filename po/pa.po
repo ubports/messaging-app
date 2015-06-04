@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-01 04:45+0000\n"
+"PO-Revision-Date: 2015-06-02 05:16+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-06-03 05:50+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -95,7 +95,7 @@ msgstr[1] "ਨੱਥੀ: %1 ਵੀਡੀਓ"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "ਨੱਥੀ ਕੀਤੀ ਆਡੀਓ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -146,7 +146,7 @@ msgstr "ਫੇਰ ਨਾ ਪੁੱਛੋ"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "MMS ਗਰੁੱਪ ਚੈੱਟ ਨੂੰ ਚਾਲੂ ਕਰੋ"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -162,7 +162,7 @@ msgstr "ਮਨਪਸੰਦ"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "ਫਾਈਲ ਕਿਸਮ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -170,7 +170,7 @@ msgstr "ਵੱਲੋਂ"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "ਮਿਲ ਗਿਆ"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -320,7 +320,7 @@ msgstr "ਭੇਜੇ"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "ਸੈਟਿੰਗ"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -332,11 +332,11 @@ msgstr "ਦਰਜਾ"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "ਹਟਾਉਣ ਲਈ ਖਿੱਚੋ"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "ਕਾਰਜ ਖੋਲ੍ਹਣ ਲਈ ਖਿੱਚੋ"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -390,11 +390,11 @@ msgstr "ਵਿਡੀਓ ਝਲਕ"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "ਨੱਥੀ ਕੀਤੀ ਵੀਡੀਓ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਉਬੰਤੂ ਮੈਸੇਜਿੰਗ ਐਪ ਵਿੱਚ ਸੁਆਗਤ ਹੈ।"
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
