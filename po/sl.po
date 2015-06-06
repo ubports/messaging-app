@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-04 09:50+0000\n"
+"PO-Revision-Date: 2015-06-05 06:37+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:33+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-06 05:31+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -110,7 +110,7 @@ msgstr[3] "Priloga: %1 videi"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Zvočna priponka ni podprta"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -161,7 +161,7 @@ msgstr "Ne sprašuj več"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Omogoči skupinski MMS pogovor"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -177,7 +177,7 @@ msgstr "Priljubljeni"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Vrsta datoteke ni podprta"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -185,7 +185,7 @@ msgstr "Od"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Razumem"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -335,7 +335,7 @@ msgstr "Poslano"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -347,11 +347,11 @@ msgstr "Stanje"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Potegnite za izbris"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Potegnite za prikaz dejanj"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -405,11 +405,11 @@ msgstr "Predogled videa"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Video priponka ni podprta"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Dobrodošli v sporočilni program Ubuntu."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."

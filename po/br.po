@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-13 12:42+0000\n"
+"PO-Revision-Date: 2015-06-05 06:07+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-06 05:31+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -95,7 +95,7 @@ msgstr[1] "Pezhioù stag : %1 a videoioù"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "pezh stag da glevet ha ne c'hall ket bezañ lennet"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -147,7 +147,7 @@ msgstr "Arabat goulenn en-dro"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Gweredekaat an MMS er flapañ a-stroll"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -163,7 +163,7 @@ msgstr "Gwellañ deuet"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Seurt restr ha ne c'hall ket bezañ lennet"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -171,7 +171,7 @@ msgstr "Digant"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Mat eo"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -322,7 +322,7 @@ msgstr "Kaset"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Arventennoù"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -334,11 +334,11 @@ msgstr "Statud"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Riklañ evit diverkañ"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Riklañ evit diskuliañ oberoù"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -392,11 +392,11 @@ msgstr "Rakwelet ar video"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Pezh stag video ha ne c'hall ket bezañ lennet"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Deuet-mat oc'h en hoc'h arloadoù kemennadennoù Ubuntu"
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
