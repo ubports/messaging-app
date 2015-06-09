@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-03 12:26+0000\n"
-"Last-Translator: Milo Casagrande <milo.casagrande@gmail.com>\n"
+"PO-Revision-Date: 2015-06-08 11:30+0000\n"
+"Last-Translator: Timucin <beskent@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -147,7 +147,7 @@ msgstr "Non chiedere di nuovo"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Abilita MMS di gruppo"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -171,7 +171,7 @@ msgstr "Da"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Fatto"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -321,7 +321,7 @@ msgstr "Inviato"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -333,11 +333,11 @@ msgstr "Stato"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Scorrere per eliminare"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Scorrere per mostrare azioni"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -395,7 +395,7 @@ msgstr "Allegati video non supportati"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Benvenuti nella app di messaggi di Ubuntu."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."

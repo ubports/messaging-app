@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-09 12:43+0000\n"
+"PO-Revision-Date: 2015-06-08 16:25+0000\n"
 "Last-Translator: Rafael Neri <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:33+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "Language: pt_BR\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -96,7 +96,7 @@ msgstr[1] "Anexos: %1 vídeos"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Anexar áudio não é suportado"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -148,7 +148,7 @@ msgstr "Não perguntar novamente"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Habilitar bate-papo em grupo via MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -164,7 +164,7 @@ msgstr "Favoritos"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Tipo de arquivo não suportado"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -172,7 +172,7 @@ msgstr "De"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Entendi"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -324,7 +324,7 @@ msgstr "Enviado"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -336,11 +336,11 @@ msgstr "Estado"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Deslize para apagar"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Deslize para revelar as ações"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -394,11 +394,11 @@ msgstr "Visualização do vídeo"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Anexar vídeo não é suportado"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Bem-vindo ao seu aplicativo de mensagens do Ubuntu"
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."

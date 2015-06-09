@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-30 10:37+0000\n"
+"PO-Revision-Date: 2015-06-08 11:12+0000\n"
 "Last-Translator: ☠Jay ZDLin☠ <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -103,7 +103,7 @@ msgstr[2] "Приложение: %1 видео"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Вложенный аудиофайл не поддерживается"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -155,7 +155,7 @@ msgstr "Больше не спрашивать"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Включить групповой MMS-чат"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -171,7 +171,7 @@ msgstr "Избранное"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Неподдерживаемый тип файла"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -179,7 +179,7 @@ msgstr "От"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Готово"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -329,7 +329,7 @@ msgstr "Отправлено"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -341,11 +341,11 @@ msgstr "Статус"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Смахните для удаления"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Смахните для выбора действия"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -399,11 +399,11 @@ msgstr "Предпросмотр видео"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Вложенный видеофайл не поддерживается"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Ваше приложение для обмена сообщениями в Ubuntu."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."

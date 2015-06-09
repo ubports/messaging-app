@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-06-01 14:53+0000\n"
-"Last-Translator: Víctor R. Ruiz <Unknown>\n"
+"PO-Revision-Date: 2015-06-08 22:43+0000\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-05 05:57+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -95,7 +95,7 @@ msgstr[1] "Adjuntos: %1 vídeos"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr "Adjuntos de audio no soportados"
+msgstr "No se admiten audios adjuntos"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -164,7 +164,7 @@ msgstr "Favoritos"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr "Tipo de archivo no soportado"
+msgstr "Tipo de archivo no admitido"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -172,7 +172,7 @@ msgstr "Remitente"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr "Listo"
+msgstr "De acuerdo"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -351,7 +351,7 @@ msgstr "Falló temporalmente"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr "Mensaje copiado al portapapeles"
+msgstr "Mensaje copiado en el portapapeles"
 
 #: ../src/qml/Messages.qml:380
 #, qt-format
@@ -393,11 +393,11 @@ msgstr "Previsualizar vídeo"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr "Adjuntos de vídeo no soportados"
+msgstr "No se admiten vídeos adjuntos"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Bienvenido a la aplicación de mensajes de Ubuntu."
+msgstr "Esta es la aplicación de mensajería de Ubuntu."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
@@ -419,7 +419,7 @@ msgstr "Debe seleccionar una tarjeta SIM"
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr "Usted cambió a %1 @ %2"
+msgstr "Ha cambiado a %1 el %2"
 
 #~ msgid "Create new"
 #~ msgstr "Crear nuevo"
