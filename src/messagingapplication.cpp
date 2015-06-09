@@ -18,8 +18,11 @@
 
 #include "messagingapplication.h"
 
+#include <libnotify/notify.h>
+
 #include <QDir>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QDebug>
 #include <QStringList>
 #include <QQuickItem>
@@ -36,6 +39,11 @@
 #include <QVersitReader>
 
 using namespace QtVersit;
+#define Pair QPair<QString,QString>
+
+namespace C {
+#include <libintl.h>
+}
 
 static void printUsage(const QStringList& arguments)
 {
@@ -141,6 +149,10 @@ bool MessagingApplication::setup()
         m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
     }
 
+    // used by autopilot tests to load vcards during tests
+    QByteArray testData = qgetenv("QTCONTACTS_PRELOAD_VCARD");
+    m_view->rootContext()->setContextProperty("QTCONTACTS_PRELOAD_VCARD", testData);
+
     QString pluginPath = ubuntuPhonePluginPath();
     if (!pluginPath.isNull()) {
         m_view->engine()->addImportPath(pluginPath);
@@ -152,6 +164,7 @@ bool MessagingApplication::setup()
     } else {
         m_view->show();
     }
+    notify_init(C::gettext("Messaging application"));
 
     return true;
 }
@@ -184,10 +197,18 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
+    QString text;
     QUrl url(arg);
     QString scheme = url.scheme();
     // Remove the first "/"
     QString value = url.path().right(url.path().length() -1);
+    QUrlQuery query(url);
+    Q_FOREACH(const Pair &item, query.queryItems()) {
+        if (item.first == "text") {
+            text = item.second;
+            break;
+        }
+    }
 
     QQuickItem *mainView = m_view->rootObject();
     if (!mainView) {
@@ -196,7 +217,7 @@ void MessagingApplication::parseArgument(const QString &arg)
 
     if (scheme == "message") {
         if (!value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value));
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text));
         } else {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         }
@@ -260,3 +281,17 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
     return QString();
 }
 
+void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)
+{
+    NotifyNotification *notification = notify_notification_new(message.toStdString().c_str(),
+                                                               NULL,
+                                                               icon.toStdString().c_str());
+    notify_notification_set_urgency(notification, NOTIFY_URGENCY_LOW);
+
+    GError *error = NULL;
+    if (!notify_notification_show(notification, &error)) {
+        qWarning() << "Failed to show notification:" << error->message;
+        g_error_free (error);
+    }
+    g_object_unref(G_OBJECT(notification));
+}

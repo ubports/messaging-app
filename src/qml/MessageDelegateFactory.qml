@@ -99,6 +99,14 @@ ListItemWithActions {
         height: units.gu(4)
         width: units.gu(4)
         parent: messageFactory._lastItem
+        onParentChanged: {
+            // The spinner gets stuck once parent changes, this is a workaround
+            indicator.running = false
+            // if temporarily failed or unknown status, then show the spinner
+            indicator.running = Qt.binding(function(){ return !incoming && 
+                    (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
+                     textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)});
+        }
         anchors {
             verticalCenter: parent ? parent.verticalCenter : undefined
             right: parent ? parent.left : undefined
@@ -113,9 +121,6 @@ ListItemWithActions {
             height: units.gu(2)
             width: units.gu(2)
             visible: running && !selectionMode
-            // if temporarily failed or unknown status, then show the spinner
-            running: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)
         }
 
         Item {

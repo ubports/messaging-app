@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -38,11 +38,12 @@ LocalPageWithBottomEdge {
     flickable: null
 
     bottomEdgeEnabled: !selectionMode && !searching
-    bottomEdgeTitle: i18n.tr("Create new")
+    bottomEdgeTitle: i18n.tr("+")
     bottomEdgePageComponent: Messages { active: false }
 
     TextField {
         id: searchField
+        objectName: "searchField"
         visible: mainPage.searching
         anchors {
             left: parent.left
@@ -71,6 +72,12 @@ LocalPageWithBottomEdge {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
                     }
+                },
+                Action {
+                    objectName: "settingsAction"
+                    text: i18n.tr("Settings")
+                    iconName: "settings"
+                    onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
                 }
             ]
         },
@@ -80,7 +87,7 @@ LocalPageWithBottomEdge {
             backAction: Action {
                 objectName: "cancelSearch"
                 visible: mainPage.searching
-                iconName: "close"
+                iconName: "back"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     searchField.text = ""
@@ -94,7 +101,7 @@ LocalPageWithBottomEdge {
             head: mainPage.head
             backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconName: "close"
+                iconName: "back"
                 onTriggered: threadList.cancelSelection()
             }
             actions: [
@@ -179,13 +186,14 @@ LocalPageWithBottomEdge {
         }
         listModel: threadModel
         clip: true
+        cacheBuffer: threadList.height * 2
         section.property: "eventDate"
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
             id: threadDelegate
             // FIXME: find a better unique name
-            objectName: "thread%1".arg(participants[0].phoneNumber)
+            objectName: "thread%1".arg(participants[0].identifier)
 
             anchors {
                 left: parent.left
@@ -203,10 +211,12 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    if (displayedEvent != null) {
+                        properties["scrollToEventId"] = displayedEvent.eventId
+                    }
                     if (model.participants[0].alias) {
                         properties["firstRecipientAlias"] = model.participants[0].alias;
                     }
-
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
             }
@@ -216,11 +226,16 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
+            var threadsToRemove = [];
             for (var i=0; i < items.count; i++) {
                 var threads = items.get(i).model.threads
                 for (var j in threads) {
-                    threadModel.removeThread(threads[j].accountId, threads[j].threadId, threads[j].type)
+                    threadsToRemove.push(threads[j]);
                 }
+            }
+
+            if (threadsToRemove.length > 0) {
+                threadModel.removeThreads(threadsToRemove);
             }
         }
     }

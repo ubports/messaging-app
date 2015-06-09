@@ -50,7 +50,9 @@ Page {
     property alias contactWatcher: contactWatcherInternal
     property string lastFilter: ""
     property string text: ""
-    property bool pendingMessage: false
+    property string scrollToEventId: ""
+    property bool isSearching: scrollToEventId !== ""
+    property string latestEventId: ""
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -73,14 +75,7 @@ Page {
         }
     }
 
-    function sendMessageSanityCheck() {
-        // check if at least one account is selected
-        if (!messages.account) {
-            Qt.inputMethod.hide()
-            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
-            return false
-        }
-
+    function sendMessageNetworkCheck() {
         if (messages.account.simLocked) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
@@ -96,10 +91,107 @@ Page {
         return true
     }
 
+    // FIXME: support more stuff than just phone number
     function onPhonePickedDuringSearch(phoneNumber) {
         multiRecipient.addRecipient(phoneNumber)
         multiRecipient.clearSearch()
         multiRecipient.forceActiveFocus()
+    }
+
+    function sendMessage(text, participants, attachments) {
+        // check if at least one account is selected
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+            return false
+        }
+
+        // create the new thread and update the threadId list
+        var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
+                                           HistoryThreadModel.EventTypeText,
+                                           participants,
+                                           messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                                              : HistoryThreadModel.MatchCaseSensitive,
+                                           true)
+        for (var i=0; i < eventModel.count; i++) {
+            var event = eventModel.get(i)
+            if (event.senderId == "self" && event.accountId != messages.account.accountId) {
+                // if the last outgoing message used a different accountId, add an
+                // information event and quit the loop
+                eventModel.writeTextInformationEvent(messages.account.accountId,
+                                                     threadId,
+                                                     participants,
+                                                     "")
+                break;
+            } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
+                // in case last ougoing event used the same accountId, just skip
+                break;
+            }
+        }
+
+        if (!sendMessageNetworkCheck()) {
+            // we can't simply send the message as the handler checks for
+            // connection state. while this is not fixed, we generate the event here
+            // and insert it into the history service
+            var event = {}
+            var timestamp = new Date()
+            var tmpEventId = timestamp.toISOString()
+            event["accountId"] = messages.account.accountId
+            event["threadId"] = threadId
+            event["eventId"] =  tmpEventId
+            event["type"] = HistoryEventModel.MessageTypeText
+            event["participants"] = participants
+            event["senderId"] = "self"
+            event["timestamp"] = timestamp
+            event["newEvent"] = false
+            event["message"] = text
+            event["messageStatus"] = HistoryEventModel.MessageStatusPermanentlyFailed
+            event["readTimestamp"] = timestamp;
+            event["subject"] = ""; // we dont support subject yet
+            if (attachments.length > 0) {
+                event["messageType"] = HistoryEventModel.MessageTypeMultiPart
+                var newAttachments = []
+                for (var i = 0; i < attachments.length; i++) {
+                    var attachment = {}
+                    var item = attachments[i]
+                    attachment["accountId"] = messages.account.accountId
+                    attachment["threadId"] = threadId
+                    attachment["eventId"] = tmpEventId
+                    attachment["attachmentId"] = item[0]
+                    attachment["contentType"] = item[1]
+                    attachment["filePath"] = item[2]
+                    attachment["status"] = HistoryEventModel.AttachmentDownloaded
+                    newAttachments.push(attachment)
+                }
+                event["attachments"] = newAttachments
+            } else {
+                event["messageType"] = HistoryEventModel.MessageTypeText
+            }
+            eventModel.writeEvents([event]);
+        } else {
+            var isMMS = attachments.length > 0
+            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
+            // mms group chat only works if we know our own phone number
+            var isSelfContactKnown = account.selfContactId != ""
+            // FIXME: maybe move this to telepathy-ofono itself and treat as just sendMessage on the app?
+            if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
+                chatManager.sendMMS(participants, text, attachments, messages.account.accountId)
+            } else {
+                chatManager.sendMessage(participants, text, messages.account.accountId)
+            }
+        }
+
+        // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
+        if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+            Qt.inputMethod.hide()
+            PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
+        } else {
+            // FIXME: We only show the swipe tutorial after select the default sim card to avoid problems with the dialog
+            // Since the dialog will be removed soon we do not expend time refactoring the code to make it visible after the dialog
+            swipeItemDemo.enable()
+        }
+
+        return true
     }
 
     // this is necessary to automatically update the view when the
@@ -107,6 +199,21 @@ Page {
     Connections {
         target: mainView
         onAccountChanged: messages.account = mainView.account
+    }
+
+    Connections {
+        target: telepathyHelper
+        onAccountsChanged: updateFilters()
+    }
+
+    ActivityIndicator {
+        id: activityIndicator
+        anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+        running: isSearching
+        visible: running
     }
 
     ListModel {
@@ -148,7 +255,7 @@ Page {
         }
         if (participants.length > 0) {
             if (participants.length == 1) {
-                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.phoneNumber
+                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.identifier
             } else {
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 return i18n.tr("Group (%1)").arg(participants.length)
@@ -162,6 +269,12 @@ Page {
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
+    onActiveChanged: {
+        if (active && (eventModel.count > 0)){
+            swipeItemDemo.enable()
+        }
+    }
+
     function updateFilters() {
         if (participants.length == 0) {
             eventModel.filter = null
@@ -172,11 +285,13 @@ Page {
         }
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        for (var i in telepathyHelper.accountIds) {
-            var filterValue = eventModel.threadIdForParticipants(telepathyHelper.accountIds[i],
+        for (var i in telepathyHelper.accounts) {
+            var account = telepathyHelper.accounts[i];
+            var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
-                                                                 HistoryThreadModel.MatchPhoneNumber)
+                                                                 account.type === AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                                                            : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
                 continue
             }
@@ -196,7 +311,7 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
-        chatManager.acknowledgeMessage(participants[0], eventId, accountId)
+        chatManager.acknowledgeMessage(participants, eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
@@ -229,6 +344,7 @@ Page {
 
         Popover {
             id: popover
+            anchorToKeyboard: false
             Column {
                 id: containerLayout
                 anchors {
@@ -243,11 +359,12 @@ Page {
                         width: popover.width
                         ListItem.Standard {
                             id: listItem
-                            text: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
+                            text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
                         }
                         ContactWatcher {
                             id: contactWatcher
-                            phoneNumber: modelData
+                            identifier: modelData
+                            addressableFields: messages.account.addressableVCardFields
                         }
                     }
                 }
@@ -364,31 +481,14 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        phoneNumber: participants.length === 0 ? "" : participants[0]
+        identifier: participants.length === 0 ? "" : participants[0]
         onIsUnknownChanged: firstRecipientAlias = contactWatcherInternal.alias
         onAliasChanged: firstRecipientAlias = contactWatcherInternal.alias
+        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
     onParticipantsChanged: {
         updateFilters()
-    }
-
-    state: {
-        if (participants.length === 0 && isReady) {
-            return "newMessage"
-        } else if (selectionMode) {
-           return "selection"
-        } else if (participants.length == 1) {
-           if (contactWatcher.isUnknown) {
-               return "unknownContact"
-           } else {
-               return "knownContact"
-           }
-        } else if (groupChat){
-           return "groupChat"
-        } else {
-            return ""
-        }
     }
 
     Action {
@@ -407,10 +507,11 @@ Page {
         PageHeadState {
             name: "selection"
             head: messages.head
+            when: selectionMode
 
             backAction: Action {
                 objectName: "selectionModeCancelAction"
-                iconName: "close"
+                iconName: "back"
                 onTriggered: messageList.cancelSelection()
             }
 
@@ -437,6 +538,7 @@ Page {
         PageHeadState {
             name: "groupChat"
             head: messages.head
+            when: groupChat
             backAction: backButton
 
             actions: [
@@ -450,6 +552,7 @@ Page {
         PageHeadState {
             name: "unknownContact"
             head: messages.head
+            when: participants.length == 1 && contactWatcher.isUnknown
             backAction: backButton
 
             actions: [
@@ -460,7 +563,8 @@ Page {
                     text: i18n.tr("Call")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
                     }
                 },
                 Action {
@@ -470,7 +574,8 @@ Page {
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("addressbook:///addnewphone?callback=messaging-app.desktop&phone=" + encodeURIComponent(contactWatcher.phoneNumber));
+                        // FIXME: support other things than just phone numbers
+                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
                     }
                 }
             ]
@@ -478,6 +583,7 @@ Page {
         PageHeadState {
             name: "newMessage"
             head: messages.head
+            when: participants.length === 0 && isReady
             backAction: backButton
             actions: [
                 Action {
@@ -505,6 +611,7 @@ Page {
         PageHeadState {
             name: "knownContact"
             head: messages.head
+            when: participants.length == 1 && !contactWatcher.isUnknown
             backAction: backButton
             actions: [
                 Action {
@@ -514,7 +621,8 @@ Page {
                     text: i18n.tr("Call")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.phoneNumber))
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
                     }
                 },
                 Action {
@@ -523,7 +631,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        Qt.openUrlExternally("addressbook:///contact?callback=messaging-app.desktop&id=" + encodeURIComponent(contactWatcher.contactId))
+                        mainView.showContactDetails(contactWatcher.contactId, null, null)
                     }
                 }
             ]
@@ -539,16 +647,47 @@ Page {
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
-            if (pendingMessage) {
-                pendingMessage = false
-                messageList.positionViewAtBeginning()
+            if (isSearching) {
+                // if we ask for more items manually listview will stop working,
+                // so we only set again once the item was found
+                messageList.listModel = null
+                // always check last 15 items
+                var maxItems = 15
+                for (var i = count-1; count >= i; i--) {
+                    if (--maxItems < 0) {
+                        break;
+                    }
+                    if (eventModel.get(i).eventId == scrollToEventId) {
+                        scrollToEventId = ""
+                        messageList.listModel = eventModel
+                        messageList.positionViewAtIndex(i, ListView.Center)
+                        return;
+                    }
+                }
+
+                if (eventModel.canFetchMore && isSearching) {
+                    fetchMoreTimer.running = true
+                } else {
+                    // event not found
+                    scrollToEventId = ""
+                    messageList.listModel = eventModel
+                }
             }
         }
+    }
+
+    Timer {
+       id: fetchMoreTimer
+       running: false
+       interval: 100
+       repeat: false
+       onTriggered: eventModel.fetchMore()
     }
 
     MessagesListView {
         id: messageList
         objectName: "messageList"
+        visible: !isSearching
 
         // because of the header
         clip: true
@@ -562,11 +701,11 @@ Page {
 
     Item {
         id: bottomPanel
-        anchors.bottom: keyboard.top
+        anchors.bottom: isSearching ? parent.bottom : keyboard.top
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode ? 0 : textEntry.height + units.gu(2)
-        visible: !selectionMode
+        visible: !selectionMode && !isSearching
         clip: true
         MouseArea {
             anchors.fill: parent
@@ -606,7 +745,7 @@ Page {
             property alias text: messageTextArea.text
             property alias inputMethodComposing: messageTextArea.inputMethodComposing
             property int fullSize: attachmentThumbnails.height + messageTextArea.height
-            style: Theme.createStyleComponent("TextFieldStyle.qml", textEntry)
+            style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
             anchors.left: attachButton.right
@@ -793,6 +932,7 @@ Page {
 
             TextArea {
                 id: messageTextArea
+                objectName: "messageTextArea"
                 anchors {
                     top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
                     left: parent.left
@@ -800,7 +940,7 @@ Page {
                 }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
-                style: MultiRecipientFieldStyle {}
+                style: LocalTextAreaStyle {}
                 autoSize: true
                 maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: i18n.tr("Write a message...")
@@ -848,15 +988,6 @@ Page {
                 return false
             }
             onClicked: {
-                if (!sendMessageSanityCheck()) {
-                    return
-                }
-
-                if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
-                    Qt.inputMethod.hide()
-                    PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
-                }
-
                 // make sure we flush everything we have prepared in the OSK preedit
                 Qt.inputMethod.commit();
                 if (textEntry.text == "" && attachments.count == 0) {
@@ -868,48 +999,28 @@ Page {
                 if (participants.length == 0) {
                     participants = multiRecipient.recipients
                 }
-                // create the new thread and update the threadId list
-                var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
-                                                   HistoryThreadModel.EventTypeText,
-                                                   participants,
-                                                   HistoryThreadModel.MatchPhoneNumber,
-                                                   true)
-                for (var i=0; i < eventModel.count; i++) {
-                    var event = eventModel.get(i)
-                    if (event.senderId == "self" && event.accountId != messages.account.accountId) {
-                        // if the last outgoing message used a different accountId, add an
-                        // information event and quit the loop
-                        eventModel.writeTextInformationEvent(messages.account.accountId,
-                                                             threadId,
-                                                             participants,
-                                                             "")
-                        break;
-                    } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
-                        // in case last ougoing event used the same accountId, just skip
-                        break;
+
+                var newAttachments = []
+                for (var i = 0; i < attachments.count; i++) {
+                    var attachment = []
+                    var item = attachments.get(i)
+                    // we dont include smil files. they will be auto generated
+                    if (item.contentType.toLowerCase() === "application/smil") {
+                        continue
                     }
-                }
-                updateFilters()
-                if (attachments.count > 0) {
-                    var newAttachments = []
-                    for (var i = 0; i < attachments.count; i++) {
-                        var attachment = []
-                        var item = attachments.get(i)
-                        attachment.push(item.name)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
-                    }
-                    pendingMessage = true
-                    chatManager.sendMMS(participants, textEntry.text, newAttachments, messages.account.accountId)
-                    textEntry.text = ""
-                    attachments.clear()
-                    return
+                    attachment.push(item.name)
+                    attachment.push(item.contentType)
+                    attachment.push(item.filePath)
+                    newAttachments.push(attachment)
                 }
 
-                pendingMessage = true
-                chatManager.sendMessage(participants, textEntry.text, messages.account.accountId)
-                textEntry.text = ""
+                // if sendMessage succeeds it means the message was either sent or
+                // injected into the history service so the user can retry later
+                if (sendMessage(textEntry.text, participants, newAttachments)) {
+                    textEntry.text = ""
+                    attachments.clear()
+                }
+                updateFilters()
             }
         }
     }
@@ -920,5 +1031,20 @@ Page {
 
     MessageInfoDialog {
         id: messageInfoDialog
+    }
+
+    SwipeItemDemo {
+        id: swipeItemDemo
+        objectName: "swipeItemDemo"
+
+        property bool parentActive: messages.active
+
+        parent: QuickUtils.rootItem(this)
+        anchors.fill: parent
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                Qt.inputMethod.hide()
+            }
+        }
     }
 }

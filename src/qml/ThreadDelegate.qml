@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -22,6 +22,8 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
+import Ubuntu.History 0.1
+import "dateUtils.js" as DateUtils
 
 ListItemWithActions {
     id: delegate
@@ -32,6 +34,10 @@ ListItemWithActions {
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property string threadId: model.threadId
+    property var displayedEvent: null
+    property var displayedEventTextAttachments: displayedEvent ? displayedEvent.textMessageAttachments : eventTextAttachments
+    property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : eventTimestamp
+    property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -53,15 +59,15 @@ ListItemWithActions {
         var videoCount = 0
         var contactCount = 0
         var attachmentCount = 0
-        for (var i = 0; i < eventTextAttachments.length; i++) {
-            if (startsWith(eventTextAttachments[i].contentType, "text/plain")) {
-                return application.readTextFile(eventTextAttachments[i].filePath)
-            } else if (startsWith(eventTextAttachments[i].contentType, "image/")) {
+        for (var i = 0; i < displayedEventTextAttachments.length; i++) {
+            if (startsWith(displayedEventTextAttachments[i].contentType, "text/plain")) {
+                return application.readTextFile(displayedEventTextAttachments[i].filePath)
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "image/")) {
                 imageCount++
-            } else if (startsWith(eventTextAttachments[i].contentType, "video/")) {
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "video/")) {
                 videoCount++
-            } else if (startsWith(eventTextAttachments[i].contentType, "text/vcard") ||
-                      startsWith(eventTextAttachments[i].contentType, "text/x-vcard")) {
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "text/vcard") ||
+                      startsWith(displayedEventTextAttachments[i].contentType, "text/x-vcard")) {
                 contactCount++
             }
         }
@@ -79,34 +85,23 @@ ListItemWithActions {
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
         }
-        return eventTextMessage
+        return displayedEventTextMessage
     }
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
-    // WORKAROUND: history-service can't filter by contact names
-    onSearchTermChanged: {
-        var found = false
-        var searchTermLowerCase = searchTerm.toLowerCase()
-        if (searchTerm !== "") {
-            if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
-            || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
-                found = true
-            }
-        } else {
-            found = true
-        }
-
-        height = found ? units.gu(8) : 0
-    }
 
     leftSideAction: Action {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: {
-            for (var i in threads) {
-                threadModel.removeThread(threads[i].accountId, threads[i].threadId, threads[i].type)
-            }
+            threadModel.removeThreads(model.threads);
+        }
+    }
+
+    Component.onCompleted: {
+        if (searchTerm !== "") {
+            delegateHelper.updateSearch()
         }
     }
 
@@ -145,29 +140,22 @@ ListItemWithActions {
         text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
     }
 
-    Row {
+    Label {
         id: time
-
-        property string dateStr: Qt.formatTime(eventTimestamp)
-        property var dateParts: dateStr.split(' ')
 
         anchors {
             verticalCenter: contactName.verticalCenter
             right: parent.right
         }
-        Label {
-            fontSize: "x-small"
-            font.weight: Font.DemiBold
-            opacity: 0.70
-            text: time.dateParts[0]
+
+        text: {
+            if (!displayedEvent) {
+                Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
+            } else {
+                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"))
+            }
         }
-        Label {
-            fontSize: "x-small"
-            opacity: 0.70
-            text: time.dateParts.length > 1 ? " " + time.dateParts[1].toLowerCase() : ""
-            // do not display this if the date format is 24h
-            visible: time.dateParts.length > 1
-        }
+        fontSize: "small"
     }
 
     UbuntuShape {
@@ -222,7 +210,7 @@ ListItemWithActions {
 
     Item {
         id: delegateHelper
-        property string phoneNumber: participant.phoneNumber
+        property string phoneNumber: participant.identifier
         property string alias: participant.alias ? participant.alias : ""
         property string avatar: participant.avatar ? participant.avatar : ""
         property string contactId: participant.contactId ? participant.contactId : ""
@@ -230,6 +218,83 @@ ListItemWithActions {
         property alias contexts: phoneDetail.contexts
         property bool isUnknown: contactId === ""
         property string phoneNumberSubTypeLabel: ""
+        property string latestFilter: ""
+        property var searchHistoryFilter
+        property var searchHistoryFilterString: 'import Ubuntu.History 0.1; 
+            HistoryUnionFilter { 
+                %1 
+            }'
+        property var searchIntersectionFilter: 'HistoryIntersectionFilter {
+            HistoryFilter { filterProperty: "accountId"; filterValue: \'%1\' }
+            HistoryFilter { filterProperty: "threadId"; filterValue: \'%2\' }
+            HistoryFilter { filterProperty: "message"; filterValue: searchTerm; matchFlags: HistoryFilter.MatchContains }
+        }
+        '
+
+        function updateSearch() {
+            var found = false
+            var searchTermLowerCase = searchTerm.toLowerCase()
+            if (searchTerm !== "") {
+                if ((delegateHelper.phoneNumber.toLowerCase().search(searchTermLowerCase) !== -1)
+                || (!unknownContact && delegateHelper.alias.toLowerCase().search(searchTermLowerCase) !== -1)) {
+                    found = true
+                } else {
+                    var componentFilters = ""
+                    for(var i in model.threads) {
+                        componentFilters += searchIntersectionFilter.arg(model.threads[i].accountId).arg(model.threads[i].threadId)
+                    }
+                    var finalString = searchHistoryFilterString.arg(componentFilters)
+                    if (finalString !== latestFilter) {
+                        delegateHelper.searchHistoryFilter = Qt.createQmlObject(finalString, searchEventModelLoader)
+                        latestFilter = finalString
+                    }
+ 
+                    searchEventModelLoader.active = true
+                }
+            } else {
+                delegate.displayedEvent = null
+                searchEventModelLoader.active = false
+                found = true
+            }
+
+            delegate.height = found ? units.gu(8) : 0
+        }
+
+        // WORKAROUND: history-service can't filter by contact names
+        Connections {
+            target: delegate
+            onSearchTermChanged: {
+                delegateHelper.updateSearch()
+            }
+        }
+
+        Loader {
+            id: searchEventModelLoader
+            active: false
+            asynchronous: true
+            sourceComponent: searchEventModelComponent
+        }
+
+        Component {
+            id: searchEventModelComponent
+            HistoryEventModel {
+                id: eventModel
+                type: HistoryThreadModel.EventTypeText
+                filter: delegateHelper.searchHistoryFilter
+                onCountChanged: {
+                    if (count > 0) {
+                        delegate.height = units.gu(8)
+                        delegate.displayedEvent = eventModel.get(0)
+                    } else if (searchTerm == "") {
+                        delegate.height = units.gu(8)
+                        delegate.displayedEvent = null
+                    } else {
+                        delegate.displayedEvent = null
+                        delegate.height = 0
+                    }
+                }
+            }
+        }
 
         function updateSubTypeLabel() {
             var subLabel = "";

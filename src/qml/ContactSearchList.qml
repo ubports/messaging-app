@@ -26,6 +26,7 @@ import Ubuntu.Contacts 0.1
 ListView {
     id: root
 
+    // FIXME: change the Ubuntu.Contacts model to search for more fields
     property alias filterTerm: contactModel.filterTerm
     onFilterTermChanged: console.debug("FILTER :" + filterTerm)
 
@@ -54,7 +55,9 @@ ListView {
                 caseSensitivity: Qt.CaseInsensitive
             }
         ]
+
         fetchHint: FetchHint {
+            // FIXME: check what other fields to load here
             detailTypesHint: [ ContactDetail.DisplayLabel,
                                ContactDetail.PhoneNumber ]
         }

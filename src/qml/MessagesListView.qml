@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -30,6 +30,7 @@ MultipleSelectionListView {
 
     property var _currentSwipedItem: null
     property list<Action> _availableActions
+    property string latestEventId: ""
 
     function updateSwippedItem(item)
     {
@@ -122,20 +123,36 @@ MultipleSelectionListView {
 
     onSelectionDone: {
         var removeDividers = (items.count == eventModel.count)
+        var events = [];
         for (var i=0; i < items.count; i++) {
             var event = items.get(i).model
             if (!removeDividers && event.textMessageType == HistoryThreadModel.MessageTypeInformation) {
                 continue;
             }
-            eventModel.removeEvent(event.accountId, event.threadId, event.eventId, event.type)
+            events.push(event.properties);
+        }
+        if (events.length > 0) {
+            eventModel.removeEvents(events);
         }
     }
 
+    Timer {
+        id: newMessageTimer
+        interval: 50
+        repeat: false
+        onTriggered: positionViewAtBeginning()
+    } 
+
     onCountChanged: {
-        // list is in the bottom we should scroll to the new message
-        if (Math.abs(height + contentY) < units.gu(3)) {
-            currentIndex = 0
-            positionViewAtBeginning()
+        if (count == 0) {
+            latestEventId = ""
+            return
+        }
+        if (latestEventId == "") {
+            latestEventId = eventModel.get(0).eventId
+        } else if (latestEventId != eventModel.get(0).eventId) {
+            latestEventId = eventModel.get(0).eventId
+            newMessageTimer.start()
         }
     }
 }

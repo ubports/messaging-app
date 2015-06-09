@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
+import Ubuntu.Telephony 0.1
 
 MessageDelegate {
     id: root
@@ -40,18 +41,12 @@ MessageDelegate {
 
     function deleteMessage()
     {
-        eventModel.removeEvent(messageData.accountId,
-                               messageData.threadId,
-                               messageData.eventId,
-                               messageData.type)
+        eventModel.removeEvents([messageData.properties]);
     }
 
     function resendMessage()
     {
-        if (!sendMessageSanityCheck()) {
-            return
-        }
-
+        eventModel.removeEvents([messageData.properties]);
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
@@ -65,17 +60,13 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        eventModel.removeEvent(messageData.accountId,
-                               messageData.threadId,
-                               messageData.eventId,
-                               messageData.type)
-        // FIXME: export this information for MessageDelegate
-        chatManager.sendMMS(participants, textMessage, newAttachments, messages.account.accountId)
+        messages.sendMessage(textMessage, participants, newAttachments)
     }
 
     function copyMessage()
     {
         Clipboard.push(root.messageText)
+        application.showNotificationMessage(i18n.tr("Text message copied to clipboard"), "edit-copy")
     }
 
     onAttachmentsChanged: {
@@ -90,7 +81,7 @@ MessageDelegate {
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
-            } else if (startsWith(attachment.contentType, "video/")) {
+            //} else if (startsWith(attachment.contentType, "video/")) {
                         // TODO: implement proper video attachment support
                         //                dataAttachments.push({type: "video",
                         //                                  data: attachment,
@@ -98,11 +89,7 @@ MessageDelegate {
                         //                                 })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
-                        // TODO: implement support for this kind of attachment
-                        //                dataAttachments.push({type: "application",
-                        //                                  data: attachment,
-                        //                                  delegateSource: "",
-                        //                                 })
+                // smil files will always be ignored here
             } else if (startsWith(attachment.contentType, "text/vcard") ||
                        startsWith(attachment.contentType, "text/x-vcard")) {
                 root.dataAttachments.push({"type": "vcard",
@@ -110,7 +97,10 @@ MessageDelegate {
                                       "delegateSource": "MMS/MMSContact.qml"
                                     })
             } else {
-                console.log("No MMS render for " + attachment.contentType)
+                root.dataAttachments.push({"type": "default",
+                                      "data": attachment,
+                                      "delegateSource": "MMS/MMSDefault.qml"
+                                    })
             }
         }
         attachmentsRepeater.model = root.dataAttachments
@@ -221,6 +211,18 @@ MessageDelegate {
                 value: root.messageText.length > 0 ? root.messageText : i18n.tr("Missing message data")
                 when: bubbleLoader.status === Loader.Ready
             }
+            Binding {
+                target: bubbleLoader.item
+                property: "sender"
+                value: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
+                when: bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+            }
+ 
+            ContactWatcher {
+                id: contactWatcher
+                phoneNumber: participants.length > 1 && messageData.senderId !== "self" ? messageData.senderId : ""
+            }
+ 
         }
     }
 }

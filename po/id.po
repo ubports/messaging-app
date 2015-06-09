@@ -1,0 +1,418 @@
+# Indonesian translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"PO-Revision-Date: 2014-11-28 12:41+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
+"X-Generator: Launchpad (build 17532)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:51
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
+
+#: ../src/qml/dateUtils.js:65
+#, qt-format
+msgid "%1 hour call"
+msgid_plural "%1 hours call"
+msgstr[0] "panggilan %1 jam"
+
+#: ../src/qml/dateUtils.js:67
+#, qt-format
+msgid "%1 minute call"
+msgid_plural "%1 minutes call"
+msgstr[0] "panggilan %1 menit"
+
+#: ../src/qml/dateUtils.js:69
+#, qt-format
+msgid "%1 second call"
+msgid_plural "%1 seconds call"
+msgstr[0] "panggilan %1 detik"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:60
+msgid "Accepted"
+msgstr "Diterima"
+
+#: ../src/qml/Messages.qml:574
+msgid "Add"
+msgstr "Tambah"
+
+#: ../src/qml/NewRecipientPage.qml:29
+msgid "Add recipient"
+msgstr "Tambah penerima"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "All"
+msgstr "Semua"
+
+#: ../src/qml/ThreadDelegate.qml:83
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Lampiran: %1 kontak"
+
+#: ../src/qml/ThreadDelegate.qml:86
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Lampiran: %1 berkas"
+
+#: ../src/qml/ThreadDelegate.qml:77
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Lampiran: %1 gambar"
+
+#: ../src/qml/ThreadDelegate.qml:80
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Lampiran: %1 video"
+
+#: ../src/qml/MMS/MMSDefault.qml:28
+msgid "Audio attachment not supported"
+msgstr ""
+
+#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+msgid "Call"
+msgstr "Panggil"
+
+#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+msgid "Cancel"
+msgstr "Batal"
+
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr "Ubah semua asosiasi Perpesanan ke %1?"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+msgid "Close"
+msgstr "Tutup"
+
+#: ../src/qml/MainPage.qml:147
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr "Susun sebuah pesan baru dengan menggesek naik dari dasar layar."
+
+#: ../src/qml/Messages.qml:632
+msgid "Contact"
+msgstr "Kontak"
+
+#: ../src/qml/MessagesListView.qml:92 ../src/qml/SwipeItemDemo.qml:185
+msgid "Copy"
+msgstr "Salin"
+
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
+msgid "Delete"
+msgstr "Hapus"
+
+#: ../src/qml/MessageInfoDialog.qml:64
+msgid "Deleted"
+msgstr "Dihapus"
+
+#: ../src/qml/MessageInfoDialog.qml:54
+msgid "Delivered"
+msgstr "Terkirim"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+msgid "Don't ask again"
+msgstr "Jangan tanya lagi"
+
+#: ../src/qml/SettingsPage.qml:29
+msgid "Enable MMS group chat"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:58
+msgid "Failed"
+msgstr "Gagal"
+
+#: ../src/qml/MessageDelegateFactory.qml:144
+msgid "Failed!"
+msgstr "Gagal!"
+
+#: ../src/qml/NewRecipientPage.qml:69
+msgid "Favorites"
+msgstr "Favorit"
+
+#: ../src/qml/MMS/MMSDefault.qml:33
+msgid "File type not supported"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:97
+msgid "From"
+msgstr "Dari"
+
+#: ../src/qml/SwipeItemDemo.qml:78
+msgid "Got it"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:84
+msgid "Group"
+msgstr "Grup"
+
+#. TRANSLATORS: %1 refers to the number of participants in a group chat
+#: ../src/qml/Messages.qml:261
+#, qt-format
+msgid "Group (%1)"
+msgstr "Grup (%1)"
+
+#: ../src/qml/MMS/PreviewerImage.qml:25
+msgid "Image Preview"
+msgstr "Pratinjau Gambar"
+
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+msgid "Info"
+msgstr "Info"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
+msgid "Later"
+msgstr "Nanti"
+
+#: ../src/qml/MessagesListView.qml:71
+msgid "MMS"
+msgstr "MMS"
+
+#: ../src/qml/MessageInfoDialog.qml:90
+msgid "Message info"
+msgstr "Info pesan"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr "Pesan"
+
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr "Pesan;SMS;MMS;Pesan Teks;Teks"
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr "Perpesanan"
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr "App Perpesanan"
+
+#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr "Aplikasi perpesanan"
+
+#: ../src/qml/MMSDelegate.qml:211
+msgid "Missing message data"
+msgstr "Data pesan hilang"
+
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
+msgid "Myself"
+msgstr "Saya sendiri"
+
+#: ../src/qml/Messages.qml:264
+msgid "New Message"
+msgstr "Pesan Baru"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
+msgid "No"
+msgstr "Tidak"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+msgid "No SIM card selected"
+msgstr "Tak ada kartu SIM yang dipilih"
+
+#: ../src/qml/Messages.qml:379
+msgid "No network"
+msgstr "Tiada jaringan"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Ok"
+
+#: ../src/qml/MessageInfoDialog.qml:66
+msgid "Pending"
+msgstr "Ditunda"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Harap buka kunci kartu SIM Anda untuk memanggil atau mengirim pesan. Anda "
+"dapat membuka kunci kartu SIM Anda dari Indikator Jaringan di puncak layar "
+"atau dengan mengunjungi <a href=\"system_settings\">Pengaturan Sistem &gt; "
+"Keamanan &amp; Privasi</a>."
+
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
+msgid "Read"
+msgstr "Baca"
+
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
+msgid "Received"
+msgstr "Diterima"
+
+#: ../src/qml/Messages.qml:331
+msgid "Remove"
+msgstr "Hapus"
+
+#: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:181
+msgid "Retry"
+msgstr "Coba lagi"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "Kartu SIM terkunci"
+
+#: ../src/qml/MessagesListView.qml:71
+msgid "SMS"
+msgstr "SMS"
+
+#: ../src/qml/MMS/Previewer.qml:32
+msgid "Save"
+msgstr "Simpan"
+
+#: ../src/qml/NewRecipientPage.qml:57
+msgid "Search"
+msgstr "Cari"
+
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+msgid "Search..."
+msgstr "Cari..."
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
+msgid ""
+"Select a default SIM for all outgoing messages. You can always alter your "
+"choice in <a href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Pilih sebuah SIM baku bagi semua pesan keluar. Anda selalu dapat mengubah "
+"pilihan dalam <a href=\"system_settings\">Pengaturan Sistem</a>."
+
+#: ../src/qml/Messages.qml:979
+msgid "Send"
+msgstr "Kirim"
+
+#: ../src/qml/MessageInfoDialog.qml:114
+msgid "Sent"
+msgstr "Terkirim"
+
+#: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
+msgid "Settings"
+msgstr ""
+
+#: ../src/qml/MMS/Previewer.qml:45
+msgid "Share"
+msgstr "Bagikan"
+
+#: ../src/qml/MessageInfoDialog.qml:129
+msgid "Status"
+msgstr "Status"
+
+#: ../src/qml/SwipeItemDemo.qml:256
+msgid "Swipe to delete"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:206
+msgid "Swipe to reveal actions"
+msgstr ""
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Switch to default SIM:"
+msgstr "Berpindah ke SIM baku:"
+
+#: ../src/qml/MessageInfoDialog.qml:56
+msgid "Temporarily Failed"
+msgstr "Sementara Gagal"
+
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
+#: ../src/qml/Messages.qml:380
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr "Saat ini tak ada jaringan pada %1"
+
+#: ../src/qml/Messages.qml:380
+msgid "There is currently no network."
+msgstr "Saat ini tak ada jaringan."
+
+#: ../src/qml/MessageInfoDialog.qml:103
+msgid "To"
+msgstr "Untuk"
+
+#: ../src/qml/MultiRecipientInput.qml:148
+msgid "To:"
+msgstr "Untuk:"
+
+#: ../src/qml/dateUtils.js:44
+msgid "Today"
+msgstr "Hari ini"
+
+#: ../src/qml/MessageInfoDialog.qml:93
+msgid "Type"
+msgstr "Tipe"
+
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
+msgid "Unknown"
+msgstr "Tak dikenal"
+
+#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
+#: ../src/qml/Messages.qml:849
+msgid "Unknown contact"
+msgstr "Kontak tak dikenal"
+
+#: ../src/qml/MMS/PreviewerVideo.qml:25
+msgid "Video Preview"
+msgstr "Pratinjau Video"
+
+#: ../src/qml/MMS/MMSDefault.qml:31
+msgid "Video attachment not supported"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:161
+msgid "Welcome to your Ubuntu messaging app."
+msgstr ""
+
+#: ../src/qml/Messages.qml:949
+msgid "Write a message..."
+msgstr "Tulis suatu pesan..."
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
+msgid "Yes"
+msgstr "Ya"
+
+#: ../src/qml/dateUtils.js:46
+msgid "Yesterday"
+msgstr "Kemarin"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+msgid "You need to select a SIM card"
+msgstr "Anda perlu memilih suatu kartu SIM"
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Anda berpindah ke %1 @ %2"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Buat Baru"
+
+#~ msgid "Create new"
+#~ msgstr "Buat baru"

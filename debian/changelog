@@ -1,3 +1,231 @@
+messaging-app (0.1+15.10.20150601.1-0ubuntu1) wily; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix contact share.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implement address book interaction using the address book library
+    instead of calling the app. (LP: #1456782)
+  * Removed contact expansion. (LP: #1368671)
+
+  [ Sebastien Bacher ]
+  * Update the translations template so new strings can be translated
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 01 Jun 2015 20:15:14 +0000
+
+messaging-app (0.1+15.04.20150522.1-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Gustavo Pichorim Boiko ]
+  * Add autopilot tests for the settings page.
+
+  [ Tiago Salem Herrmann ]
+  * Do not anchor group participants popover to the keyboard.
+  * Implement initial messaging settings page. (LP: #1415458)
+  * Workaround a bug with ActivityIndicator.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 22 May 2015 14:50:48 +0000
+
+messaging-app (0.1+15.04.20150520-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Do not access data from the model onCountChanged. Use ListView
+    onCountChanged instead. (LP: #1449594, #1449598)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 20 May 2015 13:27:15 +0000
+
+messaging-app (0.1+15.04.20150511-0ubuntu1) vivid; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show a swipe item demo during the first launch. (LP: #1417359)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 11 May 2015 19:18:49 +0000
+
+messaging-app (0.1+15.04.20150413-0ubuntu1) vivid; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Update history filters when telepathy accounts change. (LP:
+    #1439718)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 13 Apr 2015 13:13:22 +0000
+
+messaging-app (0.1+15.04.20150408-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Gustavo Pichorim Boiko ]
+  * Sync with the latest changes in history-service to support matching
+    other contact fields.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 08 Apr 2015 22:02:51 +0000
+
+messaging-app (0.1+15.04.20150318-0ubuntu1) vivid; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Change messaging-app to add basic support for accounts not based on
+    phone number.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Mar 2015 17:44:40 +0000
+
+messaging-app (0.1+15.04.20150228-0ubuntu1) vivid; urgency=medium
+
+  [ Bill Filler ]
+  * Enable MMSDefault for unknown attachment types added:
+    src/qml/assets/transfer-unsupported01.svg
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Tiago Salem Herrmann ]
+  * Enable MMSDefault for unknown attachment types added:
+    src/qml/assets/transfer-unsupported01.svg
+  * Show short notification when messages are copied to clipboard. (LP:
+    #1426058, #1417350)
+  * Use the proper style for TextField. (LP: #1426036)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Sat, 28 Feb 2015 04:08:32 +0000
+
+messaging-app (0.1+15.04.20150218-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk
+
+  [ Gustavo Pichorim Boiko ]
+  * Test that new messages are scrolled into view.
+
+  [ Tiago Salem Herrmann ]
+  * Disable spinner for incoming messages. (LP: #1420976)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Feb 2015 12:23:38 +0000
+
+messaging-app (0.1+15.04.20150212-0ubuntu1) vivid; urgency=medium
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the standard back button on searching and multi selecting
+    instead of the X. (LP: #1373494)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show import contact options if contact list is empty. (LP: #1417341)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 12 Feb 2015 00:58:44 +0000
+
+messaging-app (0.1+15.04.20150211-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk
+
+  [ Omer Akram ]
+  * Provide a pre-populated database for search test so that we don't
+    conflict with the On Screen Display Notification (LP: #1418074)
+
+  [ Tiago Salem Herrmann ]
+  * Inject messages into the history service when it is impossible to
+    send them. (LP: #1417353)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 11 Feb 2015 18:09:01 +0000
+
+messaging-app (0.1+15.04.20150204-0ubuntu1) vivid; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Add initial MMS group chat support. (LP: #1415458)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 04 Feb 2015 21:11:18 +0000
+
+messaging-app (0.1+15.04.20150127-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Test that search terms are properly escaped.
+
+  [ Tiago Salem Herrmann ]
+  * Generate filters dynamically using a UnionFilter with all grouped
+    threads. (LP: #1414675)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 27 Jan 2015 13:54:07 +0000
+
+messaging-app (0.1+15.04.20150123-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Update pot file.
+
+  [ Tiago Salem Herrmann ]
+  * Query thread messages when searchTerm changes. (LP: #1376793)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 23 Jan 2015 16:56:44 +0000
+
+messaging-app (0.1+15.04.20150108-0ubuntu1) vivid; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Scroll new messages into view. (LP: #1373479)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 08 Jan 2015 21:33:54 +0000
+
+messaging-app (0.1+15.04.20150106-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Remove multiple entries all at once instead of using multiple calls.
+    (LP: #1404286)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 06 Jan 2015 17:53:44 +0000
+
+messaging-app (0.1+15.04.20141219-0ubuntu1) vivid; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * launch_upstart_application() does not take more than one argument.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 19 Dec 2014 15:22:08 +0000
+
+messaging-app (0.1+15.04.20141210-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Tiago Salem Herrmann ]
+  * Read text property from url-dispatcher. (LP: #1382623)
+  * Change bottom edge label to match design specs. (LP: #1391586)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 10 Dec 2014 17:58:37 +0000
+
+messaging-app (0.1+15.04.20141121-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Alexandre Abreu ]
+  * Localize and strengthen the phone number detection scheme used from
+    within a given message bubble as it is replaced by tel:// URIs.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 21 Nov 2014 13:55:18 +0000
+
+messaging-app (0.1+15.04.20141110-0ubuntu1) vivid; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Make the time displaying consistent with dialer-app. (LP: #1375890)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 10 Nov 2014 13:26:11 +0000
+
+messaging-app (0.1+14.10.20141028~rtm-0ubuntu1) 14.09; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Tiago Salem Herrmann ]
+  * Show sim card display names on sim divider even when the sim card is
+    removed. (LP: #1382588)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 28 Oct 2014 00:13:38 +0000
+
 messaging-app (0.1+14.10.20141007.1-0ubuntu1) 14.09; urgency=low
 
   [ Bill Filler ]

@@ -23,24 +23,45 @@ import ".."
 MMSBase {
     id: defaultDelegate
 
-    anchors.left: parent.left
-    anchors.right: parent.right
-    height: bubble.height + units.gu(1)
-    Item {
-        id: bubble
-        anchors.top: parent.top
-        width: label.width + units.gu(4)
-        height: label.height + units.gu(2)
-
-        Label {
-            id: label
-            text: attachment.attachmentId
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
-            fontSize: "medium"
-            height: paintedHeight
-            color: textColor
-            opacity: incoming ? 1 : 0.9
+    property string unknownLabel: {
+        if (startsWith(attachment.contentType, "audio/") ) {
+            return i18n.tr("Audio attachment not supported")
+            root.textAttachements.push(attachment)
+        } else if (startsWith(attachment.contentType, "video/")) {
+            return i18n.tr("Video attachment not supported")
         }
+        return i18n.tr("File type not supported") 
+    }
+    height: units.gu(15)
+    width: Math.max(unknownAttachmentLabel.paintedWidth+units.gu(2), units.gu(27))
+
+    Image {
+        id: unknownAttachmentImage
+        fillMode: Image.PreserveAspectFit
+        anchors.centerIn: shape
+        anchors.verticalCenterOffset: -unknownAttachmentLabel.height/2
+        smooth: true
+        source: Qt.resolvedUrl("../assets/transfer-unsupported01.svg")
+        asynchronous: false
+        height: Math.min(implicitHeight, units.gu(8))
+        width: Math.min(implicitWidth, units.gu(27))
+        cache: false
+    }
+
+    Label {
+        id: unknownAttachmentLabel
+        color: "gray"
+        text: unknownLabel
+        anchors.horizontalCenter: unknownAttachmentImage.horizontalCenter
+        anchors.top: unknownAttachmentImage.bottom
+    }
+
+    UbuntuShape {
+        id: shape
+        anchors.top: parent.top
+        width: parent.width
+        height: parent.height
+        color: "gray"
+        opacity: 0.2
     }
 }

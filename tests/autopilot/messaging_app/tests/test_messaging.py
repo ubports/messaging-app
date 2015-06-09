@@ -11,16 +11,19 @@
 
 from __future__ import absolute_import
 
-import subprocess
 import time
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, HasLength
+from testtools.matchers import Equals, HasLength, Not
+from testtools import skip
 
 from messaging_app import emulators
 from messaging_app import fixture_setup
 from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
+
+import ubuntuuitoolkit
+from gi.repository import Gio
 
 
 class BaseMessagingTestCase(MessagingAppTestCase):
@@ -36,13 +39,6 @@ class BaseMessagingTestCase(MessagingAppTestCase):
         self.thread_list = self.app.select_single(objectName='threadList')
         self.assertThat(self.thread_list.visible, Equals(True))
         self.assertThat(self.thread_list.count, Equals(0))
-
-    def tearDown(self):
-        super(BaseMessagingTestCase, self).tearDown()
-
-        # on desktop, notify-osd may generate persistent popups (like for "SMS
-        # received"), don't make that stay around for the tests
-        subprocess.call(['pkill', '-f', 'notify-osd'])
 
 
 class TestMessaging(BaseMessagingTestCase):
@@ -298,20 +294,48 @@ class TestMessaging(BaseMessagingTestCase):
         list_view = self.main_view.get_multiple_selection_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
 
+    # FIXME: copy and use MockNotificationSystem fixture from dialer-app
+    # once bug #1453958 is fixed
+    @skip("Disabled due to bug #1453958")
+    def test_check_multiple_messages_received(self):
+        """Verify that received messages are correctly displayed"""
+        main_page = self.main_view.select_single(emulators.MainPage)
+        recipient = '123456'
+        helpers.receive_sms(recipient, 'first message')
 
-class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
+        # wait for the thread
+        main_page.get_thread_from_number(recipient)
+        messages_page = main_page.open_thread(recipient)
+
+        for i in list(reversed(range(10))):
+            helpers.receive_sms(recipient, 'message %s' % i)
+
+        list_view = messages_page.get_list_view()
+        self.assertThat(list_view.count, Eventually(Equals(11)))
+
+        messages = messages_page.get_messages()
+
+        for i in range(10):
+            expectedMessage = 'message %s' % i
+            self.assertThat(messages[i][1], Equals(expectedMessage))
+
+
+class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 
     def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_testdata_db=True)
+        self.useFixture(test_setup)
+
         super(MessagingTestCaseWithExistingThread, self).setUp()
         self.main_page = self.main_view.select_single(emulators.MainPage)
-        self.number = '5555559876'
-        self.messages = self.receive_messages()
+        self.number = '08154'
 
-    def receive_messages(self):
-        # send 3 messages. Reversed because on the QML, the one with the
-        # 0 index is the latest received.
+    def receive_messages(self, count=3):
+        # send the required number of messages. Reversed because on the QML,
+        # the one with the 0 index is the latest received.
         messages = []
-        message_indexes = list(reversed(range(3)))
+        message_indexes = list(reversed(range(count)))
         for index in message_indexes:
             message_text = 'test message {}'.format(index)
             helpers.receive_sms(
@@ -320,25 +344,231 @@ class MessagingTestCaseWithExistingThread(BaseMessagingTestCase):
             # Prepend to make sure that the indexes match.
             messages.insert(0, message_text)
         # Wait for the thread.
-        self.assertThat(
-            self.main_page.get_thread_count, Eventually(Equals(1)))
+        self.main_page.get_thread_from_number(self.number)
         return messages
 
     def test_delete_multiple_messages(self):
         """Verify we can delete multiple messages"""
         messages_page = self.main_page.open_thread(self.number)
+        messages = messages_page.get_messages()
 
         self.main_view.enable_messages_selection_mode()
         messages_page.select_messages(1, 2)
 
-        # Wait a few seconds before clicking the header
-        # to make sure the OSD is already gone
-        # FIXME: check if there is a better way to detect OSD visibility
-        time.sleep(10)
         self.main_view.click_messages_header_delete()
 
         remaining_messages = messages_page.get_messages()
         self.assertThat(remaining_messages, HasLength(1))
-        _, remaining_message_text = remaining_messages[0]
+        remaining_message = remaining_messages[0]
         self.assertEqual(
-            remaining_message_text, self.messages[0])
+            remaining_message, messages[0])
+
+    def test_scroll_to_new_message(self):
+        """Verify that the view is scrolled to display a new message"""
+        # use the number of an existing thread to avoid OSD problems
+        self.number = '08155'
+        messages_page = self.main_page.open_thread(self.number)
+
+        # scroll the list to display older messages
+        messages_page.scroll_list()
+
+        # now receive a new message
+        self.receive_messages(1)
+
+        # and make sure that the list gets scrolled to the new message again
+        list_view = messages_page.get_list_view()
+        self.assertThat(list_view.atYEnd, Eventually(Equals(True)))
+
+
+class MessagingTestSearch(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_testdata_db=True)
+        self.useFixture(test_setup)
+
+        super(MessagingTestSearch, self).setUp()
+        self.thread_list = self.app.select_single(objectName='threadList')
+
+    def test_search_for_message(self):
+        def count_visible_threads(threads):
+            count = 0
+            for thread in threads:
+                if thread.height != 0:
+                    count += 1
+            return count
+
+        # verify that we got the messages
+        self.assertThat(self.thread_list.count, Eventually(Equals(5)))
+        threads = self.thread_list.select_many('ThreadDelegate')
+
+        # tap search
+        self.main_view.click_header_action('searchAction')
+        text_field = self.main_view.select_single(
+            ubuntuuitoolkit.TextField,
+            objectName='searchField')
+
+        text_field.write('Ubuntu2')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(3)))
+
+        text_field.clear()
+        text_field.write('Ubuntu1')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(2)))
+
+        text_field.clear()
+        text_field.write('Ubuntu')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(5)))
+
+        text_field.clear()
+        text_field.write('08154')
+        self.assertThat(
+            lambda: count_visible_threads(threads), Eventually(Equals(1)))
+
+        text_field.clear()
+        text_field.write('%')
+        # as we are testing for items NOT to appear, there is no other way
+        # other than sleeping for awhile before checking if the threads are
+        # visible
+        time.sleep(5)
+        self.assertThat(count_visible_threads(threads), Equals(0))
+
+
+class MessagingTestCaseWithArgument(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
+        super(MessagingTestCaseWithArgument, self).setUp(
+            parameter="message:///5555559876?text=text%20message")
+
+    def test_launch_app_with_predefined_text(self):
+        self.messages_view = self.main_view.select_single(
+            emulators.Messages,
+            text='text message')
+
+
+class MessagingTestSettings(MessagingAppTestCase):
+
+    def setUp(self):
+        super(MessagingTestSettings, self).setUp()
+
+    def test_mms_group_chat_settings(self):
+        gsettings = Gio.Settings.new('com.ubuntu.phone')
+        key = 'mms-group-chat-enabled'
+
+        settingsPage = self.main_view.open_settings_page()
+        self.assertThat(settingsPage.visible, Eventually(Equals(True)))
+        option = settingsPage.get_mms_group_chat()
+
+        # read the current value and make sure the checkbox reflects it
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked, Equals(settingsValue))
+
+        # now toggle it and check that the value changes
+        oldValue = settingsValue
+        settingsPage.toggle_mms_group_chat()
+        self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
+
+        # give it some time
+        time.sleep(2)
+
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked,
+                        Eventually(Equals(gsettings.get_boolean(key))))
+
+        # just reset it to the previous value
+        settingsPage.toggle_mms_group_chat()
+
+
+class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_empty_config=True)
+        self.useFixture(test_setup)
+
+        super(MessagingTestSwipeToDeleteDemo, self).setUp()
+
+    def test_write_new_message_with_tutorial(self):
+        """Verify if the tutorial appears after send a message"""
+        phone_num = '123'
+        message = 'hello from Ubuntu'
+        self.main_view.send_message(phone_num, message)
+        self.main_view.close_osk()
+
+        swipe_item_demo = self.main_view.get_swipe_item_demo()
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
+        got_it_button = swipe_item_demo.select_single(
+            'Button',
+            objectName='gotItButton')
+        self.pointing_device.click_object(got_it_button)
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
+
+    def test_receive_new_message_with_tutorial(self):
+        """Verify if the tutorial appears after receive a message"""
+        thread_list = self.app.select_single(objectName='threadList')
+        self.assertThat(thread_list.visible, Equals(True))
+        self.assertThat(thread_list.count, Equals(0))
+
+        number = '5555555678'
+        message = 'open me'
+        # receive message
+        helpers.receive_sms(number, message)
+        # verify that we got the message
+        self.assertThat(thread_list.count, Eventually(Equals(1)))
+
+        # click message thread
+        mess_thread = thread_list.wait_select_single('Label', text=number)
+        self.pointing_device.click_object(mess_thread)
+
+        swipe_item_demo = self.main_view.get_swipe_item_demo()
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
+        got_it_button = swipe_item_demo.select_single(
+            'Button',
+            objectName='gotItButton')
+        self.pointing_device.click_object(got_it_button)
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
+
+
+class MessagingTestSendAMessageFromContactView(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
+        qcontact_memory = fixture_setup.UseMemoryContactBackend()
+        self.useFixture(qcontact_memory)
+
+        preload_vcards = fixture_setup.PreloadVcards()
+        self.useFixture(preload_vcards)
+
+        super(MessagingTestSendAMessageFromContactView, self).setUp()
+
+    def test_message_a_contact_from_contact_view(self):
+        # start a new message
+        self.main_view.start_new_message()
+        self.main_view.click_add_contact_icon()
+
+        # select the first phone from first contact in the list
+        new_recipient_page = self.main_view.get_new_recipient_page()
+        contact_view_page = new_recipient_page.open_contact(0)
+        contact_view_page.message_phone(0)
+
+        # message page became active again
+        messages_page = self.main_view.get_messages_page()
+        self.assertThat(messages_page.active, Eventually(Equals(True)))
+
+        # check if the contact was added in the recipient list
+        multircpt_entry = self.main_view.get_newmessage_multirecipientinput()
+        self.assertThat(
+            multircpt_entry.get_properties()['recipientCount'],
+            Eventually(Equals(1))
+        )
