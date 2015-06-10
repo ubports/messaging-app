@@ -258,7 +258,9 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
     QVersitReader reader(file.readAll());
     reader.startReading();
     reader.waitForFinished();
-    if (reader.results().count() > 0) {
+    int count = reader.results().count();
+    QString label;
+    if (count > 0) {
         // read only the first contact
         QVersitDocument firstVcard = reader.results()[0];
         Q_FOREACH(const QVersitProperty & prop, firstVcard.properties()) {
@@ -271,11 +273,15 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
             }
         }
         if (!formattedName.isEmpty()) {
-            return formattedName;
+            label = formattedName;
         } else if (!structuredName.isEmpty()) {
-            return structuredName.split(";")[1];
+            label = structuredName.split(";")[1];
         } else if (!nickname.isEmpty()) {
-            return nickname;
+            label = nickname;
+        }
+
+        if (count > 1) {
+            label = QString("%1 (+%2)").arg(label).arg(count - 1);
         }
     }
     return QString();

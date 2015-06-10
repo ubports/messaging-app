@@ -847,7 +847,7 @@ Page {
 
                             verticalAlignment: Text.AlignVCenter
                             text: name !== "" ? name : i18n.tr("Unknown contact")
-                            elide: Text.ElideRight
+                            elide: Text.ElideMiddle
                             color: UbuntuColors.lightAubergine
                         }
 
