@@ -843,6 +843,7 @@ Page {
                                 top: avatar.top
                                 bottom: avatar.bottom
                                 right: parent.right
+                                rightMargin: units.gu(1)
                             }
 
                             verticalAlignment: Text.AlignVCenter
