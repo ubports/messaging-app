@@ -284,7 +284,7 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
             label = QString("%1 (+%2)").arg(label).arg(count - 1);
         }
     }
-    return QString();
+    return label;
 }
 
 void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)
