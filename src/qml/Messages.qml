@@ -816,6 +816,7 @@ Page {
 
                         property int index
                         property string filePath
+                        property var vcardInfo: application.contactNameFromVCard(attachment.filePath)
 
                         height: units.gu(6)
                         width: textEntry.width
@@ -835,7 +836,9 @@ Page {
                         Label {
                             id: label
 
-                            property string name: attachment.filePath != "" ? application.contactNameFromVCard(attachment.filePath) : ""
+                            property string name: attachment.vcardInfo["name"] !== "" ?
+                                                      attachment.vcardInfo["name"] :
+                                                      i18n.tr("Unknown contact")
 
                             anchors {
                                 left: avatar.right
@@ -847,7 +850,13 @@ Page {
                             }
 
                             verticalAlignment: Text.AlignVCenter
-                            text: name !== "" ? name : i18n.tr("Unknown contact")
+                            text: {
+                                if (attachment.vcardInfo["count"] > 1) {
+                                    return label.name + " (+%1)".arg(attachment.vcardInfo["count"]-1)
+                                } else {
+                                    return label.name
+                                }
+                            }
                             elide: Text.ElideMiddle
                             color: UbuntuColors.lightAubergine
                         }

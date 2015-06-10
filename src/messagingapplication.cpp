@@ -249,11 +249,11 @@ QString MessagingApplication::fileMimeType(const QString &fileName) {
     return type.name();
 }
 
-QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
+QVariantMap MessagingApplication::contactNameFromVCard(const QString &fileName) {
     QFile file(fileName);
     QString formattedName, structuredName, nickname;
     if (!file.open(QIODevice::ReadOnly)) {
-        return QString();
+        return QVariantMap();
     }
     QVersitReader reader(file.readAll());
     reader.startReading();
@@ -279,12 +279,11 @@ QString MessagingApplication::contactNameFromVCard(const QString &fileName) {
         } else if (!nickname.isEmpty()) {
             label = nickname;
         }
-
-        if (count > 1) {
-            label = QString("%1 (+%2)").arg(label).arg(count - 1);
-        }
     }
-    return label;
+    QVariantMap result;
+    result.insert("name", label);
+    result.insert("count", count);
+    return result;
 }
 
 void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)
