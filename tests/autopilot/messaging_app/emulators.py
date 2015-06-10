@@ -20,6 +20,7 @@ from autopilot.platform import model
 from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from ubuntuuitoolkit._custom_proxy_objects import _common
+from address_book_app import address_book
 
 
 logger = logging.getLogger(__name__)
@@ -335,6 +336,10 @@ class MainView(toolkit_emulators.MainView):
         """Click the header action 'Cancel' on Messages view"""
         self.get_header().click_custom_back_button()
 
+    def click_threads_header_settings(self):
+        """Click the header action 'Settings' on main view"""
+        self.click_header_action('settingsAction')
+
     def click_messages_header_delete(self):
         """Click the header action 'Delete' on Messages view"""
         self.click_header_action('selectionModeDeleteAction')
@@ -389,6 +394,18 @@ class MainView(toolkit_emulators.MainView):
         thread_bubble = self.get_message(message)
 
         return thread_bubble
+
+    def _get_page(self, page_type, page_name):
+        page = self.wait_select_single(
+            page_type, objectName=page_name, active=True)
+        return page
+
+    def get_new_recipient_page(self):
+        return self._get_page(NewRecipientPage, 'newRecipientPage')
+
+    def open_settings_page(self):
+        self.click_threads_header_settings()
+        return self.wait_select_single(SettingsPage)
 
     def get_swipe_item_demo(self):
         return self.wait_select_single(
@@ -507,6 +524,16 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             'MessagesListView', objectName='messageList')
 
 
+class SettingsPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for the settings page"""
+
+    def get_mms_group_chat(self):
+        return self.wait_select_single(objectName="mmsGroupChatEnabled")
+
+    def toggle_mms_group_chat(self):
+        self.pointing_device.click_object(self.get_mms_group_chat())
+
+
 class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):
 
     def confirm_removal(self):
@@ -540,3 +567,43 @@ class ThreadDelegate(ListItemWithActions):
 
 class MessageDelegateFactory(ListItemWithActions):
     """Autopilot helper for the MessageDelegateFactory."""
+
+
+class MessagingContactViewPage(address_book.ContactViewPage):
+    """Autopilot custom proxy object for MessagingContactViewPage component."""
+
+    def message_phone(self, index):
+        phone_group = self.select_single(
+            'ContactDetailGroupWithTypeView',
+            objectName='phones')
+
+        call_buttons = phone_group.select_many(
+            "ActionButton",
+            objectName="message-contact")
+        self.pointing_device.click_object(call_buttons[index])
+
+
+class NewRecipientPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot custom proxy object for NewRecipientPage components."""
+
+    def _click_button(self, button):
+        """Generic way to click a button"""
+        self.visible.wait_for(True)
+        button.visible.wait_for(True)
+        self.pointing_device.click_object(button)
+        return button
+
+    def open_contact(self, index):
+        contact_delegate = self._get_contact_delegate(index)
+        self.pointing_device.click_object(contact_delegate)
+        return self.get_root_instance().select_single(
+            MessagingContactViewPage, objectName='contactViewPage')
+
+    def _get_contact_delegate(self, index):
+        contact_delegates = self._get_sorted_contact_delegates()
+        return contact_delegates[index]
+
+    def _get_sorted_contact_delegates(self):
+        contact_delegates = self.select_many('ContactDelegate', visible=True)
+        return sorted(
+            contact_delegates, key=lambda delegate: delegate.globalRect.y)

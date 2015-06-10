@@ -14,7 +14,7 @@ from __future__ import absolute_import
 import time
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, HasLength
+from testtools.matchers import Equals, HasLength, Not
 from testtools import skip
 
 from messaging_app import emulators
@@ -23,6 +23,7 @@ from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
 import ubuntuuitoolkit
+from gi.repository import Gio
 
 
 class BaseMessagingTestCase(MessagingAppTestCase):
@@ -464,6 +465,39 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
             text='text message')
 
 
+class MessagingTestSettings(MessagingAppTestCase):
+
+    def setUp(self):
+        super(MessagingTestSettings, self).setUp()
+
+    def test_mms_group_chat_settings(self):
+        gsettings = Gio.Settings.new('com.ubuntu.phone')
+        key = 'mms-group-chat-enabled'
+
+        settingsPage = self.main_view.open_settings_page()
+        self.assertThat(settingsPage.visible, Eventually(Equals(True)))
+        option = settingsPage.get_mms_group_chat()
+
+        # read the current value and make sure the checkbox reflects it
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked, Equals(settingsValue))
+
+        # now toggle it and check that the value changes
+        oldValue = settingsValue
+        settingsPage.toggle_mms_group_chat()
+        self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
+
+        # give it some time
+        time.sleep(2)
+
+        settingsValue = gsettings.get_boolean(key)
+        self.assertThat(option.checked,
+                        Eventually(Equals(gsettings.get_boolean(key))))
+
+        # just reset it to the previous value
+        settingsPage.toggle_mms_group_chat()
+
+
 class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
 
     def setUp(self):
@@ -516,3 +550,39 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         self.pointing_device.click_object(got_it_button)
         self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
         self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
+
+
+class MessagingTestSendAMessageFromContactView(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
+        qcontact_memory = fixture_setup.UseMemoryContactBackend()
+        self.useFixture(qcontact_memory)
+
+        preload_vcards = fixture_setup.PreloadVcards()
+        self.useFixture(preload_vcards)
+
+        super(MessagingTestSendAMessageFromContactView, self).setUp()
+
+    def test_message_a_contact_from_contact_view(self):
+        # start a new message
+        self.main_view.start_new_message()
+        self.main_view.click_add_contact_icon()
+
+        # select the first phone from first contact in the list
+        new_recipient_page = self.main_view.get_new_recipient_page()
+        contact_view_page = new_recipient_page.open_contact(0)
+        contact_view_page.message_phone(0)
+
+        # message page became active again
+        messages_page = self.main_view.get_messages_page()
+        self.assertThat(messages_page.active, Eventually(Equals(True)))
+
+        # check if the contact was added in the recipient list
+        multircpt_entry = self.main_view.get_newmessage_multirecipientinput()
+        self.assertThat(
+            multircpt_entry.get_properties()['recipientCount'],
+            Eventually(Equals(1))
+        )

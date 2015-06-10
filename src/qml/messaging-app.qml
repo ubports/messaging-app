@@ -30,6 +30,7 @@ MainView {
     property string newPhoneNumber
     property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
     property QtObject account: defaultAccount()
+
     activeFocusOnPress: false
 
     function defaultAccount() {
@@ -39,6 +40,45 @@ MainView {
             return telepathyHelper.defaultMessagingAccount
         } else {
             return telepathyHelper.activeAccounts[0]
+        }
+    }
+
+    function showContactDetails(contact, contactListPage, contactsModel) {
+        var initialProperties =  { "contactListPage": contactListPage,
+                                   "model": contactsModel}
+
+        if (typeof(contact) == 'string') {
+            initialProperties['contactId'] = contact
+        } else {
+            initialProperties['contact'] = contact
+        }
+
+        mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                       initialProperties)
+    }
+
+    function addNewContact(phoneNumber, contactListPage) {
+        mainStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                       { "contactId": contactId,
+                         "addPhoneToContact": phoneNumber,
+                         "contactListPage": contactListPage })
+    }
+
+    function addPhoneToContact(contact, phoneNumber, contactListPage, contactsModel) {
+        if (contact === "") {
+            mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
+                           { "phoneToAdd": phoneNumber })
+        } else {
+            var initialProperties = { "addPhoneToContact": phoneNumber,
+                                      "contactListPage": contactListPage,
+                                      "model": contactsModel }
+            if (typeof(contact) == 'string') {
+                initialProperties['contactId'] = contact
+            } else {
+                initialProperties['contact'] = contact
+            }
+            mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                           initialProperties)
         }
     }
 

@@ -1,3 +1,33 @@
+messaging-app (0.1+15.10.20150601.1-0ubuntu1) wily; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix contact share.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implement address book interaction using the address book library
+    instead of calling the app. (LP: #1456782)
+  * Removed contact expansion. (LP: #1368671)
+
+  [ Sebastien Bacher ]
+  * Update the translations template so new strings can be translated
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 01 Jun 2015 20:15:14 +0000
+
+messaging-app (0.1+15.04.20150522.1-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Gustavo Pichorim Boiko ]
+  * Add autopilot tests for the settings page.
+
+  [ Tiago Salem Herrmann ]
+  * Do not anchor group participants popover to the keyboard.
+  * Implement initial messaging settings page. (LP: #1415458)
+  * Workaround a bug with ActivityIndicator.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 22 May 2015 14:50:48 +0000
+
 messaging-app (0.1+15.04.20150520-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
