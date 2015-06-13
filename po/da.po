@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-06-08 12:31+0000\n"
-"Last-Translator: Folmer Fredslund <Unknown>\n"
+"PO-Revision-Date: 2015-06-12 09:30+0000\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-13 05:47+0000\n"
+"X-Generator: Launchpad (build 17557)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -96,7 +96,7 @@ msgstr[1] "Vedhæftet: %1 videoer"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Lydvedhæftning ikke understøttet"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -147,7 +147,7 @@ msgstr "Spørg ikke igen"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Aktiver MMS-gruppechat"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -217,11 +217,11 @@ msgstr "Beskeder"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "Beskedprogram"
 
 #: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "Program til modtagelse af beskeder"
 
 #: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
@@ -391,11 +391,11 @@ msgstr "Videoforhåndsvisning"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Videovedhæftning ikke understøttet"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Velkommen til dit Ubuntu beskedprogram."
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
