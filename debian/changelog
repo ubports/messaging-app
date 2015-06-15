@@ -1,3 +1,16 @@
+messaging-app (0.1+15.10.20150615-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Shows the number of vcard in an attachment if this is greeter than
+    1;
+  * Update application icon Update screenshot (LP: #1457424, #1430004)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 15 Jun 2015 15:36:43 +0000
+
 messaging-app (0.1+15.10.20150601.1-0ubuntu1) wily; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
