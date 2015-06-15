@@ -24,6 +24,7 @@ import Ubuntu.History 0.1
 MMSBase {
     id: vcardDelegate
 
+    property var vcardInfo: application.contactNameFromVCard(attachment.filePath)
     readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
@@ -31,6 +32,7 @@ MMSBase {
     previewer: "MMS/PreviewerContact.qml"
     height: units.gu(8)
     width: units.gu(27)
+
 
     Rectangle {
         id: bubble
@@ -68,7 +70,10 @@ MMSBase {
         Label {
             id: contactName
 
-            property string name: application.contactNameFromVCard(attachment.filePath)
+
+            property string name: vcardDelegate.vcardInfo["name"] !== "" ?
+                                      vcardDelegate.vcardInfo["name"] :
+                                      i18n.tr("Unknown contact")
 
             anchors {
                 left: avatar.right
@@ -80,8 +85,14 @@ MMSBase {
             }
 
             verticalAlignment: Text.AlignVCenter
-            text: name !== "" ? name : i18n.tr("Unknown contact")
-            elide: Text.ElideRight
+            text: {
+                if (vcardDelegate.vcardInfo["count"] > 1) {
+                    return contactName.name + " (+%1)".arg(vcardDelegate.vcardInfo["count"]-1)
+                } else {
+                    return contactName.name
+                }
+            }
+            elide: Text.ElideMiddle
             color: incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
     }

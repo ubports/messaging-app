@@ -22,7 +22,14 @@ import Ubuntu.Content 0.1
 import ".."
 
 Previewer {
-    property string contactName: application.contactNameFromVCard(attachment.filePath)
+    property string contactName: {
+        var info = application.contactNameFromVCard(attachment.filePath)
+        if (info["count"] > 1) {
+            return info["name"] + " (+%1)".arg(info["count"]-1)
+        } else {
+            return info["name"]
+        }
+    }
 
     title: contactName !== "" ? contactName : i18n.tr("Unknown contact")
     clip: true
