@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-03-03 20:00+0000\n"
+"PO-Revision-Date: 2015-06-23 17:02+0000\n"
 "Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-24 05:35+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -103,7 +103,7 @@ msgstr[2] "Atașament: %1 de clipuri video"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Atașament audio nesuportat"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -154,7 +154,7 @@ msgstr "Nu întreba din nou"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Activați chat MMS în grup"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -170,7 +170,7 @@ msgstr "Favorite"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Tip de fișier nesuportat"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -178,7 +178,7 @@ msgstr "De la"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Am înțeles"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -329,7 +329,7 @@ msgstr "Trimis"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Configurări"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -341,11 +341,11 @@ msgstr "Stare"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Glisați pentru a șterge"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Glisați pentru a descoperi acțiuni"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -399,11 +399,11 @@ msgstr "Previzualizare video"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Atașament video nesuportat"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Bine ați venit în aplicația dumneavoastră de mesagerie Ubuntu"
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
