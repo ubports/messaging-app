@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2014-09-24 11:07+0000\n"
-"Last-Translator: Anthony Wong <anthony.wong@ubuntu.com>\n"
+"PO-Revision-Date: 2015-06-29 04:07+0000\n"
+"Last-Translator: Rex Tsai <rex.tsai@canonical.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:33+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-29 05:38+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -44,7 +44,7 @@ msgstr[0] "%1 秒通话"
 
 #: ../src/qml/MainPage.qml:41
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -60,39 +60,35 @@ msgstr "添加收件人"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #: ../src/qml/ThreadDelegate.qml:83
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "附件: %1 个联系人"
 
 #: ../src/qml/ThreadDelegate.qml:86
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "附件: %1 个文件"
 
 #: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "附件: %1 张图片"
 
 #: ../src/qml/ThreadDelegate.qml:80
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "附件: %1 段视频"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "不支持音频附件"
 
 #: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
 msgid "Call"
@@ -106,7 +102,7 @@ msgstr "取消"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "将所有短信与 %1 关联？"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
@@ -115,7 +111,7 @@ msgstr "关闭"
 
 #: ../src/qml/MainPage.qml:147
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "从屏幕底部向上滑动来撰写一封新邮件。"
 
 #: ../src/qml/Messages.qml:632
 msgid "Contact"
@@ -127,23 +123,23 @@ msgstr "复制"
 
 #: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "已删除"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr ""
+msgstr "已发送"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "不再询问"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "启用彩信群组聊天"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -151,33 +147,33 @@ msgstr "失败"
 
 #: ../src/qml/MessageDelegateFactory.qml:144
 msgid "Failed!"
-msgstr ""
+msgstr "失败！"
 
 #: ../src/qml/NewRecipientPage.qml:69
 msgid "Favorites"
-msgstr ""
+msgstr "常用"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "文件格式不支持"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
-msgstr ""
+msgstr "来自"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "知道了"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
-msgstr ""
+msgstr "群组"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
 #: ../src/qml/Messages.qml:261
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "群组 (%1)"
 
 #: ../src/qml/MMS/PreviewerImage.qml:25
 msgid "Image Preview"
@@ -185,47 +181,47 @@ msgstr "图片预览"
 
 #: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
-msgstr ""
+msgstr "详情"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr ""
+msgstr "稍后"
 
 #: ../src/qml/MessagesListView.qml:71
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
-msgstr ""
+msgstr "短信详情"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
-msgstr ""
+msgstr "短信"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "短信；彩信；文字短信；信息；"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "短信中"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "短信应用"
 
 #: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "短信应用程序"
 
 #: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
-msgstr ""
+msgstr "丢失短信数据"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
-msgstr ""
+msgstr "我自己"
 
 #: ../src/qml/Messages.qml:264
 msgid "New Message"
@@ -234,23 +230,23 @@ msgstr "新信息"
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr ""
+msgstr "未选择SIM卡"
 
 #: ../src/qml/Messages.qml:379
 msgid "No network"
-msgstr ""
+msgstr "无网络"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "确定"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr ""
+msgstr "待处理"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -258,30 +254,32 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"请解锁您的 SIM 卡以收发信息。您可以在顶部的网络指示器，或通过<a href=\"system_settings\">系统设置 &gt; "
+"安全和隐私</a> 页面来解锁您的 SIM 卡。"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
-msgstr ""
+msgstr "已读"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
-msgstr ""
+msgstr "已接收"
 
 #: ../src/qml/Messages.qml:331
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 #: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
-msgstr ""
+msgstr "重试"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "SIM 卡被锁定"
 
 #: ../src/qml/MessagesListView.qml:71
 msgid "SMS"
-msgstr ""
+msgstr "短信"
 
 #: ../src/qml/MMS/Previewer.qml:32
 msgid "Save"
@@ -289,29 +287,29 @@ msgstr "保存"
 
 #: ../src/qml/NewRecipientPage.qml:57
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
 msgid "Search..."
-msgstr ""
+msgstr "搜索..."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
-msgstr ""
+msgstr "选择一个用于外发短信的默认SIM卡。您可以在<a href=\"system_settings\">系统设置</a>中随时改变你的选择。"
 
 #: ../src/qml/Messages.qml:979
 msgid "Send"
-msgstr ""
+msgstr "发送"
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
-msgstr ""
+msgstr "已发送"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: ../src/qml/MMS/Previewer.qml:45
 msgid "Share"
@@ -319,44 +317,44 @@ msgstr "分享"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
-msgstr ""
+msgstr "状态"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "滑动删除"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "滑动显示操作"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr ""
+msgstr "切换到默认 SIM 卡："
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "暂时失败"
 
 #: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "短信已复制到剪切板"
 
 #: ../src/qml/Messages.qml:380
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "%1 目前无网络"
 
 #: ../src/qml/Messages.qml:380
 msgid "There is currently no network."
-msgstr ""
+msgstr "目前无网络"
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
-msgstr ""
+msgstr "收件人"
 
 #: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
-msgstr ""
+msgstr "收件人："
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -364,16 +362,16 @@ msgstr "今天"
 
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
 #: ../src/qml/Messages.qml:849
 msgid "Unknown contact"
-msgstr ""
+msgstr "未知联系人"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:25
 msgid "Video Preview"
@@ -381,11 +379,11 @@ msgstr "视频预览"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "视频附件不支持"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "欢迎来到您的 Ubuntu 短信应用。"
 
 #: ../src/qml/Messages.qml:949
 msgid "Write a message..."
@@ -393,7 +391,7 @@ msgstr "编写新信息..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
@@ -401,13 +399,13 @@ msgstr "昨天"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "您需要选择SIM卡"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:76
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "你在 %2 切换至 %1"
 
 #~ msgid "+ Create New"
 #~ msgstr "+ 新增"
