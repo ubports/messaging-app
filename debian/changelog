@@ -1,3 +1,16 @@
+messaging-app (0.1+15.10.20150707-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * +phone_number. (LP: #1472221)
+  * Do not check for previous participants before generating history
+    filters. Accounts might appear on demand and we need generate new
+    filters even if the participant list is unchanged. (LP: #1471335)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 07 Jul 2015 19:08:59 +0000
+
 messaging-app (0.1+15.10.20150615-0ubuntu1) wily; urgency=medium
 
   [ CI Train Bot ]
