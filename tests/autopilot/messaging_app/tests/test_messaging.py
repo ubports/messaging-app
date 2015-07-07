@@ -451,6 +451,22 @@ class MessagingTestCaseWithArgument(MessagingAppTestCase):
             text='text message')
 
 
+class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
+
+    def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
+        super(MessagingTestCaseWithArgumentNoSlashes, self).setUp(
+            parameter="message:5555559876?text=text%20message")
+
+    def test_launch_app_with_predefined_text_no_slashes(self):
+        self.messages_view = self.main_view.select_single(
+            emulators.Messages,
+            firstParticipant='5555559876',
+            text='text message')
+
+
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):

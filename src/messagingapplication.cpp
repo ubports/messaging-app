@@ -200,8 +200,12 @@ void MessagingApplication::parseArgument(const QString &arg)
     QString text;
     QUrl url(arg);
     QString scheme = url.scheme();
-    // Remove the first "/"
-    QString value = url.path().right(url.path().length() -1);
+    QString value = url.path();
+    // Remove the first "/" if needed. We have two possible scenarios:
+    // message:///phonenumber and message:phonenumber
+    if (value.startsWith("/")) {
+        value = value.right(value.length()-1);
+    }
     QUrlQuery query(url);
     Q_FOREACH(const Pair &item, query.queryItems()) {
         if (item.first == "text") {
