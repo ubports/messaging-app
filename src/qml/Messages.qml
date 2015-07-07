@@ -52,6 +52,8 @@ Page {
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
+    // to be used by tests as variant does not work with autopilot
+    property string firstParticipant: participants.length > 0 ? participants[0] : ""
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
