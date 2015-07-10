@@ -977,19 +977,16 @@ Page {
             }
         }
 
-        Button {
+        Icon {
             id: sendButton
             objectName: "sendButton"
-            anchors.bottomMargin: units.gu(1)
-            anchors.bottom: parent.bottom
+            anchors.verticalCenter: textEntry.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
-            text: i18n.tr("Send")
-            color: enabled ? "#38b44a" : "#b2b2b2"
-            width: units.gu(7)
-            height: units.gu(4)
-            font.pixelSize: FontUtils.sizeToPixels("small")
-            activeFocusOnPress: false
+            color: "gray"
+            source: Qt.resolvedUrl("./assets/send.svg")
+            width: units.gu(3)
+            height: units.gu(3)
             enabled: {
                if (participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== "") {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
@@ -998,40 +995,44 @@ Page {
                 }
                 return false
             }
-            onClicked: {
-                // make sure we flush everything we have prepared in the OSK preedit
-                Qt.inputMethod.commit();
-                if (textEntry.text == "" && attachments.count == 0) {
-                    return
-                }
-                // refresh the recipient list
-                multiRecipient.focus = false
-                // dont change the participants list
-                if (participants.length == 0) {
-                    participants = multiRecipient.recipients
-                }
 
-                var newAttachments = []
-                for (var i = 0; i < attachments.count; i++) {
-                    var attachment = []
-                    var item = attachments.get(i)
-                    // we dont include smil files. they will be auto generated
-                    if (item.contentType.toLowerCase() === "application/smil") {
-                        continue
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // make sure we flush everything we have prepared in the OSK preedit
+                    Qt.inputMethod.commit();
+                    if (textEntry.text == "" && attachments.count == 0) {
+                        return
                     }
-                    attachment.push(item.name)
-                    attachment.push(item.contentType)
-                    attachment.push(item.filePath)
-                    newAttachments.push(attachment)
-                }
+                    // refresh the recipient list
+                    multiRecipient.focus = false
+                    // dont change the participants list
+                    if (participants.length == 0) {
+                        participants = multiRecipient.recipients
+                    }
 
-                // if sendMessage succeeds it means the message was either sent or
-                // injected into the history service so the user can retry later
-                if (sendMessage(textEntry.text, participants, newAttachments)) {
-                    textEntry.text = ""
-                    attachments.clear()
+                    var newAttachments = []
+                    for (var i = 0; i < attachments.count; i++) {
+                        var attachment = []
+                        var item = attachments.get(i)
+                        // we dont include smil files. they will be auto generated
+                        if (item.contentType.toLowerCase() === "application/smil") {
+                            continue
+                        }
+                        attachment.push(item.name)
+                        attachment.push(item.contentType)
+                        attachment.push(item.filePath)
+                        newAttachments.push(attachment)
+                    }
+
+                    // if sendMessage succeeds it means the message was either sent or
+                    // injected into the history service so the user can retry later
+                    if (sendMessage(textEntry.text, participants, newAttachments)) {
+                        textEntry.text = ""
+                        attachments.clear()
+                    }
+                    updateFilters()
                 }
-                updateFilters()
             }
         }
     }
