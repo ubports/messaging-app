@@ -2,6 +2,7 @@
     "share": [
         "contacts",
         "pictures",
-        "links"
+        "links",
+        "text"
     ]
 }
