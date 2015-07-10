@@ -568,7 +568,7 @@ Page {
                 Action {
                     objectName: "addContactAction"
                     visible: contactWatcher.isUnknown && participants.length == 1
-                    iconName: "new-contact"
+                    iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
