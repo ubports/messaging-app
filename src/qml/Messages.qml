@@ -577,7 +577,7 @@ Page {
                 Action {
                     objectName: "addContactAction"
                     visible: contactWatcher.isUnknown && participants.length == 1
-                    iconName: "new-contact"
+                    iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
@@ -743,6 +743,7 @@ Page {
 
         Icon {
             id: attachButton
+            objectName: "attachButton"
             anchors.left: parent.left
             anchors.leftMargin: units.gu(2)
             anchors.verticalCenter: sendButton.verticalCenter
