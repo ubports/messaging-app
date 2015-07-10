@@ -49,6 +49,7 @@ Item {
 
                 ContentHub.ContentPeerPicker {
                     id: peerPicker
+                    objectName: "contentPeerPicker"
 
                     anchors.fill: parent
                     contentType: ContentHub.ContentType.Pictures

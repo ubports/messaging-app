@@ -722,6 +722,7 @@ Page {
 
         Icon {
             id: attachButton
+            objectName: "attachButton"
             anchors.left: parent.left
             anchors.leftMargin: units.gu(2)
             anchors.verticalCenter: sendButton.verticalCenter
