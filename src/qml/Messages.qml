@@ -862,16 +862,14 @@ Page {
                             elide: Text.ElideMiddle
                             color: UbuntuColors.lightAubergine
                         }
-
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
+                            onPressAndHold: {
                                 mouse.accept = true
                                 Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
-                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -894,13 +892,12 @@ Page {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
+                            onPressAndHold: {
                                 mouse.accept = true
                                 Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
-                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
