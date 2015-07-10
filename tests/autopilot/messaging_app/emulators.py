@@ -372,15 +372,19 @@ class MainView(toolkit_emulators.MainView):
         message.confirm_removal()
 
     @autopilot_logging.log_action(logger.info)
-    def send_message(self, number, message):
+    def send_message(self, numbers, message):
         """Write a new message and send it.
 
-        :param number: number of the contact to send message to.
+        :param numbers: phone numbers of contacts to send message to.
         :param message: the message to be sent.
 
         """
         self.start_new_message()
-        self.type_contact_phone_num(number)
+        # type address number
+        for number in numbers:
+            self.type_contact_phone_num(number)
+            self.keyboard.press_and_release("Enter")
+
         self.type_message(message)
         old_message_count = self.get_multiple_selection_list_view().count
         self.click_send_button()
