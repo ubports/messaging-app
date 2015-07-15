@@ -52,6 +52,7 @@ Page {
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
+    property var pendingEventsToMarkAsRead: []
     // to be used by tests as variant does not work with autopilot
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
 
@@ -309,8 +310,26 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
+        if (!mainView.applicationActive) {
+           var pendingEvent = {"accountId": accountId, "threadId": threadId, "eventId": eventId, "type": type}
+           pendingEventsToMarkAsRead.push(pendingEvent)
+           return false
+        }
         chatManager.acknowledgeMessage(participants, eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    Connections {
+        target: mainView
+        onApplicationActiveChanged: {
+            if (mainView.applicationActive) {
+                for (var i in pendingEventsToMarkAsRead) {
+                    var event = pendingEventsToMarkAsRead[i]
+                    markMessageAsRead(event.accountId, event.threadId, event.eventId, event.type)
+                }
+                pendingEventsToMarkAsRead = []
+            }
+        }
     }
 
     Component {
