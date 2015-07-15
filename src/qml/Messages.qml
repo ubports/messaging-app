@@ -79,12 +79,16 @@ Page {
     function sendMessageNetworkCheck() {
         if (messages.account.simLocked) {
             Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
             PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
             return false
         }
 
         if (!messages.account.connected) {
             Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
             PopupUtils.open(noNetworkDialog)
             return false
         }
@@ -103,6 +107,8 @@ Page {
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
             PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
             return false
         }
