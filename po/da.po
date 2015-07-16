@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
 "PO-Revision-Date: 2015-06-12 09:30+0000\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-13 05:47+0000\n"
-"X-Generator: Launchpad (build 17557)\n"
+"X-Launchpad-Export-Date: 2015-07-16 05:44+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -54,15 +54,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Accepteret"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:572
 msgid "Add"
 msgstr "Tilføj"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Tilføj modtager"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Alle"
 
@@ -98,11 +98,12 @@ msgstr[1] "Vedhæftet: %1 videoer"
 msgid "Audio attachment not supported"
 msgstr "Lydvedhæftning ikke understøttet"
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:561 ../src/qml/Messages.qml:619
 msgid "Call"
 msgstr "Opkald"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -113,7 +114,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Tilknyt alle beskeder til %1"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:381
 msgid "Close"
 msgstr "Luk"
 
@@ -121,7 +122,7 @@ msgstr "Luk"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Skriv en ny besked ved at swipe op fra bunden af skærmen"
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:630
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -145,6 +146,10 @@ msgstr "Sendt"
 msgid "Don't ask again"
 msgstr "Spørg ikke igen"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr "Aktiver MMS-gruppechat"
@@ -157,7 +162,7 @@ msgstr "Mislykkedes"
 msgid "Failed!"
 msgstr "Fejl!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Foretrukne"
 
@@ -178,7 +183,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:262
 #, qt-format
 msgid "Group (%1)"
 msgstr "Gruppe (%1)"
@@ -219,7 +224,7 @@ msgstr "Beskeder"
 msgid "Messaging App"
 msgstr "Beskedprogram"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Program til modtagelse af beskeder"
 
@@ -231,7 +236,7 @@ msgstr "Mangler besked data"
 msgid "Myself"
 msgstr "Jeg"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:265
 msgid "New Message"
 msgstr "Ny besked"
 
@@ -244,7 +249,7 @@ msgstr "Nej"
 msgid "No SIM card selected"
 msgstr "Der er ikke valgt SIM-kort"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:377
 msgid "No network"
 msgstr "Intet netværk"
 
@@ -275,7 +280,7 @@ msgstr "Læst"
 msgid "Received"
 msgstr "Modtaget"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:329
 msgid "Remove"
 msgstr "Fjern"
 
@@ -292,14 +297,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Gem"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Søg"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Søg..."
 
@@ -311,7 +317,7 @@ msgstr ""
 "Vælg et standard SIM til alle udgående beskeder. Du kan altid ændre dit valg "
 "i <a href=\"system_settings\">System indstillinger</a>"
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Send"
 
@@ -323,7 +329,7 @@ msgstr "Sendt"
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Del"
 
@@ -351,12 +357,12 @@ msgstr "Midlertidig fejl"
 msgid "Text message copied to clipboard"
 msgstr "Besked kopieret til udklipsholder"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Der er i øjeblikket intet netværk på %1"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 msgid "There is currently no network."
 msgstr "Der er i øjeblikket intet netværk."
 
@@ -380,8 +386,8 @@ msgstr "Type"
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:839
 msgid "Unknown contact"
 msgstr "Ukendt kontakt"
 
@@ -397,7 +403,7 @@ msgstr "Videovedhæftning ikke understøttet"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Velkommen til dit Ubuntu beskedprogram."
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:957
 msgid "Write a message..."
 msgstr "Skriv en besked..."
 

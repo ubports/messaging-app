@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
 "PO-Revision-Date: 2015-03-03 14:15+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-07-16 05:44+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,15 +53,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Geaccepteerd"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:572
 msgid "Add"
 msgstr "Toevoegen"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Ontvanger toevoegen"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Alle"
 
@@ -97,11 +97,12 @@ msgstr[1] "Bijlages: %1 video´s"
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:561 ../src/qml/Messages.qml:619
 msgid "Call"
 msgstr "Bellen"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -112,7 +113,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Alle berichtassociaties overzetten naar %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:381
 msgid "Close"
 msgstr "Sluiten"
 
@@ -121,7 +122,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Start een nieuw bericht door omhoog te vegen vanaf onderaan het scherm."
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:630
 msgid "Contact"
 msgstr "Contact"
 
@@ -145,6 +146,10 @@ msgstr "Afgeleverd"
 msgid "Don't ask again"
 msgstr "Niet meer vragen"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr ""
@@ -157,7 +162,7 @@ msgstr "Mislukt"
 msgid "Failed!"
 msgstr "Mislukt!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Favorieten"
 
@@ -178,7 +183,7 @@ msgid "Group"
 msgstr "Groep"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:262
 #, qt-format
 msgid "Group (%1)"
 msgstr "Groep (%1)"
@@ -219,7 +224,7 @@ msgstr "Berichten"
 msgid "Messaging App"
 msgstr "Berichtenapp"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Berichtenapplicatie"
 
@@ -231,7 +236,7 @@ msgstr "Berichtgegevens ontbreken"
 msgid "Myself"
 msgstr "Mezelf"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:265
 msgid "New Message"
 msgstr "Nieuw bericht"
 
@@ -244,7 +249,7 @@ msgstr "Nee"
 msgid "No SIM card selected"
 msgstr "Geen simkaart geselecteerd"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:377
 msgid "No network"
 msgstr "Geen netwerk"
 
@@ -275,7 +280,7 @@ msgstr "Gelezen"
 msgid "Received"
 msgstr "Ontvangen"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:329
 msgid "Remove"
 msgstr "Verwijderen"
 
@@ -292,14 +297,15 @@ msgid "SMS"
 msgstr "Sms"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Zoeken…"
 
@@ -312,7 +318,7 @@ msgstr ""
 "kunt deze keuze altijd wijzigen in de <a "
 "href=\"system_settings\">Systeeminstellingen</a>."
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Verzenden"
 
@@ -324,7 +330,7 @@ msgstr "Verzonden"
 msgid "Settings"
 msgstr ""
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Delen"
 
@@ -352,12 +358,12 @@ msgstr "Tijdelijk mislukt"
 msgid "Text message copied to clipboard"
 msgstr "Tekstbericht gekopieerd naar klembord"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Er is momenteel geen netwerk op %1"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 msgid "There is currently no network."
 msgstr "Er is momenteel geen netwerk."
 
@@ -381,8 +387,8 @@ msgstr "Type"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:839
 msgid "Unknown contact"
 msgstr "Onbekend contact"
 
@@ -398,7 +404,7 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:957
 msgid "Write a message..."
 msgstr "Een bericht schrijven…"
 
