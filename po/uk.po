@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
 "PO-Revision-Date: 2015-06-08 11:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-07-16 05:44+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -57,15 +57,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Прийнято"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:572
 msgid "Add"
 msgstr "Додати"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Додати отримувача"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Усі"
 
@@ -105,11 +105,12 @@ msgstr[2] "Долучення: %1 відео"
 msgid "Audio attachment not supported"
 msgstr "Підтримки долучення звукових файлів не передбачено"
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:561 ../src/qml/Messages.qml:619
 msgid "Call"
 msgstr "Подзвонити"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -120,7 +121,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Пов’язати увесь обмін повідомленнями з %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:381
 msgid "Close"
 msgstr "Закрити"
 
@@ -128,7 +129,7 @@ msgstr "Закрити"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Створіть нове повідомлення рухом пальця з нижньої частини екрана."
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:630
 msgid "Contact"
 msgstr "Контакт"
 
@@ -152,6 +153,10 @@ msgstr "Доставлено"
 msgid "Don't ask again"
 msgstr "Більше не питати"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr "Змінити"
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr "Увімкнути групове спілкування MMS"
@@ -164,7 +169,7 @@ msgstr "Помилка"
 msgid "Failed!"
 msgstr "Невдача!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Вибрані"
 
@@ -185,7 +190,7 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:262
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
@@ -228,7 +233,7 @@ msgstr "Обмін повідомленнями"
 msgid "Messaging App"
 msgstr "Програма для обміну повідомленнями"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Програма для обміну повідомленнями"
 
@@ -240,7 +245,7 @@ msgstr "Немає даних повідомлення"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:265
 msgid "New Message"
 msgstr "Нове повідомлення"
 
@@ -253,7 +258,7 @@ msgstr "Ні"
 msgid "No SIM card selected"
 msgstr "Не вибрано SIM-картки"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:377
 msgid "No network"
 msgstr "Немає мережі"
 
@@ -285,7 +290,7 @@ msgstr "Прочитане"
 msgid "Received"
 msgstr "Отримано"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:329
 msgid "Remove"
 msgstr "Вилучити"
 
@@ -302,14 +307,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Зберегти"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Пошук"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Шукати…"
 
@@ -322,7 +328,7 @@ msgstr ""
 "будь-коли змінити за допомогою <a href=\"system_settings\">Системних "
 "параметрів</a>."
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Надіслати"
 
@@ -334,7 +340,7 @@ msgstr "Надіслані"
 msgid "Settings"
 msgstr "Параметри"
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Поділитися"
 
@@ -362,12 +368,12 @@ msgstr "Тимчасова помилка"
 msgid "Text message copied to clipboard"
 msgstr "Текстове повідомлення скопійовано до буфера"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Зараз на %1 немає доступу до мережі"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 msgid "There is currently no network."
 msgstr "Зараз немає доступу до мережі."
 
@@ -391,8 +397,8 @@ msgstr "Тип"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:839
 msgid "Unknown contact"
 msgstr "Невідомий контакт"
 
@@ -408,7 +414,7 @@ msgstr "Підтримки долучення відеофайлів не пер
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Вітаємо у програмі для роботи з повідомленнями Ubuntu."
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:957
 msgid "Write a message..."
 msgstr "Створення повідомлення…"
 

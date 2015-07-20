@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
 "PO-Revision-Date: 2015-07-07 10:22+0000\n"
 "Last-Translator: Vojtěch Daněk <vdanek@outlook.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-07-09 05:58+0000\n"
-"X-Generator: Launchpad (build 17608)\n"
+"X-Launchpad-Export-Date: 2015-07-16 05:44+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 "Language: cs\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -57,15 +57,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Přijato"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:572
 msgid "Add"
 msgstr "Přidat"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Přidat příjemce"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Všechno"
 
@@ -105,11 +105,12 @@ msgstr[2] "Přiložit: %1 videí"
 msgid "Audio attachment not supported"
 msgstr "Přiložený audio soubor není podporován"
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:561 ../src/qml/Messages.qml:619
 msgid "Call"
 msgstr "Volání"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -120,7 +121,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Změnit všechny zprávy spojené s %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:381
 msgid "Close"
 msgstr "Zavřít"
 
@@ -129,7 +130,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Potáhněte prstem ze spodu obrazovky pro vytvoření nové textové zprávy."
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:630
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -153,6 +154,10 @@ msgstr "Doručeno"
 msgid "Don't ask again"
 msgstr "Neptat se znovu"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr "Povolit skupinový MMS chat"
@@ -165,7 +170,7 @@ msgstr "Chyba"
 msgid "Failed!"
 msgstr "Chyba!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Oblíbené"
 
@@ -186,7 +191,7 @@ msgid "Group"
 msgstr "Skupina"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:262
 #, qt-format
 msgid "Group (%1)"
 msgstr "Skupina (%1)"
@@ -227,7 +232,7 @@ msgstr "Zprávy"
 msgid "Messaging App"
 msgstr "Aplikace zpráv"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Aplikace zpráv"
 
@@ -239,7 +244,7 @@ msgstr "Chybí data zpráv"
 msgid "Myself"
 msgstr "Já"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:265
 msgid "New Message"
 msgstr "Nová zpráva"
 
@@ -252,7 +257,7 @@ msgstr "Ne"
 msgid "No SIM card selected"
 msgstr "Nebyla zvolena SIM karta"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:377
 msgid "No network"
 msgstr "Žádná síť"
 
@@ -283,7 +288,7 @@ msgstr "Číst"
 msgid "Received"
 msgstr "Doručené"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:329
 msgid "Remove"
 msgstr "Odstranit"
 
@@ -300,14 +305,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Uložit"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Hledat"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Hledat..."
 
@@ -319,7 +325,7 @@ msgstr ""
 "Zvolte výchozí SIM kartu pro všechny odchozí textové zprávy. Své rozhodnuté "
 "vždy můžete změnit v <a href=\"system_settings\">Nastavení systému</a>."
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Odeslat"
 
@@ -331,7 +337,7 @@ msgstr "Odesláno"
 msgid "Settings"
 msgstr "Nastavení"
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Sdílet"
 
@@ -359,12 +365,12 @@ msgstr "Dočasně selhalo."
 msgid "Text message copied to clipboard"
 msgstr "Textová zpráva zkopírována do schránky"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "V současné době není dostupná síť na %1"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 msgid "There is currently no network."
 msgstr "V současné době není dostupná síť."
 
@@ -389,8 +395,8 @@ msgstr "Druh"
 msgid "Unknown"
 msgstr "Neznámé"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:839
 msgid "Unknown contact"
 msgstr "Neznámý kontakt"
 
@@ -406,7 +412,7 @@ msgstr "Video soubor není podporován"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Vítejte v aplikaci Ubuntu zpráv."
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:957
 msgid "Write a message..."
 msgstr "Napsat zprávu..."
 

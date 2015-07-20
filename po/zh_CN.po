@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-06-29 04:07+0000\n"
-"Last-Translator: Rex Tsai <rex.tsai@canonical.com>\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"PO-Revision-Date: 2015-07-16 05:03+0000\n"
+"Last-Translator: xiaoxiao <golden.freeman.china@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-06-30 05:51+0000\n"
-"X-Generator: Launchpad (build 17578)\n"
+"X-Launchpad-Export-Date: 2015-07-17 05:37+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -50,15 +50,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "已接受"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:572
 msgid "Add"
 msgstr "添加"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "添加收件人"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "全部"
 
@@ -90,11 +90,12 @@ msgstr[0] "附件: %1 段视频"
 msgid "Audio attachment not supported"
 msgstr "不支持音频附件"
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:561 ../src/qml/Messages.qml:619
 msgid "Call"
 msgstr "拨号"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "取消"
 
@@ -105,7 +106,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "将所有短信与 %1 关联？"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:381
 msgid "Close"
 msgstr "关闭"
 
@@ -113,7 +114,7 @@ msgstr "关闭"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "从屏幕底部向上滑动来撰写一封新邮件。"
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:630
 msgid "Contact"
 msgstr "联系人"
 
@@ -137,6 +138,10 @@ msgstr "已发送"
 msgid "Don't ask again"
 msgstr "不再询问"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr "启用彩信群组聊天"
@@ -149,7 +154,7 @@ msgstr "失败"
 msgid "Failed!"
 msgstr "失败！"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "常用"
 
@@ -170,7 +175,7 @@ msgid "Group"
 msgstr "群组"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:262
 #, qt-format
 msgid "Group (%1)"
 msgstr "群组 (%1)"
@@ -205,13 +210,13 @@ msgstr "短信；彩信；文字短信；信息；"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr "短信中"
+msgstr "短信"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
 msgstr "短信应用"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "短信应用程序"
 
@@ -223,7 +228,7 @@ msgstr "丢失短信数据"
 msgid "Myself"
 msgstr "我自己"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:265
 msgid "New Message"
 msgstr "新信息"
 
@@ -236,7 +241,7 @@ msgstr "否"
 msgid "No SIM card selected"
 msgstr "未选择SIM卡"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:377
 msgid "No network"
 msgstr "无网络"
 
@@ -265,7 +270,7 @@ msgstr "已读"
 msgid "Received"
 msgstr "已接收"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:329
 msgid "Remove"
 msgstr "移除"
 
@@ -282,14 +287,15 @@ msgid "SMS"
 msgstr "短信"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "保存"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "搜索..."
 
@@ -299,7 +305,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr "选择一个用于外发短信的默认SIM卡。您可以在<a href=\"system_settings\">系统设置</a>中随时改变你的选择。"
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "发送"
 
@@ -311,7 +317,7 @@ msgstr "已发送"
 msgid "Settings"
 msgstr "设置"
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "分享"
 
@@ -339,12 +345,12 @@ msgstr "暂时失败"
 msgid "Text message copied to clipboard"
 msgstr "短信已复制到剪切板"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1 目前无网络"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:378
 msgid "There is currently no network."
 msgstr "目前无网络"
 
@@ -368,8 +374,8 @@ msgstr "类型"
 msgid "Unknown"
 msgstr "未知"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:839
 msgid "Unknown contact"
 msgstr "未知联系人"
 
@@ -385,7 +391,7 @@ msgstr "视频附件不支持"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "欢迎来到您的 Ubuntu 短信应用。"
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:957
 msgid "Write a message..."
 msgstr "编写新信息..."
 
