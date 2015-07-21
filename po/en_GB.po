@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-07-16 05:44+0000\n"
+"X-Launchpad-Export-Date: 2015-07-21 05:35+0000\n"
 "X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Accepted"
 
-#: ../src/qml/Messages.qml:572
+#: ../src/qml/Messages.qml:581
 msgid "Add"
 msgstr "Add"
 
@@ -97,7 +97,7 @@ msgstr[1] "Attachments: %1 videos"
 msgid "Audio attachment not supported"
 msgstr "Audio attachment not supported"
 
-#: ../src/qml/Messages.qml:561 ../src/qml/Messages.qml:619
+#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
 msgid "Call"
 msgstr "Call"
 
@@ -113,7 +113,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Change all Messaging associations to %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:381
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
 msgid "Close"
 msgstr "Close"
 
@@ -121,7 +121,7 @@ msgstr "Close"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Compose a new message by swiping up from the bottom of the screen."
 
-#: ../src/qml/Messages.qml:630
+#: ../src/qml/Messages.qml:639
 msgid "Contact"
 msgstr "Contact"
 
@@ -182,7 +182,7 @@ msgid "Group"
 msgstr "Group"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:262
+#: ../src/qml/Messages.qml:266
 #, qt-format
 msgid "Group (%1)"
 msgstr "Group (%1)"
@@ -235,7 +235,7 @@ msgstr "Missing message data"
 msgid "Myself"
 msgstr "Myself"
 
-#: ../src/qml/Messages.qml:265
+#: ../src/qml/Messages.qml:269
 msgid "New Message"
 msgstr "New Message"
 
@@ -248,7 +248,7 @@ msgstr "No"
 msgid "No SIM card selected"
 msgstr "No SIM card selected"
 
-#: ../src/qml/Messages.qml:377
+#: ../src/qml/Messages.qml:386
 msgid "No network"
 msgstr "No network"
 
@@ -278,7 +278,7 @@ msgstr "Read"
 msgid "Received"
 msgstr "Received"
 
-#: ../src/qml/Messages.qml:329
+#: ../src/qml/Messages.qml:333
 msgid "Remove"
 msgstr "Remove"
 
@@ -355,12 +355,12 @@ msgstr "Temporarily Failed"
 msgid "Text message copied to clipboard"
 msgstr "Text message copied to clipboard"
 
-#: ../src/qml/Messages.qml:378
+#: ../src/qml/Messages.qml:387
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "There is currently no network on %1"
 
-#: ../src/qml/Messages.qml:378
+#: ../src/qml/Messages.qml:387
 msgid "There is currently no network."
 msgstr "There is currently no network."
 
@@ -385,7 +385,7 @@ msgid "Unknown"
 msgstr "Unknown"
 
 #: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:839
+#: ../src/qml/Messages.qml:861
 msgid "Unknown contact"
 msgstr "Unknown contact"
 
@@ -401,7 +401,7 @@ msgstr "Video attachment not supported"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Welcome to your Ubuntu messaging app."
 
-#: ../src/qml/Messages.qml:957
+#: ../src/qml/Messages.qml:976
 msgid "Write a message..."
 msgstr "Write a message..."
 
