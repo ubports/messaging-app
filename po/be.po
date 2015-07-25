@@ -1,0 +1,432 @@
+# Belarusian translation for messaging-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"PO-Revision-Date: 2015-07-25 04:27+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Belarusian <be@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Launchpad-Export-Date: 2015-07-25 05:38+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:51
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
+
+#: ../src/qml/dateUtils.js:65
+#, qt-format
+msgid "%1 hour call"
+msgid_plural "%1 hours call"
+msgstr[0] "%1-гадзінны званок"
+msgstr[1] "%1-гадзінны званок"
+msgstr[2] "%1-гадзінны званок"
+
+#: ../src/qml/dateUtils.js:67
+#, qt-format
+msgid "%1 minute call"
+msgid_plural "%1 minutes call"
+msgstr[0] "%1-хвілінны званок"
+msgstr[1] "%1-хвілінны званок"
+msgstr[2] "%1-хвілінны званок"
+
+#: ../src/qml/dateUtils.js:69
+#, qt-format
+msgid "%1 second call"
+msgid_plural "%1 seconds call"
+msgstr[0] "%1-сэкундны званок"
+msgstr[1] "%1-сэкундны званок"
+msgstr[2] "%1-сэкундны званок"
+
+#: ../src/qml/MainPage.qml:41
+msgid "+"
+msgstr "+"
+
+#: ../src/qml/MessageInfoDialog.qml:60
+msgid "Accepted"
+msgstr "Прынята"
+
+#: ../src/qml/Messages.qml:581
+msgid "Add"
+msgstr "Дадаць"
+
+#: ../src/qml/NewRecipientPage.qml:50
+msgid "Add recipient"
+msgstr "Дадаць атрымальніка"
+
+#: ../src/qml/NewRecipientPage.qml:90
+msgid "All"
+msgstr "Усе"
+
+#: ../src/qml/ThreadDelegate.qml:83
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Дададзены: %1 кантакт"
+msgstr[1] "Дададзеныя: %1 кантакты"
+msgstr[2] "Дададзена: %1 кантактаў"
+
+#: ../src/qml/ThreadDelegate.qml:86
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Дададзены: %1 файл"
+msgstr[1] "Дададзеныя: %1 файлы"
+msgstr[2] "Дададзена: %1 файлаў"
+
+#: ../src/qml/ThreadDelegate.qml:77
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Дададзеная: %1 выява"
+msgstr[1] "Дададзеныя: %1 выявы"
+msgstr[2] "Дададзена: %1 выяваў"
+
+#: ../src/qml/ThreadDelegate.qml:80
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Дададзенае: %1 відэа"
+msgstr[1] "Дададзеныя: %1 відэа"
+msgstr[2] "Дададзена: %1 відэа"
+
+#: ../src/qml/MMS/MMSDefault.qml:28
+msgid "Audio attachment not supported"
+msgstr "Падтрымкі дадання гукавых файлаў не прадугледжана"
+
+#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
+msgid "Call"
+msgstr "Патэлефанаваць"
+
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr "Звязаць увесь абмен паведамленнямі з %1?"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
+msgid "Close"
+msgstr "Закрыць"
+
+#: ../src/qml/MainPage.qml:147
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr "Стварыце новае паведамленне рухам пальца з ніжняй частцы экрана."
+
+#: ../src/qml/Messages.qml:639
+msgid "Contact"
+msgstr "Кантакт"
+
+#: ../src/qml/MessagesListView.qml:92 ../src/qml/SwipeItemDemo.qml:185
+msgid "Copy"
+msgstr "Капіяваць"
+
+#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../src/qml/MessageInfoDialog.qml:64
+msgid "Deleted"
+msgstr "Выдалена"
+
+#: ../src/qml/MessageInfoDialog.qml:54
+msgid "Delivered"
+msgstr "Дастаўлена"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+msgid "Don't ask again"
+msgstr "Больш не пытацца"
+
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:29
+msgid "Enable MMS group chat"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:58
+msgid "Failed"
+msgstr "Памылка"
+
+#: ../src/qml/MessageDelegateFactory.qml:144
+msgid "Failed!"
+msgstr "Няўдача!"
+
+#: ../src/qml/NewRecipientPage.qml:90
+msgid "Favorites"
+msgstr "Улюбёнае"
+
+#: ../src/qml/MMS/MMSDefault.qml:33
+msgid "File type not supported"
+msgstr "Падтрымкі гэтага тыпу файлаў не прадугледжана"
+
+#: ../src/qml/MessageInfoDialog.qml:97
+msgid "From"
+msgstr "Ад"
+
+#: ../src/qml/SwipeItemDemo.qml:78
+msgid "Got it"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:84
+msgid "Group"
+msgstr "Група"
+
+#. TRANSLATORS: %1 refers to the number of participants in a group chat
+#: ../src/qml/Messages.qml:266
+#, qt-format
+msgid "Group (%1)"
+msgstr "Група (%1)"
+
+#: ../src/qml/MMS/PreviewerImage.qml:25
+msgid "Image Preview"
+msgstr "Перадпрагляд выявы"
+
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+msgid "Info"
+msgstr "Звесткі"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
+msgid "Later"
+msgstr "Пазней"
+
+#: ../src/qml/MessagesListView.qml:71
+msgid "MMS"
+msgstr "MMS"
+
+#: ../src/qml/MessageInfoDialog.qml:90
+msgid "Message info"
+msgstr "Дадзеныя паведамленні"
+
+#: ../src/qml/MainPage.qml:37
+msgid "Messages"
+msgstr "Паведамленні"
+
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr ""
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr "Абмен паведамленнямі"
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr "Праграма для абмену паведамленнямі"
+
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr "Праграма для абмену паведамленнямі"
+
+#: ../src/qml/MMSDelegate.qml:211
+msgid "Missing message data"
+msgstr "Няма дадзеных паведамлення"
+
+#: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
+msgid "Myself"
+msgstr "Я"
+
+#: ../src/qml/Messages.qml:269
+msgid "New Message"
+msgstr "Новае паведамленне"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
+msgid "No"
+msgstr "Не"
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+msgid "No SIM card selected"
+msgstr "Не выбраная SIM-картка"
+
+#: ../src/qml/Messages.qml:386
+msgid "No network"
+msgstr "Няма сеткі"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Добра"
+
+#: ../src/qml/MessageInfoDialog.qml:66
+msgid "Pending"
+msgstr "У чаканні"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Калі ласка, разблакуйце вашую SIM-картку, каб мець магчымасць тэлефанаваць "
+"ці адпраўляць паведамленні. Разблакаваць картку можна з дапамогай індыкатара "
+"сеткі ў верхняй частцы экрана або з дапамогай старонкі <a "
+"href=\"system_settings\">Сістэмныя параметры &gt; Бяспека &amp; "
+"Прыватнасць</a>."
+
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
+msgid "Read"
+msgstr "Прачытанае"
+
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
+msgid "Received"
+msgstr "Атрымана"
+
+#: ../src/qml/Messages.qml:333
+msgid "Remove"
+msgstr "Выдаліць"
+
+#: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:181
+msgid "Retry"
+msgstr "Паўтарыць"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "SIM-картка заблакаваная"
+
+#: ../src/qml/MessagesListView.qml:71
+msgid "SMS"
+msgstr "SMS"
+
+#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
+msgid "Save"
+msgstr "Захаваць"
+
+#: ../src/qml/NewRecipientPage.qml:78
+msgid "Search"
+msgstr "Шукаць"
+
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
+msgid "Search..."
+msgstr "Шукаць..."
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
+msgid ""
+"Select a default SIM for all outgoing messages. You can always alter your "
+"choice in <a href=\"system_settings\">System Settings</a>."
+msgstr ""
+
+#: ../src/qml/Messages.qml:987
+msgid "Send"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:114
+msgid "Sent"
+msgstr ""
+
+#: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
+msgid "Settings"
+msgstr ""
+
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+msgid "Share"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:129
+msgid "Status"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:256
+msgid "Swipe to delete"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:206
+msgid "Swipe to reveal actions"
+msgstr ""
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Switch to default SIM:"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:56
+msgid "Temporarily Failed"
+msgstr ""
+
+#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+msgid "Text message copied to clipboard"
+msgstr ""
+
+#: ../src/qml/Messages.qml:387
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr ""
+
+#: ../src/qml/Messages.qml:387
+msgid "There is currently no network."
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:103
+msgid "To"
+msgstr ""
+
+#: ../src/qml/MultiRecipientInput.qml:148
+msgid "To:"
+msgstr ""
+
+#: ../src/qml/dateUtils.js:44
+msgid "Today"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:93
+msgid "Type"
+msgstr ""
+
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
+msgid "Unknown"
+msgstr ""
+
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:861
+msgid "Unknown contact"
+msgstr ""
+
+#: ../src/qml/MMS/PreviewerVideo.qml:25
+msgid "Video Preview"
+msgstr ""
+
+#: ../src/qml/MMS/MMSDefault.qml:31
+msgid "Video attachment not supported"
+msgstr ""
+
+#: ../src/qml/SwipeItemDemo.qml:161
+msgid "Welcome to your Ubuntu messaging app."
+msgstr ""
+
+#: ../src/qml/Messages.qml:976
+msgid "Write a message..."
+msgstr ""
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
+msgid "Yes"
+msgstr ""
+
+#: ../src/qml/dateUtils.js:46
+msgid "Yesterday"
+msgstr ""
+
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+msgid "You need to select a SIM card"
+msgstr ""
+
+#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
+#: ../src/qml/AccountSectionDelegate.qml:76
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr ""
