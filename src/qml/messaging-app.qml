@@ -30,6 +30,7 @@ MainView {
     property string newPhoneNumber
     property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
     property QtObject account: defaultAccount()
+    property bool applicationActive: Qt.application.active
 
     activeFocusOnPress: false
 
@@ -79,6 +80,14 @@ MainView {
             }
             mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
                            initialProperties)
+        }
+    }
+
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            telepathyHelper.registerChannelObserver()
+        } else {
+            telepathyHelper.unregisterChannelObserver()
         }
     }
 
@@ -178,11 +187,14 @@ MainView {
         mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
-    function startChat(identifiers, text) {
+    function startChat(identifiers, text, accountId) {
         var properties = {}
         var participants = identifiers.split(";")
         properties["participants"] = participants
         properties["text"] = text
+        if (typeof(accountId)!=='undefined') {
+            properties["accountId"] = accountId
+        }
         emptyStack()
         if (participants.length === 0) {
             return;

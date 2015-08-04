@@ -211,6 +211,7 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    properties["accountId"] = model.accountId
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }

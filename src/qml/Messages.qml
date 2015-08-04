@@ -34,8 +34,19 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: mainView.account
+    property QtObject account: {
+        if (accountId) {
+            return telepathyHelper.accountForId(accountId)
+        } else {
+            return mainView.account
+        }
+    }
 
+    property string accountId: ""
+    property bool phoneAccount: {
+        var tmpAccount = telepathyHelper.accountForId(accountId)
+        return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount)
+    }
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -54,6 +65,120 @@ Page {
     property string latestEventId: ""
     // to be used by tests as variant does not work with autopilot
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
+    property bool userTyping: false
+    property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+
+    Connections {
+        target: chatManager
+        onChatEntryCreated: {
+            // TODO: track using chatId and not participants
+            if (accountId == account.accountId && 
+                participants[0] == messages.participants[0]) {
+                messages.chatEntry = chatEntry
+            }
+        }
+    }
+
+    Timer {
+        id: typingTimer
+        interval: 6000
+        onTriggered: {
+            messages.userTyping = false;
+        }
+    }
+
+    Repeater {
+        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        Item {
+            Connections {
+                target: modelData
+                onStateChanged: {
+                    messages.userTyping = true
+                    typingTimer.start()
+                }
+            }
+        }
+    }
+
+    Connections {
+        target: messages.chatEntry
+        onChatStatesChanged: {
+            // FIXME: for group chats we have to deal with states individually
+            for (var i in chatEntry.chatStates) {
+                if (chatEntry.chatStates[i].state == ChatState.ChannelChatStateComposing) {
+                    messages.userTyping = true
+                    typingTimer.start()
+                } else {
+                    messages.userTyping = false
+                }
+            }
+        }
+    }
+
+    MessagesHeader {
+        id: header
+        width: parent ? parent.width - units.gu(2) : undefined
+        height: units.gu(5)
+        title: messages.title
+        subtitle: {
+            if (userTyping) {
+                return i18n.tr("Typing..")
+            }
+            switch (presenceRequest.type) {
+            case PresenceRequest.PresenceTypeAvailable:
+                return i18n.tr("Online")
+            case PresenceRequest.PresenceTypeOffline:
+                return i18n.tr("Offline")
+            case PresenceRequest.PresenceTypeAway:
+                return i18n.tr("Away")
+            case PresenceRequest.PresenceTypeBusy:
+                return i18n.tr("Busy")
+            default:
+                return ""
+            }
+        }
+        visible: true
+    }
+
+    head {
+        id: head
+        sections.model: {
+            // does not show dual sim switch if there is only one sim
+            if (!phoneAccount) {
+                if (account) {
+                    return [account.displayName]
+                }
+                return undefined
+            }
+            if (!multipleAccounts) {
+                return undefined
+            }
+
+            var accountNames = []
+            for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+                accountNames.push(telepathyHelper.activeAccounts[i].displayName)
+            }
+            return accountNames
+        }
+        sections.selectedIndex: {
+            if (!phoneAccount) {
+                if (account) {
+                    return 0
+                }
+                return -1
+            }
+ 
+            if (!messages.account) {
+                return -1
+            }
+            for (var i in telepathyHelper.activeAccounts) {
+                if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
+                    return i
+                }
+            }
+            return -1
+        }
+    }
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
@@ -197,6 +322,29 @@ Page {
         }
 
         return true
+    }
+
+    PresenceRequest {
+        id: presenceRequest
+        accountId: {
+            // if this is a regular sms chat, try requesting the presence on
+            // a multimedia account
+            if (!account) {
+                return ""
+            }
+            if (account.type == AccountEntry.PhoneAccount) {
+                for (var i in telepathyHelper.accounts) {
+                    var tmpAccount = telepathyHelper.accounts[i]
+                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                        return tmpAccount.accountId
+                    }
+                }
+                return ""
+            }
+            return account.accountId
+        }
+        // we just request presence on 1-1 chats
+        identifier: participants.length == 1 ? participants[0] : ""
     }
 
     // this is necessary to automatically update the view when the
@@ -397,32 +545,14 @@ Page {
         }
     }
 
-    head.sections.model: {
-        // does not show dual sim switch if there is only one sim
-        if (!multipleAccounts) {
-            return undefined
-        }
-
-        var accountNames = []
-        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
-            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
-        }
-        return accountNames
-    }
-    head.sections.selectedIndex: {
-        if (!messages.account) {
-            return -1
-        }
-        for (var i in telepathyHelper.activeAccounts) {
-            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
-                return i
-            }
-        }
-        return -1
-    }
     Connections {
         target: messages.head.sections
-        onSelectedIndexChanged: messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
+        onSelectedIndexChanged: {
+            if (!phoneAccount) {
+                return
+            }
+            messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
+        }
     }
 
     Loader {
@@ -561,6 +691,7 @@ Page {
             head: messages.head
             when: participants.length == 1 && contactWatcher.isUnknown
             backAction: backButton
+            contents: header
 
             actions: [
                 Action {
@@ -620,6 +751,7 @@ Page {
             head: messages.head
             when: participants.length == 1 && !contactWatcher.isUnknown
             backAction: backButton
+            contents: header
             actions: [
                 Action {
                     objectName: "contactCallKnownAction"

@@ -198,6 +198,7 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
 
     QString text;
+    QString accountId;
     QUrl url(arg);
     QString scheme = url.scheme();
     QString value = url.path();
@@ -210,7 +211,9 @@ void MessagingApplication::parseArgument(const QString &arg)
     Q_FOREACH(const Pair &item, query.queryItems()) {
         if (item.first == "text") {
             text = item.second;
-            break;
+        }
+        if (item.first == "accountId") {
+            accountId = item.second;
         }
     }
 
@@ -221,7 +224,7 @@ void MessagingApplication::parseArgument(const QString &arg)
 
     if (scheme == "message") {
         if (!value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text));
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text), Q_ARG(QVariant, accountId));
         } else {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         }
