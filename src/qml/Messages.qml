@@ -77,6 +77,18 @@ Page {
                 messages.chatEntry = chatEntry
             }
         }
+        onChatsChanged: {
+            for (var i in chatManager.chats) {
+                var chat = chatManager.chats[i]
+                // TODO: track using chatId and not participants
+                if (chat.account.accountId == account.accountId &&
+                    chat.participants[0] == messages.participants[0]) {
+                    messages.chatEntry = chat
+                    return
+                }
+            }
+            messages.chatEntry = null
+        }
     }
 
     Timer {
