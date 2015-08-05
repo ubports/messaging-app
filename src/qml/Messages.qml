@@ -302,8 +302,8 @@ Page {
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
-                var account = telepathyHelper.accountForId(event.accountId)
-                if (!account || account.type == AccountEntry.MultimediaAccount) {
+                var tmpAccount = telepathyHelper.accountForId(event.accountId)
+                if (!tmpAccount || (tmpAccount.type == AccountEntry.MultimediaAccount && messages.account.type == AccountEntry.PhoneAccount)) {
                     // we don't add the information event if the last outgoing message 
                     // was a fallback to a multimedia service
                     break;
