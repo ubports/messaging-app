@@ -28,7 +28,15 @@ MainView {
     id: mainView
 
     property string newPhoneNumber
-    property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
+    property bool multiplePhoneAccounts: {
+        var numAccounts = 0
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
+                numAccounts++
+            }
+        }
+        return numAccounts > 1
+    }
     property QtObject account: defaultAccount()
     property bool applicationActive: Qt.application.active
 
@@ -37,7 +45,7 @@ MainView {
     function defaultAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
-        if (multipleAccounts) {
+        if (multiplePhoneAccounts) {
             return telepathyHelper.defaultMessagingAccount
         } else {
             return telepathyHelper.activeAccounts[0]
@@ -120,7 +128,7 @@ MainView {
     Connections {
         target: telepathyHelper
         onSetupReady: {
-            if (multipleAccounts && !telepathyHelper.defaultMessagingAccount &&
+            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
                 settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
                 // FIXME: soon it will be more than just SIM cards, update the dialog accordingly
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))

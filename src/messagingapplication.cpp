@@ -208,7 +208,7 @@ void MessagingApplication::parseArgument(const QString &arg)
         value = value.right(value.length()-1);
     }
     QUrlQuery query(url);
-    Q_FOREACH(const Pair &item, query.queryItems()) {
+    Q_FOREACH(const Pair &item, query.queryItems(QUrl::FullyDecoded)) {
         if (item.first == "text") {
             text = item.second;
         }

@@ -34,19 +34,9 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: {
-        if (accountId) {
-            return telepathyHelper.accountForId(accountId)
-        } else {
-            return mainView.account
-        }
-    }
-
+    property QtObject account: getCurrentAccount()
     property string accountId: ""
-    property bool phoneAccount: {
-        var tmpAccount = telepathyHelper.accountForId(accountId)
-        return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount)
-    }
+    property bool phoneAccount: isPhoneAccount()
     property variant participants: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
@@ -67,6 +57,35 @@ Page {
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
     property bool userTyping: false
     property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+
+    function getCurrentAccount() {
+        if (accountId !== "") {
+            for (var i in telepathyHelper.accounts) {
+               var tmpAccount = telepathyHelper.accountForId(accountId)
+               if (tmpAccount.accountId == accountId) {
+                   return tmpAccount
+               }
+               return null
+            }
+        } else {
+            return mainView.account
+        }
+    }
+
+    function isPhoneAccount() {
+        var tmpAccount = telepathyHelper.accountForId(accountId)
+        return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
+    }
+
+    Connections {
+        target: telepathyHelper
+        onSetupReady: {
+            // force reevaluation
+            messages.account = Qt.binding(getCurrentAccount)
+            messages.phoneAccount = Qt.binding(isPhoneAccount)
+        }
+    }
+
 
     Connections {
         target: chatManager
@@ -155,24 +174,50 @@ Page {
     head {
         id: head
         sections.model: {
-            // does not show dual sim switch if there is only one sim
+            // on new chat dialogs display all possible accounts
+            if (accountId == "" && participants.length === 0) {
+                var accountNames = []
+                for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+                    accountNames.push(telepathyHelper.activeAccounts[i].displayName)
+                }
+                return accountNames
+            }
+ 
+            // do not show dual sim switch if there is only one sim
             if (!phoneAccount) {
-                if (account) {
-                    return [account.displayName]
+                if (messages.account) {
+                    return [messages.account.displayName]
                 }
                 return undefined
             }
-            if (!multipleAccounts) {
+
+            if (!multiplePhoneAccounts) {
                 return undefined
             }
 
             var accountNames = []
+            // if we get here, this is a regular sms conversation. just
+            // add phone accounts here
             for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
-                accountNames.push(telepathyHelper.activeAccounts[i].displayName)
+                var account = telepathyHelper.activeAccounts[i]
+                if (account.type == AccountEntry.PhoneAccount) {
+                    accountNames.push(account.displayName)
+                }
             }
             return accountNames
         }
         sections.selectedIndex: {
+            if (accountId == "" && participants.length === 0) {
+                // if this is a new message, just pick the first available sim
+                for (var i in telepathyHelper.activeAccounts) {
+                    if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
+                        return i
+                    }
+                }
+                // otherwise select none
+                return -1
+            }
+            // if this is not a phoneAccount, preselect the current account
             if (!phoneAccount) {
                 if (account) {
                     return 0
@@ -183,8 +228,16 @@ Page {
             if (!messages.account) {
                 return -1
             }
+
+            // if we get here, just pre-select the account that is set in messages.account
+            var phoneAccounts = []
             for (var i in telepathyHelper.activeAccounts) {
-                if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
+                if (telepathyHelper.activeAccounts[i].type === AccountEntry.PhoneAccount) {
+                    phoneAccounts.push(telepathyHelper.activeAccounts[i])
+                }
+            }
+            for (var i in phoneAccounts) {
+                if (phoneAccounts[i].accountId == messages.account.accountId) {
                     return i
                 }
             }
@@ -324,7 +377,7 @@ Page {
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
-        if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+        if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
         } else {
@@ -411,7 +464,7 @@ Page {
 
     property string firstRecipientAlias: ""
     title: {
-        if (selectionMode) {
+        if (selectionMode || participants.length == 0) {
             return " "
         }
 
@@ -544,7 +597,7 @@ Page {
         Dialog {
             id: dialogue
             title: i18n.tr("No network")
-            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
+            text: multiplePhoneAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
             Button {
                 objectName: "closeNoNetworkDialog"
                 text: i18n.tr("Close")
