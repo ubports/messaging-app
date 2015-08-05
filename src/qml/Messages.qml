@@ -121,27 +121,18 @@ Page {
     Repeater {
         model: messages.chatEntry ? messages.chatEntry.chatStates : null
         Item {
-            Connections {
-                target: modelData
-                onStateChanged: {
-                    messages.userTyping = true
-                    typingTimer.start()
-                }
-            }
-        }
-    }
-
-    Connections {
-        target: messages.chatEntry
-        onChatStatesChanged: {
-            // FIXME: for group chats we have to deal with states individually
-            for (var i in chatEntry.chatStates) {
-                if (chatEntry.chatStates[i].state == ChatState.ChannelChatStateComposing) {
+            function processChatState() {
+                if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
                     typingTimer.start()
                 } else {
                     messages.userTyping = false
                 }
+            }
+            Component.onCompleted: processChatState()
+            Connections {
+                target: modelData
+                onStateChanged: processChatState()
             }
         }
     }
