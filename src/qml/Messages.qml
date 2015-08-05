@@ -302,6 +302,12 @@ Page {
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
+                var account = telepathyHelper.accountForId(event.accountId)
+                if (!account || account.type == AccountEntry.MultimediaAccount) {
+                    // we don't add the information event if the last outgoing message 
+                    // was a fallback to a multimedia service
+                    break;
+                }
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
