@@ -752,7 +752,7 @@ Page {
             actions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1
+                    visible: participants.length == 1 && phoneAccount
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -763,7 +763,7 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1
+                    visible: contactWatcher.isUnknown && participants.length == 1 && phoneAccount
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
@@ -811,7 +811,7 @@ Page {
             actions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1
+                    visible: participants.length == 1 && phoneAccount
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -822,7 +822,7 @@ Page {
                 },
                 Action {
                     objectName: "contactProfileAction"
-                    visible: !contactWatcher.isUnknown && participants.length == 1
+                    visible: !contactWatcher.isUnknown && participants.length == 1 && phoneAccount
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {

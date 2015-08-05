@@ -37,19 +37,25 @@ MainView {
         }
         return numAccounts > 1
     }
-    property QtObject account: defaultAccount()
+    property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
 
     activeFocusOnPress: false
 
-    function defaultAccount() {
+    function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
         if (multiplePhoneAccounts) {
             return telepathyHelper.defaultMessagingAccount
         } else {
-            return telepathyHelper.activeAccounts[0]
+            for (var i in telepathyHelper.activeAccounts) {
+                var tmpAccount = telepathyHelper.activeAccounts[i]
+                if (tmpAccount.type == AccountEntry.PhoneAccount) {
+                    return tmpAccount
+                }
+            }
         }
+        return null
     }
 
     function showContactDetails(contact, contactListPage, contactsModel) {
@@ -108,9 +114,9 @@ MainView {
                     return;
                 }
             }
-            account = Qt.binding(defaultAccount)
+            account = Qt.binding(defaultPhoneAccount)
         }
-        onDefaultMessagingAccountChanged: account = Qt.binding(defaultAccount)
+        onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
     }
 
 
