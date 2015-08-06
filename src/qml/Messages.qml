@@ -57,6 +57,49 @@ Page {
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
     property bool userTyping: false
     property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+    property var accountsModel: {
+        var accounts = []
+        // on new chat dialogs display all possible accounts
+        if (accountId == "" && participants.length === 0) {
+            for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+                accounts.push(telepathyHelper.activeAccounts[i])
+            }
+            return accounts
+        }
+ 
+        if (!phoneAccount) {
+            if (messages.account) {
+                return [messages.account]
+            }
+            return undefined
+        }
+
+        // do not show dual sim switch if there is only one sim
+        if (!multiplePhoneAccounts) {
+            return undefined
+        }
+
+        // if we get here, this is a regular sms conversation. just
+        // add phone accounts here
+        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+            var account = telepathyHelper.activeAccounts[i]
+            if (account.type == AccountEntry.PhoneAccount) {
+                accounts.push(account)
+            }
+        }
+        return accounts
+    }
+
+    function accountIndex(account) {
+        var index = -1;
+        for (var i in messages.accountsModel) {
+            if (messages.accountsModel[i] == account) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
     function getCurrentAccount() {
         if (accountId !== "") {
@@ -165,52 +208,27 @@ Page {
     head {
         id: head
         sections.model: {
-            // on new chat dialogs display all possible accounts
-            if (accountId == "" && participants.length === 0) {
-                var accountNames = []
-                for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
-                    accountNames.push(telepathyHelper.activeAccounts[i].displayName)
-                }
-                return accountNames
-            }
- 
-            // do not show dual sim switch if there is only one sim
-            if (!phoneAccount) {
-                if (messages.account) {
-                    return [messages.account.displayName]
-                }
-                return undefined
-            }
-
-            if (!multiplePhoneAccounts) {
-                return undefined
-            }
-
             var accountNames = []
-            // if we get here, this is a regular sms conversation. just
-            // add phone accounts here
-            for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
-                var account = telepathyHelper.activeAccounts[i]
-                if (account.type == AccountEntry.PhoneAccount) {
-                    accountNames.push(account.displayName)
-                }
+            for (var i in messages.accountsModel) {
+                accountNames.push(messages.accountsModel[i].displayName)
             }
-            return accountNames
+            return accountNames.length > 0 ? accountNames : undefined
         }
         sections.selectedIndex: {
             if (accountId == "" && participants.length === 0) {
-                // if this is a new message, just pick the first available sim
-                for (var i in telepathyHelper.activeAccounts) {
-                    if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
+                // if this is a new message, just pre select the first available phone account
+                for (var i in messages.accountsModel) {
+                    if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
                         return i
                     }
                 }
                 // otherwise select none
                 return -1
             }
-            // if this is not a phoneAccount, preselect the current account
-            if (!phoneAccount) {
-                if (account) {
+
+            // if this is not a phone account, preselect the current account
+            if (!messages.phoneAccount) {
+                if (messages.account) {
                     return 0
                 }
                 return -1
@@ -221,18 +239,7 @@ Page {
             }
 
             // if we get here, just pre-select the account that is set in messages.account
-            var phoneAccounts = []
-            for (var i in telepathyHelper.activeAccounts) {
-                if (telepathyHelper.activeAccounts[i].type === AccountEntry.PhoneAccount) {
-                    phoneAccounts.push(telepathyHelper.activeAccounts[i])
-                }
-            }
-            for (var i in phoneAccounts) {
-                if (phoneAccounts[i].accountId == messages.account.accountId) {
-                    return i
-                }
-            }
-            return -1
+            return accountIndex(messages.account)
         }
     }
 
