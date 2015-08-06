@@ -34,8 +34,8 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: getCurrentAccount()
     property string accountId: ""
+    property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
     property variant participants: []
     property bool groupChat: participants.length > 1
@@ -61,27 +61,31 @@ Page {
         var accounts = []
         // on new chat dialogs display all possible accounts
         if (accountId == "" && participants.length === 0) {
-            for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+            for (var i in telepathyHelper.activeAccounts) {
                 accounts.push(telepathyHelper.activeAccounts[i])
+            }
+            // suru divider must be empty if there is only one sim card
+            if (accounts.length == 1 && accounts[0].type == AccountEntry.PhoneAccount) {
+                return []
             }
             return accounts
         }
  
-        if (!phoneAccount) {
-            if (messages.account) {
-                return [messages.account]
-            }
-            return undefined
+        var tmpAccount = telepathyHelper.accountForId(messages.accountId)
+        // on generic accounts we don't give the option to switch to another account
+        if (tmpAccount && tmpAccount.type == AccountEntry.GenericAccount) {
+            return [tmpAccount]
         }
+
+        // if we get here, this is a regular sms conversation. just
+        // add the available phone accounts next
 
         // do not show dual sim switch if there is only one sim
         if (!multiplePhoneAccounts) {
             return undefined
         }
 
-        // if we get here, this is a regular sms conversation. just
-        // add phone accounts here
-        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+        for (var i in telepathyHelper.activeAccounts) {
             var account = telepathyHelper.activeAccounts[i]
             if (account.type == AccountEntry.PhoneAccount) {
                 accounts.push(account)
@@ -102,14 +106,24 @@ Page {
     }
 
     function getCurrentAccount() {
-        if (accountId !== "") {
-            for (var i in telepathyHelper.accounts) {
-               var tmpAccount = telepathyHelper.accountForId(accountId)
-               if (tmpAccount.accountId == accountId) {
+        if (messages.accountId !== "") {
+            var tmpAccount = telepathyHelper.accountForId(messages.accountId)
+            // if the selected account is a phone account, check if there is a default
+            // phone account for messages first
+            if (tmpAccount && tmpAccount.type == AccountEntry.PhoneAccount &&
+                telepathyHelper.defaultMessagingAccount) {
+                for (var i in messages.accountsModel) {
+                    if (messages.accountsModel[i] == telepathyHelper.defaultMessagingAccount) {
+                        return telepathyHelper.defaultMessagingAccount
+                    }
+                }
+            }
+            for (var i in messages.accountsModel) {
+               if (tmpAccount.accountId == messages.accountId) {
                    return tmpAccount
                }
-               return null
             }
+            return null
         } else {
             return mainView.account
         }
@@ -216,25 +230,22 @@ Page {
         }
         sections.selectedIndex: {
             if (accountId == "" && participants.length === 0) {
-                // if this is a new message, just pre select the first available phone account
+                // if this is a new message, just pre select the the 
+                // default phone account for messages if available
+                if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
+                    for (var i in messages.accountsModel) {
+                        if (telepathyHelper.defaultMessagingAccount == messages.accountsModel[i]) {
+                            return i
+                        }
+                    }
+                }
+                // otherwise pre-select the first available phone account if any
                 for (var i in messages.accountsModel) {
                     if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
                         return i
                     }
                 }
                 // otherwise select none
-                return -1
-            }
-
-            // if this is not a phone account, preselect the current account
-            if (!messages.phoneAccount) {
-                if (messages.account) {
-                    return 0
-                }
-                return -1
-            }
- 
-            if (!messages.account) {
                 return -1
             }
 
@@ -420,7 +431,12 @@ Page {
     // default account changes in system settings
     Connections {
         target: mainView
-        onAccountChanged: messages.account = mainView.account
+        onAccountChanged: {
+            if (!messages.phoneAccount) {
+                return
+            }
+            messages.account = mainView.account
+        }
     }
 
     Connections {
@@ -617,10 +633,7 @@ Page {
     Connections {
         target: messages.head.sections
         onSelectedIndexChanged: {
-            if (!phoneAccount) {
-                return
-            }
-            messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
+            messages.account = messages.accountsModel[head.sections.selectedIndex]
         }
     }
 
@@ -765,7 +778,7 @@ Page {
             actions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1 && phoneAccount
+                    visible: participants.length == 1 && messages.phoneAccount
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -776,7 +789,7 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && phoneAccount
+                    visible: contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
@@ -824,7 +837,7 @@ Page {
             actions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1 && phoneAccount
+                    visible: participants.length == 1 && messages.phoneAccount
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -835,7 +848,7 @@ Page {
                 },
                 Action {
                     objectName: "contactProfileAction"
-                    visible: !contactWatcher.isUnknown && participants.length == 1 && phoneAccount
+                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
