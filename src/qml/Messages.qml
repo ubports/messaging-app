@@ -79,18 +79,13 @@ Page {
 
         // if we get here, this is a regular sms conversation. just
         // add the available phone accounts next
-
-        // do not show dual sim switch if there is only one sim
-        if (!multiplePhoneAccounts) {
-            return undefined
-        }
-
         for (var i in telepathyHelper.activeAccounts) {
             var account = telepathyHelper.activeAccounts[i]
             if (account.type == AccountEntry.PhoneAccount) {
                 accounts.push(account)
             }
         }
+
         return accounts
     }
 
@@ -109,19 +104,25 @@ Page {
         if (messages.accountId !== "") {
             var tmpAccount = telepathyHelper.accountForId(messages.accountId)
             // if the selected account is a phone account, check if there is a default
-            // phone account for messages first
-            if (tmpAccount && tmpAccount.type == AccountEntry.PhoneAccount &&
-                telepathyHelper.defaultMessagingAccount) {
+            // phone account for messages
+            if (tmpAccount && tmpAccount.type == AccountEntry.PhoneAccount) {
+                if (telepathyHelper.defaultMessagingAccount) {
+                    for (var i in messages.accountsModel) {
+                        if (messages.accountsModel[i] == telepathyHelper.defaultMessagingAccount) {
+                            return telepathyHelper.defaultMessagingAccount
+                        }
+                    }
+                }
                 for (var i in messages.accountsModel) {
-                    if (messages.accountsModel[i] == telepathyHelper.defaultMessagingAccount) {
-                        return telepathyHelper.defaultMessagingAccount
+                    if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                        return messages.accountsModel[i]
                     }
                 }
             }
             for (var i in messages.accountsModel) {
-               if (tmpAccount.accountId == messages.accountId) {
-                   return tmpAccount
-               }
+                if (tmpAccount.accountId == messages.accountId) {
+                    return tmpAccount
+                }
             }
             return null
         } else {
@@ -223,6 +224,12 @@ Page {
         id: head
         sections.model: {
             var accountNames = []
+            // suru divider must be empty if there is only one sim card
+            if (messages.accountsModel.length == 1 &&
+                    messages.accountsModel[0].type == AccountEntry.PhoneAccount) {
+                return []
+            }
+ 
             for (var i in messages.accountsModel) {
                 accountNames.push(messages.accountsModel[i].displayName)
             }
