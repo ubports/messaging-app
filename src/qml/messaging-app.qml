@@ -27,7 +27,6 @@ import Ubuntu.History 0.1
 MainView {
     id: mainView
 
-    property string newPhoneNumber
     property bool multiplePhoneAccounts: {
         var numAccounts = 0
         for (var i in telepathyHelper.activeAccounts) {
@@ -45,7 +44,7 @@ MainView {
     function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
-        if (multiplePhoneAccounts) {
+        if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
             return telepathyHelper.defaultMessagingAccount
         } else {
             for (var i in telepathyHelper.activeAccounts) {
@@ -105,7 +104,7 @@ MainView {
         }
     }
 
-    Connections {
+/*    Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
         onActiveAccountsChanged: {
@@ -117,8 +116,7 @@ MainView {
             account = Qt.binding(defaultPhoneAccount)
         }
         onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
-    }
-
+    }*/
 
     automaticOrientation: true
     width: units.gu(40)
@@ -135,8 +133,7 @@ MainView {
         target: telepathyHelper
         onSetupReady: {
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
-                // FIXME: soon it will be more than just SIM cards, update the dialog accordingly
+                !settings.mainViewIgnoreFirstTimeDialog && mainStack.depth === 1) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }
@@ -159,7 +156,7 @@ MainView {
         id: settings
         category: "DualSim"
         property bool messagesDontAsk: false
-        property int mainViewDontAskCount: 0
+        property bool mainViewIgnoreFirstTimeDialog: false
     }
 
     Connections {
