@@ -66,7 +66,7 @@ Page {
             }
             // suru divider must be empty if there is only one sim card
             if (accounts.length == 1 && accounts[0].type == AccountEntry.PhoneAccount) {
-                return []
+                return undefined
             }
             return accounts
         }
@@ -530,12 +530,23 @@ Page {
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        for (var i in telepathyHelper.accounts) {
-            var account = telepathyHelper.accounts[i];
+        var filterAccounts = []
+        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
+            filterAccounts = [messages.accountsModel[0]]
+        } else {
+            for (var i in telepathyHelper.accounts) {
+                var account = telepathyHelper.accounts[i]
+                if (account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount) {
+                    filterAccounts.push(account)
+                }
+            }
+        }
+        for (var i in filterAccounts) {
+            var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
-                                                                 account.type === AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                 account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                             : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
                 continue
@@ -716,6 +727,10 @@ Page {
     }
 
     onParticipantsChanged: {
+        updateFilters()
+    }
+
+    onAccountsModelChanged: {
         updateFilters()
     }
 
