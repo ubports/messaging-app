@@ -235,30 +235,32 @@ Page {
             }
             return accountNames.length > 0 ? accountNames : undefined
         }
-        sections.selectedIndex: {
-            if (accountId == "" && participants.length === 0) {
-                // if this is a new message, just pre select the the 
-                // default phone account for messages if available
-                if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
-                    for (var i in messages.accountsModel) {
-                        if (telepathyHelper.defaultMessagingAccount == messages.accountsModel[i]) {
-                            return i
-                        }
-                    }
-                }
-                // otherwise pre-select the first available phone account if any
+        sections.selectedIndex: getSelectedIndex()
+    }
+
+    function getSelectedIndex() {
+        if (accountId == "" && participants.length === 0) {
+            // if this is a new message, just pre select the the 
+            // default phone account for messages if available
+            if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
                 for (var i in messages.accountsModel) {
-                    if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                    if (telepathyHelper.defaultMessagingAccount == messages.accountsModel[i]) {
                         return i
                     }
                 }
-                // otherwise select none
-                return -1
             }
-
-            // if we get here, just pre-select the account that is set in messages.account
-            return accountIndex(messages.account)
+            // otherwise pre-select the first available phone account if any
+            for (var i in messages.accountsModel) {
+                if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                    return i
+                }
+            }
+            // otherwise select none
+            return -1
         }
+
+        // if we get here, just pre-select the account that is set in messages.account
+        return accountIndex(messages.account)
     }
 
     function addAttachmentsToModel(transfer) {
@@ -1264,6 +1266,11 @@ Page {
                     // dont change the participants list
                     if (participants.length == 0) {
                         participants = multiRecipient.recipients
+                    }
+
+                    if (messages.account && messages.accountId == "") {
+                        messages.accountId = messages.account.accountId
+                        messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
                     }
 
                     var newAttachments = []
