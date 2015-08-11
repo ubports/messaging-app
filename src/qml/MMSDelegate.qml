@@ -55,12 +55,16 @@ MessageDelegate {
             if (item.contentType.toLowerCase() === "application/smil") {
                 continue
             }
+            // we dont include text files. they will be sent as textMessage
+            if (item.contentType.toLowerCase() === "text/plain") {
+                continue
+            }
             attachment.push(item.attachmentId)
             attachment.push(item.contentType)
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.sendMessage(textMessage, participants, newAttachments)
+        messages.sendMessage(textMessage, participants, newAttachments, {"x-canonical-tmp-files": true})
     }
 
     function copyMessage()

@@ -309,7 +309,10 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessage(text, participants, attachments) {
+    function sendMessage(text, participants, attachments, properties) {
+        if (typeof(properties) === 'undefined') {
+            properties = {}
+        }
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
@@ -394,7 +397,7 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId. 
                 return
             }
-            chatManager.sendMessage(messages.account.accountId, participants, text, attachments)
+            chatManager.sendMessage(messages.account.accountId, participants, text, attachments, properties)
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
