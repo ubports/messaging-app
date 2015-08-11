@@ -66,7 +66,7 @@ Page {
             }
             // suru divider must be empty if there is only one sim card
             if (accounts.length == 1 && accounts[0].type == AccountEntry.PhoneAccount) {
-                return undefined
+                return []
             }
             return accounts
         }
@@ -227,7 +227,7 @@ Page {
             // suru divider must be empty if there is only one sim card
             if (messages.accountsModel.length == 1 &&
                     messages.accountsModel[0].type == AccountEntry.PhoneAccount) {
-                return []
+                return undefined
             }
  
             for (var i in messages.accountsModel) {
