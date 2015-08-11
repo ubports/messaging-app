@@ -46,7 +46,6 @@ MessageDelegate {
 
     function resendMessage()
     {
-        eventModel.removeEvents([messageData.properties]);
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
@@ -55,7 +54,8 @@ MessageDelegate {
             if (item.contentType.toLowerCase() === "application/smil") {
                 continue
             }
-            // we dont include text files. they will be sent as textMessage
+            // text messages will be sent as textMessage. skip it
+            // to avoid duplication
             if (item.contentType.toLowerCase() === "text/plain") {
                 continue
             }
@@ -65,6 +65,7 @@ MessageDelegate {
             newAttachments.push(attachment)
         }
         messages.sendMessage(textMessage, participants, newAttachments, {"x-canonical-tmp-files": true})
+        deleteMessage();
     }
 
     function copyMessage()
