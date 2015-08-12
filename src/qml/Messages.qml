@@ -57,6 +57,10 @@ Page {
 
     function addAttachmentsToModel(transfer) {
         for (var i = 0; i < transfer.items.length; i++) {
+            if (String(transfer.items[i].text).length > 0) {
+                messages.text = String(transfer.items[i].text)
+                continue
+            }
             var attachment = {}
             if (!startsWith(String(transfer.items[i].url),"file://")) {
                 messages.text = String(transfer.items[i].url)
@@ -362,8 +366,13 @@ Page {
                         height: childrenRect.height
                         width: popover.width
                         ListItem.Standard {
-                            id: listItem
+                            id: participant
+                            objectName: "participant%1".arg(index)
                             text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
+                            onClicked: {
+                                PopupUtils.close(popover)
+                                mainView.startChat(contactWatcher.identifier)
+                            }
                         }
                         ContactWatcher {
                             id: contactWatcher
@@ -549,7 +558,7 @@ Page {
                 Action {
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, messages.header)
+                    onTriggered: PopupUtils.open(participantsPopover, screenTop)
                 }
             ]
         },
@@ -574,7 +583,7 @@ Page {
                 Action {
                     objectName: "addContactAction"
                     visible: contactWatcher.isUnknown && participants.length == 1
-                    iconName: "new-contact"
+                    iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
@@ -688,6 +697,18 @@ Page {
        onTriggered: eventModel.fetchMore()
     }
 
+    // this item is used as parent of the participants popup. using
+    // messages.header as parent was hanging the app
+    Item {
+        id: screenTop
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: 0
+    }
+
     MessagesListView {
         id: messageList
         objectName: "messageList"
@@ -696,7 +717,7 @@ Page {
         // because of the header
         clip: true
         anchors {
-            top: parent.top
+            top: screenTop.bottom
             left: parent.left
             right: parent.right
             bottom: bottomPanel.top
@@ -728,6 +749,7 @@ Page {
 
         Icon {
             id: attachButton
+            objectName: "attachButton"
             anchors.left: parent.left
             anchors.leftMargin: units.gu(2)
             anchors.verticalCenter: sendButton.verticalCenter
@@ -864,16 +886,14 @@ Page {
                             elide: Text.ElideMiddle
                             color: UbuntuColors.lightAubergine
                         }
-
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
+                            onPressAndHold: {
                                 mouse.accept = true
                                 Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
-                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -896,13 +916,12 @@ Page {
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
+                            onPressAndHold: {
                                 mouse.accept = true
                                 Qt.inputMethod.hide()
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
-                            onPressAndHold: clicked(mouse)
                         }
                     }
                 }
@@ -983,19 +1002,16 @@ Page {
             }
         }
 
-        Button {
+        Icon {
             id: sendButton
             objectName: "sendButton"
-            anchors.bottomMargin: units.gu(1)
-            anchors.bottom: parent.bottom
+            anchors.verticalCenter: textEntry.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: units.gu(2)
-            text: i18n.tr("Send")
-            color: enabled ? "#38b44a" : "#b2b2b2"
-            width: units.gu(7)
-            height: units.gu(4)
-            font.pixelSize: FontUtils.sizeToPixels("small")
-            activeFocusOnPress: false
+            color: "gray"
+            source: Qt.resolvedUrl("./assets/send.svg")
+            width: units.gu(3)
+            height: units.gu(3)
             enabled: {
                if (participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== "") {
                     if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
@@ -1004,40 +1020,44 @@ Page {
                 }
                 return false
             }
-            onClicked: {
-                // make sure we flush everything we have prepared in the OSK preedit
-                Qt.inputMethod.commit();
-                if (textEntry.text == "" && attachments.count == 0) {
-                    return
-                }
-                // refresh the recipient list
-                multiRecipient.focus = false
-                // dont change the participants list
-                if (participants.length == 0) {
-                    participants = multiRecipient.recipients
-                }
 
-                var newAttachments = []
-                for (var i = 0; i < attachments.count; i++) {
-                    var attachment = []
-                    var item = attachments.get(i)
-                    // we dont include smil files. they will be auto generated
-                    if (item.contentType.toLowerCase() === "application/smil") {
-                        continue
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // make sure we flush everything we have prepared in the OSK preedit
+                    Qt.inputMethod.commit();
+                    if (textEntry.text == "" && attachments.count == 0) {
+                        return
                     }
-                    attachment.push(item.name)
-                    attachment.push(item.contentType)
-                    attachment.push(item.filePath)
-                    newAttachments.push(attachment)
-                }
+                    // refresh the recipient list
+                    multiRecipient.focus = false
+                    // dont change the participants list
+                    if (participants.length == 0) {
+                        participants = multiRecipient.recipients
+                    }
 
-                // if sendMessage succeeds it means the message was either sent or
-                // injected into the history service so the user can retry later
-                if (sendMessage(textEntry.text, participants, newAttachments)) {
-                    textEntry.text = ""
-                    attachments.clear()
+                    var newAttachments = []
+                    for (var i = 0; i < attachments.count; i++) {
+                        var attachment = []
+                        var item = attachments.get(i)
+                        // we dont include smil files. they will be auto generated
+                        if (item.contentType.toLowerCase() === "application/smil") {
+                            continue
+                        }
+                        attachment.push(item.name)
+                        attachment.push(item.contentType)
+                        attachment.push(item.filePath)
+                        newAttachments.push(attachment)
+                    }
+
+                    // if sendMessage succeeds it means the message was either sent or
+                    // injected into the history service so the user can retry later
+                    if (sendMessage(textEntry.text, participants, newAttachments)) {
+                        textEntry.text = ""
+                        attachments.clear()
+                    }
+                    updateFilters()
                 }
-                updateFilters()
             }
         }
     }

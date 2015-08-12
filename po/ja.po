@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
 "PO-Revision-Date: 2014-10-10 13:49+0000\n"
 "Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-07-21 05:34+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -50,15 +50,15 @@ msgstr ""
 msgid "Accepted"
 msgstr "受理済み"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:581
 msgid "Add"
 msgstr "追加"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "メンバーを追加"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "すべて"
 
@@ -90,11 +90,12 @@ msgstr[0] "添付：%1個の動画"
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
 msgid "Call"
 msgstr "発信"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -105,7 +106,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "すべてのメッセージを%1経由に変更しますか？"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
 msgid "Close"
 msgstr "閉じる"
 
@@ -113,7 +114,7 @@ msgstr "閉じる"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "新規メッセージを作成するには画面の下から上へスワイプ"
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:639
 msgid "Contact"
 msgstr "連絡先"
 
@@ -137,6 +138,10 @@ msgstr "配送済み"
 msgid "Don't ask again"
 msgstr "再び表示しない"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr ""
@@ -149,7 +154,7 @@ msgstr "失敗しました"
 msgid "Failed!"
 msgstr "失敗！"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "お気に入り"
 
@@ -170,7 +175,7 @@ msgid "Group"
 msgstr "グループ"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:266
 #, qt-format
 msgid "Group (%1)"
 msgstr "グループ (%1)"
@@ -211,7 +216,7 @@ msgstr "メッセージング"
 msgid "Messaging App"
 msgstr "メッセージアプリ"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "メッセージアプリ"
 
@@ -223,7 +228,7 @@ msgstr "メッセージデータがありません"
 msgid "Myself"
 msgstr "自分"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:269
 msgid "New Message"
 msgstr "新しいメッセージ"
 
@@ -236,7 +241,7 @@ msgstr "いいえ"
 msgid "No SIM card selected"
 msgstr "SIMカードが選択されていません"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:386
 msgid "No network"
 msgstr "ネットワークなし"
 
@@ -265,7 +270,7 @@ msgstr "読む"
 msgid "Received"
 msgstr "受信済み"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:333
 msgid "Remove"
 msgstr "削除"
 
@@ -282,14 +287,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "保存"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "検索"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "検索..."
 
@@ -301,7 +307,7 @@ msgstr ""
 "すべてのメッセージ送信で利用する標準のSIMを選択してください。<a "
 "href=\"system_settings\">システム設定</a>でいつでも変更できます。"
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "送信"
 
@@ -313,7 +319,7 @@ msgstr "送信しました"
 msgid "Settings"
 msgstr ""
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "共有"
 
@@ -341,12 +347,12 @@ msgstr "一時的な失敗"
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1には現在ネットワークがありません"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 msgid "There is currently no network."
 msgstr "現在ネットワークがありません"
 
@@ -370,8 +376,8 @@ msgstr "種類"
 msgid "Unknown"
 msgstr "不明"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:861
 msgid "Unknown contact"
 msgstr "不明な連絡先"
 
@@ -387,7 +393,7 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:976
 msgid "Write a message..."
 msgstr "メッセージを書く..."
 

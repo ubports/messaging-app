@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
 "PO-Revision-Date: 2015-03-01 23:54+0000\n"
 "Last-Translator: Rūdolfs Mazurs <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-05-30 05:32+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-07-21 05:34+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 "Language: lv\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -58,15 +58,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Pieņemts"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:581
 msgid "Add"
 msgstr "Pievienot"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Pievienot saņēmēju"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Visi"
 
@@ -106,11 +106,12 @@ msgstr[2] "Pielikums: %1 video"
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
 msgid "Call"
 msgstr "Piezvanīt"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -121,7 +122,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Mainīt visas īsziņu asociācijas uz %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
 msgid "Close"
 msgstr "Aizvērt"
 
@@ -129,7 +130,7 @@ msgstr "Aizvērt"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Izveidojiet jaunu īsziņu, velkot no ekrāna apakšas."
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:639
 msgid "Contact"
 msgstr "Kontakts"
 
@@ -153,6 +154,10 @@ msgstr "Piegādāts"
 msgid "Don't ask again"
 msgstr "Vairs nejautāt"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr ""
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr ""
@@ -165,7 +170,7 @@ msgstr "Neizdevās"
 msgid "Failed!"
 msgstr "Neizdevās!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Izlase"
 
@@ -186,7 +191,7 @@ msgid "Group"
 msgstr "Grupa"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:266
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupa (%1)"
@@ -227,7 +232,7 @@ msgstr "Īsziņas"
 msgid "Messaging App"
 msgstr "Īsziņu lietotne"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Īsziņu lietotne"
 
@@ -239,7 +244,7 @@ msgstr "Trūkstošie īsziņas dati"
 msgid "Myself"
 msgstr "Es"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:269
 msgid "New Message"
 msgstr "Jauna īsziņa"
 
@@ -252,7 +257,7 @@ msgstr "Nē"
 msgid "No SIM card selected"
 msgstr "Nav izvēlēta neviena SIM karte"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:386
 msgid "No network"
 msgstr "Nav tīkla"
 
@@ -283,7 +288,7 @@ msgstr "Lasīts"
 msgid "Received"
 msgstr "Saņemts"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:333
 msgid "Remove"
 msgstr "Izņemt"
 
@@ -300,14 +305,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Saglabāt"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Meklēt"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Meklēt..."
 
@@ -319,7 +325,7 @@ msgstr ""
 "Izvēlieties noklusējuma SIM izejošajām īsziņām. Savu izvēli varat vēlāk "
 "nomainīt <a href=\"system_settings\">Sistēmas iestatījumos</a>."
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Sūtīt"
 
@@ -331,7 +337,7 @@ msgstr "Nosūtīts"
 msgid "Settings"
 msgstr ""
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Dalīties"
 
@@ -359,12 +365,12 @@ msgstr "Uz brīdi neizdevās"
 msgid "Text message copied to clipboard"
 msgstr "Teksta īsziņa ir kopēta uz starpliktuvi"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Šobrīd nav tīkla uz %1"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 msgid "There is currently no network."
 msgstr "Šobrīd nav tīkla."
 
@@ -388,8 +394,8 @@ msgstr "Veids"
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:861
 msgid "Unknown contact"
 msgstr "Nezināms kontakts"
 
@@ -405,7 +411,7 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:976
 msgid "Write a message..."
 msgstr "Rakstīt īsziņu..."
 

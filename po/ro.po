@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-06-23 17:02+0000\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"PO-Revision-Date: 2015-07-19 18:13+0000\n"
 "Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2015-06-24 05:35+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-07-21 05:35+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -57,15 +57,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Acceptat"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:581
 msgid "Add"
 msgstr "Adaugă"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Adaugă recipient"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Tot"
 
@@ -105,11 +105,12 @@ msgstr[2] "Atașament: %1 de clipuri video"
 msgid "Audio attachment not supported"
 msgstr "Atașament audio nesuportat"
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
 msgid "Call"
 msgstr "Apel"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Anulează"
 
@@ -120,7 +121,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Modificați toate mesajele asociate pe %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
 msgid "Close"
 msgstr "Închide"
 
@@ -128,7 +129,7 @@ msgstr "Închide"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Compuneți un mesaj nou prin glisare pornind din josul ecranului."
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:639
 msgid "Contact"
 msgstr "Contact"
 
@@ -152,6 +153,10 @@ msgstr "Livrat"
 msgid "Don't ask again"
 msgstr "Nu întreba din nou"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr "Editaţi"
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr "Activați chat MMS în grup"
@@ -164,7 +169,7 @@ msgstr "Eșec"
 msgid "Failed!"
 msgstr "Eșuat!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Favorite"
 
@@ -185,7 +190,7 @@ msgid "Group"
 msgstr "Grup"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:266
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grup (%1)"
@@ -226,7 +231,7 @@ msgstr "Mesagerie"
 msgid "Messaging App"
 msgstr "Aplicație pentru mesagerie"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Aplicație pentru mesagerie"
 
@@ -238,7 +243,7 @@ msgstr "Lipsă date mesaj"
 msgid "Myself"
 msgstr "Eu"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:269
 msgid "New Message"
 msgstr "Mesaj nou"
 
@@ -251,7 +256,7 @@ msgstr "Nu"
 msgid "No SIM card selected"
 msgstr "Nu a fost selectat un card SIM"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:386
 msgid "No network"
 msgstr "Fără rețea"
 
@@ -282,7 +287,7 @@ msgstr "Citit"
 msgid "Received"
 msgstr "Primit"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:333
 msgid "Remove"
 msgstr "Șterge"
 
@@ -299,14 +304,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Salvează"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Căutare"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Căutare...."
 
@@ -319,7 +325,7 @@ msgstr ""
 "întotdeauna alegerea în <a href=\"system_settings\">Configurări de "
 "sistem</a>."
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Trimite"
 
@@ -331,7 +337,7 @@ msgstr "Trimis"
 msgid "Settings"
 msgstr "Configurări"
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Partajare"
 
@@ -359,12 +365,12 @@ msgstr "Eșec temporar"
 msgid "Text message copied to clipboard"
 msgstr "Textul mesajului a fost copiat in clipboard"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "În prezent nu există rețea pe %1"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 msgid "There is currently no network."
 msgstr "Nu există rețea."
 
@@ -388,8 +394,8 @@ msgstr "Tip"
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:861
 msgid "Unknown contact"
 msgstr "Contact necunoscut"
 
@@ -405,7 +411,7 @@ msgstr "Atașament video nesuportat"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Bine ați venit în aplicația dumneavoastră de mesagerie Ubuntu"
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:976
 msgid "Write a message..."
 msgstr "Scrieți un mesaj..."
 

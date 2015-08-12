@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-29 18:21+0200\n"
-"PO-Revision-Date: 2015-06-08 10:54+0000\n"
-"Last-Translator: orion_0 <Unknown>\n"
+"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"PO-Revision-Date: 2015-07-16 09:21+0000\n"
+"Last-Translator: Simos Xenitellis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-09 05:42+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-07-21 05:34+0000\n"
+"X-Generator: Launchpad (build 17628)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,15 +53,15 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Αποδέχθη"
 
-#: ../src/qml/Messages.qml:574
+#: ../src/qml/Messages.qml:581
 msgid "Add"
 msgstr "Προσθήκη"
 
-#: ../src/qml/NewRecipientPage.qml:29
+#: ../src/qml/NewRecipientPage.qml:50
 msgid "Add recipient"
 msgstr "Προσθήκη παραλήπτη"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "All"
 msgstr "Όλα"
 
@@ -97,11 +97,12 @@ msgstr[1] "Συνημμένα: %1 βίντεο"
 msgid "Audio attachment not supported"
 msgstr "Το επισυναπτόμενο αρχείο ήχου δεν υποστηρίζεται"
 
-#: ../src/qml/Messages.qml:563 ../src/qml/Messages.qml:621
+#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
 msgid "Call"
 msgstr "Κλήση"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/NewRecipientPage.qml:83
+#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -112,7 +113,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Αλλαγή όλων των συσχετίσεων των Μηνυμάτων σε %1;"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:383
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -121,7 +122,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Δημιουργία ενός νέου μηνύματος σέρνοντας προς τα πάνω από τη βάση της οθόνης."
 
-#: ../src/qml/Messages.qml:632
+#: ../src/qml/Messages.qml:639
 msgid "Contact"
 msgstr "Επαφή"
 
@@ -145,6 +146,10 @@ msgstr "Παραδόθηκε"
 msgid "Don't ask again"
 msgstr "Να μην ερωτηθώ ξανά"
 
+#: ../src/qml/MessagingContactViewPage.qml:70
+msgid "Edit"
+msgstr "Επεξεργασία"
+
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
 msgstr "Ενεργοποίηση συνομιλία ομάδας ΜΜS"
@@ -157,7 +162,7 @@ msgstr "Απέτυχε"
 msgid "Failed!"
 msgstr "Απέτυχε!"
 
-#: ../src/qml/NewRecipientPage.qml:69
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Favorites"
 msgstr "Αγαπημένα"
 
@@ -178,7 +183,7 @@ msgid "Group"
 msgstr "Ομάδα"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:261
+#: ../src/qml/Messages.qml:266
 #, qt-format
 msgid "Group (%1)"
 msgstr "Ομάδα (%1)"
@@ -219,7 +224,7 @@ msgstr "Μηνύματα"
 msgid "Messaging App"
 msgstr "Εφαρμογή Μηνύματα"
 
-#: ../src/messagingapplication.cpp:163 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Εφαρμογή μηνυμάτων"
 
@@ -231,7 +236,7 @@ msgstr "Χαμένα δεδομένα μηνύματος"
 msgid "Myself"
 msgstr "Εγώ"
 
-#: ../src/qml/Messages.qml:264
+#: ../src/qml/Messages.qml:269
 msgid "New Message"
 msgstr "Νέο μήνυμα"
 
@@ -244,7 +249,7 @@ msgstr "Όχι"
 msgid "No SIM card selected"
 msgstr "Δεν επιλέχτηκε κάρτα SIM"
 
-#: ../src/qml/Messages.qml:379
+#: ../src/qml/Messages.qml:386
 msgid "No network"
 msgstr "Απουσία δικτύου"
 
@@ -276,7 +281,7 @@ msgstr "Ανεγνώσθη"
 msgid "Received"
 msgstr "Παρελήφθη"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:333
 msgid "Remove"
 msgstr "Αφαίρεση"
 
@@ -293,14 +298,15 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: ../src/qml/NewRecipientPage.qml:57
+#: ../src/qml/NewRecipientPage.qml:78
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:45
+#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
 msgid "Search..."
 msgstr "Αναζήτηση..."
 
@@ -313,7 +319,7 @@ msgstr ""
 "πάντα να αλλάξετε την επιλογή σας στις <a href=\"system_settings\">Ρυθμίσεις "
 "συστήματος</a>."
 
-#: ../src/qml/Messages.qml:979
+#: ../src/qml/Messages.qml:987
 msgid "Send"
 msgstr "Αποστολή"
 
@@ -325,7 +331,7 @@ msgstr "Απεσταλμένα"
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: ../src/qml/MMS/Previewer.qml:45
+#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Κοινοποίηση"
 
@@ -353,12 +359,12 @@ msgstr "Προσωρινά απέτυχε"
 msgid "Text message copied to clipboard"
 msgstr "Το μήνυμα κειμένου έχει αντιγραφεί στο πρόχειρο"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Προς το παρόν δεν υπάρχει δίκτυο στο %1"
 
-#: ../src/qml/Messages.qml:380
+#: ../src/qml/Messages.qml:387
 msgid "There is currently no network."
 msgstr "Προς το παρόν δεν υπάρχει δίκτυο."
 
@@ -382,8 +388,8 @@ msgstr "Τύπος"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: ../src/qml/MMS/MMSContact.qml:83 ../src/qml/MMS/PreviewerContact.qml:27
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
+#: ../src/qml/Messages.qml:861
 msgid "Unknown contact"
 msgstr "Άγνωστη επαφή"
 
@@ -399,7 +405,7 @@ msgstr "Το επισυναπτόμενο αρχείο βίντεο  δεν υπ
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Καλώς ήρθατε στην εφαρμογή συνομιλίας του Ubuntu σας."
 
-#: ../src/qml/Messages.qml:949
+#: ../src/qml/Messages.qml:976
 msgid "Write a message..."
 msgstr "Γράψτε ένα μήνυμα..."
 
