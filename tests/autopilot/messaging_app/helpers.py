@@ -18,29 +18,31 @@ import time
 from dbus import exceptions
 
 
-def set_network_status(status):
-    status_number = 0
-    if status == "registered":
-        status_number = 1
-
+def run_script(script):
     # prepare and send a Qt GUI script to phonesim, over its private D-BUS
     # set up by ofono-phonesim-autostart
     script_dir = tempfile.mkdtemp(prefix="phonesim_script")
     os.chmod(script_dir, 0o755)
-    with open(os.path.join(script_dir, "registration.js"), "w") as f:
-        f.write("""
-tabRegistration.gbNetworkRegistration.cbRegistrationStatus.currentIndex = "%s";
-tabRegistration.gbNetworkRegistration.pbRegistration.click();
-""" % (status_number))
+    with open(os.path.join(script_dir, "script.js"), "w") as f:
+        f.write(script)
 
     with open("/run/lock/ofono-phonesim-dbus.address") as f:
         phonesim_bus = f.read().strip()
     bus = dbus.bus.BusConnection(phonesim_bus)
     script_proxy = bus.get_object("org.ofono.phonesim", "/")
     script_proxy.SetPath(script_dir)
-    script_proxy.Run("registration.js")
+    script_proxy.Run("script.js")
     shutil.rmtree(script_dir)
 
+def set_network_status(status):
+    status_number = 0
+    if status == "registered":
+        status_number = 1
+
+    run_script("""
+tabRegistration.gbNetworkRegistration.cbRegistrationStatus.currentIndex = "%s";
+tabRegistration.gbNetworkRegistration.pbRegistration.click();
+""" % (status_number))
 
 def receive_sms(sender, text):
     """Receive an SMS based on sender number and text
@@ -51,23 +53,11 @@ def receive_sms(sender, text):
 
     # prepare and send a Qt GUI script to phonesim, over its private D-BUS
     # set up by ofono-phonesim-autostart
-    script_dir = tempfile.mkdtemp(prefix="phonesim_script")
-    os.chmod(script_dir, 0o755)
-    with open(os.path.join(script_dir, "sms.js"), "w") as f:
-        f.write("""tabSMS.gbMessage1.leMessageSender.text = "%s";
+    run_script("""tabSMS.gbMessage1.leMessageSender.text = "%s";
 tabSMS.gbMessage1.leSMSClass.text = "1";
 tabSMS.gbMessage1.teSMSText.setPlainText("%s");
 tabSMS.gbMessage1.pbSendSMSMessage.click();
 """ % (sender, text))
-
-    with open("/run/lock/ofono-phonesim-dbus.address") as f:
-        phonesim_bus = f.read().strip()
-    bus = dbus.bus.BusConnection(phonesim_bus)
-    script_proxy = bus.get_object("org.ofono.phonesim", "/")
-    script_proxy.SetPath(script_dir)
-    script_proxy.Run("sms.js")
-    shutil.rmtree(script_dir)
-
 
 def get_phonesim():
     bus = dbus.SystemBus()
