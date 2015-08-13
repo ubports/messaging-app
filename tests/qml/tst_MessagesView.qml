@@ -135,8 +135,8 @@ Item {
             mainViewLoader.item.applicationActive = false
             var messageList = findChild(mainViewLoader, "messageList")
             messageList.listModel = messagesModel
-            compare(messageAcknowledgeSpy.count, 0)
             tryCompare(messageList, 'count', 2)
+            compare(messageAcknowledgeSpy.count, 0)
             mainViewLoader.item.applicationActive = true
             tryCompare(messageAcknowledgeSpy, 'count', 2)
         }
