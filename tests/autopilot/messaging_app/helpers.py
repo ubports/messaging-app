@@ -34,6 +34,7 @@ def run_script(script):
     script_proxy.Run("script.js")
     shutil.rmtree(script_dir)
 
+
 def set_network_status(status):
     status_number = 0
     if status == "registered":
@@ -43,6 +44,7 @@ def set_network_status(status):
 tabRegistration.gbNetworkRegistration.cbRegistrationStatus.currentIndex = "%s";
 tabRegistration.gbNetworkRegistration.pbRegistration.click();
 """ % (status_number))
+
 
 def receive_sms(sender, text):
     """Receive an SMS based on sender number and text
@@ -58,6 +60,7 @@ tabSMS.gbMessage1.leSMSClass.text = "1";
 tabSMS.gbMessage1.teSMSText.setPlainText("%s");
 tabSMS.gbMessage1.pbSendSMSMessage.click();
 """ % (sender, text))
+
 
 def get_phonesim():
     bus = dbus.SystemBus()
