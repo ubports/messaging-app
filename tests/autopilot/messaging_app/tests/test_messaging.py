@@ -567,6 +567,30 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
         self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
 
+    def test_write_new_message_with_tutorial_no_network(self):
+        """Verify if the tutorial appears and is not stuck by the popup"""
+        helpers.set_network_status("unregistered")
+        phone_num = '123'
+        message = 'hello from Ubuntu'
+        self.main_view.send_message([phone_num], message)
+        self.main_view.close_osk()
+
+        closeButton = self.main_view.wait_select_single(
+            'Button',
+            objectName='closeNoNetworkDialog')
+        self.pointing_device.click_object(closeButton)
+
+        swipe_item_demo = self.main_view.get_swipe_item_demo()
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
+        got_it_button = swipe_item_demo.select_single(
+            'Button',
+            objectName='gotItButton')
+        self.pointing_device.click_object(got_it_button)
+        self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
+        self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
+        helpers.set_network_status("registered")
+
 
 class MessagingTestSendAMessageFromContactView(MessagingAppTestCase):
 

@@ -18,6 +18,30 @@ import time
 from dbus import exceptions
 
 
+def set_network_status(status):
+    status_number = 0
+    if status == "registered":
+        status_number = 1
+
+    # prepare and send a Qt GUI script to phonesim, over its private D-BUS
+    # set up by ofono-phonesim-autostart
+    script_dir = tempfile.mkdtemp(prefix="phonesim_script")
+    os.chmod(script_dir, 0o755)
+    with open(os.path.join(script_dir, "registration.js"), "w") as f:
+        f.write("""
+tabRegistration.gbNetworkRegistration.cbRegistrationStatus.currentIndex = "%s";
+tabRegistration.gbNetworkRegistration.pbRegistration.click();
+""" % (status_number))
+
+    with open("/run/lock/ofono-phonesim-dbus.address") as f:
+        phonesim_bus = f.read().strip()
+    bus = dbus.bus.BusConnection(phonesim_bus)
+    script_proxy = bus.get_object("org.ofono.phonesim", "/")
+    script_proxy.SetPath(script_dir)
+    script_proxy.Run("registration.js")
+    shutil.rmtree(script_dir)
+
+
 def receive_sms(sender, text):
     """Receive an SMS based on sender number and text
 
