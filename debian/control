@@ -18,6 +18,7 @@ Build-Depends: cmake,
                qtdeclarative5-ubuntu-ui-toolkit-plugin,
                qtdeclarative5-ubuntu-history0.1,
                qtdeclarative5-ubuntu-telephony-phonenumber0.1,
+               qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
                qtpim5-dev,
                xvfb,
 Standards-Version: 3.9.4
