@@ -580,6 +580,8 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
             objectName='closeNoNetworkDialog')
         self.pointing_device.click_object(closeButton)
 
+        closeButton.wait_until_destroyed()
+
         swipe_item_demo = self.main_view.get_swipe_item_demo()
         self.assertThat(swipe_item_demo.enabled, Eventually(Equals(True)))
         self.assertThat(swipe_item_demo.necessary, Eventually(Equals(True)))
@@ -589,7 +591,6 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         self.pointing_device.click_object(got_it_button)
         self.assertThat(swipe_item_demo.enabled, Eventually(Equals(False)))
         self.assertThat(swipe_item_demo.necessary, Eventually(Equals(False)))
-        helpers.set_network_status("registered")
 
 
 class MessagingTestSendAMessageFromContactView(MessagingAppTestCase):

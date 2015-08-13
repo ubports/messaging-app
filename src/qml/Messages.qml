@@ -93,7 +93,7 @@ Page {
             Qt.inputMethod.hide()
             // workaround for bug #1461861
             messages.focus = false
-            PopupUtils.open(noNetworkDialog)
+            PopupUtils.open(noNetworkDialogComponent)
             return false
         }
 
@@ -386,9 +386,10 @@ Page {
     }
 
     Component {
-        id: noNetworkDialog
+        id: noNetworkDialogComponent
         Dialog {
-            id: dialogue
+            id: noNetworkDialog
+            objectName: "noNetworkDialog"
             title: i18n.tr("No network")
             text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
             Button {
@@ -396,7 +397,7 @@ Page {
                 text: i18n.tr("Close")
                 color: UbuntuColors.orange
                 onClicked: {
-                    PopupUtils.close(dialogue)
+                    PopupUtils.close(noNetworkDialog)
                     Qt.inputMethod.hide()
                 }
             }
