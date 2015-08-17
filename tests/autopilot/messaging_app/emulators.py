@@ -125,7 +125,7 @@ class MainView(toolkit_emulators.MainView):
     def get_send_button(self):
         """Return Button with text Send"""
 
-        return self.get_messages_page().select_single('Icon11',
+        return self.get_messages_page().select_single('Icon',
                                                       objectName='sendButton')
 
     def get_toolbar_back_button(self):
