@@ -30,6 +30,7 @@ MainView {
     property string newPhoneNumber
     property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
     property QtObject account: defaultAccount()
+    property bool applicationActive: Qt.application.active
 
     activeFocusOnPress: false
 
