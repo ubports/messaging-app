@@ -84,13 +84,17 @@ Page {
     function sendMessageNetworkCheck() {
         if (messages.account.simLocked) {
             Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
             PopupUtils.open(Qt.createComponent("Dialogs/SimLockedDialog.qml").createObject(messages))
             return false
         }
 
         if (!messages.account.connected) {
             Qt.inputMethod.hide()
-            PopupUtils.open(noNetworkDialog)
+            // workaround for bug #1461861
+            messages.focus = false
+            PopupUtils.open(noNetworkDialogComponent)
             return false
         }
 
@@ -108,6 +112,8 @@ Page {
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
             PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
             return false
         }
@@ -399,9 +405,10 @@ Page {
     }
 
     Component {
-        id: noNetworkDialog
+        id: noNetworkDialogComponent
         Dialog {
-            id: dialogue
+            id: noNetworkDialog
+            objectName: "noNetworkDialog"
             title: i18n.tr("No network")
             text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
             Button {
@@ -409,7 +416,7 @@ Page {
                 text: i18n.tr("Close")
                 color: UbuntuColors.orange
                 onClicked: {
-                    PopupUtils.close(dialogue)
+                    PopupUtils.close(noNetworkDialog)
                     Qt.inputMethod.hide()
                 }
             }

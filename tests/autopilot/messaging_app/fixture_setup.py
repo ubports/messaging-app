@@ -17,6 +17,7 @@ from autopilot.platform import model
 
 import fixtures
 from ubuntuuitoolkit import fixture_setup
+from messaging_app import helpers
 
 
 class MessagingTestEnvironment(fixtures.Fixture):
@@ -149,6 +150,7 @@ class OfonoPhoneSIM(fixtures.Fixture):
             raise RuntimeError('ofono-phonesim is not setup')
         self.addCleanup(self._restore_sim_connection)
         self._set_modem_on_phonesim()
+        helpers.set_network_status("registered")
 
     def _is_phonesim_running(self):
         try:
