@@ -17,6 +17,7 @@ endmacro()
 
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("message_bubble" tst_MessageBubble.qml)
+    declare_qml_test("messages_view" tst_MessagesView.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -27,5 +28,6 @@ endif()
 
 set(QML_TST_FILES
     tst_MessageBubble.qml
+    tst_MessagesView.qml
 )
 add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})

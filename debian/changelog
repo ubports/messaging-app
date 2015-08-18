@@ -1,3 +1,21 @@
+messaging-app (0.1+15.10.20150817.2-0ubuntu1) wily; urgency=medium
+
+  [ Brendan Donegan ]
+  * Remove component version from get_send_button (LP: #1482205)
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Allow closing dialogs while SwipeItemDemo is displayed. (LP:
+    #1461861)
+  * Only mark messages as read when the application is active, and add a
+    QML test to prevent regressions. The QML tests need some QML modules
+    available at build time in order to run properly, so those were
+    added as build deps. (LP: #1394971)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 17 Aug 2015 21:08:58 +0000
+
 messaging-app (0.1+15.10.20150710.2-0ubuntu2~gcc5.1) wily; urgency=medium
 
   * No-change test rebuild for g++5 ABI transition
