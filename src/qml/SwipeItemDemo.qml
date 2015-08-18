@@ -81,7 +81,7 @@ Loader {
 
                 InverseMouseArea {
                     anchors.fill: parent
-                    topmostItem: true
+                    topmostItem: false
                 }
             }
 
@@ -148,6 +148,7 @@ Loader {
 
                 incoming: true
                 accountLabel: ""
+                enabled: false
 
                 anchors {
                     bottom: parent.bottom
