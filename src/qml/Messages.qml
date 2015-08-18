@@ -305,7 +305,9 @@ Page {
             if (filterValue === "") {
                 continue
             }
-            componentFilters += 'HistoryFilter { filterProperty: "threadId"; filterValue: "%1" } '.arg(filterValue)
+            // WORKAROUND: we don't set value directly to filterValue otherwise strings matching color names
+            // will be converted to QColor
+            componentFilters += 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value } '.arg(filterValue)
         }
         if (componentFilters === "") {
             eventModel.filter = null
