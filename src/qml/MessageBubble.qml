@@ -80,7 +80,9 @@ Rectangle {
             return "#3fb24f"
         }
     }
-    radius: 9
+    border.color: "#ACACAC"
+
+    radius: units.gu(1)
     height: senderName.height + senderName.anchors.topMargin + textLabel.height + textTimestamp.height + units.gu(1)
     width:  Math.min(units.gu(27),
                      Math.max(textLabel.contentWidth, textTimestamp.contentWidth, senderName.contentWidth))
@@ -164,6 +166,8 @@ Rectangle {
         anchors {
             bottom: parent.bottom
             bottomMargin: units.gu(2)
+            leftMargin: -1
+            rightMargin: -1
         }
         width: units.gu(1)
         height: units.gu(1.5)
