@@ -519,6 +519,15 @@ Page {
     }
 
     Component.onCompleted: {
+        if (messages.accountId !== "") {
+            var account = telepathyHelper.accountForId(messages.accountId)
+            if (account && account.type == AccountEntry.MultimediaAccount) {
+                // fallback the first available phone account 
+                if (telepathyHelper.phoneAccounts.length > 0) {
+                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
+                }
+            }
+        }
         updateFilters()
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
