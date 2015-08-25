@@ -77,8 +77,15 @@ LocalPageWithBottomEdge {
                     objectName: "settingsAction"
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+                    onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                },
+                Action {
+                    objectName: "composeAction"
+                    text: i18n.tr("Compose a message")
+                    iconName: "message-new"
+                    onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"))
                 }
+
             ]
         },
         PageHeadState {
