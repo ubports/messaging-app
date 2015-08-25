@@ -38,6 +38,7 @@ MainView {
     }
     property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
+    property alias mainStack: layout
 
     activeFocusOnPress: false
 
@@ -57,7 +58,7 @@ MainView {
         return null
     }
 
-    function showContactDetails(contact, contactListPage, contactsModel) {
+    function showContactDetails(currentPage, contact, contactListPage, contactsModel) {
         var initialProperties =  { "contactListPage": contactListPage,
                                    "model": contactsModel}
 
@@ -67,21 +68,24 @@ MainView {
             initialProperties['contact'] = contact
         }
 
-        mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                       initialProperties)
+        mainStack.addPageToCurrentColumn(currentPage,
+                                         Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                                         initialProperties)
     }
 
-    function addNewContact(phoneNumber, contactListPage) {
-        mainStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
-                       { "contactId": contactId,
-                         "addPhoneToContact": phoneNumber,
-                         "contactListPage": contactListPage })
+    function addNewContact(currentPage, phoneNumber, contactListPage) {
+        mainStack.addPageToCurrentColumn(currentPage,
+                                         Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                                         { "contactId": contactId,
+                                           "addPhoneToContact": phoneNumber,
+                                           "contactListPage": contactListPage })
     }
 
-    function addPhoneToContact(contact, phoneNumber, contactListPage, contactsModel) {
+    function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
         if (contact === "") {
-            mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
-                           { "phoneToAdd": phoneNumber })
+            mainStack.addPageToCurrentColumn(currentPage,
+                                             Qt.resolvedUrl("NewRecipientPage.qml"),
+                                             { "phoneToAdd": phoneNumber })
         } else {
             var initialProperties = { "addPhoneToContact": phoneNumber,
                                       "contactListPage": contactListPage,
@@ -91,8 +95,9 @@ MainView {
             } else {
                 initialProperties['contact'] = contact
             }
-            mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                           initialProperties)
+            mainStack.addPageToCurrentColumn(currentPage,
+                                             Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                                             initialProperties)
         }
     }
 
@@ -131,6 +136,7 @@ MainView {
     Connections {
         target: telepathyHelper
         onSetupReady: {
+            // FIXME(convergence): we should not use the depth to check stuff anymore
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
                 !settings.mainViewIgnoreFirstTimeDialog && mainStack.depth === 1) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
@@ -164,7 +170,7 @@ MainView {
             var properties = {}
             emptyStack()
             properties["sharedAttachmentsTransfer"] = transfer
-            mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
         }
     }
 
@@ -186,6 +192,7 @@ MainView {
     }
 
     function emptyStack() {
+        // FIXME(convergence): we should not use the depth to verify stuff anymore
         while (mainStack.depth !== 1 && mainStack.depth !== 0) {
             mainStack.pop()
         }
@@ -194,7 +201,7 @@ MainView {
     function startNewMessage() {
         var properties = {}
         emptyStack()
-        mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
+        mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
     function startChat(identifiers, text, accountId) {
@@ -209,7 +216,7 @@ MainView {
         if (participants.length === 0) {
             return;
         }
-        mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+        mainStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
 
     Connections {
@@ -221,11 +228,11 @@ MainView {
        }
     }
 
-
-    PageStack {
-        id: mainStack
-
-        objectName: "mainStack"
-        Component.onCompleted: mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+    AdaptivePageLayout {
+        id: layout
+        anchors.fill: parent
+        primaryPage: MainPage {
+            id: mainPage
+        }
     }
 }
