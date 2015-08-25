@@ -37,7 +37,7 @@ LocalPageWithBottomEdge {
     title: selectionMode ? " " : i18n.tr("Messages")
     flickable: null
 
-    bottomEdgeEnabled: !selectionMode && !searching
+    bottomEdgeEnabled: false //!selectionMode && !searching && !mainView.dualPanel
     bottomEdgeTitle: i18n.tr("+")
     bottomEdgePageComponent: Messages { active: false }
 

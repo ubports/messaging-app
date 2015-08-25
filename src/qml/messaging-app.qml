@@ -39,6 +39,10 @@ MainView {
     property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
+    // FIXME(convergence): AdaptiveLayout doesn't currently expose the number of
+    // columns it is currently displaying, so we are using grid units to decide
+    // when to enable bottom edge
+    property bool dualPanel: width >= units.gu(80)
 
     activeFocusOnPress: false
 

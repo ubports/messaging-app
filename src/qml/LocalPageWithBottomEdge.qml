@@ -105,7 +105,7 @@ Page {
     {
         if (edgeLoader.status === Loader.Ready) {
             edgeLoader.item.active = true
-            page.pageStack.push(edgeLoader.item)
+            page.pageStack.addPageToNextColumn(page, edgeLoader.item)
             if (edgeLoader.item.flickable) {
                 edgeLoader.item.flickable.contentY = -page.header.height
                 edgeLoader.item.flickable.returnToBounds()
@@ -162,6 +162,7 @@ Page {
         property bool hidden: (activeFocus === false) || ((bottomEdge.y - units.gu(1)) < tip.y)
 
         enabled: mouseArea.enabled
+        visible: bottomEdgeEnabled
         anchors {
             bottom: parent.bottom
             horizontalCenter: bottomEdge.horizontalCenter
@@ -233,7 +234,7 @@ Page {
             minimumY: bottomEdge.pageStartY
             maximumY: page.height
         }
-        enabled: edgeLoader.status == Loader.Ready
+        enabled: bottomEdgeEnabled && edgeLoader.status == Loader.Ready
 
         anchors {
             left: parent.left
