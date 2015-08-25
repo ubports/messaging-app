@@ -58,6 +58,11 @@ Page {
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
     property bool userTyping: false
     property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+    Connections {
+        target: telepathyHelper
+        onActiveAccountsChanged: console.log("BLABLA active accounts changed to " + telepathyHelper.activeAccounts.length)
+    }
+
     property var accountsModel: {
         var accounts = []
         // on new chat dialogs display all possible accounts
@@ -80,8 +85,10 @@ Page {
 
         // if we get here, this is a regular sms conversation. just
         // add the available phone accounts next
+        console.log("BLABLA active accounts length: " + telepathyHelper.activeAccounts.length)
         for (var i in telepathyHelper.activeAccounts) {
             var account = telepathyHelper.activeAccounts[i]
+            console.log("BLABLA adding phone account " + account.accountId)
             if (account.type == AccountEntry.PhoneAccount) {
                 accounts.push(account)
             }
@@ -759,6 +766,7 @@ Page {
     }
 
     onAccountsModelChanged: {
+        console.log("BLABLA accounts model changed")
         updateFilters()
     }
 
@@ -855,8 +863,8 @@ Page {
         PageHeadState {
             name: "newMessage"
             head: messages.head
-            when: participants.length === 0 && isReady
-            backAction: backButton
+            when: participants.length === 0 //&& isReady
+            //backAction: backButton
             actions: [
                 Action {
                     objectName: "contactList"
@@ -869,15 +877,18 @@ Page {
 
             ]
 
-            contents: MultiRecipientInput {
+            //contents: MultiRecipientInput {
+            contents: Rectangle {
+                color: "orange"
                 id: multiRecipient
                 objectName: "multiRecipient"
                 enabled: visible
-                anchors {
+                anchors.fill: parent
+                /*anchors {
                     left: parent ? parent.left : undefined
                     right: parent ? parent.right : undefined
                     rightMargin: units.gu(2)
-                }
+                }*/
             }
         },
         PageHeadState {
