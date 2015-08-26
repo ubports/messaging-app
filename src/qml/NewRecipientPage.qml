@@ -44,7 +44,7 @@ Page {
     {
         multiRecipient.addRecipient(phoneNumber)
         multiRecipient.forceActiveFocus()
-        mainStack.pop()
+        mainStack.removePages(newRecipientPage)
     }
 
     title: i18n.tr("Add recipient")

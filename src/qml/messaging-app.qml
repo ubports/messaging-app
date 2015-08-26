@@ -196,10 +196,7 @@ MainView {
     }
 
     function emptyStack() {
-        // FIXME(convergence): we should not use the depth to verify stuff anymore
-        while (mainStack.depth !== 1 && mainStack.depth !== 0) {
-            mainStack.pop()
-        }
+        mainStack.removePages(mainPage)
     }
 
     function startNewMessage() {
