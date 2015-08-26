@@ -37,7 +37,7 @@ LocalPageWithBottomEdge {
     title: selectionMode ? " " : i18n.tr("Messages")
     flickable: null
 
-    bottomEdgeEnabled: false //!selectionMode && !searching && !mainView.dualPanel
+    bottomEdgeEnabled: !selectionMode && !searching && !mainView.dualPanel
     bottomEdgeTitle: i18n.tr("+")
     bottomEdgePageComponent: Messages { active: false }
 
@@ -83,6 +83,7 @@ LocalPageWithBottomEdge {
                     objectName: "composeAction"
                     text: i18n.tr("Compose a message")
                     iconName: "message-new"
+                    visible: dualPanel
                     onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"))
                 }
 
