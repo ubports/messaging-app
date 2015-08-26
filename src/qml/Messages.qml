@@ -58,10 +58,6 @@ Page {
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
     property bool userTyping: false
     property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
-    Connections {
-        target: telepathyHelper
-        onActiveAccountsChanged: console.log("BLABLA active accounts changed to " + telepathyHelper.activeAccounts.length)
-    }
 
     property var accountsModel: {
         var accounts = []
@@ -85,10 +81,8 @@ Page {
 
         // if we get here, this is a regular sms conversation. just
         // add the available phone accounts next
-        console.log("BLABLA active accounts length: " + telepathyHelper.activeAccounts.length)
         for (var i in telepathyHelper.activeAccounts) {
             var account = telepathyHelper.activeAccounts[i]
-            console.log("BLABLA adding phone account " + account.accountId)
             if (account.type == AccountEntry.PhoneAccount) {
                 accounts.push(account)
             }
@@ -766,7 +760,6 @@ Page {
     }
 
     onAccountsModelChanged: {
-        console.log("BLABLA accounts model changed")
         updateFilters()
     }
 
