@@ -34,11 +34,6 @@ StyledItem {
     height: contactFlow.height
     focus: activeFocus
 
-    Rectangle {
-        color: "orange"
-        anchors.fill: parent
-    }
-
     signal forceFocus()
 
     MouseArea {
