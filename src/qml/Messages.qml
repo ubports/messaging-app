@@ -849,7 +849,7 @@ Page {
                     onTriggered: {
                         Qt.inputMethod.hide()
                         // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
+                        mainView.addPhoneToContact(messages, "", contactWatcher.identifier, null, null)
                     }
                 }
             ]
