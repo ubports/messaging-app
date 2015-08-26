@@ -223,7 +223,6 @@ Page {
     }
 
     head {
-        id: head
         sections.model: {
             var accountNames = []
             // suru divider must be empty if there is only one sim card
@@ -864,7 +863,7 @@ Page {
                     iconName: "contact"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
+                        mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
                     }
                 }
 
@@ -905,7 +904,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        mainView.showContactDetails(contactWatcher.contactId, null, null)
+                        mainView.showContactDetails(messages, contactWatcher.contactId, null, null)
                     }
                 }
             ]

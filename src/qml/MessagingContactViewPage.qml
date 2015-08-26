@@ -42,12 +42,13 @@ ContactViewPage {
         var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
         if (newDetail) {
             contact.addDetail(newDetail)
-            pageStack.push(root.contactEditorPageURL,
-                           { model: root.model,
-                             contact: contact,
-                             initialFocusSection: "phones",
-                             newDetails: [newDetail],
-                             contactListPage: root.contactListPage })
+            mainStack.addPageToCurrentColumn(root,
+                                             root.contactEditorPageURL,
+                                             { model: root.model,
+                                               contact: contact,
+                                               initialFocusSection: "phones",
+                                               newDetails: [newDetail],
+                                               contactListPage: root.contactListPage })
             root.addPhoneToContact = ""
         } else {
             console.warn("Fail to create phone number detail")
@@ -60,9 +61,10 @@ ContactViewPage {
             text: i18n.tr("Share")
             iconName: "share"
             onTriggered: {
-                pageStack.push(contactShareComponent,
-                               { contactModel: root.model,
-                                 contacts: [root.contact] })
+                mainStack.addPageToCurrentColumn(root,
+                                                 contactShareComponent,
+                                                 { contactModel: root.model,
+                                                   contacts: [root.contact] })
             }
         },
         Action {
@@ -70,10 +72,11 @@ ContactViewPage {
             text: i18n.tr("Edit")
             iconName: "edit"
             onTriggered: {
-                pageStack.push(contactEditorPageURL,
-                               { model: root.model,
-                                 contact: root.contact,
-                                 contactListPage: root.contactListPage })
+                mainStack.addPageToCurrentColumn(root,
+                                                 contactEditorPageURL,
+                                                 { model: root.model,
+                                                   contact: root.contact,
+                                                   contactListPage: root.contactListPage })
             }
         }
     ]

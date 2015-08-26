@@ -152,12 +152,12 @@ Page {
 
         onAddNewContactClicked: {
             var newContact = ContactsJS.createEmptyContact(newRecipientPage.phoneToAdd, newRecipientPage)
-            pageStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
-                           { model: contactList.listModel,
-                             contact: newContact,
-                             initialFocusSection: (newRecipientPage.phoneToAdd != "" ? "phones" : "name"),
-                             contactListPage: newRecipientPage
-                           })
+            mainStack.addPageToCurrentColumn(newRecipientPage,
+                                             Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                                             { model: contactList.listModel,
+                                               contact: newContact,
+                                               initialFocusSection: (newRecipientPage.phoneToAdd != "" ? "phones" : "name"),
+                                               contactListPage: newRecipientPage })
         }
     }
 

@@ -22,6 +22,7 @@ import Ubuntu.Content 0.1
 import ".."
 
 Page {
+    id: previewer
     title: ""
     property variant attachment
     signal actionTriggered
@@ -32,7 +33,7 @@ Page {
                 text: i18n.tr("Save")
                 iconSource: "image://theme/save"
                 onTriggered: {
-                    mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
+                    mainStack.addPageToCurrentColumn(previewer, picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
                     actionTriggered()
                 }
             }
@@ -44,7 +45,7 @@ Page {
                 iconSource: "image://theme/share"
                 text: i18n.tr("Share")
                 onTriggered: {
-                    mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Share});
+                    mainStack.addPageToCurrentColumn(previewer, picker, {"url": attachment.filePath, "handler": ContentHandler.Share});
                     actionTriggered()
                 }
             }
