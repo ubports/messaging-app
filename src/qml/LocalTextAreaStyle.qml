@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Ubuntu.Components.Themes.Ambiance 1.0
+import Ubuntu.Components.Themes.Ambiance 1.3
 
 TextAreaStyle {
     background: null
