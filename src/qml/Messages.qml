@@ -771,7 +771,7 @@ Page {
             if (typeof mainPage !== 'undefined') {
                 mainPage.temporaryProperties = null
             }
-            mainStack.pop()
+            mainStack.removePages(messages)
         }
     }
 
@@ -811,7 +811,7 @@ Page {
             name: "groupChat"
             head: messages.head
             when: groupChat
-            //backAction: backButton
+            backAction: backButton
 
             actions: [
                 Action {
@@ -825,7 +825,7 @@ Page {
             name: "unknownContact"
             head: messages.head
             when: participants.length == 1 && contactWatcher.isUnknown
-            //backAction: backButton
+            backAction: backButton
             contents: header
 
             actions: [
@@ -857,7 +857,7 @@ Page {
             name: "newMessage"
             head: messages.head
             when: participants.length === 0 //&& isReady
-            //backAction: backButton
+            backAction: backButton
             actions: [
                 Action {
                     objectName: "contactList"
@@ -870,18 +870,15 @@ Page {
 
             ]
 
-            //contents: MultiRecipientInput {
-            contents: Rectangle {
-                color: "orange"
+            contents: MultiRecipientInput {
                 id: multiRecipient
                 objectName: "multiRecipient"
                 enabled: visible
-                anchors.fill: parent
-                /*anchors {
+                anchors {
                     left: parent ? parent.left : undefined
                     right: parent ? parent.right : undefined
                     rightMargin: units.gu(2)
-                }*/
+                }
             }
         },
         PageHeadState {
