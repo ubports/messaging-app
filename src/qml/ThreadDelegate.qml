@@ -95,6 +95,19 @@ ListItemWithActions {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: {
+            // extract the participant IDs from one of the threads
+            var thread = model.threads[0];
+            var participants = [];
+
+            for (var i in thread.participants) {
+                participants.push(thread.participants[i].identifier);
+            }
+            // and acknowledge all messages for the threads to be removed
+            for (var i in model.threads) {
+                chatManager.acknowledgeAllMessages(participants, model.threads[i].accountId)
+            }
+
+            // at last remove the threads
             threadModel.removeThreads(model.threads);
         }
     }
