@@ -21,6 +21,9 @@ from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from ubuntuuitoolkit._custom_proxy_objects import _common
 from address_book_app import address_book
+from ubuntuuitoolkit._custom_proxy_objects._common \
+    import is_maliit_process_running
+from ubuntu_keyboard.emulators.keyboard import Keyboard as UbuntuKeyboard
 
 
 logger = logging.getLogger(__name__)
@@ -222,7 +225,7 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.click_object(text_entry)
         text_entry.focus.wait_for(True)
         time.sleep(.3)
-        self.keyboard.type(str(message), delay=0.2)
+        text_entry.write(str(message))
         self.logger.info(
             'typed: "{}" expected: "{}"'.format(text_entry.text, message))
 
@@ -232,11 +235,11 @@ class MainView(toolkit_emulators.MainView):
         :parameter num_or_contact: number or contact to type
         """
 
-        text_entry = self.get_newmessage_multirecipientinput()
+        text_entry = self.get_newmessage_textfield()
         self.pointing_device.click_object(text_entry)
         text_entry.focus.wait_for(True)
         time.sleep(.3)
-        self.keyboard.type(str(num_or_contact), delay=0.2)
+        text_entry.write(str(num_or_contact))
         self.keyboard.press_and_release("Enter")
         self.logger.info(
             'typed "{}" expected "{}"'.format(
@@ -279,12 +282,9 @@ class MainView(toolkit_emulators.MainView):
 
     def close_osk(self):
         """Swipe down to close on-screen keyboard"""
-
-        # killing the maliit-server closes the OSK
-        if model() is not 'Desktop':
-            subprocess.call(["pkill", "maliit-server"])
-            # wait for server to respawn
-            time.sleep(2)
+        if is_maliit_process_running():
+            osk = UbuntuKeyboard()
+            osk.dismiss()
 
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
