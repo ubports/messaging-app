@@ -11,12 +11,10 @@
 """Messaging app autopilot emulators."""
 
 import logging
-import subprocess
 import time
 
 from autopilot import logging as autopilot_logging
 from autopilot.input import Keyboard
-from autopilot.platform import model
 from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from ubuntuuitoolkit._custom_proxy_objects import _common

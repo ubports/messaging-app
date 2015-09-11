@@ -63,6 +63,7 @@ Depends: ${misc:Depends},
          python3-dbusmock,
          ubuntu-ui-toolkit-autopilot,
          ofono-phonesim-autostart,
+         ubuntu-keyboard-autopilot
 Description: autopilot tests for messaging-app
  This package contains the autopilot tests for messaging-app
  .
