@@ -120,7 +120,7 @@ MainView {
         }
     }
 
-    HistoryGroupedThreadsModel {
+    HistoryThreadModel {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
@@ -128,8 +128,6 @@ MainView {
             sortOrder: HistorySort.DescendingOrder
         }
         filter: HistoryFilter {}
-        // FIXME: once we support more messaging backends, we might need to increase the granularity of the filters
-        groupingProperty: "participants"
         matchContacts: true
     }
 
