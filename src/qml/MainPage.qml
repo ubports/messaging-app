@@ -227,17 +227,7 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
-            var threadsToRemove = [];
-            for (var i=0; i < items.count; i++) {
-                var threads = items.get(i).model.threads
-                for (var j in threads) {
-                    threadsToRemove.push(threads[j]);
-                }
-            }
-
-            if (threadsToRemove.length > 0) {
-                threadModel.removeThreads(threadsToRemove);
-            }
+            threadModel.removeThreads(model.groupedThreads);
         }
     }
 
