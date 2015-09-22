@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2015-09-18 00:32+0000\n"
-"Last-Translator: António Miranda <Unknown>\n"
+"PO-Revision-Date: 2015-09-21 17:02+0000\n"
+"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-09-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17746)\n"
+"X-Launchpad-Export-Date: 2015-09-22 06:01+0000\n"
+"X-Generator: Launchpad (build 17749)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -226,7 +226,7 @@ msgstr "App de mensagens"
 
 #: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "Aplicação de mensagens"
+msgstr "App de mensagens"
 
 #: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
@@ -315,8 +315,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 "Selecione um cartão SIM padrão para todas as mensagens enviadas. Pode sempre "
-"alterar a sua escolha nas <a href=\"system_settings\">Definições do "
-"Sistema</a>."
+"alterar a sua escolha nas <a href=\"system_settings\">Definições</a>."
 
 #: ../src/qml/Messages.qml:987
 msgid "Send"
@@ -361,11 +360,11 @@ msgstr "Copiado para área de transferência"
 #: ../src/qml/Messages.qml:415
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "Atualmente não existe nenhuma rede em %1"
+msgstr "Atualmente sem rede em %1"
 
 #: ../src/qml/Messages.qml:415
 msgid "There is currently no network."
-msgstr "Atualmente não existe nenhuma rede."
+msgstr "Atualmente sem rede."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
