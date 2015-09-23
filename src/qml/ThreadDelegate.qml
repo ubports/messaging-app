@@ -95,7 +95,7 @@ ListItemWithActions {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: {
-            threadModel.removeThreads(model.groupedThreads);
+            threadModel.removeThreads(model.threads);
         }
     }
 
@@ -240,8 +240,8 @@ ListItemWithActions {
                     found = true
                 } else {
                     var componentFilters = ""
-                    for(var i in model.groupedThreads) {
-                        componentFilters += searchIntersectionFilter.arg(model.groupedThreads[i].accountId).arg(model.groupedThreads[i].threadId)
+                    for(var i in model.threads) {
+                        componentFilters += searchIntersectionFilter.arg(model.threads[i].accountId).arg(model.threads[i].threadId)
                     }
                     var finalString = searchHistoryFilterString.arg(componentFilters)
                     if (finalString !== latestFilter) {

@@ -120,13 +120,14 @@ MainView {
         }
     }
 
-    HistoryThreadModel {
+    HistoryGroupedThreadsModel {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
         }
+        groupingProperty: "participants"
         filter: HistoryFilter {}
         matchContacts: true
     }

@@ -211,7 +211,7 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
-                    properties["groupedThreads"] = model.groupedThreads
+                    properties["threads"] = model.threads
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
@@ -227,7 +227,7 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
-            threadModel.removeThreads(model.groupedThreads);
+            threadModel.removeThreads(model.threads);
         }
     }
 

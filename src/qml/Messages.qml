@@ -55,7 +55,7 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
-    property var groupedThreads: []
+    property var threads: []
 
     function addAttachmentsToModel(transfer) {
         for (var i in transfer.items) {
@@ -282,17 +282,17 @@ Page {
         }
     }
 
-    function updateFilters(accounts, participants, reload, groupedThreads) {
+    function updateFilters(accounts, participants, reload, threads) {
         if (participants.length == 0 || accounts.length == 0) {
             return null
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        if (groupedThreads.length > 0) {
-            for (var i in groupedThreads) {
-                var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(groupedThreads[i].accountId)
-                var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(groupedThreads[i].threadId)
+        if (threads.length > 0) {
+            for (var i in threads) {
+                var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(threads[i].accountId)
+                var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
                 componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
             }
             console.log(componentUnion.arg(componentFilters))
@@ -670,7 +670,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters, messages.groupedThreads)
+        filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters, messages.threads)
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
