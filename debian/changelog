@@ -1,3 +1,20 @@
+messaging-app (0.1+15.10.20150923.1-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Gustavo Pichorim Boiko ]
+  * Increase the touch area of the send and attach buttons. (LP:
+    #1488984)
+
+  [ Sebastien Bacher ]
+  * display empty lines and leading spaces (LP: #1366592)
+
+  [ Tiago Salem Herrmann ]
+  * Fix autopilot tests.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Wed, 23 Sep 2015 15:33:42 +0000
+
 messaging-app (0.1+15.10.20150818-0ubuntu1) wily; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
