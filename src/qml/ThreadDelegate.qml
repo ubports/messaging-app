@@ -100,7 +100,9 @@ ListItemWithActions {
             var participants = [];
 
             for (var i in thread.participants) {
-                participants.push(thread.participants[i].identifier);
+                // on the thread itself we don't have the contact matched participant,
+                // so thread.participants is the list of identifiers
+                participants.push(thread.participants[i]);
             }
             // and acknowledge all messages for the threads to be removed
             for (var i in model.threads) {
