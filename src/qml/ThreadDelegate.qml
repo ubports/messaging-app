@@ -95,7 +95,7 @@ ListItemWithActions {
         iconName: "delete"
         text: i18n.tr("Delete")
         onTriggered: {
-            threadModel.removeThreads(model.threads);
+            mainView.removeThreads(model.threads)
         }
     }
 
