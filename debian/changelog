@@ -1,3 +1,10 @@
+messaging-app (0.1+15.10.20150928-0ubuntu1) wily; urgency=medium
+
+  * Acknowledge pending messages before removing the threads. (LP:
+    #1488498)
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Mon, 28 Sep 2015 18:27:36 +0000
+
 messaging-app (0.1+15.10.20150923.1-0ubuntu1) wily; urgency=medium
 
   [ CI Train Bot ]
