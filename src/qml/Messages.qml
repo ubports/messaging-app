@@ -54,7 +54,7 @@ Page {
     property var pendingEventsToMarkAsRead: []
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
-    property string firstParticipant: participants.length > 0 ? participants[0] : ""
+    property string firstParticipant: participants.length > 0 ? participants[0].identifier : ""
     property var threads: []
 
     function addAttachmentsToModel(transfer) {
@@ -514,7 +514,7 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: participants.length === 0 ? "" : participants[0]
+        identifier: participants.length === 0 ? "" : participants[0].identifier
         onIsUnknownChanged: firstRecipientAlias = contactWatcherInternal.alias
         onAliasChanged: firstRecipientAlias = contactWatcherInternal.alias
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
