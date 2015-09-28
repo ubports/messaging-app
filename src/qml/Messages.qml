@@ -775,6 +775,7 @@ Page {
             name: "camera-app-symbolic"
             MouseArea {
                 anchors.fill: parent
+                anchors.margins: units.gu(-2)
                 onClicked: {
                     Qt.inputMethod.hide()
                     pictureImporter.requestNewPicture()
@@ -1039,6 +1040,7 @@ Page {
 
             MouseArea {
                 anchors.fill: parent
+                anchors.margins: units.gu(-2)
                 onClicked: {
                     // make sure we flush everything we have prepared in the OSK preedit
                     Qt.inputMethod.commit();
