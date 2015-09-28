@@ -235,7 +235,7 @@ LocalPageWithBottomEdge {
             }
 
             if (threadsToRemove.length > 0) {
-                threadModel.removeThreads(threadsToRemove);
+                mainView.removeThreads(threadsToRemove);
             }
         }
     }
