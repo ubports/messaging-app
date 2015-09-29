@@ -126,6 +126,17 @@ Page {
                                            messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                               : HistoryThreadModel.MatchCaseSensitive,
                                            true)
+        var found = false;
+        for (var i in messages.threads) {
+            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == messages.account.accountId) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            messages.threads.push({"accountId": messages.account.accountId, "threadId": threadId})
+            reloadFilters = !reloadFilters
+        }
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -295,7 +306,6 @@ Page {
                 var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
                 componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
             }
-            console.log(componentUnion.arg(componentFilters))
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
 
