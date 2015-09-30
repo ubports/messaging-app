@@ -188,7 +188,7 @@ class TestMessaging(BaseMessagingTestCase):
         # verify messsage is not gone
         time.sleep(5)  # wait 5 seconds, the emulator is slow
         list_view = self.main_view.get_multiple_selection_list_view()
-        list_view.select_single("Label", text=message)
+        list_view.select_single("Label", text=helpers.text2html(message))
 
     def test_receive_text_with_letters_in_phone_number(self):
         """verify we can receive a text message with letters for a phone #"""
@@ -586,7 +586,7 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         helpers.set_network_status("unregistered")
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message([phone_num], message)
+        self.main_view.send_message([phone_num], message, False)
         self.main_view.close_osk()
 
         closeButton = self.main_view.wait_select_single(

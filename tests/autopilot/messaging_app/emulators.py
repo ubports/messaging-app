@@ -62,7 +62,8 @@ class MainView(toolkit_emulators.MainView):
         for message in self.select_many(MessageDelegateFactory):
             for item in message.select_many('Label'):
                 if "text" in item.get_properties():
-                    if item.get_properties()['text'] == text:
+                    labelText = item.get_properties()['text']
+                    if labelText.replace('&nbsp;', ' ') == text:
                         return message
         raise EmulatorException('Could not find message with the text '
                                 '{}'.format(text))
@@ -370,7 +371,7 @@ class MainView(toolkit_emulators.MainView):
         message.confirm_removal()
 
     @autopilot_logging.log_action(logger.info)
-    def send_message(self, numbers, message):
+    def send_message(self, numbers, message, check_sent=True):
         """Write a new message and send it.
 
         :param numbers: phone numbers of contacts to send message to.
@@ -387,9 +388,11 @@ class MainView(toolkit_emulators.MainView):
         old_message_count = self.get_multiple_selection_list_view().count
         self.click_send_button()
 
-        self.get_multiple_selection_list_view().count.wait_for(
-            old_message_count + 1)
-        thread_bubble = self.get_message(message)
+        thread_bubble = None
+        if (check_sent):
+            self.get_multiple_selection_list_view().count.wait_for(
+                old_message_count + 1)
+            thread_bubble = self.get_message(message)
 
         return thread_bubble
 
