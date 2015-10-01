@@ -681,6 +681,7 @@ Page {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters, messages.threads)
+        matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
