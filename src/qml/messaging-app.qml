@@ -84,15 +84,15 @@ MainView {
     }
 
     function removeThreads(threads) {
-        // extract the participant IDs from one of the threads
-        var thread = threads[0];
-        var participants = thread.participants;
-
-        // and acknowledge all messages for the threads to be removed
         for (var i in threads) {
-            chatManager.acknowledgeAllMessages(participants, threads[i].accountId)
+            var thread = threads[i];
+            var participants = [];
+            for (var j in thread.participants) {
+                participants.push(thread.participants[j].identifier)
+            }
+            // and acknowledge all messages for the threads to be removed
+            chatManager.acknowledgeAllMessages(participants, thread.accountId)
         }
-
         // at last remove the threads
         threadModel.removeThreads(threads);
     }

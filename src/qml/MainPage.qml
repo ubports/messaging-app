@@ -232,7 +232,16 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
-            threadModel.removeThreads(model.threads);
+            var threadsToRemove = []
+            for (var i=0; i < items.count; i++) {
+                var threads = items.get(i).model.threads
+                for (var j in threads) {
+                    threadsToRemove.push(threads[j])
+                }
+            }
+            if (threadsToRemove.length > 0) {
+                mainView.removeThreads(threadsToRemove);
+            }
         }
     }
 
