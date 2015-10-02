@@ -142,7 +142,7 @@ ListItemWithActions {
                 return groupChatLabel
             } else {
                 if (delegateHelper.phoneNumber == "x-ofono-unknown") {
-                    return i18n.tr("Unknown Contact")
+                    return i18n.tr("Unknown Number")
                 } else if (unknownContact) {
                     return delegateHelper.phoneNumber
                 } else {
