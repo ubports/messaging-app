@@ -52,10 +52,8 @@ Rectangle {
     function parseText(text) {
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
-        // replace spaces
-        text = text.replace(/ /g, '&nbsp;');
         // replace line breaks
-        text = text.replace(/\n/g, '<br />');
+        text = text.replace(/(\n)+/g, '<br />');
         // check for links
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
