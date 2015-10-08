@@ -37,6 +37,7 @@ Page {
     property QtObject account: mainView.account
 
     property variant participants: []
+    property variant participantIds: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
@@ -54,7 +55,8 @@ Page {
     property var pendingEventsToMarkAsRead: []
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
-    property string firstParticipant: participants.length > 0 ? participants[0] : ""
+    property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
+    property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
 
     function addAttachmentsToModel(transfer) {
@@ -120,12 +122,24 @@ Page {
         }
 
         // create the new thread and update the threadId list
-        var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
+        var thread = eventModel.threadForParticipants(messages.account.accountId,
                                            HistoryThreadModel.EventTypeText,
                                            participants,
                                            messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                               : HistoryThreadModel.MatchCaseSensitive,
                                            true)
+        var threadId = thread.threadId
+
+        // dont change the participants list
+        if (messages.participants.length == 0) {
+            messages.participants = thread.participants
+            var ids = []
+            for (var i in participants) {
+                ids.push(participants[i].identifier)
+            }
+            messages.participantIds = ids;
+        }
+
         var found = false;
         for (var i in messages.threads) {
             if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == messages.account.accountId) {
@@ -263,7 +277,8 @@ Page {
             multiRecipient.forceFocus()
     }
 
-    property string firstRecipientAlias: ""
+    property string firstRecipientAlias: contactWatcher.isUnknown ? contactWatcher.identifier :
+                                                                    contactWatcher.alias
     title: {
         if (selectionMode) {
             return " "
@@ -274,7 +289,7 @@ Page {
         }
         if (participants.length > 0) {
             if (participants.length == 1) {
-                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.identifier
+                return firstRecipientAlias
             } else {
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 return i18n.tr("Group (%1)").arg(participants.length)
@@ -335,7 +350,7 @@ Page {
            pendingEventsToMarkAsRead.push(pendingEvent)
            return false
         }
-        chatManager.acknowledgeMessage(participants, eventId, accountId)
+        chatManager.acknowledgeMessage(participantIds, eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
@@ -405,7 +420,12 @@ Page {
                         }
                         ContactWatcher {
                             id: contactWatcher
-                            identifier: modelData
+                            identifier: modelData.identifier
+                            contactId: modelData.contactId
+                            alias: modelData.alias
+                            avatar: modelData.avatar
+                            detailProperties: modelData.detailProperties
+
                             addressableFields: messages.account.addressableVCardFields
                         }
                     }
@@ -524,9 +544,11 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: participants.length === 0 ? "" : participants[0]
-        onIsUnknownChanged: firstRecipientAlias = contactWatcherInternal.alias
-        onAliasChanged: firstRecipientAlias = contactWatcherInternal.alias
+        identifier: firstParticipant ? firstParticipant.identifier : ""
+        contactId: firstParticipant ? firstParticipant.contactId : ""
+        alias: firstParticipant ? firstParticipant.alias : ""
+        avatar: firstParticipant ? firstParticipant.avatar : ""
+        detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
@@ -680,7 +702,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters, messages.threads)
+        filter: updateFilters(telepathyHelper.accounts, messages.participantIds, messages.reloadFilters, messages.threads)
         matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
@@ -1060,10 +1082,6 @@ Page {
                     }
                     // refresh the recipient list
                     multiRecipient.focus = false
-                    // dont change the participants list
-                    if (participants.length == 0) {
-                        participants = multiRecipient.recipients
-                    }
 
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
@@ -1079,9 +1097,11 @@ Page {
                         newAttachments.push(attachment)
                     }
 
+                    var recipients = participantIds.length > 0 ? participantIds :
+                                                                 multiRecipient.recipients
                     // if sendMessage succeeds it means the message was either sent or
                     // injected into the history service so the user can retry later
-                    if (sendMessage(textEntry.text, participants, newAttachments)) {
+                    if (sendMessage(textEntry.text, recipients, newAttachments)) {
                         textEntry.text = ""
                         attachments.clear()
                     }
