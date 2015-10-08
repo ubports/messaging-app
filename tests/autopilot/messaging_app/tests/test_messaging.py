@@ -188,7 +188,7 @@ class TestMessaging(BaseMessagingTestCase):
         # verify messsage is not gone
         time.sleep(5)  # wait 5 seconds, the emulator is slow
         list_view = self.main_view.get_multiple_selection_list_view()
-        list_view.select_single("Label", text=helpers.text2html(message))
+        list_view.select_single("Label", text=message)
 
     def test_receive_text_with_letters_in_phone_number(self):
         """verify we can receive a text message with letters for a phone #"""
@@ -498,6 +498,9 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
         super(MessagingTestSettings, self).setUp()
 
     def test_mms_group_chat_settings(self):
