@@ -1,3 +1,14 @@
+messaging-app (0.1+15.10.20151006.3-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Tiago Salem Herrmann ]
+  * Revert patch that replaces empty spaces by &nbsp;, as it breaks word
+    wrap. (LP: #1503018)
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Tue, 06 Oct 2015 15:27:53 +0000
+
 messaging-app (0.1+15.10.20150928-0ubuntu1) wily; urgency=medium
 
   * Acknowledge pending messages before removing the threads. (LP:
