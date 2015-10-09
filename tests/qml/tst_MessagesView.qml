@@ -130,7 +130,10 @@ Item {
             var stack = findChild(mainViewLoader, "mainStack")
             tryCompare(mainViewLoader.item, 'applicationActive', true)
             tryCompare(stack, 'depth', 1)
+            var account = mainViewLoader.item.account
+            mainViewLoader.item.account = null
             mainViewLoader.item.startChat(senderId, "")
+            mainViewLoader.item.account = account
             tryCompare(stack, 'depth', 2)
             mainViewLoader.item.applicationActive = false
             var messageList = findChild(mainViewLoader, "messageList")
