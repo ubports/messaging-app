@@ -134,8 +134,8 @@ Page {
         if (messages.participants.length == 0) {
             messages.participants = thread.participants
             var ids = []
-            for (var i in participants) {
-                ids.push(participants[i].identifier)
+            for (var i in messages.participants) {
+                ids.push(messages.participants[i].identifier)
             }
             messages.participantIds = ids;
         }
@@ -277,8 +277,8 @@ Page {
             multiRecipient.forceFocus()
     }
 
-    property string firstRecipientAlias: contactWatcher.isUnknown ? contactWatcher.identifier :
-                                                                    contactWatcher.alias
+    property string firstRecipientAlias: (contactWatcher.isUnknown && contactWatcher.isInteractive) ? contactWatcher.identifier :
+                                                                                                      contactWatcher.alias
     title: {
         if (selectionMode) {
             return " "
