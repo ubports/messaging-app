@@ -105,6 +105,20 @@ MainView {
         }
     }
 
+    function removeThreads(threads) {
+        // extract the participant IDs from one of the threads
+        var thread = threads[0];
+        var participants = thread.participants;
+
+        // and acknowledge all messages for the threads to be removed
+        for (var i in threads) {
+            chatManager.acknowledgeAllMessages(participants, threads[i].accountId)
+        }
+
+        // at last remove the threads
+        threadModel.removeThreads(threads);
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
