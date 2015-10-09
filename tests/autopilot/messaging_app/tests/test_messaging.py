@@ -333,6 +333,20 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.wait_select_single(emulators.Messages,
                                           title=recipient_list[1])
 
+    def test_messages_with_color_name_ids(self):
+        """Verify that we can open threads with numbers matching color names"""
+        # receive an sms message
+        helpers.receive_sms('Orange', 'hello to Ubuntu')
+
+        # verify that we got the message
+        self.assertThat(self.thread_list.count, Eventually(Equals(1)))
+
+        # verify number
+        self.thread_list.select_single('Label', text='Orange')
+        time.sleep(1)  # make it visible to human users for a sec
+        # verify text
+        self.thread_list.select_single('Label', text='hello to Ubuntu')
+
 
 class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
 

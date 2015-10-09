@@ -521,6 +521,15 @@ Page {
     }
 
     Component.onCompleted: {
+        if (messages.accountId !== "") {
+            var account = telepathyHelper.accountForId(messages.accountId)
+            if (account && account.type == AccountEntry.MultimediaAccount) {
+                // fallback the first available phone account 
+                if (telepathyHelper.phoneAccounts.length > 0) {
+                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
+                }
+            }
+        }
         updateFilters()
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
@@ -560,7 +569,9 @@ Page {
             if (filterValue === "") {
                 continue
             }
-            componentFilters += 'HistoryFilter { filterProperty: "threadId"; filterValue: "%1" } '.arg(filterValue)
+            // WORKAROUND: we don't set value directly to filterValue otherwise strings matching color names
+            // will be converted to QColor
+            componentFilters += 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value } '.arg(filterValue)
         }
         if (componentFilters === "") {
             eventModel.filter = null
@@ -1019,6 +1030,7 @@ Page {
             name: "camera-app-symbolic"
             MouseArea {
                 anchors.fill: parent
+                anchors.margins: units.gu(-2)
                 onClicked: {
                     Qt.inputMethod.hide()
                     pictureImporter.requestNewPicture()
@@ -1283,6 +1295,7 @@ Page {
 
             MouseArea {
                 anchors.fill: parent
+                anchors.margins: units.gu(-2)
                 onClicked: {
                     // make sure we flush everything we have prepared in the OSK preedit
                     Qt.inputMethod.commit();
