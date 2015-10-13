@@ -37,7 +37,6 @@ set(CMAKE_AUTOMOC ON)
 
 configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 
-find_package(Qt5Core)
 #find_package(Qt5Contacts)
 find_package(Qt5DBus)
 #find_package(Qt5Gui)
@@ -47,11 +46,7 @@ find_package(Qt5Quick)
 find_package(Qt5Test)
 find_package(Qt5Versit)
 
-execute_process(
-    COMMAND qmake -query QT_INSTALL_QML
-    OUTPUT_VARIABLE QT_INSTALL_QML
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+include(qt5)
 
 find_package(PkgConfig REQUIRED)
 #pkg_check_modules(TP_QT5 REQUIRED TelepathyQt5)
