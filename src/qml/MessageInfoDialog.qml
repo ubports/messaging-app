@@ -83,7 +83,7 @@ Item {
                 } else if (message.participants.length > 1) {
                     return i18n.tr("Group")
                 } else {
-                    return PhoneUtils.PhoneUtils.format(message.participants[0])
+                    return PhoneUtils.PhoneUtils.format(message.participants[0].identifier)
                 }
             }
 
@@ -106,7 +106,7 @@ Item {
             Repeater {
                 model: root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
                 Label {
-                    text: PhoneUtils.PhoneUtils.format(modelData)
+                    text: PhoneUtils.PhoneUtils.format(modelData.identifier)
                 }
             }
 
