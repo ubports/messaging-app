@@ -277,8 +277,9 @@ Page {
             multiRecipient.forceFocus()
     }
 
-    property string firstRecipientAlias: (contactWatcher.isUnknown && contactWatcher.isInteractive) ? contactWatcher.identifier :
-                                                                                                      contactWatcher.alias
+    property string firstRecipientAlias: (contactWatcher.isUnknown &&
+                                          contactWatcher.isInteractive ||
+                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     title: {
         if (selectionMode) {
             return " "
