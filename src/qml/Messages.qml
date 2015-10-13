@@ -111,7 +111,7 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessage(text, participants, attachments) {
+    function sendMessage(text, participantIds, attachments) {
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
@@ -124,7 +124,7 @@ Page {
         // create the new thread and update the threadId list
         var thread = eventModel.threadForParticipants(messages.account.accountId,
                                            HistoryThreadModel.EventTypeText,
-                                           participants,
+                                           participantIds,
                                            messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                               : HistoryThreadModel.MatchCaseSensitive,
                                            true)
@@ -158,7 +158,7 @@ Page {
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      threadId,
-                                                     participants,
+                                                     participantIds,
                                                      "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
@@ -178,7 +178,7 @@ Page {
             event["threadId"] = threadId
             event["eventId"] =  tmpEventId
             event["type"] = HistoryEventModel.MessageTypeText
-            event["participants"] = participants
+            event["participants"] = thread.participants
             event["senderId"] = "self"
             event["timestamp"] = timestamp
             event["newEvent"] = false
@@ -208,14 +208,14 @@ Page {
             eventModel.writeEvents([event]);
         } else {
             var isMMS = attachments.length > 0
-            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
+            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             // FIXME: maybe move this to telepathy-ofono itself and treat as just sendMessage on the app?
             if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
-                chatManager.sendMMS(participants, text, attachments, messages.account.accountId)
+                chatManager.sendMMS(participantIds, text, attachments, messages.account.accountId)
             } else {
-                chatManager.sendMessage(participants, text, messages.account.accountId)
+                chatManager.sendMessage(participantIds, text, messages.account.accountId)
             }
         }
 
