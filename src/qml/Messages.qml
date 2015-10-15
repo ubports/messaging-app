@@ -47,12 +47,12 @@ Page {
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
-    property string lastFilter: ""
     property string text: ""
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
     property var pendingEventsToMarkAsRead: []
+    property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
 
@@ -213,11 +213,6 @@ Page {
         onAccountChanged: messages.account = mainView.account
     }
 
-    Connections {
-        target: telepathyHelper
-        onAccountsChanged: updateFilters()
-    }
-
     ActivityIndicator {
         id: activityIndicator
         anchors {
@@ -277,7 +272,6 @@ Page {
     }
 
     Component.onCompleted: {
-        updateFilters()
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
@@ -287,16 +281,15 @@ Page {
         }
     }
 
-    function updateFilters() {
-        if (participants.length == 0) {
-            eventModel.filter = null
-            return
+    function updateFilters(accounts, participants, reload) {
+        if (participants.length == 0 || accounts.length == 0) {
+            return null
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
-        for (var i in telepathyHelper.accounts) {
-            var account = telepathyHelper.accounts[i];
+        for (var i in accounts) {
+            var account = accounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
@@ -310,15 +303,9 @@ Page {
             componentFilters += 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value } '.arg(filterValue)
         }
         if (componentFilters === "") {
-            eventModel.filter = null
-            lastFilter = ""
-            return
+            return null
         }
-        if (componentFilters != lastFilter) {
-            var finalString = componentUnion.arg(componentFilters)
-            eventModel.filter = Qt.createQmlObject(finalString, eventModel)
-            lastFilter = componentFilters
-        }
+        return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
@@ -522,10 +509,6 @@ Page {
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
-    onParticipantsChanged: {
-        updateFilters()
-    }
-
     Action {
         id: backButton
         objectName: "backButton"
@@ -676,7 +659,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: null
+        filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters)
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
@@ -1080,7 +1063,9 @@ Page {
                         textEntry.text = ""
                         attachments.clear()
                     }
-                    updateFilters()
+                    if (eventModel.filter == null) {
+                        reloadFilters = !reloadFilters
+                    }
                 }
             }
         }
