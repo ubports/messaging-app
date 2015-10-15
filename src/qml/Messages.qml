@@ -620,7 +620,7 @@ Page {
             actions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1
+                    visible: participants.length == 1 && contactWatcher.interactive
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -631,7 +631,7 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1
+                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
@@ -779,7 +779,7 @@ Page {
         anchors.bottom: isSearching ? parent.bottom : keyboard.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: selectionMode ? 0 : textEntry.height + units.gu(2)
+        height: selectionMode || (participants.length > 0 && !contactWatcher.interactive) ? 0 : textEntry.height + units.gu(2)
         visible: !selectionMode && !isSearching
         clip: true
         MouseArea {
