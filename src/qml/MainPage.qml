@@ -212,16 +212,14 @@ LocalPageWithBottomEdge {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
                     properties["threads"] = model.threads
-                    var participants = [];
+                    var participantIds = [];
                     for (var i in model.participants) {
-                        participants.push(model.participants[i].identifier)
+                        participantIds.push(model.participants[i].identifier)
                     }
-                    properties["participants"] = participants
+                    properties["participantIds"] = participantIds
+                    properties["participants"] = model.participants
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
-                    }
-                    if (model.participants[0].alias) {
-                        properties["firstRecipientAlias"] = model.participants[0].alias;
                     }
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }

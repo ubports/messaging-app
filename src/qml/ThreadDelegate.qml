@@ -142,7 +142,9 @@ ListItemWithActions {
                 return groupChatLabel
             } else {
                 if (delegateHelper.phoneNumber == "x-ofono-unknown") {
-                    return i18n.tr("Unknown Number")
+                    // FIXME: replace the dtr() call by a regular tr() call after
+                    // string freeze
+                    return i18n.dtr("telephony-service", "Unknown Number")
                 } else if (unknownContact) {
                     return delegateHelper.phoneNumber
                 } else {

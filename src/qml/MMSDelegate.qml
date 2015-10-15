@@ -60,7 +60,7 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.sendMessage(textMessage, messages.participants, newAttachments)
+        messages.sendMessage(textMessage, messages.participantIds, newAttachments)
     }
 
     function copyMessage()
