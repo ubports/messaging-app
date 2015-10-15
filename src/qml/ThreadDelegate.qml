@@ -137,7 +137,19 @@ ListItemWithActions {
             leftMargin: units.gu(1)
         }
         color: UbuntuColors.lightAubergine
-        text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
+        text: {
+            if (groupChat) {
+                return groupChatLabel
+            } else {
+                if (delegateHelper.phoneNumber == "x-ofono-unknown") {
+                    return i18n.tr("Unknown Number")
+                } else if (unknownContact) {
+                    return delegateHelper.phoneNumber
+                } else {
+                    return delegateHelper.alias
+                }
+            }
+        }
     }
 
     Label {

@@ -211,6 +211,12 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    properties["threads"] = model.threads
+                    var participants = [];
+                    for (var i in model.participants) {
+                        participants.push(model.participants[i].identifier)
+                    }
+                    properties["participants"] = participants
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
@@ -226,14 +232,13 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
-            var threadsToRemove = [];
+            var threadsToRemove = []
             for (var i=0; i < items.count; i++) {
                 var threads = items.get(i).model.threads
                 for (var j in threads) {
-                    threadsToRemove.push(threads[j]);
+                    threadsToRemove.push(threads[j])
                 }
             }
-
             if (threadsToRemove.length > 0) {
                 mainView.removeThreads(threadsToRemove);
             }

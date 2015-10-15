@@ -55,9 +55,10 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property string firstParticipant: participants.length > 0 ? participants[0] : ""
+    property var threads: []
 
     function addAttachmentsToModel(transfer) {
-        for (var i = 0; i < transfer.items.length; i++) {
+        for (var i in transfer.items) {
             if (String(transfer.items[i].text).length > 0) {
                 messages.text = String(transfer.items[i].text)
                 continue
@@ -125,6 +126,17 @@ Page {
                                            messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                               : HistoryThreadModel.MatchCaseSensitive,
                                            true)
+        var found = false;
+        for (var i in messages.threads) {
+            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == messages.account.accountId) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            messages.threads.push({"accountId": messages.account.accountId, "threadId": threadId})
+            reloadFilters = !reloadFilters
+        }
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -281,13 +293,22 @@ Page {
         }
     }
 
-    function updateFilters(accounts, participants, reload) {
+    function updateFilters(accounts, participants, reload, threads) {
         if (participants.length == 0 || accounts.length == 0) {
             return null
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
+        if (threads.length > 0) {
+            for (var i in threads) {
+                var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(threads[i].accountId)
+                var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
+                componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
+            }
+            return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
+        }
+
         for (var i in accounts) {
             var account = accounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
@@ -659,7 +680,8 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters)
+        filter: updateFilters(telepathyHelper.accounts, messages.participants, messages.reloadFilters, messages.threads)
+        matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
