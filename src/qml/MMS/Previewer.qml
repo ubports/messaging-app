@@ -75,6 +75,9 @@ Page {
             }
         }
 
+        // invisible header
+        header: Item { height: 0 }
+
         ContentPeerPicker {
             visible: parent.visible
             contentType: picker.contentType
