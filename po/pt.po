@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2015-06-04 12:13+0000\n"
+"PO-Revision-Date: 2015-09-21 17:02+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-07-21 05:35+0000\n"
-"X-Generator: Launchpad (build 17628)\n"
+"X-Launchpad-Export-Date: 2015-09-22 06:01+0000\n"
+"X-Generator: Launchpad (build 17749)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Aceite"
 
-#: ../src/qml/Messages.qml:581
+#: ../src/qml/Messages.qml:609
 msgid "Add"
 msgstr "Adicionar"
 
@@ -97,7 +97,7 @@ msgstr[1] "Anexos: %1 vídeos"
 msgid "Audio attachment not supported"
 msgstr "Anexo de áudio não suportado"
 
-#: ../src/qml/Messages.qml:570 ../src/qml/Messages.qml:628
+#: ../src/qml/Messages.qml:598 ../src/qml/Messages.qml:656
 msgid "Call"
 msgstr "Ligar"
 
@@ -113,19 +113,20 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Alterar todas as associações de mensagens para %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:390
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:418
 msgid "Close"
 msgstr "Fechar"
 
 #: ../src/qml/MainPage.qml:147
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "Escrever uma nova mensagem ao deslizar para cima do fundo do ecrã."
+msgstr ""
+"Para compor uma nova mensagem, deslize para cima a partir do fundo do ecrã."
 
-#: ../src/qml/Messages.qml:639
+#: ../src/qml/Messages.qml:667
 msgid "Contact"
 msgstr "Contacto"
 
-#: ../src/qml/MessagesListView.qml:92 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:92 ../src/qml/SwipeItemDemo.qml:186
 msgid "Copy"
 msgstr "Copiar"
 
@@ -151,7 +152,7 @@ msgstr "Editar"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr "Ativar MMS no chat em grupo"
+msgstr "Ativar MMS em grupo"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -182,7 +183,7 @@ msgid "Group"
 msgstr "Grupo"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:266
+#: ../src/qml/Messages.qml:273
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupo (%1)"
@@ -191,7 +192,7 @@ msgstr "Grupo (%1)"
 msgid "Image Preview"
 msgstr "Pré-visualizar imagem"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:178
 msgid "Info"
 msgstr "Informação"
 
@@ -225,7 +226,7 @@ msgstr "App de mensagens"
 
 #: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "Aplicação de mensagens"
+msgstr "App de mensagens"
 
 #: ../src/qml/MMSDelegate.qml:211
 msgid "Missing message data"
@@ -235,7 +236,7 @@ msgstr "Falta informação na mensagem"
 msgid "Myself"
 msgstr "Eu"
 
-#: ../src/qml/Messages.qml:269
+#: ../src/qml/Messages.qml:276
 msgid "New Message"
 msgstr "Mensagem nova"
 
@@ -246,9 +247,9 @@ msgstr "Não"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr "Cartão SIM não selecionado."
+msgstr "Sem cartão SIM selecionado"
 
-#: ../src/qml/Messages.qml:386
+#: ../src/qml/Messages.qml:414
 msgid "No network"
 msgstr "Sem rede"
 
@@ -279,11 +280,11 @@ msgstr "Ler"
 msgid "Received"
 msgstr "Recebida"
 
-#: ../src/qml/Messages.qml:333
+#: ../src/qml/Messages.qml:360
 msgid "Remove"
 msgstr "Remover"
 
-#: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:182
 msgid "Retry"
 msgstr "Tentar novamente"
 
@@ -314,8 +315,7 @@ msgid ""
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
 "Selecione um cartão SIM padrão para todas as mensagens enviadas. Pode sempre "
-"alterar a sua escolha nas <a href=\"system_settings\">Definições do "
-"Sistema</a>."
+"alterar a sua escolha nas <a href=\"system_settings\">Definições</a>."
 
 #: ../src/qml/Messages.qml:987
 msgid "Send"
@@ -337,11 +337,11 @@ msgstr "Partilhar"
 msgid "Status"
 msgstr "Estado"
 
-#: ../src/qml/SwipeItemDemo.qml:256
+#: ../src/qml/SwipeItemDemo.qml:257
 msgid "Swipe to delete"
 msgstr "Deslize para apagar"
 
-#: ../src/qml/SwipeItemDemo.qml:206
+#: ../src/qml/SwipeItemDemo.qml:207
 msgid "Swipe to reveal actions"
 msgstr "Deslize para revelar ações"
 
@@ -357,14 +357,14 @@ msgstr "Falha temporária"
 msgid "Text message copied to clipboard"
 msgstr "Copiado para área de transferência"
 
-#: ../src/qml/Messages.qml:387
+#: ../src/qml/Messages.qml:415
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "Atualmente não existe nenhuma rede em %1"
+msgstr "Atualmente sem rede em %1"
 
-#: ../src/qml/Messages.qml:387
+#: ../src/qml/Messages.qml:415
 msgid "There is currently no network."
-msgstr "Atualmente não existe nenhuma rede."
+msgstr "Atualmente sem rede."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
@@ -387,7 +387,7 @@ msgid "Unknown"
 msgstr "Desconhecido"
 
 #: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:861
+#: ../src/qml/Messages.qml:889
 msgid "Unknown contact"
 msgstr "Contacto desconhecido"
 
@@ -399,11 +399,11 @@ msgstr "Pré-visualizar vídeo"
 msgid "Video attachment not supported"
 msgstr "Anexo de vídeo não suportado"
 
-#: ../src/qml/SwipeItemDemo.qml:161
+#: ../src/qml/SwipeItemDemo.qml:162
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Bem-vindo à app de mensagens do Ubuntu"
 
-#: ../src/qml/Messages.qml:976
+#: ../src/qml/Messages.qml:1004
 msgid "Write a message..."
 msgstr "Escrever mensagem..."
 
