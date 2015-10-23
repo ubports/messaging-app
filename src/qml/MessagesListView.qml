@@ -71,6 +71,7 @@ MultipleSelectionListView {
                 var messageType = messageData.textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
                 var messageInfo = {"type": messageType,
                                    "senderId": messageData.senderId,
+                                   "sender": messageData.sender,
                                    "timestamp": messageData.timestamp,
                                    "textReadTimestamp": messageData.textReadTimestamp,
                                    "status": messageData.textMessageStatus,

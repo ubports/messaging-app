@@ -33,7 +33,7 @@ MessageDelegate {
     {
         eventModel.removeEvents([root.messageData.properties]);
         // FIXME: export this information for MessageDelegate
-        messages.sendMessage(textMessage, messages.participants, [])
+        messages.sendMessage(textMessage, messages.participantIds, [])
     }
 
     function copyMessage()

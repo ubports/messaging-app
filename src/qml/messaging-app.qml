@@ -84,15 +84,15 @@ MainView {
     }
 
     function removeThreads(threads) {
-        // extract the participant IDs from one of the threads
-        var thread = threads[0];
-        var participants = thread.participants;
-
-        // and acknowledge all messages for the threads to be removed
         for (var i in threads) {
-            chatManager.acknowledgeAllMessages(participants, threads[i].accountId)
+            var thread = threads[i];
+            var participants = [];
+            for (var j in thread.participants) {
+                participants.push(thread.participants[j].identifier)
+            }
+            // and acknowledge all messages for the threads to be removed
+            chatManager.acknowledgeAllMessages(participants, thread.accountId)
         }
-
         // at last remove the threads
         threadModel.removeThreads(threads);
     }
@@ -140,9 +140,8 @@ MainView {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
         }
-        filter: HistoryFilter {}
-        // FIXME: once we support more messaging backends, we might need to increase the granularity of the filters
         groupingProperty: "participants"
+        filter: HistoryFilter {}
         matchContacts: true
     }
 
@@ -194,13 +193,37 @@ MainView {
 
     function startChat(identifiers, text) {
         var properties = {}
-        var participants = identifiers.split(";")
-        properties["participants"] = participants
-        properties["text"] = text
-        emptyStack()
-        if (participants.length === 0) {
+        var participantIds = identifiers.split(";")
+
+        if (participantIds.length === 0) {
             return;
         }
+
+        if (mainView.account) {
+            var thread = threadModel.threadForParticipants(mainView.account.accountId,
+                                                           HistoryThreadModel.EventTypeText,
+                                                           participantIds,
+                                                           mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                                                              : HistoryThreadModel.MatchCaseSensitive,
+                                                           true)
+            properties["participants"] = thread.participants
+        } else {
+            var participants = []
+            for (var i in participantIds) {
+                var participant = {}
+                participant["identifier"] = participantIds[i]
+                participant["contactId"] = ""
+                participant["alias"] = ""
+                participant["avatar"] = ""
+                participant["detailProperties"] = {}
+                participants.push(participant)
+            }
+            properties["participants"] = participants;
+        }
+
+        properties["participantIds"] = participantIds
+        properties["text"] = text
+        emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 

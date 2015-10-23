@@ -211,11 +211,15 @@ LocalPageWithBottomEdge {
                 } else {
                     var properties = model.properties
                     properties["keyboardFocus"] = false
+                    properties["threads"] = model.threads
+                    var participantIds = [];
+                    for (var i in model.participants) {
+                        participantIds.push(model.participants[i].identifier)
+                    }
+                    properties["participantIds"] = participantIds
+                    properties["participants"] = model.participants
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
-                    }
-                    if (model.participants[0].alias) {
-                        properties["firstRecipientAlias"] = model.participants[0].alias;
                     }
                     mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
                 }
@@ -226,14 +230,13 @@ LocalPageWithBottomEdge {
             }
         }
         onSelectionDone: {
-            var threadsToRemove = [];
+            var threadsToRemove = []
             for (var i=0; i < items.count; i++) {
                 var threads = items.get(i).model.threads
                 for (var j in threads) {
-                    threadsToRemove.push(threads[j]);
+                    threadsToRemove.push(threads[j])
                 }
             }
-
             if (threadsToRemove.length > 0) {
                 mainView.removeThreads(threadsToRemove);
             }
