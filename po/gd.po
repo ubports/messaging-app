@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2015-09-04 05:35+0000\n"
-"X-Generator: Launchpad (build 17706)\n"
+"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
+"X-Generator: Launchpad (build 17812)\n"
 "Language: gd\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -61,7 +61,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Air a ghabhail ris"
 
-#: ../src/qml/Messages.qml:609
+#: ../src/qml/Messages.qml:636
 msgid "Add"
 msgstr "Cuir ris"
 
@@ -113,7 +113,7 @@ msgstr[3] "Ceanglachain: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain fuaime"
 
-#: ../src/qml/Messages.qml:598 ../src/qml/Messages.qml:656
+#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:683
 msgid "Call"
 msgstr "Gairm"
 
@@ -130,7 +130,7 @@ msgstr ""
 "A bheil thu airson gach co-cheangal nan teachdaireachd atharrachadh gu %1?"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:418
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:447
 msgid "Close"
 msgstr "Dùin"
 
@@ -139,11 +139,11 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Grad-shlaighd suas o bhonn na sgrìn gus teachdaireachd ùr a sgrìobhadh."
 
-#: ../src/qml/Messages.qml:667
+#: ../src/qml/Messages.qml:694
 msgid "Contact"
 msgstr "Neach-aithne"
 
-#: ../src/qml/MessagesListView.qml:92 ../src/qml/SwipeItemDemo.qml:186
+#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
 msgid "Copy"
 msgstr "Dèan lethbhreac"
 
@@ -200,7 +200,7 @@ msgid "Group"
 msgstr "Buidheann"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:273
+#: ../src/qml/Messages.qml:296
 #, qt-format
 msgid "Group (%1)"
 msgstr "Buidheann (%1)"
@@ -254,7 +254,7 @@ msgstr "Tha dàta na teachdaireachd a dhìth"
 msgid "Myself"
 msgstr "Mi fhìn"
 
-#: ../src/qml/Messages.qml:276
+#: ../src/qml/Messages.qml:299
 msgid "New Message"
 msgstr "Teachdaireachd ùr"
 
@@ -267,7 +267,7 @@ msgstr "Chan eil"
 msgid "No SIM card selected"
 msgstr "Cha deach cairt SIM a thaghadh"
 
-#: ../src/qml/Messages.qml:414
+#: ../src/qml/Messages.qml:443
 msgid "No network"
 msgstr "Chan eil lìonra ann"
 
@@ -298,11 +298,11 @@ msgstr "Air a leughadh"
 msgid "Received"
 msgstr "Air a faighinn"
 
-#: ../src/qml/Messages.qml:360
+#: ../src/qml/Messages.qml:384
 msgid "Remove"
 msgstr "Thoir air falbh"
 
-#: ../src/qml/MessagesListView.qml:85 ../src/qml/SwipeItemDemo.qml:182
+#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:182
 msgid "Retry"
 msgstr "Feuch ris a-rithist"
 
@@ -376,12 +376,12 @@ msgstr "Dh'fhàillig leis gu sealach"
 msgid "Text message copied to clipboard"
 msgstr "Chaidh lethbhreac dhen teachdaireachd a chur air an stòr-bhòrd"
 
-#: ../src/qml/Messages.qml:415
+#: ../src/qml/Messages.qml:444
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Chan eil lìonra air %1 an-dràsta"
 
-#: ../src/qml/Messages.qml:415
+#: ../src/qml/Messages.qml:444
 msgid "There is currently no network."
 msgstr "Chan eil lìonra ann an-dràsta."
 
@@ -406,7 +406,7 @@ msgid "Unknown"
 msgstr "Neo-aithnichte"
 
 #: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:889
+#: ../src/qml/Messages.qml:918
 msgid "Unknown contact"
 msgstr "Neach neo-aithnichte"
 
@@ -422,7 +422,7 @@ msgstr "Cha chuirear taic ri ceanglachain video"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Fàilte gu aplacaid teachdaireachdan Ubuntu."
 
-#: ../src/qml/Messages.qml:1004
+#: ../src/qml/Messages.qml:1033
 msgid "Write a message..."
 msgstr "Sgrìobh teachdaireachd..."
 
