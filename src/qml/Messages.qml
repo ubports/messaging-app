@@ -18,9 +18,9 @@
 
 import QtQuick 2.2
 import QtQuick.Window 2.0
-import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
@@ -38,6 +38,7 @@ Page {
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
     property variant participants: []
+    property variant participantIds: []
     property bool groupChat: participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
@@ -48,16 +49,18 @@ Page {
     property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
-    property string lastFilter: ""
     property string text: ""
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
     property var pendingEventsToMarkAsRead: []
+    property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
-    property string firstParticipant: participants.length > 0 ? participants[0] : ""
     property bool userTyping: false
     property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+    property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
+    property variant firstParticipant: participants.length > 0 ? participants[0] : null
+    property var threads: []
     property var accountsModel: {
         var accounts = []
         // on new chat dialogs display all possible accounts
@@ -151,7 +154,7 @@ Page {
         onChatEntryCreated: {
             // TODO: track using chatId and not participants
             if (accountId == account.accountId && 
-                participants[0] == messages.participants[0]) {
+                participants[0].identifier == messages.participants[0].identifier) {
                 messages.chatEntry = chatEntry
             }
         }
@@ -160,7 +163,7 @@ Page {
                 var chat = chatManager.chats[i]
                 // TODO: track using chatId and not participants
                 if (chat.account.accountId == account.accountId &&
-                    chat.participants[0] == messages.participants[0]) {
+                    chat.participants[0].identifier == messages.participants[0].identifier) {
                     messages.chatEntry = chat
                     return
                 }
@@ -265,7 +268,7 @@ Page {
     }
 
     function addAttachmentsToModel(transfer) {
-        for (var i = 0; i < transfer.items.length; i++) {
+        for (var i in transfer.items) {
             if (String(transfer.items[i].text).length > 0) {
                 messages.text = String(transfer.items[i].text)
                 continue
@@ -316,7 +319,7 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessage(text, participants, attachments) {
+    function sendMessage(text, participantIds, attachments) {
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
@@ -327,12 +330,35 @@ Page {
         }
 
         // create the new thread and update the threadId list
-        var threadId = eventModel.threadIdForParticipants(messages.account.accountId,
+        var thread = eventModel.threadForParticipants(messages.account.accountId,
                                            HistoryThreadModel.EventTypeText,
-                                           participants,
+                                           participantIds,
                                            messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                               : HistoryThreadModel.MatchCaseSensitive,
                                            true)
+        var threadId = thread.threadId
+
+        // dont change the participants list
+        if (messages.participants.length == 0) {
+            messages.participants = thread.participants
+            var ids = []
+            for (var i in messages.participants) {
+                ids.push(messages.participants[i].identifier)
+            }
+            messages.participantIds = ids;
+        }
+
+        var found = false;
+        for (var i in messages.threads) {
+            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == messages.account.accountId) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            messages.threads.push({"accountId": messages.account.accountId, "threadId": threadId})
+            reloadFilters = !reloadFilters
+        }
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -346,7 +372,7 @@ Page {
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      threadId,
-                                                     participants,
+                                                     participantIds,
                                                      "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
@@ -366,7 +392,7 @@ Page {
             event["threadId"] = threadId
             event["eventId"] =  tmpEventId
             event["type"] = HistoryEventModel.MessageTypeText
-            event["participants"] = participants
+            event["participants"] = thread.participants
             event["senderId"] = "self"
             event["timestamp"] = timestamp
             event["newEvent"] = false
@@ -396,14 +422,14 @@ Page {
             eventModel.writeEvents([event]);
         } else {
             var isMMS = attachments.length > 0
-            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat
+            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             // FIXME: maybe move this to telepathy-ofono itself and treat as just sendMessage on the app?
             if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
-                chatManager.sendMMS(participants, text, attachments, messages.account.accountId)
+                chatManager.sendMMS(participantIds, text, attachments, messages.account.accountId)
             } else {
-                chatManager.sendMessage(participants, text, messages.account.accountId)
+                chatManager.sendMessage(participantIds, text, messages.account.accountId)
             }
         }
 
@@ -440,7 +466,7 @@ Page {
             return account.accountId
         }
         // we just request presence on 1-1 chats
-        identifier: participants.length == 1 ? participants[0] : ""
+        identifier: participants.length == 1 ? participants[0].identifier : ""
     }
 
     // this is necessary to automatically update the view when the
@@ -453,11 +479,6 @@ Page {
             }
             messages.account = mainView.account
         }
-    }
-
-    Connections {
-        target: telepathyHelper
-        onAccountsChanged: updateFilters()
     }
 
     ActivityIndicator {
@@ -498,7 +519,9 @@ Page {
             multiRecipient.forceFocus()
     }
 
-    property string firstRecipientAlias: ""
+    property string firstRecipientAlias: ((contactWatcher.isUnknown &&
+                                           contactWatcher.isInteractive) ||
+                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     title: {
         if (selectionMode || participants.length == 0) {
             return " "
@@ -509,7 +532,7 @@ Page {
         }
         if (participants.length > 0) {
             if (participants.length == 1) {
-                return (firstRecipientAlias !== "") ? firstRecipientAlias : contactWatcher.identifier
+                return firstRecipientAlias
             } else {
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 return i18n.tr("Group (%1)").arg(participants.length)
@@ -528,7 +551,6 @@ Page {
                 }
             }
         }
-        updateFilters()
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
@@ -538,15 +560,24 @@ Page {
         }
     }
 
-    function updateFilters() {
-        if (participants.length == 0) {
-            eventModel.filter = null
-            return
+    function updateFilters(accounts, participants, reload, threads) {
+        if (participants.length == 0 || accounts.length == 0) {
+            return null
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
         var componentFilters = ""
+        if (threads.length > 0) {
+            for (var i in threads) {
+                var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(threads[i].accountId)
+                var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
+                componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
+            }
+            return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
+        }
+ 
         var filterAccounts = []
+
         if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
             filterAccounts = [messages.accountsModel[0]]
         } else {
@@ -556,8 +587,9 @@ Page {
                     filterAccounts.push(account)
                 }
             }
-        }
-        for (var i in filterAccounts) {
+       }
+
+       for (var i in filterAccounts) {
             var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
@@ -572,15 +604,9 @@ Page {
             componentFilters += 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value } '.arg(filterValue)
         }
         if (componentFilters === "") {
-            eventModel.filter = null
-            lastFilter = ""
-            return
+            return null
         }
-        if (componentFilters != lastFilter) {
-            var finalString = componentUnion.arg(componentFilters)
-            eventModel.filter = Qt.createQmlObject(finalString, eventModel)
-            lastFilter = componentFilters
-        }
+        return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
@@ -589,7 +615,7 @@ Page {
            pendingEventsToMarkAsRead.push(pendingEvent)
            return false
         }
-        chatManager.acknowledgeMessage(participants, eventId, accountId)
+        chatManager.acknowledgeMessage(participantIds, eventId, accountId)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
@@ -659,7 +685,12 @@ Page {
                         }
                         ContactWatcher {
                             id: contactWatcher
-                            identifier: modelData
+                            identifier: modelData.identifier
+                            contactId: modelData.contactId
+                            alias: modelData.alias
+                            avatar: modelData.avatar
+                            detailProperties: modelData.detailProperties
+
                             addressableFields: messages.account.addressableVCardFields
                         }
                     }
@@ -757,18 +788,16 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: participants.length === 0 ? "" : participants[0]
-        onIsUnknownChanged: firstRecipientAlias = contactWatcherInternal.alias
-        onAliasChanged: firstRecipientAlias = contactWatcherInternal.alias
+        identifier: firstParticipant ? firstParticipant.identifier : ""
+        contactId: firstParticipant ? firstParticipant.contactId : ""
+        alias: firstParticipant ? firstParticipant.alias : ""
+        avatar: firstParticipant ? firstParticipant.avatar : ""
+        detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
-    onParticipantsChanged: {
-        updateFilters()
-    }
-
     onAccountsModelChanged: {
-        updateFilters()
+        reloadFilters = !reloadFilters
     }
 
     Action {
@@ -839,7 +868,7 @@ Page {
             actions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1 && messages.phoneAccount
+                    visible: participants.length == 1 && contactWatcher.interactive
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -850,7 +879,7 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
+                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
@@ -923,7 +952,8 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: null
+        filter: updateFilters(telepathyHelper.accounts, messages.participantIds, messages.reloadFilters, messages.threads)
+        matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
@@ -998,7 +1028,7 @@ Page {
         anchors.bottom: isSearching ? parent.bottom : keyboard.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: selectionMode ? 0 : textEntry.height + units.gu(2)
+        height: selectionMode || (participants.length > 0 && !contactWatcher.interactive) ? 0 : textEntry.height + units.gu(2)
         visible: !selectionMode && !isSearching
         clip: true
         MouseArea {
@@ -1302,10 +1332,6 @@ Page {
                     }
                     // refresh the recipient list
                     multiRecipient.focus = false
-                    // dont change the participants list
-                    if (participants.length == 0) {
-                        participants = multiRecipient.recipients
-                    }
 
                     if (messages.account && messages.accountId == "") {
                         messages.accountId = messages.account.accountId
@@ -1326,13 +1352,17 @@ Page {
                         newAttachments.push(attachment)
                     }
 
+                    var recipients = participantIds.length > 0 ? participantIds :
+                                                                 multiRecipient.recipients
                     // if sendMessage succeeds it means the message was either sent or
                     // injected into the history service so the user can retry later
-                    if (sendMessage(textEntry.text, participants, newAttachments)) {
+                    if (sendMessage(textEntry.text, recipients, newAttachments)) {
                         textEntry.text = ""
                         attachments.clear()
                     }
-                    updateFilters()
+                    if (eventModel.filter == null) {
+                        reloadFilters = !reloadFilters
+                    }
                 }
             }
         }
