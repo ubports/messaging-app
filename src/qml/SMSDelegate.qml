@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 
 import "dateUtils.js" as DateUtils
 
@@ -33,7 +33,7 @@ MessageDelegate {
     {
         eventModel.removeEvents([root.messageData.properties]);
         // FIXME: export this information for MessageDelegate
-        messages.sendMessage(textMessage, messages.participants, [])
+        messages.sendMessage(textMessage, messages.participantIds, [])
     }
 
     function copyMessage()

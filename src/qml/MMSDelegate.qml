@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Telephony 0.1
 
 MessageDelegate {
@@ -60,7 +60,7 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.sendMessage(textMessage, participants, newAttachments)
+        messages.sendMessage(textMessage, messages.participantIds, newAttachments)
     }
 
     function copyMessage()
@@ -214,15 +214,9 @@ MessageDelegate {
             Binding {
                 target: bubbleLoader.item
                 property: "sender"
-                value: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
-                when: bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+                value: messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId
+                when: participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
             }
- 
-            ContactWatcher {
-                id: contactWatcher
-                phoneNumber: participants.length > 1 && messageData.senderId !== "self" ? messageData.senderId : ""
-            }
- 
         }
     }
 }
