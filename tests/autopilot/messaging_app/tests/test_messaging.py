@@ -491,7 +491,7 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
     def test_launch_app_with_predefined_text_no_slashes(self):
         self.messages_view = self.main_view.select_single(
             emulators.Messages,
-            firstParticipant='5555559876',
+            firstParticipantId='5555559876',
             text='text message')
 
 

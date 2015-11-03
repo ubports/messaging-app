@@ -17,8 +17,8 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
@@ -137,7 +137,21 @@ ListItemWithActions {
             leftMargin: units.gu(1)
         }
         color: UbuntuColors.lightAubergine
-        text: groupChat ? groupChatLabel : unknownContact ? delegateHelper.phoneNumber : delegateHelper.alias
+        text: {
+            if (groupChat) {
+                return groupChatLabel
+            } else {
+                if (delegateHelper.phoneNumber == "x-ofono-unknown") {
+                    // FIXME: replace the dtr() call by a regular tr() call after
+                    // string freeze
+                    return i18n.dtr("telephony-service", "Unknown Number")
+                } else if (unknownContact) {
+                    return delegateHelper.phoneNumber
+                } else {
+                    return delegateHelper.alias
+                }
+            }
+        }
     }
 
     Label {

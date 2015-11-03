@@ -17,40 +17,43 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Content 0.1
 import ".."
 
 Page {
+    id: previewerPage
     title: ""
     property variant attachment
     signal actionTriggered
-    tools: ToolbarItems {
-        ToolbarButton {
-            objectName: "saveButton"
-            action: Action {
-                text: i18n.tr("Save")
-                iconSource: "image://theme/save"
-                onTriggered: {
-                    mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
-                    actionTriggered()
+    state: "default"
+    states: [
+        PageHeadState {
+            name: "default"
+            head: previewerPage.head
+            actions: [
+                Action {
+                    objectName: "saveButton"
+                    text: i18n.tr("Save")
+                    iconSource: "image://theme/save"
+                    onTriggered: {
+                        mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
+                        actionTriggered()
+                    }
+                },
+                Action {
+                    objectName: "shareButton"
+                    iconSource: "image://theme/share"
+                    text: i18n.tr("Share")
+                    onTriggered: {
+                        mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Share});
+                        actionTriggered()
+                    }
                 }
-            }
+            ]
         }
-
-        ToolbarButton {
-            objectName: "shareButton"
-            action: Action {
-                iconSource: "image://theme/share"
-                text: i18n.tr("Share")
-                onTriggered: {
-                    mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Share});
-                    actionTriggered()
-                }
-            }
-        }
-    }
-
+    ]
+ 
     Component {
         id: resultComponent
         ContentItem {}
@@ -71,6 +74,9 @@ Page {
                 picker.curTransfer.state = ContentTransfer.Charged;
             }
         }
+
+        // invisible header
+        header: Item { height: 0 }
 
         ContentPeerPicker {
             visible: parent.visible
