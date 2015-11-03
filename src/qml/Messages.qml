@@ -799,14 +799,6 @@ Page {
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
-    onAccountsModelChanged: {
-        reloadFilters = !reloadFilters
-    }
-
-    onAccountsModelChanged: {
-        updateFilters()
-    }
-
     Action {
         id: backButton
         objectName: "backButton"
