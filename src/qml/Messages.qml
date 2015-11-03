@@ -1341,11 +1341,6 @@ Page {
                         messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
                     }
 
-                    if (messages.account && messages.accountId == "") {
-                        messages.accountId = messages.account.accountId
-                        messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
-                    }
-
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {
                         var attachment = []
