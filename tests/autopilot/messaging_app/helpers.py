@@ -46,10 +46,6 @@ tabRegistration.gbNetworkRegistration.pbRegistration.click();
 """ % (status_number))
 
 
-def text2html(text):
-    return text.replace(' ', '&nbsp;')
-
-
 def receive_sms(sender, text):
     """Receive an SMS based on sender number and text
 

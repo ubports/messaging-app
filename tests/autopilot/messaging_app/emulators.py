@@ -62,8 +62,7 @@ class MainView(toolkit_emulators.MainView):
         for message in self.select_many(MessageDelegateFactory):
             for item in message.select_many('Label'):
                 if "text" in item.get_properties():
-                    labelText = item.get_properties()['text']
-                    if labelText.replace('&nbsp;', ' ') == text:
+                    if item.get_properties()['text'] == text:
                         return message
         raise EmulatorException('Could not find message with the text '
                                 '{}'.format(text))
