@@ -113,6 +113,20 @@ MainView {
         }
     }
 
+    function removeThreads(threads) {
+        for (var i in threads) {
+            var thread = threads[i];
+            var participants = [];
+            for (var j in thread.participants) {
+                participants.push(thread.participants[j].identifier)
+            }
+            // and acknowledge all messages for the threads to be removed
+            chatManager.acknowledgeAllMessages(participants, thread.accountId)
+        }
+        // at last remove the threads
+        threadModel.removeThreads(threads);
+    }
+
 /*    Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -155,9 +169,8 @@ MainView {
             sortField: "lastEventTimestamp"
             sortOrder: HistorySort.DescendingOrder
         }
-        filter: HistoryFilter {}
-        // FIXME: once we support more messaging backends, we might need to increase the granularity of the filters
         groupingProperty: "participants"
+        filter: HistoryFilter {}
         matchContacts: true
     }
 
@@ -207,16 +220,40 @@ MainView {
 
     function startChat(identifiers, text, accountId) {
         var properties = {}
-        var participants = identifiers.split(";")
-        properties["participants"] = participants
+        var participantIds = identifiers.split(";")
+
+        if (participantIds.length === 0) {
+            return;
+        }
+
+        if (mainView.account) {
+            var thread = threadModel.threadForParticipants(mainView.account.accountId,
+                                                           HistoryThreadModel.EventTypeText,
+                                                           participantIds,
+                                                           mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                                                              : HistoryThreadModel.MatchCaseSensitive,
+                                                           true)
+            properties["participants"] = thread.participants
+        } else {
+            var participants = []
+            for (var i in participantIds) {
+                var participant = {}
+                participant["identifier"] = participantIds[i]
+                participant["contactId"] = ""
+                participant["alias"] = ""
+                participant["avatar"] = ""
+                participant["detailProperties"] = {}
+                participants.push(participant)
+            }
+            properties["participants"] = participants;
+        }
+
+        properties["participantIds"] = participantIds
         properties["text"] = text
         if (typeof(accountId)!=='undefined') {
             properties["accountId"] = accountId
         }
         emptyStack()
-        if (participants.length === 0) {
-            return;
-        }
         mainStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
 

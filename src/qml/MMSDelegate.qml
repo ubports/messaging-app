@@ -64,7 +64,7 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.sendMessage(textMessage, participants, newAttachments, {"x-canonical-tmp-files": true})
+        messages.sendMessage(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})
         deleteMessage();
     }
 
@@ -219,15 +219,9 @@ MessageDelegate {
             Binding {
                 target: bubbleLoader.item
                 property: "sender"
-                value: contactWatcher.isUnknown ? contactWatcher.phoneNumber : contactWatcher.alias
-                when: bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+                value: messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId
+                when: participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
             }
- 
-            ContactWatcher {
-                id: contactWatcher
-                phoneNumber: participants.length > 1 && messageData.senderId !== "self" ? messageData.senderId : ""
-            }
- 
         }
     }
 }

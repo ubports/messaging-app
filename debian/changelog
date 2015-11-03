@@ -1,3 +1,64 @@
+messaging-app (0.1+16.04.20151026-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Tiago Salem Herrmann ]
+  * Port messaging-app to sdk 1.3.
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Mon, 26 Oct 2015 15:06:26 +0000
+
+messaging-app (0.1+15.10.20151015-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Gustavo Pichorim Boiko ]
+  * Make use of the cached contact info from history-service when
+    populating headers and popups.
+
+  [ Tiago Salem Herrmann ]
+  * Turn updateFilters() into a binding. (LP: #1488988)
+  * Use groupedThreads role from the model to generate history event
+    filters.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 15 Oct 2015 14:03:13 +0000
+
+messaging-app (0.1+15.10.20151006.3-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Tiago Salem Herrmann ]
+  * Revert patch that replaces empty spaces by &nbsp;, as it breaks word
+    wrap. (LP: #1503018)
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Tue, 06 Oct 2015 15:27:53 +0000
+
+messaging-app (0.1+15.10.20150928-0ubuntu1) wily; urgency=medium
+
+  * Acknowledge pending messages before removing the threads. (LP:
+    #1488498)
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Mon, 28 Sep 2015 18:27:36 +0000
+
+messaging-app (0.1+15.10.20150923.1-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Gustavo Pichorim Boiko ]
+  * Increase the touch area of the send and attach buttons. (LP:
+    #1488984)
+
+  [ Sebastien Bacher ]
+  * display empty lines and leading spaces (LP: #1366592)
+
+  [ Tiago Salem Herrmann ]
+  * Fix autopilot tests.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Wed, 23 Sep 2015 15:33:42 +0000
+
 messaging-app (0.1+15.10.20150818-0ubuntu1) wily; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
