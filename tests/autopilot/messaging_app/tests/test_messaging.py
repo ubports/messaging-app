@@ -498,6 +498,9 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
         super(MessagingTestSettings, self).setUp()
 
     def test_mms_group_chat_settings(self):
@@ -586,7 +589,7 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         helpers.set_network_status("unregistered")
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message([phone_num], message)
+        self.main_view.send_message([phone_num], message, False)
         self.main_view.close_osk()
 
         closeButton = self.main_view.wait_select_single(
