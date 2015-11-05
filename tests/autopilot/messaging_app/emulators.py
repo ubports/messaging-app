@@ -54,26 +54,18 @@ class MainView(toolkit_emulators.MainView):
     def get_message(self, text):
         """Return message from text
 
-        :parameter text: the text or date of the label in the message
+        :parameter text: the text of the message
 
         """
 
         time.sleep(2)  # message is not always found on slow emulator
         for message in self.select_many(MessageDelegateFactory):
-            for item in message.select_many('Label'):
-                if "text" in item.get_properties():
-                    if item.get_properties()['text'] == text:
+            for item in message.select_many('MessageBubble'):
+                if "messageText" in item.get_properties():
+                    if item.get_properties()['messageText'] == text:
                         return message
         raise EmulatorException('Could not find message with the text '
                                 '{}'.format(text))
-
-    def get_label(self, text):
-        """Return label from text
-
-        :parameter text: the text of the label to return
-        """
-
-        return self.select_single('Label', visible=True, text=text)
 
     def get_main_page(self):
         """Return messages with objectName messagesPage"""
@@ -98,10 +90,7 @@ class MainView(toolkit_emulators.MainView):
     def get_newmessage_textfield(self):
         """Return TextField with objectName newPhoneNumberField"""
 
-        return self.select_single(
-            "TextField",
-            objectName="contactSearchInput",
-        )
+        return self.select_single(objectName="contactSearchInput")
 
     def get_multiple_selection_list_view(self):
         """Return MultipleSelectionListView from the messages page"""
@@ -120,57 +109,30 @@ class MainView(toolkit_emulators.MainView):
         """Return TextArea with blank objectName"""
 
         return self.get_messages_page().select_single(
-            'TextArea',
             objectName='messageTextArea')
 
     def get_send_button(self):
         """Return Button with text Send"""
 
-        return self.get_messages_page().select_single('Icon',
-                                                      objectName='sendButton')
+        return self.get_messages_page().select_single(objectName='sendButton')
 
     def get_toolbar_back_button(self):
         """Return toolbar button with objectName back_toolbar_button"""
 
         return self.select_single(
-            'ActionItem',
-            objectName='back_toolbar_button',
+            objectName='back_toolbar_button'
         )
 
     def get_toolbar_select_messages_button(self):
         """Return toolbar button with objectName selectMessagesButton"""
 
         return self.select_single(
-            'ActionItem',
-            objectName='selectMessagesButton',
+            objectName='selectMessagesButton'
         )
-
-    def get_toolbar_add_contact_button(self):
-        """Return toolbar button with objectName addContactButton"""
-
-        return self.select_single(
-            'ActionItem',
-            objectName='addContactButton',
-        )
-
-    def get_toolbar_add_contact_icon(self):
-        """Return toolbar icon to add contact"""
-
-        return self.select_single(
-            'PageHeadButton',
-            objectName='contactList_header_button',
-        )
-
-    def click_add_contact_icon(self):
-        """Click the add contact icon"""
-
-        icon = self.get_toolbar_add_contact_icon()
-        self.pointing_device.click_object(icon)
 
     def get_contact_list_view(self):
         """Returns the ContactListView object"""
         return self.select_single(
-            'ContactListView',
             objectName='newRecipientList'
         )
 
@@ -178,16 +140,14 @@ class MainView(toolkit_emulators.MainView):
         """Return toolbar button with objectName contactProfileButton"""
 
         return self.select_single(
-            'ActionItem',
-            objectName='contactProfileButton',
+            objectName='contactProfileButton'
         )
 
     def get_toolbar_contact_call_button(self):
         """Return toolbar button with objectName contactCallButton"""
 
         return self.select_single(
-            'ActionItem',
-            objectName='contactCallButton',
+            objectName='contactCallButton'
         )
 
     def get_dialog_buttons(self, visible=True):
@@ -284,6 +244,11 @@ class MainView(toolkit_emulators.MainView):
             osk = UbuntuKeyboard()
             osk.dismiss()
 
+    def click_add_contact_icon(self):
+        """Click the add contact icon"""
+        header = self.get_header()
+        header.click_action_button("contactList")
+
     def click_add_button(self):
         """Click add button from toolbar on messages page"""
         header = self.get_header()
@@ -293,38 +258,6 @@ class MainView(toolkit_emulators.MainView):
         """Click call button from toolbar on messages page"""
         header = self.get_header()
         header.click_action_button("contactCallAction")
-
-    def click_back_button(self):
-        """Click back button from toolbar on messages page"""
-
-        toolbar = self.open_toolbar()
-        button = toolbar.wait_select_single("ActionItem", text=u"Back")
-        self.pointing_device.click_object(button)
-        toolbar.animating.wait_for(False)
-
-    def click_add_to_contact_button(self):
-        """
-        Click the 'Add to existing contact' button
-        in the 'Save Contact' dialog.
-        """
-        button = self.wait_select_single('Button',
-                                         objectName="addToExistingContact")
-        self.pointing_device.click_object(button)
-
-    def click_create_new_contact_button(self):
-        """
-        Click the 'Create new contact' button
-        in the 'Save Contact' dialog
-        """
-        button = self.wait_select_single('Button',
-                                         objectName="createNewContact")
-        self.pointing_device.click_object(button)
-
-    def click_cancel_save_button(self):
-        " Click the 'Cancel' button in the 'Save Contact' dialog """
-        button = self.wait_select_single('Button',
-                                         objectName="cancelSave")
-        self.pointing_device.click_object(button)
 
     def click_threads_header_delete(self):
         """Click the header action 'Delete' on Messages view"""
@@ -370,7 +303,7 @@ class MainView(toolkit_emulators.MainView):
         message.confirm_removal()
 
     @autopilot_logging.log_action(logger.info)
-    def send_message(self, numbers, message):
+    def send_message(self, numbers, message, check_sent=True):
         """Write a new message and send it.
 
         :param numbers: phone numbers of contacts to send message to.
@@ -387,9 +320,11 @@ class MainView(toolkit_emulators.MainView):
         old_message_count = self.get_multiple_selection_list_view().count
         self.click_send_button()
 
-        self.get_multiple_selection_list_view().count.wait_for(
-            old_message_count + 1)
-        thread_bubble = self.get_message(message)
+        thread_bubble = None
+        if (check_sent):
+            self.get_multiple_selection_list_view().count.wait_for(
+                old_message_count + 1)
+            thread_bubble = self.get_message(message)
 
         return thread_bubble
 
@@ -444,11 +379,14 @@ class MainPage(PageWithBottomEdge):
 
     @autopilot_logging.log_action(logger.info)
     def open_thread(self, participants):
+        """Opens the thread with the given participants."""
+        """FIXME: right now it only supports 1-1 conversations"""
         thread = self.select_single(
             ThreadDelegate, objectName='thread{}'.format(participants))
         self.pointing_device.click_object(thread)
         root = self.get_root_instance()
-        return root.wait_select_single(Messages, participants=participants)
+        return root.wait_select_single(Messages,
+                                       firstParticipantId=participants)
 
 
 class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
@@ -506,15 +444,14 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         for index in range(self.get_messages_count()):
             message_delegate = self._get_message_delegate(index)
             date = message_delegate.select_single(
-                'Label', objectName='messageDate').text
+                objectName='messageDate').text
             text = message_delegate.select_single(
-                'Label', objectName='messageText').text
+                objectName='messageText').text
             messages.append((date, text))
         return messages
 
     def get_text_area_text(self):
-        return self.wait_select_single(
-            'TextArea', objectName='messageTextArea').text
+        return self.wait_select_single(objectName='messageTextArea').text
 
     def get_list_view(self):
         """Returns the messages list view"""
@@ -576,7 +513,6 @@ class MessagingContactViewPage(address_book.ContactViewPage):
             objectName='phones')
 
         call_buttons = phone_group.select_many(
-            "ActionButton",
             objectName="message-contact")
         self.pointing_device.click_object(call_buttons[index])
 

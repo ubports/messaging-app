@@ -40,6 +40,16 @@ class MessagingTestEnvironment(fixtures.Fixture):
             self.useFixture(UseDefaultConfiguration())
         self.useFixture(RespawnService())
         self.useFixture(MockNotificationSystem())
+        telephonyProtocolsDir = '/usr/share/telephony-service/protocols'
+        self.useFixture(
+            fixture_setup.InitctlEnvironmentVariable(
+                TELEPHONY_SERVICE_PROTOCOLS_DIR=telephonyProtocolsDir)
+        )
+        self.useFixture(
+            fixtures.EnvironmentVariable(
+                'TELEPHONY_SERVICE_PROTOCOLS_DIR',
+                newvalue=telephonyProtocolsDir)
+        )
 
 
 class FillCustomSmsHistory(fixtures.Fixture):
