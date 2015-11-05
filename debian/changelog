@@ -1,3 +1,10 @@
+messaging-app (0.1+16.04.20151105-0ubuntu1) xenial; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Enable cross compiling
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Thu, 05 Nov 2015 13:48:57 +0000
+
 messaging-app (0.1+16.04.20151104-0ubuntu1) xenial; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
