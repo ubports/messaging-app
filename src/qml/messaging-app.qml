@@ -224,9 +224,13 @@ MainView {
                                                            participantIds,
                                                            mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                               : HistoryThreadModel.MatchCaseSensitive,
-                                                           true)
-            properties["participants"] = thread.participants
-        } else {
+                                                           false)
+            if (thread.hasOwnProperty("participants")) {
+                properties["participants"] = thread.participants
+            }
+        }
+
+        if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}
