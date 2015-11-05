@@ -851,6 +851,7 @@ Page {
             name: "groupChat"
             head: messages.head
             when: groupChat
+            contents: header
             backAction: backButton
 
             actions: [
