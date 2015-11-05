@@ -73,16 +73,14 @@ class TestMessaging(BaseMessagingTestCase):
     def test_receive_message(self):
         """Verify that we can receive a text message"""
         # receive an sms message
-        helpers.receive_sms('0815', 'hello to Ubuntu')
+        phone_num = '0815'
+        message = 'hello to Ubuntu'
+        helpers.receive_sms(phone_num, message)
 
         # verify that we got the message
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
 
-        # verify number
-        self.thread_list.select_single('Label', text='0815')
-        time.sleep(1)  # make it visible to human users for a sec
-        # verify text
-        self.thread_list.select_single('Label', text='hello to Ubuntu')
+        self.verify_thread(phone_num, message)
 
     def test_write_new_message(self):
         """Verify we can write and send a new text message"""
@@ -100,11 +98,8 @@ class TestMessaging(BaseMessagingTestCase):
 
         # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
-        # verify our number
-        thread = self.main_view.get_thread_from_number(phone_num)
-        self.assertThat(thread.phoneNumber, Equals(phone_num))
-        # verify our text
-        thread.wait_select_single('Label', text=message)
+        # verify the thread
+        self.verify_thread(phone_num, message)
 
     def test_deleting_message_long_press(self):
         """Verify we can delete a message with a long press on the message"""
@@ -146,7 +141,7 @@ class TestMessaging(BaseMessagingTestCase):
         helpers.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
-        mess_thread = self.thread_list.wait_select_single('Label', text=number)
+        mess_thread = self.verify_thread(number, message)
         self.pointing_device.click_object(mess_thread)
         self.main_view.get_message(message)
         # send new message
@@ -187,8 +182,7 @@ class TestMessaging(BaseMessagingTestCase):
 
         # verify messsage is not gone
         time.sleep(5)  # wait 5 seconds, the emulator is slow
-        list_view = self.main_view.get_multiple_selection_list_view()
-        list_view.select_single("Label", text=message)
+        self.main_view.get_message(message)
 
     def test_receive_text_with_letters_in_phone_number(self):
         """verify we can receive a text message with letters for a phone #"""
@@ -198,10 +192,8 @@ class TestMessaging(BaseMessagingTestCase):
         helpers.receive_sms(number, message)
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
         # click message thread
-        mess_thread = self.thread_list.wait_select_single(
-            'Label',
-            text='letters@'  # phonesim sends text with number as letters@
-        )
+        # phonesim sends text with number as letters@
+        mess_thread = self.main_view.get_thread_from_number('letters@')
         self.pointing_device.click_object(mess_thread)
         self.main_view.get_message(message)
         # send new message
@@ -228,19 +220,13 @@ class TestMessaging(BaseMessagingTestCase):
         # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
         # verify our number
-        thread = self.main_view.get_thread_from_number(phone_num)
-        self.assertThat(thread.phoneNumber, Equals(phone_num))
-        # verify our text
-        thread.select_single('Label', text=message)
+        self.verify_thread(phone_num, message)
         # use select button in toolbar
         self.main_view.enable_threads_selection_mode()
         # click cancel button
         self.main_view.click_threads_header_cancel()
-        # verify our number was not deleted
-        thread = self.main_view.get_thread_from_number(phone_num)
-        self.assertThat(thread.phoneNumber, Equals(phone_num))
-        # verify our text was not deleted
-        thread.select_single('Label', text=message)
+        # verify the thread was not deleted
+        self.verify_thread(phone_num, message)
 
     def test_delete_thread_from_main_view(self):
         """Verify we can delete a message thread"""
@@ -258,10 +244,8 @@ class TestMessaging(BaseMessagingTestCase):
 
         # verify a message in the thread list
         self.assertThat(self.thread_list.count, Equals(1))
-        # verify our number
-        mess_thread = self.main_view.get_thread_from_number(phone_num)
-        # verify our text
-        self.thread_list.select_single('Label', text=message)
+        # verify the thread
+        mess_thread = self.verify_thread(phone_num, message)
         # use select button in toolbar
         self.main_view.enable_threads_selection_mode()
         # click thread we want to delete
@@ -336,16 +320,15 @@ class TestMessaging(BaseMessagingTestCase):
     def test_messages_with_color_name_ids(self):
         """Verify that we can open threads with numbers matching color names"""
         # receive an sms message
-        helpers.receive_sms('Orange', 'hello to Ubuntu')
+        phone_num = 'Orange'
+        message = 'hello to Ubuntu'
+        helpers.receive_sms(phone_num, message)
 
         # verify that we got the message
         self.assertThat(self.thread_list.count, Eventually(Equals(1)))
 
-        # verify number
-        self.thread_list.select_single('Label', text='Orange')
-        time.sleep(1)  # make it visible to human users for a sec
-        # verify text
-        self.thread_list.select_single('Label', text='hello to Ubuntu')
+        # verify thread
+        self.verify_thread(phone_num, message)
 
 
 class MessagingTestCaseWithExistingThread(MessagingAppTestCase):
@@ -498,6 +481,9 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):
+        test_setup = fixture_setup.MessagingTestEnvironment()
+        self.useFixture(test_setup)
+
         super(MessagingTestSettings, self).setUp()
 
     def test_mms_group_chat_settings(self):
@@ -568,7 +554,7 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         self.assertThat(thread_list.count, Eventually(Equals(1)))
 
         # click message thread
-        mess_thread = thread_list.wait_select_single('Label', text=number)
+        mess_thread = self.verify_thread(number, message)
         self.pointing_device.click_object(mess_thread)
 
         swipe_item_demo = self.main_view.get_swipe_item_demo()
@@ -586,7 +572,7 @@ class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):
         helpers.set_network_status("unregistered")
         phone_num = '123'
         message = 'hello from Ubuntu'
-        self.main_view.send_message([phone_num], message)
+        self.main_view.send_message([phone_num], message, False)
         self.main_view.close_osk()
 
         closeButton = self.main_view.wait_select_single(
