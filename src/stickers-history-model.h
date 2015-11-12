@@ -43,8 +43,8 @@ public:
 
     enum Roles {
         Sticker = Qt::UserRole + 1,
-        Visits,
-        LastVisitDate
+        Uses,
+        LastUse
     };
 
     // reimplemented from QAbstractListModel
@@ -66,8 +66,8 @@ Q_SIGNALS:
 protected:
     struct HistoryEntry {
         QString sticker;
-        uint visits;
-        QDateTime lastVisit;
+        uint uses;
+        QDateTime lastUse;
     };
     QList<HistoryEntry> m_entries;
     int getEntryIndex(const QString& sticker) const;

@@ -35,6 +35,11 @@ FocusScope {
         anchors.top: parent.top
         height: units.gu(6)
 
+        header: HistoryButton {
+            height: units.gu(6)
+            width: height
+            onTriggered: stickersGrid.model.packName = ""
+        }
         delegate: StickerPackDelegate {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -54,6 +59,7 @@ FocusScope {
         clip: true
         cellWidth: units.gu(10)
         cellHeight: units.gu(10)
+        visible: stickersGrid.model.packName.length > 0
 
         model: StickerPackModel { }
         delegate: StickerDelegate {
@@ -63,6 +69,35 @@ FocusScope {
 
             onTriggered: {
                 StickersHistoryModel.add("%1/%2".arg(stickersGrid.model.packName).arg(fileName))
+                picker.stickerSelected(stickerSource)
+            }
+        }
+    }
+
+    GridView {
+        id: historyGrid
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: setsList.bottom
+        anchors.bottom: parent.bottom
+        clip: true
+        cellWidth: units.gu(10)
+        cellHeight: units.gu(10)
+        visible: stickersGrid.model.packName.length === 0
+
+        model: SortFilterModel {
+            model: StickersHistoryModel
+            sort.order: Qt.DescendingOrder
+            sort.property: "uses"
+        }
+
+        delegate: StickerDelegate {
+            stickerSource: "%1/stickers/%2".arg(dataLocation).arg(sticker)
+            width: stickersGrid.cellWidth
+            height: stickersGrid.cellHeight
+
+            onTriggered: {
+                StickersHistoryModel.add(sticker)
                 picker.stickerSelected(stickerSource)
             }
         }
