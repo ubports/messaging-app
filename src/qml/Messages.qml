@@ -838,7 +838,9 @@ Page {
             height: units.gu(3)
             width: units.gu(3)
             color: "gray"
-            name: stickersPickerLoader.active ? "input-keyboard-symbolic" : "view-grid-symbolic"
+            source: Qt.resolvedUrl("./assets/" + (stickersPickerLoader.active ?
+                                                  "input-keyboard-symbolic.svg" :
+                                                  "face-smile-big-symbolic-2.svg"))
             MouseArea {
                 anchors.fill: parent
                 anchors.margins: units.gu(-2)
@@ -1149,6 +1151,7 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
+        height: units.gu(60)  // REMOVE '''''' only to test on dekstop
     }
 
     MessageInfoDialog {
