@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
-"X-Generator: Launchpad (build 17812)\n"
+"X-Launchpad-Export-Date: 2015-11-12 05:37+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -302,7 +302,7 @@ msgstr "SIM kartica zaključana"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:37
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Spremi"
@@ -335,7 +335,7 @@ msgstr "Pošalji"
 msgid "Settings"
 msgstr "Postavke"
 
-#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Podijeli"
 
