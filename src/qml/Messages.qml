@@ -59,6 +59,34 @@ Page {
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
 
+    function accountsModel() {
+        // does not show dual sim switch if there is only one sim
+        if (!multipleAccounts) {
+            return undefined
+        }
+
+        var accountNames = []
+        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
+            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
+        }
+        return accountNames
+    }
+
+    function accountIndex() {
+        if (!messages.account) {
+            return -1
+        }
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
+                return i
+            }
+        }
+        return -1
+    }
+
+    head.sections.model: accountsModel()
+    head.sections.selectedIndex: accountIndex()
+
     function addAttachmentsToModel(transfer) {
         for (var i in transfer.items) {
             if (String(transfer.items[i].text).length > 0) {
@@ -236,7 +264,11 @@ Page {
     // default account changes in system settings
     Connections {
         target: mainView
-        onAccountChanged: messages.account = mainView.account
+        onAccountChanged: {
+            messages.account = mainView.account
+            head.sections.model = Qt.binding(accountsModel)
+            head.sections.selectedIndex = Qt.binding(accountIndex)
+        }
     }
 
     ActivityIndicator {
@@ -454,29 +486,6 @@ Page {
         }
     }
 
-    head.sections.model: {
-        // does not show dual sim switch if there is only one sim
-        if (!multipleAccounts) {
-            return undefined
-        }
-
-        var accountNames = []
-        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
-            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
-        }
-        return accountNames
-    }
-    head.sections.selectedIndex: {
-        if (!messages.account) {
-            return -1
-        }
-        for (var i in telepathyHelper.activeAccounts) {
-            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
-                return i
-            }
-        }
-        return -1
-    }
     Connections {
         target: messages.head.sections
         onSelectedIndexChanged: messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
