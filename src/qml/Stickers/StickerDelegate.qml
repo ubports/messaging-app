@@ -22,16 +22,11 @@ import Ubuntu.Components 1.3
 AbstractButton {
     property alias stickerSource: image.source
 
-    Rectangle {
-        anchors.fill: parent
-        border.color: "red"
-        border.width: 1
-    }
-
     Image {
         id: image
         anchors.fill: parent
         anchors.margins: units.gu(0.5)
         fillMode: Image.PreserveAspectFit
+        smooth: true
     }
 }

@@ -20,6 +20,13 @@ import QtQuick 2.3
 import Ubuntu.Components 1.3
 
 AbstractButton {
+    property bool selected
+
+    Rectangle {
+        anchors.fill: parent
+        color: selected ? "#f5f5f5" : "transparent"
+    }
+
     Icon {
         name: "history"
         anchors.fill: parent

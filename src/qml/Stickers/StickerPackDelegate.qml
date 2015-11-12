@@ -23,25 +23,26 @@ import Ubuntu.Components 1.3
 AbstractButton {
     property alias path: stickers.folder
     property string name
+    property bool selected
 
     Rectangle {
         anchors.fill: parent
-        border.color: "grey"
-        border.width: 1
+        color: selected ? "#f5f5f5" : "transparent"
+    }
 
-        Icon {
-            anchors.fill: parent
-            visible: stickers.count === 0
-            name: "cancel"
-        }
+    Icon {
+        anchors.fill: parent
+        visible: stickers.count === 0
+        name: "cancel"
+    }
 
-        Image {
-            visible: stickers.count > 0
-            anchors.fill: parent
-            anchors.margins: units.gu(0.5)
-            fillMode: Image.PreserveAspectFit
-            source: visible ? stickers.get(0, "filePath") : ""
-        }
+    Image {
+        visible: stickers.count > 0
+        anchors.fill: parent
+        anchors.margins: units.gu(0.5)
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+        source: visible ? stickers.get(0, "filePath") : ""
     }
 
     FolderListModel {

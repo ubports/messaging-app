@@ -38,7 +38,9 @@ FocusScope {
         header: HistoryButton {
             height: units.gu(6)
             width: height
+
             onTriggered: stickersGrid.model.packName = ""
+            selected: stickersGrid.model.packName === ""
         }
         delegate: StickerPackDelegate {
             anchors.top: parent.top
@@ -47,7 +49,13 @@ FocusScope {
 
             path: filePath
             onTriggered: stickersGrid.model.packName = fileName
+            selected: stickersGrid.model.packName === fileName
         }
+    }
+
+    Rectangle {
+        anchors.fill: stickersGrid
+        color: "#f5f5f5"
     }
 
     GridView {
