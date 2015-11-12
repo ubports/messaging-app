@@ -1,3 +1,10 @@
+messaging-app (0.1+16.04.20151112-0ubuntu1) xenial; urgency=medium
+
+  * Update the selected section once the default sim card for text
+    message changes. (LP: #1515677)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Thu, 12 Nov 2015 17:47:43 +0000
+
 messaging-app (0.1+16.04.20151105-0ubuntu1) xenial; urgency=medium
 
   [ Tiago Salem Herrmann ]
