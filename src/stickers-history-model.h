@@ -21,11 +21,9 @@
 
 // Qt
 #include <QtCore/QAbstractListModel>
-#include <QtCore/QDateTime>
 #include <QtCore/QList>
 #include <QtCore/QMutex>
 #include <QtCore/QString>
-#include <QtCore/QUrl>
 #include <QtSql/QSqlDatabase>
 
 class StickersHistoryModel : public QAbstractListModel
@@ -43,8 +41,7 @@ public:
 
     enum Roles {
         Sticker = Qt::UserRole + 1,
-        Uses,
-        LastUse
+        Uses
     };
 
     // reimplemented from QAbstractListModel
@@ -67,7 +64,6 @@ protected:
     struct HistoryEntry {
         QString sticker;
         uint uses;
-        QDateTime lastUse;
     };
     QList<HistoryEntry> m_entries;
     int getEntryIndex(const QString& sticker) const;
