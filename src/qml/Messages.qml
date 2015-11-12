@@ -26,6 +26,7 @@ import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 
+import "Stickers"
 import "dateUtils.js" as DateUtils
 
 Page {
@@ -774,6 +775,13 @@ Page {
         }
     }
 
+    StickersPicker {
+        id: stickersPicker
+        anchors.fill: keyboard
+        visible: false
+        onStickerSelected: console.log(">>>>>>>>>>>> send:", path)
+    }
+
     Item {
         id: bottomPanel
         anchors.bottom: isSearching ? parent.bottom : keyboard.top
@@ -817,6 +825,27 @@ Page {
             }
         }
 
+        Icon {
+            id: stickersButton
+            objectName: "stickersButton"
+            anchors.left: attachButton.right
+            anchors.leftMargin: units.gu(2)
+            anchors.verticalCenter: sendButton.verticalCenter
+            height: units.gu(3)
+            width: units.gu(3)
+            color: "gray"
+            name: stickersPicker.visible ? "input-keyboard-symbolic" : "view-grid-symbolic"
+            MouseArea {
+                anchors.fill: parent
+                anchors.margins: units.gu(-2)
+                onClicked: {
+                    //Qt.inputMethod.hide()
+                    stickersPicker.visible = !stickersPicker.visible
+                    stickersPicker.forceActiveFocus()
+                }
+            }
+        }
+
         StyledItem {
             id: textEntry
             property alias text: messageTextArea.text
@@ -825,7 +854,7 @@ Page {
             style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
-            anchors.left: attachButton.right
+            anchors.left: stickersButton.right
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)

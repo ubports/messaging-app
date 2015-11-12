@@ -24,6 +24,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QDir>
 #include <QStringList>
 #include <QQuickItem>
 #include <QQmlComponent>
@@ -36,6 +37,7 @@
 #include "config.h"
 #include <QQmlEngine>
 #include <QMimeDatabase>
+#include <QStandardPaths>
 #include <QVersitReader>
 
 using namespace QtVersit;
@@ -148,6 +150,10 @@ bool MessagingApplication::setup()
         qDebug() << "Overriding the contacts backend, using:" << contactsBackend;
         m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
     }
+
+    QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    m_view->rootContext()->setContextProperty("dataLocation", dataLocation.absolutePath());
+    dataLocation.mkpath("stickers");
 
     // used by autopilot tests to load vcards during tests
     QByteArray testData = qgetenv("QTCONTACTS_PRELOAD_VCARD");
