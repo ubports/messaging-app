@@ -17,6 +17,7 @@
  */
 
 #include "messagingapplication.h"
+#include "stickers-history-model.h"
 
 #include <libnotify/notify.h>
 
@@ -71,6 +72,13 @@ MessagingApplication::MessagingApplication(int &argc, char **argv)
     : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
 {
     setApplicationName("MessagingApp");
+}
+
+static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new StickersHistoryModel();
 }
 
 bool MessagingApplication::setup()
@@ -154,6 +162,9 @@ bool MessagingApplication::setup()
     QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
     m_view->rootContext()->setContextProperty("dataLocation", dataLocation.absolutePath());
     dataLocation.mkpath("stickers");
+    const char* uri = "messagingapp.private";
+    qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
+
 
     // used by autopilot tests to load vcards during tests
     QByteArray testData = qgetenv("QTCONTACTS_PRELOAD_VCARD");

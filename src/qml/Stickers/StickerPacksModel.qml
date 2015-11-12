@@ -22,5 +22,4 @@ import Qt.labs.folderlistmodel 2.1
 FolderListModel {
     folder: dataLocation + "/stickers/"
     showFiles: false
-    nameFilters: ["*.png", "*.webm", "*.gif"]
 }

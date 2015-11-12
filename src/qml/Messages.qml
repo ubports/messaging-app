@@ -775,11 +775,15 @@ Page {
         }
     }
 
-    StickersPicker {
-        id: stickersPicker
+    Loader {
+        id: stickersPickerLoader
         anchors.fill: keyboard
-        visible: false
-        onStickerSelected: console.log(">>>>>>>>>>>> send:", path)
+        active: false
+        sourceComponent: StickersPicker {
+            id: stickersPicker
+            anchors.fill: parent
+            onStickerSelected: console.log(">>>>>>>>>>>> send:", path)
+        }
     }
 
     Item {
@@ -834,14 +838,14 @@ Page {
             height: units.gu(3)
             width: units.gu(3)
             color: "gray"
-            name: stickersPicker.visible ? "input-keyboard-symbolic" : "view-grid-symbolic"
+            name: stickersPickerLoader.active ? "input-keyboard-symbolic" : "view-grid-symbolic"
             MouseArea {
                 anchors.fill: parent
                 anchors.margins: units.gu(-2)
                 onClicked: {
-                    //Qt.inputMethod.hide()
-                    stickersPicker.visible = !stickersPicker.visible
-                    stickersPicker.forceActiveFocus()
+                    Qt.inputMethod.hide()
+                    stickersPickerLoader.active = !stickersPickerLoader.active
+                    stickersPickerLoader.focus = true
                 }
             }
         }

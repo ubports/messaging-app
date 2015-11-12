@@ -18,10 +18,13 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.3
+import messagingapp.private 0.1
 
 FocusScope {
     id: picker
     signal stickerSelected(string path)
+
+    Component.onCompleted: StickersHistoryModel.databasePath = dataLocation + "/stickers/stickers.sqlite"
 
     ListView {
         id: setsList
@@ -38,7 +41,7 @@ FocusScope {
             width: units.gu(6)
 
             path: filePath
-            onTriggered: stickersGrid.model.stickerPackName = fileName
+            onTriggered: stickersGrid.model.packName = fileName
         }
     }
 
@@ -58,7 +61,10 @@ FocusScope {
             width: stickersGrid.cellWidth
             height: stickersGrid.cellHeight
 
-            onTriggered: picker.stickerSelected(stickerSource)
+            onTriggered: {
+                StickersHistoryModel.add("%1/%2".arg(stickersGrid.model.packName).arg(fileName))
+                picker.stickerSelected(stickerSource)
+            }
         }
     }
 }

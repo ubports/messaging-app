@@ -2,17 +2,19 @@ set(MESSAGING_APP messaging-app)
 
 set(messaging_app_HDRS
     messagingapplication.h
+    stickers-history-model.h
     )
 
 set(messaging_app_SRCS
     messagingapplication.cpp
     main.cpp
+    stickers-history-model.cpp
     )
 
 add_executable(${MESSAGING_APP}
     ${messaging_app_SRCS}
     )
-qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick Versit)
+qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick Versit Sql)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}

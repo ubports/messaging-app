@@ -20,7 +20,8 @@ import QtQuick 2.3
 import Qt.labs.folderlistmodel 2.1
 
 FolderListModel {
-    property string stickerPackName
-    folder: dataLocation + "/stickers/" + stickerPackName
+    property string packName
+    folder: "%1/stickers/%2".arg(dataLocation).arg(packName)
     showDirs: false
+    nameFilters: ["*.png", "*.webm", "*.gif"]
 }
