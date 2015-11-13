@@ -16,21 +16,97 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Content 0.1
-import ".."
+import Ubuntu.Contacts 0.1
+import Ubuntu.AddressBook.Base 0.1
 
 Previewer {
-    property string contactName: {
-        var info = application.contactNameFromVCard(attachment.filePath)
-        if (info["count"] > 1) {
-            return info["name"] + " (+%1)".arg(info["count"]-1)
-        } else {
-            return info["name"]
+    id: root
+
+    head.actions: [
+        Action {
+            objectName: "import"
+            text: i18n.tr("Save")
+            iconName: "save"
+            onTriggered: contactExporter.exportSelectedContacts(ContentHandler.Destination)
+        },
+        Action {
+            objectName: "shareButton"
+            iconSource: "image://theme/share"
+            text: i18n.tr("Share")
+            onTriggered: contactExporter.exportSelectedContacts(ContentHandler.Share)
+        }
+    ]
+
+
+    title: i18n.tr("Contacts")
+
+    MultipleSelectionListView {
+        id: contactList
+
+        anchors.fill: parent
+        listModel: vcardParser.contacts
+        listDelegate: ContactDelegate {
+            id: contactDelegate
+            objectName: "contactDelegate"
+
+            property var contact: vcardParser.contacts[index]
+
+            selectionMode: contactList.isInSelectionMode
+            selected: contactList.isSelected(contactDelegate)
+
+            onClicked: {
+                if (contactList.isInSelectionMode) {
+                    if (!contactList.selectItem(contactDelegate)) {
+                        contactList.deselectItem(contactDelegate)
+                    }
+                } else {
+                    mainStack.push(Qt.resolvedUrl("../MessagingContactViewPage.qml"),
+                                   {'contact': contact, 'readOnly': true})
+                }
+            }
+
+            onPressAndHold: {
+                if (contactList.multipleSelection) {
+                    contactList.currentIndex = -1
+                    contactList.startSelection()
+                    contactList.selectItem(contactDelegate)
+                }
+            }
+
         }
     }
 
-    title: contactName !== "" ? contactName : i18n.tr("Unknown contact")
-    clip: true
+    VCardParser {
+        id: vcardParser
+
+        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
+    }
+    ContactExporter {
+        id: contactExporter
+
+        property int actionHandler: -1
+
+        function exportSelectedContacts(handler)
+        {
+            contactList.enabled = false
+            contactExporter.actionHandler = handler
+            var contacts = []
+            var items = contactList.selectedItems
+            for (var i=0, iMax=items.count; i < iMax; i++) {
+                contacts.push(items.get(i).model.modelData)
+            }
+            contactExporter.start(contacts)
+        }
+
+        contactModel: vcardParser._model
+        exportToDisk: mainPage.pickMode
+        onDone: {
+            contactList.enabled = true
+           root.handleAttachment(outputFile, contactExporter.actionHandler)
+            root.actionTriggered()
+        }
+    }
 }

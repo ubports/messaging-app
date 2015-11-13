@@ -35,6 +35,7 @@ ContactViewPage {
     readonly property string contactEditorPageURL: Qt.resolvedUrl("MessagingContactEditorPage.qml")
     property string addPhoneToContact: ""
     property var contactListPage: null
+    property bool readOnly: false
 
     function addPhoneToContactImpl(contact, phoneNumber)
     {
@@ -59,6 +60,7 @@ ContactViewPage {
             objectName: "share"
             text: i18n.tr("Share")
             iconName: "share"
+            enabled: !root.readOnly
             onTriggered: {
                 pageStack.push(contactShareComponent,
                                { contactModel: root.model,
@@ -69,6 +71,7 @@ ContactViewPage {
             objectName: "edit"
             text: i18n.tr("Edit")
             iconName: "edit"
+            enabled: !root.readOnly
             onTriggered: {
                 pageStack.push(contactEditorPageURL,
                                { model: root.model,
@@ -139,7 +142,7 @@ ContactViewPage {
     }
 
     Component.onCompleted: {
-        if (!root.model) {
+        if (!root.model && !root.readOnly) {
             root.model = contactModelComponent.createObject(root)
         }
     }

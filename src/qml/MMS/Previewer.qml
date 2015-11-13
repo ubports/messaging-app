@@ -23,9 +23,17 @@ import ".."
 
 Page {
     id: previewerPage
-    title: ""
+
     property variant attachment
+
     signal actionTriggered
+
+    function handleAttachment(filePath, handlerType)
+    {
+        mainStack.push(picker, {"url": filePath, "handler": handlerType});
+    }
+
+    title: ""
     state: "default"
     states: [
         PageHeadState {
@@ -37,7 +45,7 @@ Page {
                     text: i18n.tr("Save")
                     iconSource: "image://theme/save"
                     onTriggered: {
-                        mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
+                        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Destination)
                         actionTriggered()
                     }
                 },
@@ -46,14 +54,14 @@ Page {
                     iconSource: "image://theme/share"
                     text: i18n.tr("Share")
                     onTriggered: {
-                        mainStack.push(picker, {"url": attachment.filePath, "handler": ContentHandler.Share});
+                        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Share)
                         actionTriggered()
                     }
                 }
             ]
         }
     ]
- 
+
     Component {
         id: resultComponent
         ContentItem {}
