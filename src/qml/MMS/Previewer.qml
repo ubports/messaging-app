@@ -33,30 +33,46 @@ Page {
         mainStack.push(picker, {"url": filePath, "handler": handlerType});
     }
 
+    function saveAttachment()
+    {
+        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Destination)
+        actionTriggered()
+    }
+
+    function shareAttchment()
+    {
+        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Share)
+        actionTriggered()
+    }
+
+    function backAction()
+    {
+        mainStack.pop()
+    }
+
     title: ""
     state: "default"
     states: [
         PageHeadState {
             name: "default"
             head: previewerPage.head
+            backAction: Action {
+                iconName: "back"
+                text: i18n.tr("Back")
+                onTriggered: previewerPage.backAction()
+            }
             actions: [
                 Action {
                     objectName: "saveButton"
                     text: i18n.tr("Save")
                     iconSource: "image://theme/save"
-                    onTriggered: {
-                        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Destination)
-                        actionTriggered()
-                    }
+                    onTriggered: previewerPage.saveAttachment()
                 },
                 Action {
                     objectName: "shareButton"
                     iconSource: "image://theme/share"
                     text: i18n.tr("Share")
-                    onTriggered: {
-                        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Share)
-                        actionTriggered()
-                    }
+                    onTriggered: previewerPage.shareAttchment()
                 }
             ]
         }

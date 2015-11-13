@@ -25,23 +25,40 @@ import Ubuntu.AddressBook.Base 0.1
 Previewer {
     id: root
 
-    head.actions: [
-        Action {
-            objectName: "import"
-            text: i18n.tr("Save")
-            iconName: "save"
-            onTriggered: contactExporter.exportSelectedContacts(ContentHandler.Destination)
-        },
-        Action {
-            objectName: "shareButton"
-            iconSource: "image://theme/share"
-            text: i18n.tr("Share")
-            onTriggered: contactExporter.exportSelectedContacts(ContentHandler.Share)
+    function saveAttachment()
+    {
+        if (contactList.isInSelectionMode) {
+            console.debug("Export selected contact")
+            contactExporter.exportSelectedContacts(ContentHandler.Destination)
+        } else {
+            // all contacts.
+            console.debug("Export all contacts")
+            root.handleAttachment(attachment.filePath, ContentHandler.Destination)
+            root.actionTriggered()
         }
-    ]
+    }
 
+    function shareAttchment()
+    {
+        if (contactList.isInSelectionMode) {
+            console.debug("Share selected contact")
+            contactExporter.exportSelectedContacts(ContentHandler.Share)
+        } else {
+            // all contacts.
+            console.debug("Share selected contact")
+            root.handleAttachment(attachment.filePath, ContentHandler.Share)
+            root.actionTriggered()
+        }
+    }
 
-    title: i18n.tr("Contacts")
+    function backAction()
+    {
+        if (contactList.isInSelectionMode) {
+            contactList.cancelSelection()
+        } else {
+            mainStack.pop()
+        }
+    }
 
     MultipleSelectionListView {
         id: contactList
@@ -102,10 +119,10 @@ Previewer {
         }
 
         contactModel: vcardParser._model
-        exportToDisk: mainPage.pickMode
+        exportToDisk: true
         onDone: {
             contactList.enabled = true
-           root.handleAttachment(outputFile, contactExporter.actionHandler)
+            root.handleAttachment(outputFile, contactExporter.actionHandler)
             root.actionTriggered()
         }
     }
