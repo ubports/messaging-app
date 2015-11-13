@@ -14,6 +14,8 @@ else()
   message(WARNING "Cannot find xvfb-run.")
 endif()
 
+set(CMAKE_AUTOMOC ON)
+
 set(TEST tst_QmlTests)
 set(SOURCES
     ${messaging-app_SOURCE_DIR}/src/stickers-history-model.cpp
@@ -21,6 +23,8 @@ set(SOURCES
 )
 add_executable(${TEST} ${SOURCES})
 include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
     ${messaging-app_SOURCE_DIR}/src/
 )
 target_link_libraries(${TEST}
