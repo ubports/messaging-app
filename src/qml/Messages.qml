@@ -1151,7 +1151,6 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
-        height: units.gu(60)  // REMOVE '''''' only to test on dekstop
     }
 
     MessageInfoDialog {
