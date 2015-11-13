@@ -60,6 +60,7 @@ Previewer {
         }
     }
 
+    title: i18n.tr("Contact Preview")
     MultipleSelectionListView {
         id: contactList
 
