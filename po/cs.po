@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
-"X-Generator: Launchpad (build 17812)\n"
+"X-Launchpad-Export-Date: 2015-11-12 05:37+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
 "Language: cs\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -304,7 +304,7 @@ msgstr "SIM karta je zamčená"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:37
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Uložit"
@@ -337,7 +337,7 @@ msgstr "Odesláno"
 msgid "Settings"
 msgstr "Nastavení"
 
-#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Sdílet"
 
