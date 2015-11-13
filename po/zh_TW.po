@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
-"X-Generator: Launchpad (build 17812)\n"
+"X-Launchpad-Export-Date: 2015-11-12 05:37+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -140,11 +140,11 @@ msgstr "不要再問"
 
 #: ../src/qml/MessagingContactViewPage.qml:70
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "啟用 MMS 群組聊天功能"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -168,7 +168,7 @@ msgstr "自"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "我瞭解了"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -286,7 +286,7 @@ msgstr "SIM 卡已鎖定"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:37
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "儲存"
@@ -315,9 +315,9 @@ msgstr "送出"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "設定值"
 
-#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "分享"
 
@@ -327,11 +327,11 @@ msgstr "狀態"
 
 #: ../src/qml/SwipeItemDemo.qml:257
 msgid "Swipe to delete"
-msgstr ""
+msgstr "右滑刪除"
 
 #: ../src/qml/SwipeItemDemo.qml:207
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "左滑顯示功能"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
