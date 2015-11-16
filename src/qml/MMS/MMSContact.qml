@@ -63,6 +63,7 @@ MMSBase {
                 return "#3fb24f"
             }
         }
+        border.color: "#ACACAC"
         radius: height * 0.1
 
         ContactAvatar {
