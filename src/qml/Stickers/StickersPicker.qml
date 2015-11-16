@@ -24,7 +24,10 @@ FocusScope {
     id: pickerRoot
     signal stickerSelected(string path)
 
-    Component.onCompleted: StickersHistoryModel.databasePath = dataLocation + "/stickers/stickers.sqlite"
+    Component.onCompleted: {
+        StickersHistoryModel.databasePath = dataLocation + "/stickers/stickers.sqlite"
+        StickersHistoryModel.limit = 10
+    }
 
     ListView {
         id: setsList

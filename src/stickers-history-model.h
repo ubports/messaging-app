@@ -32,6 +32,7 @@ class StickersHistoryModel : public QAbstractListModel
     Q_OBJECT
 
     Q_PROPERTY(QString databasePath READ databasePath WRITE setDatabasePath NOTIFY databasePathChanged)
+    Q_PROPERTY(int limit READ limit WRITE setLimit NOTIFY limitChanged)
     Q_PROPERTY(int count READ rowCount NOTIFY rowCountChanged)
 
     Q_ENUMS(Roles)
@@ -52,6 +53,8 @@ public:
 
     const QString databasePath() const;
     void setDatabasePath(const QString& path);
+    int limit() const;
+    void setLimit(int limit);
 
     Q_INVOKABLE void add(const QString& sticker);
     Q_INVOKABLE void clearAll();
@@ -59,7 +62,8 @@ public:
 
 Q_SIGNALS:
     void databasePathChanged() const;
-    void rowCountChanged();
+    void rowCountChanged() const;
+    void limitChanged() const;
 
 protected:
     struct HistoryEntry {
@@ -73,13 +77,15 @@ protected:
 private:
     QMutex m_dbMutex;
     QSqlDatabase m_database;
+    int m_limit;
 
     void resetDatabase(const QString& databaseName);
     void createOrAlterDatabaseSchema();
     void populateFromDatabase();
     void insertNewEntryInDatabase(const HistoryEntry& entry);
-    void removeEntryFromDatabaseByUrl(const QUrl& url);
+    void removeEntryFromDatabase(const QString& sticker);
     void clearDatabase();
+    void removeExcessRows();
 };
 
 #endif // __STICKERS_HISTORY_MODEL_H__

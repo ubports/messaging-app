@@ -54,6 +54,12 @@ Item {
        signalName: "dataChanged"
     }
 
+    SignalSpy {
+       id: rowsRemovedSpy
+       target: model
+       signalName: "rowsRemoved"
+    }
+
     UbuntuTestCase {
         id: test
         name: 'stickersHistoryModelTestCase'
@@ -61,6 +67,7 @@ Item {
 
         function init() {
             model.databasePath = ":memory:"
+            model.limit = 10
         }
 
         function cleanup() {
@@ -69,6 +76,7 @@ Item {
             rowsInsertedSpy.clear()
             dataChangedSpy.clear()
             rowsMovedSpy.clear()
+            rowsRemovedSpy.clear()
         }
 
         function test_initiallyEmpty() {
@@ -101,29 +109,37 @@ Item {
         }
 
         function test_signals() {
-            model.add("foo")
+            model.limit = 2
+
+            model.add("a")
             compare(model.count, 1)
             compare(countSpy.count, 1)
             compare(rowsInsertedSpy.count, 1)
             compare(rowsInsertedSpy.signalArguments[0][1], 0) // first
             compare(rowsInsertedSpy.signalArguments[0][2], 0) // last
 
-            model.add("foo")
+            model.add("a")
             compare(dataChangedSpy.count, 1)
 
-            model.add("bar")
+            model.add("b")
             compare(model.count, 2)
             compare(countSpy.count, 2)
             compare(rowsInsertedSpy.count, 2)
             compare(rowsInsertedSpy.signalArguments[0][1], 0) // first
             compare(rowsInsertedSpy.signalArguments[0][2], 0) // last
 
-            model.add("foo")
+            model.add("a")
             compare(rowsMovedSpy.count, 1)
             compare(rowsMovedSpy.signalArguments[0][1], 1) // from first
             compare(rowsMovedSpy.signalArguments[0][2], 1) // from last
             compare(rowsMovedSpy.signalArguments[0][4], 0) // to
             compare(dataChangedSpy.count, 2)
+
+            model.add("c")
+            compare(model.count, 2)
+            compare(rowsRemovedSpy.count, 1)
+            compare(rowsRemovedSpy.signalArguments[0][1], 2) // from
+            compare(rowsRemovedSpy.signalArguments[0][2], 2) // to
         }
 
         function test_get_and_order() {
@@ -155,6 +171,18 @@ Item {
             compare(b.sticker, "b")
 
             verify(a.mostRecentUse.toISOString() > b.mostRecentUse.toISOString())
+        }
+
+        function test_limit_change() {
+            model.add("d")
+            model.add("c")
+            model.add("b")
+            model.add("a")
+            model.limit = 2
+
+            compare(model.count, 2)
+            compare(model.get(0).sticker, "a")
+            compare(model.get(1).sticker, "b")
         }
     }
 }

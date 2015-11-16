@@ -28,17 +28,19 @@
 
 /*!
     \class StickersHistoryModel
-    \brief List model that stores information about when stickers were last
-    used.
+    \brief List model that stores information about most recently used stickers
 
     StickersHistoryModel is a list model that stores information about the most
     recently used stickers.
     Each sticker is simply identified by the sticker pack name plus the name of
     the sticker image file itself.
     Stickers are ordered by the time of last use, with the most recent first.
+    By default the model stores a rolling list of the 10 most recently used
+    stickers, though this number can be changed by setting the /a limit
 */
 StickersHistoryModel::StickersHistoryModel(QObject* parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModel(parent),
+      m_limit(10)
 {
     m_database = QSqlDatabase::addDatabase(QLatin1String("QSQLITE"), CONNECTION_NAME);
 }
@@ -133,6 +135,20 @@ const QString StickersHistoryModel::databasePath() const
     return m_database.databaseName();
 }
 
+int StickersHistoryModel::limit() const
+{
+    return m_limit;
+}
+
+void StickersHistoryModel::setLimit(int limit)
+{
+    if (limit != m_limit) {
+        m_limit = limit;
+        Q_EMIT limitChanged();
+        removeExcessRows();
+    }
+}
+
 void StickersHistoryModel::setDatabasePath(const QString& path)
 {
     if (path != databasePath()) {
@@ -161,6 +177,7 @@ int StickersHistoryModel::getEntryIndex(const QString& sticker) const
     If an entry for the same sticker already exists, it is updated and placed
     first in the model. Otherwise a new entry is created and added at the
     begining of the model.
+    If the new row count exceeds the limit, excess rows are purged.
 */
 void StickersHistoryModel::add(const QString& sticker)
 {
@@ -179,6 +196,7 @@ void StickersHistoryModel::add(const QString& sticker)
         endInsertRows();
         insertNewEntryInDatabase(entry);
         Q_EMIT rowCountChanged();
+        removeExcessRows();
     } else {
         HistoryEntry entry;
         if (index > 0) {
@@ -194,6 +212,19 @@ void StickersHistoryModel::add(const QString& sticker)
         roles << MostRecentUse;
         Q_EMIT dataChanged(this->index(0), this->index(0), roles);
         updateExistingEntryInDatabase(m_entries.first());
+    }
+}
+
+void StickersHistoryModel::removeExcessRows()
+{
+    if (m_limit < rowCount()) {
+        beginRemoveRows(QModelIndex(), m_limit, rowCount() - 1);
+        for (int i = rowCount() - 1; i >= m_limit; i--) {
+            HistoryEntry item = m_entries.takeAt(i);
+            removeEntryFromDatabase(item.sticker);
+        }
+        endRemoveRows();
+        Q_EMIT rowCountChanged();
     }
 }
 
@@ -221,6 +252,18 @@ void StickersHistoryModel::updateExistingEntryInDatabase(const HistoryEntry& ent
     query.prepare(statement);
     query.addBindValue(entry.mostRecentUse.toTime_t());
     query.addBindValue(entry.sticker);
+    if (!query.exec()) {
+      qWarning() << "Query failed" << query.lastError();
+    }
+}
+
+void StickersHistoryModel::removeEntryFromDatabase(const QString& sticker)
+{
+    QMutexLocker ml(&m_dbMutex);
+    QSqlQuery query(m_database);
+    static QString statement = QLatin1String("DELETE FROM history WHERE sticker=?;");
+    query.prepare(statement);
+    query.addBindValue(sticker);
     if (!query.exec()) {
       qWarning() << "Query failed" << query.lastError();
     }
