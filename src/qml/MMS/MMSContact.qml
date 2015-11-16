@@ -24,14 +24,29 @@ import Ubuntu.History 0.1
 MMSBase {
     id: vcardDelegate
 
-    property var vcardInfo: application.contactNameFromVCard(attachment.filePath)
     readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
 
-    previewer: vcardDelegate.vcardInfo["count"] > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
+    previewer: vcardParser.contacts.length > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
     height: units.gu(8)
     width: units.gu(27)
+
+    function contactName(contact)
+    {
+        if (contact.displayLabel.label != "") {
+            return contact.displayLabel.label
+        } else {
+            var contacFullName  = contact.name.firstName
+            if (contact.name.midleName) {
+                conactFullName += " " + contact.name.midleName
+            }
+            if (contact.name.lastName) {
+                conactFullName += " " + contact.name.lastName
+            }
+            return contactFullName
+        }
+    }
 
     Rectangle {
         id: bubble
@@ -53,6 +68,7 @@ MMSBase {
         ContactAvatar {
             id: avatar
 
+            contactElement: (vcardParser.contacts.length === 1) ? vcardParser.contacts[0] : null
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
@@ -61,18 +77,13 @@ MMSBase {
                 left: parent.left
                 leftMargin: units.gu(1)
             }
-            fallbackAvatarUrl: "image://theme/contact"
-            fallbackDisplayName: contactName.name
+            fallbackAvatarUrl: (vcardParser.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
+            fallbackDisplayName: (vcardParser.contacts.length === 1) ? vcardDelegate.contactName(vcardParser.contacts[0]) : ""
             width: height
         }
 
         Label {
             id: contactName
-
-
-            property string name: vcardDelegate.vcardInfo["name"] !== "" ?
-                                      vcardDelegate.vcardInfo["name"] :
-                                      i18n.tr("Unknown contact")
 
             anchors {
                 left: avatar.right
@@ -85,14 +96,20 @@ MMSBase {
 
             verticalAlignment: Text.AlignVCenter
             text: {
-                if (vcardDelegate.vcardInfo["count"] > 1) {
-                    return contactName.name + " (+%1)".arg(vcardDelegate.vcardInfo["count"]-1)
-                } else {
-                    return contactName.name
+                if (vcardParser.contacts.length > 1) {
+                    return vcardDelegate.contactName(vcardParser.contacts[0]) + " (+%1)".arg(vcardParser.contacts.length-1)
+                } else if (vcardParser.contacts.length === 1) {
+                    return vcardDelegate.contactName(vcardParser.contacts[0])
                 }
             }
             elide: Text.ElideMiddle
             color: incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
+    }
+
+    VCardParser {
+        id: vcardParser
+
+        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 }
