@@ -117,7 +117,7 @@ Page {
         }
 
         Connections {
-            target: picker.curTransfer !== null ? picker.curTransfer : null
+            target: picker.curTransfer ? picker.curTransfer : null
             onStateChanged: {
                 console.log("curTransfer StateChanged: " + picker.curTransfer.state);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)

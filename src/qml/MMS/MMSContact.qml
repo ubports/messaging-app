@@ -29,10 +29,9 @@ MMSBase {
     readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
 
-    previewer: "MMS/PreviewerContact.qml"
+    previewer: vcardDelegate.vcardInfo["count"] > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
     height: units.gu(8)
     width: units.gu(27)
-
 
     Rectangle {
         id: bubble
