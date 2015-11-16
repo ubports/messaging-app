@@ -14,7 +14,7 @@ moc_*.cpp
 *_automoc.cpp
 
 Testing
-RE:tests/unittests/.+/tst_\w+Tests$
+RE:tests/qml/tst_\w+Tests$
 po/*.gmo
 po/src
 
@@ -35,4 +35,3 @@ debian/*.debhelper
 debian/*.debhelper.log
 debian/*.substvars
 debian/stamp-*
-
