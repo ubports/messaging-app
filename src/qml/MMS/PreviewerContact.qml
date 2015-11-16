@@ -28,11 +28,9 @@ Previewer {
     function saveAttachment()
     {
         if (contactList.isInSelectionMode) {
-            console.debug("Export selected contact")
             contactExporter.exportSelectedContacts(ContentHandler.Destination)
         } else {
             // all contacts.
-            console.debug("Export all contacts")
             root.handleAttachment(attachment.filePath, ContentHandler.Destination)
             root.actionTriggered()
         }
@@ -41,11 +39,9 @@ Previewer {
     function shareAttchment()
     {
         if (contactList.isInSelectionMode) {
-            console.debug("Share selected contact")
             contactExporter.exportSelectedContacts(ContentHandler.Share)
         } else {
             // all contacts.
-            console.debug("Share selected contact")
             root.handleAttachment(attachment.filePath, ContentHandler.Share)
             root.actionTriggered()
         }
@@ -82,7 +78,7 @@ Previewer {
                     }
                 } else {
                     mainStack.push(Qt.resolvedUrl("../MessagingContactViewPage.qml"),
-                                   {'contact': contact, 'readOnly': true})
+                                   {'contact': contact, 'editable': false})
                 }
             }
 
@@ -114,6 +110,7 @@ Previewer {
             var contacts = []
             var items = contactList.selectedItems
             for (var i=0, iMax=items.count; i < iMax; i++) {
+                var contact = items.get(i).model.modelData
                 contacts.push(items.get(i).model.modelData)
             }
             contactExporter.start(contacts)
@@ -123,6 +120,7 @@ Previewer {
         exportToDisk: true
         onDone: {
             contactList.enabled = true
+            console.debug("Export file:" + outputFile)
             root.handleAttachment(outputFile, contactExporter.actionHandler)
             root.actionTriggered()
         }
