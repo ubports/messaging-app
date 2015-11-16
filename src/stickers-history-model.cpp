@@ -28,12 +28,14 @@
 
 /*!
     \class StickersHistoryModel
-    \brief List model that stores information about the most used stickers
+    \brief List model that stores information about when stickers were last
+    used.
 
-    StickersHistoryModel is a list model that stores information about how many
-    times a certain sticker was used.
+    StickersHistoryModel is a list model that stores information about the most
+    recently used stickers.
     Each sticker is simply identified by the sticker pack name plus the name of
     the sticker image file itself.
+    Stickers are ordered by the time of last use, with the most recent first.
 */
 StickersHistoryModel::StickersHistoryModel(QObject* parent)
     : QAbstractListModel(parent)
@@ -65,7 +67,7 @@ void StickersHistoryModel::createOrAlterDatabaseSchema()
     QMutexLocker ml(&m_dbMutex);
     QSqlQuery query(m_database);
     QString statement = QLatin1String("CREATE TABLE IF NOT EXISTS history "
-                                      "(sticker VARCHAR, uses INTEGER);");
+                                      "(sticker VARCHAR, mostRecentUse DATETIME);");
     query.prepare(statement);
     if (!query.exec()) {
       qWarning() << "Query failed" << query.lastError();
@@ -75,7 +77,8 @@ void StickersHistoryModel::createOrAlterDatabaseSchema()
 void StickersHistoryModel::populateFromDatabase()
 {
     QSqlQuery query(m_database);
-    QString statement = QLatin1String("SELECT sticker, uses FROM history;");
+    QString statement = QLatin1String("SELECT sticker, mostRecentUse "
+                                      "FROM history ORDER BY mostRecentUse DESC;");
     query.prepare(statement);
     if (!query.exec()) {
       qWarning() << "Query failed" << query.lastError();
@@ -85,7 +88,7 @@ void StickersHistoryModel::populateFromDatabase()
     while (query.next()) {
         HistoryEntry entry;
         entry.sticker = query.value(0).toString();
-        entry.uses = query.value(1).toInt();
+        entry.mostRecentUse = QDateTime::fromTime_t(query.value(1).toInt());
         beginInsertRows(QModelIndex(), count, count);
         m_entries.append(entry);
         endInsertRows();
@@ -98,7 +101,7 @@ QHash<int, QByteArray> StickersHistoryModel::roleNames() const
     static QHash<int, QByteArray> roles;
     if (roles.isEmpty()) {
         roles[Sticker] = "sticker";
-        roles[Uses] = "uses";
+        roles[MostRecentUse] = "mostRecentUse";
     }
     return roles;
 }
@@ -118,8 +121,8 @@ QVariant StickersHistoryModel::data(const QModelIndex& index, int role) const
     switch (role) {
     case Sticker:
         return entry.sticker;
-    case Uses:
-        return entry.uses;
+    case MostRecentUse:
+        return entry.mostRecentUse;
     default:
         return QVariant();
     }
@@ -155,48 +158,54 @@ int StickersHistoryModel::getEntryIndex(const QString& sticker) const
 /*!
     Add an entry to the model.
 
-    If an entry for the same sticker already exists, it is updated.
-    Otherwise a new entry is created and added to the model.
-
-    Return the total number of uses for the sticker.
+    If an entry for the same sticker already exists, it is updated and placed
+    first in the model. Otherwise a new entry is created and added at the
+    begining of the model.
 */
-int StickersHistoryModel::add(const QString& sticker)
+void StickersHistoryModel::add(const QString& sticker)
 {
     if (sticker.isEmpty()) {
-        return 0;
+        return;
     }
-    int count = 1;
+    QDateTime now = QDateTime::currentDateTime();
     int index = getEntryIndex(sticker);
 
     if (index == -1) {
         HistoryEntry entry;
         entry.sticker = sticker;
-        entry.uses = 1;
+        entry.mostRecentUse = now;
         beginInsertRows(QModelIndex(), 0, 0);
         m_entries.prepend(entry);
         endInsertRows();
         insertNewEntryInDatabase(entry);
         Q_EMIT rowCountChanged();
     } else {
+        HistoryEntry entry;
+        if (index > 0) {
+          beginMoveRows(QModelIndex(), index, index, QModelIndex(), 0);
+        }
+        entry = m_entries.takeAt(index);
+        entry.mostRecentUse = now;
+        m_entries.prepend(entry);
+        if (index > 0) {
+          endMoveRows();
+        }
         QVector<int> roles;
-        roles << Uses;
-        HistoryEntry entry = m_entries.at(index);
-        count = ++entry.uses;
-        m_entries.replace(index, entry);
-        Q_EMIT dataChanged(this->index(index, 0), this->index(index, 0), roles);
+        roles << MostRecentUse;
+        Q_EMIT dataChanged(this->index(0), this->index(0), roles);
         updateExistingEntryInDatabase(m_entries.first());
     }
-    return count;
 }
 
 void StickersHistoryModel::insertNewEntryInDatabase(const HistoryEntry& entry)
 {
     QMutexLocker ml(&m_dbMutex);
     QSqlQuery query(m_database);
-    static QString statement = QLatin1String("INSERT INTO history (sticker, uses) "
-                                             "VALUES (?, 1);");
+    static QString statement = QLatin1String("INSERT INTO history (sticker, mostRecentUse) "
+                                             "VALUES (?, ?);");
     query.prepare(statement);
     query.addBindValue(entry.sticker);
+    query.addBindValue(entry.mostRecentUse.toTime_t());
 
     if (!query.exec()) {
       qWarning() << "Query failed" << query.lastError();
@@ -207,9 +216,10 @@ void StickersHistoryModel::updateExistingEntryInDatabase(const HistoryEntry& ent
 {
     QMutexLocker ml(&m_dbMutex);
     QSqlQuery query(m_database);
-    static QString statement = QLatin1String("UPDATE history SET uses=? WHERE sticker=?;");
+    static QString statement = QLatin1String("UPDATE history SET mostRecentUse=?"
+                                             " WHERE sticker=?;");
     query.prepare(statement);
-    query.addBindValue(entry.uses);
+    query.addBindValue(entry.mostRecentUse.toTime_t());
     query.addBindValue(entry.sticker);
     if (!query.exec()) {
       qWarning() << "Query failed" << query.lastError();

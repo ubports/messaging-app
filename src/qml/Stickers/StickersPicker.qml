@@ -21,7 +21,7 @@ import Ubuntu.Components 1.3
 import messagingapp.private 0.1
 
 FocusScope {
-    id: picker
+    id: pickerRoot
     signal stickerSelected(string path)
 
     Component.onCompleted: StickersHistoryModel.databasePath = dataLocation + "/stickers/stickers.sqlite"
@@ -77,7 +77,7 @@ FocusScope {
 
             onTriggered: {
                 StickersHistoryModel.add("%1/%2".arg(stickersGrid.model.packName).arg(fileName))
-                picker.stickerSelected(stickerSource)
+                pickerRoot.stickerSelected(stickerSource)
             }
         }
     }
@@ -93,11 +93,7 @@ FocusScope {
         cellHeight: units.gu(10)
         visible: stickersGrid.model.packName.length === 0
 
-        model: SortFilterModel {
-            model: StickersHistoryModel
-            sort.order: Qt.DescendingOrder
-            sort.property: "uses"
-        }
+        model: StickersHistoryModel
 
         delegate: StickerDelegate {
             stickerSource: "%1/stickers/%2".arg(dataLocation).arg(sticker)
@@ -106,7 +102,7 @@ FocusScope {
 
             onTriggered: {
                 StickersHistoryModel.add(sticker)
-                picker.stickerSelected(stickerSource)
+                pickerRoot.stickerSelected(stickerSource)
             }
         }
     }

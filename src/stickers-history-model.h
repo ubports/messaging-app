@@ -21,6 +21,7 @@
 
 // Qt
 #include <QtCore/QAbstractListModel>
+#include <QtCore/QDateTime>
 #include <QtCore/QList>
 #include <QtCore/QMutex>
 #include <QtCore/QString>
@@ -41,7 +42,7 @@ public:
 
     enum Roles {
         Sticker = Qt::UserRole + 1,
-        Uses
+        MostRecentUse
     };
 
     // reimplemented from QAbstractListModel
@@ -52,7 +53,7 @@ public:
     const QString databasePath() const;
     void setDatabasePath(const QString& path);
 
-    Q_INVOKABLE int add(const QString& sticker);
+    Q_INVOKABLE void add(const QString& sticker);
     Q_INVOKABLE void clearAll();
     Q_INVOKABLE QVariantMap get(int index) const;
 
@@ -63,7 +64,7 @@ Q_SIGNALS:
 protected:
     struct HistoryEntry {
         QString sticker;
-        uint uses;
+        QDateTime mostRecentUse;
     };
     QList<HistoryEntry> m_entries;
     int getEntryIndex(const QString& sticker) const;

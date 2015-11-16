@@ -43,6 +43,12 @@ Item {
     }
 
     SignalSpy {
+       id: rowsMovedSpy
+       target: model
+       signalName: "rowsMoved"
+    }
+
+    SignalSpy {
        id: dataChangedSpy
        target: model
        signalName: "dataChanged"
@@ -62,6 +68,7 @@ Item {
             countSpy.clear()
             rowsInsertedSpy.clear()
             dataChangedSpy.clear()
+            rowsMovedSpy.clear()
         }
 
         function test_initiallyEmpty() {
@@ -78,14 +85,14 @@ Item {
         }
 
         function test_add_new() {
-            compare(model.add("foo"), 1)
+            model.add("foo")
             compare(model.count, 1)
             compare(countSpy.count, 1)
             compare(rowsInsertedSpy.count, 1)
             compare(rowsInsertedSpy.signalArguments[0][1], 0) // first
             compare(rowsInsertedSpy.signalArguments[0][2], 0) // last
 
-            compare(model.add("bar"), 1)
+            model.add("bar")
             compare(model.count, 2)
             compare(countSpy.count, 2)
             compare(rowsInsertedSpy.count, 2)
@@ -93,25 +100,61 @@ Item {
             compare(rowsInsertedSpy.signalArguments[0][2], 0) // last
         }
 
-        function test_add_existing() {
-            compare(model.add("foo"), 1)
-            compare(model.add("foo"), 2)
+        function test_signals() {
+            model.add("foo")
+            compare(model.count, 1)
+            compare(countSpy.count, 1)
+            compare(rowsInsertedSpy.count, 1)
+            compare(rowsInsertedSpy.signalArguments[0][1], 0) // first
+            compare(rowsInsertedSpy.signalArguments[0][2], 0) // last
+
+            model.add("foo")
+            compare(dataChangedSpy.count, 1)
+
+            model.add("bar")
+            compare(model.count, 2)
+            compare(countSpy.count, 2)
+            compare(rowsInsertedSpy.count, 2)
+            compare(rowsInsertedSpy.signalArguments[0][1], 0) // first
+            compare(rowsInsertedSpy.signalArguments[0][2], 0) // last
+
+            model.add("foo")
+            compare(rowsMovedSpy.count, 1)
+            compare(rowsMovedSpy.signalArguments[0][1], 1) // from first
+            compare(rowsMovedSpy.signalArguments[0][2], 1) // from last
+            compare(rowsMovedSpy.signalArguments[0][4], 0) // to
+            compare(dataChangedSpy.count, 2)
         }
 
-        function test_get() {
-            model.add("foo")
-            model.add("foo")
-            model.add("bar")
+        function test_get_and_order() {
+            model.add("a")
+            // datetimes have only millisecond precision, and we want to prevent
+            // the two entries to have the same timestamp
+            wait(100)
+            model.add("b")
 
-            var item = model.get(0)
-            verify(item !== null)
-            compare(item.sticker, "bar")
-            compare(item.uses, 1)
+            var a = model.get(1)
+            verify(a !== null)
+            compare(a.sticker, "a")
 
-            item = model.get(1)
-            verify(item !== null)
-            compare(item.sticker, "foo")
-            compare(item.uses, 2)
+            var b = model.get(0)
+            verify(b !== null)
+            compare(b.sticker, "b")
+
+            verify(b.mostRecentUse.toISOString() > a.mostRecentUse.toISOString())
+
+            wait(100)
+            model.add("a")
+
+            a = model.get(0)
+            verify(a !== null)
+            compare(a.sticker, "a")
+
+            b = model.get(1)
+            verify(b !== null)
+            compare(b.sticker, "b")
+
+            verify(a.mostRecentUse.toISOString() > b.mostRecentUse.toISOString())
         }
     }
 }
