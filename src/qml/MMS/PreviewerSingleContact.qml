@@ -21,6 +21,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Content 0.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.AddressBook.ContactView 0.1
+import "../"
 
 Previewer {
     id: root
@@ -32,7 +33,7 @@ Previewer {
         vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 
-    ContactViewPage {
+    MessagingContactViewPage {
         id: contactView
 
         header: Item { height: 0 }
