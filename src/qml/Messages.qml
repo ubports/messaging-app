@@ -775,20 +775,26 @@ Page {
         }
     }
 
-    Loader {
-        id: stickersPickerLoader
-        anchors.fill: keyboard
-        active: false
-        sourceComponent: StickersPicker {
-            id: stickersPicker
-            anchors.fill: parent
-            onStickerSelected: console.log(">>>>>>>>>>>> send:", path)
+    StickersPicker {
+        id: stickersPicker
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: keyboard.maximumHeight
+        visible: false
+
+        onStickerSelected: console.log(">>>>>>>>>>>> send:", path)
+
+        Connections {
+            target: Qt.inputMethod
+            onVisibleChanged: if (Qt.inputMethod.visible) stickersPicker.visible = false
         }
     }
 
     Item {
         id: bottomPanel
-        anchors.bottom: isSearching ? parent.bottom : keyboard.top
+        anchors.bottom: isSearching ? parent.bottom :
+                       (Qt.inputMethod.visible ? keyboard.top : stickersPicker.top)
         anchors.left: parent.left
         anchors.right: parent.right
         height: selectionMode || (participants.length > 0 && !contactWatcher.interactive) ? 0 : textEntry.height + units.gu(2)
@@ -838,16 +844,19 @@ Page {
             height: units.gu(3)
             width: units.gu(3)
             color: "gray"
-            source: Qt.resolvedUrl("./assets/" + (stickersPickerLoader.active ?
-                                                  "input-keyboard-symbolic.svg" :
-                                                  "face-smile-big-symbolic-2.svg"))
+            visible: messageTextArea.activeFocus || stickersPicker.visible
+            source: Qt.resolvedUrl("./assets/" + (Qt.inputMethod.visible ?
+                                                  "face-smile-big-symbolic-2.svg" :
+                                                  "input-keyboard-symbolic.svg"))
             MouseArea {
                 anchors.fill: parent
-                anchors.margins: units.gu(-2)
                 onClicked: {
-                    Qt.inputMethod.hide()
-                    stickersPickerLoader.active = !stickersPickerLoader.active
-                    stickersPickerLoader.focus = true
+                    if (Qt.inputMethod.visible) {
+                        messageTextArea.focus = false
+                        stickersPicker.visible = true
+                    } else {
+                        messageTextArea.forceActiveFocus()
+                    }
                 }
             }
         }
@@ -860,7 +869,7 @@ Page {
             style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
             anchors.bottomMargin: units.gu(1)
             anchors.bottom: parent.bottom
-            anchors.left: stickersButton.right
+            anchors.left: stickersButton.visible ? stickersButton.right : attachButton.right
             anchors.leftMargin: units.gu(1)
             anchors.right: sendButton.left
             anchors.rightMargin: units.gu(1)
@@ -1071,6 +1080,7 @@ Page {
                 font.pixelSize: FontUtils.sizeToPixels("medium")
                 color: "#5d5d5d"
                 text: messages.text
+                onActiveFocusChanged: if (activeFocus) stickersPicker.visible = false
             }
 
             /*InverseMouseArea {
@@ -1151,6 +1161,14 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
+
+        // Workaround for not being able to know the keyboard rectangle size
+        // before it has shown at least once: keep matching its height until it
+        // has reached its maximum.
+        property int maximumHeight: 0
+        onHeightChanged: {
+            if (height > maximumHeight) maximumHeight = height
+        }
     }
 
     MessageInfoDialog {
