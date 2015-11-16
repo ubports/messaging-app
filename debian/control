@@ -23,6 +23,7 @@ Build-Depends: cmake,
                qtdeclarative5-ubuntu-addressbook0.1,
                qtdeclarative5-qtcontacts-plugin,
                qml-module-qt-labs-settings,
+               qtdeclarative5-folderlistmodel-plugin,
                qtpim5-dev,
                xvfb,
 Standards-Version: 3.9.4
