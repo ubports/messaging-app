@@ -942,7 +942,7 @@ Page {
                                 bottom: parent.bottom
                                 left: parent.left
                             }
-                            contactElement: attachment.contactsCount === 1 ? attachment.card.contacts[0] : null
+                            contactElement: attachment.contactsCount === 1 ? attachment.vcard.contacts[0] : null
                             fallbackAvatarUrl: attachment.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
                             fallbackDisplayName: attachment.contactsCount === 1 ? attachment.contactDisplayName : ""
                             width: height
