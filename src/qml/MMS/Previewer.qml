@@ -31,18 +31,17 @@ Page {
     function handleAttachment(filePath, handlerType)
     {
         mainStack.push(picker, {"url": filePath, "handler": handlerType});
+        actionTriggered()
     }
 
     function saveAttachment()
     {
         previewerPage.handleAttachment(attachment.filePath, ContentHandler.Destination)
-        actionTriggered()
     }
 
     function shareAttchment()
     {
         previewerPage.handleAttachment(attachment.filePath, ContentHandler.Share)
-        actionTriggered()
     }
 
     function backAction()

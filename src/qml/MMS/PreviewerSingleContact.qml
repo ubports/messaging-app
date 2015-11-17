@@ -17,11 +17,8 @@
  */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
-import Ubuntu.Content 0.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.AddressBook.ContactView 0.1
-import "../"
 
 Previewer {
     id: root

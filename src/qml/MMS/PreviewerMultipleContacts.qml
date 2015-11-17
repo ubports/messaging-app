@@ -21,39 +21,21 @@ import Ubuntu.Components 1.3
 import Ubuntu.Content 0.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.AddressBook.Base 0.1
+import Ubuntu.AddressBook.ContactView 0.1
 
 Previewer {
     id: root
 
     function saveAttachment()
     {
-        if (contactList.isInSelectionMode) {
-            contactExporter.exportSelectedContacts(ContentHandler.Destination)
-        } else {
-            // all contacts.
-            root.handleAttachment(attachment.filePath, ContentHandler.Destination)
-            root.actionTriggered()
-        }
+        // all contacts.
+        root.handleAttachment(attachment.filePath, ContentHandler.Destination)
     }
 
     function shareAttchment()
     {
-        if (contactList.isInSelectionMode) {
-            contactExporter.exportSelectedContacts(ContentHandler.Share)
-        } else {
-            // all contacts.
-            root.handleAttachment(attachment.filePath, ContentHandler.Share)
-            root.actionTriggered()
-        }
-    }
-
-    function backAction()
-    {
-        if (contactList.isInSelectionMode) {
-            contactList.cancelSelection()
-        } else {
-            mainStack.pop()
-        }
+        // all contacts.
+        root.handleAttachment(attachment.filePath, ContentHandler.Share)
     }
 
     title: i18n.tr("Contact Preview")
@@ -68,28 +50,9 @@ Previewer {
 
             property var contact: vcardParser.contacts[index]
 
-            selectionMode: contactList.isInSelectionMode
-            selected: contactList.isSelected(contactDelegate)
-
             onClicked: {
-                if (contactList.isInSelectionMode) {
-                    if (!contactList.selectItem(contactDelegate)) {
-                        contactList.deselectItem(contactDelegate)
-                    }
-                } else {
-                    mainStack.push(Qt.resolvedUrl("../MessagingContactViewPage.qml"),
-                                   {'contact': contact, 'editable': false})
-                }
+                mainStack.push(sigleContatPreviewer, {'contact': contact})
             }
-
-            onPressAndHold: {
-                if (contactList.multipleSelection) {
-                    contactList.currentIndex = -1
-                    contactList.startSelection()
-                    contactList.selectItem(contactDelegate)
-                }
-            }
-
         }
     }
 
@@ -98,31 +61,65 @@ Previewer {
 
         vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
-    ContactExporter {
-        id: contactExporter
 
-        property int actionHandler: -1
+    Component {
+        id: sigleContatPreviewer
 
-        function exportSelectedContacts(handler)
-        {
-            contactList.enabled = false
-            contactExporter.actionHandler = handler
-            var contacts = []
-            var items = contactList.selectedItems
-            for (var i=0, iMax=items.count; i < iMax; i++) {
-                var contact = items.get(i).model.modelData
-                contacts.push(items.get(i).model.modelData)
+        ContactViewPage {
+            id: contactViewPage
+
+            editable: false
+            onActionTrigerred: {
+                if ((action === "message") || (action == "default")) {
+                    mainView.startChat(detail.value(0), "")
+                    return
+                } else {
+                    Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
+                }
             }
-            contactExporter.start(contacts)
-        }
 
-        contactModel: vcardParser._model
-        exportToDisk: true
-        onDone: {
-            contactList.enabled = true
-            console.debug("Export file:" + outputFile)
-            root.handleAttachment(outputFile, contactExporter.actionHandler)
-            root.actionTriggered()
+            state: "default"
+            states: [
+                PageHeadState {
+                    name: "default"
+                    head: contactViewPage.head
+                    actions: [
+                        Action {
+                            objectName: "saveButton"
+                            text: i18n.tr("Save")
+                            iconSource: "image://theme/save"
+                            onTriggered: contactExporter.exportContact(contactViewPage.contact,
+                                                                       ContentHandler.Destination)
+                        },
+                        Action {
+                            objectName: "shareButton"
+                            iconSource: "image://theme/share"
+                            text: i18n.tr("Share")
+                            onTriggered: contactExporter.exportContact(contactViewPage.contact,
+                                                                       ContentHandler.Share)
+                        }
+                    ]
+                }
+            ]
+
+            ContactExporter {
+                id: contactExporter
+
+                property int actionHandler: -1
+
+                function exportContact(contact, handler)
+                {
+                    contactExporter.actionHandler = handler
+                    contactExporter.start([contact])
+                }
+
+                contactModel: vcardParser._model
+                exportToDisk: true
+                onDone: {
+                    console.debug("Export file:" + outputFile)
+                    root.handleAttachment(outputFile, contactExporter.actionHandler)
+                }
+            }
         }
     }
 }
