@@ -81,12 +81,6 @@ MessageDelegate {
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
-            //} else if (startsWith(attachment.contentType, "video/")) {
-                        // TODO: implement proper video attachment support
-                        //                dataAttachments.push({type: "video",
-                        //                                  data: attachment,
-                        //                                  delegateSource: "MMS/MMSVideo.qml",
-                        //                                 })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
                 // smil files will always be ignored here
@@ -95,6 +89,13 @@ MessageDelegate {
                 root.dataAttachments.push({"type": "vcard",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSContact.qml"
+                                    })
+            } else if (startsWith(attachment.contentType, "video/") ||
+                       startsWith(attachment.contentType, "application/octet-stream")) {
+                // 3GPP file received as MMS video attachment
+                root.dataAttachments.push({"type": "video",
+                                      "data": attachment,
+                                      "delegateSource": "MMS/MMSVideo.qml",
                                     })
             } else {
                 root.dataAttachments.push({"type": "default",

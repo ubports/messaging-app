@@ -17,6 +17,7 @@
  */
 
 #include "messagingapplication.h"
+#include "fileoperations.h"
 
 #include <libnotify/notify.h>
 
@@ -63,6 +64,13 @@ static void installIconPath()
     if (!iconTheme.isEmpty()) {
         QIcon::setThemeName(iconTheme);
     }
+}
+
+static QObject* FileOperations_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new FileOperations();
 }
 
 MessagingApplication::MessagingApplication(int &argc, char **argv)
@@ -132,6 +140,9 @@ bool MessagingApplication::setup()
             m_arg = arguments.at(1);
         }
     }
+
+    const char* uri = "messagingapp.private";
+    qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
 
     m_view = new QQuickView();
     QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)), this, SLOT(onViewStatusChanged(QQuickView::Status)));

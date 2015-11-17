@@ -1,10 +1,12 @@
 set(MESSAGING_APP messaging-app)
 
 set(messaging_app_HDRS
+    fileoperations.h
     messagingapplication.h
     )
 
 set(messaging_app_SRCS
+    fileoperations.cpp
     messagingapplication.cpp
     main.cpp
     )
