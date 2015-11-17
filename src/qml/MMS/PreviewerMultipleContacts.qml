@@ -38,28 +38,22 @@ Previewer {
         root.handleAttachment(attachment.filePath, ContentHandler.Share)
     }
 
-    title: i18n.tr("Contact Preview")
+    title: attachment.title
     MultipleSelectionListView {
         id: contactList
 
         anchors.fill: parent
-        listModel: vcardParser.contacts
+        listModel: attachment.vcard.contacts
         listDelegate: ContactDelegate {
             id: contactDelegate
             objectName: "contactDelegate"
 
-            property var contact: vcardParser.contacts[index]
+            property var contact: attachment.vcard.contacts[index]
 
             onClicked: {
                 mainStack.push(sigleContatPreviewer, {'contact': contact})
             }
         }
-    }
-
-    VCardParser {
-        id: vcardParser
-
-        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 
     Component {
@@ -113,7 +107,7 @@ Previewer {
                     contactExporter.start([contact])
                 }
 
-                contactModel: vcardParser._model
+                contactModel: attachment.vcard._model
                 exportToDisk: true
                 onDone: {
                     console.debug("Export file:" + outputFile)

@@ -28,25 +28,9 @@ MMSBase {
     readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
 
-    previewer: vcardParser.contacts.length > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
+    previewer: attachment.vcard.contacts.length > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
     height: units.gu(8)
     width: units.gu(27)
-
-    function contactName(contact)
-    {
-        if (contact.displayLabel.label != "") {
-            return contact.displayLabel.label
-        } else {
-            var contacFullName  = contact.name.firstName
-            if (contact.name.midleName) {
-                conactFullName += " " + contact.name.midleName
-            }
-            if (contact.name.lastName) {
-                conactFullName += " " + contact.name.lastName
-            }
-            return contactFullName
-        }
-    }
 
     Rectangle {
         id: bubble
@@ -69,7 +53,7 @@ MMSBase {
         ContactAvatar {
             id: avatar
 
-            contactElement: (vcardParser.contacts.length === 1) ? vcardParser.contacts[0] : null
+            contactElement: (attachment.vcard.contacts.length === 1) ? attachment.vcard.contacts[0] : null
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
@@ -78,8 +62,8 @@ MMSBase {
                 left: parent.left
                 leftMargin: units.gu(1)
             }
-            fallbackAvatarUrl: (vcardParser.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
-            fallbackDisplayName: (vcardParser.contacts.length === 1) ? vcardDelegate.contactName(vcardParser.contacts[0]) : ""
+            fallbackAvatarUrl: (attachment.vcard.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
+            fallbackDisplayName: (attachment.vcard.contacts.length === 1) ? attachment.contactDisplayName : ""
             width: height
         }
 
@@ -96,21 +80,9 @@ MMSBase {
             }
 
             verticalAlignment: Text.AlignVCenter
-            text: {
-                if (vcardParser.contacts.length > 1) {
-                    return vcardDelegate.contactName(vcardParser.contacts[0]) + " (+%1)".arg(vcardParser.contacts.length-1)
-                } else if (vcardParser.contacts.length === 1) {
-                    return vcardDelegate.contactName(vcardParser.contacts[0])
-                }
-            }
+            text: attachment.title
             elide: Text.ElideMiddle
             color: incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
-    }
-
-    VCardParser {
-        id: vcardParser
-
-        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 }

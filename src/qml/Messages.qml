@@ -903,9 +903,7 @@ Page {
                         property int index
                         property string filePath
                         property alias vcard: vcardParser
-
-                        function contactDisplayName()
-                        {
+                        property string contactDisplayName: {
                             if (vcard.contacts.length > 0)  {
                                 var contact = vcard.contacts[0]
                                 if (contact.displayLabel.label != "") {
@@ -924,6 +922,14 @@ Page {
                                 return i18n.tr("Unknown contact")
                             }
                         }
+                        property string title: {
+                            var result = attachment.contactDisplayName
+                            if (vcard.contacts.length > 1) {
+                                return result + " (+%1)".arg(vcard.contacts.length-1)
+                            } else if (vcard.contacts.length === 1) {
+                                return result
+                            }
+                        }
 
                         height: units.gu(6)
                         width: textEntry.width
@@ -938,7 +944,7 @@ Page {
                             }
                             contactElement: (vcard.contacts.length === 1) ? vcard.contacts[0] : null
                             fallbackAvatarUrl: (vcard.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
-                            fallbackDisplayName: (vcard.contacts.length === 1) ? contactDisplayName() : ""
+                            fallbackDisplayName: (vcard.contacts.length === 1) ? attachment.contactDisplayName : ""
                             width: height
                         }
                         Label {
@@ -954,14 +960,7 @@ Page {
                             }
 
                             verticalAlignment: Text.AlignVCenter
-                            text: {
-                                var result = contactDisplayName()
-                                if (vcard.contacts.length > 1) {
-                                    return result + " (+%1)".arg(vcard.contacts.length-1)
-                                } else if (vcard.contacts.length === 1) {
-                                    return result
-                                }
-                            }
+                            text: attachment.title
                             elide: Text.ElideMiddle
                             color: UbuntuColors.lightAubergine
                         }

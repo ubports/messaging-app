@@ -24,17 +24,12 @@ Previewer {
     id: root
 
     title: contactView.title
-    VCardParser {
-        id: vcardParser
-
-        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
-    }
 
     MessagingContactViewPage {
         id: contactView
 
         header: Item { height: 0 }
-        contact: vcardParser.contacts.length > 0 ? vcardParser.contacts[0] : null
+        contact: attachment.vcard.contacts.length > 0 ? attachment.vcard.contacts[0] : null
         editable: false
         anchors.fill: parent
     }
