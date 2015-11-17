@@ -27,8 +27,36 @@ MMSBase {
     readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+    readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
+    property alias vcard: vcardParser
+    property string contactDisplayName: {
+        if (contactsCount > 0)  {
+            var contact = vcard.contacts[0]
+            if (contact.displayLabel.label && (contact.displayLabel.label != "")) {
+                return contact.displayLabel.label
+            } else if (contact.name) {
+                var contacFullName  = contact.name.firstName
+                if (contact.name.midleName) {
+                    contacFullName += " " + contact.name.midleName
+                }
+                if (contact.name.lastName) {
+                    contacFullName += " " + contact.name.lastName
+                }
+                return contacFullName
+            }
+        }
+        return i18n.tr("Unknown contact")
+    }
+    property string title: {
+        var result = vcardDelegate.contactDisplayName
+        if (vcardDelegate.contactsCount > 1) {
+            return result + " (+%1)".arg(vcardDelegate.contactsCount-1)
+        } else {
+            return result
+        }
+    }
 
-    previewer: attachment.vcard.contacts.length > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
+    previewer: vcardDelegate.contactsCount > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
     height: units.gu(8)
     width: units.gu(27)
 
@@ -53,7 +81,7 @@ MMSBase {
         ContactAvatar {
             id: avatar
 
-            contactElement: (attachment.vcard.contacts.length === 1) ? attachment.vcard.contacts[0] : null
+            contactElement: (vcardDelegate.contactsCount === 1) ? vcardDelegate.vcard.contacts[0] : null
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
@@ -62,8 +90,8 @@ MMSBase {
                 left: parent.left
                 leftMargin: units.gu(1)
             }
-            fallbackAvatarUrl: (attachment.vcard.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
-            fallbackDisplayName: (attachment.vcard.contacts.length === 1) ? attachment.contactDisplayName : ""
+            fallbackAvatarUrl: vcardDelegate.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
+            fallbackDisplayName: vcardDelegate.contactsCount === 1 ? vcardDelegate.contactDisplayName : ""
             width: height
         }
 
@@ -80,9 +108,15 @@ MMSBase {
             }
 
             verticalAlignment: Text.AlignVCenter
-            text: attachment.title
+            text: vcardDelegate.title
             elide: Text.ElideMiddle
             color: incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
+    }
+
+    VCardParser {
+        id: vcardParser
+
+        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 }

@@ -43,12 +43,12 @@ Previewer {
         id: contactList
 
         anchors.fill: parent
-        listModel: attachment.vcard.contacts
+        listModel: thumbnail.vcard.contacts
         listDelegate: ContactDelegate {
             id: contactDelegate
             objectName: "contactDelegate"
 
-            property var contact: attachment.vcard.contacts[index]
+            property var contact: thumbnail.vcard.contacts[index]
 
             onClicked: {
                 mainStack.push(sigleContatPreviewer, {'contact': contact})
@@ -76,7 +76,7 @@ Previewer {
             states: [
                 PageHeadState {
                     name: "default"
-                    head: contactViewPagead
+                    head: contactViewPage.head
                     actions: [
                         Action {
                             objectName: "saveButton"
@@ -107,7 +107,7 @@ Previewer {
                     contactExporter.start([contact])
                 }
 
-                contactModel: attachment.vcard._model
+                contactModel: thumbnail.vcard._model
                 exportToDisk: true
                 onDone: {
                     console.debug("Export file:" + outputFile)

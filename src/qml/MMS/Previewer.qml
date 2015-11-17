@@ -25,6 +25,7 @@ Page {
     id: previewerPage
 
     property variant attachment
+    property variant thumbnail
 
     signal actionTriggered
 

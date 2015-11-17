@@ -18,7 +18,7 @@
 
 import QtQuick 2.4
 import Ubuntu.Contacts 0.1
-import Ubuntu.AddressBook.ContactView 0.1
+import "../"
 
 Previewer {
     id: root
@@ -29,7 +29,7 @@ Previewer {
         id: contactView
 
         header: Item { height: 0 }
-        contact: attachment.vcard.contacts.length > 0 ? attachment.vcard.contacts[0] : null
+        contact: thumbnail.vcard.contacts.length > 0 ? thumbnail.vcard.contacts[0] : null
         editable: false
         anchors.fill: parent
     }

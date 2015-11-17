@@ -900,33 +900,33 @@ Page {
                     Item {
                         id: attachment
 
+                        readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
                         property int index
                         property string filePath
                         property alias vcard: vcardParser
                         property string contactDisplayName: {
-                            if (vcard.contacts.length > 0)  {
+                            if (contactsCount > 0)  {
                                 var contact = vcard.contacts[0]
-                                if (contact.displayLabel.label != "") {
+                                if (contact.displayLabel.label && (contact.displayLabel.label != "")) {
                                     return contact.displayLabel.label
-                                } else {
+                                } else if (contact.name) {
                                     var contacFullName  = contact.name.firstName
                                     if (contact.name.midleName) {
-                                        conactFullName += " " + contact.name.midleName
+                                        contacFullName += " " + contact.name.midleName
                                     }
                                     if (contact.name.lastName) {
-                                        conactFullName += " " + contact.name.lastName
+                                        contacFullName += " " + contact.name.lastName
                                     }
-                                    return contactFullName
+                                    return contacFullName
                                 }
-                            } else {
-                                return i18n.tr("Unknown contact")
                             }
+                            return i18n.tr("Unknown contact")
                         }
                         property string title: {
                             var result = attachment.contactDisplayName
-                            if (vcard.contacts.length > 1) {
-                                return result + " (+%1)".arg(vcard.contacts.length-1)
-                            } else if (vcard.contacts.length === 1) {
+                            if (attachment.contactsCount > 1) {
+                                return result + " (+%1)".arg(attachment.contactsCount-1)
+                            } else {
                                 return result
                             }
                         }
@@ -942,9 +942,9 @@ Page {
                                 bottom: parent.bottom
                                 left: parent.left
                             }
-                            contactElement: (vcard.contacts.length === 1) ? vcard.contacts[0] : null
-                            fallbackAvatarUrl: (vcard.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
-                            fallbackDisplayName: (vcard.contacts.length === 1) ? attachment.contactDisplayName : ""
+                            contactElement: attachment.contactsCount === 1 ? vattachment.card.contacts[0] : null
+                            fallbackAvatarUrl: attachment.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
+                            fallbackDisplayName: attachment.contactsCount === 1 ? attachment.contactDisplayName : ""
                             width: height
                         }
                         Label {
