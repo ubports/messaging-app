@@ -24,6 +24,7 @@ Previewer {
     id: root
 
     title: contactView.title
+    flickable: contactView.flickable
 
     MessagingContactViewPage {
         id: contactView
