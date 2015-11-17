@@ -902,7 +902,28 @@ Page {
 
                         property int index
                         property string filePath
-                        property var vcardInfo: application.contactNameFromVCard(attachment.filePath)
+                        property alias vcard: vcardParser
+
+                        function contactDisplayName()
+                        {
+                            if (vcard.contacts.length > 0)  {
+                                var contact = vcard.contacts[0]
+                                if (contact.displayLabel.label != "") {
+                                    return contact.displayLabel.label
+                                } else {
+                                    var contacFullName  = contact.name.firstName
+                                    if (contact.name.midleName) {
+                                        conactFullName += " " + contact.name.midleName
+                                    }
+                                    if (contact.name.lastName) {
+                                        conactFullName += " " + contact.name.lastName
+                                    }
+                                    return contactFullName
+                                }
+                            } else {
+                                return i18n.tr("Unknown contact")
+                            }
+                        }
 
                         height: units.gu(6)
                         width: textEntry.width
@@ -915,16 +936,13 @@ Page {
                                 bottom: parent.bottom
                                 left: parent.left
                             }
-                            fallbackAvatarUrl: "image://theme/contact"
-                            fallbackDisplayName: label.name
+                            contactElement: (vcard.contacts.length === 1) ? vcard.contacts[0] : null
+                            fallbackAvatarUrl: (vcard.contacts.length === 1) ? "image://theme/contact" : "image://theme/contact-group"
+                            fallbackDisplayName: (vcard.contacts.length === 1) ? contactDisplayName() : ""
                             width: height
                         }
                         Label {
                             id: label
-
-                            property string name: attachment.vcardInfo["name"] !== "" ?
-                                                      attachment.vcardInfo["name"] :
-                                                      i18n.tr("Unknown contact")
 
                             anchors {
                                 left: avatar.right
@@ -937,10 +955,11 @@ Page {
 
                             verticalAlignment: Text.AlignVCenter
                             text: {
-                                if (attachment.vcardInfo["count"] > 1) {
-                                    return label.name + " (+%1)".arg(attachment.vcardInfo["count"]-1)
-                                } else {
-                                    return label.name
+                                var result = contactDisplayName()
+                                if (vcard.contacts.length > 1) {
+                                    return result + " (+%1)".arg(vcard.contacts.length-1)
+                                } else if (vcard.contacts.length === 1) {
+                                    return result
                                 }
                             }
                             elide: Text.ElideMiddle
@@ -954,6 +973,11 @@ Page {
                                 activeAttachmentIndex = index
                                 PopupUtils.open(attachmentPopover, parent)
                             }
+                        }
+                        VCardParser {
+                            id: vcardParser
+
+                            vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
                         }
                     }
                 }

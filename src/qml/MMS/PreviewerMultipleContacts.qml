@@ -82,7 +82,7 @@ Previewer {
             states: [
                 PageHeadState {
                     name: "default"
-                    head: contactViewPage.head
+                    head: contactViewPagead
                     actions: [
                         Action {
                             objectName: "saveButton"
