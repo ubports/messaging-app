@@ -38,7 +38,7 @@ Previewer {
         root.handleAttachment(attachment.filePath, ContentHandler.Share)
     }
 
-    title: attachment.title
+    title: thumbnail.title
     MultipleSelectionListView {
         id: contactList
 
