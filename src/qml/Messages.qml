@@ -154,7 +154,7 @@ Page {
         onChatEntryCreated: {
             // TODO: track using chatId and not participants
             if (accountId == account.accountId && 
-                participants[0].identifier == messages.participants[0].identifier) {
+                participants[0] == messages.participants[0].identifier) {
                 messages.chatEntry = chatEntry
             }
         }
@@ -163,7 +163,7 @@ Page {
                 var chat = chatManager.chats[i]
                 // TODO: track using chatId and not participants
                 if (chat.account.accountId == account.accountId &&
-                    chat.participants[0].identifier == messages.participants[0].identifier) {
+                    chat.participants[0] == messages.participants[0].identifier) {
                     messages.chatEntry = chat
                     return
                 }
