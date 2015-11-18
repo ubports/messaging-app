@@ -175,6 +175,8 @@ MainView {
         } else if (startsWith(contentType, "text/vcard") ||
                    startsWith(contentType, "text/x-vcard")) {
             return ContentType.Contacts
+        } else if (startsWith(contentType, "video/")) {
+            return ContentType.Videos
         }
         return ContentType.Unknown
     }
