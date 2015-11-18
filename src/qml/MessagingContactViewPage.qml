@@ -126,7 +126,7 @@ ContactViewPage {
         }
     }
 
-    onActionTrigerred: root.handleAcction(action, detail)
+    onActionTrigerred: root.handleAction(action, detail)
     onContactRemoved: pageStack.pop()
     onContactFetched: {
         root.contact = contact
