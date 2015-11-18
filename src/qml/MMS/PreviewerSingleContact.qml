@@ -29,6 +29,15 @@ Previewer {
     MessagingContactViewPage {
         id: contactView
 
+        function handleAction(action, detail)
+        {
+            if ((action === "message") || (action === "default")) {
+                mainView.startChat(detail.value(0), "", false)
+            } else {
+                Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
+            }
+        }
+
         header: Item { height: 0 }
         contact: thumbnail.vcard.contacts.length > 0 ? thumbnail.vcard.contacts[0] : null
         editable: false

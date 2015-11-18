@@ -65,8 +65,7 @@ Previewer {
             editable: false
             onActionTrigerred: {
                 if ((action === "message") || (action == "default")) {
-                    mainView.startChat(detail.value(0), "")
-                    return
+                    mainView.startChat(detail.value(0), "", false)
                 } else {
                     Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
                 }

@@ -54,6 +54,23 @@ ContactViewPage {
         }
     }
 
+    function handleAction(action, detail)
+    {
+        if ((action === "message") || (action === "default")) {
+            if (root.contactListPage) {
+                var list = root.contactListPage
+                list.addRecipient(detail.value(0))
+            } else {
+                console.warn("Action message without contactList")
+                mainView.startChat(detail.value(0), "", true)
+                return
+            }
+        } else {
+            Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
+        }
+        pageStack.pop()
+    }
+
     head.actions: [
         Action {
             objectName: "share"
@@ -109,21 +126,7 @@ ContactViewPage {
         }
     }
 
-    onActionTrigerred: {
-        if ((action === "message") || (action == "default")) {
-            if (root.contactListPage) {
-                var list = root.contactListPage
-                list.addRecipient(detail.value(0))
-            } else {
-                console.warn("Action message without contactList")
-                mainView.startChat(detail.value(0), "")
-                return
-            }
-        } else {
-            Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
-        }
-        pageStack.pop()
-    }
+    onActionTrigerred: root.handleAcction(action, detail)
     onContactRemoved: pageStack.pop()
     onContactFetched: {
         root.contact = contact

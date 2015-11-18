@@ -134,7 +134,7 @@ Item {
             // and instead will generate the list of participants, take advantage of that
             var account = mainViewLoader.item.account
             mainViewLoader.item.account = null
-            mainViewLoader.item.startChat(senderId, "")
+            mainViewLoader.item.startChat(senderId, "", true)
             mainViewLoader.item.account = account
             tryCompare(stack, 'depth', 2)
             mainViewLoader.item.applicationActive = false

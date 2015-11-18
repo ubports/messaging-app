@@ -221,7 +221,10 @@ void MessagingApplication::parseArgument(const QString &arg)
 
     if (scheme == "message") {
         if (!value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text));
+            QMetaObject::invokeMethod(mainView, "startChat",
+                                      Q_ARG(QVariant, value),
+                                      Q_ARG(QVariant, text),
+                                      Q_ARG(QVariant, true));
         } else {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         }
