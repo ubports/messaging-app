@@ -44,8 +44,9 @@ MMSBase {
                 }
                 return contacFullName
             }
+            return i18n.tr("Unknown contact")
         }
-        return i18n.tr("Unknown contact")
+        return ""
     }
     property string title: {
         var result = vcardDelegate.contactDisplayName
