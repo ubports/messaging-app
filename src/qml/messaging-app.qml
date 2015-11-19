@@ -118,7 +118,7 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
-/*    Connections {
+    Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
         onActiveAccountsChanged: {
@@ -130,7 +130,7 @@ MainView {
             account = Qt.binding(defaultPhoneAccount)
         }
         onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
-    }*/
+    }
 
     automaticOrientation: true
     width: units.gu(40)
