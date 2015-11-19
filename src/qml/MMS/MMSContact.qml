@@ -58,7 +58,7 @@ MMSBase {
     }
 
     previewer: vcardDelegate.contactsCount > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
-    height: units.gu(8)
+    height: units.gu(9.5)
     width: units.gu(27)
 
     Rectangle {
@@ -87,7 +87,7 @@ MMSBase {
                 top: parent.top
                 topMargin: units.gu(1)
                 bottom: parent.bottom
-                bottomMargin: units.gu(1)
+                bottomMargin: units.gu(2.5)
                 left: parent.left
                 leftMargin: units.gu(1)
             }
@@ -112,6 +112,18 @@ MMSBase {
             text: vcardDelegate.title
             elide: Text.ElideMiddle
             color: incoming ? UbuntuColors.darkGrey : "#ffffff"
+        }
+
+        Label {
+            anchors{
+                left: parent.left
+                bottom: parent.bottom
+                leftMargin: incoming ? units.gu(2) : units.gu(1)
+                bottomMargin: units.gu(0.5)
+            }
+            fontSize: "xx-small"
+            text: Qt.formatTime(timestamp).toLowerCase()
+            color: incoming ? UbuntuColors.lightGrey : "white"
         }
     }
 
