@@ -26,12 +26,17 @@
 class MessagingApplication : public QGuiApplication
 {
     Q_OBJECT
+    Q_PROPERTY(bool fullscreen READ fullscreen WRITE setFullscreen NOTIFY fullscreenChanged)
 
 public:
     MessagingApplication(int &argc, char **argv);
     virtual ~MessagingApplication();
 
+    bool fullscreen() const;
     bool setup();
+
+Q_SIGNALS:
+    void fullscreenChanged();
 
 public Q_SLOTS:
     void activateWindow();
@@ -42,6 +47,7 @@ public Q_SLOTS:
     void showNotificationMessage(const QString &message, const QString &icon = QString());
 
 private Q_SLOTS:
+    void setFullscreen(bool fullscreen);
     void onViewStatusChanged(QQuickView::Status status);
     void onApplicationReady();
 

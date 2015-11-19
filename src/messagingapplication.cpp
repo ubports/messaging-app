@@ -79,6 +79,11 @@ MessagingApplication::MessagingApplication(int &argc, char **argv)
     setApplicationName("MessagingApp");
 }
 
+bool MessagingApplication::fullscreen() const
+{
+    return m_view->windowState() == Qt::WindowFullScreen;
+}
+
 bool MessagingApplication::setup()
 {
     installIconPath();
@@ -185,6 +190,17 @@ MessagingApplication::~MessagingApplication()
     if (m_view) {
         delete m_view;
     }
+}
+
+void MessagingApplication::setFullscreen(bool fullscreen)
+{
+    if (fullscreen) {
+        m_view->setWindowState(Qt::WindowFullScreen);
+    } else {
+        m_view->setWindowState(Qt::WindowNoState);
+    }
+
+    Q_EMIT fullscreenChanged();
 }
 
 void MessagingApplication::onViewStatusChanged(QQuickView::Status status)

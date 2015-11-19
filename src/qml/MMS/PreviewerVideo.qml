@@ -25,68 +25,109 @@ import messagingapp.private 0.1
 import ".."
 
 Previewer {
+    id: videoPreviewer
+
     title: i18n.tr("Video Preview")
     clip: true
 
-    onAttachmentChanged: {
-        var tmpFile = FileOperations.getTemporaryFile(".mp4")
-        if (FileOperations.link(attachment.filePath, tmpFile)) {
-            videoPlayer.source = tmpFile;
-        } else {
-            console.log("MMSVideo: Failed to link", attachment.filePath, "to", tmpFile)
+    Component.onCompleted: {
+        application.fullscreen = true
+        // Load Video player after toggling fullscreen to reduce flickering
+        videoLoader.active = true
+    }
+    Component.onDestruction: application.fullscreen = false
+
+    Connections {
+        target: application
+        onFullscreenChanged: {
+            videoPreviewer.head.visible = !application.fullscreen
+            toolbar.collapsed = application.fullscreen
         }
     }
 
-    Video {
-        id: videoPlayer
+    Loader {
+        id: videoLoader
+
         anchors.fill: parent
-        autoPlay: true
+        active: false
+        sourceComponent: videoComponent
+
+        onStatusChanged: {
+            if (status == Loader.Ready) {
+                var tmpFile = FileOperations.getTemporaryFile(".mp4")
+                if (FileOperations.link(attachment.filePath, tmpFile)) {
+                    videoLoader.item.source = tmpFile
+                } else {
+                    console.log("MMSVideo: Failed to link", attachment.filePath, "to", tmpFile)
+                }
+            }
+        }
+
+        Component {
+            id: videoComponent
+
+            Video {
+                id: videoPlayer
+                anchors.fill: parent
+                autoPlay: true
+            }
+        }
     }
 
     MouseArea {
-        id: playArea
-        anchors.fill: parent
-        onPressed: {
-            if (videoPlayer.playbackState === MediaPlayer.PlayingState) {
-                videoPlayer.pause()
-            }
+        anchors {
+            top: parent.top
+            bottom: toolbar.top
+            left: parent.left
+            right: parent.right
         }
+        onPressed: application.fullscreen = !application.fullscreen
     }
 
     Rectangle {
+        id: toolbar
+
+        property bool collapsed: false
+
         anchors.bottom: parent.bottom
 
-        width: videoPlayer.width
-        height: units.gu(7)
+        width: parent.width
+        height: collapsed ? 0 : units.gu(7)
+        Behavior on height { UbuntuNumberAnimation {} }
 
         color: "black"
-        opacity: videoPlayer.status != MediaPlayer.Loading && videoPlayer.playbackState !== MediaPlayer.PlayingState ? 0.8 : 0.0
-        Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
- 
+        opacity: 0.8
+
         Row {
             anchors.centerIn: parent
+            height: parent. height
             spacing: units.gu(2)
+
             Icon {
                 width: units.gu(5)
-                height: units.gu(5)
-                name: "media-playback-start"
-                color: "white"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: videoPlayer.play();
-                }
-            }
-            Icon {
-                width: units.gu(5)
-                height: units.gu(5)
-                name: "reload"
+                height: width
+                name: videoLoader.item && videoLoader.item.playbackState == MediaPlayer.PlayingState ? "media-playback-pause" : "media-playback-start"
                 color: "white"
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        videoPlayer.stop();
-                        videoPlayer.play();
+                        if (videoLoader.item.playbackState == MediaPlayer.PlayingState) {
+                            videoLoader.item.pause()
+                        } else {
+                            videoLoader.item.play()
+                        }
+                    }
+                }
+            }
+            Icon {
+                width: units.gu(5)
+                height: width
+                name: "media-playback-stop"
+                color: "white"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        videoLoader.item.stop()
                     }
                 }
             }
