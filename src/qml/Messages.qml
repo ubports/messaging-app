@@ -448,7 +448,7 @@ Page {
                             text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
                             onClicked: {
                                 PopupUtils.close(popover)
-                                mainView.startChat(contactWatcher.identifier, true)
+                                mainView.startChat(contactWatcher.identifier)
                             }
                         }
                         ContactWatcher {

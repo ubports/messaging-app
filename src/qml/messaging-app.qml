@@ -191,7 +191,7 @@ MainView {
         mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
-    function startChat(identifiers, text, resetStack) {
+    function startChat(identifiers, text) {
         var properties = {}
         var participantIds = identifiers.split(";")
 
@@ -223,8 +223,7 @@ MainView {
 
         properties["participantIds"] = participantIds
         properties["text"] = text
-        if (resetStack)
-            emptyStack()
+        emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }
 
