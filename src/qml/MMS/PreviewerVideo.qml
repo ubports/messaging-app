@@ -100,7 +100,7 @@ Previewer {
 
         Row {
             anchors.centerIn: parent
-            height: parent. height
+            height: units.gu(5)
             spacing: units.gu(2)
 
             Icon {
