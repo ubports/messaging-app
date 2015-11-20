@@ -796,7 +796,7 @@ Page {
                 if (messages.height - keyboard.height - screenTop.y > defaultHeight) {
                     return defaultHeight
                 } else {
-                    messages.height - keyboard.height - screenTop.y
+                    return messages.height - keyboard.height - screenTop.y
                 }
             }
         }
