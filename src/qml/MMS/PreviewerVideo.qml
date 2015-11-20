@@ -45,6 +45,11 @@ Previewer {
         }
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: "black"
+    }
+
     Loader {
         id: videoLoader
 
@@ -81,7 +86,7 @@ Previewer {
             left: parent.left
             right: parent.right
         }
-        onPressed: application.fullscreen = !application.fullscreen
+        onClicked: application.fullscreen = !application.fullscreen
     }
 
     Rectangle {
@@ -95,17 +100,24 @@ Previewer {
         height: collapsed ? 0 : units.gu(7)
         Behavior on height { UbuntuNumberAnimation {} }
 
-        color: "black"
+        color: "gray"
         opacity: 0.8
 
         Row {
-            anchors.centerIn: parent
-            height: units.gu(5)
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+
             spacing: units.gu(2)
 
             Icon {
-                width: units.gu(5)
+                anchors.verticalCenter: parent.verticalCenter
+                width: toolbar.collapsed ? 0 : units.gu(5)
                 height: width
+                Behavior on width { UbuntuNumberAnimation {} }
+                Behavior on height { UbuntuNumberAnimation {} }
                 name: videoLoader.item && videoLoader.item.playbackState == MediaPlayer.PlayingState ? "media-playback-pause" : "media-playback-start"
                 color: "white"
                 MouseArea {
@@ -120,8 +132,11 @@ Previewer {
                 }
             }
             Icon {
-                width: units.gu(5)
+                anchors.verticalCenter: parent.verticalCenter
+                width: toolbar.collapsed ? 0 : units.gu(5)
                 height: width
+                Behavior on width { UbuntuNumberAnimation {} }
+                Behavior on height { UbuntuNumberAnimation {} }
                 name: "media-playback-stop"
                 color: "white"
                 MouseArea {
