@@ -28,20 +28,34 @@ MainView {
     id: mainView
 
     property string newPhoneNumber
-    property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
-    property QtObject account: defaultAccount()
+    property bool multiplePhoneAccounts: {
+        var numAccounts = 0
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
+                numAccounts++
+            }
+        }
+        return numAccounts > 1
+    }
+    property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
 
     activeFocusOnPress: false
 
-    function defaultAccount() {
+    function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
-        if (multipleAccounts) {
+        if (multiplePhoneAccounts) {
             return telepathyHelper.defaultMessagingAccount
         } else {
-            return telepathyHelper.activeAccounts[0]
+            for (var i in telepathyHelper.activeAccounts) {
+                var tmpAccount = telepathyHelper.activeAccounts[i]
+                if (tmpAccount.type == AccountEntry.PhoneAccount) {
+                    return tmpAccount
+                }
+            }
         }
+        return null
     }
 
     function showContactDetails(contact, contactListPage, contactsModel) {
@@ -83,6 +97,14 @@ MainView {
         }
     }
 
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            telepathyHelper.registerChannelObserver()
+        } else {
+            telepathyHelper.unregisterChannelObserver()
+        }
+    }
+
     function removeThreads(threads) {
         for (var i in threads) {
             var thread = threads[i];
@@ -106,9 +128,9 @@ MainView {
                     return;
                 }
             }
-            account = Qt.binding(defaultAccount)
+            account = Qt.binding(defaultPhoneAccount)
         }
-        onDefaultMessagingAccountChanged: account = Qt.binding(defaultAccount)
+        onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
     }
 
 
@@ -125,7 +147,7 @@ MainView {
     Connections {
         target: telepathyHelper
         onSetupReady: {
-            if (multipleAccounts && !telepathyHelper.defaultMessagingAccount &&
+            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
                 settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
                 // FIXME: soon it will be more than just SIM cards, update the dialog accordingly
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
@@ -191,7 +213,7 @@ MainView {
         mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
-    function startChat(identifiers, text) {
+    function startChat(identifiers, text, accountId) {
         var properties = {}
         var participantIds = identifiers.split(";")
 
@@ -223,6 +245,9 @@ MainView {
 
         properties["participantIds"] = participantIds
         properties["text"] = text
+        if (typeof(accountId)!=='undefined') {
+            properties["accountId"] = accountId
+        }
         emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }

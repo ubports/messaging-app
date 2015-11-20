@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
 Column {
@@ -54,7 +55,15 @@ Column {
         // TODO: we have several items inside
         selected: root.isSelected(delegateItem)
         selectionMode: root.isInSelectionMode
-        accountLabel: multipleAccounts ? telepathyHelper.accountForId(accountId).displayName : ""
+        accountLabel: {
+            var account = telepathyHelper.accountForId(accountId)
+            if (account.type == AccountEntry.PhoneAccount || account.type == AccountEntry.MultimediaAccount) {
+                if (multiplePhoneAccounts) {
+                    return account.displayName
+                }
+            }
+            return ""
+        }
         rightSideActions: {
             var actions = []
             if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
