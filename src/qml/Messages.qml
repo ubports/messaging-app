@@ -61,7 +61,8 @@ Page {
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
-    property var accountsModel: {
+    property var accountsModel: getAccountsModel()
+    function getAccountsModel() {
         var accounts = []
         // on new chat dialogs display all possible accounts
         if (accountId == "" && participants.length === 0) {
@@ -91,6 +92,45 @@ Page {
         }
 
         return accounts
+    }
+
+    function getSectionsModel() {
+        var accountNames = []
+        // suru divider must be empty if there is only one sim card
+        if (messages.accountsModel.length == 1 &&
+                messages.accountsModel[0].type == AccountEntry.PhoneAccount) {
+            return []
+        }
+ 
+        for (var i in messages.accountsModel) {
+            accountNames.push(messages.accountsModel[i].displayName)
+        }
+        return accountNames.length > 0 ? accountNames : []
+    }
+
+    function getSelectedIndex() {
+        if (accountId == "" && participants.length === 0) {
+            // if this is a new message, just pre select the the 
+            // default phone account for messages if available
+            if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
+                for (var i in messages.accountsModel) {
+                    if (telepathyHelper.defaultMessagingAccount == messages.accountsModel[i]) {
+                        return i
+                    }
+                }
+            }
+            // otherwise pre-select the first available phone account if any
+            for (var i in messages.accountsModel) {
+                if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                    return i
+                }
+            }
+            // otherwise select none
+            return -1
+        }
+
+        // if we get here, just pre-select the account that is set in messages.account
+        return accountIndex(messages.account)
     }
 
     function accountIndex(account) {
@@ -145,6 +185,8 @@ Page {
             // force reevaluation
             messages.account = Qt.binding(getCurrentAccount)
             messages.phoneAccount = Qt.binding(isPhoneAccount)
+            head.sections.model = Qt.binding(getSectionsModel)
+            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
         }
     }
 
@@ -154,7 +196,7 @@ Page {
         onChatEntryCreated: {
             // TODO: track using chatId and not participants
             if (accountId == account.accountId && 
-                participants[0].identifier == messages.participants[0].identifier) {
+                firstParticipant && participants[0] == firstParticipant.identifier) {
                 messages.chatEntry = chatEntry
             }
         }
@@ -163,7 +205,7 @@ Page {
                 var chat = chatManager.chats[i]
                 // TODO: track using chatId and not participants
                 if (chat.account.accountId == account.accountId &&
-                    chat.participants[0].identifier == messages.participants[0].identifier) {
+                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
                     messages.chatEntry = chat
                     return
                 }
@@ -226,46 +268,10 @@ Page {
 
     head {
         id: head
-        sections.model: {
-            var accountNames = []
-            // suru divider must be empty if there is only one sim card
-            if (messages.accountsModel.length == 1 &&
-                    messages.accountsModel[0].type == AccountEntry.PhoneAccount) {
-                return undefined
-            }
- 
-            for (var i in messages.accountsModel) {
-                accountNames.push(messages.accountsModel[i].displayName)
-            }
-            return accountNames.length > 0 ? accountNames : undefined
-        }
+        sections.model: getSectionsModel()
         sections.selectedIndex: getSelectedIndex()
     }
 
-    function getSelectedIndex() {
-        if (accountId == "" && participants.length === 0) {
-            // if this is a new message, just pre select the the 
-            // default phone account for messages if available
-            if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
-                for (var i in messages.accountsModel) {
-                    if (telepathyHelper.defaultMessagingAccount == messages.accountsModel[i]) {
-                        return i
-                    }
-                }
-            }
-            // otherwise pre-select the first available phone account if any
-            for (var i in messages.accountsModel) {
-                if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
-                    return i
-                }
-            }
-            // otherwise select none
-            return -1
-        }
-
-        // if we get here, just pre-select the account that is set in messages.account
-        return accountIndex(messages.account)
-    }
 
     function addAttachmentsToModel(transfer) {
         for (var i in transfer.items) {
@@ -851,6 +857,7 @@ Page {
             name: "groupChat"
             head: messages.head
             when: groupChat
+            contents: header
             backAction: backButton
 
             actions: [

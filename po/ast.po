@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2015-10-06 12:37+0000\n"
-"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
+"PO-Revision-Date: 2015-11-02 17:52+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
-"X-Generator: Launchpad (build 17812)\n"
+"X-Launchpad-Export-Date: 2015-11-12 05:37+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -95,7 +95,7 @@ msgstr[1] "Axuntos: %1 vídeos"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Nun tán sofitaos los axuntos d'audiu"
 
 #: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:683
 msgid "Call"
@@ -153,7 +153,7 @@ msgstr "Editar"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Habilitar charra de grupu MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -169,7 +169,7 @@ msgstr "Favoritos"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Nun ta sofitada la triba de ficheru"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -297,7 +297,7 @@ msgstr "La tarxeta SIM ta bloquiada"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:37
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Guardar"
@@ -330,7 +330,7 @@ msgstr "Unviaos"
 msgid "Settings"
 msgstr "Preferencies"
 
-#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Compartir"
 
@@ -398,11 +398,11 @@ msgstr "Vista previa del videu"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Nun tán sofitaos los axuntos de video"
 
 #: ../src/qml/SwipeItemDemo.qml:162
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Bienllegáu a la to aplicación de mensaxería d'Ubuntu."
 
 #: ../src/qml/Messages.qml:1033
 msgid "Write a message..."

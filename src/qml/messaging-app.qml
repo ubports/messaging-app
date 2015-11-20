@@ -127,7 +127,7 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
-/*    Connections {
+    Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
         onActiveAccountsChanged: {
@@ -139,7 +139,7 @@ MainView {
             account = Qt.binding(defaultPhoneAccount)
         }
         onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
-    }*/
+    }
 
     automaticOrientation: true
     width: units.gu(40)
@@ -232,9 +232,13 @@ MainView {
                                                            participantIds,
                                                            mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                               : HistoryThreadModel.MatchCaseSensitive,
-                                                           true)
-            properties["participants"] = thread.participants
-        } else {
+                                                           false)
+            if (thread.hasOwnProperty("participants")) {
+                properties["participants"] = thread.participants
+            }
+        }
+
+        if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}

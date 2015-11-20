@@ -1,3 +1,28 @@
+messaging-app (0.1+16.04.20151112-0ubuntu1) xenial; urgency=medium
+
+  * Update the selected section once the default sim card for text
+    message changes. (LP: #1515677)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Thu, 12 Nov 2015 17:47:43 +0000
+
+messaging-app (0.1+16.04.20151105-0ubuntu1) xenial; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Enable cross compiling
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Thu, 05 Nov 2015 13:48:57 +0000
+
+messaging-app (0.1+16.04.20151104-0ubuntu1) xenial; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Update the autopilot tests to work with UITK 1.3 and also to work
+    with the latest app changes.
+
+  [ Tiago Salem Herrmann ]
+  * Fix more autopilot tests:
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Wed, 04 Nov 2015 20:11:00 +0000
+
 messaging-app (0.1+16.04.20151026-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]

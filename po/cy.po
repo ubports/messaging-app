@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : (n != 8 && n != 11) ? "
 "2 : 3;\n"
-"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
-"X-Generator: Launchpad (build 17812)\n"
+"X-Launchpad-Export-Date: 2015-11-12 05:37+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -310,7 +310,7 @@ msgstr "Cerdyn SIM ar glo"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:37
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Cadw"
@@ -343,7 +343,7 @@ msgstr "Anfonwyd"
 msgid "Settings"
 msgstr "Gosodiadau"
 
-#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Rhannu"
 

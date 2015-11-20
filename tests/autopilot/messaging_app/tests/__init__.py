@@ -88,3 +88,12 @@ class MessagingAppTestCase(AutopilotTestCase):
     @property
     def main_view(self):
         return self.app.select_single(emulators.MainView)
+
+    def verify_thread(self, phone_num, message):
+        """Check that the thread with given number and message exists"""
+        # verify our number
+        mess_thread = self.main_view.get_thread_from_number(phone_num)
+        self.assertThat(mess_thread.phoneNumber, Equals(phone_num))
+        # verify our text
+        self.assertThat(mess_thread.textMessage, Equals(message))
+        return mess_thread
