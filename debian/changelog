@@ -1,3 +1,11 @@
+messaging-app (0.1+16.04.20151120-0ubuntu1) xenial; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Add online and typing status to the conversation view.
+  * Update SIM dialogs according to design spec. (LP: #1449778)
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Fri, 20 Nov 2015 11:32:35 +0000
+
 messaging-app (0.1+16.04.20151112-0ubuntu1) xenial; urgency=medium
 
   * Update the selected section once the default sim card for text
