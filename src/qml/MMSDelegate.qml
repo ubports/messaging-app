@@ -64,8 +64,8 @@ MessageDelegate {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        deleteMessage()
-        messages.sendMessage(textMessage, messages.participantIds, newAttachments)
+        messages.sendMessage(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})
+        deleteMessage();
     }
 
     function copyMessage()

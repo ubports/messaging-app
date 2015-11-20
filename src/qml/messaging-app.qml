@@ -27,7 +27,6 @@ import Ubuntu.History 0.1
 MainView {
     id: mainView
 
-    property string newPhoneNumber
     property bool multiplePhoneAccounts: {
         var numAccounts = 0
         for (var i in telepathyHelper.activeAccounts) {
@@ -45,7 +44,7 @@ MainView {
     function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
-        if (multiplePhoneAccounts) {
+        if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
             return telepathyHelper.defaultMessagingAccount
         } else {
             for (var i in telepathyHelper.activeAccounts) {
@@ -133,7 +132,6 @@ MainView {
         onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
     }
 
-
     automaticOrientation: true
     width: units.gu(40)
     height: units.gu(71)
@@ -148,8 +146,7 @@ MainView {
         target: telepathyHelper
         onSetupReady: {
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
-                // FIXME: soon it will be more than just SIM cards, update the dialog accordingly
+                !settings.mainViewIgnoreFirstTimeDialog && mainStack.depth === 1) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }
@@ -171,7 +168,7 @@ MainView {
         id: settings
         category: "DualSim"
         property bool messagesDontAsk: false
-        property int mainViewDontAskCount: 0
+        property bool mainViewIgnoreFirstTimeDialog: false
     }
 
     Connections {
@@ -227,9 +224,13 @@ MainView {
                                                            participantIds,
                                                            mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                               : HistoryThreadModel.MatchCaseSensitive,
-                                                           true)
-            properties["participants"] = thread.participants
-        } else {
+                                                           false)
+            if (thread.hasOwnProperty("participants")) {
+                properties["participants"] = thread.participants
+            }
+        }
+
+        if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}

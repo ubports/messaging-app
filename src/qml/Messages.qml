@@ -325,7 +325,11 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessage(text, participantIds, attachments) {
+    function sendMessage(text, participantIds, attachments, properties) {
+        if (typeof(properties) === 'undefined') {
+            properties = {}
+        }
+
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
@@ -427,20 +431,19 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMMS = attachments.length > 0
-            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat
+            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
-            // FIXME: maybe move this to telepathy-ofono itself and treat as just sendMessage on the app?
-            if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
-                chatManager.sendMMS(participantIds, text, attachments, messages.account.accountId)
-            } else {
-                chatManager.sendMessage(participantIds, text, messages.account.accountId)
+            if (isMmsGroupChat && !isSelfContactKnown) {
+                // TODO: inform the user to enter the phone number of the selected sim card manually
+                // and use it in the telepathy-ofono account as selfContactId. 
+                return
             }
+            chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
-        if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+        if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk && account.type == AccountEntry.PhoneAccount) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
         } else {
@@ -854,6 +857,7 @@ Page {
             name: "groupChat"
             head: messages.head
             when: groupChat
+            contents: header
             backAction: backButton
 
             actions: [
