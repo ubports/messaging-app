@@ -785,10 +785,21 @@ Page {
 
     Item {
         id: bottomPanel
+        property int defaultHeight: textEntry.height + units.gu(2)
         anchors.bottom: isSearching ? parent.bottom : keyboard.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: selectionMode || (participants.length > 0 && !contactWatcher.interactive) ? 0 : textEntry.height + units.gu(2)
+        height: {
+            if (selectionMode || (participants.length > 0 && !contactWatcher.interactive)) {
+                return 0
+            } else {
+                if (messages.height - keyboard.height - screenTop.y > defaultHeight) {
+                    return defaultHeight
+                } else {
+                    messages.height - keyboard.height - screenTop.y
+                }
+            }
+        }
         visible: !selectionMode && !isSearching
         clip: true
         MouseArea {
