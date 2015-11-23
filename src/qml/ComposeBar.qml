@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtMultimedia 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
