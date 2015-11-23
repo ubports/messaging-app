@@ -34,8 +34,9 @@ Page {
 
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
-    property QtObject account: mainView.account
-
+    property string accountId: ""
+    property QtObject account: getCurrentAccount()
+    property bool phoneAccount: isPhoneAccount()
     property variant participants: []
     property variant participantIds: []
     property bool groupChat: participants.length > 1
@@ -55,37 +56,222 @@ Page {
     property var pendingEventsToMarkAsRead: []
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
+    property bool userTyping: false
+    property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
-
-    function accountsModel() {
-        // does not show dual sim switch if there is only one sim
-        if (!multipleAccounts) {
-            return undefined
+    property var accountsModel: getAccountsModel()
+    function getAccountsModel() {
+        var accounts = []
+        // on new chat dialogs display all possible accounts
+        if (accountId == "" && participants.length === 0) {
+            for (var i in telepathyHelper.activeAccounts) {
+                accounts.push(telepathyHelper.activeAccounts[i])
+            }
+            // suru divider must be empty if there is only one sim card
+            if (accounts.length == 1 && accounts[0].type == AccountEntry.PhoneAccount) {
+                return []
+            }
+            return accounts
+        }
+ 
+        var tmpAccount = telepathyHelper.accountForId(messages.accountId)
+        // on generic accounts we don't give the option to switch to another account
+        if (tmpAccount && tmpAccount.type == AccountEntry.GenericAccount) {
+            return [tmpAccount]
         }
 
-        var accountNames = []
-        for(var i=0; i < telepathyHelper.activeAccounts.length; i++) {
-            accountNames.push(telepathyHelper.activeAccounts[i].displayName)
-        }
-        return accountNames
-    }
-
-    function accountIndex() {
-        if (!messages.account) {
-            return -1
-        }
+        // if we get here, this is a regular sms conversation. just
+        // add the available phone accounts next
         for (var i in telepathyHelper.activeAccounts) {
-            if (telepathyHelper.activeAccounts[i].accountId === messages.account.accountId) {
-                return i
+            var account = telepathyHelper.activeAccounts[i]
+            if (account.type == AccountEntry.PhoneAccount) {
+                accounts.push(account)
             }
         }
-        return -1
+
+        return accounts
     }
 
-    head.sections.model: accountsModel()
-    head.sections.selectedIndex: accountIndex()
+    function getSectionsModel() {
+        var accountNames = []
+        // suru divider must be empty if there is only one sim card
+        if (messages.accountsModel.length == 1 &&
+                messages.accountsModel[0].type == AccountEntry.PhoneAccount) {
+            return []
+        }
+ 
+        for (var i in messages.accountsModel) {
+            accountNames.push(messages.accountsModel[i].displayName)
+        }
+        return accountNames.length > 0 ? accountNames : []
+    }
+
+    function getSelectedIndex() {
+        if (accountId == "" && participants.length === 0) {
+            // if this is a new message, just pre select the the 
+            // default phone account for messages if available
+            if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
+                for (var i in messages.accountsModel) {
+                    if (telepathyHelper.defaultMessagingAccount == messages.accountsModel[i]) {
+                        return i
+                    }
+                }
+            }
+            // otherwise pre-select the first available phone account if any
+            for (var i in messages.accountsModel) {
+                if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                    return i
+                }
+            }
+            // otherwise select none
+            return -1
+        }
+
+        // if we get here, just pre-select the account that is set in messages.account
+        return accountIndex(messages.account)
+    }
+
+    function accountIndex(account) {
+        var index = -1;
+        for (var i in messages.accountsModel) {
+            if (messages.accountsModel[i] == account) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    function getCurrentAccount() {
+        if (messages.accountId !== "") {
+            var tmpAccount = telepathyHelper.accountForId(messages.accountId)
+            // if the selected account is a phone account, check if there is a default
+            // phone account for messages
+            if (tmpAccount && tmpAccount.type == AccountEntry.PhoneAccount) {
+                if (telepathyHelper.defaultMessagingAccount) {
+                    for (var i in messages.accountsModel) {
+                        if (messages.accountsModel[i] == telepathyHelper.defaultMessagingAccount) {
+                            return telepathyHelper.defaultMessagingAccount
+                        }
+                    }
+                }
+                for (var i in messages.accountsModel) {
+                    if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                        return messages.accountsModel[i]
+                    }
+                }
+            }
+            for (var i in messages.accountsModel) {
+                if (tmpAccount.accountId == messages.accountId) {
+                    return tmpAccount
+                }
+            }
+            return null
+        } else {
+            return mainView.account
+        }
+    }
+
+    function isPhoneAccount() {
+        var tmpAccount = telepathyHelper.accountForId(accountId)
+        return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
+    }
+
+    Connections {
+        target: telepathyHelper
+        onSetupReady: {
+            // force reevaluation
+            messages.account = Qt.binding(getCurrentAccount)
+            messages.phoneAccount = Qt.binding(isPhoneAccount)
+            head.sections.model = Qt.binding(getSectionsModel)
+            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+        }
+    }
+
+
+    Connections {
+        target: chatManager
+        onChatEntryCreated: {
+            // TODO: track using chatId and not participants
+            if (accountId == account.accountId && 
+                firstParticipant && participants[0] == firstParticipant.identifier) {
+                messages.chatEntry = chatEntry
+            }
+        }
+        onChatsChanged: {
+            for (var i in chatManager.chats) {
+                var chat = chatManager.chats[i]
+                // TODO: track using chatId and not participants
+                if (chat.account.accountId == account.accountId &&
+                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
+                    messages.chatEntry = chat
+                    return
+                }
+            }
+            messages.chatEntry = null
+        }
+    }
+
+    Timer {
+        id: typingTimer
+        interval: 6000
+        onTriggered: {
+            messages.userTyping = false;
+        }
+    }
+
+    Repeater {
+        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        Item {
+            function processChatState() {
+                if (modelData.state == ChatEntry.ChannelChatStateComposing) {
+                    messages.userTyping = true
+                    typingTimer.start()
+                } else {
+                    messages.userTyping = false
+                }
+            }
+            Component.onCompleted: processChatState()
+            Connections {
+                target: modelData
+                onStateChanged: processChatState()
+            }
+        }
+    }
+
+    MessagesHeader {
+        id: header
+        width: parent ? parent.width - units.gu(2) : undefined
+        height: units.gu(5)
+        title: messages.title
+        subtitle: {
+            if (userTyping) {
+                return i18n.tr("Typing..")
+            }
+            switch (presenceRequest.type) {
+            case PresenceRequest.PresenceTypeAvailable:
+                return i18n.tr("Online")
+            case PresenceRequest.PresenceTypeOffline:
+                return i18n.tr("Offline")
+            case PresenceRequest.PresenceTypeAway:
+                return i18n.tr("Away")
+            case PresenceRequest.PresenceTypeBusy:
+                return i18n.tr("Busy")
+            default:
+                return ""
+            }
+        }
+        visible: true
+    }
+
+    head {
+        id: head
+        sections.model: getSectionsModel()
+        sections.selectedIndex: getSelectedIndex()
+    }
+
 
     function addAttachmentsToModel(transfer) {
         for (var i in transfer.items) {
@@ -139,7 +325,11 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessage(text, participantIds, attachments) {
+    function sendMessage(text, participantIds, attachments, properties) {
+        if (typeof(properties) === 'undefined') {
+            properties = {}
+        }
+
         // check if at least one account is selected
         if (!messages.account) {
             Qt.inputMethod.hide()
@@ -182,6 +372,12 @@ Page {
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
+                var tmpAccount = telepathyHelper.accountForId(event.accountId)
+                if (!tmpAccount || (tmpAccount.type == AccountEntry.MultimediaAccount && messages.account.type == AccountEntry.PhoneAccount)) {
+                    // we don't add the information event if the last outgoing message 
+                    // was a fallback to a multimedia service
+                    break;
+                }
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
@@ -235,20 +431,19 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMMS = attachments.length > 0
-            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat
+            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
-            // FIXME: maybe move this to telepathy-ofono itself and treat as just sendMessage on the app?
-            if (isMMS || (isMmsGroupChat && isSelfContactKnown)) {
-                chatManager.sendMMS(participantIds, text, attachments, messages.account.accountId)
-            } else {
-                chatManager.sendMessage(participantIds, text, messages.account.accountId)
+            if (isMmsGroupChat && !isSelfContactKnown) {
+                // TODO: inform the user to enter the phone number of the selected sim card manually
+                // and use it in the telepathy-ofono account as selfContactId. 
+                return
             }
+            chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
-        if (multipleAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk) {
+        if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount && !settings.messagesDontAsk && account.type == AccountEntry.PhoneAccount) {
             Qt.inputMethod.hide()
             PopupUtils.open(Qt.createComponent("Dialogs/SetDefaultSIMCardDialog.qml").createObject(messages))
         } else {
@@ -260,14 +455,38 @@ Page {
         return true
     }
 
+    PresenceRequest {
+        id: presenceRequest
+        accountId: {
+            // if this is a regular sms chat, try requesting the presence on
+            // a multimedia account
+            if (!account) {
+                return ""
+            }
+            if (account.type == AccountEntry.PhoneAccount) {
+                for (var i in telepathyHelper.accounts) {
+                    var tmpAccount = telepathyHelper.accounts[i]
+                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                        return tmpAccount.accountId
+                    }
+                }
+                return ""
+            }
+            return account.accountId
+        }
+        // we just request presence on 1-1 chats
+        identifier: participants.length == 1 ? participants[0].identifier : ""
+    }
+
     // this is necessary to automatically update the view when the
     // default account changes in system settings
     Connections {
         target: mainView
         onAccountChanged: {
+            if (!messages.phoneAccount) {
+                return
+            }
             messages.account = mainView.account
-            head.sections.model = Qt.binding(accountsModel)
-            head.sections.selectedIndex = Qt.binding(accountIndex)
         }
     }
 
@@ -313,7 +532,7 @@ Page {
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     title: {
-        if (selectionMode) {
+        if (selectionMode || participants.length == 0) {
             return " "
         }
 
@@ -332,6 +551,15 @@ Page {
     }
 
     Component.onCompleted: {
+        if (messages.accountId !== "") {
+            var account = telepathyHelper.accountForId(messages.accountId)
+            if (account && account.type == AccountEntry.MultimediaAccount) {
+                // fallback the first available phone account 
+                if (telepathyHelper.phoneAccounts.length > 0) {
+                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
+                }
+            }
+        }
         addAttachmentsToModel(sharedAttachmentsTransfer)
     }
 
@@ -356,13 +584,26 @@ Page {
             }
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
+ 
+        var filterAccounts = []
 
-        for (var i in accounts) {
-            var account = accounts[i];
+        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
+            filterAccounts = [messages.accountsModel[0]]
+        } else {
+            for (var i in telepathyHelper.accounts) {
+                var account = telepathyHelper.accounts[i]
+                if (account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount) {
+                    filterAccounts.push(account)
+                }
+            }
+       }
+
+       for (var i in filterAccounts) {
+            var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participants,
-                                                                 account.type === AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
+                                                                 account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                             : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
                 continue
@@ -473,7 +714,7 @@ Page {
             id: noNetworkDialog
             objectName: "noNetworkDialog"
             title: i18n.tr("No network")
-            text: multipleAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
+            text: multiplePhoneAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
             Button {
                 objectName: "closeNoNetworkDialog"
                 text: i18n.tr("Close")
@@ -488,7 +729,9 @@ Page {
 
     Connections {
         target: messages.head.sections
-        onSelectedIndexChanged: messages.account = telepathyHelper.activeAccounts[head.sections.selectedIndex]
+        onSelectedIndexChanged: {
+            messages.account = messages.accountsModel[head.sections.selectedIndex]
+        }
     }
 
     Loader {
@@ -562,6 +805,10 @@ Page {
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
+    onAccountsModelChanged: {
+        reloadFilters = !reloadFilters
+    }
+
     Action {
         id: backButton
         objectName: "backButton"
@@ -610,6 +857,7 @@ Page {
             name: "groupChat"
             head: messages.head
             when: groupChat
+            contents: header
             backAction: backButton
 
             actions: [
@@ -625,6 +873,7 @@ Page {
             head: messages.head
             when: participants.length == 1 && contactWatcher.isUnknown
             backAction: backButton
+            contents: header
 
             actions: [
                 Action {
@@ -684,10 +933,11 @@ Page {
             head: messages.head
             when: participants.length == 1 && !contactWatcher.isUnknown
             backAction: backButton
+            contents: header
             actions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1
+                    visible: participants.length == 1 && messages.phoneAccount
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -698,7 +948,7 @@ Page {
                 },
                 Action {
                     objectName: "contactProfileAction"
-                    visible: !contactWatcher.isUnknown && participants.length == 1
+                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
@@ -1116,6 +1366,11 @@ Page {
                     }
                     // refresh the recipient list
                     multiRecipient.focus = false
+
+                    if (messages.account && messages.accountId == "") {
+                        messages.accountId = messages.account.accountId
+                        messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+                    }
 
                     var newAttachments = []
                     for (var i = 0; i < attachments.count; i++) {

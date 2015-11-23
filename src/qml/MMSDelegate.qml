@@ -47,7 +47,6 @@ MessageDelegate {
 
     function resendMessage()
     {
-        eventModel.removeEvents([messageData.properties]);
         var newAttachments = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = []
@@ -56,12 +55,18 @@ MessageDelegate {
             if (item.contentType.toLowerCase() === "application/smil") {
                 continue
             }
+            // text messages will be sent as textMessage. skip it
+            // to avoid duplication
+            if (item.contentType.toLowerCase() === "text/plain") {
+                continue
+            }
             attachment.push(item.attachmentId)
             attachment.push(item.contentType)
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.sendMessage(textMessage, messages.participantIds, newAttachments)
+        messages.sendMessage(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})
+        deleteMessage();
     }
 
     function copyMessage()
