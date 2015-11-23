@@ -35,6 +35,7 @@ MessageDelegate {
         if (attachment && attachment.item && attachment.item.previewer) {
             var properties = {}
             properties["attachment"] = attachment.item.attachment
+            properties["thumbnail"] = attachment.item
             mainStack.push(Qt.resolvedUrl(attachment.item.previewer), properties)
         }
     }

@@ -16,21 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
-import Ubuntu.Components 1.3
-import Ubuntu.Content 0.1
-import ".."
+import QtQuick 2.4
+import Ubuntu.Contacts 0.1
+import "../"
 
 Previewer {
-    property string contactName: {
-        var info = application.contactNameFromVCard(attachment.filePath)
-        if (info["count"] > 1) {
-            return info["name"] + " (+%1)".arg(info["count"]-1)
-        } else {
-            return info["name"]
-        }
-    }
+    id: root
 
-    title: contactName !== "" ? contactName : i18n.tr("Unknown contact")
-    clip: true
+    title: contactView.title
+    flickable: contactView.flickable
+
+    MessagingContactViewPage {
+        id: contactView
+
+        header: Item { height: 0 }
+        contact: thumbnail.vcard.contacts.length > 0 ? thumbnail.vcard.contacts[0] : null
+        editable: false
+        anchors.fill: parent
+    }
 }

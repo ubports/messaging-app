@@ -5,11 +5,37 @@ import Ubuntu.Contacts 0.1
 Item {
     id: attachment
 
+    readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
     property int index
     property string filePath
-    property var vcardInfo: application.contactNameFromVCard(attachment.filePath)
-
-    signal pressAndHold()
+    property alias vcard: vcardParser
+    property string contactDisplayName: {
+        if (contactsCount > 0)  {
+            var contact = vcard.contacts[0]
+            if (contact.displayLabel.label && (contact.displayLabel.label != "")) {
+                return contact.displayLabel.label
+            } else if (contact.name) {
+                var contacFullName  = contact.name.firstName
+                if (contact.name.midleName) {
+                    contacFullName += " " + contact.name.midleName
+                }
+                if (contact.name.lastName) {
+                    contacFullName += " " + contact.name.lastName
+                }
+                return contacFullName
+            }
+            return i18n.tr("Unknown contact")
+        }
+        return ""
+    }
+    property string title: {
+        var result = attachment.contactDisplayName
+        if (attachment.contactsCount > 1) {
+            return result + " (+%1)".arg(attachment.contactsCount-1)
+        } else {
+            return result
+        }
+    }
 
     height: units.gu(6)
     width: textEntry.width
@@ -22,16 +48,13 @@ Item {
             bottom: parent.bottom
             left: parent.left
         }
-        fallbackAvatarUrl: "image://theme/contact"
-        fallbackDisplayName: label.name
+        contactElement: attachment.contactsCount === 1 ? attachment.vcard.contacts[0] : null
+        fallbackAvatarUrl: attachment.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
+        fallbackDisplayName: attachment.contactsCount === 1 ? attachment.contactDisplayName : ""
         width: height
     }
     Label {
         id: label
-
-        property string name: attachment.vcardInfo["name"] !== "" ?
-                                  attachment.vcardInfo["name"] :
-                                  i18n.tr("Unknown contact")
 
         anchors {
             left: avatar.right
@@ -43,13 +66,7 @@ Item {
         }
 
         verticalAlignment: Text.AlignVCenter
-        text: {
-            if (attachment.vcardInfo["count"] > 1) {
-                return label.name + " (+%1)".arg(attachment.vcardInfo["count"]-1)
-            } else {
-                return label.name
-            }
-        }
+        text: attachment.title
         elide: Text.ElideMiddle
         color: UbuntuColors.lightAubergine
     }
@@ -57,8 +74,15 @@ Item {
         anchors.fill: parent
         onPressAndHold: {
             mouse.accept = true
-            attachment.pressAndHold()
+            Qt.inputMethod.hide()
+            activeAttachmentIndex = index
+            PopupUtils.open(attachmentPopover, parent)
         }
+    }
+    VCardParser {
+        id: vcardParser
+
+        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 }
 
