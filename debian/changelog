@@ -1,3 +1,10 @@
+messaging-app (0.1+16.04.20151124-0ubuntu1) xenial; urgency=medium
+
+  * Make sure that the search field receives focus when contact list
+    page is active and in search mode. (LP: #1511477)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 24 Nov 2015 00:30:58 +0000
+
 messaging-app (0.1+16.04.20151123.2-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
