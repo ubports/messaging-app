@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 
@@ -80,7 +80,8 @@ Rectangle {
             return "#3fb24f"
         }
     }
-    border.color: "#ACACAC"
+    border.color: messageIncoming ? "#ACACAC" : "transparent"
+    smooth: true
 
     radius: units.gu(1)
     height: senderName.height + senderName.anchors.topMargin + textLabel.height + textTimestamp.height + units.gu(1)
@@ -157,20 +158,19 @@ Rectangle {
         }
     }
 
-    ColoredImage {
+    Item {
         id: bubbleArrow
+        width: units.gu(1)
+        height: units.gu(1.5)
 
-        source: Qt.resolvedUrl("./assets/conversation_bubble_arrow.png")
-        color: root.color
-        asynchronous: false
+        clip: true
+
         anchors {
             bottom: parent.bottom
             bottomMargin: units.gu(2)
             leftMargin: -1
             rightMargin: -1
         }
-        width: units.gu(1)
-        height: units.gu(1.5)
 
         states: [
             State {
@@ -190,9 +190,23 @@ Rectangle {
                 }
                 PropertyChanges {
                     target: bubbleArrow
-                    mirror: true
+                    rotation: 180
                 }
             }
         ]
+
+        Rectangle {
+            rotation: 45
+            color: root.color
+            border.color: root.border.color
+            width: units.gu(1)
+            height: units.gu(1)
+            smooth: true
+
+            anchors {
+                verticalCenter: parent.verticalCenter
+                horizontalCenter: parent.right
+            }
+        }
     }
 }

@@ -76,8 +76,8 @@ MMSBase {
                 return "#3fb24f"
             }
         }
-        border.color: "#ACACAC"
-        radius: height * 0.1
+        border.color: incoming ? "#ACACAC" : "transparent"
+        radius: units.gu(1)
 
         ContactAvatar {
             id: avatar
