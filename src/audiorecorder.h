@@ -1,6 +1,9 @@
 /*
  * Copyright (C) 2015 Canonical, Ltd.
  *
+ * Authors:
+ *  Arthur Renato Mello <arthur.mello@canonical.com>
+ *
  * This file is part of messaging-app.
  *
  * messaging-app is free software; you can redistribute it and/or modify
