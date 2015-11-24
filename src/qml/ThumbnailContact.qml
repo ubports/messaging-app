@@ -37,6 +37,8 @@ Item {
         }
     }
 
+    signal pressAndHold()
+
     height: units.gu(6)
     width: textEntry.width
 
@@ -74,9 +76,7 @@ Item {
         anchors.fill: parent
         onPressAndHold: {
             mouse.accept = true
-            Qt.inputMethod.hide()
-            activeAttachmentIndex = index
-            PopupUtils.open(attachmentPopover, parent)
+            thumbnail.pressAndHold()
         }
     }
     VCardParser {
