@@ -27,21 +27,34 @@ import Ubuntu.History 0.1
 MainView {
     id: mainView
 
-    property string newPhoneNumber
-    property bool multipleAccounts: telepathyHelper.activeAccounts.length > 1
-    property QtObject account: defaultAccount()
+    property bool multiplePhoneAccounts: {
+        var numAccounts = 0
+        for (var i in telepathyHelper.activeAccounts) {
+            if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
+                numAccounts++
+            }
+        }
+        return numAccounts > 1
+    }
+    property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
 
     activeFocusOnPress: false
 
-    function defaultAccount() {
+    function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
-        if (multipleAccounts) {
+        if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
             return telepathyHelper.defaultMessagingAccount
         } else {
-            return telepathyHelper.activeAccounts[0]
+            for (var i in telepathyHelper.activeAccounts) {
+                var tmpAccount = telepathyHelper.activeAccounts[i]
+                if (tmpAccount.type == AccountEntry.PhoneAccount) {
+                    return tmpAccount
+                }
+            }
         }
+        return null
     }
 
     function showContactDetails(contact, contactListPage, contactsModel) {
@@ -83,6 +96,14 @@ MainView {
         }
     }
 
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            telepathyHelper.registerChannelObserver()
+        } else {
+            telepathyHelper.unregisterChannelObserver()
+        }
+    }
+
     function removeThreads(threads) {
         for (var i in threads) {
             var thread = threads[i];
@@ -106,11 +127,10 @@ MainView {
                     return;
                 }
             }
-            account = Qt.binding(defaultAccount)
+            account = Qt.binding(defaultPhoneAccount)
         }
-        onDefaultMessagingAccountChanged: account = Qt.binding(defaultAccount)
+        onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
     }
-
 
     automaticOrientation: true
     width: units.gu(40)
@@ -125,9 +145,8 @@ MainView {
     Connections {
         target: telepathyHelper
         onSetupReady: {
-            if (multipleAccounts && !telepathyHelper.defaultMessagingAccount &&
-                settings.mainViewDontAskCount < 3 && mainStack.depth === 1) {
-                // FIXME: soon it will be more than just SIM cards, update the dialog accordingly
+            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
+                !settings.mainViewIgnoreFirstTimeDialog && mainStack.depth === 1) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }
@@ -149,7 +168,7 @@ MainView {
         id: settings
         category: "DualSim"
         property bool messagesDontAsk: false
-        property int mainViewDontAskCount: 0
+        property bool mainViewIgnoreFirstTimeDialog: false
     }
 
     Connections {
@@ -191,7 +210,7 @@ MainView {
         mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
-    function startChat(identifiers, text) {
+    function startChat(identifiers, text, accountId) {
         var properties = {}
         var participantIds = identifiers.split(";")
 
@@ -205,9 +224,13 @@ MainView {
                                                            participantIds,
                                                            mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                               : HistoryThreadModel.MatchCaseSensitive,
-                                                           true)
-            properties["participants"] = thread.participants
-        } else {
+                                                           false)
+            if (thread.hasOwnProperty("participants")) {
+                properties["participants"] = thread.participants
+            }
+        }
+
+        if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}
@@ -223,6 +246,9 @@ MainView {
 
         properties["participantIds"] = participantIds
         properties["text"] = text
+        if (typeof(accountId)!=='undefined') {
+            properties["accountId"] = accountId
+        }
         emptyStack()
         mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
     }

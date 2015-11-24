@@ -198,6 +198,7 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
 
     QString text;
+    QString accountId;
     QUrl url(arg);
     QString scheme = url.scheme();
     QString value = url.path();
@@ -207,10 +208,12 @@ void MessagingApplication::parseArgument(const QString &arg)
         value = value.right(value.length()-1);
     }
     QUrlQuery query(url);
-    Q_FOREACH(const Pair &item, query.queryItems()) {
+    Q_FOREACH(const Pair &item, query.queryItems(QUrl::FullyDecoded)) {
         if (item.first == "text") {
             text = item.second;
-            break;
+        }
+        if (item.first == "accountId") {
+            accountId = item.second;
         }
     }
 
@@ -221,7 +224,7 @@ void MessagingApplication::parseArgument(const QString &arg)
 
     if (scheme == "message") {
         if (!value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text));
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text), Q_ARG(QVariant, accountId));
         } else {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         }
@@ -251,43 +254,6 @@ QString MessagingApplication::fileMimeType(const QString &fileName) {
     QMimeDatabase db;
     QMimeType type = db.mimeTypeForFile(fileName);
     return type.name();
-}
-
-QVariantMap MessagingApplication::contactNameFromVCard(const QString &fileName) {
-    QFile file(fileName);
-    QString formattedName, structuredName, nickname;
-    if (!file.open(QIODevice::ReadOnly)) {
-        return QVariantMap();
-    }
-    QVersitReader reader(file.readAll());
-    reader.startReading();
-    reader.waitForFinished();
-    int count = reader.results().count();
-    QString label;
-    if (count > 0) {
-        // read only the first contact
-        QVersitDocument firstVcard = reader.results()[0];
-        Q_FOREACH(const QVersitProperty & prop, firstVcard.properties()) {
-            if (prop.name() == "N") {
-                structuredName = prop.value();
-            } else if (prop.name() == "FN") {
-                formattedName = prop.value();
-            } else if (prop.name() == "NICKNAME") {
-                nickname = prop.value();
-            }
-        }
-        if (!formattedName.isEmpty()) {
-            label = formattedName;
-        } else if (!structuredName.isEmpty()) {
-            label = structuredName.split(";")[1];
-        } else if (!nickname.isEmpty()) {
-            label = nickname;
-        }
-    }
-    QVariantMap result;
-    result.insert("name", label);
-    result.insert("count", count);
-    return result;
 }
 
 void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)

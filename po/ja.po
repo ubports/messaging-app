@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-11-12 05:37+0000\n"
-"X-Generator: Launchpad (build 17843)\n"
+"X-Launchpad-Export-Date: 2015-11-20 05:30+0000\n"
+"X-Generator: Launchpad (build 17850)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Accepted"
 msgstr "受理済み"
 
-#: ../src/qml/Messages.qml:636
+#: ../src/qml/Messages.qml:645
 msgid "Add"
 msgstr "追加"
 
@@ -90,7 +90,7 @@ msgstr[0] "添付：%1個の動画"
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:683
+#: ../src/qml/Messages.qml:634 ../src/qml/Messages.qml:692
 msgid "Call"
 msgstr "発信"
 
@@ -106,7 +106,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "すべてのメッセージを%1経由に変更しますか？"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:447
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:479
 msgid "Close"
 msgstr "閉じる"
 
@@ -114,7 +114,7 @@ msgstr "閉じる"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "新規メッセージを作成するには画面の下から上へスワイプ"
 
-#: ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:703
 msgid "Contact"
 msgstr "連絡先"
 
@@ -175,7 +175,7 @@ msgid "Group"
 msgstr "グループ"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:296
+#: ../src/qml/Messages.qml:328
 #, qt-format
 msgid "Group (%1)"
 msgstr "グループ (%1)"
@@ -228,7 +228,7 @@ msgstr "メッセージデータがありません"
 msgid "Myself"
 msgstr "自分"
 
-#: ../src/qml/Messages.qml:299
+#: ../src/qml/Messages.qml:331
 msgid "New Message"
 msgstr "新しいメッセージ"
 
@@ -241,7 +241,7 @@ msgstr "いいえ"
 msgid "No SIM card selected"
 msgstr "SIMカードが選択されていません"
 
-#: ../src/qml/Messages.qml:443
+#: ../src/qml/Messages.qml:475
 msgid "No network"
 msgstr "ネットワークなし"
 
@@ -270,7 +270,7 @@ msgstr "読む"
 msgid "Received"
 msgstr "受信済み"
 
-#: ../src/qml/Messages.qml:384
+#: ../src/qml/Messages.qml:416
 msgid "Remove"
 msgstr "削除"
 
@@ -347,12 +347,12 @@ msgstr "一時的な失敗"
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:444
+#: ../src/qml/Messages.qml:476
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1には現在ネットワークがありません"
 
-#: ../src/qml/Messages.qml:444
+#: ../src/qml/Messages.qml:476
 msgid "There is currently no network."
 msgstr "現在ネットワークがありません"
 
@@ -377,7 +377,7 @@ msgid "Unknown"
 msgstr "不明"
 
 #: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:918
+#: ../src/qml/Messages.qml:927
 msgid "Unknown contact"
 msgstr "不明な連絡先"
 
@@ -393,7 +393,7 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1033
+#: ../src/qml/Messages.qml:1042
 msgid "Write a message..."
 msgstr "メッセージを書く..."
 
