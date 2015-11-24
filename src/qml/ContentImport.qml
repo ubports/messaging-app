@@ -15,8 +15,8 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3 as Popups
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Content 0.1 as ContentHub
 
 Item {
@@ -24,15 +24,27 @@ Item {
 
     property var importDialog: null
 
-    signal pictureReceived(string pictureUrl)
+    signal contentReceived(string contentUrl)
 
-    function requestNewPicture()
-    {
+    function requestContent(contentType) {
         if (!root.importDialog) {
             root.importDialog = PopupUtils.open(contentHubDialog, root)
+            root.importDialog.contentType = contentType
         } else {
             console.warn("Import dialog already running")
         }
+    }
+
+    function requestPicture() {
+        requestContent(ContentHub.ContentType.Pictures)
+    }
+
+    function requestVideo() {
+        requestContent(ContentHub.ContentType.Videos)
+    }
+
+    function requestContact() {
+        requestContent(ContentHub.ContentType.Contacts)
     }
 
     Component {
@@ -42,6 +54,7 @@ Item {
             id: dialogue
 
             property alias activeTransfer: signalConnections.target
+            property alias contentType: peerPicker.contentType
 
             focus: true
             Rectangle {
@@ -76,7 +89,7 @@ Item {
                     if (dialogue.activeTransfer.state === ContentHub.ContentTransfer.Charged) {
                         dialogue.hide()
                         if (dialogue.activeTransfer.items.length > 0) {
-                            root.pictureReceived(dialogue.activeTransfer.items[0].url)
+                            root.contentReceived(dialogue.activeTransfer.items[0].url)
                         }
                     }
 
