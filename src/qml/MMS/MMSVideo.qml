@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014, 2015 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
