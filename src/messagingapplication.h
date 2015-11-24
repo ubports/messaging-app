@@ -43,7 +43,6 @@ public Q_SLOTS:
     void parseArgument(const QString &arg);
     QString readTextFile(const QString &fileName);
     QString fileMimeType(const QString &fileName);
-    QVariantMap contactNameFromVCard(const QString &fileName);
     void showNotificationMessage(const QString &message, const QString &icon = QString());
 
 private Q_SLOTS:
