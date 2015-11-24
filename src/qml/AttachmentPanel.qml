@@ -84,8 +84,7 @@ Item {
             }
         }
 
-        // FIXME: re-enable that once we have proper delegates
-        /*TransparentButton {
+        TransparentButton {
             id: videoButton
             objectName: "videoButton"
             iconName: "stock_video"
@@ -96,7 +95,7 @@ Item {
             onClicked: {
                 contentImporter.requestVideo()
             }
-        }*/
+        }
 
         // FIXME: enable generic file sharing if we ever support it
         /*TransparentButton {
