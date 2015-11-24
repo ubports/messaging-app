@@ -170,6 +170,12 @@ Page {
     }
     Component.onDestruction: parentPage.active = true
 
+    onActiveChanged: {
+        if (active && (state === "searching")) {
+            searchField.forceActiveFocus()
+        }
+    }
+
     KeyboardRectangle {
         id: keyboard
     }
