@@ -1,9 +1,11 @@
 import QtQuick 2.0
+import QtMultimedia 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 0.1
 import Ubuntu.Telephony 0.1
+import messagingapp.private 0.1
 
 Item {
     id: composeBar
@@ -12,6 +14,9 @@ Item {
     property variant attachments: []
     property bool canSend: true
     property alias text: messageTextArea.text
+    property bool audioAttached: attachments.count == 1 && attachments.get(0).contentType.toLowerCase().indexOf("audio/") > -1
+    // Audio QML component needs to process the recorded audio do find duration and AudioRecorder seems to erase duration after some events
+    property int audioRecordedDuration: 0
 
     signal sendRequested(string text, var attachments)
 
@@ -103,12 +108,51 @@ Item {
         }
     }
 
+    AudioRecorder {
+        id: audioRecorder
+
+        readonly property bool recording: recorderState == AudioRecorder.RecordingState
+
+        onRecorderStateChanged: {
+            if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
+                var filePath = actualLocation
+
+                if (application.fileMimeType(filePath).toLowerCase().indexOf("audio/") <= -1) {
+                    //If the recording process is too quick the generated file is not an audio one and should be ignored
+                    return;
+                }
+
+                var attachment = {}
+                attachment["contentType"] = application.fileMimeType(filePath)
+                attachment["name"] = filePath.split('/').reverse()[0]
+                attachment["filePath"] = filePath
+                attachments.append(attachment)
+
+                composeBar.audioRecordedDuration = duration
+            }
+        }
+
+        codec: "audio/vorbis"
+        quality: AudioRecorder.VeryHighQuality
+    }
+
+    Audio {
+        id: audioPlayer
+
+        readonly property bool playing: audioPlayer.playbackState == Audio.PlayingState
+
+        source: composeBar.audioAttached ? attachments.get(0).filePath : ""
+    }
+
     ListItem.ThinDivider {
         anchors.top: parent.top
     }
 
     Row {
         id: leftSideActions
+        opacity: audioRecorder.recording || composeBar.audioAttached ? 0.0 : 1.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
 
         width: childrenRect.width
         height: childrenRect.height
@@ -131,11 +175,62 @@ Item {
         }
     }
 
+    TransparentButton {
+        id: recordingIcon
+        objectName: "recordingIcon"
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            topMargin: units.gu(1.5)
+            leftMargin: units.gu(2)
+        }
+
+        opacity: audioRecorder.recording ? 1.0 : 0.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
+
+        focus: false
+
+        iconColor: "red"
+        iconName: "audio-input-microphone-symbolic"
+
+        textSize: FontUtils.sizeToPixels("x-small")
+        text: {
+            if (audioRecorder.recording) {
+                return composeBar.formattedTime(audioRecorder.duration / 1000)
+            }
+            return composeBar.formattedTime(0)
+        }
+    }
+
+    TransparentButton {
+        id: closeButton
+        objectName: "closeButton"
+
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            verticalCenter: sendButton.verticalCenter
+        }
+
+        opacity: composeBar.audioAttached ? 1.0 : 0.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
+
+        iconName: "close"
+
+        onClicked: {
+            // TODO Remove audio recorded temp file
+            composeBar.reset()
+        }
+    }
+
     StyledItem {
         id: textEntry
         property alias text: messageTextArea.text
         property alias inputMethodComposing: messageTextArea.inputMethodComposing
-        property int fullSize: attachmentThumbnails.height + messageTextArea.height
+        property int fullSize: composeBar.audioAttached ? messageTextArea.height : attachmentThumbnails.height + messageTextArea.height
         style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
         anchors {
             topMargin: units.gu(1)
@@ -145,7 +240,7 @@ Item {
             right: sendButton.left
             rightMargin: units.gu(2)
         }
-        height: attachments.count !== 0 ? fullSize + units.gu(1.5) : fullSize
+        height: attachments.count !== 0 && !composeBar.audioAttached ? fullSize + units.gu(1.5) : fullSize
         onActiveFocusChanged: {
             if(activeFocus) {
                 messageTextArea.forceActiveFocus()
@@ -154,6 +249,8 @@ Item {
             }
         }
         focus: false
+        opacity: audioRecorder.recording || composeBar.audioAttached ? 0.0 : 1.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
         MouseArea {
             anchors.fill: parent
             onClicked: forceFocus()
@@ -280,6 +377,84 @@ Item {
         }
     }
 
+    Item {
+        id: audioPreview
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: closeButton.right
+            right: sendButton.left
+            topMargin: units.gu(1)
+            bottomMargin: units.gu(1)
+            leftMargin: units.gu(3)
+            rightMargin: units.gu(1)
+        }
+
+        opacity: composeBar.audioAttached ? 1.0 : 0.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
+
+        TransparentButton {
+            id: playButton
+
+            anchors {
+                top: parent.top
+                left: parent.left
+                topMargin: units.gu(0.5)
+            }
+
+            iconColor: "grey"
+            iconName: audioPlayer.playing ? "media-playback-stop" : "media-playback-start"
+
+            textSize: FontUtils.sizeToPixels("x-small")
+            text: {
+                if (audioPlayer.playing) {
+                    return composeBar.formattedTime(audioPlayer.position/ 1000)
+                }
+                return composeBar.formattedTime(composeBar.audioRecordedDuration / 1000)
+            }
+
+            onClicked: {
+                if (audioPlayer.playing) {
+                    audioPlayer.stop()
+                } else {
+                    audioPlayer.play()
+                }
+            }
+        }
+
+        Image {
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                left: playButton.right
+                right: parent.right
+                leftMargin: units.gu(1)
+            }
+
+            source: Qt.resolvedUrl("./assets/sine.svg")
+        }
+    }
+
+    Image {
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: recordingIcon.right
+            right: sendButton.left
+            topMargin: units.gu(1)
+            bottomMargin: units.gu(1)
+            leftMargin: units.gu(1)
+            rightMargin: units.gu(1)
+        }
+
+        opacity: audioRecorder.recording ? 1.0 : 0.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
+
+        source: Qt.resolvedUrl("./assets/sine.svg")
+    }
+
     TransparentButton {
         id: sendButton
         objectName: "sendButton"
@@ -288,6 +463,9 @@ Item {
         anchors.rightMargin: units.gu(2)
         iconSource: Qt.resolvedUrl("./assets/send.svg")
         enabled: (canSend && (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0))
+        opacity: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? 1.0 : 0.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
 
         onClicked: {
             // make sure we flush everything we have prepared in the OSK preedit
@@ -296,7 +474,32 @@ Item {
                 return
             }
 
+            if (composeBar.audioAttached) {
+                textEntry.text = ""
+            }
+
             composeBar.sendRequested(textEntry.text, attachments)
         }
+    }
+
+    TransparentButton {
+        id: recordButton
+        objectName: "recordButton"
+
+        anchors {
+            verticalCenter: textEntry.verticalCenter
+            right: parent.right
+            rightMargin: units.gu(2)
+        }
+
+        opacity: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? 0.0 : 1.0
+        Behavior on opacity { UbuntuNumberAnimation {} }
+        visible: opacity > 0
+
+        iconColor: audioRecorder.recording ? "black" : "gray"
+        iconName: "audio-input-microphone-symbolic"
+
+        onPressed: audioRecorder.record()
+        onReleased: audioRecorder.stop()
     }
 }

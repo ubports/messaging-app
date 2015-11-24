@@ -1009,9 +1009,14 @@ Page {
 
             var recipients = participantIds.length > 0 ? participantIds :
                                                          multiRecipient.recipients
+            var properties = {}
+            if (composeBar.audioAttached) {
+                properties["x-canonical-tmp-files"] = true
+            }
+
             // if sendMessage succeeds it means the message was either sent or
             // injected into the history service so the user can retry later
-            if (sendMessage(text, recipients, newAttachments)) {
+            if (sendMessage(text, recipients, newAttachments, properties)) {
                 composeBar.reset()
             }
             if (eventModel.filter == null) {
