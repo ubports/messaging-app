@@ -18,6 +18,7 @@ endmacro()
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("message_bubble" tst_MessageBubble.qml)
     declare_qml_test("messages_view" tst_MessagesView.qml)
+    declare_qml_test("mms_delegate" tst_MMSDelegate.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -27,6 +28,7 @@ else()
 endif()
 
 set(QML_TST_FILES
+    tst_MMSDelegate.qml
     tst_MessageBubble.qml
     tst_MessagesView.qml
 )
