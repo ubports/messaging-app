@@ -35,6 +35,7 @@ MMSBase {
 
         image: Image {
             id: videoAttachment
+            objectName: "videoAttachment"
 
             fillMode: Image.PreserveAspectCrop
             smooth: true
@@ -58,6 +59,7 @@ MMSBase {
         }
 
         Icon {
+            objectName: "playbackStartIcon"
             width: units.gu(3)
             height: units.gu(3)
             anchors.centerIn: parent

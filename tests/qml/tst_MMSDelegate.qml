@@ -32,35 +32,136 @@ Item {
     height: units.gu(40)
 
     MMSDelegate {
-        property var messageData: {
-            "textMessage": "Message Delegate QML Test",
-            "timestamp": new Date(),
-            "textMessageStatus": 1,
-            "senderId": "self",
-            "textReadTimestamp": new Date(),
-            "textMessageAttachments": [{},{}],
-            "newEvent": false,
-            "participants": []
+        id: mmsDelegate
+        objectName: "mmsDelegate"
+
+        function startsWith(str, prefix) {
+            return str.toLowerCase().slice(0, prefix.length) === prefix.toLowerCase();
         }
-        property var attachments: [{"contentType": "image/jpeg", "path": "/home/user/foo.jpg"}, {}]
-            
+
         anchors.fill: parent
+
+        messageData: {
+            "participants": [],
+            "sender": {"alias": ""},
+            "textMessageAttachments": [],
+        }
     }
 
     UbuntuTestCase {
-        id: mmsDelegateTestCase
-        name: 'mmsDelegateTestCase'
+        id: mmsImageDelegateTestCase
+        name: 'mmsImageDelegateTestCase'
 
         when: windowShown
 
-        function init() {
+        function test_load_image() {
+            mmsDelegate.messageData = {
+                "newEvent": false,
+                "participants": [],
+                "sender": {"alias": ""},
+                "senderId": "self",
+                "textMessage": "Message Delegate QML Test",
+                "textMessageAttachments": [
+                    {
+                        "contentType": "image/png",
+                        "filePath": Qt.resolvedUrl("./data/sample.png")
+                    }
+                ],
+                "textMessageStatus": 1,
+                "textReadTimestamp": new Date(),
+                "timestamp": new Date()
+            }
+
+            var image = findChild(mmsDelegate, "imageAttachment")
+            verify(image != null)
+            waitForRendering(image)
+            verify(image.source != "image://theme/image-missing")
         }
 
-        function cleanup() {
+        function test_load_invalid_path() {
+            mmsDelegate.messageData = {
+                "newEvent": false,
+                "participants": [],
+                "sender": {"alias": ""},
+                "senderId": "self",
+                "textMessage": "Message Delegate QML Test",
+                "textMessageAttachments": [
+                    {
+                        "contentType": "image/png",
+                        "filePath": "/wrong/path/file.png"
+                    }
+                ],
+                "textMessageStatus": 1,
+                "textReadTimestamp": new Date(),
+                "timestamp": new Date()
+            }
+
+            var image = findChild(mmsDelegate, "imageAttachment")
+            verify(image != null)
+            waitForRendering(image)
+            compare(image.source, "image://theme/image-missing")
+        }
+    }
+
+    UbuntuTestCase {
+        id: mmsVideoDelegateTestCase
+        name: 'mmsVideoDelegateTestCase'
+
+        when: windowShown
+
+            
+        function test_load_video() {
+            mmsDelegate.messageData = {
+                "newEvent": false,
+                "participants": [],
+                "sender": {"alias": ""},
+                "senderId": "self",
+                "textMessage": "Message Delegate QML Test",
+                "textMessageAttachments": [
+                    {
+                        "contentType": "video/mp4",
+                        "filePath": Qt.resolvedUrl("./data/sample.mp4")
+                    }
+                ],
+                "textMessageStatus": 1,
+                "textReadTimestamp": new Date(),
+                "timestamp": new Date()
+            }
+
+            var video = findChild(mmsDelegate, "videoAttachment")
+            verify(video != null)
+            waitForRendering(video)
+            verify(video.source != "image://theme/image-missing")
+
+            var icon = findChild(mmsDelegate, "playbackStartIcon")
+            verify(icon != null)
+            waitForRendering(icon)
+            verify(icon.visible)
         }
 
-        function test_foo() {
-            wait(5000)
+        function test_load_invalid_path() {
+            skip("image://thumbnailer is not reporting an error for wrong file path")
+            mmsDelegate.messageData = {
+                "newEvent": false,
+                "participants": [],
+                "sender": {"alias": ""},
+                "senderId": "self",
+                "textMessage": "Message Delegate QML Test",
+                "textMessageAttachments": [
+                    {
+                        "contentType": "video/mp4",
+                        "filePath": "/wrong/path/file.mp4"
+                    }
+                ],
+                "textMessageStatus": 1,
+                "textReadTimestamp": new Date(),
+                "timestamp": new Date()
+            }
+
+            var video = findChild(mmsDelegate, "videoAttachment")
+            verify(video != null)
+            waitForRendering(video)
+            compare(video.source, "image://theme/image-missing")
         }
     }
 }
