@@ -39,7 +39,8 @@ Item {
             "senderId": "self",
             "textReadTimestamp": new Date(),
             "textMessageAttachments": [{},{}],
-            "newEvent": false
+            "newEvent": false,
+            "participants": []
         }
         property var attachments: [{"contentType": "image/jpeg", "path": "/home/user/foo.jpg"}, {}]
             
