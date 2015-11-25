@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.History 0.1
 import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 
