@@ -61,6 +61,7 @@ Page {
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
+    property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
     function getAccountsModel() {
         var accounts = []
@@ -1022,6 +1023,22 @@ Page {
             if (eventModel.filter == null) {
                 reloadFilters = !reloadFilters
             }
+        }
+    }
+
+    Image {
+        height: units.gu(20)
+        width: units.gu(20)
+        anchors.centerIn: messageList
+        visible: source !== ""
+        source: {
+            // FIXME - get the info from the provided accounts
+            var accountId = "ofono/ofono/account0"
+            if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                    && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                accountId = presenceRequest.accountId
+            }
+            return telepathyHelper.accountForId(accountId).protocolInfo.backgroundFile
         }
     }
 
