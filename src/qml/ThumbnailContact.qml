@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 
 Item {
@@ -36,6 +36,8 @@ Item {
             return result
         }
     }
+
+    signal pressAndHold()
 
     height: units.gu(6)
     width: textEntry.width
@@ -74,9 +76,7 @@ Item {
         anchors.fill: parent
         onPressAndHold: {
             mouse.accept = true
-            Qt.inputMethod.hide()
-            activeAttachmentIndex = index
-            PopupUtils.open(attachmentPopover, parent)
+            thumbnail.pressAndHold()
         }
     }
     VCardParser {
