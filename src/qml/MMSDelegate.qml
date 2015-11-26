@@ -101,9 +101,7 @@ MessageDelegate {
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSContact.qml"
                                     })
-            } else if (startsWith(attachment.contentType, "video/") ||
-                       startsWith(attachment.contentType, "application/octet-stream")) {
-                // 3GPP file received as MMS video attachment
+            } else if (startsWith(attachment.contentType, "video/")) {
                 root.dataAttachments.push({"type": "video",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSVideo.qml",
@@ -227,7 +225,7 @@ MessageDelegate {
                 target: bubbleLoader.item
                 property: "sender"
                 value: messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId
-                when: participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+                when: messageData.participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
             }
         }
     }

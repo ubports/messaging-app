@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -80,6 +80,7 @@ Previewer {
         height: parent.height
 
         ActivityIndicator {
+            objectName: "imageActivityIndicator"
             anchors.centerIn: parent
             visible: running
             running: image.status != Image.Ready
@@ -142,6 +143,7 @@ Previewer {
 
                     Image {
                         id: image
+                        objectName: "thumbnailImage"
                         anchors.fill: parent
                         asynchronous: true
                         cache: false
@@ -157,6 +159,7 @@ Previewer {
 
                     Image {
                         id: highResolutionImage
+                        objectName: "highResolutionImage"
                         anchors.fill: parent
                         asynchronous: true
                         cache: false

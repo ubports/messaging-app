@@ -1,6 +1,9 @@
 /*
  * Copyright (C) 2015 Canonical, Ltd.
  *
+ * Authors:
+ *  Arthur Mello <arthur.mello@canonical.com>
+ *
  * This file is part of messaging-app.
  *
  * messaging-app is free software; you can redistribute it and/or modify
@@ -33,6 +36,7 @@ FileOperations::~FileOperations()
 
 QString FileOperations::getTemporaryFile(const QString &fileExtension) const
 {
+    //TODO remove once lp:1420728 is fixed
     QTemporaryFile tmp(QDir::tempPath() + "/tmpXXXXXX" + fileExtension);
     tmp.open();
     return tmp.fileName();
