@@ -1,3 +1,38 @@
+messaging-app (0.1+16.04.20151124-0ubuntu1) xenial; urgency=medium
+
+  * Make sure that the search field receives focus when contact list
+    page is active and in search mode. (LP: #1511477)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 24 Nov 2015 00:30:58 +0000
+
+messaging-app (0.1+16.04.20151123.2-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Extend contact preview page to show all details from contact vcard.
+    added: src/qml/MMS/PreviewerMultipleContacts.qml renamed:
+    src/qml/MMS/PreviewerContact.qml =>
+    src/qml/MMS/PreviewerSingleContact.qml
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Mon, 23 Nov 2015 19:52:41 +0000
+
+messaging-app (0.1+16.04.20151120-0ubuntu1) xenial; urgency=medium
+
+  [ Tiago Salem Herrmann ]
+  * Add online and typing status to the conversation view.
+  * Update SIM dialogs according to design spec. (LP: #1449778)
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Fri, 20 Nov 2015 11:32:35 +0000
+
+messaging-app (0.1+16.04.20151112-0ubuntu1) xenial; urgency=medium
+
+  * Update the selected section once the default sim card for text
+    message changes. (LP: #1515677)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Thu, 12 Nov 2015 17:47:43 +0000
+
 messaging-app (0.1+16.04.20151105-0ubuntu1) xenial; urgency=medium
 
   [ Tiago Salem Herrmann ]

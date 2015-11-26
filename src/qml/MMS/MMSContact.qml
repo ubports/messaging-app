@@ -24,15 +24,42 @@ import Ubuntu.History 0.1
 MMSBase {
     id: vcardDelegate
 
-    property var vcardInfo: application.contactNameFromVCard(attachment.filePath)
     readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !incoming
+    readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
+    property alias vcard: vcardParser
+    property string contactDisplayName: {
+        if (contactsCount > 0)  {
+            var contact = vcard.contacts[0]
+            if (contact.displayLabel.label && (contact.displayLabel.label != "")) {
+                return contact.displayLabel.label
+            } else if (contact.name) {
+                var contacFullName  = contact.name.firstName
+                if (contact.name.midleName) {
+                    contacFullName += " " + contact.name.midleName
+                }
+                if (contact.name.lastName) {
+                    contacFullName += " " + contact.name.lastName
+                }
+                return contacFullName
+            }
+            return i18n.tr("Unknown contact")
+        }
+        return ""
+    }
+    property string title: {
+        var result = vcardDelegate.contactDisplayName
+        if (vcardDelegate.contactsCount > 1) {
+            return result + " (+%1)".arg(vcardDelegate.contactsCount-1)
+        } else {
+            return result
+        }
+    }
 
-    previewer: "MMS/PreviewerContact.qml"
-    height: units.gu(8)
+    previewer: vcardDelegate.contactsCount > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
+    height: units.gu(9.5)
     width: units.gu(27)
-
 
     Rectangle {
         id: bubble
@@ -49,31 +76,28 @@ MMSBase {
                 return "#3fb24f"
             }
         }
+        border.color: "#ACACAC"
         radius: height * 0.1
 
         ContactAvatar {
             id: avatar
 
+            contactElement: (vcardDelegate.contactsCount === 1) ? vcardDelegate.vcard.contacts[0] : null
             anchors {
                 top: parent.top
                 topMargin: units.gu(1)
                 bottom: parent.bottom
-                bottomMargin: units.gu(1)
+                bottomMargin: units.gu(2.5)
                 left: parent.left
                 leftMargin: units.gu(1)
             }
-            fallbackAvatarUrl: "image://theme/contact"
-            fallbackDisplayName: contactName.name
+            fallbackAvatarUrl: vcardDelegate.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
+            fallbackDisplayName: vcardDelegate.contactsCount === 1 ? vcardDelegate.contactDisplayName : ""
             width: height
         }
 
         Label {
             id: contactName
-
-
-            property string name: vcardDelegate.vcardInfo["name"] !== "" ?
-                                      vcardDelegate.vcardInfo["name"] :
-                                      i18n.tr("Unknown contact")
 
             anchors {
                 left: avatar.right
@@ -85,15 +109,27 @@ MMSBase {
             }
 
             verticalAlignment: Text.AlignVCenter
-            text: {
-                if (vcardDelegate.vcardInfo["count"] > 1) {
-                    return contactName.name + " (+%1)".arg(vcardDelegate.vcardInfo["count"]-1)
-                } else {
-                    return contactName.name
-                }
-            }
+            text: vcardDelegate.title
             elide: Text.ElideMiddle
             color: incoming ? UbuntuColors.darkGrey : "#ffffff"
         }
+
+        Label {
+            anchors{
+                left: parent.left
+                bottom: parent.bottom
+                leftMargin: incoming ? units.gu(2) : units.gu(1)
+                bottomMargin: units.gu(0.5)
+            }
+            fontSize: "xx-small"
+            text: Qt.formatTime(timestamp).toLowerCase()
+            color: incoming ? UbuntuColors.lightGrey : "white"
+        }
+    }
+
+    VCardParser {
+        id: vcardParser
+
+        vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
     }
 }

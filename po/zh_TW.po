@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-10-24 05:59+0000\n"
-"X-Generator: Launchpad (build 17812)\n"
+"X-Launchpad-Export-Date: 2015-11-20 05:31+0000\n"
+"X-Generator: Launchpad (build 17850)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -50,7 +50,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "已接受"
 
-#: ../src/qml/Messages.qml:636
+#: ../src/qml/Messages.qml:645
 msgid "Add"
 msgstr "加入"
 
@@ -90,7 +90,7 @@ msgstr[0] "附件：%1 條影片"
 msgid "Audio attachment not supported"
 msgstr "不支援音訊附件"
 
-#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:683
+#: ../src/qml/Messages.qml:634 ../src/qml/Messages.qml:692
 msgid "Call"
 msgstr "通話"
 
@@ -106,7 +106,7 @@ msgid "Change all Messaging associations to %1?"
 msgstr "是否要將所有簡訊動作轉用 %1？"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:447
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:479
 msgid "Close"
 msgstr "關閉"
 
@@ -114,7 +114,7 @@ msgstr "關閉"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "由下而上掃過螢幕以撰寫新訊息。"
 
-#: ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:703
 msgid "Contact"
 msgstr "聯絡人"
 
@@ -140,11 +140,11 @@ msgstr "不要再問"
 
 #: ../src/qml/MessagingContactViewPage.qml:70
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 #: ../src/qml/SettingsPage.qml:29
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "啟用 MMS 群組聊天功能"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -168,14 +168,14 @@ msgstr "自"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "我瞭解了"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
 msgstr "群組"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:296
+#: ../src/qml/Messages.qml:328
 #, qt-format
 msgid "Group (%1)"
 msgstr "群組 (%1)"
@@ -228,7 +228,7 @@ msgstr "缺少訊息資訊"
 msgid "Myself"
 msgstr "本人"
 
-#: ../src/qml/Messages.qml:299
+#: ../src/qml/Messages.qml:331
 msgid "New Message"
 msgstr "新訊息"
 
@@ -241,7 +241,7 @@ msgstr "沒有"
 msgid "No SIM card selected"
 msgstr "沒有選取 SIM 卡"
 
-#: ../src/qml/Messages.qml:443
+#: ../src/qml/Messages.qml:475
 msgid "No network"
 msgstr "沒有網路"
 
@@ -270,7 +270,7 @@ msgstr "已讀"
 msgid "Received"
 msgstr "收到"
 
-#: ../src/qml/Messages.qml:384
+#: ../src/qml/Messages.qml:416
 msgid "Remove"
 msgstr "移除"
 
@@ -286,7 +286,7 @@ msgstr "SIM 卡已鎖定"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:32
+#: ../src/qml/MMS/Previewer.qml:37
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "儲存"
@@ -315,9 +315,9 @@ msgstr "送出"
 
 #: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "設定值"
 
-#: ../src/qml/MMS/Previewer.qml:45 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "分享"
 
@@ -327,11 +327,11 @@ msgstr "狀態"
 
 #: ../src/qml/SwipeItemDemo.qml:257
 msgid "Swipe to delete"
-msgstr ""
+msgstr "右滑刪除"
 
 #: ../src/qml/SwipeItemDemo.qml:207
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "左滑顯示功能"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -345,12 +345,12 @@ msgstr "暫時失敗"
 msgid "Text message copied to clipboard"
 msgstr "文字訊息已複製到剪貼簿"
 
-#: ../src/qml/Messages.qml:444
+#: ../src/qml/Messages.qml:476
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1 目前沒有網路"
 
-#: ../src/qml/Messages.qml:444
+#: ../src/qml/Messages.qml:476
 msgid "There is currently no network."
 msgstr "目前沒有網路"
 
@@ -375,7 +375,7 @@ msgid "Unknown"
 msgstr "不明"
 
 #: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:918
+#: ../src/qml/Messages.qml:927
 msgid "Unknown contact"
 msgstr "聯絡人不明"
 
@@ -391,7 +391,7 @@ msgstr "不支援視訊附件"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1033
+#: ../src/qml/Messages.qml:1042
 msgid "Write a message..."
 msgstr "撰寫訊息..."
 

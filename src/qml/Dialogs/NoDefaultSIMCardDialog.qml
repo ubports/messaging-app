@@ -24,66 +24,32 @@ import Ubuntu.Telephony 0.1
 Component {
     Dialog {
         id: dialogue
-        title: i18n.tr("Switch to default SIM:")
+        title: i18n.tr("Welcome to your Messaging app!")
         Column {
             anchors.left: parent.left
             anchors.right: parent.right
             spacing: units.gu(2)
-
-            Row {
-                spacing: units.gu(4)
-                anchors.horizontalCenter: parent.horizontalCenter
-                height: paintedHeight + units.gu(3)
-                Repeater {
-                    model: telepathyHelper.activeAccounts
-                    delegate: Label {
-                        text: modelData.displayName
-                        color: UbuntuColors.orange
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                PopupUtils.close(dialogue)
-                                telepathyHelper.setDefaultAccount(TelepathyHelper.Messaging, modelData)
-                            }
-                        }
-                    }
-                }
-            }
 
             Label {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: paintedHeight + units.gu(6)
                 verticalAlignment: Text.AlignVCenter
-                text: i18n.tr("Select a default SIM for all outgoing messages. You can always alter your choice in <a href=\"system_settings\">System Settings</a>.")
+                text: i18n.tr("If you wish to edit your SIM and other mobile preferences, please visit <a href=\"system_settings\">System Settings</a>.")
                 wrapMode: Text.WordWrap
                 onLinkActivated: {
                     PopupUtils.close(dialogue)
                     Qt.openUrlExternally("settings:///system/cellular")
                 }
             }
-            Row {
-                spacing: units.gu(4)
-                anchors.horizontalCenter: parent.horizontalCenter
-                Button {
-                    objectName: "noNoSimCardDefaultDialog"
-                    text: i18n.tr("No")
-                    color: UbuntuColors.orange
-                    onClicked: {
-                        settings.mainViewDontAskCount = 3
-                        PopupUtils.close(dialogue)
-                        Qt.inputMethod.hide()
-                    }
-                }
-                Button {
-                    objectName: "laterNoSimCardDefaultDialog"
-                    text: i18n.tr("Later")
-                    color: UbuntuColors.orange
-                    onClicked: {
-                        PopupUtils.close(dialogue)
-                        settings.mainViewDontAskCount++
-                        Qt.inputMethod.hide()
-                    }
+            Button {
+                objectName: "closeNoSimCardDefaultDialog"
+                text: i18n.tr("Close")
+                color: UbuntuColors.orange
+                onClicked: {
+                    settings.mainViewIgnoreFirstTimeDialog = true
+                    PopupUtils.close(dialogue)
+                    Qt.inputMethod.hide()
                 }
             }
         }

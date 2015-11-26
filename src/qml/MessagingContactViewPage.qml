@@ -59,6 +59,7 @@ ContactViewPage {
             objectName: "share"
             text: i18n.tr("Share")
             iconName: "share"
+            visible: root.editable
             onTriggered: {
                 pageStack.push(contactShareComponent,
                                { contactModel: root.model,
@@ -69,6 +70,7 @@ ContactViewPage {
             objectName: "edit"
             text: i18n.tr("Edit")
             iconName: "edit"
+            visible: root.editable
             onTriggered: {
                 pageStack.push(contactEditorPageURL,
                                { model: root.model,
@@ -139,7 +141,7 @@ ContactViewPage {
     }
 
     Component.onCompleted: {
-        if (!root.model) {
+        if (!root.model && root.editable) {
             root.model = contactModelComponent.createObject(root)
         }
     }
