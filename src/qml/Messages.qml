@@ -45,6 +45,7 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
+    property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
     property string text: ""
     property string scrollToEventId: ""
