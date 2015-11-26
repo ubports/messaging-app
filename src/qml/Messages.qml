@@ -428,7 +428,7 @@ Page {
     }
 
     PresenceRequest {
-        id: presenceRequest
+        id: presenceItem
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
