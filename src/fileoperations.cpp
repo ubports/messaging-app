@@ -36,6 +36,7 @@ FileOperations::~FileOperations()
 
 QString FileOperations::getTemporaryFile(const QString &fileExtension) const
 {
+    //TODO remove once lp:1420728 is fixed
     QTemporaryFile tmp(QDir::tempPath() + "/tmpXXXXXX" + fileExtension);
     tmp.open();
     return tmp.fileName();
