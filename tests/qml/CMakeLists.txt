@@ -1,33 +1,42 @@
-find_program(QMLTESTRUNNER_BIN
-    NAMES qmltestrunner
-    PATHS /usr/lib/*/qt5/bin
-    NO_DEFAULT_PATH
-)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Qml REQUIRED)
+find_package(Qt5Quick REQUIRED)
+find_package(Qt5QuickTest REQUIRED)
+
+set(XVFB_COMMAND)
 
 find_program(XVFB_RUN_BIN
     NAMES xvfb-run
 )
 
-macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
-    add_test(NAME ${TST_NAME}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${qml_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
-    )
-endmacro()
-
-if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
-    declare_qml_test("message_bubble" tst_MessageBubble.qml)
-    declare_qml_test("messages_view" tst_MessagesView.qml)
+if(XVFB_RUN_BIN)
+    set(XVFB_COMMAND ${XVFB_RUN_BIN} -s "-screen 0 1024x768x24" -a)
 else()
-    if (NOT QMLTESTRUNNER_BIN)
-        message(WARNING "Qml tests disabled: qmltestrunner not found")
-    else()
-        message(WARNING "Qml tests disabled: xvfb-run not found")
-    endif()
+    message(WARNING "Qml tests disabled: xvfb-run not found")
 endif()
 
-set(QML_TST_FILES
-    tst_MessageBubble.qml
-    tst_MessagesView.qml
+set(TEST tst_QmlTests)
+
+set(SOURCES
+    ${messaging-app_SOURCE_DIR}/src/fileoperations.cpp
+    tst_QmlTests.cpp
 )
-add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})
+
+add_executable(${TEST} ${SOURCES})
+
+include_directories(
+    ${messaging-app_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(${TEST}
+    Qt5::Core
+    Qt5::Qml
+    Qt5::Quick
+    Qt5::QuickTest
+)
+
+add_test(${TEST} ${XVFB_COMMAND} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
+         -input ${CMAKE_CURRENT_SOURCE_DIR}
+         -import ${CMAKE_BINARY_DIR}/src)
