@@ -1,41 +1,45 @@
 find_package(Qt5Core REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5Network REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5QuickTest REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
 set(XVFB_COMMAND)
-find_program(XVFBRUN xvfb-run)
-if(XVFBRUN)
-  set(XVFB_COMMAND ${XVFBRUN} -s "-screen 0 1024x768x24" -a)
+
+find_program(XVFB_RUN_BIN
+    NAMES xvfb-run
+)
+
+if(XVFB_RUN_BIN)
+    set(XVFB_COMMAND ${XVFB_RUN_BIN} -s "-screen 0 1024x768x24" -a)
 else()
-  message(WARNING "Cannot find xvfb-run.")
+    message(WARNING "Qml tests disabled: xvfb-run not found")
 endif()
 
-set(CMAKE_AUTOMOC ON)
-
 set(TEST tst_QmlTests)
+
 set(SOURCES
+    ${messaging-app_SOURCE_DIR}/src/fileoperations.cpp
     ${messaging-app_SOURCE_DIR}/src/stickers-history-model.cpp
     tst_QmlTests.cpp
 )
+
 add_executable(${TEST} ${SOURCES})
+
 include_directories(
+    ${messaging-app_SOURCE_DIR}/src
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${messaging-app_SOURCE_DIR}/src/
 )
+
 target_link_libraries(${TEST}
     Qt5::Core
-    Qt5::Gui
-    Qt5::Network
     Qt5::Qml
     Qt5::Quick
     Qt5::QuickTest
     Qt5::Sql
 )
+
 add_test(${TEST} ${XVFB_COMMAND} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
          -input ${CMAKE_CURRENT_SOURCE_DIR}
          -import ${CMAKE_BINARY_DIR}/src)

@@ -82,17 +82,16 @@ MessageDelegate {
             var attachment = attachments[i]
             if (startsWith(attachment.contentType, "text/plain") ) {
                 root.textAttachements.push(attachment)
+            } else if (startsWith(attachment.contentType, "audio/")) {
+                root.dataAttachments.push({"type": "audio",
+                                      "data": attachment,
+                                      "delegateSource": "MMS/MMSAudio.qml",
+                                    })
             } else if (startsWith(attachment.contentType, "image/")) {
                 root.dataAttachments.push({"type": "image",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSImage.qml",
                                     })
-            //} else if (startsWith(attachment.contentType, "video/")) {
-                        // TODO: implement proper video attachment support
-                        //                dataAttachments.push({type: "video",
-                        //                                  data: attachment,
-                        //                                  delegateSource: "MMS/MMSVideo.qml",
-                        //                                 })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
                 // smil files will always be ignored here
@@ -101,6 +100,11 @@ MessageDelegate {
                 root.dataAttachments.push({"type": "vcard",
                                       "data": attachment,
                                       "delegateSource": "MMS/MMSContact.qml"
+                                    })
+            } else if (startsWith(attachment.contentType, "video/")) {
+                root.dataAttachments.push({"type": "video",
+                                      "data": attachment,
+                                      "delegateSource": "MMS/MMSVideo.qml",
                                     })
             } else {
                 root.dataAttachments.push({"type": "default",
@@ -221,7 +225,7 @@ MessageDelegate {
                 target: bubbleLoader.item
                 property: "sender"
                 value: messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId
-                when: participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+                when: messageData.participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
             }
         }
     }

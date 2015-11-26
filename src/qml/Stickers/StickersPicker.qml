@@ -29,6 +29,10 @@ FocusScope {
         StickersHistoryModel.limit = 10
     }
 
+    // FIXME: try to get something similar to the keyboard height
+    // FIXME: animate the displaying
+    height: visible ? units.gu(10) : 0
+
     ListView {
         id: setsList
         model: StickerPacksModel {}

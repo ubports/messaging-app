@@ -1,13 +1,17 @@
 /*
- * Copyright 2015 Canonical Ltd.
+ * Copyright (C) 2015 Canonical, Ltd.
+ *
+ * Authors:
+ *  Arthur Mello <arthur.mello@canonical.com>
+ *  Ugo Riboni <ugo.riboni@canonical.com>
  *
  * This file is part of messaging-app.
  *
- * webbrowser-app is free software; you can redistribute it and/or modify
+ * messaging-app is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 3.
  *
- * webbrowser-app is distributed in the hope that it will be useful,
+ * messaging-app is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -17,23 +21,12 @@
  */
 
 // Qt
-#include <QtCore/QDir>
-#include <QtCore/QTemporaryDir>
-#include <QtCore/QObject>
-#include <QtCore/QString>
-#include <QtCore/QTemporaryDir>
-#include <QtQml/QtQml>
 #include <QtQuickTest/QtQuickTest>
+#include <QtQml/QtQml>
 
 // local
+#include "fileoperations.h"
 #include "stickers-history-model.h"
-
-static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
-{
-    Q_UNUSED(engine);
-    Q_UNUSED(scriptEngine);
-    return new StickersHistoryModel();
-}
 
 class TestContext : public QObject
 {
@@ -64,9 +57,24 @@ static QObject* TestContext_singleton_factory(QQmlEngine* engine, QJSEngine* scr
     return new TestContext();
 }
 
+static QObject* FileOperations_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new FileOperations();
+}
+
+static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new StickersHistoryModel();
+}
+
 int main(int argc, char** argv)
 {
     const char* uri = "messagingapp.private";
+    qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
     qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
 
     const char* testUri = "messagingapptest.private";
