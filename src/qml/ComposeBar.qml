@@ -66,7 +66,7 @@ Item {
     anchors.bottom: isSearching ? parent.bottom : keyboard.top
     anchors.left: parent.left
     anchors.right: parent.right
-    height: showContents ? textEntry.height + attachmentPanel.height + units.gu(2) : 0
+    height: showContents ? textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2) : 0
     visible: showContents
     clip: true
 
