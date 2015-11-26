@@ -80,6 +80,7 @@ Previewer {
         height: parent.height
 
         ActivityIndicator {
+            objectName: "imageActivityIndicator"
             anchors.centerIn: parent
             visible: running
             running: image.status != Image.Ready
@@ -142,6 +143,7 @@ Previewer {
 
                     Image {
                         id: image
+                        objectName: "thumbnailImage"
                         anchors.fill: parent
                         asynchronous: true
                         cache: false
@@ -157,6 +159,7 @@ Previewer {
 
                     Image {
                         id: highResolutionImage
+                        objectName: "highResolutionImage"
                         anchors.fill: parent
                         asynchronous: true
                         cache: false

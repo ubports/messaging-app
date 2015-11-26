@@ -19,6 +19,7 @@ if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("message_bubble" tst_MessageBubble.qml)
     declare_qml_test("messages_view" tst_MessagesView.qml)
     declare_qml_test("mms_delegate" tst_MMSDelegate.qml)
+    declare_qml_test("previewer_image" tst_PreviewerImage.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -31,5 +32,6 @@ set(QML_TST_FILES
     tst_MMSDelegate.qml
     tst_MessageBubble.qml
     tst_MessagesView.qml
+    tst_PreviewerImage.qml
 )
 add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})
