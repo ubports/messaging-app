@@ -1041,14 +1041,6 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
-
-        // Workaround for not being able to know the keyboard rectangle size
-        // before it has shown at least once: keep matching its height until it
-        // has reached its maximum.
-        property int maximumHeight: 0
-        onHeightChanged: {
-            if (height > maximumHeight) maximumHeight = height
-        }
     }
 
     MessageInfoDialog {
