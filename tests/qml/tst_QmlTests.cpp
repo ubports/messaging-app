@@ -25,6 +25,7 @@
 #include <QtQml/QtQml>
 
 // local
+#include "audiorecorder.h"
 #include "fileoperations.h"
 #include "stickers-history-model.h"
 
@@ -74,6 +75,7 @@ static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEn
 int main(int argc, char** argv)
 {
     const char* uri = "messagingapp.private";
+    qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
     qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
     qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
 
