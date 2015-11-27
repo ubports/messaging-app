@@ -18,23 +18,18 @@ endif()
 set(TEST tst_QmlTests)
 
 set(SOURCES
+    ${messaging-app_SOURCE_DIR}/src/audiorecorder.cpp
     ${messaging-app_SOURCE_DIR}/src/fileoperations.cpp
     tst_QmlTests.cpp
 )
 
 add_executable(${TEST} ${SOURCES})
+qt5_use_modules(${TEST} Core Multimedia Qml Quick QuickTest)
 
 include_directories(
     ${messaging-app_SOURCE_DIR}/src
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-target_link_libraries(${TEST}
-    Qt5::Core
-    Qt5::Qml
-    Qt5::Quick
-    Qt5::QuickTest
 )
 
 add_test(${TEST} ${XVFB_COMMAND} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
