@@ -35,11 +35,17 @@ Item {
         id: previewerImage
         objectName: "previewerImage"
 
-        property var application: {
-            "fullscreen": false
+        QtObject {
+            id: application
+            property bool fullscreen: false
         }
 
         anchors.fill: parent
+
+        attachment: {
+            "contentType": "image/png",
+            "filePath": Qt.resolvedUrl("./data/sample.png")
+        }
     }
 
     UbuntuTestCase {
@@ -47,13 +53,6 @@ Item {
         name: 'peviewerImageTestCase'
 
         when: windowShown
-
-        function initTestCase() {
-             previewerImage.attachment = {
-                "contentType": "image/png",
-                "filePath": Qt.resolvedUrl("./data/sample.png")
-            }
-        }
 
         function test_load_image() {
             var activityIndicator = findChild(previewerImage, "imageActivityIndicator")
