@@ -36,8 +36,7 @@ Item {
         id: previewerVideo
         objectName: "previewerVideo"
 
-        QtObject {
-            id: application
+        property var application: QtObject {
             property bool fullscreen: false
         }
 

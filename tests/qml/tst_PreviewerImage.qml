@@ -35,8 +35,7 @@ Item {
         id: previewerImage
         objectName: "previewerImage"
 
-        QtObject {
-            id: application
+        property var application: QtObject {
             property bool fullscreen: false
         }
 
