@@ -73,6 +73,7 @@ Previewer {
 
             Video {
                 id: videoPlayer
+                objectName: "videoPlayer"
                 anchors.fill: parent
                 autoPlay: true
             }
@@ -91,6 +92,7 @@ Previewer {
 
     Rectangle {
         id: toolbar
+        objectName: "toolbar"
 
         property bool collapsed: false
 
