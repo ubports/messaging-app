@@ -381,6 +381,15 @@ Item {
             topMargin: units.gu(1)
         }
 
+        Connections {
+            target: composeBar
+            onAudioAttachedChanged: {
+                if (composeBar.audioAttached) {
+                    attachmentPanel.expanded = false;
+                }
+            }
+        }
+
         onAttachmentAvailable: {
             attachments.append(attachment)
             forceFocus()
@@ -399,7 +408,7 @@ Item {
         id: audioPreview
         anchors {
             top: parent.top
-            bottom: parent.bottom
+            bottom: attachmentPanel.top
             left: closeButton.right
             right: sendButton.left
             topMargin: units.gu(1)
@@ -457,7 +466,7 @@ Item {
     Image {
         anchors {
             top: parent.top
-            bottom: parent.bottom
+            bottom: attachmentPanel.top
             left: recordingIcon.right
             right: sendButton.left
             topMargin: units.gu(1)
