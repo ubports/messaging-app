@@ -36,6 +36,7 @@ Item {
     property bool audioAttached: attachments.count == 1 && attachments.get(0).contentType.toLowerCase().indexOf("audio/") > -1
     // Audio QML component needs to process the recorded audio do find duration and AudioRecorder seems to erase duration after some events
     property int audioRecordedDuration: 0
+    property bool oskEnabled: true
 
     signal sendRequested(string text, var attachments)
 
@@ -190,20 +191,24 @@ Item {
             iconRotation: attachmentPanel.expanded ? 45 : 0
             onClicked: {
                 attachmentPanel.expanded = !attachmentPanel.expanded
+                if (attachmentPanel.expanded) {
+                    stickersPicker.expanded = false
+                }
             }
         }
 
         TransparentButton {
             id: stickersButton
             objectName: "stickersButton"
-            iconSource: Qt.resolvedUrl("./assets/" + (Qt.inputMethod.visible ?
-                                                      "face-smile-big-symbolic-2.svg" :
-                                                      "input-keyboard-symbolic.svg"))
+            iconSource: (stickersPicker.expanded && oskEnabled) ? Qt.resolvedUrl("./assets/input-keyboard-symbolic.svg") :
+                                                                  Qt.resolvedUrl("./assets/face-smile-big-symbolic-2.svg")
             onClicked: {
-                if (Qt.inputMethod.visible) {
+                if (!stickersPicker.expanded) {
                     messageTextArea.focus = false
-                    stickersPicker.visible = true
+                    stickersPicker.expanded = true
+                    attachmentPanel.expanded = false
                 } else {
+                    stickersPicker.expanded = false
                     messageTextArea.forceActiveFocus()
                 }
             }
@@ -428,13 +433,28 @@ Item {
             right: parent.right
             top: textEntry.bottom
         }
-        visible: false
+        onStickerSelected: {
+            if (!canSend) {
+                // FIXME: show a dialog saying what we need to do to be able to send
+                return
+            }
 
-        onStickerSelected: console.log(">>>>>>>>>>>> send:", path)
+            var attachment = {}
+            var filePath = String(path).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["filePath"] = filePath
+            composeBar.sendRequested("", [attachment])
+            stickersPicker.expanded = false
+        }
 
         Connections {
             target: Qt.inputMethod
-            onVisibleChanged: if (Qt.inputMethod.visible) stickersPicker.visible = false
+            onVisibleChanged: {
+                if (Qt.inputMethod.visible) {
+                    stickersPicker.visible = false
+                }
+            }
         }
     }
 

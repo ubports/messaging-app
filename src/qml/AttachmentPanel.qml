@@ -36,9 +36,15 @@ Item {
     }
 
     height: expanded ? childrenRect.height + units.gu(3): 0
+    opacity: expanded ? 1 : 0
+    visible: opacity > 0
     Behavior on height {
         UbuntuNumberAnimation {}
     }
+    Behavior on opacity {
+        UbuntuNumberAnimation { }
+    }
+
     enabled: expanded
 
     Connections {

@@ -29,9 +29,21 @@ FocusScope {
         StickersHistoryModel.limit = 10
     }
 
+    property bool expanded: false
+
     // FIXME: try to get something similar to the keyboard height
     // FIXME: animate the displaying
-    height: visible ? units.gu(10) : 0
+    height: expanded ? units.gu(30) : 0
+    opacity: expanded ? 1 : 0
+    visible: opacity > 0
+
+    Behavior on height {
+        UbuntuNumberAnimation { }
+    }
+
+    Behavior on opacity {
+        UbuntuNumberAnimation { }
+    }
 
     ListView {
         id: setsList

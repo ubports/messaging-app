@@ -61,6 +61,8 @@ Page {
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
+    property alias oskEnabled: keyboard.oskEnabled
+
     function getAccountsModel() {
         var accounts = []
         // on new chat dialogs display all possible accounts
@@ -975,6 +977,7 @@ Page {
         showContents: !selectionMode && !isSearching
         text: messages.text
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        oskEnabled: messages.oskEnabled
 
         Component.onCompleted: {
             // if page is active, it means this is not a bottom edge page
