@@ -218,12 +218,14 @@ Item {
     TransparentButton {
         id: recordingIcon
         objectName: "recordingIcon"
+        iconPulsate: true
+        sideBySide: true
+        spacing: units.gu(1)
 
         anchors {
-            top: parent.top
             left: parent.left
-            topMargin: units.gu(1.5)
             leftMargin: units.gu(2)
+            verticalCenter: sendButton.verticalCenter
         }
 
         opacity: audioRecorder.recording ? 1.0 : 0.0
