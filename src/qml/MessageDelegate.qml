@@ -26,7 +26,7 @@ Item {
     property bool incoming: (messageData && messageData.senderId !== "self")
     property string accountLabel: ""
     property var _lastItem
-    property bool swipeLocked: true
+    property bool swipeLocked: false
 
     function deleteMessage()
     {
