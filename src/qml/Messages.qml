@@ -954,6 +954,28 @@ Page {
         objectName: "messageList"
         visible: !isSearching
 
+        Rectangle {
+            color: Theme.palette.normal.background
+            anchors.fill: parent
+            Image {
+                width: units.gu(20)
+                fillMode: Image.PreserveAspectFit
+                anchors.centerIn: parent
+                visible: source !== ""
+                source: {
+                    // FIXME - get the info from the provided accounts
+                    var accountId = "ofono/ofono/account0"
+                    if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                            && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                        accountId = presenceRequest.accountId
+                    }
+                    return telepathyHelper.accountForId(accountId).protocolInfo.backgroundFile
+                }
+                z: 1
+            }
+            z: -1
+        }
+
         // because of the header
         clip: true
         anchors {
@@ -1021,22 +1043,6 @@ Page {
             if (eventModel.filter == null) {
                 reloadFilters = !reloadFilters
             }
-        }
-    }
-
-    Image {
-        height: units.gu(20)
-        width: units.gu(20)
-        anchors.centerIn: messageList
-        visible: source !== ""
-        source: {
-            // FIXME - get the info from the provided accounts
-            var accountId = "ofono/ofono/account0"
-            if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
-                    && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
-                accountId = presenceRequest.accountId
-            }
-            return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
         }
     }
 

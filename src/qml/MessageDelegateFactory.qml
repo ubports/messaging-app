@@ -35,6 +35,7 @@ ListItemWithActions {
     signal resendMessage()
     signal copyMessage()
     signal showMessageDetails()
+    color: "transparent"
 
     width: messageList.width
     leftSideAction: Action {
