@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.2
+import GSettings 1.0
 
 Item {
     id: keyboardRect
@@ -24,6 +25,8 @@ Item {
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     height: Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
+
+    property bool oskEnabled: !gsettings.stayHidden
 
     function recursiveFindFocusedItem(parent) {
         if (parent.activeFocus) {
@@ -57,5 +60,10 @@ Item {
                 }
             }
         }
+    }
+
+    GSettings {
+        id: gsettings
+        schema.id: "com.canonical.keyboard.maliit"
     }
 }
