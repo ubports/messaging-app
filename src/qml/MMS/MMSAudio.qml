@@ -58,6 +58,7 @@ MMSBase {
 
     Audio {
         id: audioPlayer
+        objectName: "audioPlayer"
 
         readonly property bool playing: audioPlayer.playbackState == Audio.PlayingState
         readonly property bool paused: audioPlayer.playbackState == Audio.PausedState
@@ -66,6 +67,7 @@ MMSBase {
 
     TransparentButton {
         id: playButton
+        objectName: "playButton"
 
         anchors {
             left: parent.left
