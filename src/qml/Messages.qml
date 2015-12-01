@@ -1036,7 +1036,7 @@ Page {
                     && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
                 accountId = presenceRequest.accountId
             }
-            return telepathyHelper.accountForId(accountId).protocolInfo.backgroundFile
+            return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
         }
     }
 
