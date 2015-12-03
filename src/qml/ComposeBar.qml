@@ -420,8 +420,6 @@ Item {
         onExpandedChanged: {
             if (expanded && Qt.inputMethod.visible) {
                 attachmentPanel.forceActiveFocus()
-            } else if (!expanded && !Qt.inputMethod.visible) {
-                forceFocus()
             }
         }
     }
@@ -437,8 +435,6 @@ Item {
         onExpandedChanged: {
             if (expanded && Qt.inputMethod.visible) {
                 stickersPicker.forceActiveFocus()
-            } else if (!expanded && !Qt.inputMethod.visible) {
-                forceFocus()
             }
         }
 
