@@ -31,17 +31,6 @@ UbuntuShape {
     height: childrenRect.height
 
     image: Image {
-        id: avatarImage
-        width: units.gu(8)
-        height: units.gu(8)
-        sourceSize.height: height
-        sourceSize.width: width
-        fillMode: Image.PreserveAspectCrop
-        source: filePath
-        asynchronous: true
-    }
-
-    image: Image {
         id: videoImage
         width: units.gu(8)
         height: units.gu(8)
