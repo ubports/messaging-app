@@ -433,6 +433,15 @@ Item {
             right: parent.right
             top: textEntry.bottom
         }
+
+        onExpandedChanged: {
+            if (expanded && Qt.inputMethod.visible) {
+                stickersPicker.forceActiveFocus()
+            } else if (!expanded && !Qt.inputMethod.visible) {
+                forceFocus()
+            }
+        }
+
         onStickerSelected: {
             if (!canSend) {
                 // FIXME: show a dialog saying what we need to do to be able to send
@@ -446,15 +455,6 @@ Item {
             attachment["filePath"] = filePath
             composeBar.sendRequested("", [attachment])
             stickersPicker.expanded = false
-        }
-
-        Connections {
-            target: Qt.inputMethod
-            onVisibleChanged: {
-                if (Qt.inputMethod.visible) {
-                    stickersPicker.visible = false
-                }
-            }
         }
     }
 

@@ -37,6 +37,15 @@ FocusScope {
     opacity: expanded ? 1 : 0
     visible: opacity > 0
 
+    Connections {
+        target: Qt.inputMethod
+        onVisibleChanged: {
+            if (Qt.inputMethod.visible && oskEnabled) {
+                pickerRoot.expanded = false
+            }
+        }
+    }
+
     Behavior on height {
         UbuntuNumberAnimation { }
     }
