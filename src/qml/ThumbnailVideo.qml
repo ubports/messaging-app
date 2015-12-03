@@ -27,17 +27,19 @@ UbuntuShape {
 
     signal pressAndHold()
 
+    onFilePathChanged: videoImage.source = "image://thumbnailer/" + filePath
+
     width: childrenRect.width
     height: childrenRect.height
 
     image: Image {
         id: videoImage
+
         width: units.gu(8)
         height: units.gu(8)
         sourceSize.width: width
         sourceSize.height: height
         fillMode: Image.PreserveAspectCrop
-        source: "image://thumbnailer/" + filePath
         asynchronous: true
 
         onStatusChanged:  {
@@ -47,13 +49,21 @@ UbuntuShape {
         }
     }
 
+    ActivityIndicator {
+        anchors.centerIn: parent
+        visible: running
+        running: videoImage.status != Image.Ready
+    }
+
     Icon {
         width: units.gu(3)
         height: units.gu(3)
         anchors.centerIn: parent
         name: "media-playback-start"
         color: "white"
-        opacity: 0.8
+        visible: opacity > 0.0
+        opacity: videoImage.status == Image.Ready ? 0.8 : 0.0
+        Behavior on opacity { UbuntuNumberAnimation {duration: UbuntuAnimation.FastDuration} }
     }
 
     MouseArea {
