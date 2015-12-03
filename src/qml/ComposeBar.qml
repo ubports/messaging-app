@@ -202,6 +202,8 @@ Item {
                             return Qt.resolvedUrl("ThumbnailContact.qml")
                         case ContentType.Pictures:
                             return Qt.resolvedUrl("ThumbnailImage.qml")
+                        case ContentType.Videos:
+                            return Qt.resolvedUrl("ThumbnailVideo.qml")
                         case ContentType.Unknown:
                             return Qt.resolvedUrl("ThumbnailUnknown.qml")
                         default:
