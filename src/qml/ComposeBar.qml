@@ -451,7 +451,11 @@ Item {
             attachment["contentType"] = application.fileMimeType(filePath)
             attachment["name"] = filePath.split('/').reverse()[0]
             attachment["filePath"] = filePath
-            composeBar.sendRequested("", [attachment])
+
+            // we need to append the attachment to a ListModel, so create it dynamically
+            var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
+            attachments.append(attachment)
+            composeBar.sendRequested("", attachments)
             stickersPicker.expanded = false
         }
     }
