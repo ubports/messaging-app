@@ -202,6 +202,7 @@ Item {
             objectName: "stickersButton"
             iconSource: (stickersPicker.expanded && oskEnabled) ? Qt.resolvedUrl("./assets/input-keyboard-symbolic.svg") :
                                                                   Qt.resolvedUrl("./assets/face-smile-big-symbolic-2.svg")
+            visible: stickersPicker.packCount > 0
             onClicked: {
                 if (!stickersPicker.expanded) {
                     messageTextArea.focus = false
