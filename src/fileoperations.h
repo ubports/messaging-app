@@ -34,6 +34,7 @@ public:
 
     Q_INVOKABLE QString getTemporaryFile(const QString &fileExtension) const;
     Q_INVOKABLE bool link(const QString &from, const QString &to);
+    Q_INVOKABLE qint64 size(const QString &filePath);
 };
 
 #endif // FILEOPERATIONS_H

@@ -25,6 +25,7 @@ import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
+import messagingapp.private 0.1
 
 import "dateUtils.js" as DateUtils
 
@@ -1023,6 +1024,7 @@ Page {
             }
 
             var newAttachments = []
+            var videoSize = 0;
             for (var i = 0; i < attachments.count; i++) {
                 var attachment = []
                 var item = attachments.get(i)
@@ -1030,10 +1032,33 @@ Page {
                 if (item.contentType.toLowerCase() === "application/smil") {
                     continue
                 }
+                if (startsWith(item.contentType.toLowerCase(),"video/")) {
+                    videoSize += FileOperations.size(item.filePath)
+                }
                 attachment.push(item.name)
                 attachment.push(item.contentType)
                 attachment.push(item.filePath)
                 newAttachments.push(attachment)
+            }
+            if (videoSize > 307200 && !settings.messagesDontShowFileSizeWarning) {
+                // FIXME we are guessing here if the handler will try to send it over multimedia account
+                var isPhone = (account && account.type == AccountEntry.PhoneAccount)
+                if (isPhone) {
+                    for (var i in telepathyHelper.accounts) {
+                        var tmpAccount = telepathyHelper.accounts[i]
+                        if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                            // now check if the user is at least known by the account
+                            if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                                     && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                                isPhone = false
+                            }
+                        }
+                    }
+                }
+ 
+                if (isPhone) {
+                    PopupUtils.open(Qt.createComponent("Dialogs/FileSizeWarningDialog.qml").createObject(messages))
+                }
             }
 
             var recipients = participantIds.length > 0 ? participantIds :
