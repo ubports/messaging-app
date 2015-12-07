@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -70,4 +70,9 @@ function formatFriendlyCallDuration(duration) {
     }
 
     return text;
+}
+
+function formattedTime(time) {
+    var d = new Date(0, 0, 0, 0, 0, time)
+    return d.getHours() == 0 ? Qt.formatTime(d, "mm:ss") : Qt.formatTime(d, "h:mm:ss")
 }

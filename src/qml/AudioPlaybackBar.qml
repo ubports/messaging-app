@@ -19,6 +19,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
+import "dateUtils.js" as DateUtils
 
 Item {
     id: playbackBar
@@ -27,11 +28,6 @@ Item {
     property alias source: audioPlayer.source
     property int duration: 0
     property alias playing: audioPlayer.playing
-
-    function formattedTime(time) {
-        var d = new Date(0, 0, 0, 0, 0, time)
-        return d.getHours() == 0 ? Qt.formatTime(d, "mm:ss") : Qt.formatTime(d, "h:mm:ss")
-    }
 
     Audio {
         id: audioPlayer
@@ -83,9 +79,9 @@ Item {
             textSize: FontUtils.sizeToPixels("x-small")
             text: {
                 if (audioPlayer.playing) {
-                    return playbackBar.formattedTime(audioPlayer.position/ 1000)
+                    return DateUtils.formattedTime(audioPlayer.position/ 1000)
                 }
-                return playbackBar.formattedTime(playbackBar.duration / 1000)
+                return DateUtils.formattedTime(playbackBar.duration / 1000)
             }
 
             onClicked: {
@@ -105,6 +101,8 @@ Item {
                 right: parent.right
                 leftMargin: units.gu(1)
             }
+
+            fillMode: Image.TileHorizontally
 
             source: Qt.resolvedUrl("./assets/sine.svg")
         }
