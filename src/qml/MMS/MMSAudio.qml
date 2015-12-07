@@ -19,14 +19,17 @@
 import QtQuick 2.2
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes.Ambiance 1.3
 import messagingapp.private 0.1
 import ".."
 
 MMSBase {
     id: audioDelegate
 
-    height: units.gu(7)
-    width: units.gu(20)
+    height: units.gu(5)
+    width: units.gu(28)
+    property string textColor: incoming ? "#5D5D5D" : "#FFFFFF"
+    swipeLocked: audioPlayer.playing
 
     function formattedTime(time) {
         var d = new Date(0, 0, 0, 0, 0, time)
@@ -42,28 +45,46 @@ MMSBase {
         }
     }
 
+    Rectangle {
+        id: shape
+        radius: units.gu(1)
+        smooth: true
+        anchors.top: parent.top
+        width: parent.width
+        height: parent.height
+        color: incoming ? "#FFFFFF" : "#3fb24f"
+        border.color: incoming ? "#888888" : "transparent"
+    }
+
     Audio {
         id: audioPlayer
+        objectName: "audioPlayer"
 
         readonly property bool playing: audioPlayer.playbackState == Audio.PlayingState
+        readonly property bool paused: audioPlayer.playbackState == Audio.PausedState
+        readonly property bool stopped: audioPlayer.playbackState == Audio.StoppedState
     }
 
     TransparentButton {
         id: playButton
+        objectName: "playButton"
 
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
+            leftMargin: units.gu(1)
             verticalCenter: shape.verticalCenter
         }
 
+        spacing: units.gu(1)
+        sideBySide: true
         enabled: audioPlayer.source != ""
-        iconColor: "grey"
-        iconName: audioPlayer.playing ? "media-playback-stop" : "media-playback-start"
+        iconColor: audioDelegate.textColor
+        iconName: audioPlayer.playing ? "media-playback-pause" : "media-playback-start"
 
         textSize: FontUtils.sizeToPixels("x-small")
+        textColor: audioDelegate.textColor
         text: {
-            if (audioPlayer.playing) {
+            if (audioPlayer.playing || audioPlayer.paused) {
                 return audioDelegate.formattedTime(audioPlayer.position/ 1000)
             }
             if (audioPlayer.duration > 0) {
@@ -74,14 +95,37 @@ MMSBase {
 
         onClicked: {
             if (audioPlayer.playing) {
-                audioPlayer.stop()
+                audioPlayer.pause()
             } else {
                 audioPlayer.play()
             }
         }
     }
 
-    Image {
+    Slider {
+        id: slider
+        Connections {
+            target: audioPlayer
+            onDurationChanged: {
+                if (slider.maximumValue == 100) {
+                    slider.maximumValue = audioPlayer.duration
+                }
+            }
+        }
+        style: SliderStyle {
+            Component.onCompleted: thumb.visible = false
+            Connections {
+                target: audioPlayer
+                onPlaybackStateChanged: {
+                    thumb.visible = !audioPlayer.stopped
+                    if (!thumb.visible) {
+                        audioPlayer.seek(0)
+                    }
+                }
+            }
+        }
+        enabled: !audioPlayer.stopped
+        function formatValue(v) { return audioDelegate.formattedTime(v/1000) }
         anchors {
             left: playButton.right
             right: parent.right
@@ -89,18 +133,30 @@ MMSBase {
             rightMargin: units.gu(2)
             verticalCenter: shape.verticalCenter
         }
-
-	height: units.gu(3)
-
-        source: Qt.resolvedUrl("../assets/sine.svg")
-    }
-
-    UbuntuShape {
-        id: shape
-        anchors.top: parent.top
-        width: parent.width
-        height: parent.height
-        color: "gray"
-        opacity: 0.2
+        height: units.gu(3)
+        minimumValue: 0.0
+        maximumValue: 100
+        value: audioPlayer.position
+        activeFocusOnPress: false
+        onPressedChanged: {
+            if (!pressed) {
+                if (audioPlayer.playing || audioPlayer.paused) {
+                    audioPlayer.seek(value)
+                } else {
+                    audioPlayer.muted = true
+                    // we only get the duration while playing
+                    audioPlayer.play()
+                    audioPlayer.pause()
+                    if (audioPlayer.duration == 100) {
+                        audioPlayer.seek((audioPlayer.duration*value)/100)
+                    } else {
+                        audioPlayer.seek(value)
+                    }
+                    audioPlayer.muted = false
+                    
+                }
+                value = Qt.binding(function(){ return audioPlayer.position})
+            }
+        }
     }
 }
