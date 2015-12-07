@@ -71,11 +71,29 @@ Previewer {
         Component {
             id: videoComponent
 
-            Video {
+            Item {
                 id: videoPlayer
                 objectName: "videoPlayer"
+
+                property alias source: player.source
+                property alias playbackState: player.playbackState
+
+                function play() { player.play() }
+                function pause() { player.pause() }
+                function stop() { player.stop() }
+ 
                 anchors.fill: parent
-                autoPlay: true
+
+                MediaPlayer {
+                    id: player
+                    autoPlay: true
+                }
+
+                VideoOutput {
+                    id: videoOutput
+                    anchors.fill: parent
+                    source: player
+                }
             }
         }
     }

@@ -202,6 +202,7 @@ Item {
             objectName: "stickersButton"
             iconSource: (stickersPicker.expanded && oskEnabled) ? Qt.resolvedUrl("./assets/input-keyboard-symbolic.svg") :
                                                                   Qt.resolvedUrl("./assets/face-smile-big-symbolic-2.svg")
+            visible: stickersPicker.packCount > 0
             onClicked: {
                 if (!stickersPicker.expanded) {
                     messageTextArea.focus = false
@@ -323,6 +324,8 @@ Item {
                             return Qt.resolvedUrl("ThumbnailContact.qml")
                         case ContentType.Pictures:
                             return Qt.resolvedUrl("ThumbnailImage.qml")
+                        case ContentType.Videos:
+                            return Qt.resolvedUrl("ThumbnailVideo.qml")
                         case ContentType.Unknown:
                             return Qt.resolvedUrl("ThumbnailUnknown.qml")
                         default:
@@ -422,8 +425,6 @@ Item {
         onExpandedChanged: {
             if (expanded && Qt.inputMethod.visible) {
                 attachmentPanel.forceActiveFocus()
-            } else if (!expanded && !Qt.inputMethod.visible) {
-                forceFocus()
             }
         }
     }
@@ -435,6 +436,13 @@ Item {
             right: parent.right
             top: textEntry.bottom
         }
+
+        onExpandedChanged: {
+            if (expanded && Qt.inputMethod.visible) {
+                stickersPicker.forceActiveFocus()
+            }
+        }
+
         onStickerSelected: {
             if (!canSend) {
                 // FIXME: show a dialog saying what we need to do to be able to send
@@ -446,17 +454,12 @@ Item {
             attachment["contentType"] = application.fileMimeType(filePath)
             attachment["name"] = filePath.split('/').reverse()[0]
             attachment["filePath"] = filePath
-            composeBar.sendRequested("", [attachment])
-            stickersPicker.expanded = false
-        }
 
-        Connections {
-            target: Qt.inputMethod
-            onVisibleChanged: {
-                if (Qt.inputMethod.visible) {
-                    stickersPicker.visible = false
-                }
-            }
+            // we need to append the attachment to a ListModel, so create it dynamically
+            var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
+            attachments.append(attachment)
+            composeBar.sendRequested("", attachments)
+            stickersPicker.expanded = false
         }
     }
 
