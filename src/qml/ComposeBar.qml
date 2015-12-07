@@ -77,11 +77,6 @@ Item {
         }
     }
 
-    function formattedTime(time) {
-        var d = new Date(0, 0, 0, 0, 0, time)
-        return d.getHours() == 0 ? Qt.formatTime(d, "mm:ss") : Qt.formatTime(d, "h:mm:ss")
-    }
-
     anchors.bottom: isSearching ? parent.bottom : keyboard.top
     anchors.left: parent.left
     anchors.right: parent.right
@@ -154,14 +149,6 @@ Item {
 
         codec: "audio/vorbis"
         quality: AudioRecorder.VeryHighQuality
-    }
-
-    Audio {
-        id: audioPlayer
-
-        readonly property bool playing: audioPlayer.playbackState == Audio.PlayingState
-
-        source: composeBar.audioAttached ? attachments.get(0).filePath : ""
     }
 
     ListItem.ThinDivider {
@@ -241,29 +228,30 @@ Item {
         textSize: FontUtils.sizeToPixels("x-small")
         text: {
             if (audioRecorder.recording) {
-                return composeBar.formattedTime(audioRecorder.duration / 1000)
+                return audioPlaybackBar.formattedTime(audioRecorder.duration / 1000)
             }
-            return composeBar.formattedTime(0)
+            return audioPlaybackBar.formattedTime(0)
         }
     }
 
-    TransparentButton {
-        id: closeButton
-        objectName: "closeButton"
+    AudioPlaybackBar {
+        id: audioPlaybackBar
 
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
-            verticalCenter: sendButton.verticalCenter
+            right: sendButton.left
+            top: parent.top
+            bottom: attachmentPanel.top
         }
+
+        source: composeBar.audioAttached ? attachments.get(0).filePath : ""
+        duration: audioRecordedDuration
 
         opacity: composeBar.audioAttached ? 1.0 : 0.0
         Behavior on opacity { UbuntuNumberAnimation {} }
         visible: opacity > 0
 
-        iconName: "close"
-
-        onClicked: {
+        onResetRequested: {
             // TODO Remove audio recorded temp file
             composeBar.reset()
         }
@@ -460,65 +448,6 @@ Item {
             attachments.append(attachment)
             composeBar.sendRequested("", attachments)
             stickersPicker.expanded = false
-        }
-    }
-
-    Item {
-        id: audioPreview
-        anchors {
-            top: parent.top
-            bottom: attachmentPanel.top
-            left: closeButton.right
-            right: sendButton.left
-            topMargin: units.gu(1)
-            bottomMargin: units.gu(1)
-            leftMargin: units.gu(3)
-            rightMargin: units.gu(1)
-        }
-
-        opacity: composeBar.audioAttached ? 1.0 : 0.0
-        Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
-
-        TransparentButton {
-            id: playButton
-
-            anchors {
-                top: parent.top
-                left: parent.left
-                topMargin: units.gu(0.5)
-            }
-
-            iconColor: "grey"
-            iconName: audioPlayer.playing ? "media-playback-stop" : "media-playback-start"
-
-            textSize: FontUtils.sizeToPixels("x-small")
-            text: {
-                if (audioPlayer.playing) {
-                    return composeBar.formattedTime(audioPlayer.position/ 1000)
-                }
-                return composeBar.formattedTime(composeBar.audioRecordedDuration / 1000)
-            }
-
-            onClicked: {
-                if (audioPlayer.playing) {
-                    audioPlayer.stop()
-                } else {
-                    audioPlayer.play()
-                }
-            }
-        }
-
-        Image {
-            anchors {
-                top: parent.top
-                bottom: parent.bottom
-                left: playButton.right
-                right: parent.right
-                leftMargin: units.gu(1)
-            }
-
-            source: Qt.resolvedUrl("./assets/sine.svg")
         }
     }
 
