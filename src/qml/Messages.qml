@@ -61,6 +61,8 @@ Page {
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
+    property alias oskEnabled: keyboard.oskEnabled
+
     function getAccountsModel() {
         var accounts = []
         // on new chat dialogs display all possible accounts
@@ -954,6 +956,33 @@ Page {
         objectName: "messageList"
         visible: !isSearching
 
+        Rectangle {
+            color: Theme.palette.normal.background
+            anchors.fill: parent
+            Image {
+                width: units.gu(20)
+                fillMode: Image.PreserveAspectFit
+                anchors.centerIn: parent
+                visible: source !== ""
+                source: {
+                    var accountId = ""
+
+                    if (messages.account) {
+                        accountId = messages.account.accountId
+                    }
+
+                    if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                            && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                        accountId = presenceRequest.accountId
+                    }
+
+                    return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
+                }
+                z: 1
+            }
+            z: -1
+        }
+
         // because of the header
         clip: true
         anchors {
@@ -975,6 +1004,7 @@ Page {
         showContents: !selectionMode && !isSearching
         text: messages.text
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        oskEnabled: messages.oskEnabled
 
         Component.onCompleted: {
             // if page is active, it means this is not a bottom edge page
@@ -1021,22 +1051,6 @@ Page {
             if (eventModel.filter == null) {
                 reloadFilters = !reloadFilters
             }
-        }
-    }
-
-    Image {
-        height: units.gu(20)
-        width: units.gu(20)
-        anchors.centerIn: messageList
-        visible: source !== ""
-        source: {
-            // FIXME - get the info from the provided accounts
-            var accountId = "ofono/ofono/account0"
-            if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
-                    && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
-                accountId = presenceRequest.accountId
-            }
-            return telepathyHelper.accountForId(accountId).protocolInfo.backgroundFile
         }
     }
 

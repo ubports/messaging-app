@@ -94,7 +94,7 @@ Item {
         anchors.fill: parent
         onPressAndHold: {
             mouse.accept = true
-            thumbnail.pressAndHold()
+            attachment.pressAndHold()
         }
     }
     VCardParser {
