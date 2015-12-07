@@ -1,3 +1,15 @@
+messaging-app (0.1+16.04.20151207-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Do not allow the compose bar overlap the page header when in
+    landscape mode. (LP: #1518291)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Mon, 07 Dec 2015 17:55:19 +0000
+
 messaging-app (0.1+16.04.20151124-0ubuntu1) xenial; urgency=medium
 
   * Make sure that the search field receives focus when contact list
