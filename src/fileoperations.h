@@ -1,5 +1,8 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright (C) 2015 Canonical, Ltd.
+ *
+ * Authors:
+ *  Arthur Mello <arthur.mello@canonical.com>
  *
  * This file is part of messaging-app.
  *
@@ -15,13 +18,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.2
 
-Item {
-    id: baseDelegate
+#ifndef FILEOPERATIONS_H
+#define FILEOPERATIONS_H
 
-    property var attachment
-    property string previewer
-    property bool lastItem: false
-    property bool swipeLocked: false
-}
+#include <QObject>
+
+class FileOperations : public QObject
+{
+    Q_OBJECT
+
+public:
+    FileOperations(QObject *parent = 0);
+    ~FileOperations();
+
+    Q_INVOKABLE QString getTemporaryFile(const QString &fileExtension) const;
+    Q_INVOKABLE bool link(const QString &from, const QString &to);
+};
+
+#endif // FILEOPERATIONS_H

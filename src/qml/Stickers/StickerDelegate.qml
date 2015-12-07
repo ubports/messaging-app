@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -15,13 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.2
 
-Item {
-    id: baseDelegate
+import QtQuick 2.3
+import Ubuntu.Components 1.3
 
-    property var attachment
-    property string previewer
-    property bool lastItem: false
-    property bool swipeLocked: false
+AbstractButton {
+    property alias stickerSource: image.source
+
+    Image {
+        id: image
+        anchors.fill: parent
+        anchors.margins: units.gu(0.5)
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+    }
 }

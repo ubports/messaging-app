@@ -34,6 +34,7 @@ MMSBase {
 
         image: Image {
             id: imageAttachment
+            objectName: "imageAttachment"
 
             fillMode: Image.PreserveAspectCrop
             smooth: true

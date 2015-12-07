@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Canonical, Ltd.
+ * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -17,6 +17,9 @@
  */
 
 #include "messagingapplication.h"
+#include "audiorecorder.h"
+#include "fileoperations.h"
+#include "stickers-history-model.h"
 
 #include <libnotify/notify.h>
 
@@ -24,6 +27,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QDir>
 #include <QStringList>
 #include <QQuickItem>
 #include <QQmlComponent>
@@ -36,6 +40,7 @@
 #include "config.h"
 #include <QQmlEngine>
 #include <QMimeDatabase>
+#include <QStandardPaths>
 #include <QVersitReader>
 
 using namespace QtVersit;
@@ -65,10 +70,29 @@ static void installIconPath()
     }
 }
 
+static QObject* FileOperations_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new FileOperations();
+}
+
+static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new StickersHistoryModel();
+}
+
 MessagingApplication::MessagingApplication(int &argc, char **argv)
     : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
 {
     setApplicationName("MessagingApp");
+}
+
+bool MessagingApplication::fullscreen() const
+{
+    return m_view->windowState() == Qt::WindowFullScreen;
 }
 
 bool MessagingApplication::setup()
@@ -149,6 +173,14 @@ bool MessagingApplication::setup()
         m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
     }
 
+    QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    m_view->rootContext()->setContextProperty("dataLocation", dataLocation.absolutePath());
+    dataLocation.mkpath("stickers");
+    const char* uri = "messagingapp.private";
+    qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
+    qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
+    qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
+
     // used by autopilot tests to load vcards during tests
     QByteArray testData = qgetenv("QTCONTACTS_PRELOAD_VCARD");
     m_view->rootContext()->setContextProperty("QTCONTACTS_PRELOAD_VCARD", testData);
@@ -174,6 +206,17 @@ MessagingApplication::~MessagingApplication()
     if (m_view) {
         delete m_view;
     }
+}
+
+void MessagingApplication::setFullscreen(bool fullscreen)
+{
+    if (fullscreen) {
+        m_view->setWindowState(Qt::WindowFullScreen);
+    } else {
+        m_view->setWindowState(Qt::WindowNoState);
+    }
+
+    Q_EMIT fullscreenChanged();
 }
 
 void MessagingApplication::onViewStatusChanged(QQuickView::Status status)
