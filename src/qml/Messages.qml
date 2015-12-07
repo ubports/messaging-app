@@ -965,12 +965,17 @@ Page {
                 anchors.centerIn: parent
                 visible: source !== ""
                 source: {
-                    // FIXME - get the info from the provided accounts
-                    var accountId = "ofono/ofono/account0"
+                    var accountId = ""
+
+                    if (messages.account) {
+                        accountId = messages.account.accountId
+                    }
+
                     if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
                             && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
                         accountId = presenceRequest.accountId
                     }
+
                     return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
                 }
                 z: 1

@@ -30,12 +30,22 @@ FocusScope {
     }
 
     property bool expanded: false
+    property alias packCount: stickerPacksModel.count
 
     // FIXME: try to get something similar to the keyboard height
     // FIXME: animate the displaying
     height: expanded ? units.gu(30) : 0
     opacity: expanded ? 1 : 0
     visible: opacity > 0
+
+    Connections {
+        target: Qt.inputMethod
+        onVisibleChanged: {
+            if (Qt.inputMethod.visible && oskEnabled) {
+                pickerRoot.expanded = false
+            }
+        }
+    }
 
     Behavior on height {
         UbuntuNumberAnimation { }
@@ -47,7 +57,9 @@ FocusScope {
 
     ListView {
         id: setsList
-        model: StickerPacksModel {}
+        model: StickerPacksModel {
+            id: stickerPacksModel
+        }
         orientation: ListView.Horizontal
         anchors.left: parent.left
         anchors.right: parent.right
@@ -88,7 +100,7 @@ FocusScope {
         cellHeight: units.gu(10)
         visible: stickersGrid.model.packName.length > 0
 
-        model: StickerPackModel { }
+        model: StickersModel { }
         delegate: StickerDelegate {
             stickerSource: filePath
             width: stickersGrid.cellWidth

@@ -24,6 +24,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QUrl>
+#include <QStandardPaths>
 #include <QTemporaryFile>
 
 AudioRecorder::AudioRecorder(QObject *parent)
@@ -138,7 +139,8 @@ void AudioRecorder::setRecorderState(AudioRecorder::RecorderState state)
     switch (state){
         case AudioRecorder::RecordingState: {
             // Create temporary file to store audio recorded
-            QTemporaryFile outputFile(QDir::temp().absoluteFilePath("audioXXXXXX%1").arg(m_fileExtension));
+            QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+            QTemporaryFile outputFile(dataLocation.absoluteFilePath("audioXXXXXX%1").arg(m_fileExtension));
             outputFile.setAutoRemove(false);
             outputFile.open();
             outputFile.close();
