@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -15,13 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.2
 
-Item {
-    id: baseDelegate
+import QtQuick 2.3
+import Qt.labs.folderlistmodel 2.1
 
-    property var attachment
-    property string previewer
-    property bool lastItem: false
-    property bool swipeLocked: false
+FolderListModel {
+    property string packName
+    folder: "%1/stickers/%2".arg(dataLocation).arg(packName)
+    showDirs: false
+    nameFilters: ["*.png", "*.webm", "*.gif"]
 }
