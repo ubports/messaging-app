@@ -29,6 +29,7 @@ Item {
     id: composeBar
 
     property bool showContents: true
+    property int maxHeight: textEntry.height + units.gu(2)
     property variant attachments: []
     property bool canSend: true
     property alias text: messageTextArea.text
@@ -40,6 +41,7 @@ Item {
 
     // internal properties
     property int _activeAttachmentIndex: -1
+    property int _defaultHeight: textEntry.height + attachmentPanel.height + units.gu(2)
 
     function forceFocus() {
         messageTextArea.forceActiveFocus()
@@ -83,7 +85,7 @@ Item {
     anchors.bottom: isSearching ? parent.bottom : keyboard.top
     anchors.left: parent.left
     anchors.right: parent.right
-    height: showContents ? textEntry.height + attachmentPanel.height + units.gu(2) : 0
+    height: showContents ? Math.min(_defaultHeight, maxHeight) : 0
     visible: showContents
     clip: true
 
