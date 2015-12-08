@@ -972,6 +972,7 @@ Page {
         }
 
         showContents: !selectionMode && !isSearching
+        maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
 
