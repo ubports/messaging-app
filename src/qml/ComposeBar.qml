@@ -481,7 +481,7 @@ Item {
             audioRecordingBar.stopRecording()
 
             // if dragged past the threshold, cancel
-            if (dragTarget.dragAmount >= 0.3) {
+            if (dragTarget.dragAmount >= 0.5) {
                 composeBar.reset()
             }
         }
