@@ -19,6 +19,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes.Ambiance 1.3
 import "dateUtils.js" as DateUtils
 
 Item {
@@ -32,6 +33,8 @@ Item {
     Audio {
         id: audioPlayer
         readonly property bool playing: audioPlayer.playbackState == Audio.PlayingState
+        readonly property bool paused: audioPlayer.playbackState == Audio.PausedState
+        readonly property bool stopped: audioPlayer.playbackState == Audio.StoppedState
     }
 
     TransparentButton {
@@ -93,7 +96,30 @@ Item {
             }
         }
 
-        Image {
+        Slider {
+            id: slider
+            Connections {
+                target: audioPlayer
+                onDurationChanged: {
+                    if (slider.maximumValue == 100) {
+                        slider.maximumValue = audioPlayer.duration
+                    }
+                }
+            }
+            style: SliderStyle {
+                Component.onCompleted: thumb.visible = false
+                Connections {
+                    target: audioPlayer
+                    onPlaybackStateChanged: {
+                        thumb.visible = !audioPlayer.stopped
+                        if (!thumb.visible) {
+                            audioPlayer.seek(0)
+                        }
+                    }
+                }
+            }
+            enabled: !audioPlayer.stopped
+            function formatValue(v) { return DateUtils.formattedTime(v/1000) }
             anchors {
                 top: parent.top
                 bottom: parent.bottom
@@ -101,10 +127,31 @@ Item {
                 right: parent.right
                 leftMargin: units.gu(1)
             }
+            height: units.gu(3)
+            minimumValue: 0.0
+            maximumValue: 100
+            value: audioPlayer.position
+            activeFocusOnPress: false
+            onPressedChanged: {
+                if (!pressed) {
+                    if (audioPlayer.playing || audioPlayer.paused) {
+                        audioPlayer.seek(value)
+                    } else {
+                        audioPlayer.muted = true
+                        // we only get the duration while playing
+                        audioPlayer.play()
+                        audioPlayer.pause()
+                        if (audioPlayer.duration == 100) {
+                            audioPlayer.seek((audioPlayer.duration*value)/100)
+                        } else {
+                            audioPlayer.seek(value)
+                        }
+                        audioPlayer.muted = false
 
-            fillMode: Image.TileHorizontally
-
-            source: Qt.resolvedUrl("./assets/sine.svg")
+                    }
+                    value = Qt.binding(function(){ return audioPlayer.position})
+                }
+            }
         }
     }
 
