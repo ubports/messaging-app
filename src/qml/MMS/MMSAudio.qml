@@ -22,6 +22,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Themes.Ambiance 1.3
 import messagingapp.private 0.1
 import ".."
+import "../dateUtils.js" as DateUtils
 
 MMSBase {
     id: audioDelegate
@@ -30,11 +31,6 @@ MMSBase {
     width: units.gu(28)
     property string textColor: incoming ? "#5D5D5D" : "#FFFFFF"
     swipeLocked: audioPlayer.playing
-
-    function formattedTime(time) {
-        var d = new Date(0, 0, 0, 0, 0, time)
-        return d.getHours() == 0 ? Qt.formatTime(d, "mm:ss") : Qt.formatTime(d, "h:mm:ss")
-    }
 
     onAttachmentChanged: {
         var tmpFile = FileOperations.getTemporaryFile(".ogg")
@@ -85,10 +81,10 @@ MMSBase {
         textColor: audioDelegate.textColor
         text: {
             if (audioPlayer.playing || audioPlayer.paused) {
-                return audioDelegate.formattedTime(audioPlayer.position/ 1000)
+                return DateUtils.formattedTime(audioPlayer.position/ 1000)
             }
             if (audioPlayer.duration > 0) {
-                return audioDelegate.formattedTime(audioPlayer.duration / 1000)
+                return DateUtils.formattedTime(audioPlayer.duration / 1000)
             }
             return ""
         }
@@ -125,7 +121,7 @@ MMSBase {
             }
         }
         enabled: !audioPlayer.stopped
-        function formatValue(v) { return audioDelegate.formattedTime(v/1000) }
+        function formatValue(v) { return DateUtils.formattedTime(v/1000) }
         anchors {
             left: playButton.right
             right: parent.right
