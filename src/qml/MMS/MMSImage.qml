@@ -18,6 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
+import ".."
 
 MMSBase {
     id: imageDelegate
@@ -83,5 +84,17 @@ MMSBase {
                 color: "white"
             }
         }
+    }
+
+    DeliveryStatus {
+       id: deliveryStatus
+       status: textMessageStatus
+       enabled: showDeliveryStatus
+       anchors {
+           right: parent.right
+           rightMargin: units.gu(0.5)
+           bottom: parent.bottom
+           bottomMargin: units.gu(0.5)
+       }
     }
 }

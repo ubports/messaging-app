@@ -124,7 +124,7 @@ MMSBase {
         function formatValue(v) { return DateUtils.formattedTime(v/1000) }
         anchors {
             left: playButton.right
-            right: parent.right
+            right: deliveryStatus.left
             leftMargin: units.gu(1)
             rightMargin: units.gu(2)
             verticalCenter: shape.verticalCenter
@@ -154,5 +154,16 @@ MMSBase {
                 value = Qt.binding(function(){ return audioPlayer.position})
             }
         }
+    }
+
+    DeliveryStatus {
+       id: deliveryStatus
+       status: textMessageStatus
+       enabled: showDeliveryStatus
+       anchors {
+           right: parent.right
+           rightMargin: units.gu(0.5)
+           verticalCenter: slider.verticalCenter
+       }
     }
 }
