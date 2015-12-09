@@ -17,3 +17,4 @@ install(DIRECTORY ${3RD_PARTY_DIR} DESTINATION ${MESSAGING_APP_DIR})
 
 add_subdirectory(MMS)
 add_subdirectory(Dialogs)
+add_subdirectory(Stickers)
