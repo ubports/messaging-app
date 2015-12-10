@@ -91,6 +91,7 @@ Item {
     }
 
     MouseArea {
+        enabled: !composeBar.audioAttached
         anchors.fill: parent
         onClicked: {
             forceFocus()
@@ -261,9 +262,17 @@ Item {
                 focus = false
             }
         }
+
+        onTextChanged: {
+            // in case there is audio attached and the user starts typing, we remove the attachment
+            // and continue the text message
+            if (text !== "" && composeBar.audioAttached) {
+                attachments.clear()
+            }
+        }
+
         focus: false
         opacity: composeBar.audioAttached ? 0.0 : 1.0
-        visible: opacity > 0
         Behavior on opacity { UbuntuNumberAnimation {} }
         MouseArea {
             anchors.fill: parent
