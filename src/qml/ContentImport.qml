@@ -47,6 +47,10 @@ Item {
         requestContent(ContentHub.ContentType.Contacts)
     }
 
+    function requestDocument() {
+        requestContent(ContentHub.ContentType.Documents)
+    }
+
     Component {
         id: contentHubDialog
 
