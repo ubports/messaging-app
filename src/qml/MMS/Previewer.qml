@@ -23,33 +23,56 @@ import ".."
 
 Page {
     id: previewerPage
-    title: ""
+
     property variant attachment
+    property variant thumbnail
+
     signal actionTriggered
 
+    function handleAttachment(filePath, handlerType)
+    {
+        mainStack.push(picker, {"url": filePath, "handler": handlerType});
+        actionTriggered()
+    }
+
+    function saveAttachment()
+    {
+        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Destination)
+    }
+
+    function shareAttchment()
+    {
+        previewerPage.handleAttachment(attachment.filePath, ContentHandler.Share)
+    }
+
+    function backAction()
+    {
+        mainStack.pop()
+    }
+
+    title: ""
     state: "default"
     states: [
         PageHeadState {
             name: "default"
             head: previewerPage.head
+            backAction: Action {
+                iconName: "back"
+                text: i18n.tr("Back")
+                onTriggered: previewerPage.backAction()
+            }
             actions: [
                 Action {
                     objectName: "saveButton"
                     text: i18n.tr("Save")
                     iconSource: "image://theme/save"
-                    onTriggered: {
-                        mainStack.addPageToCurrentColumn(previewerPage, picker, {"url": attachment.filePath, "handler": ContentHandler.Destination});
-                        actionTriggered()
-                    }
+                    onTriggered: previewerPage.saveAttachment()
                 },
                 Action {
                     objectName: "shareButton"
                     iconSource: "image://theme/share"
                     text: i18n.tr("Share")
-                    onTriggered: {
-                        mainStack.addPageToCurrentColumn(previewerPage, picker, {"url": attachment.filePath, "handler": ContentHandler.Share});
-                        actionTriggered()
-                    }
+                    onTriggered: previewerPage.shareAttchment()
                 }
             ]
         }
@@ -94,7 +117,7 @@ Page {
         }
 
         Connections {
-            target: picker.curTransfer !== null ? picker.curTransfer : null
+            target: picker.curTransfer ? picker.curTransfer : null
             onStateChanged: {
                 console.log("curTransfer StateChanged: " + picker.curTransfer.state);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)

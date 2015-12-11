@@ -256,43 +256,6 @@ QString MessagingApplication::fileMimeType(const QString &fileName) {
     return type.name();
 }
 
-QVariantMap MessagingApplication::contactNameFromVCard(const QString &fileName) {
-    QFile file(fileName);
-    QString formattedName, structuredName, nickname;
-    if (!file.open(QIODevice::ReadOnly)) {
-        return QVariantMap();
-    }
-    QVersitReader reader(file.readAll());
-    reader.startReading();
-    reader.waitForFinished();
-    int count = reader.results().count();
-    QString label;
-    if (count > 0) {
-        // read only the first contact
-        QVersitDocument firstVcard = reader.results()[0];
-        Q_FOREACH(const QVersitProperty & prop, firstVcard.properties()) {
-            if (prop.name() == "N") {
-                structuredName = prop.value();
-            } else if (prop.name() == "FN") {
-                formattedName = prop.value();
-            } else if (prop.name() == "NICKNAME") {
-                nickname = prop.value();
-            }
-        }
-        if (!formattedName.isEmpty()) {
-            label = formattedName;
-        } else if (!structuredName.isEmpty()) {
-            label = structuredName.split(";")[1];
-        } else if (!nickname.isEmpty()) {
-            label = nickname;
-        }
-    }
-    QVariantMap result;
-    result.insert("name", label);
-    result.insert("count", count);
-    return result;
-}
-
 void MessagingApplication::showNotificationMessage(const QString &message, const QString &icon)
 {
     NotifyNotification *notification = notify_notification_new(message.toStdString().c_str(),
