@@ -34,10 +34,15 @@ Rectangle {
     property var messageTimeStamp
     property int maxDelegateWidth: units.gu(27)
     property string accountName
+    // FIXME for now we just display the delivery status if it's greater than Accepted
+    property bool showDeliveryStatus: false
+    property bool deliveryStatusAvailable: showDeliveryStatus && (statusDelivered || statusRead)
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
+    readonly property bool statusDelivered: (messageStatus === HistoryThreadModel.MessageStatusDelivered)
+    readonly property bool statusRead: (messageStatus === HistoryThreadModel.MessageStatusRead)
 
     // XXXX: should be hoisted
     function getCountryCode() {
@@ -80,12 +85,13 @@ Rectangle {
             return "#3fb24f"
         }
     }
-    border.color: "#ACACAC"
+    border.color: messageIncoming ? "#ACACAC" : "transparent"
+    smooth: true
 
     radius: units.gu(1)
     height: senderName.height + senderName.anchors.topMargin + textLabel.height + textTimestamp.height + units.gu(1)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth, senderName.contentWidth))
+                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth + deliveryStatus.width, senderName.contentWidth))
             + units.gu(3)
     anchors{
         leftMargin:  units.gu(1)
@@ -157,20 +163,30 @@ Rectangle {
         }
     }
 
-    ColoredImage {
-        id: bubbleArrow
+    DeliveryStatus {
+        id: deliveryStatus
+        status: messageStatus
+        enabled: deliveryStatusAvailable
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(0.5)
+            verticalCenter: textTimestamp.verticalCenter
+        }
+    }
 
-        source: Qt.resolvedUrl("./assets/conversation_bubble_arrow.png")
-        color: root.color
-        asynchronous: false
+    Item {
+        id: bubbleArrow
+        width: units.gu(1)
+        height: units.gu(1.5)
+
+        clip: true
+
         anchors {
             bottom: parent.bottom
             bottomMargin: units.gu(2)
             leftMargin: -1
             rightMargin: -1
         }
-        width: units.gu(1)
-        height: units.gu(1.5)
 
         states: [
             State {
@@ -190,9 +206,23 @@ Rectangle {
                 }
                 PropertyChanges {
                     target: bubbleArrow
-                    mirror: true
+                    rotation: 180
                 }
             }
         ]
+
+        Rectangle {
+            rotation: 45
+            color: root.color
+            border.color: root.border.color
+            width: units.gu(1)
+            height: units.gu(1)
+            smooth: true
+
+            anchors {
+                verticalCenter: parent.verticalCenter
+                horizontalCenter: parent.right
+            }
+        }
     }
 }

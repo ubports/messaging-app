@@ -226,6 +226,7 @@ LocalPageWithBottomEdge {
                     }
                     properties["participantIds"] = participantIds
                     properties["participants"] = model.participants
+                    properties["presenceRequest"] = threadDelegate.presenceItem
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
