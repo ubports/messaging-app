@@ -38,6 +38,7 @@ Item {
         readonly property int position: ready ? item.position : 0
         readonly property int duration: ready ? item.duration : 0
         readonly property bool ready: status == Loader.Ready
+        readonly property int playbackState: ready ? item.playbackState : Audio.StoppedState
         function play() { 
             audioPlayer.active = true
             item.play() 
@@ -125,7 +126,7 @@ Item {
         Slider {
             id: slider
             Connections {
-                target: audioPlayer.ready ? audioPlayer.item : null
+                target: audioPlayer
                 onDurationChanged: {
                     if (slider.maximumValue == 100) {
                         slider.maximumValue = audioPlayer.duration
@@ -135,7 +136,7 @@ Item {
             style: SliderStyle {
                 Component.onCompleted: thumb.visible = false
                 Connections {
-                    target: audioPlayer.ready ? audioPlayer.item : null
+                    target: audioPlayer
                     onPlaybackStateChanged: {
                         thumb.visible = !audioPlayer.stopped
                         if (!thumb.visible) {
