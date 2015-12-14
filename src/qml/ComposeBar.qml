@@ -174,7 +174,7 @@ Item {
             objectName: "stickersButton"
             iconSource: (stickersPicker.expanded && oskEnabled) ? Qt.resolvedUrl("./assets/input-keyboard-symbolic.svg") :
                                                                   Qt.resolvedUrl("./assets/face-smile-big-symbolic-2.svg")
-            visible: stickersPicker.packCount > 0
+            visible: stickerPacksModel.count > 0
             onClicked: {
                 if (!stickersPicker.expanded) {
                     messageTextArea.focus = false
@@ -257,6 +257,7 @@ Item {
         height: attachments.count !== 0 && !composeBar.audioAttached ? fullSize + units.gu(1.5) : fullSize
         onActiveFocusChanged: {
             if(activeFocus) {
+                stickersPicker.expanded = false
                 messageTextArea.forceActiveFocus()
             } else {
                 focus = false
@@ -409,37 +410,56 @@ Item {
         }
     }
 
-    StickersPicker {
+    Loader {
         id: stickersPicker
+        property bool expanded: false
+        height: expanded ? item.height : 0
+        active: false
+        sourceComponent: stickersPickerComponent
         anchors {
             left: parent.left
             right: parent.right
             top: textEntry.bottom
         }
-
         onExpandedChanged: {
-            if (expanded && Qt.inputMethod.visible) {
-                stickersPicker.forceActiveFocus()
+            if (expanded) {
+               stickersPicker.active = expanded
+            }
+            if (active) {
+                item.expanded = expanded
             }
         }
+    }
 
-        onStickerSelected: {
-            if (!canSend) {
-                // FIXME: show a dialog saying what we need to do to be able to send
-                return
+    Component {
+        id: stickersPickerComponent
+        StickersPicker {
+            id: stickersPicker1
+
+            onExpandedChanged: {
+                if (expanded && Qt.inputMethod.visible) {
+                    stickersPicker1.forceActiveFocus()
+                }
             }
 
-            var attachment = {}
-            var filePath = String(path).replace('file://', '')
-            attachment["contentType"] = application.fileMimeType(filePath)
-            attachment["name"] = filePath.split('/').reverse()[0]
-            attachment["filePath"] = filePath
+            onStickerSelected: {
+                if (!canSend) {
+                    // FIXME: show a dialog saying what we need to do to be able to send
+                    return
+                }
 
-            // we need to append the attachment to a ListModel, so create it dynamically
-            var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
-            attachments.append(attachment)
-            composeBar.sendRequested("", attachments)
-            stickersPicker.expanded = false
+                var attachment = {}
+                var filePath = String(path).replace('file://', '')
+                attachment["contentType"] = application.fileMimeType(filePath)
+                attachment["name"] = filePath.split('/').reverse()[0]
+                attachment["filePath"] = filePath
+
+                // we need to append the attachment to a ListModel, so create it dynamically
+                var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
+                attachments.append(attachment)
+                composeBar.sendRequested("", attachments)
+                stickersPicker.expanded = false
+            }
         }
     }
 

@@ -28,7 +28,7 @@ Item {
     visible: opacity > 0
 
     property int duration: 0
-    property alias recording: audioRecorder.recording
+    readonly property bool recording: audioRecorder.recording
     property real buttonOpacity: 1
 
     signal audioRecorded(var audio)
@@ -41,32 +41,51 @@ Item {
         audioRecorder.stop()
     }
 
-    AudioRecorder {
+    Loader {
         id: audioRecorder
-
-        readonly property bool recording: recorderState == AudioRecorder.RecordingState
-
-        onRecorderStateChanged: {
-            if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
-                var filePath = actualLocation
-
-                if (application.fileMimeType(filePath).toLowerCase().indexOf("audio/") <= -1) {
-                    //If the recording process is too quick the generated file is not an audio one and should be ignored
-                    return;
-                }
-
-                var attachment = {}
-                attachment["contentType"] = application.fileMimeType(filePath)
-                attachment["name"] = filePath.split('/').reverse()[0]
-                attachment["filePath"] = filePath
-                recordingBar.audioRecorded(attachment)
-
-                recordingBar.duration = duration
-            }
+        readonly property bool ready: status == Loader.Ready
+        readonly property bool recording: ready ? item.recorderState == AudioRecorder.RecordingState : false
+        readonly property int duration: ready ? item.duration : false
+        function record() {
+            audioRecorder.active = true
+            item.record()
         }
+        function stop() {
+            item.stop()
+            audioRecorder.active = false
+        }
+ 
+        active: false
+        sourceComponent: audioRecorderComponent
+    }
 
-        codec: "audio/vorbis"
-        quality: AudioRecorder.VeryHighQuality
+    Component {
+        id: audioRecorderComponent
+        AudioRecorder {
+            readonly property bool recording: recorderState == AudioRecorder.RecordingState
+
+            onRecorderStateChanged: {
+                if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
+                    var filePath = actualLocation
+
+                    if (application.fileMimeType(filePath).toLowerCase().indexOf("audio/") <= -1) {
+                        //If the recording process is too quick the generated file is not an audio one and should be ignored
+                        return;
+                    }
+
+                    var attachment = {}
+                    attachment["contentType"] = application.fileMimeType(filePath)
+                    attachment["name"] = filePath.split('/').reverse()[0]
+                    attachment["filePath"] = filePath
+                    recordingBar.audioRecorded(attachment)
+
+                    recordingBar.duration = duration
+                }
+            }
+
+            codec: "audio/vorbis"
+            quality: AudioRecorder.VeryHighQuality
+        }
     }
 
     TransparentButton {
