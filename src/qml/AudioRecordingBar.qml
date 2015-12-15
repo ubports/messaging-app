@@ -45,7 +45,7 @@ Item {
         id: audioRecorder
         readonly property bool ready: status == Loader.Ready
         readonly property bool recording: ready ? item.recorderState == AudioRecorder.RecordingState : false
-        readonly property int duration: ready ? item.duration : false
+        readonly property int duration: ready ? item.duration : 0
         function record() {
             audioRecorder.active = true
             item.record()
