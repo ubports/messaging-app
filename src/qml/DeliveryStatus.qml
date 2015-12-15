@@ -22,15 +22,16 @@ Image {
     property int status: -1
     property bool enabled: true
     height: enabled ? units.gu(1) : 0
+    width: enabled ? undefined : 0
     fillMode: Image.PreserveAspectFit
     source: {
         if (!enabled) {
             return ""
         }
         if (status == HistoryThreadModel.MessageStatusDelivered) {
-            return Qt.resolvedUrl("./assets/check_single_white.png")
+            return Qt.resolvedUrl("./assets/single_tick.svg")
         } else if (status == HistoryThreadModel.MessageStatusRead) {
-            return Qt.resolvedUrl("./assets/check_double_white.png")
+            return Qt.resolvedUrl("./assets/double_tick.svg")
         }
         return ""
     }
