@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-11-20 05:30+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-15 05:36+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "ਮਨਜ਼ੂਰ"
 
-#: ../src/qml/Messages.qml:645
+#: ../src/qml/Messages.qml:894
 msgid "Add"
 msgstr "ਜੋੜੋ"
 
@@ -97,7 +97,7 @@ msgstr[1] "ਨੱਥੀ: %1 ਵੀਡੀਓ"
 msgid "Audio attachment not supported"
 msgstr "ਨੱਥੀ ਕੀਤੀ ਆਡੀਓ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ"
 
-#: ../src/qml/Messages.qml:634 ../src/qml/Messages.qml:692
+#: ../src/qml/Messages.qml:883 ../src/qml/Messages.qml:942
 msgid "Call"
 msgstr "ਕਾਲ"
 
@@ -112,8 +112,9 @@ msgstr "ਰੱਦ"
 msgid "Change all Messaging associations to %1?"
 msgstr "%1 ਨਾਲ ਸੰਬੰਧਤ ਸਾਰੇ ਸਨੁੇਹੇ ਬਦਲੋ?"
 
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:479
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:720
 msgid "Close"
 msgstr "ਬੰਦ"
 
@@ -121,7 +122,7 @@ msgstr "ਬੰਦ"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "ਸਕਰੀਨ ਦੇ ਤਲੇ ਨੂੰ ਉੱਪਰ ਵੱਲ ਖਿਸਕਾਉਣ ਦੁਆਰਾ ਇੱਕ ਨਵੇਂ ਸੁਨੇਹਾ ਲਿਖੋ।"
 
-#: ../src/qml/Messages.qml:703
+#: ../src/qml/Messages.qml:953
 msgid "Contact"
 msgstr "ਸੰਪਰਕ"
 
@@ -145,7 +146,7 @@ msgstr "ਪਹੁੰਚਾਇਆ"
 msgid "Don't ask again"
 msgstr "ਫੇਰ ਨਾ ਪੁੱਛੋ"
 
-#: ../src/qml/MessagingContactViewPage.qml:70
+#: ../src/qml/MessagingContactViewPage.qml:71
 msgid "Edit"
 msgstr ""
 
@@ -182,7 +183,7 @@ msgid "Group"
 msgstr "ਗਰੁੱਪ"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:328
+#: ../src/qml/Messages.qml:547
 #, qt-format
 msgid "Group (%1)"
 msgstr "ਗਰੁੱਪ (%1)"
@@ -227,7 +228,7 @@ msgstr "ਮੈਸੇਜ਼ਿੰਗ ਐਪ"
 msgid "Messaging application"
 msgstr "ਮੈਸੇਜ਼ਿੰਗ ਐਪਲੀਕੇਸ਼ਨ"
 
-#: ../src/qml/MMSDelegate.qml:211
+#: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr "ਸੁਨੇਹਾ ਡਾਟਾ ਲਾਪਤਾ"
 
@@ -235,11 +236,10 @@ msgstr "ਸੁਨੇਹਾ ਡਾਟਾ ਲਾਪਤਾ"
 msgid "Myself"
 msgstr "ਖੁਦ"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:550
 msgid "New Message"
 msgstr "ਨਵਾਂ ਸੁਨੇਹਾ"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "ਨਹੀਂ"
@@ -248,7 +248,7 @@ msgstr "ਨਹੀਂ"
 msgid "No SIM card selected"
 msgstr "ਕੋਈ ਸਿਮ ਕਾਰਡ ਨਹੀਂ ਚੁਣਿਆ"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:716
 msgid "No network"
 msgstr "ਨੈੱਟਵਰਕ ਨਹੀਂ"
 
@@ -279,7 +279,7 @@ msgstr "ਪੜ੍ਹੋ"
 msgid "Received"
 msgstr "ਮਿਲਿਆ"
 
-#: ../src/qml/Messages.qml:416
+#: ../src/qml/Messages.qml:657
 msgid "Remove"
 msgstr "ਹਟਾਓ"
 
@@ -295,7 +295,8 @@ msgstr "ਸਿਮ ਕਾਰਡ ਲਾਕ ਹੈ"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:37
+#: ../src/qml/MMS/Previewer.qml:67
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:83
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
@@ -328,7 +329,9 @@ msgstr "ਭੇਜੇ"
 msgid "Settings"
 msgstr "ਸੈਟਿੰਗ"
 
-#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:74
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:91
+#: ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "ਸਾਂਝਾ ਕਰੋ"
 
@@ -352,16 +355,16 @@ msgstr "ਮੂਲ ਸਿਮ ਲਈ ਬਦਲੋ:"
 msgid "Temporarily Failed"
 msgstr "ਆਰਜ਼ੀ ਤੌਰ ਤੇ ਫ਼ੇਲ੍ਹ ਹੋਇਆ"
 
-#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:75 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
 msgstr "ਟੈਕਸਟ ਸੁਨੇਹਾ ਕਲਿੱਪਬੋਰਡ ਤੇ ਕਾਪੀ ਹੋਇਆ"
 
-#: ../src/qml/Messages.qml:476
+#: ../src/qml/Messages.qml:717
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "ਇਸ ਸਮੇਂ %1 ਉੱਤੇ ਕੋਈ ਨੈੱਟਵਰਕ ਨਹੀਂ ਹੈ"
 
-#: ../src/qml/Messages.qml:476
+#: ../src/qml/Messages.qml:717
 msgid "There is currently no network."
 msgstr "ਇਸ ਸਮੇਂ ਕੋਈ ਨੈੱਟਵਰਕ ਨਹੀਂ ਹੈ।"
 
@@ -385,8 +388,7 @@ msgstr "ਕਿਸਮ"
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
-#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:927
+#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1183
 msgid "Unknown contact"
 msgstr "ਅਣਪਛਾਤਾ ਸੰਪਰਕ"
 
@@ -402,7 +404,7 @@ msgstr "ਨੱਥੀ ਕੀਤੀ ਵੀਡੀਓ ਨੂੰ ਸਹਿਯੋਗ �
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "ਤੁਹਾਡੀ ਉਬੰਤੂ ਮੈਸੇਜਿੰਗ ਐਪ ਵਿੱਚ ਸੁਆਗਤ ਹੈ।"
 
-#: ../src/qml/Messages.qml:1042
+#: ../src/qml/Messages.qml:1327
 msgid "Write a message..."
 msgstr "ਇੱਕ ਸੁਨੇਹਾ ਲਿਖੋ..."
 

@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-11-20 05:31+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-15 05:36+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Kabul Edildi"
 
-#: ../src/qml/Messages.qml:645
+#: ../src/qml/Messages.qml:894
 msgid "Add"
 msgstr "Ekle"
 
@@ -97,7 +97,7 @@ msgstr[1] "Ek: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Ses eklentisi desteklenmemektedir."
 
-#: ../src/qml/Messages.qml:634 ../src/qml/Messages.qml:692
+#: ../src/qml/Messages.qml:883 ../src/qml/Messages.qml:942
 msgid "Call"
 msgstr "Ara"
 
@@ -112,8 +112,9 @@ msgstr "İptal"
 msgid "Change all Messaging associations to %1?"
 msgstr "Tüm mesaj ilişkilendirmeleri %1 mi olsun?"
 
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:479
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:720
 msgid "Close"
 msgstr "Kapat"
 
@@ -121,7 +122,7 @@ msgstr "Kapat"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Ekranın aşağısından yukarı kaydırarak yeni bir ileti hazırlayın."
 
-#: ../src/qml/Messages.qml:703
+#: ../src/qml/Messages.qml:953
 msgid "Contact"
 msgstr "Kişi"
 
@@ -145,7 +146,7 @@ msgstr "Gönderildi"
 msgid "Don't ask again"
 msgstr "Bir daha sorma"
 
-#: ../src/qml/MessagingContactViewPage.qml:70
+#: ../src/qml/MessagingContactViewPage.qml:71
 msgid "Edit"
 msgstr ""
 
@@ -182,7 +183,7 @@ msgid "Group"
 msgstr "Grup"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:328
+#: ../src/qml/Messages.qml:547
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grup (%1)"
@@ -227,7 +228,7 @@ msgstr "Mesajlaşma Uygulaması"
 msgid "Messaging application"
 msgstr "Mesajlaşma uygulaması"
 
-#: ../src/qml/MMSDelegate.qml:211
+#: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr "Eksik mesaj verisi"
 
@@ -235,11 +236,10 @@ msgstr "Eksik mesaj verisi"
 msgid "Myself"
 msgstr "Kendim"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:550
 msgid "New Message"
 msgstr "Yeni İleti"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "Hayır"
@@ -248,7 +248,7 @@ msgstr "Hayır"
 msgid "No SIM card selected"
 msgstr "SIM Kart seçili değil"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:716
 msgid "No network"
 msgstr "Şebeke Yok"
 
@@ -279,7 +279,7 @@ msgstr "Oku"
 msgid "Received"
 msgstr "Alındı"
 
-#: ../src/qml/Messages.qml:416
+#: ../src/qml/Messages.qml:657
 msgid "Remove"
 msgstr "Sil"
 
@@ -295,7 +295,8 @@ msgstr "SIM Kart kilitli"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:37
+#: ../src/qml/MMS/Previewer.qml:67
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:83
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Kaydet"
@@ -329,7 +330,9 @@ msgstr "Gönderildi"
 msgid "Settings"
 msgstr ""
 
-#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:74
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:91
+#: ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Paylaş"
 
@@ -353,16 +356,16 @@ msgstr "Varsayılan SIM'e geçiş yap:"
 msgid "Temporarily Failed"
 msgstr "Geçici olarak başarısız"
 
-#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:75 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
 msgstr "Metin Mesajı panoya kopyalandı."
 
-#: ../src/qml/Messages.qml:476
+#: ../src/qml/Messages.qml:717
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1 operatöründe şu an şebeke yok"
 
-#: ../src/qml/Messages.qml:476
+#: ../src/qml/Messages.qml:717
 msgid "There is currently no network."
 msgstr "Şu an şebeke yok."
 
@@ -386,8 +389,7 @@ msgstr "Tür"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:927
+#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1183
 msgid "Unknown contact"
 msgstr "Bilinmeyen kişi"
 
@@ -403,7 +405,7 @@ msgstr "Video eklentisi desteklenmemektedir."
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1042
+#: ../src/qml/Messages.qml:1327
 msgid "Write a message..."
 msgstr "Bir ileti yazın..."
 
