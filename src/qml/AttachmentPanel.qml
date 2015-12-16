@@ -121,7 +121,6 @@ Item {
             }
         }
 
-        // FIXME: enable generic file sharing if we ever support it
         TransparentButton {
             id: fileButton
             objectName: "fileButton"
@@ -136,7 +135,7 @@ Item {
         }
 
         // FIXME: enable location sharing if we ever support it
-        TransparentButton {
+        /*TransparentButton {
             id: locationButton
             objectName: "locationButton"
             iconName: "location"
@@ -144,7 +143,7 @@ Item {
             spacing: grid.buttonSpacing
             text: i18n.tr("Location")
             Layout.alignment: Qt.AlignHCenter
-        }
+        }*/
 
         TransparentButton {
             id: contactButton
@@ -160,7 +159,7 @@ Item {
         }
 
         // FIXME: enable that once we add support for burn-after-read
-        TransparentButton {
+        /*TransparentButton {
             id: burnAfterReadButton
             objectName: "burnAfterReadButton"
             iconSource: Qt.resolvedUrl("assets/burn-after-read.svg")
@@ -168,7 +167,7 @@ Item {
             spacing: grid.buttonSpacing
             text: i18n.tr("Burn after read")
             Layout.alignment: Qt.AlignHCenter
-        }
+        }*/
     }
 }
 
