@@ -47,6 +47,11 @@ bool FileOperations::link(const QString &from, const QString &to)
     return QFile::link(from, to);
 }
 
+bool FileOperations::remove(const QString &fileName)
+{
+    return QFile::remove(fileName);
+}
+
 qint64 FileOperations::size(const QString &filePath)
 {
     return QFile(filePath).size();
