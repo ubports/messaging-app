@@ -43,6 +43,12 @@ Item {
     property int _activeAttachmentIndex: -1
     property int _defaultHeight: textEntry.height + attachmentPanel.height + units.gu(2)
 
+    Component.onDestruction: {
+        if (composeBar.audioAttached) {
+            FileOperations.remove(attachments.get(0).filePath)
+        }
+    }
+
     function forceFocus() {
         messageTextArea.forceActiveFocus()
     }
