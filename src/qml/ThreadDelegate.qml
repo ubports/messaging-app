@@ -59,6 +59,7 @@ ListItemWithActions {
         var imageCount = 0
         var videoCount = 0
         var contactCount = 0
+        var audioCount = 0
         var attachmentCount = 0
         for (var i = 0; i < displayedEventTextAttachments.length; i++) {
             if (startsWith(displayedEventTextAttachments[i].contentType, "text/plain")) {
@@ -70,9 +71,11 @@ ListItemWithActions {
             } else if (startsWith(displayedEventTextAttachments[i].contentType, "text/vcard") ||
                       startsWith(displayedEventTextAttachments[i].contentType, "text/x-vcard")) {
                 contactCount++
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "audio/")) {
+                audioCount++
             }
         }
-        attachmentCount = imageCount + videoCount + contactCount
+        attachmentCount = imageCount + videoCount + contactCount + audioCount
 
         if (imageCount > 0 && attachmentCount == imageCount) {
             return i18n.tr("Attachment: %1 image", "Attachments: %1 images").arg(imageCount)
@@ -82,6 +85,9 @@ ListItemWithActions {
         }
         if (contactCount > 0 && attachmentCount == contactCount) {
             return i18n.tr("Attachment: %1 contact", "Attachments: %1 contacts").arg(contactCount)
+        }
+        if (audioCount > 0 && attachmentCount == audioCount) {
+            return i18n.tr("Attachment: %1 audio", "Attachments: %1 audios").arg(audioCount)
         }
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
