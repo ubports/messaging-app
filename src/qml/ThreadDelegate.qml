@@ -87,7 +87,7 @@ ListItemWithActions {
             return i18n.tr("Attachment: %1 contact", "Attachments: %1 contacts").arg(contactCount)
         }
         if (audioCount > 0 && attachmentCount == audioCount) {
-            return i18n.tr("Attachment: %1 audio", "Attachments: %1 audios").arg(audioCount)
+            return i18n.tr("Attachment: %1 audio", "Attachments: %1 audio clips").arg(audioCount)
         }
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
