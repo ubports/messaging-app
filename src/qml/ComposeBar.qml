@@ -43,11 +43,19 @@ Item {
     property int _activeAttachmentIndex: -1
     property int _defaultHeight: textEntry.height + attachmentPanel.height + units.gu(2)
 
+    Component.onDestruction: {
+        composeBar.reset()
+    }
+
     function forceFocus() {
         messageTextArea.forceActiveFocus()
     }
 
     function reset() {
+        if (composeBar.audioAttached) {
+            FileOperations.remove(attachments.get(0).filePath)
+        }
+
         textEntry.text = ""
         attachments.clear()
     }
@@ -241,7 +249,6 @@ Item {
         iconName: "close"
 
         onClicked: {
-            // TODO Remove audio recorded temp file
             composeBar.reset()
         }
     }
