@@ -241,7 +241,9 @@ Item {
         iconName: "close"
 
         onClicked: {
-            // TODO Remove audio recorded temp file
+            if (composeBar.audioAttached) {
+                FileOperations.remove(attachments.get(0).filePath)
+            }
             composeBar.reset()
         }
     }
