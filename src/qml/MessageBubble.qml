@@ -78,7 +78,7 @@ BorderImage {
         if (error) {
             return "red"
         } else if (sending) {
-            return "gray"
+            return "grey"
         } else if (messageIncoming) {
             return "white"
         } else {
