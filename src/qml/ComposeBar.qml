@@ -44,9 +44,7 @@ Item {
     property int _defaultHeight: textEntry.height + attachmentPanel.height + units.gu(2)
 
     Component.onDestruction: {
-        if (composeBar.audioAttached) {
-            FileOperations.remove(attachments.get(0).filePath)
-        }
+        composeBar.reset()
     }
 
     function forceFocus() {
@@ -54,6 +52,10 @@ Item {
     }
 
     function reset() {
+        if (composeBar.audioAttached) {
+            FileOperations.remove(attachments.get(0).filePath)
+        }
+
         textEntry.text = ""
         attachments.clear()
     }
@@ -247,9 +249,6 @@ Item {
         iconName: "close"
 
         onClicked: {
-            if (composeBar.audioAttached) {
-                FileOperations.remove(attachments.get(0).filePath)
-            }
             composeBar.reset()
         }
     }
