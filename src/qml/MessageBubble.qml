@@ -164,7 +164,7 @@ Rectangle {
 
     DeliveryStatus {
         id: deliveryStatus
-        status: messageStatus
+        messageStatus: root.messageStatus
         enabled: deliveryStatusAvailable
         anchors {
             right: parent.right
