@@ -128,9 +128,7 @@ Item {
             Connections {
                 target: audioPlayer
                 onDurationChanged: {
-                    if (slider.maximumValue == 100) {
-                        slider.maximumValue = audioPlayer.duration
-                    }
+                    slider.maximumValue = audioPlayer.duration
                 }
             }
             style: SliderStyle {
