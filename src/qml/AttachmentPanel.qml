@@ -121,7 +121,8 @@ Item {
             }
         }
 
-        TransparentButton {
+        // FIXME: enable generic file sharing if we ever support it
+        /*TransparentButton {
             id: fileButton
             objectName: "fileButton"
             iconSource: Qt.resolvedUrl("assets/stock_document.svg")
@@ -132,7 +133,7 @@ Item {
             onClicked: {
                 contentImporter.requestDocument()
             }
-        }
+        }*/
 
         // FIXME: enable location sharing if we ever support it
         /*TransparentButton {

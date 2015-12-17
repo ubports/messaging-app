@@ -78,7 +78,7 @@ BorderImage {
         if (error) {
             return "red"
         } else if (sending) {
-            return "gray"
+            return "grey"
         } else if (messageIncoming) {
             return "white"
         } else {
@@ -176,7 +176,7 @@ BorderImage {
 
         DeliveryStatus {
             id: deliveryStatus
-            status: messageStatus
+            messageStatus: messageStatus
             enabled: deliveryStatusAvailable
             anchors.verticalCenter: textTimestamp.verticalCenter
         }
