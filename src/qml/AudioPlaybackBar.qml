@@ -155,7 +155,7 @@ Item {
             height: units.gu(3)
             minimumValue: 0.0
             maximumValue: 100
-            value: audioPlayer.position
+            value: audioPlayer.stopped ? 0 : audioPlayer.position
             activeFocusOnPress: false
             onPressedChanged: {
                 if (!pressed) {
