@@ -104,7 +104,7 @@ Item {
             }
 
             iconColor: "grey"
-            iconName: audioPlayer.playing ? "media-playback-stop" : "media-playback-start"
+            iconName: audioPlayer.playing ? "media-playback-pause" : "media-playback-start"
 
             textSize: FontUtils.sizeToPixels("x-small")
             text: {
@@ -116,7 +116,7 @@ Item {
 
             onClicked: {
                 if (audioPlayer.playing) {
-                    audioPlayer.stop()
+                    audioPlayer.pause()
                 } else {
                     audioPlayer.play()
                 }
