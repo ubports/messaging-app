@@ -176,7 +176,7 @@ BorderImage {
 
         DeliveryStatus {
             id: deliveryStatus
-            status: messageStatus
+            messageStatus: messageStatus
             enabled: deliveryStatusAvailable
             anchors.verticalCenter: textTimestamp.verticalCenter
         }
