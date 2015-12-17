@@ -99,7 +99,7 @@ MMSBase {
 
     DeliveryStatus {
        id: deliveryStatus
-       status: textMessageStatus
+       messageStatus: textMessageStatus
        enabled: showDeliveryStatus
        anchors {
            right: parent.right
