@@ -25,6 +25,7 @@ MessageBubble {
     messageStatus: messageData.textMessageStatus
     messageIncoming: incoming
     accountName: accountLabel
+    showDeliveryStatus: true
 
     states: [
         State {

@@ -73,5 +73,6 @@ MessageDelegate {
         messageTimeStamp: root.messageData.timestamp
         accountName: root.accountLabel
         messageStatus: root.messageData.textMessageStatus
+        showDeliveryStatus: true
     }
 }

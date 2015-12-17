@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
+import "Stickers"
 
 MainView {
     id: mainView
@@ -167,8 +168,17 @@ MainView {
     Settings {
         id: settings
         category: "DualSim"
+        property bool messagesDontShowFileSizeWarning: false
         property bool messagesDontAsk: false
         property bool mainViewIgnoreFirstTimeDialog: false
+    }
+
+    StickerPacksModel {
+        id: stickerPacksModel
+    }
+
+    StickersModel {
+        id: stickersModel
     }
 
     Connections {
@@ -194,6 +204,8 @@ MainView {
         } else if (startsWith(contentType, "text/vcard") ||
                    startsWith(contentType, "text/x-vcard")) {
             return ContentType.Contacts
+        } else if (startsWith(contentType, "video/")) {
+            return ContentType.Videos
         }
         return ContentType.Unknown
     }
