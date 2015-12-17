@@ -108,7 +108,7 @@ Item {
 
             textSize: FontUtils.sizeToPixels("x-small")
             text: {
-                if (audioPlayer.playing) {
+                if (audioPlayer.playing || audioPlayer.paused) {
                     return DateUtils.formattedTime(audioPlayer.position/ 1000)
                 }
                 return DateUtils.formattedTime(playbackBar.duration / 1000)
