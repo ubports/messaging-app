@@ -174,7 +174,7 @@ Item {
                         audioPlayer.muted = false
 
                     }
-                    value = Qt.binding(function(){ return audioPlayer.position})
+                    value = Qt.binding(function(){ return audioPlayer.stopped ? 0 : audioPlayer.position })
                 }
             }
         }
