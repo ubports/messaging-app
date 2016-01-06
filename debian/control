@@ -2,8 +2,12 @@ Source: messaging-app
 Section: x11
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Build-Depends: cmake,
+Build-Depends: apparmor,
+               apparmor-easyprof,
+               apparmor-easyprof-ubuntu (>= 1.3.13),
+               cmake,
                debhelper (>= 9),
+               dh-apparmor,
                dh-translations,
                libnotify-dev,
                python-flake8,
