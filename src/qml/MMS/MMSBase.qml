@@ -23,4 +23,6 @@ Item {
     property var attachment
     property string previewer
     property bool lastItem: false
+    property bool swipeLocked: false
+    property bool showDeliveryStatus: true
 }
