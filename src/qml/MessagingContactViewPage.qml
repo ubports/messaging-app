@@ -54,7 +54,7 @@ ContactViewPage {
         }
     }
 
-    head.actions: [
+    headerActions: [
         Action {
             objectName: "share"
             text: i18n.tr("Share")
