@@ -136,14 +136,6 @@ class UseDefaultConfiguration(UseEmptyConfiguration):
         config_file_path = (self.app_config_dir + '/MessagingApp.conf')
         with open(config_file_path, 'w') as config_file:
             config_file.write('[General]\nhintNecessary=false\n')
-        self.useFixture(
-            fixtures.EnvironmentVariable(
-                'XDG_CONFIG_HOME', newvalue='')
-        )
-        self.useFixture(
-            fixture_setup.InitctlEnvironmentVariable(
-                XDG_CONFIG_HOME='')
-        )
 
 
 class RespawnService(fixtures.Fixture):
