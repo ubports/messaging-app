@@ -29,6 +29,7 @@
       "read_path": [
         "/usr/share/applications/",
         "/custom/xdg/data/dconf/",
+        "/usr/share/*/assets/",
         "@{HOME}/.local/share/evolution/addressbook/*/photos/",
         "@{HOME}/.cache/com.ubuntu.messaging-app/MessagingApp/HubIncoming/**",
         "@{HOME}/.local/share/applications/",
