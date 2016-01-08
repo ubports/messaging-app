@@ -499,7 +499,7 @@ class MessagingTestSettings(MessagingAppTestCase):
 
         # read the current value and make sure the checkbox reflects it
         settingsValue = gsettings.get_boolean(key)
-        self.assertThat(option.checked, Equals(settingsValue))
+        self.assertThat(option.checked, Eventually(Equals(settingsValue)))
 
         # now toggle it and check that the value changes
         oldValue = settingsValue
