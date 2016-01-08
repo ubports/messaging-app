@@ -2,7 +2,7 @@
   "profiles": {
     "messaging-app": {
       "binary": "/usr/bin/messaging-app",
-      "profile_name": "messaging-app",
+      "profile_name": "messaging_app",
       "policy_vendor": "ubuntu",
       "policy_version": 1.3,
       "policy_groups": [
