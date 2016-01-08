@@ -17,6 +17,9 @@ apparmor:
 	sed '/lttng-ust-/c\  \/{,var\/}run\/shm\/lttng-ust-* r,'  | \
 	sed '/dconf.user rw/c\  \/run\/user\/\[0-9\]*\/dconf\/user rw,' \
 	> ./debian/usr.bin.messaging-app
+	(head -n -2 ./debian/usr.bin.messaging-app; cat ./debian/messaging-app-apparmor.additions; \
+	echo } ) > ./debian/usr.bin.messaging-app2
+	mv ./debian/usr.bin.messaging-app2 ./debian/usr.bin.messaging-app
 	apparmor_parser -QTK ./debian/usr.bin.messaging-app
 
 override_dh_install: apparmor

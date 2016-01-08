@@ -2,7 +2,7 @@
   "profiles": {
     "messaging-app": {
       "binary": "/usr/bin/messaging-app",
-      "profile_name": "messaging_app",
+      "profile_name": "com.ubuntu.messaging-app_ui_0",
       "policy_vendor": "ubuntu",
       "policy_version": 1.3,
       "policy_groups": [
@@ -13,33 +13,19 @@
         "content_exchange_source",
         "history",
         "microphone",
-        "telephony",
-        "urfkill",
         "video"
       ],
-      "abstractions": [
-        "user-tmp"
-      ],
       "template_variables": {
-        "APP_ID_DBUS": "messaging_2dapp",
-        "APP_PKGNAME_DBUS": "messaging_2dapp",
-        "APP_PKGNAME": "messaging-app",
+        "APP_ID_DBUS": "com_2eubuntu_2emessaging_2dapp_5fui_5f0",
+        "APP_PKGNAME_DBUS": "com_2eubuntu_2emessaging_2dapp",
+        "APP_PKGNAME": "com.ubuntu.messaging-app",
         "CLICK_DIR": "/usr/share/messaging-app"
       },
       "read_path": [
         "/usr/share/applications/",
         "/custom/xdg/data/dconf/",
         "/usr/share/*/assets/",
-        "@{HOME}/.local/share/evolution/addressbook/*/photos/",
-        "@{HOME}/.cache/com.ubuntu.messaging-app/MessagingApp/HubIncoming/**",
-        "@{HOME}/.local/share/applications/",
-        "@{HOME}/.config/com.ubuntu.messaging-app/",
-        "@{HOME}/.local/share/com.ubuntu.messaging-app/"
-      ],
-      "write_path": [
-        "@{HOME}/.cache/com.ubuntu.messaging-app/MessagingApp/HubIncoming/**",
-        "@{HOME}/.config/com.ubuntu.messaging-app/",
-        "@{HOME}/.local/share/com.ubuntu.messaging-app/"
+        "@{HOME}/.local/share/evolution/addressbook/*/photos/"
       ]
     }
   }
