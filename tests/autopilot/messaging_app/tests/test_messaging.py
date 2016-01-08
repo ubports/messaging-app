@@ -484,7 +484,7 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):
-        test_setup = fixture_setup.MessagingTestEnvironment()
+        test_setup = fixture_setup.MessagingTestEnvironment(use_temporary_user_conf=False)
         self.useFixture(test_setup)
 
         super(MessagingTestSettings, self).setUp()
