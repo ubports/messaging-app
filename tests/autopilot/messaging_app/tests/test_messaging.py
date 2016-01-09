@@ -108,7 +108,8 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.send_message([phone_num], message)
         self.main_view.close_osk()
 
-        # get bubble after close the osk to make sure that it has the new position
+        # get bubble after close the osk to make sure that it has the
+        # new position
         bubble = self.main_view.get_message(message)
         # long press on bubble
         self.main_view.long_press(bubble)
@@ -126,7 +127,8 @@ class TestMessaging(BaseMessagingTestCase):
         self.main_view.send_message([phone_num], message)
 
         self.main_view.close_osk()
-        # get bubble after close the osk to make sure that it has the new position
+        # get bubble after close the osk to make sure that it has the
+        # new position
         bubble = self.main_view.get_message(message)
 
         # long press on bubble and verify cancel button does not delete message
@@ -484,7 +486,8 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):
-        test_setup = fixture_setup.MessagingTestEnvironment(use_temporary_user_conf=False)
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_temporary_user_conf=False)
         self.useFixture(test_setup)
 
         super(MessagingTestSettings, self).setUp()

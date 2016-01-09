@@ -23,9 +23,9 @@ from messaging_app import helpers
 class MessagingTestEnvironment(fixtures.Fixture):
 
     def __init__(self,
-        use_testdata_db=False,
-        use_empty_config=False,
-        use_temporary_user_conf=True):
+                 use_testdata_db=False,
+                 use_empty_config=False,
+                 use_temporary_user_conf=True):
         self.use_testdata_db = use_testdata_db
         self.use_empty_config = use_empty_config
         self.use_temporary_user_conf = use_temporary_user_conf
@@ -138,7 +138,6 @@ class UseEmptyConfiguration(fixtures.Fixture):
             fixture_setup.InitctlEnvironmentVariable(
                 XDG_CONFIG_HOME=self.user_config_dir)
         )
-
 
     def tearDown(self):
         super(UseEmptyConfiguration, self).tearDown()
