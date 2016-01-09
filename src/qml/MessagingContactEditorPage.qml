@@ -28,7 +28,7 @@ ContactEditorPage {
 
     property var contactListPage: null
 
-    head.backAction: Action {
+    leadingActions: Action {
         objectName: "cancel"
 
         text: i18n.tr("Cancel")
@@ -39,7 +39,7 @@ ContactEditorPage {
         }
     }
 
-    head.actions: [
+    headerActions: [
         Action {
             objectName: "save"
 

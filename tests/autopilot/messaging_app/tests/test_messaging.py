@@ -105,10 +105,12 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can delete a message with a long press on the message"""
         phone_num = '555-555-4321'
         message = 'delete me'
-        bubble = self.main_view.send_message([phone_num], message)
-
+        self.main_view.send_message([phone_num], message)
         self.main_view.close_osk()
 
+        # get bubble after close the osk to make sure that it has the
+        # new position
+        bubble = self.main_view.get_message(message)
         # long press on bubble
         self.main_view.long_press(bubble)
 
@@ -122,9 +124,12 @@ class TestMessaging(BaseMessagingTestCase):
         """Verify we can cancel deleting a message with a long press"""
         phone_num = '5555551234'
         message = 'do not delete'
-        bubble = self.main_view.send_message([phone_num], message)
+        self.main_view.send_message([phone_num], message)
 
         self.main_view.close_osk()
+        # get bubble after close the osk to make sure that it has the
+        # new position
+        bubble = self.main_view.get_message(message)
 
         # long press on bubble and verify cancel button does not delete message
         self.main_view.long_press(bubble)
@@ -481,7 +486,8 @@ class MessagingTestCaseWithArgumentNoSlashes(MessagingAppTestCase):
 class MessagingTestSettings(MessagingAppTestCase):
 
     def setUp(self):
-        test_setup = fixture_setup.MessagingTestEnvironment()
+        test_setup = fixture_setup.MessagingTestEnvironment(
+            use_temporary_user_conf=False)
         self.useFixture(test_setup)
 
         super(MessagingTestSettings, self).setUp()
@@ -496,7 +502,7 @@ class MessagingTestSettings(MessagingAppTestCase):
 
         # read the current value and make sure the checkbox reflects it
         settingsValue = gsettings.get_boolean(key)
-        self.assertThat(option.checked, Equals(settingsValue))
+        self.assertThat(option.checked, Eventually(Equals(settingsValue)))
 
         # now toggle it and check that the value changes
         oldValue = settingsValue

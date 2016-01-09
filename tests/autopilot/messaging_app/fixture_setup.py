@@ -22,9 +22,13 @@ from messaging_app import helpers
 
 class MessagingTestEnvironment(fixtures.Fixture):
 
-    def __init__(self, use_testdata_db=False, use_empty_config=False):
+    def __init__(self,
+                 use_testdata_db=False,
+                 use_empty_config=False,
+                 use_temporary_user_conf=True):
         self.use_testdata_db = use_testdata_db
         self.use_empty_config = use_empty_config
+        self.use_temporary_user_conf = use_temporary_user_conf
 
     def setUp(self):
         super(MessagingTestEnvironment, self).setUp()
@@ -34,9 +38,9 @@ class MessagingTestEnvironment(fixtures.Fixture):
         else:
             self.useFixture(UseEmptySmsHistory())
         # check for the configuration file
-        if self.use_empty_config:
+        if self.use_temporary_user_conf and self.use_empty_config:
             self.useFixture(UseEmptyConfiguration())
-        else:
+        elif self.use_temporary_user_conf:
             self.useFixture(UseDefaultConfiguration())
         self.useFixture(RespawnService())
         self.useFixture(MockNotificationSystem())
@@ -110,14 +114,25 @@ class UseEmptyConfiguration(fixtures.Fixture):
 
     def setUp(self):
         super(UseEmptyConfiguration, self).setUp()
-        self.user_config_dir = tempfile.mkdtemp(
+        self.user_home_dir = tempfile.mkdtemp(
             suffix='', prefix='messaging-app')
+        self.user_config_dir = self.user_home_dir + '/.config'
         self.app_config_dir = (
             self.user_config_dir + '/com.ubuntu.messaging-app/')
         os.makedirs(self.app_config_dir)
+
+        self.useFixture(
+            fixtures.EnvironmentVariable(
+                'HOME', newvalue=self.user_home_dir)
+        )
         self.useFixture(
             fixtures.EnvironmentVariable(
                 'XDG_CONFIG_HOME', newvalue=self.user_config_dir)
+        )
+
+        self.useFixture(
+            fixture_setup.InitctlEnvironmentVariable(
+                HOME=self.user_home_dir)
         )
         self.useFixture(
             fixture_setup.InitctlEnvironmentVariable(
@@ -126,7 +141,7 @@ class UseEmptyConfiguration(fixtures.Fixture):
 
     def tearDown(self):
         super(UseEmptyConfiguration, self).tearDown()
-        shutil.rmtree(self.user_config_dir)
+        shutil.rmtree(self.user_home_dir)
 
 
 class UseDefaultConfiguration(UseEmptyConfiguration):
@@ -136,14 +151,6 @@ class UseDefaultConfiguration(UseEmptyConfiguration):
         config_file_path = (self.app_config_dir + '/MessagingApp.conf')
         with open(config_file_path, 'w') as config_file:
             config_file.write('[General]\nhintNecessary=false\n')
-        self.useFixture(
-            fixtures.EnvironmentVariable(
-                'XDG_CONFIG_HOME', newvalue='')
-        )
-        self.useFixture(
-            fixture_setup.InitctlEnvironmentVariable(
-                XDG_CONFIG_HOME='')
-        )
 
 
 class RespawnService(fixtures.Fixture):
