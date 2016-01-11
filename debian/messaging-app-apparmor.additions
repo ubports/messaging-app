@@ -17,6 +17,14 @@
        bus=session
        name=org.freedesktop.Telepathy.Client.*,
 
+  dbus (send)
+       interface="org.freedesktop.Notifications"
+       member="GetServerInformation",
+
+  dbus (send)
+       interface="org.freedesktop.Notifications"
+       member="Notify",
+
   # query greeter status
   dbus (receive, send)
        bus=session
