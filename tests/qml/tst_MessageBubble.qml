@@ -73,20 +73,20 @@ Item {
         function test_incomingMessageBubbleMustUseIncomingSource() {
             var incomingMessageBubble = findChild(
                 root, 'incomingMessageBubble');
-            compare(incomingMessageBubble.color, "#ffffff")
+            compare(incomingMessageBubble.color, "white")
         }
 
         function test_outgoingMessageBubbleMustUseOutgoingSource() {
             var outgoingMessageBubble = findChild(
                 root, 'outgoingMessageBubble');
-            compare(outgoingMessageBubble.color, "#3fb24f")
+            compare(outgoingMessageBubble.color, "green")
         }
 
         function test_changeIncomingMustUpdateSource() {
             var changeIncomingMessageBubble = findChild(
                 root, 'changeIncomingMessageBubble');
             changeIncomingMessageBubble.messageIncoming = false;
-            compare(changeIncomingMessageBubble.color, "#3fb24f")
+            compare(changeIncomingMessageBubble.color, "green")
         }
     }
 }

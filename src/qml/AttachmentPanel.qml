@@ -130,6 +130,9 @@ Item {
             spacing: grid.buttonSpacing
             text: i18n.tr("File")
             Layout.alignment: Qt.AlignHCenter
+            onClicked: {
+                contentImporter.requestDocument()
+            }
         }*/
 
         // FIXME: enable location sharing if we ever support it

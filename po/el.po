@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-11-20 05:30+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-15 05:36+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Αποδέχθη"
 
-#: ../src/qml/Messages.qml:645
+#: ../src/qml/Messages.qml:894
 msgid "Add"
 msgstr "Προσθήκη"
 
@@ -97,7 +97,7 @@ msgstr[1] "Συνημμένα: %1 βίντεο"
 msgid "Audio attachment not supported"
 msgstr "Το επισυναπτόμενο αρχείο ήχου δεν υποστηρίζεται"
 
-#: ../src/qml/Messages.qml:634 ../src/qml/Messages.qml:692
+#: ../src/qml/Messages.qml:883 ../src/qml/Messages.qml:942
 msgid "Call"
 msgstr "Κλήση"
 
@@ -112,8 +112,9 @@ msgstr "Ακύρωση"
 msgid "Change all Messaging associations to %1?"
 msgstr "Αλλαγή όλων των συσχετίσεων των Μηνυμάτων σε %1;"
 
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:479
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:720
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -122,7 +123,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Δημιουργία ενός νέου μηνύματος σέρνοντας προς τα πάνω από τη βάση της οθόνης."
 
-#: ../src/qml/Messages.qml:703
+#: ../src/qml/Messages.qml:953
 msgid "Contact"
 msgstr "Επαφή"
 
@@ -146,7 +147,7 @@ msgstr "Παραδόθηκε"
 msgid "Don't ask again"
 msgstr "Να μην ερωτηθώ ξανά"
 
-#: ../src/qml/MessagingContactViewPage.qml:70
+#: ../src/qml/MessagingContactViewPage.qml:71
 msgid "Edit"
 msgstr "Επεξεργασία"
 
@@ -183,7 +184,7 @@ msgid "Group"
 msgstr "Ομάδα"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:328
+#: ../src/qml/Messages.qml:547
 #, qt-format
 msgid "Group (%1)"
 msgstr "Ομάδα (%1)"
@@ -228,7 +229,7 @@ msgstr "Εφαρμογή Μηνύματα"
 msgid "Messaging application"
 msgstr "Εφαρμογή μηνυμάτων"
 
-#: ../src/qml/MMSDelegate.qml:211
+#: ../src/qml/MMSDelegate.qml:217
 msgid "Missing message data"
 msgstr "Χαμένα δεδομένα μηνύματος"
 
@@ -236,11 +237,10 @@ msgstr "Χαμένα δεδομένα μηνύματος"
 msgid "Myself"
 msgstr "Εγώ"
 
-#: ../src/qml/Messages.qml:331
+#: ../src/qml/Messages.qml:550
 msgid "New Message"
 msgstr "Νέο μήνυμα"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:70
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "Όχι"
@@ -249,7 +249,7 @@ msgstr "Όχι"
 msgid "No SIM card selected"
 msgstr "Δεν επιλέχτηκε κάρτα SIM"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:716
 msgid "No network"
 msgstr "Απουσία δικτύου"
 
@@ -281,7 +281,7 @@ msgstr "Ανεγνώσθη"
 msgid "Received"
 msgstr "Παρελήφθη"
 
-#: ../src/qml/Messages.qml:416
+#: ../src/qml/Messages.qml:657
 msgid "Remove"
 msgstr "Αφαίρεση"
 
@@ -297,7 +297,8 @@ msgstr "Η κάρτα SIM είναι κλειδωμένη"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:37
+#: ../src/qml/MMS/Previewer.qml:67
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:83
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Αποθήκευση"
@@ -331,7 +332,9 @@ msgstr "Απεσταλμένα"
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: ../src/qml/MMS/Previewer.qml:47 ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:74
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:91
+#: ../src/qml/MessagingContactViewPage.qml:60
 msgid "Share"
 msgstr "Κοινοποίηση"
 
@@ -355,16 +358,16 @@ msgstr "Αλλαγή στην προεπιλεγμένη SIM:"
 msgid "Temporarily Failed"
 msgstr "Προσωρινά απέτυχε"
 
-#: ../src/qml/MMSDelegate.qml:69 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:75 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
 msgstr "Το μήνυμα κειμένου έχει αντιγραφεί στο πρόχειρο"
 
-#: ../src/qml/Messages.qml:476
+#: ../src/qml/Messages.qml:717
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Προς το παρόν δεν υπάρχει δίκτυο στο %1"
 
-#: ../src/qml/Messages.qml:476
+#: ../src/qml/Messages.qml:717
 msgid "There is currently no network."
 msgstr "Προς το παρόν δεν υπάρχει δίκτυο."
 
@@ -388,8 +391,7 @@ msgstr "Τύπος"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: ../src/qml/MMS/MMSContact.qml:76 ../src/qml/MMS/PreviewerContact.qml:34
-#: ../src/qml/Messages.qml:927
+#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1183
 msgid "Unknown contact"
 msgstr "Άγνωστη επαφή"
 
@@ -405,7 +407,7 @@ msgstr "Το επισυναπτόμενο αρχείο βίντεο  δεν υπ
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Καλώς ήρθατε στην εφαρμογή συνομιλίας του Ubuntu σας."
 
-#: ../src/qml/Messages.qml:1042
+#: ../src/qml/Messages.qml:1327
 msgid "Write a message..."
 msgstr "Γράψτε ένα μήνυμα..."
 

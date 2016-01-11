@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-11-25 05:34+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-15 05:36+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: lv\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -397,7 +397,7 @@ msgstr "Veids"
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1172
+#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1183
 msgid "Unknown contact"
 msgstr "Nezināms kontakts"
 
@@ -413,7 +413,7 @@ msgstr "Video pielikumi nav atbalstīti"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Laipni lūdzam Ubuntu ziņojumu lietotnē."
 
-#: ../src/qml/Messages.qml:1316
+#: ../src/qml/Messages.qml:1327
 msgid "Write a message..."
 msgstr "Rakstīt īsziņu..."
 

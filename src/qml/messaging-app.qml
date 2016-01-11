@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
+import "Stickers"
 
 MainView {
     id: mainView
@@ -180,6 +181,14 @@ MainView {
         property bool messagesDontShowFileSizeWarning: false
         property bool messagesDontAsk: false
         property bool mainViewIgnoreFirstTimeDialog: false
+    }
+
+    StickerPacksModel {
+        id: stickerPacksModel
+    }
+
+    StickersModel {
+        id: stickersModel
     }
 
     Connections {

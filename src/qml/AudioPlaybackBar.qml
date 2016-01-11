@@ -26,15 +26,42 @@ Item {
     id: playbackBar
 
     signal resetRequested()
-    property alias source: audioPlayer.source
-    property int duration: 0
-    property alias playing: audioPlayer.playing
+    property string source: ""
+    property int duration: audioPlayer.duration
+    readonly property bool playing: audioPlayer.playing
 
-    Audio {
+    Loader {
         id: audioPlayer
-        readonly property bool playing: audioPlayer.playbackState == Audio.PlayingState
-        readonly property bool paused: audioPlayer.playbackState == Audio.PausedState
-        readonly property bool stopped: audioPlayer.playbackState == Audio.StoppedState
+        readonly property bool playing: ready ? item.playing : false
+        readonly property bool paused: ready ? item.paused : false
+        readonly property bool stopped: ready ? item.stopped : false
+        readonly property int position: ready ? item.position : 0
+        readonly property int duration: ready ? item.duration : 0
+        readonly property bool ready: status == Loader.Ready
+        readonly property int playbackState: ready ? item.playbackState : Audio.StoppedState
+        function play() { 
+            audioPlayer.active = true
+            item.play() 
+        }
+        function stop() {
+            item.stop()
+            audioPlayer.active = false
+        }
+        function pause() { item.pause() }
+        function seek(pos) { item.seek(pos) }
+        active: false
+        sourceComponent: audioPlayerComponent
+    }
+
+    Component {
+        id: audioPlayerComponent
+        Audio {
+            id: audioPlayer1
+            readonly property bool playing: audioPlayer1.playbackState == Audio.PlayingState
+            readonly property bool paused: audioPlayer1.playbackState == Audio.PausedState
+            readonly property bool stopped: audioPlayer1.playbackState == Audio.StoppedState
+            source: playbackBar.source
+        }
     }
 
     TransparentButton {
@@ -77,7 +104,7 @@ Item {
             }
 
             iconColor: "grey"
-            iconName: audioPlayer.playing ? "media-playback-stop" : "media-playback-start"
+            iconName: audioPlayer.playing ? "media-playback-pause" : "media-playback-start"
 
             textSize: FontUtils.sizeToPixels("x-small")
             text: {
@@ -89,7 +116,7 @@ Item {
 
             onClicked: {
                 if (audioPlayer.playing) {
-                    audioPlayer.stop()
+                    audioPlayer.pause()
                 } else {
                     audioPlayer.play()
                 }

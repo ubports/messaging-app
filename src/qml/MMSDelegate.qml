@@ -163,11 +163,6 @@ MessageDelegate {
                             target: attachmentLoader
                             anchors.left: parent ? parent.left : undefined
                         }
-                        PropertyChanges {
-                            target: attachmentLoader
-                            anchors.leftMargin: units.gu(1)
-                            anchors.rightMargin: 0
-                        }
                     },
                     State {
                         when: !root.incoming
@@ -175,11 +170,6 @@ MessageDelegate {
                         AnchorChanges {
                             target: attachmentLoader
                             anchors.right: parent ? parent.right : undefined
-                        }
-                        PropertyChanges {
-                            target: attachmentLoader
-                            anchors.leftMargin: 0
-                            anchors.rightMargin: units.gu(1)
                         }
                     }
                 ]

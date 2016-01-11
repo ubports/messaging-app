@@ -24,7 +24,7 @@ import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
 
-Rectangle {
+BorderImage {
     id: root
 
     property int messageStatus: -1
@@ -74,29 +74,33 @@ Rectangle {
         return text
     }
 
-    color: {
+    property string color: {
         if (error) {
-            return "#fc4949"
+            return "red"
         } else if (sending) {
-            return "#b2b2b2"
+            return "grey"
         } else if (messageIncoming) {
-            return "#ffffff"
+            return "white"
         } else {
-            return "#3fb24f"
+            // FIXME: use blue for IM accounts
+            return "green"
         }
     }
-    border.color: messageIncoming ? "#ACACAC" : "transparent"
+    source: "assets/" + color + "_bubble.sci"
     smooth: true
 
-    radius: units.gu(1)
-    height: senderName.height + senderName.anchors.topMargin + textLabel.height + textTimestamp.height + units.gu(1)
+    // FIXME: maybe we should put everything inside a container to make width and height calculation easier
+    height: senderName.height + senderName.anchors.topMargin + textLabel.height + border.bottom + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin)
+
+    // if possible, put the timestamp and the delivery status in the same line as the text
+    property int oneLineWidth: textLabel.contentWidth + messageFooter.width
+    property bool oneLine: oneLineWidth <= units.gu(27)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth + deliveryStatus.width, senderName.contentWidth))
+                     Math.max(oneLine ? oneLineWidth : textLabel.contentWidth,
+                              messageFooter.width,
+                              senderName.contentWidth,
+                              border.right + border.left - units.gu(3)))
             + units.gu(3)
-    anchors{
-        leftMargin:  units.gu(1)
-        rightMargin: units.gu(1)
-    }
 
     Label {
         id: senderName
@@ -132,97 +136,49 @@ Rectangle {
         color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
     }
 
-    Label {
-        id: textTimestamp
-        objectName: "messageDate"
+    Row {
+        id: messageFooter
+        width: childrenRect.width
+        spacing: units.gu(1)
 
-        anchors{
+        anchors {
             top: textLabel.bottom
-            topMargin: units.gu(0.5)
-            left: parent.left
-            leftMargin: units.gu(1)
+            topMargin: oneLine ? -textTimestamp.height : units.gu(0.5)
+            right: parent.right
+            rightMargin: units.gu(1)
         }
 
-        visible: !root.sending
-        height: units.gu(2)
-        width: visible ? maxDelegateWidth : 0
-        fontSize: "xx-small"
-        color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
-        opacity: root.messageIncoming ? 1.0 : 0.8
-        elide: Text.ElideRight
-        text: {
-            if (messageTimeStamp === "")
-                return ""
+        Label {
+            id: textTimestamp
+            objectName: "messageDate"
 
-            var str = Qt.formatTime(messageTimeStamp, Qt.DefaultLocaleShortDate)
-            if (root.accountName.length === 0 || !root.messageIncoming) {
+            anchors.bottom: parent.bottom
+            visible: !root.sending
+            height: units.gu(2)
+            width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
+            fontSize: "xx-small"
+            color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
+            opacity: root.messageIncoming ? 1.0 : 0.8
+            elide: Text.ElideRight
+            verticalAlignment: Text.AlignVCenter
+            text: {
+                if (messageTimeStamp === "")
+                    return ""
+
+                var str = Qt.formatTime(messageTimeStamp, Qt.DefaultLocaleShortDate)
+                if (root.accountName.length === 0 || !root.messageIncoming) {
+                    return str
+                }
+                str += " @ %1".arg(root.accountName)
                 return str
             }
-            str += " @ %1".arg(root.accountName)
-            return str
-        }
-    }
-
-    DeliveryStatus {
-        id: deliveryStatus
-        status: messageStatus
-        enabled: deliveryStatusAvailable
-        anchors {
-            right: parent.right
-            rightMargin: units.gu(0.5)
-            verticalCenter: textTimestamp.verticalCenter
-        }
-    }
-
-    Item {
-        id: bubbleArrow
-        width: units.gu(1)
-        height: units.gu(1.5)
-
-        clip: true
-
-        anchors {
-            bottom: parent.bottom
-            bottomMargin: units.gu(2)
-            leftMargin: -1
-            rightMargin: -1
         }
 
-        states: [
-            State {
-                when: root.messageIncoming
-                name: "incoming"
-                AnchorChanges {
-                    target: bubbleArrow
-                    anchors.right: root.left
-                }
-            },
-            State {
-                when: !root.messageIncoming
-                name: "outgoing"
-                AnchorChanges {
-                    target: bubbleArrow
-                    anchors.left: root.right
-                }
-                PropertyChanges {
-                    target: bubbleArrow
-                    rotation: 180
-                }
-            }
-        ]
-
-        Rectangle {
-            rotation: 45
-            color: root.color
-            border.color: root.border.color
-            width: units.gu(1)
-            height: units.gu(1)
-            smooth: true
-
-            anchors {
-                verticalCenter: parent.verticalCenter
-                horizontalCenter: parent.right
-            }
+        DeliveryStatus {
+            id: deliveryStatus
+            messageStatus: messageStatus
+            enabled: deliveryStatusAvailable
+            anchors.verticalCenter: textTimestamp.verticalCenter
         }
     }
 }
