@@ -171,6 +171,7 @@ MainView {
         property bool messagesDontShowFileSizeWarning: false
         property bool messagesDontAsk: false
         property bool mainViewIgnoreFirstTimeDialog: false
+        property bool messagesRecordFirstTimeDialog: true
     }
 
     StickerPacksModel {
