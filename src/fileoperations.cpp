@@ -24,6 +24,7 @@
 #include <QDir>
 #include <QFile>
 #include <QTemporaryFile>
+#include <QStandardPaths>
 
 FileOperations::FileOperations(QObject *parent)
     : QObject(parent)
@@ -36,8 +37,9 @@ FileOperations::~FileOperations()
 
 QString FileOperations::getTemporaryFile(const QString &fileExtension) const
 {
+    QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
     //TODO remove once lp:1420728 is fixed
-    QTemporaryFile tmp(QDir::tempPath() + "/tmpXXXXXX" + fileExtension);
+    QTemporaryFile tmp(dataLocation.path() + "/tmpXXXXXX" + fileExtension);
     tmp.open();
     return tmp.fileName();
 }
