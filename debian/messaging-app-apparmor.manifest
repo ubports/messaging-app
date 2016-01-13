@@ -28,11 +28,7 @@
         "/custom/xdg/data/dconf/",
         "/usr/share/*/assets/",
         "@{HOME}/.local/share/evolution/addressbook/*/photos/",
-        "@{HOME}/.local/share/applications/",
         "/usr/share/messaging-app/"
-      ],
-      "write_path": [
-        "@{HOME}/.cache/QML/Apps/messaging-app/"
       ]
     }
   }
