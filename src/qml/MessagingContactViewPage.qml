@@ -55,33 +55,39 @@ ContactViewPage {
         }
     }
 
-    head.actions: [
-        Action {
-            objectName: "share"
-            text: i18n.tr("Share")
-            iconName: "share"
-            visible: root.editable
-            onTriggered: {
-                mainStack.addPageToCurrentColumn(root,
-                                                 contactShareComponent,
-                                                 { contactModel: root.model,
-                                                   contacts: [root.contact] })
-            }
-        },
-        Action {
-            objectName: "edit"
-            text: i18n.tr("Edit")
-            iconName: "edit"
-            visible: root.editable
-            onTriggered: {
-                mainStack.addPageToCurrentColumn(root,
-                                                 contactEditorPageURL,
-                                                 { model: root.model,
-                                                   contact: root.contact,
-                                                   contactListPage: root.contactListPage })
-            }
+    header: PageHeader {
+        id: pageHeader
+
+        trailingActionBar {
+            actions: [
+                Action {
+                    objectName: "share"
+                    text: i18n.tr("Share")
+                    iconName: "share"
+                    visible: root.editable
+                    onTriggered: {
+                        mainStack.addPageToCurrentColumn(root,
+                                                         contactShareComponent,
+                                                         { contactModel: root.model,
+                                                           contacts: [root.contact] })
+                    }
+                },
+                Action {
+                    objectName: "edit"
+                    text: i18n.tr("Edit")
+                    iconName: "edit"
+                    visible: root.editable
+                    onTriggered: {
+                        mainStack.addPageToCurrentColumn(root,
+                                                         contactEditorPageURL,
+                                                         { model: root.model,
+                                                           contact: root.contact,
+                                                           contactListPage: root.contactListPage })
+                    }
+                }
+            ]
         }
-    ]
+    }
 
     extensions: ContactDetailSyncTargetView {
         contact: root.contact

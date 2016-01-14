@@ -28,27 +28,37 @@ ContactEditorPage {
 
     property var contactListPage: null
 
-    head.backAction: Action {
-        objectName: "cancel"
+    header: PageHeader {
+        id: pageHeader
 
-        text: i18n.tr("Cancel")
-        iconName: "back"
-        onTriggered: {
-            root.cancel()
-            root.active = false
+        leadingActionBar {
+            actions: [
+                Action {
+                    objectName: "cancel"
+
+                    text: i18n.tr("Cancel")
+                    iconName: "back"
+                    onTriggered: {
+                        root.cancel()
+                        root.active = false
+                    }
+                }
+            ]
+        }
+
+        trailingActionBar {
+            actions: [
+                Action {
+                    objectName: "save"
+
+                    text: i18n.tr("Save")
+                    iconName: "ok"
+                    enabled: root.isContactValid
+                    onTriggered: root.save()
+                }
+            ]
         }
     }
-
-    head.actions: [
-        Action {
-            objectName: "save"
-
-            text: i18n.tr("Save")
-            iconName: "ok"
-            enabled: root.isContactValid
-            onTriggered: root.save()
-        }
-    ]
 
     onContactSaved: {
         if (root.contactListPage) {

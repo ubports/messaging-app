@@ -33,10 +33,6 @@ LocalPageWithBottomEdge {
         threadList.startSelection()
     }
 
-    state: selectionMode ? "select" : searching ? "search" : "default"
-    title: selectionMode ? " " : i18n.tr("Messages")
-    flickable: null
-
     bottomEdgeEnabled: !selectionMode && !searching && !mainView.dualPanel
     bottomEdgeTitle: i18n.tr("+")
     bottomEdgePageComponent: Messages { active: false }
@@ -46,6 +42,8 @@ LocalPageWithBottomEdge {
         objectName: "searchField"
         visible: mainPage.searching
         anchors {
+            top: parent.top
+            topMargin: units.gu(1)
             left: parent.left
             right: parent.right
             rightMargin: units.gu(2)
@@ -60,11 +58,32 @@ LocalPageWithBottomEdge {
         }
     }
 
+    header: PageHeader {
+        id: pageHeader
+
+        property alias leadingActions: leadingBar.actions
+        property alias trailingActions: trailingBar.actions
+
+        onTrailingActionsChanged: console.log("Trailing actions lenght: " + trailingActions.length)
+
+        title: i18n.tr("Messages")
+        flickable: threadList
+        leadingActionBar {
+            id: leadingBar
+        }
+
+        trailingActionBar {
+            id: trailingBar
+        }
+    }
+
     states: [
-        PageHeadState {
+        State {
+            id: defaultState
             name: "default"
-            head: mainPage.head
-            actions: [
+            when: !searching && !selectionMode
+
+            property list<QtObject> trailingActions: [
                 Action {
                     objectName: "searchAction"
                     iconName: "search"
@@ -78,41 +97,54 @@ LocalPageWithBottomEdge {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
-                },
-                Action {
-                    objectName: "composeAction"
-                    text: i18n.tr("Compose a message")
-                    iconName: "message-new"
-                    visible: dualPanel
-                    onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"))
                 }
-
             ]
+
+            PropertyChanges {
+                target: pageHeader
+                trailingActions: defaultState.trailingActions
+                leadingActions: []
+            }
         },
-        PageHeadState {
+        State {
+            id: searchState
             name: "search"
-            head: mainPage.head
-            backAction: Action {
-                objectName: "cancelSearch"
-                visible: mainPage.searching
-                iconName: "back"
-                text: i18n.tr("Cancel")
-                onTriggered: {
-                    searchField.text = ""
-                    mainPage.searching = false
+            when: searching
+
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "cancelSearch"
+                    visible: mainPage.searching
+                    iconName: "back"
+                    text: i18n.tr("Cancel")
+                    onTriggered: {
+                        searchField.text = ""
+                        mainPage.searching = false
+                    }
                 }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                contents: searchField
+                leadingActions: searchState.leadingActions
+                trailingActions: []
             }
-            contents: searchField
         },
-        PageHeadState {
-            name: "select"
-            head: mainPage.head
-            backAction: Action {
-                objectName: "selectionModeCancelAction"
-                iconName: "back"
-                onTriggered: threadList.cancelSelection()
-            }
-            actions: [
+        State {
+            id: selectionState
+            name: "selection"
+            when: selectionMode
+
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "selectionModeCancelAction"
+                    iconName: "back"
+                    onTriggered: threadList.cancelSelection()
+                }
+            ]
+
+            property list<QtObject> trailingActions: [
                 Action {
                     objectName: "selectionModeSelectAllAction"
                     iconName: "select"
@@ -125,6 +157,12 @@ LocalPageWithBottomEdge {
                     onTriggered: threadList.endSelection()
                 }
             ]
+            PropertyChanges {
+                target: pageHeader
+                title: " "
+                leadingActions: selectionState.leadingActions
+                trailingActions: selectionState.trailingActions
+            }
         }
     ]
 

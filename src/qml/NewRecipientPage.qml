@@ -47,8 +47,26 @@ Page {
         mainStack.removePages(newRecipientPage)
     }
 
-    title: i18n.tr("Add recipient")
+    header: PageHeader {
+        id: pageHeader
 
+        property alias leadingActions: leadingBar.actions
+        property alias trailingActions: trailingBar.actions
+
+        title: i18n.tr("Add recipient")
+        leadingActionBar {
+            id: leadingBar
+        }
+
+        trailingActionBar {
+            id: trailingBar
+        }
+    }
+
+    Sections {
+        id: headerSections
+        model: [i18n.tr("All"), i18n.tr("Favorites")]
+    }
     TextField {
         id: searchField
 
@@ -69,11 +87,10 @@ Page {
 
     state: "default"
     states: [
-        PageHeadState {
+        State {
             id: defaultState
-
             name: "default"
-            actions: [
+            property list<QtObject> trailingActions: [
                 Action {
                     text: i18n.tr("Search")
                     iconName: "search"
@@ -84,10 +101,11 @@ Page {
                     }
                 }
             ]
+
             PropertyChanges {
-                target: newRecipientPage.head
-                actions: defaultState.actions
-                sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
+                target: pageHeader
+                trailingActions: defaultState.trailingActions
+                extension: headerSections
             }
             PropertyChanges {
                 target: searchField
@@ -95,24 +113,31 @@ Page {
                 visible: false
             }
         },
-        PageHeadState {
+        State {
             id: searchingState
-
             name: "searching"
-            backAction: Action {
-                iconName: "back"
-                text: i18n.tr("Cancel")
-                onTriggered: {
-                    newRecipientPage.forceActiveFocus()
-                    newRecipientPage.state = "default"
-                    newRecipientPage.head.sections.selectedIndex = 0
+            property list<QtObject> leadingActions: [
+                Action {
+                    iconName: "back"
+                    text: i18n.tr("Cancel")
+                    onTriggered: {
+                        newRecipientPage.forceActiveFocus()
+                        newRecipientPage.state = "default"
+                        headerSections.selectedIndex = 0
+                    }
                 }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                leadingActions: searchingState.leadingActions
+                trailingActions: []
+                contents: searchField
             }
 
             PropertyChanges {
-                target: newRecipientPage.head
-                backAction: searchingState.backAction
-                contents: searchField
+                target: headerSections
+                visible: false
             }
 
             PropertyChanges {
@@ -163,15 +188,11 @@ Page {
         }
     }
 
-    // WORKAROUND: This is necessary to make the header visible from a bottom edge page
     Component.onCompleted: {
-        parentPage.active = false
         if (QTCONTACTS_PRELOAD_VCARD !== "") {
             contactList.listModel.importContacts("file://" + QTCONTACTS_PRELOAD_VCARD)
         }
     }
-    Component.onDestruction: parentPage.active = true
-
     onActiveChanged: {
         if (active && (state === "searching")) {
             searchField.forceActiveFocus()
