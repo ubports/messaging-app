@@ -640,6 +640,12 @@ Page {
         composeBar.addAttachments(sharedAttachmentsTransfer)
     }
 
+    Component.onDestruction: {
+        if (!mainView.dualPanel) {
+            mainPage.displayedThreadIndex = -1
+        }
+    }
+
     onReady: {
         isReady = true
         if (participants.length === 0 && keyboardFocus)

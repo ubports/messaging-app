@@ -27,7 +27,9 @@ LocalPageWithBottomEdge {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false
+    property bool isEmpty: threadCount == 0 && !threadModel.canFetchMore
     property alias threadCount: threadList.count
+    property alias displayedThreadIndex: threadList.currentIndex
 
     function startSelection() {
         threadList.startSelection()
@@ -63,8 +65,6 @@ LocalPageWithBottomEdge {
 
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
-
-        onTrailingActionsChanged: console.log("Trailing actions lenght: " + trailingActions.length)
 
         title: i18n.tr("Messages")
         flickable: threadList
@@ -166,36 +166,9 @@ LocalPageWithBottomEdge {
         }
     ]
 
-    Item {
+    EmptyState {
         id: emptyStateScreen
-        anchors.left: parent.left
-        anchors.leftMargin: units.gu(6)
-        anchors.right: parent.right
-        anchors.rightMargin: units.gu(6)
-        height: childrenRect.height
-        anchors.verticalCenter: parent.verticalCenter
-        visible: threadCount == 0 && !threadModel.canFetchMore
-        Icon {
-            id: emptyStateIcon
-            anchors.top: emptyStateScreen.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            height: units.gu(5)
-            width: height
-            opacity: 0.3
-            name: "message"
-        }
-        Label {
-            id: emptyStateLabel
-            anchors.top: emptyStateIcon.bottom
-            anchors.topMargin: units.gu(2)
-            anchors.left: parent.left
-            anchors.right: parent.right
-            text: i18n.tr("Compose a new message by swiping up from the bottom of the screen.")
-            color: "#5d5d5d"
-            fontSize: "x-large"
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-        }
+        visible: mainPage.isEmpty && !mainView.dualPanel
     }
 
     Component {
@@ -234,6 +207,7 @@ LocalPageWithBottomEdge {
         clip: true
         cacheBuffer: threadList.height * 2
         section.property: "eventDate"
+        currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         listDelegate: ThreadDelegate {
@@ -269,6 +243,9 @@ LocalPageWithBottomEdge {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
                     mainStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
+
+                    // mark this item as current
+                    threadList.currentIndex = index
                 }
             }
             onItemPressAndHold: {

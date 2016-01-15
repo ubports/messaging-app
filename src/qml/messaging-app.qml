@@ -40,10 +40,7 @@ MainView {
     property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
-    // FIXME(convergence): AdaptiveLayout doesn't currently expose the number of
-    // columns it is currently displaying, so we are using grid units to decide
-    // when to enable bottom edge
-    property bool dualPanel: width >= units.gu(80)
+    property bool dualPanel: mainStack.columns > 1
 
     activeFocusOnPress: false
 
@@ -269,6 +266,7 @@ MainView {
         if (typeof(accountId)!=='undefined') {
             properties["accountId"] = accountId
         }
+
         emptyStack()
         mainStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
@@ -282,11 +280,33 @@ MainView {
        }
     }
 
+    Component {
+        id: emptyStatePageComponent
+        Page {
+            id: emptyStatePage
+
+            EmptyState {
+                labelVisible: mainPage.isEmpty
+            }
+        }
+    }
+
     AdaptivePageLayout {
         id: layout
         anchors.fill: parent
         primaryPage: MainPage {
             id: mainPage
+        }
+
+        onColumnsChanged: {
+            // we only have things to do here in case no thread is selected
+            if (mainPage.displayedThreadIndex < 0) {
+                if (columns == 1) {
+                    layout.removePages(mainPage)
+                } else {
+                    layout.addPageToNextColumn(mainPage, emptyStatePageComponent)
+                }
+            }
         }
     }
 }
