@@ -194,7 +194,8 @@ MainView {
             var properties = {}
             emptyStack()
             properties["sharedAttachmentsTransfer"] = transfer
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
+            // FIXME: reimplement
+            //mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
         }
     }
 
@@ -224,7 +225,8 @@ MainView {
     function startNewMessage() {
         var properties = {}
         emptyStack()
-        mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
+        // FIXME: reimplement
+        //mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
     }
 
     function startChat(identifiers, text, accountId) {
@@ -268,8 +270,23 @@ MainView {
         }
 
         emptyStack()
-        mainStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
+        mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
     }
+
+    InputInfo {
+        id: inputInfo
+    }
+
+    // WORKAROUND: Due the missing feature on SDK, they can not detect if
+    // there is a mouse attached to device or not. And this will cause the
+    // bootom edge component to not work correct on desktop.
+    // We will consider that  a mouse is always attached until it get implement on SDK.
+    Binding {
+        target:  QuickUtils
+        property: "mouseAttached"
+        value: inputInfo.hasMouse
+    }
+
 
     Connections {
         target: UriHandler
@@ -281,12 +298,37 @@ MainView {
     }
 
     Component {
+        id: messagesWithBottomEdge
+
+        Messages {
+            id: messages
+            Loader {
+                id: messagesBottomEdgeLoader
+                active: mainView.dualPanel
+                sourceComponent: MessagingBottomEdge {
+                    id: messagesBottomEdge
+                    parent: messages
+                }
+            }
+        }
+    }
+
+    Component {
         id: emptyStatePageComponent
         Page {
             id: emptyStatePage
 
             EmptyState {
                 labelVisible: mainPage.isEmpty
+            }
+
+            header: PageHeader { }
+
+            Loader {
+                id: bottomEdgeLoader
+                sourceComponent: MessagingBottomEdge {
+                    parent: emptyStatePage
+                }
             }
         }
     }

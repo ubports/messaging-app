@@ -638,7 +638,11 @@ Page {
             }
         }
         composeBar.addAttachments(sharedAttachmentsTransfer)
+
+        console.log("BLABLA height is:  " + height)
     }
+
+    onHeightChanged: console.log("BLABLA height is:  " + height)
 
     Component.onDestruction: {
         if (!mainView.dualPanel) {
@@ -1148,4 +1152,6 @@ Page {
             }
         }
     }
+
+    // FIXME: we need a bottom edge here somehow
 }

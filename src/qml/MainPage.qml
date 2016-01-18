@@ -23,7 +23,7 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
-LocalPageWithBottomEdge {
+Page {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false
@@ -34,10 +34,6 @@ LocalPageWithBottomEdge {
     function startSelection() {
         threadList.startSelection()
     }
-
-    bottomEdgeEnabled: !selectionMode && !searching && !mainView.dualPanel
-    bottomEdgeTitle: i18n.tr("+")
-    bottomEdgePageComponent: Messages { active: false }
 
     TextField {
         id: searchField
@@ -242,7 +238,7 @@ LocalPageWithBottomEdge {
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    mainStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
+                    mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
 
                     // mark this item as current
                     threadList.currentIndex = index
@@ -274,5 +270,13 @@ LocalPageWithBottomEdge {
     Scrollbar {
         flickableItem: threadList
         align: Qt.AlignTrailing
+    }
+
+    Loader {
+        id: bottomEdgeLoader
+        active: !selectionMode && !searching && !mainView.dualPanel
+        sourceComponent: MessagingBottomEdge {
+            parent: mainPage
+        }
     }
 }

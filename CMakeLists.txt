@@ -37,10 +37,7 @@ set(CMAKE_AUTOMOC ON)
 
 configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 
-#find_package(Qt5Contacts)
 find_package(Qt5DBus)
-#find_package(Qt5Gui)
-#find_package(Qt5Multimedia)
 find_package(Qt5Qml)
 find_package(Qt5Quick)
 find_package(Qt5Test)
@@ -49,20 +46,18 @@ find_package(Qt5Versit)
 include(qt5)
 
 find_package(PkgConfig REQUIRED)
-#pkg_check_modules(TP_QT5 REQUIRED TelepathyQt5)
-#pkg_check_modules(TPL_QT5 REQUIRED TelepathyLoggerQt5)
-#pkg_check_modules(QTGLIB REQUIRED QtGLib-2.0)
-#pkg_check_modules(GLIB REQUIRED glib-2.0)
 pkg_check_modules(NOTIFY REQUIRED libnotify)
-#pkg_check_modules(MESSAGING_MENU REQUIRED messaging-menu)
 
-# Check if the messaging menu has the message header
-#set(CMAKE_REQUIRED_INCLUDES ${MESSAGING_MENU_INCLUDE_DIRS})
-#check_include_file("messaging-menu-message.h" HAVE_MESSAGING_MENU_MESSAGE)
-
-if (HAVE_MESSAGING_MENU_MESSAGE)
-    add_definitions(-DHAVE_MESSAGING_MENU_MESSAGE)
-endif (HAVE_MESSAGING_MENU_MESSAGE)
+#find unity8 qml libraries
+find_path(LIB_UNITY_QML_EXISTS  NAMES libUnity-qml.so
+    HINTS "/usr/lib/x86_64-linux-gnu/unity8/qml/Unity/"
+    NO_CMAKE_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+)
+if(!LIB_UNITY_QML_EXISTS)
+    MESSAGE(FATAL_ERROR "unity8 private package not-found")
+endif()
 
 add_definitions(-DQT_NO_KEYWORDS)
 
