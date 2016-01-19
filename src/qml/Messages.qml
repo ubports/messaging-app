@@ -69,6 +69,7 @@ Page {
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
 
     signal ready
+    signal cancel
 
     function getAccountsModel() {
         var accounts = []
@@ -447,6 +448,12 @@ Page {
             }
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
+            onSelectedIndexChanged: {
+                console.log("Selected index is: " + selectedIndex )
+                if (selectedIndex >= 0) {
+                    messages.account = messages.accountsModel[selectedIndex]
+                }
+            }
         }
 
         extension: sections.model.length > 1 ? sections : null
@@ -561,6 +568,21 @@ Page {
             id: newMessageState
             name: "newMessage"
             when: participants.length === 0
+            property list<QtObject> leadingActions: [
+                Action {
+                    id: backAction
+
+                    objectName: "cancel"
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "down"
+                    shortcut: "Esc"
+                    onTriggered: {
+                        messages.cancel()
+                    }
+                }
+            ]
+
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactList"
@@ -589,6 +611,7 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
+                leadingActions: newMessageState.leadingActions
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
             }
@@ -638,11 +661,7 @@ Page {
             }
         }
         composeBar.addAttachments(sharedAttachmentsTransfer)
-
-        console.log("BLABLA height is:  " + height)
     }
-
-    onHeightChanged: console.log("BLABLA height is:  " + height)
 
     Component.onDestruction: {
         if (!mainView.dualPanel) {
@@ -715,13 +734,6 @@ Page {
                 }
                 pendingEventsToMarkAsRead = []
             }
-        }
-    }
-
-    Connections {
-        target: messages.head.sections
-        onSelectedIndexChanged: {
-            messages.account = messages.accountsModel[head.sections.selectedIndex]
         }
     }
 
