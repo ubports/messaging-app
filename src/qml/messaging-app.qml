@@ -158,9 +158,8 @@ MainView {
     Connections {
         target: telepathyHelper
         onSetupReady: {
-            // FIXME(convergence): we should not use the depth to check stuff anymore
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                !settings.mainViewIgnoreFirstTimeDialog && mainStack.depth === 1) {
+                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }

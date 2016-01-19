@@ -138,7 +138,7 @@ Item {
             // FIXME: try to find a way to guarantee the page is loaded already.
             // We used to use PageStack.depth, but AdaptivePageLayout doesn't have
             // anything like that.
-            wait(200)
+            wait(500)
             mainViewLoader.item.applicationActive = false
             var messageList = findChild(mainViewLoader, "messageList")
             messageList.listModel = messagesModel
