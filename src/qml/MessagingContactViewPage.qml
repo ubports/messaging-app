@@ -55,37 +55,29 @@ ContactViewPage {
         }
     }
 
-    header: PageHeader {
-        id: pageHeader
-
-        trailingActionBar {
-            actions: [
-                Action {
-                    objectName: "share"
-                    text: i18n.tr("Share")
-                    iconName: "share"
-                    visible: root.editable
-                    onTriggered: {
-                        mainStack.addPageToCurrentColumn(root,
-                                                         contactShareComponent,
-                                                         { contactModel: root.model,
-                                                           contacts: [root.contact] })
-                    }
-                },
-                Action {
-                    objectName: "edit"
-                    text: i18n.tr("Edit")
-                    iconName: "edit"
-                    visible: root.editable
-                    onTriggered: {
-                        mainStack.addPageToCurrentColumn(root,
-                                                         contactEditorPageURL,
-                                                         { model: root.model,
-                                                           contact: root.contact,
-                                                           contactListPage: root.contactListPage })
-                    }
-                }
-            ]
+    headerActions: [
+        Action {
+            objectName: "share"
+            text: i18n.tr("Share")
+            iconName: "share"
+            visible: root.editable
+            onTriggered: {
+                pageStack.push(contactShareComponent,
+                               { contactModel: root.model,
+                                 contacts: [root.contact] })
+            }
+        },
+        Action {
+            objectName: "edit"
+            text: i18n.tr("Edit")
+            iconName: "edit"
+            visible: root.editable
+            onTriggered: {
+                pageStack.push(contactEditorPageURL,
+                               { model: root.model,
+                                 contact: root.contact,
+                                 contactListPage: root.contactListPage })
+            }
         }
     }
 

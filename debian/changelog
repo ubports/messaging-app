@@ -1,3 +1,9 @@
+messaging-app (0.1+16.04.20160109.1-0ubuntu1) xenial; urgency=medium
+
+  * Use the new Addressbook header.
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Sat, 09 Jan 2016 01:26:30 +0000
+
 messaging-app (0.1+16.04.20151207-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]

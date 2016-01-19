@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-12-15 05:36+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-01-16 05:38+0000\n"
+"X-Generator: Launchpad (build 17886)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:51
@@ -206,7 +206,7 @@ msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
-msgstr "Üzenet információ"
+msgstr "Üzenetinformáció"
 
 #: ../src/qml/MainPage.qml:37
 msgid "Messages"
@@ -269,7 +269,7 @@ msgstr ""
 "Híváshoz vagy üzenetküldéshez oldja fel a SIM kártyát. Ezt a hálózati "
 "indikátoron tudja megtenni a képernyő felső részén vagy látogasson el a <a "
 "href=\"system_settings\">Rendszerbeállítások &gt; Biztonság és "
-"magánszféra</a> alá."
+"adatvédelem</a> alá."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
@@ -419,7 +419,7 @@ msgstr "Tegnap"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr "Válasszon ki egy SIM kártyát"
+msgstr "Ki kell választania egy SIM kártyát"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:76
