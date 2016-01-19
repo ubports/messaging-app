@@ -35,8 +35,6 @@ set(MESSAGING_APP_DIR ${CMAKE_INSTALL_DATADIR}/messaging-app)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
-configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
-
 find_package(Qt5DBus)
 find_package(Qt5Qml)
 find_package(Qt5Quick)
@@ -49,8 +47,9 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(NOTIFY REQUIRED libnotify)
 
 #find unity8 qml libraries
+set(UNITY8_QML_PATH /usr/lib/${CMAKE_C_LIBRARY_ARCHITECTURE}/unity8/qml/)
 find_path(LIB_UNITY_QML_EXISTS  NAMES libUnity-qml.so
-    HINTS "/usr/lib/x86_64-linux-gnu/unity8/qml/Unity/"
+    HINTS "${UNITY8_QML_PATH}"
     NO_CMAKE_PATH
     NO_CMAKE_ENVIRONMENT_PATH
     NO_SYSTEM_ENVIRONMENT_PATH
@@ -60,6 +59,8 @@ if(!LIB_UNITY_QML_EXISTS)
 endif()
 
 add_definitions(-DQT_NO_KEYWORDS)
+
+configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}

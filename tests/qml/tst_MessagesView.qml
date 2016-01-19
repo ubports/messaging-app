@@ -129,14 +129,16 @@ Item {
             var senderId = "1234567"
             var stack = findChild(mainViewLoader, "mainStack")
             tryCompare(mainViewLoader.item, 'applicationActive', true)
-            tryCompare(stack, 'depth', 1)
             // if messaging-app has no account set, it will not try to get the thread from history
             // and instead will generate the list of participants, take advantage of that
             var account = mainViewLoader.item.account
             mainViewLoader.item.account = null
             mainViewLoader.item.startChat(senderId, "")
             mainViewLoader.item.account = account
-            tryCompare(stack, 'depth', 2)
+            // FIXME: try to find a way to guarantee the page is loaded already.
+            // We used to use PageStack.depth, but AdaptivePageLayout doesn't have
+            // anything like that.
+            wait(200)
             mainViewLoader.item.applicationActive = false
             var messageList = findChild(mainViewLoader, "messageList")
             messageList.listModel = messagesModel

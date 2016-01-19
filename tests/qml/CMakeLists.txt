@@ -36,7 +36,8 @@ include_directories(
 
 add_test(${TEST} ${XVFB_COMMAND} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
          -input ${CMAKE_CURRENT_SOURCE_DIR}
-         -import ${CMAKE_BINARY_DIR}/src)
+         -import ${CMAKE_BINARY_DIR}/src
+         -import ${UNITY8_QML_PATH})
 
 # make qml files visible in QtCreator
 file(GLOB_RECURSE NON_COMPILED_FILES *.qml)
