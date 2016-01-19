@@ -41,6 +41,7 @@ MainView {
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
+    property QtObject bottomEdge: null
 
     activeFocusOnPress: false
 
@@ -125,6 +126,10 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
+    function showBottomEdgePage(properties) {
+        bottomEdge.commitWithProperties(properties)
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -147,6 +152,7 @@ MainView {
     Component.onCompleted: {
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
+        emptyStack()
     }
 
     Connections {
@@ -194,8 +200,7 @@ MainView {
             var properties = {}
             emptyStack()
             properties["sharedAttachmentsTransfer"] = transfer
-            // FIXME: reimplement
-            //mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
+            mainView.showBottomEdgePage(properties)
         }
     }
 
@@ -220,13 +225,19 @@ MainView {
 
     function emptyStack() {
         mainStack.removePages(mainPage)
+        showEmptyState()
+    }
+
+    function showEmptyState() {
+        if (mainStack.columns > 1) {
+            layout.addPageToNextColumn(mainStack.primaryPage, emptyStatePageComponent.createObject(null))
+        }
     }
 
     function startNewMessage() {
         var properties = {}
         emptyStack()
-        // FIXME: reimplement
-        //mainPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
+        mainView.showBottomEdgePage(properties)
     }
 
     function startChat(identifiers, text, accountId) {
@@ -343,11 +354,8 @@ MainView {
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
             if (mainPage.displayedThreadIndex < 0) {
-                if (columns == 1) {
-                    layout.removePages(mainPage)
-                } else {
-                    layout.addPageToNextColumn(mainPage, emptyStatePageComponent)
-                }
+                layout.removePages(mainPage)
+                showEmptyState()
             }
         }
     }
