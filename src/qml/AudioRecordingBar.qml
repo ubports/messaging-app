@@ -37,25 +37,7 @@ Item {
 
     function startRecording() {
         handleError = true
-        if (settings.messagesRecordFirstTimeDialog) {
-            Qt.inputMethod.hide()
-            messages.focus = false
-            settings.messagesRecordFirstTimeDialog = false
- 
-            timer2.start()
-            return
-        }
-
         audioRecorder.record()
-    }
-
-    // WORKAROUND: we need to do it here otherwise the keyboard will remain open
-    Timer {
-        id: timer2
-        interval: 1000
-        onTriggered: {
-            audioRecorder.record()
-        }
     }
 
     function stopRecording() {
