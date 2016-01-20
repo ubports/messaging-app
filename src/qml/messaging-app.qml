@@ -318,6 +318,8 @@ MainView {
                 sourceComponent: MessagingBottomEdge {
                     id: messagesBottomEdge
                     parent: messages
+                    hint.text: ""
+                    hint.height: 0
                 }
             }
         }

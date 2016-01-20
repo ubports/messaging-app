@@ -93,7 +93,15 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                },
+                Action {
+                    objectName: "newMessageAction"
+                    text: i18n.tr("New message")
+                    iconName: "add"
+                    visible: dualPanel
+                    onTriggered: mainView.bottomEdge.commit()
                 }
+
             ]
 
             PropertyChanges {
