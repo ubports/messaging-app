@@ -28,6 +28,7 @@
         "/custom/xdg/data/dconf/",
         "/usr/share/*/assets/",
         "@{HOME}/.local/share/evolution/addressbook/*/photos/",
+        "@{HOME}/.cache/messaging-app/HubIncoming/*",
         "/usr/share/messaging-app/"
       ]
     }
