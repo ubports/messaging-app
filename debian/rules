@@ -14,6 +14,7 @@ apparmor:
 	aa-easyprof -m ./debian/messaging-app-apparmor.manifest --no-verify | \
 	egrep -v '(# Click packages|CLICK_DIR)' | \
 	sed 's/@{APP_PKGNAME}_@{APP_APPNAME}_@{APP_VERSION}/@{APP_PKGNAME}/g' | \
+	sed 's,Apps/@{APP_PKGNAME},Apps/messaging-app,g' | \
 	sed '/lttng-ust-/c\  \/{,var\/}run\/shm\/lttng-ust-* r,'  | \
 	sed '/dconf.user rw/c\  \/run\/user\/\[0-9\]*\/dconf\/user rw,' \
 	> ./debian/usr.bin.messaging-app
