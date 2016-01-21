@@ -449,7 +449,6 @@ Page {
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
             onSelectedIndexChanged: {
-                console.log("Selected index is: " + selectedIndex )
                 if (selectedIndex >= 0) {
                     messages.account = messages.accountsModel[selectedIndex]
                 }
