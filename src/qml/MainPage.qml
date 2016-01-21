@@ -214,6 +214,19 @@ Page {
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
+        header: ListItem.Standard {
+            id: newItem
+            height: mainView.bottomEdge.status === BottomEdge.Committed ? units.gu(10) : 0
+            text: i18n.tr("New message")
+            iconName: "message-new"
+            iconFrame: false
+            selected: true
+
+            onHeightChanged: {
+                threadList.positionViewAtBeginning()
+            }
+        }
+
         listDelegate: ThreadDelegate {
             id: threadDelegate
             // FIXME: find a better unique name
@@ -225,7 +238,15 @@ Page {
             }
             height: units.gu(8)
             selectionMode: threadList.isInSelectionMode
-            selected: threadList.isSelected(threadDelegate)
+            selected: {
+                if (selectionMode) {
+                    return threadList.isSelected(threadDelegate)
+                } else {
+                    // FIXME: there might be a better way of doing this
+                    return index === threadList.currentIndex && mainView.bottomEdge.status !== BottomEdge.Committed
+                }
+            }
+
             searchTerm: mainPage.searching ? searchField.text : ""
             onItemClicked: {
                 if (threadList.isInSelectionMode) {
