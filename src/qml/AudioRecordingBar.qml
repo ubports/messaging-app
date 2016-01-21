@@ -47,7 +47,7 @@ Item {
     Loader {
         id: audioRecorder
         readonly property bool ready: status == Loader.Ready
-        readonly property bool recording: ready ? item.recorderState == AudioRecorder.RecordingState : false
+        readonly property bool recording: ready ? item.recorderStatus == AudioRecorder.RecordingStatus : false
         readonly property int duration: ready ? item.duration : 0
         function record() {
             audioRecorder.active = true
@@ -65,9 +65,9 @@ Item {
     Component {
         id: audioRecorderComponent
         AudioRecorder {
-            readonly property bool recording: recorderState == AudioRecorder.RecordingState
+            readonly property bool recording: recorderStatus == AudioRecorder.RecordingStatus
 
-            onRecorderStateChanged: {
+            onRecorderStatusChanged: {
                 if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
                     var filePath = actualLocation
 
