@@ -28,7 +28,6 @@ Build-Depends: cmake,
                qml-module-qt-labs-settings,
                qml-module-qtmultimedia,
                qtpim5-dev,
-               unity8-private,
                xvfb,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
@@ -52,7 +51,6 @@ Depends: ${misc:Depends},
          qtdeclarative5-gsettings1.0,
          qml-module-qt-labs-settings,
          ttf-ancient-fonts-symbola,
-         unity8-private,
 Recommends: unity8 (>= 7.81.0~),
 Description: messaging application for Ubuntu
  An application to send and receive messages.

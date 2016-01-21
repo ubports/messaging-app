@@ -290,7 +290,6 @@ MainView {
     // WORKAROUND: Due the missing feature on SDK, they can not detect if
     // there is a mouse attached to device or not. And this will cause the
     // bootom edge component to not work correct on desktop.
-    // We will consider that  a mouse is always attached until it get implement on SDK.
     Binding {
         target:  QuickUtils
         property: "mouseAttached"
