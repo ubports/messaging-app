@@ -221,10 +221,6 @@ Page {
             iconName: "message-new"
             iconFrame: false
             selected: true
-
-            onHeightChanged: {
-                threadList.positionViewAtBeginning()
-            }
         }
 
         listDelegate: ThreadDelegate {
@@ -289,6 +285,13 @@ Page {
             if (threadsToRemove.length > 0) {
                 mainView.removeThreads(threadsToRemove);
             }
+        }
+
+        Binding {
+            target: threadList
+            property: 'contentY'
+            value: -threadList.headerItem.height
+            when: mainView.composingNewMessage
         }
     }
 

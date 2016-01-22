@@ -42,6 +42,7 @@ MainView {
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
     property QtObject bottomEdge: null
+    property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
 
     activeFocusOnPress: false
 
