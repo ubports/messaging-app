@@ -135,12 +135,15 @@ Item {
             mainViewLoader.item.account = null
             mainViewLoader.item.startChat(senderId, "")
             mainViewLoader.item.account = account
-            // FIXME: try to find a way to guarantee the page is loaded already.
-            // We used to use PageStack.depth, but AdaptivePageLayout doesn't have
-            // anything like that.
-            wait(1000)
-            mainViewLoader.item.applicationActive = false
-            var messageList = findChild(mainViewLoader, "messageList")
+            var messageList
+            while (true) {
+                messageList = findChild(mainViewLoader, "messageList")
+                if (messageList) {
+                    break
+                }
+                wait(200)
+            }
+
             messageList.listModel = messagesModel
             tryCompare(messageList, 'count', 2)
             compare(messageAcknowledgeSpy.count, 0)
