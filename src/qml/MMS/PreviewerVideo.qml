@@ -30,6 +30,7 @@ Previewer {
     title: i18n.tr("Video Preview")
     clip: true
 
+    // FIXME: this won't work correctly in windowed mode
     Component.onCompleted: {
         application.fullscreen = true
         // Load Video player after toggling fullscreen to reduce flickering
