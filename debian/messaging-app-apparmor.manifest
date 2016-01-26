@@ -29,6 +29,7 @@
         "/usr/share/*/assets/",
         "@{HOME}/.local/share/evolution/addressbook/*/photos/",
         "@{HOME}/.cache/messaging-app/HubIncoming/**",
+        "@{HOME}/.config/dconf/user",
         "/usr/share/messaging-app/"
       ]
     }
