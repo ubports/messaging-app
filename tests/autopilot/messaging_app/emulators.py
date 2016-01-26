@@ -78,14 +78,14 @@ class MainView(toolkit_emulators.MainView):
 
     def click_header_action(self, action):
         """Click the action 'action' on the header"""
-        self.get_header().click_action_button(action)
+        action = self.wait_select_single(objectName='%s_button'%action)
+        self.pointing_device.click_object(action)
 
     # messages page
     def get_messages_page(self):
         """Return messages with objectName messagesPage"""
 
-        return self.wait_select_single("Messages", objectName="messagesPage",
-                                       active=True)
+        return self.wait_select_single("Messages", objectName="messagesPage")
 
     def get_newmessage_textfield(self):
         """Return TextField with objectName newPhoneNumberField"""
@@ -116,38 +116,10 @@ class MainView(toolkit_emulators.MainView):
 
         return self.get_messages_page().select_single(objectName='sendButton')
 
-    def get_toolbar_back_button(self):
-        """Return toolbar button with objectName back_toolbar_button"""
-
-        return self.select_single(
-            objectName='back_toolbar_button'
-        )
-
-    def get_toolbar_select_messages_button(self):
-        """Return toolbar button with objectName selectMessagesButton"""
-
-        return self.select_single(
-            objectName='selectMessagesButton'
-        )
-
     def get_contact_list_view(self):
         """Returns the ContactListView object"""
         return self.select_single(
             objectName='newRecipientList'
-        )
-
-    def get_toolbar_contact_profile_button(self):
-        """Return toolbar button with objectName contactProfileButton"""
-
-        return self.select_single(
-            objectName='contactProfileButton'
-        )
-
-    def get_toolbar_contact_call_button(self):
-        """Return toolbar button with objectName contactCallButton"""
-
-        return self.select_single(
-            objectName='contactCallButton'
         )
 
     def get_dialog_buttons(self, visible=True):
@@ -213,7 +185,7 @@ class MainView(toolkit_emulators.MainView):
 
     def start_new_message(self):
         """Reveal the bottom edge page to start composing a new message"""
-        self.get_main_page().reveal_bottom_edge_page()
+        self.reveal_bottom_edge_page()
 
     def enable_messages_selection_mode(self):
         """Enable the selection mode on the messages page by pressing and
@@ -338,38 +310,31 @@ class MainView(toolkit_emulators.MainView):
 
     def open_settings_page(self):
         self.click_threads_header_settings()
-        return self.wait_select_single(SettingsPage)
+        settings_page = self.wait_select_single(SettingsPage)
+        settings_page.active.waitFor(True)
+        return settings_page
 
     def get_swipe_item_demo(self):
         return self.wait_select_single(
             'SwipeItemDemo', objectName='swipeItemDemo', parentActive=True)
 
 
-class PageWithBottomEdge(MainView):
-    """An emulator class that makes it easy to interact with the bottom edge
-       swipe page"""
-    def __init__(self, *args):
-        super(PageWithBottomEdge, self).__init__(*args)
-
     def reveal_bottom_edge_page(self):
         """Bring the bottom edge page to the screen"""
-        self.bottomEdgePageLoaded.wait_for(True)
         try:
-            action_item = self.wait_select_single(objectName='bottomEdgeTip')
-            start_x = (action_item.globalRect.x +
-                       (action_item.globalRect.width * 0.5))
-            start_y = (action_item.globalRect.y +
-                       (action_item.height * 0.5))
+            start_x = (self.globalRect.x +
+                       (self.globalRect.width * 0.5))
+            start_y = (self.globalRect.y + self.height)
             stop_y = start_y - (self.height * 0.7)
             self.pointing_device.drag(start_x, start_y,
                                       start_x, stop_y, rate=2)
-            self.isReady.wait_for(True)
+            self.composingNewMessage.wait_for(True)
         except StateNotFoundError:
             logger.error('BottomEdge element not found.')
             raise
 
 
-class MainPage(PageWithBottomEdge):
+class MainPage(MainView):
     """Autopilot helper for the Main Page."""
 
     def get_thread_count(self):
