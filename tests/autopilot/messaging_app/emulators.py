@@ -78,7 +78,7 @@ class MainView(toolkit_emulators.MainView):
 
     def click_header_action(self, action):
         """Click the action 'action' on the header"""
-        action = self.wait_select_single(objectName='%s_button'%action)
+        action = self.wait_select_single(objectName='%s_button' % action)
         self.pointing_device.click_object(action)
 
     # messages page
@@ -317,7 +317,6 @@ class MainView(toolkit_emulators.MainView):
     def get_swipe_item_demo(self):
         return self.wait_select_single(
             'SwipeItemDemo', objectName='swipeItemDemo', parentActive=True)
-
 
     def reveal_bottom_edge_page(self):
         """Bring the bottom edge page to the screen"""
