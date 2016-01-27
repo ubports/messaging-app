@@ -79,7 +79,7 @@ ContactViewPage {
                                  contactListPage: root.contactListPage })
             }
         }
-    }
+    ]
 
     extensions: ContactDetailSyncTargetView {
         contact: root.contact
