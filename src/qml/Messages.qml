@@ -72,6 +72,8 @@ Page {
     // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
     property var basePage: messages
 
+    property bool startedFromBottomEdge: false
+
     signal ready
     signal cancel
 
@@ -463,6 +465,23 @@ Page {
 
         leadingActionBar {
             id: leadingBar
+
+            property list<QtObject> bottomEdgeLeadingActions: [
+                Action {
+                    id: backAction
+
+                    objectName: "cancel"
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "down"
+                    shortcut: "Esc"
+                    onTriggered: {
+                        messages.cancel()
+                    }
+                }
+            ]
+
+            actions: startedFromBottomEdge ? bottomEdgeLeadingActions : []
         }
 
         trailingActionBar {
@@ -571,20 +590,6 @@ Page {
             id: newMessageState
             name: "newMessage"
             when: participants.length === 0
-            property list<QtObject> leadingActions: [
-                Action {
-                    id: backAction
-
-                    objectName: "cancel"
-                    name: "cancel"
-                    text: i18n.tr("Cancel")
-                    iconName: "down"
-                    shortcut: "Esc"
-                    onTriggered: {
-                        messages.cancel()
-                    }
-                }
-            ]
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -624,7 +629,6 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
-                leadingActions: newMessageState.leadingActions
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
             }

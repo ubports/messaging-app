@@ -36,6 +36,7 @@ BottomEdge {
             anchors.fill: parent
             onCancel: bottomEdge.collapse()
             basePage: bottomEdge.parent
+            startedFromBottomEdge: true
         }
     }
 
