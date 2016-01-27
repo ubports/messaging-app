@@ -35,6 +35,7 @@ BottomEdge {
         Messages {
             anchors.fill: parent
             onCancel: bottomEdge.collapse()
+            basePage: bottomEdge.parent
         }
     }
 

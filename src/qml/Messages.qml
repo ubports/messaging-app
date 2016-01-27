@@ -68,6 +68,10 @@ Page {
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
 
+
+    // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
+    property var basePage: messages
+
     signal ready
     signal cancel
 
@@ -516,7 +520,7 @@ Page {
                 Action {
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, screenTop)
+                    onTriggered: PopupUtils.open(participantsPopover, pageHeader)
                 }
             ]
 
@@ -588,7 +592,7 @@ Page {
                     iconName: "contact"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
+                        mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
                     }
                 }
 

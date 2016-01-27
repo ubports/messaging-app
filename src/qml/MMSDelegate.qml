@@ -45,7 +45,7 @@ MessageDelegate {
             var properties = {}
             properties["attachment"] = attachment.item.attachment
             properties["thumbnail"] = attachment.item
-            mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl(attachment.item.previewer), properties)
+            mainStack.addPageToCurrentColumn(messages.basePage, Qt.resolvedUrl(attachment.item.previewer), properties)
         }
     }
 
