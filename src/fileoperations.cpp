@@ -37,8 +37,11 @@ FileOperations::~FileOperations()
 
 QString FileOperations::getTemporaryFile(const QString &fileExtension) const
 {
-    QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
     //TODO remove once lp:1420728 is fixed
+    QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
+    if (!dataLocation.exists()) {
+        dataLocation.mkpath(".");
+    }
     QTemporaryFile tmp(dataLocation.path() + "/tmpXXXXXX" + fileExtension);
     tmp.open();
     return tmp.fileName();
