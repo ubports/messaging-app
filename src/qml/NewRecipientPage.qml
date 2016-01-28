@@ -152,7 +152,7 @@ Page {
         id: contactList
         objectName: "newRecipientList"
         anchors {
-            top: parent.top
+            top: pageHeader.bottom
             left: parent.left
             right: parent.right
             bottom: keyboard.top
