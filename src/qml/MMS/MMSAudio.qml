@@ -32,15 +32,6 @@ MMSBase {
     property string textColor: incoming ? "#5D5D5D" : "#FFFFFF"
     swipeLocked: audioPlayer.playing
 
-    onAttachmentChanged: {
-        var tmpFile = FileOperations.getTemporaryFile(".ogg")
-        if (FileOperations.link(attachment.filePath, tmpFile)) {
-            audioPlayer.source = tmpFile;
-        } else {
-            console.log("MMSAudio: Failed to link", attachment.filePath, "to", tmpFile)
-        }
-    }
-
     Rectangle {
         id: shape
         radius: units.gu(1)
@@ -63,7 +54,15 @@ MMSBase {
         readonly property int playbackState: ready ? item.playbackState : Audio.StoppedState
         property bool muted: false
         property string source: ""
-        function play() { 
+        function play() {
+            var tmpFile = FileOperations.getTemporaryFile(".ogg")
+            if (FileOperations.link(attachment.filePath, tmpFile)) {
+                source = tmpFile;
+            } else {
+                console.log("MMSAudio: Failed to link", attachment.filePath, "to", tmpFile)
+                return
+            }
+
             audioPlayer.active = true
             item.play() 
         }
@@ -76,6 +75,7 @@ MMSBase {
         function seek(pos) { item.seek(pos) }
         active: false
         sourceComponent: audioPlayerComponent
+        Component.onDestruction: FileOperations.remove(source)
     }
 
     Component {
@@ -104,7 +104,6 @@ MMSBase {
 
         spacing: units.gu(1)
         sideBySide: true
-        enabled: audioPlayer.source != ""
         iconColor: audioDelegate.textColor
         iconName: audioPlayer.playing ? "media-playback-pause" : "media-playback-start"
 

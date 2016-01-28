@@ -1,0 +1,86 @@
+  @{HOME}/.local/share/history-service/attachments/** r,
+
+  # Description: Can access the telephony-service and related services
+  # Usage: reserved
+
+  # grant full access to telephony service handler and indicator
+  dbus (receive, send)
+       bus=session
+       peer=(name=com.canonical.TelephonyServiceHandler,label=unconfined),
+
+  dbus (receive, send)
+       bus=session
+       peer=(name=com.canonical.TelephonyServiceIndicator,label=unconfined),
+
+  # make it possible for apps to register a telepathy observer
+  dbus bind
+       bus=session
+       name=org.freedesktop.Telepathy.Client.*,
+
+  dbus (send)
+       interface="org.freedesktop.Notifications"
+       member="GetServerInformation",
+
+  dbus (send)
+       interface="org.freedesktop.Notifications"
+       member="Notify",
+
+  # query greeter status
+  dbus (receive, send)
+       bus=session
+       peer=(name=com.canonical.UnityGreeter,label=unconfined),
+
+  # access to telepathy-ofono and other telepathy clients/managers
+  dbus (receive, send)
+       bus=session
+       path=/org/freedesktop/Telepathy/**,
+
+  dbus (send)
+       bus=session
+       path="/ca/desrt/dconf/Writer/user"
+       interface="ca.desrt.dconf.Writer",
+
+  # used to query ringtone files and other properties
+  dbus (receive, send)
+       bus=system
+       path="/org/freedesktop/Accounts/User[0-9]*"
+       interface=org.freedesktop.DBus.Properties,
+
+  dbus (receive, send)
+       bus=session
+       path="/org/freedesktop/DBus"
+       interface=org.freedesktop.DBus,
+
+  # used by libtelephony-service to order/query existing modems
+  dbus (send)
+       bus=system
+       interface="org.ofono.Manager",
+
+  # used by apps to get sim contacts
+  dbus (send)
+       bus=system
+       interface="org.ofono.SimManager",
+
+  dbus (send)
+       bus=system
+       interface="org.ofono.Modem",
+
+  dbus (send, receive)
+       bus=session
+       peer=(name=com.meego.msyncd,label=unconfined),
+
+  # used by telepathy-qt to guess existing managers and their features
+  /usr/share/telepathy/managers/* r,
+  # read protocol files and assets
+  /usr/share/telephony-service/** r,
+
+  # Description: Can access urfkill
+  # Usage: common
+  #include <abstractions/nameservice>
+
+  allow dbus (receive, send)
+       bus=system
+       path=/org/freedesktop/URfkill,
+  allow dbus (receive, send)
+       bus=system
+       peer=(name=org.freedesktop.URfkill),
