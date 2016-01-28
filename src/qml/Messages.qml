@@ -433,6 +433,21 @@ Page {
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
 
+        property list<QtObject> bottomEdgeLeadingActions: [
+            Action {
+                id: backAction
+
+                objectName: "cancel"
+                name: "cancel"
+                text: i18n.tr("Cancel")
+                iconName: "down"
+                shortcut: "Esc"
+                onTriggered: {
+                    messages.cancel()
+                }
+            }
+        ]
+
         title: {
             if (landscape) {
                 return ""
@@ -444,6 +459,7 @@ Page {
 
             return i18n.tr("New Message")
         }
+        flickable: null
 
         Sections {
             id: sections
@@ -466,22 +482,16 @@ Page {
         leadingActionBar {
             id: leadingBar
 
-            property list<QtObject> bottomEdgeLeadingActions: [
-                Action {
-                    id: backAction
-
-                    objectName: "cancel"
-                    name: "cancel"
-                    text: i18n.tr("Cancel")
-                    iconName: "down"
-                    shortcut: "Esc"
-                    onTriggered: {
-                        messages.cancel()
+            states: [
+                State {
+                    name: "bottomEdgeBack"
+                    when: startedFromBottomEdge
+                    PropertyChanges {
+                        target: leadingBar
+                        actions: pageHeader.bottomEdgeLeadingActions
                     }
                 }
             ]
-
-            actions: startedFromBottomEdge ? bottomEdgeLeadingActions : []
         }
 
         trailingActionBar {
