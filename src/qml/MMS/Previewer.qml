@@ -51,7 +51,7 @@ Page {
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
 
-        title: ""
+        title: previewerPage.title
         leadingActionBar {
             id: leadingBar
         }
