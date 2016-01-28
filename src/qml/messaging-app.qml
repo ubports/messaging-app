@@ -312,6 +312,7 @@ MainView {
 
         Messages {
             id: messages
+            height: mainPage.height
             Loader {
                 id: messagesBottomEdgeLoader
                 active: mainView.dualPanel
