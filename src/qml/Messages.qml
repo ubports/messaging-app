@@ -1024,7 +1024,7 @@ Page {
     Item {
         id: screenTop
         anchors {
-            top: parent.top
+            top: pageHeader.bottom
             left: parent.left
             right: parent.right
         }
