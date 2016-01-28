@@ -152,7 +152,13 @@ Page {
                 Action {
                     objectName: "selectionModeSelectAllAction"
                     iconName: "select"
-                    onTriggered: threadList.selectAll()
+                    onTriggered: {
+                        if (threadList.selectedItems.count === threadList.count) {
+                            threadList.clearSelection()
+                        } else {
+                            threadList.selectAll()
+                        }
+                    }
                 },
                 Action {
                     objectName: "selectionModeDeleteAction"
