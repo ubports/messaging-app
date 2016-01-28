@@ -225,6 +225,11 @@ MainView {
 
     function emptyStack() {
         mainStack.removePages(mainPage)
+        if (mainPage._messagesPage) {
+            mainPage._messagesPage.destroy()
+            mainPage._messagesPage = null
+        }
+
         showEmptyState()
     }
 
@@ -281,7 +286,10 @@ MainView {
         }
 
         emptyStack()
-        mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
+        // FIXME: AdaptivePageLayout takes a really long time to create pages,
+        // so we create manually and push that
+        var page = messagesWithBottomEdge.createObject(mainPage, properties)
+        mainStack.addPageToNextColumn(mainPage, page, properties)
     }
 
     InputInfo {
@@ -313,6 +321,8 @@ MainView {
         Messages {
             id: messages
             height: mainPage.height
+
+            Component.onCompleted: mainPage._messagesPage = messages
             Loader {
                 id: messagesBottomEdgeLoader
                 active: mainView.dualPanel

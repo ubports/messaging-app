@@ -31,6 +31,8 @@ Page {
     property alias threadCount: threadList.count
     property alias displayedThreadIndex: threadList.currentIndex
 
+    property var _messagesPage: null
+
     function startSelection() {
         threadList.startSelection()
     }
@@ -269,7 +271,11 @@ Page {
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
+                    emptyStack()
+                    // FIXME: AdaptivePageLayout takes a really long time to create pages,
+                    // so we create manually and push that
+                    var page = messagesWithBottomEdge.createObject(mainPage, properties)
+                    mainStack.addPageToNextColumn(mainPage, page, properties)
 
                     // mark this item as current
                     threadList.currentIndex = index
