@@ -94,7 +94,9 @@ Page {
                     objectName: "settingsAction"
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                    onTriggered: {
+                        pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                    }
                 },
                 Action {
                     objectName: "newMessageAction"
@@ -272,10 +274,7 @@ Page {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
                     emptyStack()
-                    // FIXME: AdaptivePageLayout takes a really long time to create pages,
-                    // so we create manually and push that
-                    var page = messagesWithBottomEdge.createObject(mainPage, properties)
-                    mainStack.addPageToNextColumn(mainPage, page, properties)
+                    mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
 
                     // mark this item as current
                     threadList.currentIndex = index

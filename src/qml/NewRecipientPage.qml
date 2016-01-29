@@ -26,7 +26,6 @@ Page {
     objectName: "newRecipientPage"
 
     property Item multiRecipient: null
-    property Item parentPage: null
     property string phoneToAdd: ""
     property QtObject contactIndex: null
 
@@ -189,7 +188,7 @@ Page {
 
         onAddNewContactClicked: {
             var newContact = ContactsJS.createEmptyContact(newRecipientPage.phoneToAdd, newRecipientPage)
-            mainStack.addPageToCurrentColumn(newRecipientPage,
+            mainStack.addFileToCurrentColumnSync(newRecipientPage,
                                              Qt.resolvedUrl("MessagingContactEditorPage.qml"),
                                              { model: contactList.listModel,
                                                contact: newContact,

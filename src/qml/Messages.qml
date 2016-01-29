@@ -631,8 +631,7 @@ Page {
                     iconName: "contact"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        var page = Qt.createComponent("NewRecipientPage.qml").createObject(messages, {"multiRecipient": multiRecipient, "parentPage": messages})
-                        mainStack.addPageToCurrentColumn(mainPage, page)
+                        mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
                     }
                 }
 

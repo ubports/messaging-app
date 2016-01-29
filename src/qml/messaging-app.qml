@@ -72,13 +72,13 @@ MainView {
             initialProperties['contact'] = contact
         }
 
-        mainStack.addPageToCurrentColumn(currentPage,
+        mainStack.addFileToCurrentColumnSync(currentPage,
                                          Qt.resolvedUrl("MessagingContactViewPage.qml"),
                                          initialProperties)
     }
 
     function addNewContact(currentPage, phoneNumber, contactListPage) {
-        mainStack.addPageToCurrentColumn(currentPage,
+        mainStack.addFileToCurrentColumnSync(currentPage,
                                          Qt.resolvedUrl("MessagingContactEditorPage.qml"),
                                          { "contactId": contactId,
                                            "addPhoneToContact": phoneNumber,
@@ -87,7 +87,7 @@ MainView {
 
     function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
         if (contact === "") {
-            mainStack.addPageToCurrentColumn(currentPage,
+            mainStack.addFileToCurrentColumnSync(currentPage,
                                              Qt.resolvedUrl("NewRecipientPage.qml"),
                                              { "phoneToAdd": phoneNumber })
         } else {
@@ -99,7 +99,7 @@ MainView {
             } else {
                 initialProperties['contact'] = contact
             }
-            mainStack.addPageToCurrentColumn(currentPage,
+            mainStack.addFileToCurrentColumnSync(currentPage,
                                              Qt.resolvedUrl("MessagingContactViewPage.qml"),
                                              initialProperties)
         }
@@ -225,17 +225,17 @@ MainView {
 
     function emptyStack() {
         mainStack.removePages(mainPage)
-        if (mainPage._messagesPage) {
+        /*if (mainPage._messagesPage) {
             mainPage._messagesPage.destroy()
             mainPage._messagesPage = null
-        }
-
+        }*/
+        layout.deleteInstances()
         showEmptyState()
     }
 
     function showEmptyState() {
         if (mainStack.columns > 1) {
-            layout.addPageToNextColumn(mainStack.primaryPage, emptyStatePageComponent.createObject(null))
+            layout.addComponentToNextColumnSync(mainStack.primaryPage, emptyStatePageComponent)
         }
     }
 
@@ -288,8 +288,7 @@ MainView {
         emptyStack()
         // FIXME: AdaptivePageLayout takes a really long time to create pages,
         // so we create manually and push that
-        var page = messagesWithBottomEdge.createObject(mainPage, properties)
-        mainStack.addPageToNextColumn(mainPage, page, properties)
+        mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
     }
 
     InputInfo {
@@ -358,9 +357,53 @@ MainView {
 
     AdaptivePageLayout {
         id: layout
+        property var _pagesToRemove: []
         anchors.fill: parent
         primaryPage: MainPage {
             id: mainPage
+        }
+
+        function deleteInstances() {
+            for (var i in _pagesToRemove) {
+                _pagesToRemove[i].destroy()
+            }
+            _pagesToRemove = []
+        }
+
+        function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
+            if (typeof(properties) === 'undefined') {
+                properties = {}
+            }
+            var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
+            mainStack.addPageToNextColumn(parentObject, page, properties)
+            _pagesToRemove.push(page)
+        }
+
+        function addFileToCurrentColumnSync(parentObject, resolvedUrl, properties) {
+            if (typeof(properties) === 'undefined') {
+                properties = {}
+            }
+            var page = Qt.createComponent(resolvedUrl).createObject(null, properties)
+            mainStack.addPageToCurrentColumn(parentObject, page, properties)
+            _pagesToRemove.push(page)
+        }
+
+        function addComponentToNextColumnSync(parentObject, component, properties) {
+            if (typeof(properties) === 'undefined') {
+                properties = {}
+            }
+            var page = component.createObject(parentObject, properties)
+            mainStack.addPageToNextColumn(parentObject, page, properties)
+            _pagesToRemove.push(page)
+        }
+
+        function addComponentToCurrentColumnSync(parentObject, component, properties) {
+            if (typeof(properties) === 'undefined') {
+                properties = {}
+            }
+            var page = component.createObject(parentObject, properties)
+            mainStack.addPageToCurrentColumn(parentObject, page, properties)
+            _pagesToRemove.push(page)
         }
 
         onColumnsChanged: {
