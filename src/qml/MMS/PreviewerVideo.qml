@@ -27,7 +27,7 @@ import ".."
 Previewer {
     id: videoPreviewer
 
-    property size thumbSize: Qt.size(viewer.width * 1.05, viewer.height * 1.05)
+    property size thumbnailSize: Qt.size(viewer.width * 1.05, viewer.height * 1.05)
 
     title: i18n.tr("Video Preview")
     clip: true
@@ -40,18 +40,18 @@ Previewer {
     Component.onDestruction: application.fullscreen = false
 
     onWidthChanged: {
-        // Only change thumbSize if width increases more than 5%
+        // Only change thumbnailSize if width increases more than 5%
         // that way we do not reload image for small resizes
-        if (width > thumbSize.width) {
-            thumbSize = Qt.size(width * 1.05, height * 1.05);
+        if (width > thumbnailSize.width) {
+            thumbnailSize = Qt.size(width * 1.05, height * 1.05);
         }
     }
 
     onHeightChanged: {
-        // Only change thumbSize if height increases more than 5%
+        // Only change thumbnailSize if height increases more than 5%
         // that way we do not reload image for small resizes
-        if (height > thumbSize.height) {
-            thumbSize = Qt.size(width * 1.05, height * 1.05);
+        if (height > thumbnailSize.height) {
+            thumbnailSize = Qt.size(width * 1.05, height * 1.05);
         }
     }
 
@@ -143,8 +143,8 @@ Previewer {
                         cache: true
 
                         sourceSize {
-                            width: videoPreviewer.thumbSize.width
-                            height: videoPreviewer.thumbSize.height
+                            width: videoPreviewer.thumbnailSize.width
+                            height: videoPreviewer.thumbnailSize.height
                         }
                     }
                 }
