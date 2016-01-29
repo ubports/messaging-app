@@ -448,6 +448,21 @@ Page {
             }
         ]
 
+        property list<QtObject> singlePanelLeadingActions: [
+            Action {
+                id: singlePanelBackAction
+                objectName: "back"
+                name: "cancel"
+                text: i18n.tr("Cancel")
+                iconName: "back"
+                shortcut: "Esc"
+                onTriggered: {
+                    // emptyStack will make sure the page gets removed.
+                    mainView.emptyStack()
+                }
+            }
+        ]
+
         title: {
             if (landscape) {
                 return ""
@@ -490,7 +505,16 @@ Page {
                         target: leadingBar
                         actions: pageHeader.bottomEdgeLeadingActions
                     }
+                },
+                State {
+                    name: "singlePanelBack"
+                    when: !mainView.dualPanel && !startedFromBottomEdge
+                    PropertyChanges {
+                        target: leadingBar
+                        actions: pageHeader.singlePanelLeadingActions
+                    }
                 }
+
             ]
         }
 
@@ -691,7 +715,7 @@ Page {
     }
 
     Component.onDestruction: {
-        if (!mainView.dualPanel) {
+        if (!mainView.dualPanel && !startedFromBottomEdge) {
             mainPage.displayedThreadIndex = -1
         }
     }
