@@ -60,6 +60,16 @@ Page {
 
         trailingActionBar {
             id: trailingBar
+            actions: [
+                Action {
+                    text: i18n.tr("Back")
+                    iconName: "back"
+                    onTriggered: {
+                        mainStack.removePages(newRecipientPage)
+                        newRecipientPage.destroy()
+                    }
+                }
+            ]
         }
     }
 
