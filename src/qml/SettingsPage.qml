@@ -71,7 +71,12 @@ Page {
     }
 
     ListView {
-        anchors.fill: parent
+        anchors {
+            top: pageHeader.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
         model: settingsModel
         delegate: settingDelegate
     }
