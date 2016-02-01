@@ -224,11 +224,7 @@ MainView {
     }
 
     function emptyStack() {
-        mainStack.removePages(mainPage)
-        /*if (mainPage._messagesPage) {
-            mainPage._messagesPage.destroy()
-            mainPage._messagesPage = null
-        }*/
+        mainStack.removePage(mainPage)
         layout.deleteInstances()
         showEmptyState()
     }
@@ -370,12 +366,24 @@ MainView {
             _pagesToRemove = []
         }
 
+        function removePage(page) {
+            // check if this page was allocated dynamically and then remove it
+            for (var i in _pagesToRemove) {
+                if (_pagesToRemove[i] == page) {
+                    _pagesToRemove[i].destroy()
+                    _pagesToRemove.splice(i, 1)
+                    break    
+                }
+            }
+            removePages(page)
+        }
+
         function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
             if (typeof(properties) === 'undefined') {
                 properties = {}
             }
             var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
-            mainStack.addPageToNextColumn(parentObject, page, properties)
+            mainStack.addPageToNextColumn(parentObject, page)
             _pagesToRemove.push(page)
         }
 
@@ -383,8 +391,8 @@ MainView {
             if (typeof(properties) === 'undefined') {
                 properties = {}
             }
-            var page = Qt.createComponent(resolvedUrl).createObject(null, properties)
-            mainStack.addPageToCurrentColumn(parentObject, page, properties)
+            var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
+            mainStack.addPageToCurrentColumn(parentObject, page)
             _pagesToRemove.push(page)
         }
 
@@ -393,7 +401,7 @@ MainView {
                 properties = {}
             }
             var page = component.createObject(parentObject, properties)
-            mainStack.addPageToNextColumn(parentObject, page, properties)
+            mainStack.addPageToNextColumn(parentObject, page)
             _pagesToRemove.push(page)
         }
 
@@ -402,14 +410,14 @@ MainView {
                 properties = {}
             }
             var page = component.createObject(parentObject, properties)
-            mainStack.addPageToCurrentColumn(parentObject, page, properties)
+            mainStack.addPageToCurrentColumn(parentObject, page)
             _pagesToRemove.push(page)
         }
 
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
             if (mainPage.displayedThreadIndex < 0) {
-                layout.removePages(mainPage)
+                layout.removePage(mainPage)
                 showEmptyState()
             }
         }

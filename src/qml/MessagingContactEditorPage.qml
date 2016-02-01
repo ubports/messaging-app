@@ -53,7 +53,7 @@ ContactEditorPage {
     onContactSaved: {
         if (root.contactListPage) {
             if (root.contactListPage.phoneToAdd !== "") {
-                mainStack.removePages(root.contactListPage)
+                mainStack.removePage(root.contactListPage)
             } else {
                 root.contactListPage.moveListToContact(contact)
                 root.contactListPage.phoneToAdd = ""

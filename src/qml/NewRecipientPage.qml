@@ -43,7 +43,7 @@ Page {
     {
         multiRecipient.addRecipient(phoneNumber)
         multiRecipient.forceActiveFocus()
-        mainStack.removePages(newRecipientPage)
+        mainStack.removePage(newRecipientPage)
     }
 
     header: PageHeader {
@@ -64,7 +64,7 @@ Page {
                     text: i18n.tr("Back")
                     iconName: "back"
                     onTriggered: {
-                        mainStack.removePages(newRecipientPage)
+                        mainStack.removePage(newRecipientPage)
                         newRecipientPage.destroy()
                     }
                 }

@@ -120,11 +120,11 @@ Page {
 
             onPeerSelected: {
                 picker.curTransfer = peer.request();
-                mainStack.removePages(picker);
+                mainStack.removePage(picker);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)
                     picker.__exportItems(picker.url);
             }
-            onCancelPressed: mainStack.removePages(picker);
+            onCancelPressed: mainStack.removePage(picker);
         }
 
         Connections {
