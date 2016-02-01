@@ -95,6 +95,7 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
+                        emptyStack()
                         pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
