@@ -135,7 +135,7 @@ Previewer {
                         opacity: visible ? 1.0 : 0.0
                         Behavior on opacity { UbuntuNumberAnimation {} }
 
-                        fillMode: Image.PreserveAspectCrop
+                        fillMode: Image.PreserveAspectFit
                         smooth: true
                         source: "image://thumbnailer/" + player.source.toString().replace("file://", "")
 
