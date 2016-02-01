@@ -42,7 +42,12 @@ Previewer {
     MultipleSelectionListView {
         id: contactList
 
-        anchors.fill: parent
+        anchors {
+            top: root.header.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
         listModel: thumbnail.vcard.contacts
         listDelegate: ContactDelegate {
             id: contactDelegate
