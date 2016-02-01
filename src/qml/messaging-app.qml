@@ -351,69 +351,11 @@ MainView {
         }
     }
 
-    AdaptivePageLayout {
+    MessagingPageLayout {
         id: layout
-        property var _pagesToRemove: []
         anchors.fill: parent
         primaryPage: MainPage {
             id: mainPage
-        }
-
-        function deleteInstances() {
-            for (var i in _pagesToRemove) {
-                if (_pagesToRemove[i].destroy) {
-                    _pagesToRemove[i].destroy()
-                }
-            }
-            _pagesToRemove = []
-        }
-
-        function removePage(page) {
-            // check if this page was allocated dynamically and then remove it
-            for (var i in _pagesToRemove) {
-                if (_pagesToRemove[i] == page) {
-                    _pagesToRemove[i].destroy()
-                    _pagesToRemove.splice(i, 1)
-                    break    
-                }
-            }
-            removePages(page)
-        }
-
-        function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
-            if (typeof(properties) === 'undefined') {
-                properties = {}
-            }
-            var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
-            mainStack.addPageToNextColumn(parentObject, page)
-            _pagesToRemove.push(page)
-        }
-
-        function addFileToCurrentColumnSync(parentObject, resolvedUrl, properties) {
-            if (typeof(properties) === 'undefined') {
-                properties = {}
-            }
-            var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
-            mainStack.addPageToCurrentColumn(parentObject, page)
-            _pagesToRemove.push(page)
-        }
-
-        function addComponentToNextColumnSync(parentObject, component, properties) {
-            if (typeof(properties) === 'undefined') {
-                properties = {}
-            }
-            var page = component.createObject(parentObject, properties)
-            mainStack.addPageToNextColumn(parentObject, page)
-            _pagesToRemove.push(page)
-        }
-
-        function addComponentToCurrentColumnSync(parentObject, component, properties) {
-            if (typeof(properties) === 'undefined') {
-                properties = {}
-            }
-            var page = component.createObject(parentObject, properties)
-            mainStack.addPageToCurrentColumn(parentObject, page)
-            _pagesToRemove.push(page)
         }
 
         onColumnsChanged: {
