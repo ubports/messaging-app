@@ -361,7 +361,9 @@ MainView {
 
         function deleteInstances() {
             for (var i in _pagesToRemove) {
-                _pagesToRemove[i].destroy()
+                if (_pagesToRemove[i].destroy) {
+                    _pagesToRemove[i].destroy()
+                }
             }
             _pagesToRemove = []
         }
