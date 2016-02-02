@@ -226,6 +226,7 @@ ListItemWithActions {
         text: textMessage
         // avoid any kind of formatting in the text message preview
         textFormat: Text.PlainText
+        maximumLineCount: 1
     }
 
     Item {
