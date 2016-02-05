@@ -27,21 +27,11 @@ AdaptivePageLayout {
     }
 
     function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
-        if (typeof(properties) === 'undefined') {
-            properties = {}
-        }
-        var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
-        layout.addPageToNextColumn(parentObject, page)
-        _pagesToRemove.push(page)
+        addComponentToNextColumnSync(Qt.createComponent(resolvedUrl), properties)
     }
 
     function addFileToCurrentColumnSync(parentObject, resolvedUrl, properties) {
-        if (typeof(properties) === 'undefined') {
-            properties = {}
-        }
-        var page = Qt.createComponent(resolvedUrl).createObject(parentObject, properties)
-        layout.addPageToCurrentColumn(parentObject, page)
-        _pagesToRemove.push(page)
+        addComponentToCurrentColumnSync(Qt.createComponent(resolvedUrl), properties)
     }
 
     function addComponentToNextColumnSync(parentObject, component, properties) {
