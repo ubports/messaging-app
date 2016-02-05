@@ -167,6 +167,7 @@ MainView {
     Settings {
         id: settings
         category: "DualSim"
+        property bool messagesDontShowFileSizeWarning: false
         property bool messagesDontAsk: false
         property bool mainViewIgnoreFirstTimeDialog: false
     }
