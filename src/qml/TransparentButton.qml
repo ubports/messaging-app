@@ -37,6 +37,8 @@ Item {
     property bool sideBySide: false
     property bool iconPulsate: false
 
+    property alias drag: mouseArea.drag
+
     signal clicked()
     signal pressed()
     signal released()
@@ -69,6 +71,7 @@ Item {
     }
 
     MouseArea {
+        id: mouseArea
         anchors {
             fill: iconShape
             margins: units.gu(-2)
