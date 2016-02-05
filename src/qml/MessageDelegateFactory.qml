@@ -36,6 +36,7 @@ ListItemWithActions {
     signal copyMessage()
     signal showMessageDetails()
     color: "transparent"
+    locked: loader.item.swipeLocked
 
     width: messageList.width
     leftSideAction: Action {

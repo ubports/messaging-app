@@ -22,8 +22,8 @@ import Ubuntu.Components 1.3
 Item {
     id: button
 
-    width: icon.width
-    height: icon.height + label.height + spacing
+    width: sideBySide ? iconShape.width + spacing + label.width : iconShape.width
+    height: sideBySide ? iconShape.height : iconShape.height + label.height + spacing
 
     property alias iconName: icon.name
     property alias iconSource: icon.source
@@ -32,32 +32,45 @@ Item {
     property alias iconRotation: icon.rotation
     property alias text: label.text
     property alias textSize: label.font.pixelSize
+    property alias textColor: label.color
     property int spacing: 0
+    property bool sideBySide: false
+    property bool iconPulsate: false
 
     signal clicked()
     signal pressed()
     signal released()
 
-    Icon {
-        id: icon
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-        }
-
+    Item {
+        id: iconShape
         height: iconSize
         width: iconSize
-        color: "gray"
-        Behavior on rotation {
-            UbuntuNumberAnimation { }
+        anchors {
+            left: parent.left
+            right: sideBySide ? undefined : parent.right
+            top: parent.top
+        }
+        Icon {
+            id: icon
+            anchors.centerIn: parent
+            height: iconSize
+            width: height
+            color: "gray"
+            Behavior on rotation {
+                UbuntuNumberAnimation { }
+            }
+            SequentialAnimation {
+                running: iconPulsate
+                loops: Animation.Infinite
+                NumberAnimation { target: icon; property: "scale"; from: 1; to: 0.7; duration: 1000; easing.type: Easing.InOutQuad }
+                NumberAnimation { target: icon; property: "scale"; from: 0.7; to: 1; duration: 1000; easing.type: Easing.InOutQuad }
+            }
         }
     }
 
     MouseArea {
         anchors {
-            fill: parent
+            fill: iconShape
             margins: units.gu(-2)
         }
         onClicked: {
@@ -74,12 +87,14 @@ Item {
         color: "gray"
         height: text !== "" ? paintedHeight : 0
         anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
+            left: sideBySide ? iconShape.right : parent.left
+            right: sideBySide ? undefined : parent.right
+            bottom: sideBySide ? undefined : parent.bottom
+            verticalCenter: sideBySide ? iconShape.verticalCenter : undefined
+            leftMargin: sideBySide ? spacing : undefined
         }
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignBottom
+        horizontalAlignment: sideBySide ? undefined : Text.AlignHCenter
+        verticalAlignment: sideBySide ? Text.AlignVCenter : Text.AlignBottom
         font.family: "Ubuntu"
         font.pixelSize: FontUtils.sizeToPixels("small")
     }

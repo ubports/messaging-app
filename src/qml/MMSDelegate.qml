@@ -27,6 +27,15 @@ MessageDelegate {
     property var dataAttachments: []
     property var textAttachements: []
     property string messageText: ""
+    swipeLocked: {
+        for (var i=0; i < attachmentsView.children.length; i++) {
+            if (attachmentsView.children[i].item && !attachmentsView.children[i].item.swipeLocked) {
+                return false
+            }
+        }
+        return true
+    }
+
 
     function clicked(mouse)
     {
