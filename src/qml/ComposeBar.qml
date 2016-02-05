@@ -229,7 +229,7 @@ Item {
             bottom: attachmentPanel.top
         }
 
-        buttonOpacity: 1 - dragTarget.dragAmount
+        buttonOpacity: recording ? 1 - dragTarget.dragAmount : 0
 
         onAudioRecorded:  {
             attachments.append(audio)
