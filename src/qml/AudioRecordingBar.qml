@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 import messagingapp.private 0.1
 import "dateUtils.js" as DateUtils
 
@@ -26,6 +27,7 @@ Item {
     opacity: audioRecorder.recording ? 1.0 : 0.0
     Behavior on opacity { UbuntuNumberAnimation {} }
     visible: opacity > 0
+    property bool handleError: false
 
     property int duration: 0
     readonly property bool recording: audioRecorder.recording
@@ -34,6 +36,7 @@ Item {
     signal audioRecorded(var audio)
 
     function startRecording() {
+        handleError = true
         audioRecorder.record()
     }
 
@@ -44,7 +47,7 @@ Item {
     Loader {
         id: audioRecorder
         readonly property bool ready: status == Loader.Ready
-        readonly property bool recording: ready ? item.recorderState == AudioRecorder.RecordingState : false
+        readonly property bool recording: ready ? item.recorderStatus == AudioRecorder.RecordingStatus : false
         readonly property int duration: ready ? item.duration : 0
         function record() {
             audioRecorder.active = true
@@ -62,9 +65,9 @@ Item {
     Component {
         id: audioRecorderComponent
         AudioRecorder {
-            readonly property bool recording: recorderState == AudioRecorder.RecordingState
+            readonly property bool recording: recorderStatus == AudioRecorder.RecordingStatus
 
-            onRecorderStateChanged: {
+            onRecorderStatusChanged: {
                 if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
                     var filePath = actualLocation
 
@@ -82,9 +85,30 @@ Item {
                     recordingBar.duration = duration
                 }
             }
-
+            onErrorChanged: {
+                switch(errorCode) {
+                    case AudioRecorder.ResourceError:
+                        if (handleError) {
+                            timer.start()
+                        }
+                        break
+                    default:
+                }
+            }
             codec: "audio/vorbis"
             quality: AudioRecorder.VeryHighQuality
+        }
+    }
+
+    // WORKAROUND we can't trigger the dialog from the onErrorChanged signal.
+    Timer {
+        id: timer
+        interval: 1
+        onTriggered: {
+            Qt.inputMethod.hide()
+            messages.focus = false
+            PopupUtils.open(Qt.createComponent("Dialogs/NoMicrophonePermission.qml").createObject(messages))
+            handleError = false
         }
     }
 
