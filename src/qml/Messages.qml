@@ -181,6 +181,46 @@ Page {
         return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
     }
 
+    function addNewThreadToFilter(newAccountId, participantIds) {
+        var newAccount = telepathyHelper.accountForId(newAccountId)
+        var matchType = HistoryThreadModel.MatchCaseSensitive
+        if (newAccount.type == AccountEntry.PhoneAccount || newAccount.type == AccountEntry.MultimediaAccount) {
+            matchType = HistoryThreadModel.MatchPhoneNumber
+        }
+
+        var thread = eventModel.threadForParticipants(newAccountId,
+                                           HistoryThreadModel.EventTypeText,
+                                           participantIds,
+                                           matchType,
+                                           true)
+        var threadId = thread.threadId
+
+        // dont change the participants list
+        if (messages.participants.length == 0) {
+            messages.participants = thread.participants
+            var ids = []
+            for (var i in messages.participants) {
+                ids.push(messages.participants[i].identifier)
+            }
+            messages.participantIds = ids;
+        }
+
+        var found = false;
+        for (var i in messages.threads) {
+            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == newAccountId) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            messages.threads.push({"accountId": newAccountId, "threadId": threadId})
+            reloadFilters = !reloadFilters
+        }
+
+        return thread
+    }
+
     Connections {
         target: telepathyHelper
         onSetupReady: {
@@ -316,35 +356,8 @@ Page {
         }
 
         // create the new thread and update the threadId list
-        var thread = eventModel.threadForParticipants(messages.account.accountId,
-                                           HistoryThreadModel.EventTypeText,
-                                           participantIds,
-                                           messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
-                                                                                              : HistoryThreadModel.MatchCaseSensitive,
-                                           true)
-        var threadId = thread.threadId
+        var thread = addNewThreadToFilter(messages.account.accountId, participantIds)
 
-        // dont change the participants list
-        if (messages.participants.length == 0) {
-            messages.participants = thread.participants
-            var ids = []
-            for (var i in messages.participants) {
-                ids.push(messages.participants[i].identifier)
-            }
-            messages.participantIds = ids;
-        }
-
-        var found = false;
-        for (var i in messages.threads) {
-            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == messages.account.accountId) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            messages.threads.push({"accountId": messages.account.accountId, "threadId": threadId})
-            reloadFilters = !reloadFilters
-        }
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -357,7 +370,7 @@ Page {
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
-                                                     threadId,
+                                                     thread.threadId,
                                                      participantIds,
                                                      "")
                 break;
@@ -375,7 +388,7 @@ Page {
             var timestamp = new Date()
             var tmpEventId = timestamp.toISOString()
             event["accountId"] = messages.account.accountId
-            event["threadId"] = threadId
+            event["threadId"] = thread.threadId
             event["eventId"] =  tmpEventId
             event["type"] = HistoryEventModel.MessageTypeText
             event["participants"] = thread.participants
@@ -393,7 +406,7 @@ Page {
                     var attachment = {}
                     var item = attachments[i]
                     attachment["accountId"] = messages.account.accountId
-                    attachment["threadId"] = threadId
+                    attachment["threadId"] = thread.threadId
                     attachment["eventId"] = tmpEventId
                     attachment["attachmentId"] = item[0]
                     attachment["contentType"] = item[1]
@@ -413,9 +426,13 @@ Page {
             if (isMmsGroupChat && !isSelfContactKnown) {
                 // TODO: inform the user to enter the phone number of the selected sim card manually
                 // and use it in the telepathy-ofono account as selfContactId. 
-                return
+                return false
             }
-            chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
+            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
+            // create the new thread and update the threadId list
+            if (fallbackAccountId != messages.account.accountId) {
+                addNewThreadToFilter(fallbackAccountId, participantIds)
+            }
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
