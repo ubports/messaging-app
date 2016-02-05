@@ -30,7 +30,7 @@ FocusScope {
     }
 
     property bool expanded: false
-    property alias packCount: stickerPacksModel.count
+    readonly property int packCount: stickerPacksModel.count
 
     // FIXME: try to get something similar to the keyboard height
     // FIXME: animate the displaying
@@ -57,9 +57,7 @@ FocusScope {
 
     ListView {
         id: setsList
-        model: StickerPacksModel {
-            id: stickerPacksModel
-        }
+        model: stickerPacksModel
         orientation: ListView.Horizontal
         anchors.left: parent.left
         anchors.right: parent.right
@@ -100,7 +98,7 @@ FocusScope {
         cellHeight: units.gu(10)
         visible: stickersGrid.model.packName.length > 0
 
-        model: StickersModel { }
+        model: stickersModel
         delegate: StickerDelegate {
             stickerSource: filePath
             width: stickersGrid.cellWidth
