@@ -27,6 +27,8 @@ import ".."
 Previewer {
     id: videoPreviewer
 
+    property size thumbnailSize: Qt.size(viewer.width * 1.05, viewer.height * 1.05)
+
     title: i18n.tr("Video Preview")
     clip: true
 
@@ -36,6 +38,22 @@ Previewer {
         videoLoader.active = true
     }
     Component.onDestruction: application.fullscreen = false
+
+    onWidthChanged: {
+        // Only change thumbnailSize if width increases more than 5%
+        // that way we do not reload image for small resizes
+        if (width > thumbnailSize.width) {
+            thumbnailSize = Qt.size(width * 1.05, height * 1.05);
+        }
+    }
+
+    onHeightChanged: {
+        // Only change thumbnailSize if height increases more than 5%
+        // that way we do not reload image for small resizes
+        if (height > thumbnailSize.height) {
+            thumbnailSize = Qt.size(width * 1.05, height * 1.05);
+        }
+    }
 
     Connections {
         target: application
@@ -93,6 +111,42 @@ Previewer {
                     id: videoOutput
                     anchors.fill: parent
                     source: player
+                }
+
+                Rectangle {
+                    id: thumbnail
+
+                    anchors.fill: parent
+                    visible: player.status == MediaPlayer.EndOfMedia
+
+                    color: "black"
+
+                    ActivityIndicator {
+                        anchors.centerIn: parent
+                        visible: running
+                        running: image.status != Image.Ready
+                    }
+
+                    Image {
+                        id: image
+
+                        anchors.fill: parent
+                        visible: status == Image.Ready
+                        opacity: visible ? 1.0 : 0.0
+                        Behavior on opacity { UbuntuNumberAnimation {} }
+
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        source: "image://thumbnailer/" + player.source.toString().replace("file://", "")
+
+                        asynchronous: true
+                        cache: true
+
+                        sourceSize {
+                            width: videoPreviewer.thumbnailSize.width
+                            height: videoPreviewer.thumbnailSize.height
+                        }
+                    }
                 }
             }
         }
