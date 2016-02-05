@@ -45,8 +45,6 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
-    property var activeTransfer: null
-    property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
     property string text: ""
@@ -540,7 +538,7 @@ Page {
             }
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
- 
+
         var filterAccounts = []
 
         if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
@@ -552,9 +550,9 @@ Page {
                     filterAccounts.push(account)
                 }
             }
-       }
+        }
 
-       for (var i in filterAccounts) {
+        for (var i in filterAccounts) {
             var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,

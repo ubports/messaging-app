@@ -36,7 +36,7 @@ Item {
 
     // internal properties
     property int _activeAttachmentIndex: -1
-    property int _defaultHeight: textEntry.height + units.gu(2)
+    property int _defaultHeight: textEntry.height + attachmentPanel.height + units.gu(2)
 
     function forceFocus() {
         messageTextArea.forceActiveFocus()
@@ -140,27 +140,13 @@ Item {
         }
         spacing: units.gu(2)
 
-        PictureImport {
-            id: pictureImporter
-
-            onPictureReceived: {
-                var attachment = {}
-                var filePath = String(pictureUrl).replace('file://', '')
-                attachment["contentType"] = application.fileMimeType(filePath)
-                attachment["name"] = filePath.split('/').reverse()[0]
-                attachment["filePath"] = filePath
-                attachments.append(attachment)
-                textEntry.forceActiveFocus()
-            }
-        }
-
         TransparentButton {
             id: attachButton
             objectName: "attachButton"
-            iconName: "camera-app-symbolic"
+            iconName: "add"
+            iconRotation: attachmentPanel.expanded ? 45 : 0
             onClicked: {
-                Qt.inputMethod.hide()
-                pictureImporter.requestNewPicture()
+                attachmentPanel.expanded = !attachmentPanel.expanded
             }
         }
     }
@@ -287,6 +273,30 @@ Item {
             font.family: "Ubuntu"
             font.pixelSize: FontUtils.sizeToPixels("medium")
             color: "#5d5d5d"
+        }
+    }
+
+    AttachmentPanel {
+        id: attachmentPanel
+
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: textEntry.bottom
+            topMargin: units.gu(1)
+        }
+
+        onAttachmentAvailable: {
+            attachments.append(attachment)
+            forceFocus()
+        }
+
+        onExpandedChanged: {
+            if (expanded && Qt.inputMethod.visible) {
+                attachmentPanel.forceActiveFocus()
+            } else if (!expanded && !Qt.inputMethod.visible) {
+                forceFocus()
+            }
         }
     }
 
