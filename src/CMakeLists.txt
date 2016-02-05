@@ -1,11 +1,13 @@
 set(MESSAGING_APP messaging-app)
 
 set(messaging_app_HDRS
+    audiorecorder.h
     fileoperations.h
     messagingapplication.h
     )
 
 set(messaging_app_SRCS
+    audiorecorder.cpp
     fileoperations.cpp
     messagingapplication.cpp
     main.cpp
@@ -14,7 +16,7 @@ set(messaging_app_SRCS
 add_executable(${MESSAGING_APP}
     ${messaging_app_SRCS}
     )
-qt5_use_modules(${MESSAGING_APP} Core DBus Gui Qml Quick Versit)
+qt5_use_modules(${MESSAGING_APP} Core DBus Gui Multimedia Qml Quick Versit)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}

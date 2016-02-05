@@ -17,6 +17,7 @@
  */
 
 #include "messagingapplication.h"
+#include "audiorecorder.h"
 #include "fileoperations.h"
 
 #include <libnotify/notify.h>
@@ -147,6 +148,7 @@ bool MessagingApplication::setup()
     }
 
     const char* uri = "messagingapp.private";
+    qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
     qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
 
     m_view = new QQuickView();

@@ -24,6 +24,7 @@
 #include <QtQml/QtQml>
 
 // local
+#include "audiorecorder.h"
 #include "fileoperations.h"
 
 class TestContext : public QObject
@@ -52,6 +53,7 @@ static QObject* FileOperations_singleton_factory(QQmlEngine* engine, QJSEngine* 
 
 int main(int argc, char** argv)
 {
+    qmlRegisterType<AudioRecorder>("messagingapp.private", 0, 1, "AudioRecorder");
     qmlRegisterSingletonType<FileOperations>("messagingapp.private", 0, 1, "FileOperations", FileOperations_singleton_factory);
     qmlRegisterSingletonType<TestContext>("messagingtest.private", 0, 1, "TestContext", TestContext_singleton_factory);
 
