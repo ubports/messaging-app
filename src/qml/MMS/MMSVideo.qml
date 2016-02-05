@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Thumbnailer 0.1
+import ".."
 
 MMSBase {
     id: videoDelegate
@@ -95,4 +96,17 @@ MMSBase {
             }
         }
     }
+
+    DeliveryStatus {
+       id: deliveryStatus
+       messageStatus: textMessageStatus
+       enabled: showDeliveryStatus
+       anchors {
+           right: parent.right
+           rightMargin: units.gu(0.5)
+           bottom: parent.bottom
+           bottomMargin: units.gu(0.5)
+       }
+    }
+
 }

@@ -20,6 +20,7 @@ import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
+import ".."
 
 MMSBase {
     id: vcardDelegate
@@ -131,5 +132,17 @@ MMSBase {
         id: vcardParser
 
         vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
+    }
+
+    DeliveryStatus {
+       id: deliveryStatus
+       messageStatus: textMessageStatus
+       enabled: showDeliveryStatus
+       anchors {
+           right: parent.right
+           rightMargin: units.gu(0.5)
+           bottom: parent.bottom
+           bottomMargin: units.gu(0.5)
+       }
     }
 }

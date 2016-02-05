@@ -34,10 +34,15 @@ Rectangle {
     property var messageTimeStamp
     property int maxDelegateWidth: units.gu(27)
     property string accountName
+    // FIXME for now we just display the delivery status if it's greater than Accepted
+    property bool showDeliveryStatus: false
+    property bool deliveryStatusAvailable: showDeliveryStatus && (statusDelivered || statusRead)
 
     readonly property bool error: (messageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
     readonly property bool sending: (messageStatus === HistoryThreadModel.MessageStatusUnknown ||
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
+    readonly property bool statusDelivered: (messageStatus === HistoryThreadModel.MessageStatusDelivered)
+    readonly property bool statusRead: (messageStatus === HistoryThreadModel.MessageStatusRead)
 
     // XXXX: should be hoisted
     function getCountryCode() {
@@ -85,7 +90,7 @@ Rectangle {
     radius: units.gu(1)
     height: senderName.height + senderName.anchors.topMargin + textLabel.height + textTimestamp.height + units.gu(1)
     width:  Math.min(units.gu(27),
-                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth, senderName.contentWidth))
+                     Math.max(textLabel.contentWidth, textTimestamp.contentWidth + deliveryStatus.width, senderName.contentWidth))
             + units.gu(3)
     anchors{
         leftMargin:  units.gu(1)
@@ -154,6 +159,17 @@ Rectangle {
             }
             str += " @ %1".arg(root.accountName)
             return str
+        }
+    }
+
+    DeliveryStatus {
+        id: deliveryStatus
+        messageStatus: root.messageStatus
+        enabled: deliveryStatusAvailable
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(0.5)
+            verticalCenter: textTimestamp.verticalCenter
         }
     }
 

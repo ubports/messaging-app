@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -16,13 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.2
+import Ubuntu.History 0.1
 
-Item {
-    id: baseDelegate
-
-    property var attachment
-    property string previewer
-    property bool lastItem: false
-    property bool swipeLocked: false
-    property bool showDeliveryStatus: true
+Image {
+    property int messageStatus: -1
+    enabled: true
+    height: enabled ? units.gu(1) : 0
+    fillMode: Image.PreserveAspectFit
+    source: {
+        if (!enabled) {
+            return ""
+        }
+        if (messageStatus == HistoryThreadModel.MessageStatusDelivered) {
+            return Qt.resolvedUrl("./assets/check_single_white.png")
+        } else if (messageStatus == HistoryThreadModel.MessageStatusRead) {
+            return Qt.resolvedUrl("./assets/check_double_white.png")
+        }
+        return ""
+    }
 }
