@@ -108,7 +108,6 @@ Item {
         name: 'mmsVideoDelegateTestCase'
 
         when: windowShown
-
             
         function test_load_video() {
             mmsDelegate.messageData = {
@@ -162,6 +161,36 @@ Item {
             verify(video != null)
             waitForRendering(video)
             compare(video.source, "image://theme/image-missing")
+        }
+    }
+
+    UbuntuTestCase {
+        id: mmsAudioDelegateTestCase
+        name: 'mmsAudioDelegateTestCase'
+
+        when: windowShown
+            
+        function test_load_audio() {
+            mmsDelegate.messageData = {
+                "newEvent": false,
+                "participants": [],
+                "sender": {"alias": ""},
+                "senderId": "self",
+                "textMessage": "Message Delegate QML Test",
+                "textMessageAttachments": [
+                    {
+                        "contentType": "audio/ogg",
+                        "filePath": Qt.resolvedUrl("./data/sample.ogg")
+                    }
+                ],
+                "textMessageStatus": 1,
+                "textReadTimestamp": new Date(),
+                "timestamp": new Date()
+            }
+
+            var playButton = findChild(mmsDelegate, "playButton")
+            verify(playButton != null)
+            tryCompare(playButton, "visible", true)
         }
     }
 }
