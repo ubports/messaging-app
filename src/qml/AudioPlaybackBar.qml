@@ -104,11 +104,11 @@ Item {
             }
 
             iconColor: "grey"
-            iconName: audioPlayer.playing ? "media-playback-stop" : "media-playback-start"
+            iconName: audioPlayer.playing ? "media-playback-pause" : "media-playback-start"
 
             textSize: FontUtils.sizeToPixels("x-small")
             text: {
-                if (audioPlayer.playing) {
+                if (audioPlayer.playing || audioPlayer.paused) {
                     return DateUtils.formattedTime(audioPlayer.position/ 1000)
                 }
                 return DateUtils.formattedTime(playbackBar.duration / 1000)
@@ -116,7 +116,7 @@ Item {
 
             onClicked: {
                 if (audioPlayer.playing) {
-                    audioPlayer.stop()
+                    audioPlayer.pause()
                 } else {
                     audioPlayer.play()
                 }
@@ -128,9 +128,7 @@ Item {
             Connections {
                 target: audioPlayer
                 onDurationChanged: {
-                    if (slider.maximumValue == 100) {
-                        slider.maximumValue = audioPlayer.duration
-                    }
+                    slider.maximumValue = audioPlayer.duration
                 }
             }
             style: SliderStyle {
@@ -157,7 +155,7 @@ Item {
             height: units.gu(3)
             minimumValue: 0.0
             maximumValue: 100
-            value: audioPlayer.position
+            value: audioPlayer.stopped ? 0 : audioPlayer.position
             activeFocusOnPress: false
             onPressedChanged: {
                 if (!pressed) {
@@ -176,7 +174,7 @@ Item {
                         audioPlayer.muted = false
 
                     }
-                    value = Qt.binding(function(){ return audioPlayer.position})
+                    value = Qt.binding(function(){ return audioPlayer.stopped ? 0 : audioPlayer.position })
                 }
             }
         }
