@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -272,32 +272,6 @@ Page {
         sections.selectedIndex: getSelectedIndex()
     }
 
-
-    function addAttachmentsToModel(transfer) {
-        for (var i in transfer.items) {
-            if (String(transfer.items[i].text).length > 0) {
-                messages.text = String(transfer.items[i].text)
-                continue
-            }
-            var attachment = {}
-            if (!startsWith(String(transfer.items[i].url),"file://")) {
-                messages.text = String(transfer.items[i].url)
-                continue
-            }
-            var filePath = String(transfer.items[i].url).replace('file://', '')
-            // get only the basename
-            attachment["contentType"] = application.fileMimeType(filePath)
-            if (startsWith(attachment["contentType"], "text/vcard") ||
-                startsWith(attachment["contentType"], "text/x-vcard")) {
-                attachment["name"] = "contact.vcf"
-            } else {
-                attachment["name"] = filePath.split('/').reverse()[0]
-            }
-            attachment["filePath"] = filePath
-            attachments.append(attachment)
-        }
-    }
-
     function sendMessageNetworkCheck() {
         if (messages.account.simLocked) {
             Qt.inputMethod.hide()
@@ -500,24 +474,6 @@ Page {
         visible: running
     }
 
-    ListModel {
-        id: attachments
-    }
-
-    PictureImport {
-        id: pictureImporter
-
-        onPictureReceived: {
-            var attachment = {}
-            var filePath = String(pictureUrl).replace('file://', '')
-            attachment["contentType"] = application.fileMimeType(filePath)
-            attachment["name"] = filePath.split('/').reverse()[0]
-            attachment["filePath"] = filePath
-            attachments.append(attachment)
-            textEntry.forceActiveFocus()
-        }
-    }
-
     flickable: null
 
     property bool isReady: false
@@ -560,7 +516,7 @@ Page {
                 }
             }
         }
-        addAttachmentsToModel(sharedAttachmentsTransfer)
+        composeBar.addAttachments(sharedAttachmentsTransfer)
     }
 
     onActiveChanged: {
@@ -638,30 +594,6 @@ Page {
                 }
                 pendingEventsToMarkAsRead = []
             }
-        }
-    }
-
-    Component {
-        id: attachmentPopover
-
-        Popover {
-            id: popover
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                ListItem.Standard {
-                    text: i18n.tr("Remove")
-                    onClicked: {
-                        attachments.remove(activeAttachmentIndex)
-                        PopupUtils.close(popover)
-                    }
-                }
-            }
-            Component.onDestruction: activeAttachmentIndex = -1
         }
     }
 
@@ -748,7 +680,7 @@ Page {
             topMargin: units.gu(2)
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
+            bottom: composeBar.top
         }
         z: 1
         Behavior on height {
@@ -1029,386 +961,62 @@ Page {
             top: screenTop.bottom
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
+            bottom: composeBar.top
         }
     }
 
-    Item {
-        id: bottomPanel
-        property int defaultHeight: textEntry.height + units.gu(2)
-        anchors.bottom: isSearching ? parent.bottom : keyboard.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: {
-            if (selectionMode || (participants.length > 0 && !contactWatcher.interactive)) {
-                return 0
-            } else {
-                if (messages.height - keyboard.height - screenTop.y > defaultHeight) {
-                    return defaultHeight
-                } else {
-                    return messages.height - keyboard.height - screenTop.y
-                }
-            }
+    ComposeBar {
+        id: composeBar
+        anchors {
+            bottom: isSearching ? parent.bottom : keyboard.top
+            left: parent.left
+            right: parent.right
         }
-        visible: !selectionMode && !isSearching
-        clip: true
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                messageTextArea.forceActiveFocus()
+
+        showContents: !selectionMode && !isSearching
+        maxHeight: messages.height - keyboard.height - screenTop.y
+        text: messages.text
+        canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+
+        Component.onCompleted: {
+            // if page is active, it means this is not a bottom edge page
+            if (messages.active && messages.keyboardFocus && participants.length != 0) {
+                forceFocus()
             }
         }
 
-        Behavior on height {
-            UbuntuNumberAnimation { }
-        }
+        onSendRequested: {
+            // refresh the recipient list
+            multiRecipient.focus = false
 
-        ListItem.ThinDivider {
-            anchors.top: parent.top
-        }
-
-        Icon {
-            id: attachButton
-            objectName: "attachButton"
-            anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
-            anchors.verticalCenter: sendButton.verticalCenter
-            height: units.gu(3)
-            width: units.gu(3)
-            color: "gray"
-            name: "camera-app-symbolic"
-            MouseArea {
-                anchors.fill: parent
-                anchors.margins: units.gu(-2)
-                onClicked: {
-                    Qt.inputMethod.hide()
-                    pictureImporter.requestNewPicture()
-                }
-            }
-        }
-
-        StyledItem {
-            id: textEntry
-            property alias text: messageTextArea.text
-            property alias inputMethodComposing: messageTextArea.inputMethodComposing
-            property int fullSize: attachmentThumbnails.height + messageTextArea.height
-            style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
-            anchors.bottomMargin: units.gu(1)
-            anchors.bottom: parent.bottom
-            anchors.left: attachButton.right
-            anchors.leftMargin: units.gu(1)
-            anchors.right: sendButton.left
-            anchors.rightMargin: units.gu(1)
-            height: attachments.count !== 0 ? fullSize + units.gu(1.5) : fullSize
-            onActiveFocusChanged: {
-                if(activeFocus) {
-                    messageTextArea.forceActiveFocus()
-                } else {
-                    focus = false
-                }
-            }
-            focus: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: messageTextArea.forceActiveFocus()
-            }
-            Flow {
-                id: attachmentThumbnails
-                spacing: units.gu(1)
-                anchors{
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    topMargin: units.gu(1)
-                    leftMargin: units.gu(1)
-                    rightMargin: units.gu(1)
-                }
-                height: childrenRect.height
-
-                Component {
-                    id: thumbnailImage
-                    UbuntuShape {
-                        property int index
-                        property string filePath
-
-                        width: childrenRect.width
-                        height: childrenRect.height
-
-                        image: Image {
-                            id: avatarImage
-                            width: units.gu(8)
-                            height: units.gu(8)
-                            sourceSize.height: height
-                            sourceSize.width: width
-                            fillMode: Image.PreserveAspectCrop
-                            source: filePath
-                            asynchronous: true
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                mouse.accept = true
-                                Qt.inputMethod.hide()
-                                activeAttachmentIndex = index
-                                PopupUtils.open(attachmentPopover, parent)
-                            }
-                        }
-                    }
-                }
-
-                Component {
-                    id: thumbnailContact
-                    Item {
-                        id: attachment
-
-                        readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
-                        property int index
-                        property string filePath
-                        property alias vcard: vcardParser
-                        property string contactDisplayName: {
-                            if (contactsCount > 0)  {
-                                var contact = vcard.contacts[0]
-                                if (contact.displayLabel.label && (contact.displayLabel.label != "")) {
-                                    return contact.displayLabel.label
-                                } else if (contact.name) {
-                                    var contacFullName  = contact.name.firstName
-                                    if (contact.name.midleName) {
-                                        contacFullName += " " + contact.name.midleName
-                                    }
-                                    if (contact.name.lastName) {
-                                        contacFullName += " " + contact.name.lastName
-                                    }
-                                    return contacFullName
-                                }
-                                return i18n.tr("Unknown contact")
-                            }
-                            return ""
-                        }
-                        property string title: {
-                            var result = attachment.contactDisplayName
-                            if (attachment.contactsCount > 1) {
-                                return result + " (+%1)".arg(attachment.contactsCount-1)
-                            } else {
-                                return result
-                            }
-                        }
-
-                        height: units.gu(6)
-                        width: textEntry.width
-
-                        ContactAvatar {
-                            id: avatar
-
-                            anchors {
-                                top: parent.top
-                                bottom: parent.bottom
-                                left: parent.left
-                            }
-                            contactElement: attachment.contactsCount === 1 ? attachment.vcard.contacts[0] : null
-                            fallbackAvatarUrl: attachment.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
-                            fallbackDisplayName: attachment.contactsCount === 1 ? attachment.contactDisplayName : ""
-                            width: height
-                        }
-                        Label {
-                            id: label
-
-                            anchors {
-                                left: avatar.right
-                                leftMargin: units.gu(1)
-                                top: avatar.top
-                                bottom: avatar.bottom
-                                right: parent.right
-                                rightMargin: units.gu(1)
-                            }
-
-                            verticalAlignment: Text.AlignVCenter
-                            text: attachment.title
-                            elide: Text.ElideMiddle
-                            color: UbuntuColors.lightAubergine
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                mouse.accept = true
-                                Qt.inputMethod.hide()
-                                activeAttachmentIndex = index
-                                PopupUtils.open(attachmentPopover, parent)
-                            }
-                        }
-                        VCardParser {
-                            id: vcardParser
-
-                            vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
-                        }
-                    }
-                }
-
-                Component {
-                    id: thumbnailUnknown
-
-                    UbuntuShape {
-                        property int index
-                        property string filePath
-
-                        width: units.gu(8)
-                        height: units.gu(8)
-
-                        Icon {
-                            anchors.centerIn: parent
-                            width: units.gu(6)
-                            height: units.gu(6)
-                            name: "attachment"
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                mouse.accept = true
-                                Qt.inputMethod.hide()
-                                activeAttachmentIndex = index
-                                PopupUtils.open(attachmentPopover, parent)
-                            }
-                        }
-                    }
-                }
-
-                Repeater {
-                    model: attachments
-                    delegate: Loader {
-                        height: units.gu(8)
-                        sourceComponent: {
-                            var contentType = getContentType(filePath)
-                            console.log(contentType)
-                            switch(contentType) {
-                            case ContentType.Contacts:
-                                return thumbnailContact
-                            case ContentType.Pictures:
-                                return thumbnailImage
-                            case ContentType.Unknown:
-                                return thumbnailUnknown
-                            default:
-                                console.log("unknown content Type")
-                            }
-                        }
-                        onStatusChanged: {
-                            if (status == Loader.Ready) {
-                                item.index = index
-                                item.filePath = filePath
-                            }
-                        }
-                    }
-                }
+            if (messages.account && messages.accountId == "") {
+                messages.accountId = messages.account.accountId
+                messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
             }
 
-            ListItem.ThinDivider {
-                id: divider
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: attachmentThumbnails.bottom
-                    margins: units.gu(0.5)
+            var newAttachments = []
+            for (var i = 0; i < attachments.count; i++) {
+                var attachment = []
+                var item = attachments.get(i)
+                // we dont include smil files. they will be auto generated
+                if (item.contentType.toLowerCase() === "application/smil") {
+                    continue
                 }
-                visible: attachments.count > 0
+                attachment.push(item.name)
+                attachment.push(item.contentType)
+                attachment.push(item.filePath)
+                newAttachments.push(attachment)
             }
 
-            TextArea {
-                id: messageTextArea
-                objectName: "messageTextArea"
-                anchors {
-                    top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
-                    left: parent.left
-                    right: parent.right
-                }
-                // this value is to avoid letter being cut off
-                height: units.gu(4.3)
-                style: LocalTextAreaStyle {}
-                autoSize: true
-                maximumLineCount: attachments.count == 0 ? 8 : 4
-                placeholderText: i18n.tr("Write a message...")
-                focus: textEntry.focus
-                font.family: "Ubuntu"
-                font.pixelSize: FontUtils.sizeToPixels("medium")
-                color: "#5d5d5d"
-                text: messages.text
+            var recipients = participantIds.length > 0 ? participantIds :
+                                                         multiRecipient.recipients
+            // if sendMessage succeeds it means the message was either sent or
+            // injected into the history service so the user can retry later
+            if (sendMessage(text, recipients, newAttachments)) {
+                composeBar.reset()
             }
-
-            /*InverseMouseArea {
-                anchors.fill: parent
-                visible: textEntry.activeFocus
-                onClicked: {
-                    textEntry.focus = false;
-                }
-            }*/
-            Component.onCompleted: {
-                // if page is active, it means this is not a bottom edge page
-                if (messages.active && messages.keyboardFocus && participants.length != 0) {
-                    messageTextArea.forceActiveFocus()
-                }
-            }
-        }
-
-        Icon {
-            id: sendButton
-            objectName: "sendButton"
-            anchors.verticalCenter: textEntry.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
-            color: "gray"
-            source: Qt.resolvedUrl("./assets/send.svg")
-            width: units.gu(3)
-            height: units.gu(3)
-            enabled: {
-               if (participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== "") {
-                    if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
-                        return true
-                    }
-                }
-                return false
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                anchors.margins: units.gu(-2)
-                onClicked: {
-                    // make sure we flush everything we have prepared in the OSK preedit
-                    Qt.inputMethod.commit();
-                    if (textEntry.text == "" && attachments.count == 0) {
-                        return
-                    }
-                    // refresh the recipient list
-                    multiRecipient.focus = false
-
-                    if (messages.account && messages.accountId == "") {
-                        messages.accountId = messages.account.accountId
-                        messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
-                    }
-
-                    var newAttachments = []
-                    for (var i = 0; i < attachments.count; i++) {
-                        var attachment = []
-                        var item = attachments.get(i)
-                        // we dont include smil files. they will be auto generated
-                        if (item.contentType.toLowerCase() === "application/smil") {
-                            continue
-                        }
-                        attachment.push(item.name)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
-                    }
-
-                    var recipients = participantIds.length > 0 ? participantIds :
-                                                                 multiRecipient.recipients
-                    // if sendMessage succeeds it means the message was either sent or
-                    // injected into the history service so the user can retry later
-                    if (sendMessage(textEntry.text, recipients, newAttachments)) {
-                        textEntry.text = ""
-                        attachments.clear()
-                    }
-                    if (eventModel.filter == null) {
-                        reloadFilters = !reloadFilters
-                    }
-                }
+            if (eventModel.filter == null) {
+                reloadFilters = !reloadFilters
             }
         }
     }
