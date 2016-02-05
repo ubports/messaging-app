@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Canonical, Ltd.
+ * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -17,6 +17,7 @@
  */
 
 #include "messagingapplication.h"
+#include "fileoperations.h"
 
 #include <libnotify/notify.h>
 
@@ -65,10 +66,22 @@ static void installIconPath()
     }
 }
 
+static QObject* FileOperations_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new FileOperations();
+}
+
 MessagingApplication::MessagingApplication(int &argc, char **argv)
     : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
 {
     setApplicationName("MessagingApp");
+}
+
+bool MessagingApplication::fullscreen() const
+{
+    return m_view->windowState() == Qt::WindowFullScreen;
 }
 
 bool MessagingApplication::setup()
@@ -133,6 +146,9 @@ bool MessagingApplication::setup()
         }
     }
 
+    const char* uri = "messagingapp.private";
+    qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
+
     m_view = new QQuickView();
     QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)), this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
@@ -174,6 +190,17 @@ MessagingApplication::~MessagingApplication()
     if (m_view) {
         delete m_view;
     }
+}
+
+void MessagingApplication::setFullscreen(bool fullscreen)
+{
+    if (fullscreen) {
+        m_view->setWindowState(Qt::WindowFullScreen);
+    } else {
+        m_view->setWindowState(Qt::WindowNoState);
+    }
+
+    Q_EMIT fullscreenChanged();
 }
 
 void MessagingApplication::onViewStatusChanged(QQuickView::Status status)

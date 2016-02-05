@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -18,64 +18,80 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
-import QtMultimedia 5.0
-import ".."
+import Ubuntu.Thumbnailer 0.1
 
 MMSBase {
     id: videoDelegate
 
     previewer: "MMS/PreviewerVideo.qml"
-    anchors.left: parent.left
-    anchors.right: parent.right
-    height: bubble.height + units.gu(1)
+    height: videoAttachment.height
+    width: videoAttachment.width
 
-    Item {
+    UbuntuShape {
         id: bubble
         anchors.top: parent.top
-        width: videoOutput.width + units.gu(3)
-        height: videoOutput.height + units.gu(2)
+        width: image.width
+        height: image.height
 
-        MediaPlayer {
-            id: video
-            autoLoad: true
-            autoPlay: false
-            source: attachment.filePath
-            onStatusChanged: {
-                if (status === MediaPlayer.Loaded) {
-                    // FIXME: there is no way to show the thumbnail
-                    video.play(); video.stop();
+        image: Image {
+            id: videoAttachment
+            objectName: "videoAttachment"
 
-                    // resize videoOutput, as width is not set
-                    // properly when using PreserveAspectFit
-                    if (videoOutput.height > units.gu(25)) {
-                        var percentageResized = units.gu(25)*100/(metaData.resolution.height)
-                        videoOutput.height = units.gu(25)
-                        videoOutput.width = (metaData.resolution.width*percentageResized)/100
-                    }
-                    if (videoOutput.width > units.gu(35)) {
-                        percentageResized = units.gu(35)*100/(metaData.resolution.width)
-                        videoOutput.width = units.gu(35)
-                        videoOutput.height = (metaData.resolution.height*percentageResized)/100
-                    }
+            fillMode: Image.PreserveAspectCrop
+            smooth: true
+            source: "image://thumbnailer/" + attachment.filePath
+            visible: false
+            asynchronous: true
+            height: Math.min(implicitHeight, units.gu(14))
+            width: Math.min(implicitWidth, units.gu(27))
+            cache: false
+
+            sourceSize.width: units.gu(27)
+            sourceSize.height: units.gu(27)
+
+            onStatusChanged:  {
+                if (status === Image.Error) {
+                    source = "image://theme/image-missing"
+                    width = 128
+                    height = 128
                 }
             }
         }
-        VideoOutput {
-            id: videoOutput
-            source: video
+
+        Icon {
+            objectName: "playbackStartIcon"
+            width: units.gu(3)
+            height: units.gu(3)
             anchors.centerIn: parent
-            anchors.horizontalCenterOffset: incoming ? units.gu(0.5) : -units.gu(0.5)
+            name: "media-playback-start"
+            color: "white"
+            opacity: 0.8
         }
 
         Rectangle {
-            color: "black"
-            opacity: 0.8
-            anchors.fill: videoOutput
-            Icon {
-                name: "media-playback-start"
-                width: units.gu(4)
-                height: units.gu(4)
-                anchors.centerIn: parent
+            visible: videoDelegate.lastItem
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 1.0; color: "gray" }
+            }
+
+            anchors {
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+            height: units.gu(2)
+            radius: bubble.height * 0.1
+            Label {
+                anchors{
+                    left: parent.left
+                    bottom: parent.bottom
+                    leftMargin: incoming ? units.gu(2) : units.gu(1)
+                    bottomMargin: units.gu(0.5)
+                }
+                fontSize: "xx-small"
+                text: Qt.formatTime(timestamp).toLowerCase()
+                color: "white"
             }
         }
     }
