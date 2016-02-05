@@ -24,6 +24,7 @@ import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 0.1
 import Ubuntu.Telephony 0.1
 import messagingapp.private 0.1
+import "Stickers"
 
 Item {
     id: composeBar
@@ -36,12 +37,13 @@ Item {
     property bool audioAttached: attachments.count == 1 && attachments.get(0).contentType.toLowerCase().indexOf("audio/") > -1
     // Audio QML component needs to process the recorded audio do find duration and AudioRecorder seems to erase duration after some events
     property int audioRecordedDuration: 0
+    property bool oskEnabled: true
 
     signal sendRequested(string text, var attachments)
 
     // internal properties
     property int _activeAttachmentIndex: -1
-    property int _defaultHeight: textEntry.height + attachmentPanel.height + units.gu(2)
+    property int _defaultHeight: textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2)
 
     Component.onDestruction: {
         composeBar.reset()
@@ -199,6 +201,27 @@ Item {
             iconRotation: attachmentPanel.expanded ? 45 : 0
             onClicked: {
                 attachmentPanel.expanded = !attachmentPanel.expanded
+                if (attachmentPanel.expanded) {
+                    stickersPicker.expanded = false
+                }
+            }
+        }
+
+        TransparentButton {
+            id: stickersButton
+            objectName: "stickersButton"
+            iconSource: (stickersPicker.expanded && oskEnabled) ? Qt.resolvedUrl("./assets/input-keyboard-symbolic.svg") :
+                                                                  Qt.resolvedUrl("./assets/face-smile-big-symbolic-2.svg")
+            visible: stickersPicker.packCount > 0
+            onClicked: {
+                if (!stickersPicker.expanded) {
+                    messageTextArea.focus = false
+                    stickersPicker.expanded = true
+                    attachmentPanel.expanded = false
+                } else {
+                    stickersPicker.expanded = false
+                    messageTextArea.forceActiveFocus()
+                }
             }
         }
     }
@@ -409,9 +432,41 @@ Item {
         onExpandedChanged: {
             if (expanded && Qt.inputMethod.visible) {
                 attachmentPanel.forceActiveFocus()
-            } else if (!expanded && !Qt.inputMethod.visible) {
-                forceFocus()
             }
+        }
+    }
+
+    StickersPicker {
+        id: stickersPicker
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: textEntry.bottom
+        }
+
+        onExpandedChanged: {
+            if (expanded && Qt.inputMethod.visible) {
+                stickersPicker.forceActiveFocus()
+            }
+        }
+
+        onStickerSelected: {
+            if (!canSend) {
+                // FIXME: show a dialog saying what we need to do to be able to send
+                return
+            }
+
+            var attachment = {}
+            var filePath = String(path).replace('file://', '')
+            attachment["contentType"] = application.fileMimeType(filePath)
+            attachment["name"] = filePath.split('/').reverse()[0]
+            attachment["filePath"] = filePath
+
+            // we need to append the attachment to a ListModel, so create it dynamically
+            var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
+            attachments.append(attachment)
+            composeBar.sendRequested("", attachments)
+            stickersPicker.expanded = false
         }
     }
 

@@ -19,6 +19,7 @@
 #include "messagingapplication.h"
 #include "audiorecorder.h"
 #include "fileoperations.h"
+#include "stickers-history-model.h"
 
 #include <libnotify/notify.h>
 
@@ -26,6 +27,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QDir>
 #include <QStringList>
 #include <QQuickItem>
 #include <QQmlComponent>
@@ -38,6 +40,7 @@
 #include "config.h"
 #include <QQmlEngine>
 #include <QMimeDatabase>
+#include <QStandardPaths>
 #include <QVersitReader>
 
 using namespace QtVersit;
@@ -72,6 +75,13 @@ static QObject* FileOperations_singleton_factory(QQmlEngine* engine, QJSEngine* 
     Q_UNUSED(engine);
     Q_UNUSED(scriptEngine);
     return new FileOperations();
+}
+
+static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine);
+    Q_UNUSED(scriptEngine);
+    return new StickersHistoryModel();
 }
 
 MessagingApplication::MessagingApplication(int &argc, char **argv)
@@ -147,10 +157,6 @@ bool MessagingApplication::setup()
         }
     }
 
-    const char* uri = "messagingapp.private";
-    qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
-    qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
-
     m_view = new QQuickView();
     QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)), this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
@@ -166,6 +172,14 @@ bool MessagingApplication::setup()
         qDebug() << "Overriding the contacts backend, using:" << contactsBackend;
         m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", contactsBackend);
     }
+
+    QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    m_view->rootContext()->setContextProperty("dataLocation", dataLocation.absolutePath());
+    dataLocation.mkpath("stickers");
+    const char* uri = "messagingapp.private";
+    qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
+    qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
+    qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
 
     // used by autopilot tests to load vcards during tests
     QByteArray testData = qgetenv("QTCONTACTS_PRELOAD_VCARD");

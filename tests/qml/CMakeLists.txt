@@ -2,6 +2,7 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5QuickTest REQUIRED)
+find_package(Qt5Sql REQUIRED)
 
 set(XVFB_COMMAND)
 
@@ -20,11 +21,12 @@ set(TEST tst_QmlTests)
 set(SOURCES
     ${messaging-app_SOURCE_DIR}/src/audiorecorder.cpp
     ${messaging-app_SOURCE_DIR}/src/fileoperations.cpp
+    ${messaging-app_SOURCE_DIR}/src/stickers-history-model.cpp
     tst_QmlTests.cpp
 )
 
 add_executable(${TEST} ${SOURCES})
-qt5_use_modules(${TEST} Core Multimedia Qml Quick QuickTest)
+qt5_use_modules(${TEST} Core Multimedia Qml Quick QuickTest Sql)
 
 include_directories(
     ${messaging-app_SOURCE_DIR}/src
@@ -35,3 +37,7 @@ include_directories(
 add_test(${TEST} ${XVFB_COMMAND} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
          -input ${CMAKE_CURRENT_SOURCE_DIR}
          -import ${CMAKE_BINARY_DIR}/src)
+
+# make qml files visible in QtCreator
+file(GLOB_RECURSE NON_COMPILED_FILES *.qml)
+add_custom_target(NON_COMPILED_TARGET ALL SOURCES ${NON_COMPILED_FILES})

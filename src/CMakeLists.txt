@@ -4,6 +4,7 @@ set(messaging_app_HDRS
     audiorecorder.h
     fileoperations.h
     messagingapplication.h
+    stickers-history-model.h
     )
 
 set(messaging_app_SRCS
@@ -11,12 +12,13 @@ set(messaging_app_SRCS
     fileoperations.cpp
     messagingapplication.cpp
     main.cpp
+    stickers-history-model.cpp
     )
 
 add_executable(${MESSAGING_APP}
     ${messaging_app_SRCS}
     )
-qt5_use_modules(${MESSAGING_APP} Core DBus Gui Multimedia Qml Quick Versit)
+qt5_use_modules(${MESSAGING_APP} Core DBus Gui Multimedia Qml Quick Sql Versit)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
