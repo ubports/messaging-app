@@ -59,6 +59,7 @@ Page {
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
+    property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
     function getAccountsModel() {
         var accounts = []
@@ -428,7 +429,7 @@ Page {
     }
 
     PresenceRequest {
-        id: presenceRequest
+        id: presenceItem
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
@@ -952,6 +953,33 @@ Page {
         id: messageList
         objectName: "messageList"
         visible: !isSearching
+
+        Rectangle {
+            color: Theme.palette.normal.background
+            anchors.fill: parent
+            Image {
+                width: units.gu(20)
+                fillMode: Image.PreserveAspectFit
+                anchors.centerIn: parent
+                visible: source !== ""
+                source: {
+                    var accountId = ""
+
+                    if (messages.account) {
+                        accountId = messages.account.accountId
+                    }
+
+                    if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                            && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                        accountId = presenceRequest.accountId
+                    }
+
+                    return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
+                }
+                z: 1
+            }
+            z: -1
+        }
 
         // because of the header
         clip: true
