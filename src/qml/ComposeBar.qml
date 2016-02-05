@@ -228,12 +228,12 @@ Item {
 
         anchors {
             left: parent.left
-            right: dragTarget.left
+            right: anchorPoint.left
             top: parent.top
             bottom: attachmentPanel.top
         }
 
-        buttonOpacity: 1 - dragTarget.dragAmount
+        buttonOpacity: recording ? 1 - dragTarget.dragAmount : 0
 
         onAudioRecorded:  {
             attachments.append(audio)
@@ -247,9 +247,18 @@ Item {
         property real normalX: leftSideActions.x + leftSideActions.width
         property real delta: recordingX - normalX
         property real dragAmount: 1 - (x - normalX) / (delta > 0 ? delta : 0.0001)
-        x: (composeBar.recording || composeBar.audioAttached) ? recordingX : normalX
-        Behavior on x { UbuntuNumberAnimation { } }
+        x: recordingX
         width: 0
+
+        function reset() {
+            x = Qt.binding(function(){return recordingX})
+        }
+    }
+
+    Item {
+        id: anchorPoint
+        x: (composeBar.recording || composeBar.audioAttached) ? dragTarget.x : dragTarget.normalX
+        Behavior on x { UbuntuNumberAnimation { } }
     }
 
     StyledItem {
@@ -261,7 +270,7 @@ Item {
         anchors {
             topMargin: units.gu(1)
             top: parent.top
-            left: dragTarget.right
+            left: anchorPoint.right
             leftMargin: units.gu(2)
             right: sendButton.left
             rightMargin: units.gu(2)
@@ -527,6 +536,7 @@ Item {
             if (dragTarget.dragAmount >= 0.5) {
                 composeBar.reset()
             }
+            dragTarget.reset()
         }
 
         // drag-to-cancel
