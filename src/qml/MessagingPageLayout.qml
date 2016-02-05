@@ -27,11 +27,11 @@ AdaptivePageLayout {
     }
 
     function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
-        addComponentToNextColumnSync(Qt.createComponent(resolvedUrl), properties)
+        addComponentToNextColumnSync(parentObject, Qt.createComponent(resolvedUrl), properties)
     }
 
     function addFileToCurrentColumnSync(parentObject, resolvedUrl, properties) {
-        addComponentToCurrentColumnSync(Qt.createComponent(resolvedUrl), properties)
+        addComponentToCurrentColumnSync(parentObject, Qt.createComponent(resolvedUrl), properties)
     }
 
     function addComponentToNextColumnSync(parentObject, component, properties) {
