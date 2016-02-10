@@ -146,7 +146,7 @@ MainView {
     }
 
     automaticOrientation: true
-    width: units.gu(40)
+    width: units.gu(100)
     height: units.gu(71)
     anchorToKeyboard: false
 
