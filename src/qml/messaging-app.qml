@@ -346,6 +346,8 @@ MainView {
                 id: bottomEdgeLoader
                 sourceComponent: MessagingBottomEdge {
                     parent: emptyStatePage
+                    hint.text: ""
+                    hint.height: 0
                 }
             }
         }
