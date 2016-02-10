@@ -153,6 +153,11 @@ MainView {
     Component.onCompleted: {
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
+
+        // when running in windowed mode, do not allow resizing
+        view.minimumWidth  = units.gu(40)
+        view.minimumHeight = units.gu(60)
+
         emptyStack()
     }
 
