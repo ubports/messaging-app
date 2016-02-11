@@ -9,6 +9,8 @@ BottomEdge {
         commit()
     }
 
+    property bool showingConversation: _realPage && _realPage.state !== "newMessage"
+
     property var _realPage: null
 
     height: parent ? parent.height : 0

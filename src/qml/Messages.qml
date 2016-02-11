@@ -622,6 +622,8 @@ Page {
         },
         State {
             id: newMessageState
+            // NOTE: in case the state name is changed here, the bottom edge component needs
+            // to be updated too
             name: "newMessage"
             when: participants.length === 0
 
