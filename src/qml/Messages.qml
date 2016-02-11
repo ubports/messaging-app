@@ -521,6 +521,14 @@ Page {
         trailingActionBar {
             id: trailingBar
         }
+
+        Item {
+            id: trailingActionArea
+            anchors {
+                bottom: parent.bottom
+                right: parent.right
+            }
+        }
     }
 
     states: [
@@ -571,9 +579,10 @@ Page {
 
             property list<QtObject> trailingActions: [
                 Action {
+                    id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, pageHeader)
+                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
                 }
             ]
 
