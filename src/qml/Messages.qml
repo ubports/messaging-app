@@ -1227,5 +1227,8 @@ Page {
         }
     }
 
-    // FIXME: we need a bottom edge here somehow
+    Scrollbar {
+        flickableItem: messageList
+        align: Qt.AlignTrailing
+    }
 }
