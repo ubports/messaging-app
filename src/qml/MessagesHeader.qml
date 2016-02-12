@@ -18,7 +18,7 @@
 
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 
 Item {
     id: header
@@ -26,7 +26,12 @@ Item {
     property string title: ""
     property string subtitle: ""
 
-    height: units.gu(7)
+    height: units.gu(8)
+
+    anchors {
+        top: parent.top
+        topMargin: units.gu(1)
+    }
 
     Behavior on height {
         UbuntuNumberAnimation {}
@@ -50,7 +55,7 @@ Item {
             }
             verticalAlignment: Text.AlignVCenter
 
-            font.pixelSize: FontUtils.sizeToPixels("x-large")
+            font.pixelSize: FontUtils.sizeToPixels("large")
             elide: Text.ElideRight
             text: title
         }

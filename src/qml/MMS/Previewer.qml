@@ -31,7 +31,7 @@ Page {
 
     function handleAttachment(filePath, handlerType)
     {
-        mainStack.push(picker, {"url": filePath, "handler": handlerType});
+        mainStack.addPageToCurrentColumn(previewerPage, picker, {"url": filePath, "handler": handlerType});
         actionTriggered()
     }
 
@@ -45,23 +45,29 @@ Page {
         previewerPage.handleAttachment(attachment.filePath, ContentHandler.Share)
     }
 
-    function backAction()
-    {
-        mainStack.pop()
+    header: PageHeader {
+        id: pageHeader
+
+        property alias leadingActions: leadingBar.actions
+        property alias trailingActions: trailingBar.actions
+
+        title: previewerPage.title
+        leadingActionBar {
+            id: leadingBar
+        }
+
+        trailingActionBar {
+            id: trailingBar
+        }
     }
 
-    title: ""
     state: "default"
     states: [
-        PageHeadState {
+        State {
+            id: defaultState
             name: "default"
-            head: previewerPage.head
-            backAction: Action {
-                iconName: "back"
-                text: i18n.tr("Back")
-                onTriggered: previewerPage.backAction()
-            }
-            actions: [
+
+            property list<QtObject> trailingActions: [
                 Action {
                     objectName: "saveButton"
                     text: i18n.tr("Save")
@@ -75,6 +81,11 @@ Page {
                     onTriggered: previewerPage.shareAttchment()
                 }
             ]
+            PropertyChanges {
+                target: pageHeader
+
+                trailingActions: defaultState.trailingActions
+            }
         }
     ]
 
@@ -109,11 +120,11 @@ Page {
 
             onPeerSelected: {
                 picker.curTransfer = peer.request();
-                mainStack.pop();
+                mainStack.removePage(picker);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)
                     picker.__exportItems(picker.url);
             }
-            onCancelPressed: mainStack.pop();
+            onCancelPressed: mainStack.removePage(picker);
         }
 
         Connections {

@@ -24,15 +24,31 @@ Item {
 
     property var importDialog: null
 
-    signal pictureReceived(string pictureUrl)
+    signal contentReceived(string contentUrl)
 
-    function requestNewPicture()
-    {
+    function requestContent(contentType) {
         if (!root.importDialog) {
             root.importDialog = PopupUtils.open(contentHubDialog, root)
+            root.importDialog.contentType = contentType
         } else {
             console.warn("Import dialog already running")
         }
+    }
+
+    function requestPicture() {
+        requestContent(ContentHub.ContentType.Pictures)
+    }
+
+    function requestVideo() {
+        requestContent(ContentHub.ContentType.Videos)
+    }
+
+    function requestContact() {
+        requestContent(ContentHub.ContentType.Contacts)
+    }
+
+    function requestDocument() {
+        requestContent(ContentHub.ContentType.Documents)
     }
 
     Component {
@@ -42,6 +58,7 @@ Item {
             id: dialogue
 
             property alias activeTransfer: signalConnections.target
+            property alias contentType: peerPicker.contentType
 
             focus: true
             Rectangle {
@@ -76,7 +93,7 @@ Item {
                     if (dialogue.activeTransfer.state === ContentHub.ContentTransfer.Charged) {
                         dialogue.hide()
                         if (dialogue.activeTransfer.items.length > 0) {
-                            root.pictureReceived(dialogue.activeTransfer.items[0].url)
+                            root.contentReceived(dialogue.activeTransfer.items[0].url)
                         }
                     }
 

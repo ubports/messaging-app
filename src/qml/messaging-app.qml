@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
+import "Stickers"
 
 MainView {
     id: mainView
@@ -38,6 +39,10 @@ MainView {
     }
     property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
+    property alias mainStack: layout
+    property bool dualPanel: mainStack.columns > 1
+    property QtObject bottomEdge: null
+    property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
 
     activeFocusOnPress: false
 
@@ -57,7 +62,7 @@ MainView {
         return null
     }
 
-    function showContactDetails(contact, contactListPage, contactsModel) {
+    function showContactDetails(currentPage, contact, contactListPage, contactsModel) {
         var initialProperties =  { "contactListPage": contactListPage,
                                    "model": contactsModel}
 
@@ -67,21 +72,24 @@ MainView {
             initialProperties['contact'] = contact
         }
 
-        mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                       initialProperties)
+        mainStack.addFileToCurrentColumnSync(currentPage,
+                                         Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                                         initialProperties)
     }
 
-    function addNewContact(phoneNumber, contactListPage) {
-        mainStack.push(Qt.resolvedUrl("MessagingContactEditorPage.qml"),
-                       { "contactId": contactId,
-                         "addPhoneToContact": phoneNumber,
-                         "contactListPage": contactListPage })
+    function addNewContact(currentPage, phoneNumber, contactListPage) {
+        mainStack.addFileToCurrentColumnSync(currentPage,
+                                         Qt.resolvedUrl("MessagingContactEditorPage.qml"),
+                                         { "contactId": contactId,
+                                           "addPhoneToContact": phoneNumber,
+                                           "contactListPage": contactListPage })
     }
 
-    function addPhoneToContact(contact, phoneNumber, contactListPage, contactsModel) {
+    function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
         if (contact === "") {
-            mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"),
-                           { "phoneToAdd": phoneNumber })
+            mainStack.addFileToCurrentColumnSync(currentPage,
+                                             Qt.resolvedUrl("NewRecipientPage.qml"),
+                                             { "phoneToAdd": phoneNumber })
         } else {
             var initialProperties = { "addPhoneToContact": phoneNumber,
                                       "contactListPage": contactListPage,
@@ -91,8 +99,9 @@ MainView {
             } else {
                 initialProperties['contact'] = contact
             }
-            mainStack.push(Qt.resolvedUrl("MessagingContactViewPage.qml"),
-                           initialProperties)
+            mainStack.addFileToCurrentColumnSync(currentPage,
+                                             Qt.resolvedUrl("MessagingContactViewPage.qml"),
+                                             initialProperties)
         }
     }
 
@@ -118,6 +127,10 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
+    function showBottomEdgePage(properties) {
+        bottomEdge.commitWithProperties(properties)
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -133,20 +146,26 @@ MainView {
     }
 
     automaticOrientation: true
-    width: units.gu(40)
+    width: units.gu(100)
     height: units.gu(71)
     anchorToKeyboard: false
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
         i18n.bindtextdomain("messaging-app", i18nDirectory)
+
+        // when running in windowed mode, do not allow resizing
+        view.minimumWidth  = units.gu(40)
+        view.minimumHeight = units.gu(60)
+
+        emptyStack()
     }
 
     Connections {
         target: telepathyHelper
         onSetupReady: {
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                !settings.mainViewIgnoreFirstTimeDialog && mainStack.depth === 1) {
+                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
         }
@@ -167,8 +186,17 @@ MainView {
     Settings {
         id: settings
         category: "DualSim"
+        property bool messagesDontShowFileSizeWarning: false
         property bool messagesDontAsk: false
         property bool mainViewIgnoreFirstTimeDialog: false
+    }
+
+    StickerPacksModel {
+        id: stickerPacksModel
+    }
+
+    StickersModel {
+        id: stickersModel
     }
 
     Connections {
@@ -177,7 +205,7 @@ MainView {
             var properties = {}
             emptyStack()
             properties["sharedAttachmentsTransfer"] = transfer
-            mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"), properties)
+            mainView.showBottomEdgePage(properties)
         }
     }
 
@@ -194,20 +222,28 @@ MainView {
         } else if (startsWith(contentType, "text/vcard") ||
                    startsWith(contentType, "text/x-vcard")) {
             return ContentType.Contacts
+        } else if (startsWith(contentType, "video/")) {
+            return ContentType.Videos
         }
         return ContentType.Unknown
     }
 
     function emptyStack() {
-        while (mainStack.depth !== 1 && mainStack.depth !== 0) {
-            mainStack.pop()
+        mainStack.removePage(mainPage)
+        layout.deleteInstances()
+        showEmptyState()
+    }
+
+    function showEmptyState() {
+        if (mainStack.columns > 1) {
+            layout.addComponentToNextColumnSync(mainStack.primaryPage, emptyStatePageComponent)
         }
     }
 
     function startNewMessage() {
         var properties = {}
         emptyStack()
-        mainStack.currentPage.showBottomEdgePage(Qt.resolvedUrl("Messages.qml"))
+        mainView.showBottomEdgePage(properties)
     }
 
     function startChat(identifiers, text, accountId) {
@@ -249,9 +285,26 @@ MainView {
         if (typeof(accountId)!=='undefined') {
             properties["accountId"] = accountId
         }
+
         emptyStack()
-        mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+        // FIXME: AdaptivePageLayout takes a really long time to create pages,
+        // so we create manually and push that
+        mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
     }
+
+    InputInfo {
+        id: inputInfo
+    }
+
+    // WORKAROUND: Due the missing feature on SDK, they can not detect if
+    // there is a mouse attached to device or not. And this will cause the
+    // bootom edge component to not work correct on desktop.
+    Binding {
+        target:  QuickUtils
+        property: "mouseAttached"
+        value: inputInfo.hasMouse
+    }
+
 
     Connections {
         target: UriHandler
@@ -262,11 +315,62 @@ MainView {
        }
     }
 
+    Component {
+        id: messagesWithBottomEdge
 
-    PageStack {
-        id: mainStack
+        Messages {
+            id: messages
+            height: mainPage.height
 
-        objectName: "mainStack"
-        Component.onCompleted: mainStack.push(Qt.resolvedUrl("MainPage.qml"))
+            Component.onCompleted: mainPage._messagesPage = messages
+            Loader {
+                id: messagesBottomEdgeLoader
+                active: mainView.dualPanel
+                sourceComponent: MessagingBottomEdge {
+                    id: messagesBottomEdge
+                    parent: messages
+                    hint.text: ""
+                    hint.height: 0
+                }
+            }
+        }
+    }
+
+    Component {
+        id: emptyStatePageComponent
+        Page {
+            id: emptyStatePage
+
+            EmptyState {
+                labelVisible: mainPage.isEmpty
+            }
+
+            header: PageHeader { }
+
+            Loader {
+                id: bottomEdgeLoader
+                sourceComponent: MessagingBottomEdge {
+                    parent: emptyStatePage
+                    hint.text: ""
+                    hint.height: 0
+                }
+            }
+        }
+    }
+
+    MessagingPageLayout {
+        id: layout
+        anchors.fill: parent
+        primaryPage: MainPage {
+            id: mainPage
+        }
+
+        onColumnsChanged: {
+            // we only have things to do here in case no thread is selected
+            if (mainPage.displayedThreadIndex < 0) {
+                layout.removePage(mainPage)
+                showEmptyState()
+            }
+        }
     }
 }
