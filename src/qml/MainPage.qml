@@ -58,6 +58,7 @@ Page {
         }
     }
 
+    flickable: pageHeader.flickable
     header: PageHeader {
         id: pageHeader
 
@@ -65,7 +66,7 @@ Page {
         property alias trailingActions: trailingBar.actions
 
         title: i18n.tr("Messages")
-        flickable: threadList
+        flickable: dualPanel ? null : threadList
         leadingActionBar {
             id: leadingBar
         }
@@ -214,6 +215,7 @@ Page {
 
         anchors {
             top: parent.top
+            topMargin: mainView.dualPanel ? pageHeader.height : 0
             left: parent.left
             right: parent.right
             bottom: keyboard.top
