@@ -24,7 +24,6 @@ Item {
     id: attachment
 
     readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
-    property int index
     property string filePath
     property alias vcard: vcardParser
     property string contactDisplayName: {

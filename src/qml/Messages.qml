@@ -535,7 +535,14 @@ Page {
                 }
             }
         }
-        composeBar.addAttachments(sharedAttachmentsTransfer)
+        // if we add multiple attachments at the same time, it break the Repeater + Loaders
+        fillAttachmentsTimer.start()
+    }
+
+    Timer {
+        id: fillAttachmentsTimer
+        interval: 50
+        onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
     }
 
     onActiveChanged: {
