@@ -1,3 +1,13 @@
+messaging-app (0.1+16.04.20160217-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Gustavo Pichorim Boiko, Tiago Salem Herrmann ]
+  * Implement convergent layout for messaging-app.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Wed, 17 Feb 2016 12:47:19 +0000
+
 messaging-app (0.1+16.04.20160205-0ubuntu1) xenial; urgency=medium
 
   [ Arthur Mello ]
