@@ -28,7 +28,8 @@ ListItemWithActions {
     property var messageData: null
     property int index: -1
     property Item delegateItem
-    property string accountLabel: telepathyHelper.accountForId(messageData.accountId).displayName
+    property var account: telepathyHelper.accountForId(messageData.accountId)
+    property string accountLabel: account ? account.displayName : ""
 
     // update the accountLabel when the list of accounts become available
     Item {

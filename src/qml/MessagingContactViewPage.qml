@@ -42,12 +42,13 @@ ContactViewPage {
         var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
         if (newDetail) {
             contact.addDetail(newDetail)
-            pageStack.push(root.contactEditorPageURL,
-                           { model: root.model,
-                             contact: contact,
-                             initialFocusSection: "phones",
-                             newDetails: [newDetail],
-                             contactListPage: root.contactListPage })
+            mainStack.addPageToCurrentColumn(root,
+                                             root.contactEditorPageURL,
+                                             { model: root.model,
+                                               contact: contact,
+                                               initialFocusSection: "phones",
+                                               newDetails: [newDetail],
+                                               contactListPage: root.contactListPage })
             root.addPhoneToContact = ""
         } else {
             console.warn("Fail to create phone number detail")
@@ -61,7 +62,7 @@ ContactViewPage {
             iconName: "share"
             visible: root.editable
             onTriggered: {
-                pageStack.push(contactShareComponent,
+                pageStack.addComponentToCurrentColumnSync(root, contactShareComponent,
                                { contactModel: root.model,
                                  contacts: [root.contact] })
             }
@@ -72,7 +73,7 @@ ContactViewPage {
             iconName: "edit"
             visible: root.editable
             onTriggered: {
-                pageStack.push(contactEditorPageURL,
+                pageStack.addFileToCurrentColumnSync(root, contactEditorPageURL,
                                { model: root.model,
                                  contact: root.contact,
                                  contactListPage: root.contactListPage })
@@ -122,9 +123,9 @@ ContactViewPage {
         } else {
             Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
         }
-        pageStack.pop()
+        pageStack.removePage(root)
     }
-    onContactRemoved: pageStack.pop()
+    onContactRemoved: pageStack.removePage(root)
     onContactFetched: {
         root.contact = contact
         if (root.active && root.addPhoneToContact != "") {

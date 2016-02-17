@@ -164,7 +164,9 @@ bool MessagingApplication::setup()
     m_view->setTitle("Messaging");
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("i18nDirectory", I18N_DIRECTORY);
+    m_view->rootContext()->setContextProperty("view", m_view);
     m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
+    m_view->engine()->addImportPath(UNITY8_QML_PATH);
 
     // check if there is a contacts backend override
     QString contactsBackend = qgetenv("QTCONTACTS_MANAGER_OVERRIDE");
