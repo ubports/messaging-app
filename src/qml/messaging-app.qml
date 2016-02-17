@@ -342,7 +342,7 @@ MainView {
             id: emptyStatePage
 
             EmptyState {
-                labelVisible: mainPage.isEmpty
+                labelVisible: false
             }
 
             header: PageHeader { }
