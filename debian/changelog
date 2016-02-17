@@ -1,3 +1,11 @@
+messaging-app (0.1+16.04.20160217.2-0ubuntu1) xenial; urgency=medium
+
+  * Allow read access to dconf files, otherwise mms group chat toggle
+    won't work, and the default sim for messages won't be pre-selected
+    in the messaging view. (LP: #1546094)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 17 Feb 2016 22:49:43 +0000
+
 messaging-app (0.1+16.04.20160217-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
