@@ -155,8 +155,8 @@ MainView {
         i18n.bindtextdomain("messaging-app", i18nDirectory)
 
         // when running in windowed mode, do not allow resizing
-        view.minimumWidth  = Qt.binding( function() { return units.gu(40) }
-        view.minimumHeight = Qt.binding( function() { return units.gu(60) }
+        view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
+        view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
 
         emptyStack()
     }
