@@ -38,6 +38,7 @@ ListItemWithActions {
     property var displayedEventTextAttachments: displayedEvent ? displayedEvent.textMessageAttachments : eventTextAttachments
     property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : eventTimestamp
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
+    property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
         var firstRecipient
         if (unknownContact) {
@@ -62,6 +63,7 @@ ListItemWithActions {
         var imageCount = 0
         var videoCount = 0
         var contactCount = 0
+        var audioCount = 0
         var attachmentCount = 0
         for (var i = 0; i < displayedEventTextAttachments.length; i++) {
             if (startsWith(displayedEventTextAttachments[i].contentType, "text/plain")) {
@@ -73,9 +75,11 @@ ListItemWithActions {
             } else if (startsWith(displayedEventTextAttachments[i].contentType, "text/vcard") ||
                       startsWith(displayedEventTextAttachments[i].contentType, "text/x-vcard")) {
                 contactCount++
+            } else if (startsWith(displayedEventTextAttachments[i].contentType, "audio/")) {
+                audioCount++
             }
         }
-        attachmentCount = imageCount + videoCount + contactCount
+        attachmentCount = imageCount + videoCount + contactCount + audioCount
 
         if (imageCount > 0 && attachmentCount == imageCount) {
             return i18n.tr("Attachment: %1 image", "Attachments: %1 images").arg(imageCount)
@@ -85,6 +89,9 @@ ListItemWithActions {
         }
         if (contactCount > 0 && attachmentCount == contactCount) {
             return i18n.tr("Attachment: %1 contact", "Attachments: %1 contacts").arg(contactCount)
+        }
+        if (audioCount > 0 && attachmentCount == audioCount) {
+            return i18n.tr("Attachment: %1 audio clip", "Attachments: %1 audio clips").arg(audioCount)
         }
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
@@ -176,16 +183,36 @@ ListItemWithActions {
         fontSize: "small"
     }
 
+    Image {
+        id: protocolIcon
+        anchors {
+            top: time.bottom
+            topMargin: units.gu(1)
+            right: parent.right
+        }
+        height: units.gu(2)
+        width: units.gu(2)
+        visible: source !== ""
+        source: {
+            if (delegateHelper.presenceType != PresenceRequest.PresenceTypeUnknown
+                    && delegateHelper.presenceType != PresenceRequest.PresenceTypeUnset) {
+                return telepathyHelper.accountForId(delegateHelper.presenceAccountId).protocolInfo.icon
+            }
+            return ""
+        }
+    }
+
     UbuntuShape {
         id: unreadCountIndicator
         height: units.gu(2)
         width: height
         anchors {
-            top: time.bottom
-            topMargin: units.gu(1)
-            right: parent.right
-            rightMargin: units.gu(2)
+            top: avatar.top
+            topMargin: units.gu(-0.5)
+            left: avatar.left
+            leftMargin: units.gu(-0.5)
         }
+        z: 1
         visible: unreadCount > 0
         color: "#38b44a"
         Label {
@@ -239,6 +266,9 @@ ListItemWithActions {
         property alias contexts: phoneDetail.contexts
         property bool isUnknown: contactId === ""
         property string phoneNumberSubTypeLabel: ""
+        property alias presenceAccountId: presenceRequest.accountId
+        property alias presenceType: presenceRequest.type
+        property alias presenceItem: presenceRequest
         property string latestFilter: ""
         property var searchHistoryFilter
         property var searchHistoryFilterString: 'import Ubuntu.History 0.1; 
@@ -315,6 +345,35 @@ ListItemWithActions {
                     }
                 }
             }
+        }
+
+        // FIXME: there is another instance of PresenceRequest in Messages.qml,
+        // we have to reuse the same instance when possible
+        PresenceRequest {
+            id: presenceRequest
+            accountId: {
+                // if this is a regular sms chat, try requesting the presence on
+                // a multimedia account
+                if (!telepathyHelper.ready) {
+                    return ""
+                }
+                var account = telepathyHelper.accountForId(model.accountId)
+                if (!account) {
+                    return ""
+                }
+                if (account.type == AccountEntry.PhoneAccount) {
+                    for (var i in telepathyHelper.accounts) {
+                        var tmpAccount = telepathyHelper.accounts[i]
+                        if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                            return tmpAccount.accountId
+                        }
+                    }
+                    return ""
+                }
+                return account.accountId
+            }
+            // we just request presence on 1-1 chats
+            identifier: !groupChat ? participant.identifier : ""
         }
 
         function updateSubTypeLabel() {

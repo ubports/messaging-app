@@ -52,8 +52,12 @@ ContactEditorPage {
 
     onContactSaved: {
         if (root.contactListPage) {
-            root.contactListPage.moveListToContact(contact)
-            root.contactListPage.phoneToAdd = ""
+            if (root.contactListPage.phoneToAdd !== "") {
+                mainStack.removePage(root.contactListPage)
+            } else {
+                root.contactListPage.moveListToContact(contact)
+                root.contactListPage.phoneToAdd = ""
+            }
         }
     }
 }

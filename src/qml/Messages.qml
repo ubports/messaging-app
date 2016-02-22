@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -25,6 +25,7 @@ import Ubuntu.Content 0.1
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
+import messagingapp.private 0.1
 
 import "dateUtils.js" as DateUtils
 
@@ -45,8 +46,6 @@ Page {
     // FIXME: MainView should provide if the view is in portait or landscape
     property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
-    property var activeTransfer: null
-    property int activeAttachmentIndex: -1
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
     property string text: ""
@@ -61,7 +60,23 @@ Page {
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
+    property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
+    property alias oskEnabled: keyboard.oskEnabled
+    property bool isReady: false
+    property string firstRecipientAlias: ((contactWatcher.isUnknown &&
+                                           contactWatcher.isInteractive) ||
+                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
+
+
+    // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
+    property var basePage: messages
+
+    property bool startedFromBottomEdge: false
+
+    signal ready
+    signal cancel
+
     function getAccountsModel() {
         var accounts = []
         // on new chat dialogs display all possible accounts
@@ -179,123 +194,44 @@ Page {
         return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
     }
 
-    Connections {
-        target: telepathyHelper
-        onSetupReady: {
-            // force reevaluation
-            messages.account = Qt.binding(getCurrentAccount)
-            messages.phoneAccount = Qt.binding(isPhoneAccount)
-            head.sections.model = Qt.binding(getSectionsModel)
-            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+    function addNewThreadToFilter(newAccountId, participantIds) {
+        var newAccount = telepathyHelper.accountForId(newAccountId)
+        var matchType = HistoryThreadModel.MatchCaseSensitive
+        if (newAccount.type == AccountEntry.PhoneAccount || newAccount.type == AccountEntry.MultimediaAccount) {
+            matchType = HistoryThreadModel.MatchPhoneNumber
         }
-    }
 
+        var thread = eventModel.threadForParticipants(newAccountId,
+                                           HistoryThreadModel.EventTypeText,
+                                           participantIds,
+                                           matchType,
+                                           true)
+        var threadId = thread.threadId
 
-    Connections {
-        target: chatManager
-        onChatEntryCreated: {
-            // TODO: track using chatId and not participants
-            if (accountId == account.accountId && 
-                firstParticipant && participants[0] == firstParticipant.identifier) {
-                messages.chatEntry = chatEntry
+        // dont change the participants list
+        if (messages.participants.length == 0) {
+            messages.participants = thread.participants
+            var ids = []
+            for (var i in messages.participants) {
+                ids.push(messages.participants[i].identifier)
             }
+            messages.participantIds = ids;
         }
-        onChatsChanged: {
-            for (var i in chatManager.chats) {
-                var chat = chatManager.chats[i]
-                // TODO: track using chatId and not participants
-                if (chat.account.accountId == account.accountId &&
-                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
-                    messages.chatEntry = chat
-                    return
-                }
-            }
-            messages.chatEntry = null
-        }
-    }
 
-    Timer {
-        id: typingTimer
-        interval: 6000
-        onTriggered: {
-            messages.userTyping = false;
-        }
-    }
-
-    Repeater {
-        model: messages.chatEntry ? messages.chatEntry.chatStates : null
-        Item {
-            function processChatState() {
-                if (modelData.state == ChatEntry.ChannelChatStateComposing) {
-                    messages.userTyping = true
-                    typingTimer.start()
-                } else {
-                    messages.userTyping = false
-                }
-            }
-            Component.onCompleted: processChatState()
-            Connections {
-                target: modelData
-                onStateChanged: processChatState()
+        var found = false;
+        for (var i in messages.threads) {
+            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == newAccountId) {
+                found = true;
+                break;
             }
         }
-    }
 
-    MessagesHeader {
-        id: header
-        width: parent ? parent.width - units.gu(2) : undefined
-        height: units.gu(5)
-        title: messages.title
-        subtitle: {
-            if (userTyping) {
-                return i18n.tr("Typing..")
-            }
-            switch (presenceRequest.type) {
-            case PresenceRequest.PresenceTypeAvailable:
-                return i18n.tr("Online")
-            case PresenceRequest.PresenceTypeOffline:
-                return i18n.tr("Offline")
-            case PresenceRequest.PresenceTypeAway:
-                return i18n.tr("Away")
-            case PresenceRequest.PresenceTypeBusy:
-                return i18n.tr("Busy")
-            default:
-                return ""
-            }
+        if (!found) {
+            messages.threads.push({"accountId": newAccountId, "threadId": threadId})
+            reloadFilters = !reloadFilters
         }
-        visible: true
-    }
 
-    head {
-        id: head
-        sections.model: getSectionsModel()
-        sections.selectedIndex: getSelectedIndex()
-    }
-
-
-    function addAttachmentsToModel(transfer) {
-        for (var i in transfer.items) {
-            if (String(transfer.items[i].text).length > 0) {
-                messages.text = String(transfer.items[i].text)
-                continue
-            }
-            var attachment = {}
-            if (!startsWith(String(transfer.items[i].url),"file://")) {
-                messages.text = String(transfer.items[i].url)
-                continue
-            }
-            var filePath = String(transfer.items[i].url).replace('file://', '')
-            // get only the basename
-            attachment["contentType"] = application.fileMimeType(filePath)
-            if (startsWith(attachment["contentType"], "text/vcard") ||
-                startsWith(attachment["contentType"], "text/x-vcard")) {
-                attachment["name"] = "contact.vcf"
-            } else {
-                attachment["name"] = filePath.split('/').reverse()[0]
-            }
-            attachment["filePath"] = filePath
-            attachments.append(attachment)
-        }
+        return thread
     }
 
     function sendMessageNetworkCheck() {
@@ -340,48 +276,21 @@ Page {
         }
 
         // create the new thread and update the threadId list
-        var thread = eventModel.threadForParticipants(messages.account.accountId,
-                                           HistoryThreadModel.EventTypeText,
-                                           participantIds,
-                                           messages.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
-                                                                                              : HistoryThreadModel.MatchCaseSensitive,
-                                           true)
-        var threadId = thread.threadId
+        var thread = addNewThreadToFilter(messages.account.accountId, participantIds)
 
-        // dont change the participants list
-        if (messages.participants.length == 0) {
-            messages.participants = thread.participants
-            var ids = []
-            for (var i in messages.participants) {
-                ids.push(messages.participants[i].identifier)
-            }
-            messages.participantIds = ids;
-        }
-
-        var found = false;
-        for (var i in messages.threads) {
-            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == messages.account.accountId) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            messages.threads.push({"accountId": messages.account.accountId, "threadId": threadId})
-            reloadFilters = !reloadFilters
-        }
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
                 var tmpAccount = telepathyHelper.accountForId(event.accountId)
                 if (!tmpAccount || (tmpAccount.type == AccountEntry.MultimediaAccount && messages.account.type == AccountEntry.PhoneAccount)) {
-                    // we don't add the information event if the last outgoing message 
+                    // we don't add the information event if the last outgoing message
                     // was a fallback to a multimedia service
                     break;
                 }
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
-                                                     threadId,
+                                                     thread.threadId,
                                                      participantIds,
                                                      "")
                 break;
@@ -399,7 +308,7 @@ Page {
             var timestamp = new Date()
             var tmpEventId = timestamp.toISOString()
             event["accountId"] = messages.account.accountId
-            event["threadId"] = threadId
+            event["threadId"] = thread.threadId
             event["eventId"] =  tmpEventId
             event["type"] = HistoryEventModel.MessageTypeText
             event["participants"] = thread.participants
@@ -417,7 +326,7 @@ Page {
                     var attachment = {}
                     var item = attachments[i]
                     attachment["accountId"] = messages.account.accountId
-                    attachment["threadId"] = threadId
+                    attachment["threadId"] = thread.threadId
                     attachment["eventId"] = tmpEventId
                     attachment["attachmentId"] = item[0]
                     attachment["contentType"] = item[1]
@@ -436,10 +345,14 @@ Page {
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
                 // TODO: inform the user to enter the phone number of the selected sim card manually
-                // and use it in the telepathy-ofono account as selfContactId. 
-                return
+                // and use it in the telepathy-ofono account as selfContactId.
+                return false
             }
-            chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
+            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
+            // create the new thread and update the threadId list
+            if (fallbackAccountId != messages.account.accountId) {
+                addNewThreadToFilter(fallbackAccountId, participantIds)
+            }
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
@@ -453,120 +366,6 @@ Page {
         }
 
         return true
-    }
-
-    PresenceRequest {
-        id: presenceRequest
-        accountId: {
-            // if this is a regular sms chat, try requesting the presence on
-            // a multimedia account
-            if (!account) {
-                return ""
-            }
-            if (account.type == AccountEntry.PhoneAccount) {
-                for (var i in telepathyHelper.accounts) {
-                    var tmpAccount = telepathyHelper.accounts[i]
-                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
-                        return tmpAccount.accountId
-                    }
-                }
-                return ""
-            }
-            return account.accountId
-        }
-        // we just request presence on 1-1 chats
-        identifier: participants.length == 1 ? participants[0].identifier : ""
-    }
-
-    // this is necessary to automatically update the view when the
-    // default account changes in system settings
-    Connections {
-        target: mainView
-        onAccountChanged: {
-            if (!messages.phoneAccount) {
-                return
-            }
-            messages.account = mainView.account
-        }
-    }
-
-    ActivityIndicator {
-        id: activityIndicator
-        anchors {
-            verticalCenter: parent.verticalCenter
-            horizontalCenter: parent.horizontalCenter
-        }
-        running: isSearching
-        visible: running
-    }
-
-    ListModel {
-        id: attachments
-    }
-
-    PictureImport {
-        id: pictureImporter
-
-        onPictureReceived: {
-            var attachment = {}
-            var filePath = String(pictureUrl).replace('file://', '')
-            attachment["contentType"] = application.fileMimeType(filePath)
-            attachment["name"] = filePath.split('/').reverse()[0]
-            attachment["filePath"] = filePath
-            attachments.append(attachment)
-            textEntry.forceActiveFocus()
-        }
-    }
-
-    flickable: null
-
-    property bool isReady: false
-    signal ready
-    onReady: {
-        isReady = true
-        if (participants.length === 0 && keyboardFocus)
-            multiRecipient.forceFocus()
-    }
-
-    property string firstRecipientAlias: ((contactWatcher.isUnknown &&
-                                           contactWatcher.isInteractive) ||
-                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
-    title: {
-        if (selectionMode || participants.length == 0) {
-            return " "
-        }
-
-        if (landscape) {
-            return ""
-        }
-        if (participants.length > 0) {
-            if (participants.length == 1) {
-                return firstRecipientAlias
-            } else {
-                // TRANSLATORS: %1 refers to the number of participants in a group chat
-                return i18n.tr("Group (%1)").arg(participants.length)
-            }
-        }
-        return i18n.tr("New Message")
-    }
-
-    Component.onCompleted: {
-        if (messages.accountId !== "") {
-            var account = telepathyHelper.accountForId(messages.accountId)
-            if (account && account.type == AccountEntry.MultimediaAccount) {
-                // fallback the first available phone account 
-                if (telepathyHelper.phoneAccounts.length > 0) {
-                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
-                }
-            }
-        }
-        addAttachmentsToModel(sharedAttachmentsTransfer)
-    }
-
-    onActiveChanged: {
-        if (active && (eventModel.count > 0)){
-            swipeItemDemo.enable()
-        }
     }
 
     function updateFilters(accounts, participants, reload, threads) {
@@ -584,7 +383,7 @@ Page {
             }
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
- 
+
         var filterAccounts = []
 
         if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
@@ -596,9 +395,9 @@ Page {
                     filterAccounts.push(account)
                 }
             }
-       }
+        }
 
-       for (var i in filterAccounts) {
+        for (var i in filterAccounts) {
             var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
@@ -628,8 +427,367 @@ Page {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
+    header: PageHeader {
+        id: pageHeader
+
+        property alias leadingActions: leadingBar.actions
+        property alias trailingActions: trailingBar.actions
+
+        property list<QtObject> bottomEdgeLeadingActions: [
+            Action {
+                id: backAction
+
+                objectName: "cancel"
+                name: "cancel"
+                text: i18n.tr("Cancel")
+                iconName: "down"
+                shortcut: "Esc"
+                onTriggered: {
+                    messages.cancel()
+                }
+            }
+        ]
+
+        property list<QtObject> singlePanelLeadingActions: [
+            Action {
+                id: singlePanelBackAction
+                objectName: "back"
+                name: "cancel"
+                text: i18n.tr("Cancel")
+                iconName: "back"
+                shortcut: "Esc"
+                onTriggered: {
+                    // emptyStack will make sure the page gets removed.
+                    mainView.emptyStack()
+                }
+            }
+        ]
+
+        title: {
+            if (landscape) {
+                return ""
+            }
+
+            if (participants.length == 1) {
+                return firstRecipientAlias
+            }
+
+            return i18n.tr("New Message")
+        }
+        flickable: null
+
+        Sections {
+            id: sections
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                bottom: parent.bottom
+            }
+            model: getSectionsModel()
+            selectedIndex: getSelectedIndex()
+            onSelectedIndexChanged: {
+                if (selectedIndex >= 0) {
+                    messages.account = messages.accountsModel[selectedIndex]
+                }
+            }
+        }
+
+        extension: sections.model.length > 1 ? sections : null
+
+        leadingActionBar {
+            id: leadingBar
+
+            states: [
+                State {
+                    name: "bottomEdgeBack"
+                    when: startedFromBottomEdge
+                    PropertyChanges {
+                        target: leadingBar
+                        actions: pageHeader.bottomEdgeLeadingActions
+                    }
+                },
+                State {
+                    name: "singlePanelBack"
+                    when: !mainView.dualPanel && !startedFromBottomEdge
+                    PropertyChanges {
+                        target: leadingBar
+                        actions: pageHeader.singlePanelLeadingActions
+                    }
+                }
+
+            ]
+        }
+
+        trailingActionBar {
+            id: trailingBar
+        }
+
+        Item {
+            id: trailingActionArea
+            anchors {
+                bottom: parent.bottom
+                right: parent.right
+            }
+        }
+    }
+
+    states: [
+        State {
+            id: selectionState
+            name: "selection"
+            when: selectionMode
+
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "selectionModeCancelAction"
+                    iconName: "back"
+                    onTriggered: messageList.cancelSelection()
+                }
+            ]
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "selectionModeSelectAllAction"
+                    iconName: "select"
+                    onTriggered: {
+                        if (messageList.selectedItems.count === messageList.count) {
+                            messageList.clearSelection()
+                        } else {
+                            messageList.selectAll()
+                        }
+                    }
+                },
+                Action {
+                    objectName: "selectionModeDeleteAction"
+                    enabled: messageList.selectedItems.count > 0
+                    iconName: "delete"
+                    onTriggered: messageList.endSelection()
+                }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                title: " "
+                leadingActions: selectionState.leadingActions
+                trailingActions: selectionState.trailingActions
+            }
+        },
+        State {
+            id: groupChatState
+            name: "groupChat"
+            when: groupChat
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    id: groupChatAction
+                    objectName: "groupChatAction"
+                    iconName: "contact-group"
+                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
+                }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                // TRANSLATORS: %1 refers to the number of participants in a group chat
+                title: i18n.tr("Group (%1)").arg(participants.length)
+                contents: headerContents
+                trailingActions: groupChatState.trailingActions
+            }
+        },
+        State {
+            id: unknownContactState
+            name: "unknownContact"
+            when: participants.length == 1 && contactWatcher.isUnknown
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "contactCallAction"
+                    visible: participants.length == 1 && contactWatcher.interactive
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
+                    }
+                },
+                Action {
+                    objectName: "addContactAction"
+                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
+                    iconName: "contact-new"
+                    text: i18n.tr("Add")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        // FIXME: support other things than just phone numbers
+                        mainView.addPhoneToContact(messages, "", contactWatcher.identifier, null, null)
+                    }
+                }
+            ]
+            PropertyChanges {
+                target: pageHeader
+                contents: headerContents
+                trailingActions: unknownContactState.trailingActions
+            }
+        },
+        State {
+            id: newMessageState
+            // NOTE: in case the state name is changed here, the bottom edge component needs
+            // to be updated too
+            name: "newMessage"
+            when: participants.length === 0
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "contactList"
+                    iconName: "contact"
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                    }
+                }
+
+            ]
+
+            property Item contents: MultiRecipientInput {
+                id: multiRecipient
+                objectName: "multiRecipient"
+                enabled: visible
+                anchors {
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
+                    rightMargin: units.gu(2)
+                    top: parent ? parent.top: undefined
+                    topMargin: units.gu(1)
+                }
+                focus: true
+
+                Connections {
+                    target: mainView.bottomEdge
+                    onStatusChanged: {
+                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
+                            multiRecipient.forceFocus()
+                        }
+                    }
+                }
+            }
+
+            PropertyChanges {
+                target: pageHeader
+                title: " "
+                trailingActions: newMessageState.trailingActions
+                contents: newMessageState.contents
+            }
+        },
+        State {
+            id: knownContactState
+            name: "knownContact"
+            when: participants.length == 1 && !contactWatcher.isUnknown
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "contactCallKnownAction"
+                    visible: participants.length == 1 && messages.phoneAccount
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
+                    }
+                },
+                Action {
+                    objectName: "contactProfileAction"
+                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
+                    iconSource: "image://theme/contact"
+                    text: i18n.tr("Contact")
+                    onTriggered: {
+                        mainView.showContactDetails(messages.basePage, contactWatcher.contactId, null, null)
+                    }
+                }
+            ]
+            PropertyChanges {
+                target: pageHeader
+                contents: headerContents
+                trailingActions: knownContactState.trailingActions
+            }
+        }
+    ]
+
+    Component.onCompleted: {
+        if (messages.accountId !== "") {
+            var account = telepathyHelper.accountForId(messages.accountId)
+            if (account && account.type == AccountEntry.MultimediaAccount) {
+                // fallback the first available phone account
+                if (telepathyHelper.phoneAccounts.length > 0) {
+                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
+                }
+            }
+        }
+        composeBar.addAttachments(sharedAttachmentsTransfer)
+    }
+
+    Component.onDestruction: {
+        if (!mainView.dualPanel && !startedFromBottomEdge) {
+            mainPage.displayedThreadIndex = -1
+        }
+    }
+
+    onReady: {
+        isReady = true
+        if (participants.length === 0 && keyboardFocus)
+            multiRecipient.forceFocus()
+    }
+
+    onActiveChanged: {
+        if (active && (eventModel.count > 0)){
+            swipeItemDemo.enable()
+        }
+    }
+
+    Connections {
+        target: telepathyHelper
+        onSetupReady: {
+            // force reevaluation
+            messages.account = Qt.binding(getCurrentAccount)
+            messages.phoneAccount = Qt.binding(isPhoneAccount)
+            head.sections.model = Qt.binding(getSectionsModel)
+            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+        }
+    }
+
+    Connections {
+        target: chatManager
+        onChatEntryCreated: {
+            // TODO: track using chatId and not participants
+            if (accountId == account.accountId &&
+                firstParticipant && participants[0] == firstParticipant.identifier) {
+                messages.chatEntry = chatEntry
+            }
+        }
+        onChatsChanged: {
+            for (var i in chatManager.chats) {
+                var chat = chatManager.chats[i]
+                // TODO: track using chatId and not participants
+                if (chat.account.accountId == account.accountId &&
+                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
+                    messages.chatEntry = chat
+                    return
+                }
+            }
+            messages.chatEntry = null
+        }
+    }
+
+    // this is necessary to automatically update the view when the
+    // default account changes in system settings
     Connections {
         target: mainView
+        onAccountChanged: {
+            if (!messages.phoneAccount) {
+                return
+            }
+            messages.account = mainView.account
+        }
+
         onApplicationActiveChanged: {
             if (mainView.applicationActive) {
                 for (var i in pendingEventsToMarkAsRead) {
@@ -641,28 +799,89 @@ Page {
         }
     }
 
-    Component {
-        id: attachmentPopover
+    Timer {
+        id: typingTimer
+        interval: 6000
+        onTriggered: {
+            messages.userTyping = false;
+        }
+    }
 
-        Popover {
-            id: popover
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                ListItem.Standard {
-                    text: i18n.tr("Remove")
-                    onClicked: {
-                        attachments.remove(activeAttachmentIndex)
-                        PopupUtils.close(popover)
-                    }
+    Repeater {
+        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        Item {
+            function processChatState() {
+                if (modelData.state == ChatEntry.ChannelChatStateComposing) {
+                    messages.userTyping = true
+                    typingTimer.start()
+                } else {
+                    messages.userTyping = false
                 }
             }
-            Component.onDestruction: activeAttachmentIndex = -1
+            Component.onCompleted: processChatState()
+            Connections {
+                target: modelData
+                onStateChanged: processChatState()
+            }
         }
+    }
+
+    MessagesHeader {
+        id: headerContents
+        width: parent ? parent.width - units.gu(2) : undefined
+        height: units.gu(5)
+        title: pageHeader.title
+        subtitle: {
+            if (userTyping) {
+                return i18n.tr("Typing..")
+            }
+            switch (presenceRequest.type) {
+            case PresenceRequest.PresenceTypeAvailable:
+                return i18n.tr("Online")
+            case PresenceRequest.PresenceTypeOffline:
+                return i18n.tr("Offline")
+            case PresenceRequest.PresenceTypeAway:
+                return i18n.tr("Away")
+            case PresenceRequest.PresenceTypeBusy:
+                return i18n.tr("Busy")
+            default:
+                return ""
+            }
+        }
+        visible: true
+    }
+
+    PresenceRequest {
+        id: presenceItem
+        accountId: {
+            // if this is a regular sms chat, try requesting the presence on
+            // a multimedia account
+            if (!account) {
+                return ""
+            }
+            if (account.type == AccountEntry.PhoneAccount) {
+                for (var i in telepathyHelper.accounts) {
+                    var tmpAccount = telepathyHelper.accounts[i]
+                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                        return tmpAccount.accountId
+                    }
+                }
+                return ""
+            }
+            return account.accountId
+        }
+        // we just request presence on 1-1 chats
+        identifier: participants.length == 1 ? participants[0].identifier : ""
+    }
+
+    ActivityIndicator {
+        id: activityIndicator
+        anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+        running: isSearching
+        visible: running
     }
 
     Component {
@@ -727,13 +946,6 @@ Page {
         }
     }
 
-    Connections {
-        target: messages.head.sections
-        onSelectedIndexChanged: {
-            messages.account = messages.accountsModel[head.sections.selectedIndex]
-        }
-    }
-
     Loader {
         id: searchListLoader
 
@@ -745,10 +957,10 @@ Page {
         visible: source != ""
         anchors {
             top: parent.top
-            topMargin: units.gu(2)
+            topMargin: header.height + units.gu(2)
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
+            bottom: composeBar.top
         }
         z: 1
         Behavior on height {
@@ -805,160 +1017,6 @@ Page {
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
-    onAccountsModelChanged: {
-        reloadFilters = !reloadFilters
-    }
-
-    Action {
-        id: backButton
-        objectName: "backButton"
-        iconName: "back"
-        onTriggered: {
-            if (typeof mainPage !== 'undefined') {
-                mainPage.temporaryProperties = null
-            }
-            mainStack.pop()
-        }
-    }
-
-    states: [
-        PageHeadState {
-            name: "selection"
-            head: messages.head
-            when: selectionMode
-
-            backAction: Action {
-                objectName: "selectionModeCancelAction"
-                iconName: "back"
-                onTriggered: messageList.cancelSelection()
-            }
-
-            actions: [
-                Action {
-                    objectName: "selectionModeSelectAllAction"
-                    iconName: "select"
-                    onTriggered: {
-                        if (messageList.selectedItems.count === messageList.count) {
-                            messageList.clearSelection()
-                        } else {
-                            messageList.selectAll()
-                        }
-                    }
-                },
-                Action {
-                    objectName: "selectionModeDeleteAction"
-                    enabled: messageList.selectedItems.count > 0
-                    iconName: "delete"
-                    onTriggered: messageList.endSelection()
-                }
-            ]
-        },
-        PageHeadState {
-            name: "groupChat"
-            head: messages.head
-            when: groupChat
-            contents: header
-            backAction: backButton
-
-            actions: [
-                Action {
-                    objectName: "groupChatAction"
-                    iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, screenTop)
-                }
-            ]
-        },
-        PageHeadState {
-            name: "unknownContact"
-            head: messages.head
-            when: participants.length == 1 && contactWatcher.isUnknown
-            backAction: backButton
-            contents: header
-
-            actions: [
-                Action {
-                    objectName: "contactCallAction"
-                    visible: participants.length == 1 && contactWatcher.interactive
-                    iconName: "call-start"
-                    text: i18n.tr("Call")
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
-                    }
-                },
-                Action {
-                    objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
-                    iconName: "contact-new"
-                    text: i18n.tr("Add")
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
-                    }
-                }
-            ]
-        },
-        PageHeadState {
-            name: "newMessage"
-            head: messages.head
-            when: participants.length === 0 && isReady
-            backAction: backButton
-            actions: [
-                Action {
-                    objectName: "contactList"
-                    iconName: "contact"
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
-                    }
-                }
-
-            ]
-
-            contents: MultiRecipientInput {
-                id: multiRecipient
-                objectName: "multiRecipient"
-                enabled: visible
-                anchors {
-                    left: parent ? parent.left : undefined
-                    right: parent ? parent.right : undefined
-                    rightMargin: units.gu(2)
-                }
-            }
-        },
-        PageHeadState {
-            name: "knownContact"
-            head: messages.head
-            when: participants.length == 1 && !contactWatcher.isUnknown
-            backAction: backButton
-            contents: header
-            actions: [
-                Action {
-                    objectName: "contactCallKnownAction"
-                    visible: participants.length == 1 && messages.phoneAccount
-                    iconName: "call-start"
-                    text: i18n.tr("Call")
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
-                    }
-                },
-                Action {
-                    objectName: "contactProfileAction"
-                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
-                    iconSource: "image://theme/contact"
-                    text: i18n.tr("Contact")
-                    onTriggered: {
-                        mainView.showContactDetails(contactWatcher.contactId, null, null)
-                    }
-                }
-            ]
-        }
-    ]
-
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
@@ -1011,7 +1069,7 @@ Page {
     Item {
         id: screenTop
         anchors {
-            top: parent.top
+            top: pageHeader.bottom
             left: parent.left
             right: parent.right
         }
@@ -1023,392 +1081,125 @@ Page {
         objectName: "messageList"
         visible: !isSearching
 
+        Rectangle {
+            color: Theme.palette.normal.background
+            anchors.fill: parent
+            Image {
+                width: units.gu(20)
+                fillMode: Image.PreserveAspectFit
+                anchors.centerIn: parent
+                visible: source !== ""
+                source: {
+                    var accountId = ""
+
+                    if (messages.account) {
+                        accountId = messages.account.accountId
+                    }
+
+                    if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                            && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                        accountId = presenceRequest.accountId
+                    }
+
+                    return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
+                }
+                z: 1
+            }
+            z: -1
+        }
+
         // because of the header
         clip: true
         anchors {
             top: screenTop.bottom
             left: parent.left
             right: parent.right
-            bottom: bottomPanel.top
+            bottom: composeBar.top
         }
     }
 
-    Item {
-        id: bottomPanel
-        property int defaultHeight: textEntry.height + units.gu(2)
-        anchors.bottom: isSearching ? parent.bottom : keyboard.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: {
-            if (selectionMode || (participants.length > 0 && !contactWatcher.interactive)) {
-                return 0
-            } else {
-                if (messages.height - keyboard.height - screenTop.y > defaultHeight) {
-                    return defaultHeight
-                } else {
-                    return messages.height - keyboard.height - screenTop.y
-                }
-            }
+    ComposeBar {
+        id: composeBar
+        anchors {
+            bottom: isSearching ? parent.bottom : keyboard.top
+            left: parent.left
+            right: parent.right
         }
-        visible: !selectionMode && !isSearching
-        clip: true
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                messageTextArea.forceActiveFocus()
+
+        showContents: !selectionMode && !isSearching
+        maxHeight: messages.height - keyboard.height - screenTop.y
+        text: messages.text
+        canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        oskEnabled: messages.oskEnabled
+
+        Component.onCompleted: {
+            // if page is active, it means this is not a bottom edge page
+            if (messages.active && messages.keyboardFocus && participants.length != 0) {
+                forceFocus()
             }
         }
 
-        Behavior on height {
-            UbuntuNumberAnimation { }
-        }
+        onSendRequested: {
+            // refresh the recipient list
+            multiRecipient.focus = false
 
-        ListItem.ThinDivider {
-            anchors.top: parent.top
-        }
-
-        Icon {
-            id: attachButton
-            objectName: "attachButton"
-            anchors.left: parent.left
-            anchors.leftMargin: units.gu(2)
-            anchors.verticalCenter: sendButton.verticalCenter
-            height: units.gu(3)
-            width: units.gu(3)
-            color: "gray"
-            name: "camera-app-symbolic"
-            MouseArea {
-                anchors.fill: parent
-                anchors.margins: units.gu(-2)
-                onClicked: {
-                    Qt.inputMethod.hide()
-                    pictureImporter.requestNewPicture()
-                }
+            if (messages.account && messages.accountId == "") {
+                messages.accountId = messages.account.accountId
+                messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
             }
-        }
 
-        StyledItem {
-            id: textEntry
-            property alias text: messageTextArea.text
-            property alias inputMethodComposing: messageTextArea.inputMethodComposing
-            property int fullSize: attachmentThumbnails.height + messageTextArea.height
-            style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
-            anchors.bottomMargin: units.gu(1)
-            anchors.bottom: parent.bottom
-            anchors.left: attachButton.right
-            anchors.leftMargin: units.gu(1)
-            anchors.right: sendButton.left
-            anchors.rightMargin: units.gu(1)
-            height: attachments.count !== 0 ? fullSize + units.gu(1.5) : fullSize
-            onActiveFocusChanged: {
-                if(activeFocus) {
-                    messageTextArea.forceActiveFocus()
-                } else {
-                    focus = false
+            var newAttachments = []
+            var videoSize = 0;
+            for (var i = 0; i < attachments.count; i++) {
+                var attachment = []
+                var item = attachments.get(i)
+                // we dont include smil files. they will be auto generated
+                if (item.contentType.toLowerCase() === "application/smil") {
+                    continue
                 }
+                if (startsWith(item.contentType.toLowerCase(),"video/")) {
+                    videoSize += FileOperations.size(item.filePath)
+                }
+                attachment.push(item.name)
+                attachment.push(item.contentType)
+                attachment.push(item.filePath)
+                newAttachments.push(attachment)
             }
-            focus: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: messageTextArea.forceActiveFocus()
-            }
-            Flow {
-                id: attachmentThumbnails
-                spacing: units.gu(1)
-                anchors{
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    topMargin: units.gu(1)
-                    leftMargin: units.gu(1)
-                    rightMargin: units.gu(1)
-                }
-                height: childrenRect.height
-
-                Component {
-                    id: thumbnailImage
-                    UbuntuShape {
-                        property int index
-                        property string filePath
-
-                        width: childrenRect.width
-                        height: childrenRect.height
-
-                        image: Image {
-                            id: avatarImage
-                            width: units.gu(8)
-                            height: units.gu(8)
-                            sourceSize.height: height
-                            sourceSize.width: width
-                            fillMode: Image.PreserveAspectCrop
-                            source: filePath
-                            asynchronous: true
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                mouse.accept = true
-                                Qt.inputMethod.hide()
-                                activeAttachmentIndex = index
-                                PopupUtils.open(attachmentPopover, parent)
+            if (videoSize > 307200 && !settings.messagesDontShowFileSizeWarning) {
+                // FIXME we are guessing here if the handler will try to send it over multimedia account
+                var isPhone = (account && account.type == AccountEntry.PhoneAccount)
+                if (isPhone) {
+                    for (var i in telepathyHelper.accounts) {
+                        var tmpAccount = telepathyHelper.accounts[i]
+                        if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                            // now check if the user is at least known by the account
+                            if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
+                                     && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
+                                isPhone = false
                             }
                         }
                     }
                 }
-
-                Component {
-                    id: thumbnailContact
-                    Item {
-                        id: attachment
-
-                        readonly property int contactsCount:vcardParser.contacts ? vcardParser.contacts.length : 0
-                        property int index
-                        property string filePath
-                        property alias vcard: vcardParser
-                        property string contactDisplayName: {
-                            if (contactsCount > 0)  {
-                                var contact = vcard.contacts[0]
-                                if (contact.displayLabel.label && (contact.displayLabel.label != "")) {
-                                    return contact.displayLabel.label
-                                } else if (contact.name) {
-                                    var contacFullName  = contact.name.firstName
-                                    if (contact.name.midleName) {
-                                        contacFullName += " " + contact.name.midleName
-                                    }
-                                    if (contact.name.lastName) {
-                                        contacFullName += " " + contact.name.lastName
-                                    }
-                                    return contacFullName
-                                }
-                                return i18n.tr("Unknown contact")
-                            }
-                            return ""
-                        }
-                        property string title: {
-                            var result = attachment.contactDisplayName
-                            if (attachment.contactsCount > 1) {
-                                return result + " (+%1)".arg(attachment.contactsCount-1)
-                            } else {
-                                return result
-                            }
-                        }
-
-                        height: units.gu(6)
-                        width: textEntry.width
-
-                        ContactAvatar {
-                            id: avatar
-
-                            anchors {
-                                top: parent.top
-                                bottom: parent.bottom
-                                left: parent.left
-                            }
-                            contactElement: attachment.contactsCount === 1 ? attachment.vcard.contacts[0] : null
-                            fallbackAvatarUrl: attachment.contactsCount === 1 ? "image://theme/contact" : "image://theme/contact-group"
-                            fallbackDisplayName: attachment.contactsCount === 1 ? attachment.contactDisplayName : ""
-                            width: height
-                        }
-                        Label {
-                            id: label
-
-                            anchors {
-                                left: avatar.right
-                                leftMargin: units.gu(1)
-                                top: avatar.top
-                                bottom: avatar.bottom
-                                right: parent.right
-                                rightMargin: units.gu(1)
-                            }
-
-                            verticalAlignment: Text.AlignVCenter
-                            text: attachment.title
-                            elide: Text.ElideMiddle
-                            color: UbuntuColors.lightAubergine
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                mouse.accept = true
-                                Qt.inputMethod.hide()
-                                activeAttachmentIndex = index
-                                PopupUtils.open(attachmentPopover, parent)
-                            }
-                        }
-                        VCardParser {
-                            id: vcardParser
-
-                            vCardUrl: attachment ? Qt.resolvedUrl(attachment.filePath) : ""
-                        }
-                    }
-                }
-
-                Component {
-                    id: thumbnailUnknown
-
-                    UbuntuShape {
-                        property int index
-                        property string filePath
-
-                        width: units.gu(8)
-                        height: units.gu(8)
-
-                        Icon {
-                            anchors.centerIn: parent
-                            width: units.gu(6)
-                            height: units.gu(6)
-                            name: "attachment"
-                        }
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                mouse.accept = true
-                                Qt.inputMethod.hide()
-                                activeAttachmentIndex = index
-                                PopupUtils.open(attachmentPopover, parent)
-                            }
-                        }
-                    }
-                }
-
-                Repeater {
-                    model: attachments
-                    delegate: Loader {
-                        height: units.gu(8)
-                        sourceComponent: {
-                            var contentType = getContentType(filePath)
-                            console.log(contentType)
-                            switch(contentType) {
-                            case ContentType.Contacts:
-                                return thumbnailContact
-                            case ContentType.Pictures:
-                                return thumbnailImage
-                            case ContentType.Unknown:
-                                return thumbnailUnknown
-                            default:
-                                console.log("unknown content Type")
-                            }
-                        }
-                        onStatusChanged: {
-                            if (status == Loader.Ready) {
-                                item.index = index
-                                item.filePath = filePath
-                            }
-                        }
-                    }
+ 
+                if (isPhone) {
+                    PopupUtils.open(Qt.createComponent("Dialogs/FileSizeWarningDialog.qml").createObject(messages))
                 }
             }
 
-            ListItem.ThinDivider {
-                id: divider
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: attachmentThumbnails.bottom
-                    margins: units.gu(0.5)
-                }
-                visible: attachments.count > 0
+            var recipients = participantIds.length > 0 ? participantIds :
+                                                         multiRecipient.recipients
+            var properties = {}
+            if (composeBar.audioAttached) {
+                properties["x-canonical-tmp-files"] = true
             }
 
-            TextArea {
-                id: messageTextArea
-                objectName: "messageTextArea"
-                anchors {
-                    top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
-                    left: parent.left
-                    right: parent.right
-                }
-                // this value is to avoid letter being cut off
-                height: units.gu(4.3)
-                style: LocalTextAreaStyle {}
-                autoSize: true
-                maximumLineCount: attachments.count == 0 ? 8 : 4
-                placeholderText: i18n.tr("Write a message...")
-                focus: textEntry.focus
-                font.family: "Ubuntu"
-                font.pixelSize: FontUtils.sizeToPixels("medium")
-                color: "#5d5d5d"
-                text: messages.text
+            // if sendMessage succeeds it means the message was either sent or
+            // injected into the history service so the user can retry later
+            if (sendMessage(text, recipients, newAttachments, properties)) {
+                composeBar.reset()
             }
-
-            /*InverseMouseArea {
-                anchors.fill: parent
-                visible: textEntry.activeFocus
-                onClicked: {
-                    textEntry.focus = false;
-                }
-            }*/
-            Component.onCompleted: {
-                // if page is active, it means this is not a bottom edge page
-                if (messages.active && messages.keyboardFocus && participants.length != 0) {
-                    messageTextArea.forceActiveFocus()
-                }
-            }
-        }
-
-        Icon {
-            id: sendButton
-            objectName: "sendButton"
-            anchors.verticalCenter: textEntry.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
-            color: "gray"
-            source: Qt.resolvedUrl("./assets/send.svg")
-            width: units.gu(3)
-            height: units.gu(3)
-            enabled: {
-               if (participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== "") {
-                    if (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0) {
-                        return true
-                    }
-                }
-                return false
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                anchors.margins: units.gu(-2)
-                onClicked: {
-                    // make sure we flush everything we have prepared in the OSK preedit
-                    Qt.inputMethod.commit();
-                    if (textEntry.text == "" && attachments.count == 0) {
-                        return
-                    }
-                    // refresh the recipient list
-                    multiRecipient.focus = false
-
-                    if (messages.account && messages.accountId == "") {
-                        messages.accountId = messages.account.accountId
-                        messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
-                    }
-
-                    var newAttachments = []
-                    for (var i = 0; i < attachments.count; i++) {
-                        var attachment = []
-                        var item = attachments.get(i)
-                        // we dont include smil files. they will be auto generated
-                        if (item.contentType.toLowerCase() === "application/smil") {
-                            continue
-                        }
-                        attachment.push(item.name)
-                        attachment.push(item.contentType)
-                        attachment.push(item.filePath)
-                        newAttachments.push(attachment)
-                    }
-
-                    var recipients = participantIds.length > 0 ? participantIds :
-                                                                 multiRecipient.recipients
-                    // if sendMessage succeeds it means the message was either sent or
-                    // injected into the history service so the user can retry later
-                    if (sendMessage(textEntry.text, recipients, newAttachments)) {
-                        textEntry.text = ""
-                        attachments.clear()
-                    }
-                    if (eventModel.filter == null) {
-                        reloadFilters = !reloadFilters
-                    }
-                }
+            if (eventModel.filter == null) {
+                reloadFilters = !reloadFilters
             }
         }
     }
@@ -1434,5 +1225,10 @@ Page {
                 Qt.inputMethod.hide()
             }
         }
+    }
+
+    Scrollbar {
+        flickableItem: messageList
+        align: Qt.AlignTrailing
     }
 }

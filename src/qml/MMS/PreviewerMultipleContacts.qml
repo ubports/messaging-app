@@ -42,7 +42,12 @@ Previewer {
     MultipleSelectionListView {
         id: contactList
 
-        anchors.fill: parent
+        anchors {
+            top: root.header.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
         listModel: thumbnail.vcard.contacts
         listDelegate: ContactDelegate {
             id: contactDelegate
@@ -51,7 +56,7 @@ Previewer {
             property var contact: thumbnail.vcard.contacts[index]
 
             onClicked: {
-                mainStack.push(sigleContatPreviewer, {'contact': contact})
+                mainStack.addComponentToCurrentColumnSync(root, sigleContatPreviewer, {'contact': contact})
             }
         }
     }

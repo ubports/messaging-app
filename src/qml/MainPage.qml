@@ -23,29 +23,27 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
-LocalPageWithBottomEdge {
+Page {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false
+    property bool isEmpty: threadCount == 0 && !threadModel.canFetchMore
     property alias threadCount: threadList.count
+    property alias displayedThreadIndex: threadList.currentIndex
+
+    property var _messagesPage: null
 
     function startSelection() {
         threadList.startSelection()
     }
-
-    state: selectionMode ? "select" : searching ? "search" : "default"
-    title: selectionMode ? " " : i18n.tr("Messages")
-    flickable: null
-
-    bottomEdgeEnabled: !selectionMode && !searching
-    bottomEdgeTitle: i18n.tr("+")
-    bottomEdgePageComponent: Messages { active: false }
 
     TextField {
         id: searchField
         objectName: "searchField"
         visible: mainPage.searching
         anchors {
+            top: parent.top
+            topMargin: units.gu(1)
             left: parent.left
             right: parent.right
             rightMargin: units.gu(2)
@@ -60,11 +58,31 @@ LocalPageWithBottomEdge {
         }
     }
 
+    flickable: pageHeader.flickable
+    header: PageHeader {
+        id: pageHeader
+
+        property alias leadingActions: leadingBar.actions
+        property alias trailingActions: trailingBar.actions
+
+        title: i18n.tr("Messages")
+        flickable: dualPanel ? null : threadList
+        leadingActionBar {
+            id: leadingBar
+        }
+
+        trailingActionBar {
+            id: trailingBar
+        }
+    }
+
     states: [
-        PageHeadState {
+        State {
+            id: defaultState
             name: "default"
-            head: mainPage.head
-            actions: [
+            when: !searching && !selectionMode
+
+            property list<QtObject> trailingActions: [
                 Action {
                     objectName: "searchAction"
                     iconName: "search"
@@ -77,38 +95,76 @@ LocalPageWithBottomEdge {
                     objectName: "settingsAction"
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+                    onTriggered: {
+                        emptyStack()
+                        pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                    }
+                },
+                Action {
+                    objectName: "newMessageAction"
+                    text: i18n.tr("New message")
+                    iconName: "add"
+                    visible: dualPanel
+                    onTriggered: mainView.bottomEdge.commit()
+                }
+
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                trailingActions: defaultState.trailingActions
+                leadingActions: []
+            }
+        },
+        State {
+            id: searchState
+            name: "search"
+            when: searching
+
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "cancelSearch"
+                    visible: mainPage.searching
+                    iconName: "back"
+                    text: i18n.tr("Cancel")
+                    onTriggered: {
+                        searchField.text = ""
+                        mainPage.searching = false
+                    }
                 }
             ]
+
+            PropertyChanges {
+                target: pageHeader
+                contents: searchField
+                leadingActions: searchState.leadingActions
+                trailingActions: []
+            }
         },
-        PageHeadState {
-            name: "search"
-            head: mainPage.head
-            backAction: Action {
-                objectName: "cancelSearch"
-                visible: mainPage.searching
-                iconName: "back"
-                text: i18n.tr("Cancel")
-                onTriggered: {
-                    searchField.text = ""
-                    mainPage.searching = false
+        State {
+            id: selectionState
+            name: "selection"
+            when: selectionMode
+
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "selectionModeCancelAction"
+                    iconName: "back"
+                    onTriggered: threadList.cancelSelection()
                 }
-            }
-            contents: searchField
-        },
-        PageHeadState {
-            name: "select"
-            head: mainPage.head
-            backAction: Action {
-                objectName: "selectionModeCancelAction"
-                iconName: "back"
-                onTriggered: threadList.cancelSelection()
-            }
-            actions: [
+            ]
+
+            property list<QtObject> trailingActions: [
                 Action {
                     objectName: "selectionModeSelectAllAction"
                     iconName: "select"
-                    onTriggered: threadList.selectAll()
+                    onTriggered: {
+                        if (threadList.selectedItems.count === threadList.count) {
+                            threadList.clearSelection()
+                        } else {
+                            threadList.selectAll()
+                        }
+                    }
                 },
                 Action {
                     objectName: "selectionModeDeleteAction"
@@ -117,39 +173,18 @@ LocalPageWithBottomEdge {
                     onTriggered: threadList.endSelection()
                 }
             ]
+            PropertyChanges {
+                target: pageHeader
+                title: " "
+                leadingActions: selectionState.leadingActions
+                trailingActions: selectionState.trailingActions
+            }
         }
     ]
 
-    Item {
+    EmptyState {
         id: emptyStateScreen
-        anchors.left: parent.left
-        anchors.leftMargin: units.gu(6)
-        anchors.right: parent.right
-        anchors.rightMargin: units.gu(6)
-        height: childrenRect.height
-        anchors.verticalCenter: parent.verticalCenter
-        visible: threadCount == 0 && !threadModel.canFetchMore
-        Icon {
-            id: emptyStateIcon
-            anchors.top: emptyStateScreen.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            height: units.gu(5)
-            width: height
-            opacity: 0.3
-            name: "message"
-        }
-        Label {
-            id: emptyStateLabel
-            anchors.top: emptyStateIcon.bottom
-            anchors.topMargin: units.gu(2)
-            anchors.left: parent.left
-            anchors.right: parent.right
-            text: i18n.tr("Compose a new message by swiping up from the bottom of the screen.")
-            color: "#5d5d5d"
-            fontSize: "x-large"
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-        }
+        visible: mainPage.isEmpty && !mainView.dualPanel
     }
 
     Component {
@@ -180,6 +215,7 @@ LocalPageWithBottomEdge {
 
         anchors {
             top: parent.top
+            topMargin: mainView.dualPanel ? pageHeader.height : 0
             left: parent.left
             right: parent.right
             bottom: keyboard.top
@@ -188,8 +224,19 @@ LocalPageWithBottomEdge {
         clip: true
         cacheBuffer: threadList.height * 2
         section.property: "eventDate"
+        currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
+        header: ListItem.Standard {
+            id: newItem
+            height: mainView.bottomEdge.status === BottomEdge.Committed &&
+                    !mainView.bottomEdge.showingConversation ? units.gu(10) : 0
+            text: i18n.tr("New message")
+            iconName: "message-new"
+            iconFrame: false
+            selected: true
+        }
+
         listDelegate: ThreadDelegate {
             id: threadDelegate
             // FIXME: find a better unique name
@@ -201,7 +248,15 @@ LocalPageWithBottomEdge {
             }
             height: units.gu(8)
             selectionMode: threadList.isInSelectionMode
-            selected: threadList.isSelected(threadDelegate)
+            selected: {
+                if (selectionMode) {
+                    return threadList.isSelected(threadDelegate)
+                } else {
+                    // FIXME: there might be a better way of doing this
+                    return index === threadList.currentIndex && mainView.bottomEdge.status !== BottomEdge.Committed
+                }
+            }
+
             searchTerm: mainPage.searching ? searchField.text : ""
             onItemClicked: {
                 if (threadList.isInSelectionMode) {
@@ -218,10 +273,15 @@ LocalPageWithBottomEdge {
                     }
                     properties["participantIds"] = participantIds
                     properties["participants"] = model.participants
+                    properties["presenceRequest"] = threadDelegate.presenceItem
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    mainStack.push(Qt.resolvedUrl("Messages.qml"), properties)
+                    emptyStack()
+                    mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
+
+                    // mark this item as current
+                    threadList.currentIndex = index
                 }
             }
             onItemPressAndHold: {
@@ -241,6 +301,13 @@ LocalPageWithBottomEdge {
                 mainView.removeThreads(threadsToRemove);
             }
         }
+
+        Binding {
+            target: threadList
+            property: 'contentY'
+            value: -threadList.headerItem.height
+            when: mainView.composingNewMessage
+        }
     }
 
     KeyboardRectangle {
@@ -250,5 +317,13 @@ LocalPageWithBottomEdge {
     Scrollbar {
         flickableItem: threadList
         align: Qt.AlignTrailing
+    }
+
+    Loader {
+        id: bottomEdgeLoader
+        active: !selectionMode && !searching && !mainView.dualPanel
+        sourceComponent: MessagingBottomEdge {
+            parent: mainPage
+        }
     }
 }

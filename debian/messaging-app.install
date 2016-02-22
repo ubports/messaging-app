@@ -8,4 +8,6 @@ usr/share/messaging-app/assets
 usr/share/messaging-app/3rd_party
 usr/share/messaging-app/MMS/*.qml
 usr/share/messaging-app/Dialogs/*.qml
+usr/share/messaging-app/Stickers/*.qml
 usr/bin/*messaging-app*
+debian/usr.bin.messaging-app etc/apparmor.d
