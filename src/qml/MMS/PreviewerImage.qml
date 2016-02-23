@@ -25,6 +25,7 @@ import ".."
 Previewer {
     id: imagePreviewer
 
+    // FIXME: this won't work correctly in windowed mode
     Component.onCompleted: application.fullscreen = true
     Component.onDestruction: application.fullscreen = false
 

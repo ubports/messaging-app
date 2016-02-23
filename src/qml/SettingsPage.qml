@@ -35,6 +35,11 @@ Page {
         schema.id: "com.ubuntu.phone"
     }
 
+    header: PageHeader {
+        id: pageHeader
+        title: settingsPage.title
+    }
+
     Component {
         id: settingDelegate
         Item {
@@ -66,9 +71,25 @@ Page {
     }
 
     ListView {
-        anchors.fill: parent
+        anchors {
+            top: pageHeader.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
         model: settingsModel
         delegate: settingDelegate
+    }
+
+    Loader {
+        id: messagesBottomEdgeLoader
+        active: mainView.dualPanel
+        sourceComponent: MessagingBottomEdge {
+            id: messagesBottomEdge
+            parent: settingsPage
+            hint.text: ""
+            hint.height: 0
+        }
     }
 }
 

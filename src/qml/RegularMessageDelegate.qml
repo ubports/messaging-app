@@ -57,7 +57,7 @@ Column {
         selectionMode: root.isInSelectionMode
         accountLabel: {
             var account = telepathyHelper.accountForId(accountId)
-            if (account.type == AccountEntry.PhoneAccount || account.type == AccountEntry.MultimediaAccount) {
+            if (account && (account.type == AccountEntry.PhoneAccount || account.type == AccountEntry.MultimediaAccount)) {
                 if (multiplePhoneAccounts) {
                     return account.displayName
                 }

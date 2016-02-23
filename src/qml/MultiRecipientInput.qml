@@ -29,7 +29,7 @@ StyledItem {
     property variant recipients: []
     property string searchString: ""
     signal clearSearch()
-    style: Theme.createStyleComponent("TextFieldStyle.qml", multiRecipientWidget)
+    styleName: "TextFieldStyle"
     clip: true
     height: contactFlow.height
     focus: activeFocus

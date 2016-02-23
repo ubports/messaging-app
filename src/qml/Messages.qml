@@ -63,6 +63,19 @@ Page {
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
+    property bool isReady: false
+    property string firstRecipientAlias: ((contactWatcher.isUnknown &&
+                                           contactWatcher.isInteractive) ||
+                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
+
+
+    // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
+    property var basePage: messages
+
+    property bool startedFromBottomEdge: false
+
+    signal ready
+    signal cancel
 
     function getAccountsModel() {
         var accounts = []
@@ -221,99 +234,6 @@ Page {
         return thread
     }
 
-    Connections {
-        target: telepathyHelper
-        onSetupReady: {
-            // force reevaluation
-            messages.account = Qt.binding(getCurrentAccount)
-            messages.phoneAccount = Qt.binding(isPhoneAccount)
-            head.sections.model = Qt.binding(getSectionsModel)
-            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
-        }
-    }
-
-
-    Connections {
-        target: chatManager
-        onChatEntryCreated: {
-            // TODO: track using chatId and not participants
-            if (accountId == account.accountId && 
-                firstParticipant && participants[0] == firstParticipant.identifier) {
-                messages.chatEntry = chatEntry
-            }
-        }
-        onChatsChanged: {
-            for (var i in chatManager.chats) {
-                var chat = chatManager.chats[i]
-                // TODO: track using chatId and not participants
-                if (chat.account.accountId == account.accountId &&
-                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
-                    messages.chatEntry = chat
-                    return
-                }
-            }
-            messages.chatEntry = null
-        }
-    }
-
-    Timer {
-        id: typingTimer
-        interval: 6000
-        onTriggered: {
-            messages.userTyping = false;
-        }
-    }
-
-    Repeater {
-        model: messages.chatEntry ? messages.chatEntry.chatStates : null
-        Item {
-            function processChatState() {
-                if (modelData.state == ChatEntry.ChannelChatStateComposing) {
-                    messages.userTyping = true
-                    typingTimer.start()
-                } else {
-                    messages.userTyping = false
-                }
-            }
-            Component.onCompleted: processChatState()
-            Connections {
-                target: modelData
-                onStateChanged: processChatState()
-            }
-        }
-    }
-
-    MessagesHeader {
-        id: header
-        width: parent ? parent.width - units.gu(2) : undefined
-        height: units.gu(5)
-        title: messages.title
-        subtitle: {
-            if (userTyping) {
-                return i18n.tr("Typing..")
-            }
-            switch (presenceRequest.type) {
-            case PresenceRequest.PresenceTypeAvailable:
-                return i18n.tr("Online")
-            case PresenceRequest.PresenceTypeOffline:
-                return i18n.tr("Offline")
-            case PresenceRequest.PresenceTypeAway:
-                return i18n.tr("Away")
-            case PresenceRequest.PresenceTypeBusy:
-                return i18n.tr("Busy")
-            default:
-                return ""
-            }
-        }
-        visible: true
-    }
-
-    head {
-        id: head
-        sections.model: getSectionsModel()
-        sections.selectedIndex: getSelectedIndex()
-    }
-
     function sendMessageNetworkCheck() {
         if (messages.account.simLocked) {
             Qt.inputMethod.hide()
@@ -363,7 +283,7 @@ Page {
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
                 var tmpAccount = telepathyHelper.accountForId(event.accountId)
                 if (!tmpAccount || (tmpAccount.type == AccountEntry.MultimediaAccount && messages.account.type == AccountEntry.PhoneAccount)) {
-                    // we don't add the information event if the last outgoing message 
+                    // we don't add the information event if the last outgoing message
                     // was a fallback to a multimedia service
                     break;
                 }
@@ -425,7 +345,7 @@ Page {
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
                 // TODO: inform the user to enter the phone number of the selected sim card manually
-                // and use it in the telepathy-ofono account as selfContactId. 
+                // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
             var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
@@ -446,109 +366,6 @@ Page {
         }
 
         return true
-    }
-
-    PresenceRequest {
-        id: presenceItem
-        accountId: {
-            // if this is a regular sms chat, try requesting the presence on
-            // a multimedia account
-            if (!account) {
-                return ""
-            }
-            if (account.type == AccountEntry.PhoneAccount) {
-                for (var i in telepathyHelper.accounts) {
-                    var tmpAccount = telepathyHelper.accounts[i]
-                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
-                        return tmpAccount.accountId
-                    }
-                }
-                return ""
-            }
-            return account.accountId
-        }
-        // we just request presence on 1-1 chats
-        identifier: participants.length == 1 ? participants[0].identifier : ""
-    }
-
-    // this is necessary to automatically update the view when the
-    // default account changes in system settings
-    Connections {
-        target: mainView
-        onAccountChanged: {
-            if (!messages.phoneAccount) {
-                return
-            }
-            messages.account = mainView.account
-        }
-    }
-
-    ActivityIndicator {
-        id: activityIndicator
-        anchors {
-            verticalCenter: parent.verticalCenter
-            horizontalCenter: parent.horizontalCenter
-        }
-        running: isSearching
-        visible: running
-    }
-
-    flickable: null
-
-    property bool isReady: false
-    signal ready
-    onReady: {
-        isReady = true
-        if (participants.length === 0 && keyboardFocus)
-            multiRecipient.forceFocus()
-    }
-
-    property string firstRecipientAlias: ((contactWatcher.isUnknown &&
-                                           contactWatcher.isInteractive) ||
-                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
-    title: {
-        if (selectionMode || participants.length == 0) {
-            return " "
-        }
-
-        if (landscape) {
-            return ""
-        }
-        if (participants.length > 0) {
-            if (participants.length == 1) {
-                return firstRecipientAlias
-            } else {
-                // TRANSLATORS: %1 refers to the number of participants in a group chat
-                return i18n.tr("Group (%1)").arg(participants.length)
-            }
-        }
-        return i18n.tr("New Message")
-    }
-
-    Component.onCompleted: {
-        if (messages.accountId !== "") {
-            var account = telepathyHelper.accountForId(messages.accountId)
-            if (account && account.type == AccountEntry.MultimediaAccount) {
-                // fallback the first available phone account 
-                if (telepathyHelper.phoneAccounts.length > 0) {
-                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
-                }
-            }
-        }
-        // if we add multiple attachments at the same time, it break the Repeater + Loaders
-        fillAttachmentsTimer.start()
-    }
-
-    Timer {
-        id: fillAttachmentsTimer
-        interval: 50
-        onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
-    }
-
-    onActiveChanged: {
-        if (active && (eventModel.count > 0)){
-            swipeItemDemo.enable()
-        }
     }
 
     function updateFilters(accounts, participants, reload, threads) {
@@ -610,8 +427,374 @@ Page {
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
     }
 
+    header: PageHeader {
+        id: pageHeader
+
+        property alias leadingActions: leadingBar.actions
+        property alias trailingActions: trailingBar.actions
+
+        property list<QtObject> bottomEdgeLeadingActions: [
+            Action {
+                id: backAction
+
+                objectName: "cancel"
+                name: "cancel"
+                text: i18n.tr("Cancel")
+                iconName: "down"
+                shortcut: "Esc"
+                onTriggered: {
+                    messages.cancel()
+                }
+            }
+        ]
+
+        property list<QtObject> singlePanelLeadingActions: [
+            Action {
+                id: singlePanelBackAction
+                objectName: "back"
+                name: "cancel"
+                text: i18n.tr("Cancel")
+                iconName: "back"
+                shortcut: "Esc"
+                onTriggered: {
+                    // emptyStack will make sure the page gets removed.
+                    mainView.emptyStack()
+                }
+            }
+        ]
+
+        title: {
+            if (landscape) {
+                return ""
+            }
+
+            if (participants.length == 1) {
+                return firstRecipientAlias
+            }
+
+            return i18n.tr("New Message")
+        }
+        flickable: null
+
+        Sections {
+            id: sections
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                bottom: parent.bottom
+            }
+            model: getSectionsModel()
+            selectedIndex: getSelectedIndex()
+            onSelectedIndexChanged: {
+                if (selectedIndex >= 0) {
+                    messages.account = messages.accountsModel[selectedIndex]
+                }
+            }
+        }
+
+        extension: sections.model.length > 1 ? sections : null
+
+        leadingActionBar {
+            id: leadingBar
+
+            states: [
+                State {
+                    name: "bottomEdgeBack"
+                    when: startedFromBottomEdge
+                    PropertyChanges {
+                        target: leadingBar
+                        actions: pageHeader.bottomEdgeLeadingActions
+                    }
+                },
+                State {
+                    name: "singlePanelBack"
+                    when: !mainView.dualPanel && !startedFromBottomEdge
+                    PropertyChanges {
+                        target: leadingBar
+                        actions: pageHeader.singlePanelLeadingActions
+                    }
+                }
+
+            ]
+        }
+
+        trailingActionBar {
+            id: trailingBar
+        }
+
+        Item {
+            id: trailingActionArea
+            anchors {
+                bottom: parent.bottom
+                right: parent.right
+            }
+        }
+    }
+
+    states: [
+        State {
+            id: selectionState
+            name: "selection"
+            when: selectionMode
+
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "selectionModeCancelAction"
+                    iconName: "back"
+                    onTriggered: messageList.cancelSelection()
+                }
+            ]
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "selectionModeSelectAllAction"
+                    iconName: "select"
+                    onTriggered: {
+                        if (messageList.selectedItems.count === messageList.count) {
+                            messageList.clearSelection()
+                        } else {
+                            messageList.selectAll()
+                        }
+                    }
+                },
+                Action {
+                    objectName: "selectionModeDeleteAction"
+                    enabled: messageList.selectedItems.count > 0
+                    iconName: "delete"
+                    onTriggered: messageList.endSelection()
+                }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                title: " "
+                leadingActions: selectionState.leadingActions
+                trailingActions: selectionState.trailingActions
+            }
+        },
+        State {
+            id: groupChatState
+            name: "groupChat"
+            when: groupChat
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    id: groupChatAction
+                    objectName: "groupChatAction"
+                    iconName: "contact-group"
+                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
+                }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+                // TRANSLATORS: %1 refers to the number of participants in a group chat
+                title: i18n.tr("Group (%1)").arg(participants.length)
+                contents: headerContents
+                trailingActions: groupChatState.trailingActions
+            }
+        },
+        State {
+            id: unknownContactState
+            name: "unknownContact"
+            when: participants.length == 1 && contactWatcher.isUnknown
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "contactCallAction"
+                    visible: participants.length == 1 && contactWatcher.interactive
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
+                    }
+                },
+                Action {
+                    objectName: "addContactAction"
+                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
+                    iconName: "contact-new"
+                    text: i18n.tr("Add")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        // FIXME: support other things than just phone numbers
+                        mainView.addPhoneToContact(messages, "", contactWatcher.identifier, null, null)
+                    }
+                }
+            ]
+            PropertyChanges {
+                target: pageHeader
+                contents: headerContents
+                trailingActions: unknownContactState.trailingActions
+            }
+        },
+        State {
+            id: newMessageState
+            // NOTE: in case the state name is changed here, the bottom edge component needs
+            // to be updated too
+            name: "newMessage"
+            when: participants.length === 0
+
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "contactList"
+                    iconName: "contact"
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                    }
+                }
+
+            ]
+
+            property Item contents: MultiRecipientInput {
+                id: multiRecipient
+                objectName: "multiRecipient"
+                enabled: visible
+                anchors {
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
+                    rightMargin: units.gu(2)
+                    top: parent ? parent.top: undefined
+                    topMargin: units.gu(1)
+                }
+                focus: true
+
+                Connections {
+                    target: mainView.bottomEdge
+                    onStatusChanged: {
+                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
+                            multiRecipient.forceFocus()
+                        }
+                    }
+                }
+            }
+
+            PropertyChanges {
+                target: pageHeader
+                title: " "
+                trailingActions: newMessageState.trailingActions
+                contents: newMessageState.contents
+            }
+        },
+        State {
+            id: knownContactState
+            name: "knownContact"
+            when: participants.length == 1 && !contactWatcher.isUnknown
+            property list<QtObject> trailingActions: [
+                Action {
+                    objectName: "contactCallKnownAction"
+                    visible: participants.length == 1 && messages.phoneAccount
+                    iconName: "call-start"
+                    text: i18n.tr("Call")
+                    onTriggered: {
+                        Qt.inputMethod.hide()
+                        // FIXME: support other things than just phone numbers
+                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
+                    }
+                },
+                Action {
+                    objectName: "contactProfileAction"
+                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
+                    iconSource: "image://theme/contact"
+                    text: i18n.tr("Contact")
+                    onTriggered: {
+                        mainView.showContactDetails(messages.basePage, contactWatcher.contactId, null, null)
+                    }
+                }
+            ]
+            PropertyChanges {
+                target: pageHeader
+                contents: headerContents
+                trailingActions: knownContactState.trailingActions
+            }
+        }
+    ]
+
+    Component.onCompleted: {
+        if (messages.accountId !== "") {
+            var account = telepathyHelper.accountForId(messages.accountId)
+            if (account && account.type == AccountEntry.MultimediaAccount) {
+                // fallback the first available phone account
+                if (telepathyHelper.phoneAccounts.length > 0) {
+                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
+                }
+            }
+        }
+        // if we add multiple attachments at the same time, it break the Repeater + Loaders
+        fillAttachmentsTimer.start()
+    }
+
+    Timer {
+        id: fillAttachmentsTimer
+        interval: 50
+        onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
+    }
+
+    Component.onDestruction: {
+        if (!mainView.dualPanel && !startedFromBottomEdge) {
+            mainPage.displayedThreadIndex = -1
+        }
+    }
+
+    onReady: {
+        isReady = true
+        if (participants.length === 0 && keyboardFocus)
+            multiRecipient.forceFocus()
+    }
+
+    onActiveChanged: {
+        if (active && (eventModel.count > 0)){
+            swipeItemDemo.enable()
+        }
+    }
+
+    Connections {
+        target: telepathyHelper
+        onSetupReady: {
+            // force reevaluation
+            messages.account = Qt.binding(getCurrentAccount)
+            messages.phoneAccount = Qt.binding(isPhoneAccount)
+            head.sections.model = Qt.binding(getSectionsModel)
+            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+        }
+    }
+
+    Connections {
+        target: chatManager
+        onChatEntryCreated: {
+            // TODO: track using chatId and not participants
+            if (accountId == account.accountId &&
+                firstParticipant && participants[0] == firstParticipant.identifier) {
+                messages.chatEntry = chatEntry
+            }
+        }
+        onChatsChanged: {
+            for (var i in chatManager.chats) {
+                var chat = chatManager.chats[i]
+                // TODO: track using chatId and not participants
+                if (chat.account.accountId == account.accountId &&
+                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
+                    messages.chatEntry = chat
+                    return
+                }
+            }
+            messages.chatEntry = null
+        }
+    }
+
+    // this is necessary to automatically update the view when the
+    // default account changes in system settings
     Connections {
         target: mainView
+        onAccountChanged: {
+            if (!messages.phoneAccount) {
+                return
+            }
+            messages.account = mainView.account
+        }
+
         onApplicationActiveChanged: {
             if (mainView.applicationActive) {
                 for (var i in pendingEventsToMarkAsRead) {
@@ -621,6 +804,91 @@ Page {
                 pendingEventsToMarkAsRead = []
             }
         }
+    }
+
+    Timer {
+        id: typingTimer
+        interval: 6000
+        onTriggered: {
+            messages.userTyping = false;
+        }
+    }
+
+    Repeater {
+        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        Item {
+            function processChatState() {
+                if (modelData.state == ChatEntry.ChannelChatStateComposing) {
+                    messages.userTyping = true
+                    typingTimer.start()
+                } else {
+                    messages.userTyping = false
+                }
+            }
+            Component.onCompleted: processChatState()
+            Connections {
+                target: modelData
+                onStateChanged: processChatState()
+            }
+        }
+    }
+
+    MessagesHeader {
+        id: headerContents
+        width: parent ? parent.width - units.gu(2) : undefined
+        height: units.gu(5)
+        title: pageHeader.title
+        subtitle: {
+            if (userTyping) {
+                return i18n.tr("Typing..")
+            }
+            switch (presenceRequest.type) {
+            case PresenceRequest.PresenceTypeAvailable:
+                return i18n.tr("Online")
+            case PresenceRequest.PresenceTypeOffline:
+                return i18n.tr("Offline")
+            case PresenceRequest.PresenceTypeAway:
+                return i18n.tr("Away")
+            case PresenceRequest.PresenceTypeBusy:
+                return i18n.tr("Busy")
+            default:
+                return ""
+            }
+        }
+        visible: true
+    }
+
+    PresenceRequest {
+        id: presenceItem
+        accountId: {
+            // if this is a regular sms chat, try requesting the presence on
+            // a multimedia account
+            if (!account) {
+                return ""
+            }
+            if (account.type == AccountEntry.PhoneAccount) {
+                for (var i in telepathyHelper.accounts) {
+                    var tmpAccount = telepathyHelper.accounts[i]
+                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                        return tmpAccount.accountId
+                    }
+                }
+                return ""
+            }
+            return account.accountId
+        }
+        // we just request presence on 1-1 chats
+        identifier: participants.length == 1 ? participants[0].identifier : ""
+    }
+
+    ActivityIndicator {
+        id: activityIndicator
+        anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+        running: isSearching
+        visible: running
     }
 
     Component {
@@ -685,13 +953,6 @@ Page {
         }
     }
 
-    Connections {
-        target: messages.head.sections
-        onSelectedIndexChanged: {
-            messages.account = messages.accountsModel[head.sections.selectedIndex]
-        }
-    }
-
     Loader {
         id: searchListLoader
 
@@ -703,7 +964,7 @@ Page {
         visible: source != ""
         anchors {
             top: parent.top
-            topMargin: units.gu(2)
+            topMargin: header.height + units.gu(2)
             left: parent.left
             right: parent.right
             bottom: composeBar.top
@@ -763,156 +1024,6 @@ Page {
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
-    Action {
-        id: backButton
-        objectName: "backButton"
-        iconName: "back"
-        onTriggered: {
-            if (typeof mainPage !== 'undefined') {
-                mainPage.temporaryProperties = null
-            }
-            mainStack.pop()
-        }
-    }
-
-    states: [
-        PageHeadState {
-            name: "selection"
-            head: messages.head
-            when: selectionMode
-
-            backAction: Action {
-                objectName: "selectionModeCancelAction"
-                iconName: "back"
-                onTriggered: messageList.cancelSelection()
-            }
-
-            actions: [
-                Action {
-                    objectName: "selectionModeSelectAllAction"
-                    iconName: "select"
-                    onTriggered: {
-                        if (messageList.selectedItems.count === messageList.count) {
-                            messageList.clearSelection()
-                        } else {
-                            messageList.selectAll()
-                        }
-                    }
-                },
-                Action {
-                    objectName: "selectionModeDeleteAction"
-                    enabled: messageList.selectedItems.count > 0
-                    iconName: "delete"
-                    onTriggered: messageList.endSelection()
-                }
-            ]
-        },
-        PageHeadState {
-            name: "groupChat"
-            head: messages.head
-            when: groupChat
-            contents: header
-            backAction: backButton
-
-            actions: [
-                Action {
-                    objectName: "groupChatAction"
-                    iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, screenTop)
-                }
-            ]
-        },
-        PageHeadState {
-            name: "unknownContact"
-            head: messages.head
-            when: participants.length == 1 && contactWatcher.isUnknown
-            backAction: backButton
-            contents: header
-
-            actions: [
-                Action {
-                    objectName: "contactCallAction"
-                    visible: participants.length == 1 && contactWatcher.interactive
-                    iconName: "call-start"
-                    text: i18n.tr("Call")
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
-                    }
-                },
-                Action {
-                    objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
-                    iconName: "contact-new"
-                    text: i18n.tr("Add")
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact("", contactWatcher.identifier, null, null)
-                    }
-                }
-            ]
-        },
-        PageHeadState {
-            name: "newMessage"
-            head: messages.head
-            when: participants.length === 0 && isReady
-            backAction: backButton
-            actions: [
-                Action {
-                    objectName: "contactList"
-                    iconName: "contact"
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        mainStack.push(Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient, "parentPage": messages})
-                    }
-                }
-
-            ]
-
-            contents: MultiRecipientInput {
-                id: multiRecipient
-                objectName: "multiRecipient"
-                enabled: visible
-                anchors {
-                    left: parent ? parent.left : undefined
-                    right: parent ? parent.right : undefined
-                    rightMargin: units.gu(2)
-                }
-            }
-        },
-        PageHeadState {
-            name: "knownContact"
-            head: messages.head
-            when: participants.length == 1 && !contactWatcher.isUnknown
-            backAction: backButton
-            contents: header
-            actions: [
-                Action {
-                    objectName: "contactCallKnownAction"
-                    visible: participants.length == 1 && messages.phoneAccount
-                    iconName: "call-start"
-                    text: i18n.tr("Call")
-                    onTriggered: {
-                        Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        Qt.openUrlExternally("tel:///" + encodeURIComponent(contactWatcher.identifier))
-                    }
-                },
-                Action {
-                    objectName: "contactProfileAction"
-                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
-                    iconSource: "image://theme/contact"
-                    text: i18n.tr("Contact")
-                    onTriggered: {
-                        mainView.showContactDetails(contactWatcher.contactId, null, null)
-                    }
-                }
-            ]
-        }
-    ]
-
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
@@ -965,7 +1076,7 @@ Page {
     Item {
         id: screenTop
         anchors {
-            top: parent.top
+            top: pageHeader.bottom
             left: parent.left
             right: parent.right
         }
@@ -1121,5 +1232,10 @@ Page {
                 Qt.inputMethod.hide()
             }
         }
+    }
+
+    Scrollbar {
+        flickableItem: messageList
+        align: Qt.AlignTrailing
     }
 }

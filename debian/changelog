@@ -1,3 +1,75 @@
+messaging-app (0.1+16.04.20160217.2-0ubuntu1) xenial; urgency=medium
+
+  * Allow read access to dconf files, otherwise mms group chat toggle
+    won't work, and the default sim for messages won't be pre-selected
+    in the messaging view. (LP: #1546094)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 17 Feb 2016 22:49:43 +0000
+
+messaging-app (0.1+16.04.20160217-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Gustavo Pichorim Boiko, Tiago Salem Herrmann ]
+  * Implement convergent layout for messaging-app.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Wed, 17 Feb 2016 12:47:19 +0000
+
+messaging-app (0.1+16.04.20160205-0ubuntu1) xenial; urgency=medium
+
+  [ Arthur Mello ]
+  * Add a thumbnail to MMS previewer after video has ended to reduce
+    visual issues
+  * Add audio attachments text to ThreadDelegate
+  * Add initial QML test for voice recording
+  * Add initial voice recording support. Most of the code was originally
+    written by Arthur Renato Mello.
+  * Add video attachment delegates
+  * During audio playback bar pause instead of stop
+  * Implement swipe-to-cancel for audio recording, and change the UI to
+    be compliant with the designs.
+
+  [ Gustavo Pichorim Boiko ]
+  * Add audio attachments text to ThreadDelegate
+  * Add delivery status indication on bubbles.
+  * Add fallback accountId to the history filter.
+  * Add initial QML test for voice recording
+  * Add initial voice recording support. Most of the code was originally
+    written by Arthur Renato Mello.
+  * Disable tests that are currently failing.
+  * Display dialog to warn users that the maximum file size was reached.
+  * Do not reload the history filters when just the active accounts have
+    changed.
+  * Enable document attachments.
+  * Fix the swipe to cancel audio recording.
+  * Implement swipe-to-cancel for audio recording, and change the UI to
+    be compliant with the designs.
+  * Load audio and sticker components asynchronously.
+  * Make it possible to share contacts and extra content types (disabled
+    for now).
+  * Move the bottom part of Messages view to a separate QML file for
+    better code readability.
+  * Prototype implementation for stickers support.
+  * Refactor MMSAudio delegate
+  * Show an overlay icon and a background image depending on the
+    protocol used.
+  * Update the bubble to match the designs.
+
+  [ Tiago Salem Herrmann ]
+  * Add apparmor profile and enable app confinement. (LP: #1528625)
+  * Add delivery status indication on bubbles.
+  * Add fallback accountId to the history filter.
+  * Add video attachment delegates
+  * Display dialog to warn users that the maximum file size was reached.
+  * Load audio and sticker components asynchronously.
+  * Refactor MMSAudio delegate
+
+  [ Ugo Riboni ]
+  * Prototype implementation for stickers support.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Fri, 05 Feb 2016 01:10:31 +0000
+
 messaging-app (0.1+16.04.20160109.1-0ubuntu1) xenial; urgency=medium
 
   * Use the new Addressbook header.
