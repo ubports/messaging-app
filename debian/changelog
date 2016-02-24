@@ -1,3 +1,16 @@
+messaging-app (0.1+16.04.20160224-0ubuntu1) xenial; urgency=medium
+
+  * Enable receiving multiple files from content-hub. (LP: #1523573)
+  * Makes text in the swipe demo use relative positioning instead of
+    absolute. (LP: #1518344)
+  * Remove all line breaks from the text message preview and set a
+    maximum line count, so the Text component correctly respect the
+    elide property. (LP: #1532895)
+  * Set width based on the screen size to avoid removing views from the
+    stack when the app is resized. (LP: #1549352)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 24 Feb 2016 18:29:28 +0000
+
 messaging-app (0.1+16.04.20160217.2-0ubuntu1) xenial; urgency=medium
 
   * Allow read access to dconf files, otherwise mms group chat toggle
