@@ -73,7 +73,7 @@ Item {
                     handler: ContentHub.ContentHandler.Source
 
                     onPeerSelected: {
-                        peer.selectionType = ContentHub.ContentTransfer.Single
+                        peer.selectionType = ContentHub.ContentTransfer.Multiple
                         dialogue.activeTransfer = peer.request()
                     }
 
@@ -92,8 +92,8 @@ Item {
 
                     if (dialogue.activeTransfer.state === ContentHub.ContentTransfer.Charged) {
                         dialogue.hide()
-                        if (dialogue.activeTransfer.items.length > 0) {
-                            root.contentReceived(dialogue.activeTransfer.items[0].url)
+                        for (var i in dialogue.activeTransfer.items) {
+                            root.contentReceived(dialogue.activeTransfer.items[i].url)
                         }
                     }
 

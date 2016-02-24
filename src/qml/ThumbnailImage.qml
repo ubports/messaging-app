@@ -21,7 +21,6 @@ import Ubuntu.Components 1.3
 
 UbuntuShape {
     id: thumbnail
-    property int index
     property string filePath
 
     signal pressAndHold()
