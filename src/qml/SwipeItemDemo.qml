@@ -69,9 +69,9 @@ Loader {
                 objectName: "gotItButton"
 
                 anchors {
-                    bottom: dragTitle.top
+                    bottom: dragTitle.bottom
                     horizontalCenter: parent.horizontalCenter
-                    bottomMargin: units.gu(19)
+                    bottomMargin: units.gu(21)
                 }
                 width: units.gu(17)
                 strokeColor: UbuntuColors.green
@@ -94,7 +94,6 @@ Loader {
                     bottom: listItem.top
                     margins: units.gu(1)
                 }
-                height: units.gu(3)
                 spacing: units.gu(2)
 
                 Image {
