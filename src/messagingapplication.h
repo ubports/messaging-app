@@ -44,6 +44,7 @@ public Q_SLOTS:
     QString readTextFile(const QString &fileName);
     QString fileMimeType(const QString &fileName);
     void showNotificationMessage(const QString &message, const QString &icon = QString());
+    QObject *findChild(const QString &objectName);
 
 private Q_SLOTS:
     void setFullscreen(bool fullscreen);
