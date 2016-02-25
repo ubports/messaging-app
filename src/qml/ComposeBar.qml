@@ -528,6 +528,11 @@ Item {
         iconColor: composeBar.recording ? "black" : "gray"
         iconName: "audio-input-microphone-symbolic"
 
+        onClicked: {
+            if (!composeBar.audioAttached) {
+                application.showNotificationMessage(i18n.tr("You have to press and hold the record icon"))
+            }
+        }
         onPressed: audioRecordingBar.startRecording()
         onReleased: {
             audioRecordingBar.stopRecording()
