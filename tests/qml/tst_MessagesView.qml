@@ -71,6 +71,14 @@ Item {
         }
     }
 
+    Item {
+        id: application
+        function findChild(name)
+        {
+            return null
+        }
+    }
+
     QtObject {
         id: testAccount
         property string accountId: "ofono/ofono/account0"
