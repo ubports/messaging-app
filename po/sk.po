@@ -1,20 +1,20 @@
-# Malayalam translation for messaging-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Slovak translation for messaging-app
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
 # This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2013-11-22 04:17+0000\n"
-"Last-Translator: ST Alfas <Unknown>\n"
-"Language-Team: Malayalam <ml@li.org>\n"
+"PO-Revision-Date: 2016-02-29 12:55+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 "X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
 "X-Generator: Launchpad (build 17925)\n"
 
@@ -28,22 +28,22 @@ msgstr ""
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 മണിക്കൂര്‍ വിളി"
-msgstr[1] "%1 മണിക്കൂര്‍ വിളി"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 മിനുട്ട് വിളി"
-msgstr[1] "%1 മിനുട്ട് വിളി"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 സെക്കന്റ് വിളി"
-msgstr[1] "%1 സെക്കന്റ് വിളി"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/MessagingBottomEdge.qml:17
 msgid "+"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
 msgid "Call"
-msgstr "വിളിക്കുക"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
 #: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
@@ -125,7 +125,7 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
 msgid "Contact"
-msgstr "ബന്ധം"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
 msgid "Copy"
@@ -239,7 +239,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:475
 msgid "New Message"
-msgstr "പുതിയ സന്ദേശം"
+msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
@@ -375,7 +375,7 @@ msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
-msgstr "ഇന്ന്"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
@@ -403,7 +403,7 @@ msgstr ""
 
 #: ../src/qml/ComposeBar.qml:394
 msgid "Write a message..."
-msgstr "ഒരു സന്ദേശം എഴുതുക..."
+msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
@@ -411,7 +411,7 @@ msgstr ""
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
-msgstr "ഇന്നലെ"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
