@@ -139,6 +139,28 @@ Item {
         }
     }
 
+    Component {
+        id: microphoneWarningPopover
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem.Standard {
+                    text: i18n.tr("You have to press and hold the record icon")
+                    onClicked: {
+                        PopupUtils.close(popover)
+                    }
+                }
+            }
+        }
+    }
+
     ListItem.ThinDivider {
         anchors.top: parent.top
     }
@@ -530,7 +552,7 @@ Item {
 
         onClicked: {
             if (!composeBar.audioAttached) {
-                application.showNotificationMessage(i18n.tr("You have to press and hold the record icon"))
+                PopupUtils.open(microphoneWarningPopover, recordButton)
             }
         }
         onPressed: audioRecordingBar.startRecording()
