@@ -157,6 +157,10 @@ Item {
                         PopupUtils.close(popover)
                     }
                 }
+                Connections {
+                    target: composeBar
+                    onTextChanged: PopupUtils.close(popover)
+                }
             }
         }
     }
