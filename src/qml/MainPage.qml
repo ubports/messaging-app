@@ -307,7 +307,7 @@ Page {
             target: threadList
             property: 'contentY'
             value: -threadList.headerItem.height
-            when: mainView.composingNewMessage
+            when: mainView.composingNewMessage && mainView.dualPanel
         }
     }
 
