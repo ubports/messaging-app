@@ -64,8 +64,8 @@ Item {
             SequentialAnimation {
                 running: iconPulsate
                 loops: Animation.Infinite
-                NumberAnimation { target: icon; property: "scale"; from: 1.3; to: 0.7; duration: 1000; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: icon; property: "scale"; from: 0.7; to: 1.3; duration: 1000; easing.type: Easing.InOutQuad }
+                NumberAnimation { target: icon; property: "scale"; from: 1; to: 0.7; duration: 1000; easing.type: Easing.InOutQuad }
+                NumberAnimation { target: icon; property: "scale"; from: 0.7; to: 1; duration: 1000; easing.type: Easing.InOutQuad }
             }
         }
     }
