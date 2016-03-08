@@ -481,6 +481,23 @@ Item {
         }
     }
 
+
+    SequentialAnimation {
+        id: enableRecordButton
+        running: false
+        alwaysRunToEnd: false
+        UbuntuNumberAnimation { target: sendButton; property: "opacity"; to: 0 }
+        UbuntuNumberAnimation { target: recordButton; property: "opacity"; to: 1 }
+    }
+
+    SequentialAnimation {
+        id: enableSendButton
+        running: false
+        alwaysRunToEnd: false
+        UbuntuNumberAnimation { target: recordButton; property: "opacity"; to: 0 }
+        UbuntuNumberAnimation { target: sendButton; property: "opacity"; to: 1 }
+    }
+
     TransparentButton {
         id: sendButton
         objectName: "sendButton"
@@ -488,15 +505,19 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: units.gu(2)
         iconSource: Qt.resolvedUrl("./assets/send.svg")
-        enabled: (canSend && (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0))
-        opacity: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? 1.0 : 0.0
-        Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
+        enabled: !recordButton.enabled
+        onEnabledChanged: {
+            if (enabled) {
+                enableSendButton.start()
+            }
+        }
+        opacity: 0
+        visible: enabled
 
         onClicked: {
             // make sure we flush everything we have prepared in the OSK preedit
             Qt.inputMethod.commit();
-            if (textEntry.text == "" && attachments.count == 0) {
+            if ((textEntry.text == "" && attachments.count == 0) || !canSend) {
                 return
             }
 
@@ -518,9 +539,14 @@ Item {
             rightMargin: units.gu(2)
         }
 
-        opacity: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? 0.0 : 1.0
-        Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
+        enabled: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? false : true
+        onEnabledChanged: {
+            if (enabled) {
+                enableRecordButton.start()
+            }
+        }
+
+        visible: enabled
 
         iconColor: composeBar.recording ? "black" : "gray"
         iconName: "audio-input-microphone-symbolic"
