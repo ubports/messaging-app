@@ -1,3 +1,16 @@
+messaging-app (0.1+16.04.20160308-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Increase microphone icon size on AudioRecordingBar Increase font
+    size of recording elapsed time label on AudioRecordingBar
+  * Use sequential animation for transition between send and microphone
+    icons.
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Tue, 08 Mar 2016 22:06:40 +0000
+
 messaging-app (0.1+16.04.20160224-0ubuntu1) xenial; urgency=medium
 
   * Enable receiving multiple files from content-hub. (LP: #1523573)
