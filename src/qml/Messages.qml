@@ -669,6 +669,14 @@ Page {
                         }
                     }
                 }
+                MouseArea {
+                    anchors.fill: parent
+                    propagateComposedEvents: true
+                    onClicked: {
+                        multiRecipient.forceFocus()
+                        mouse.accepted = false
+                    }
+                }
             }
 
             PropertyChanges {
