@@ -135,7 +135,7 @@ Item {
 
         function test_messagesViewAcknowledgeMessage() {
             var senderId = "1234567"
-            var stack = findChild(mainViewLoader, "mainStack")
+            var stack = swipeItemTestCase.findChild(mainViewLoader, "mainStack")
             tryCompare(mainViewLoader.item, 'applicationActive', true)
             // if messaging-app has no account set, it will not try to get the thread from history
             // and instead will generate the list of participants, take advantage of that
@@ -145,7 +145,7 @@ Item {
             mainViewLoader.item.account = account
             var messageList
             while (true) {
-                messageList = findChild(mainViewLoader, "messageList")
+                messageList = swipeItemTestCase.findChild(mainViewLoader, "messageList")
                 if (messageList) {
                     break
                 }
