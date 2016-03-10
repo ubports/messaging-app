@@ -234,7 +234,7 @@ MainView {
     }
 
     function showEmptyState() {
-        if (mainStack.columns > 1 && !application.findChild("emptyStatePage")) {
+        if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
             layout.addComponentToNextColumnSync(mainPage, emptyStatePageComponent)
         }
     }
@@ -345,7 +345,7 @@ MainView {
                 onColumnsChanged: {
                     if (layout.columns == 1) {
                         emptyStatePage.destroy()
-                        if (!application.findChild("fakeItem")) {
+                        if (!application.findMessagingChild("fakeItem")) {
                             layout.removePage(mainPage)
                         }
                     }
@@ -378,14 +378,14 @@ MainView {
 
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
-            if (layout.columns == 2 && !application.findChild("emptyStatePage") && !application.findChild("fakeItem")) {
+            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 layout.removePage(mainPage)
                 emptyStack()
                 showEmptyState()
             }
         }
         Component.onCompleted: {
-            if (layout.columns == 2 && !application.findChild("emptyStatePage")) {
+            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
                 emptyStack()
                 showEmptyState()
             }
