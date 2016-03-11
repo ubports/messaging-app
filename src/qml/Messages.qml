@@ -659,7 +659,6 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
-                focus: true
 
                 Connections {
                     target: mainView.bottomEdge
@@ -667,14 +666,6 @@ Page {
                         if (mainView.bottomEdge.status === BottomEdge.Committed) {
                             multiRecipient.forceFocus()
                         }
-                    }
-                }
-                MouseArea {
-                    anchors.fill: parent
-                    propagateComposedEvents: true
-                    onClicked: {
-                        multiRecipient.forceFocus()
-                        mouse.accepted = false
                     }
                 }
             }
