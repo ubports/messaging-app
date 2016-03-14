@@ -483,6 +483,8 @@ Page {
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
+            visible: sections.model.length > 1
+            enabled: visible
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
             onSelectedIndexChanged: {
