@@ -250,9 +250,12 @@ Page {
             selected: {
                 if (selectionMode) {
                     return threadList.isSelected(threadDelegate)
+                } else if (mainView.bottomEdge.status === BottomEdge.Committed ||
+                           !mainView.inputInfo.hasKeyboard) {
+                    return false
                 } else {
                     // FIXME: there might be a better way of doing this
-                    return index === threadList.currentIndex && mainView.bottomEdge.status !== BottomEdge.Committed
+                    return index === threadList.currentIndex
                 }
             }
 
