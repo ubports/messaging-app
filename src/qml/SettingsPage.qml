@@ -19,21 +19,19 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
-import GSettings 1.0
 
 Page {
     id: settingsPage
     title: i18n.tr("Settings")
+    property var setMethods: {
+        "mmsGroupChatEnabled": function(value) { telepathyHelper.mmsGroupChat = value }
+    }
     property var settingsModel: [
         { "name": "mmsGroupChatEnabled",
-          "description": i18n.tr("Enable MMS group chat")
+          "description": i18n.tr("Enable MMS group chat"),
+          "property": telepathyHelper.mmsGroupChat
         }
     ]
-
-    GSettings {
-        id: gsettings
-        schema.id: "com.ubuntu.phone"
-    }
 
     header: PageHeader {
         id: pageHeader
@@ -60,10 +58,10 @@ Page {
                 anchors.right: parent.right
                 anchors.rightMargin: units.gu(2)
                 anchors.verticalCenter: parent.verticalCenter
-                checked: eval("gsettings."+modelData.name) 
+                checked: modelData.property
                 onCheckedChanged: {
-                    if (eval("gsettings."+modelData.name) != checked) {
-                        eval("gsettings."+modelData.name+ "= checked")
+                    if (checked != modelData.property) {
+                        settingsPage.setMethods[modelData.name](checked)
                     }
                 }
             }
