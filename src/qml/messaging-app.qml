@@ -345,6 +345,7 @@ MainView {
                 onColumnsChanged: {
                     if (layout.columns == 1) {
                         emptyStatePage.destroy()
+                        objectName = ""
                         if (!application.findMessagingChild("fakeItem")) {
                             layout.removePage(mainPage)
                         }
@@ -381,7 +382,6 @@ MainView {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 layout.removePage(mainPage)
                 emptyStack()
-                showEmptyState()
             }
         }
         Component.onCompleted: {
