@@ -49,6 +49,23 @@ Page {
     header: PageHeader {
         id: pageHeader
         title: settingsPage.title
+        leadingActionBar {
+            actions: [
+                Action {
+                    id: singlePanelBackAction
+                    objectName: "back"
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "back"
+                    shortcut: "Esc"
+                    visible: !mainView.dualPanel
+                    onTriggered: {
+                        // emptyStack will make sure the page gets removed.
+                        mainView.emptyStack()
+                    }
+                }
+            ]
+        }
     }
 
     Component {
