@@ -756,8 +756,8 @@ Page {
             // force reevaluation
             messages.account = Qt.binding(getCurrentAccount)
             messages.phoneAccount = Qt.binding(isPhoneAccount)
-            head.sections.model = Qt.binding(getSectionsModel)
-            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+            headerSections.model = Qt.binding(getSectionsModel)
+            headerSections.selectedIndex = Qt.binding(getSelectedIndex)
         }
     }
 
@@ -1152,7 +1152,7 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
-                messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+                headerSections.selectedIndex = Qt.binding(getSelectedIndex)
             }
 
             var newAttachments = []
