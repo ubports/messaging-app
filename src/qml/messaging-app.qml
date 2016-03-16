@@ -344,7 +344,7 @@ MainView {
                 target: layout
                 onColumnsChanged: {
                     if (layout.columns == 1) {
-                        emptyStatePage.destroy()
+                        emptyStatePage.destroy(1)
                         emptyStatePage.objectName = ""
                         if (!application.findMessagingChild("fakeItem")) {
                             layout.removePage(mainPage)
