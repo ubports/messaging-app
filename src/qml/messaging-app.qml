@@ -44,6 +44,8 @@ MainView {
     property QtObject bottomEdge: null
     property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
 
+    signal emptyStackRequested()
+
     activeFocusOnPress: false
 
     function defaultPhoneAccount() {
@@ -227,6 +229,7 @@ MainView {
     }
 
     function emptyStack() {
+        mainView.emptyStackRequested()
         mainStack.removePage(mainPage)
         layout.deleteInstances()
         showEmptyState()
@@ -340,16 +343,28 @@ MainView {
         Page {
             id: emptyStatePage
             objectName: "emptyStatePage"
+
+            function deleteMe() {
+                emptyStatePage.destroy(1)
+                emptyStatePage.objectName = ""
+            }
+
             Connections {
                 target: layout
                 onColumnsChanged: {
                     if (layout.columns == 1) {
-                        emptyStatePage.destroy(1)
-                        emptyStatePage.objectName = ""
+                        emptyStatePage.deleteMe()
                         if (!application.findMessagingChild("fakeItem")) {
                             layout.removePage(mainPage)
                         }
                     }
+                }
+            }
+
+            Connections {
+                target: mainView
+                onEmptyStackRequested: {
+                    emptyStatePage.deleteMe()
                 }
             }
 
