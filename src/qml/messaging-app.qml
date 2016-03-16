@@ -387,7 +387,6 @@ MainView {
         Component.onCompleted: {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
                 emptyStack()
-                showEmptyState()
             }
         }
     }
