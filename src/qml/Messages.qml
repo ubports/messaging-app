@@ -477,7 +477,7 @@ Page {
         flickable: null
 
         Sections {
-            id: sections
+            id: headerSections
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
@@ -492,7 +492,7 @@ Page {
             }
         }
 
-        extension: sections.model.length > 1 ? sections : null
+        extension: headerSections.model.length > 1 ? headerSections : null
 
         leadingActionBar {
             id: leadingBar
