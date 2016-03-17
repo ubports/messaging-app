@@ -17,6 +17,7 @@
  */
 
 import QtQuick 2.2
+import QtQuick.Window 2.2
 import Qt.labs.settings 1.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
@@ -146,7 +147,7 @@ MainView {
     }
 
     automaticOrientation: true
-    width: units.gu(100)
+    width: Screen.desktopAvailableWidth > units.gu(100) ? units.gu(100) : units.gu(40)
     height: units.gu(71)
     anchorToKeyboard: false
 

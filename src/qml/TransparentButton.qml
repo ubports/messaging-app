@@ -36,6 +36,8 @@ Item {
     property int spacing: 0
     property bool sideBySide: false
     property bool iconPulsate: false
+    property var iconPulsationScaleFrom: 0.7
+    property var iconPulsationScaleTo: 1.3
 
     property alias drag: mouseArea.drag
 
@@ -64,8 +66,8 @@ Item {
             SequentialAnimation {
                 running: iconPulsate
                 loops: Animation.Infinite
-                NumberAnimation { target: icon; property: "scale"; from: 1; to: 0.7; duration: 1000; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: icon; property: "scale"; from: 0.7; to: 1; duration: 1000; easing.type: Easing.InOutQuad }
+                NumberAnimation { target: icon; property: "scale"; from: button.iconPulsationScaleTo; to: button.iconPulsationScaleFrom; duration: 1000; easing.type: Easing.InOutQuad }
+                NumberAnimation { target: icon; property: "scale"; from: button.iconPulsationScaleFrom; to: button.iconPulsationScaleTo; duration: 1000; easing.type: Easing.InOutQuad }
             }
         }
     }

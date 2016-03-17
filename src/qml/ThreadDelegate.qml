@@ -54,6 +54,10 @@ ListItemWithActions {
         return firstRecipient
     }
 
+    function formatDisplayedText(text) {
+        return text.replace("\n", " ")
+    }
+
     property string textMessage: {
         // check if this is an mms, if so, search for the actual text
         var imageCount = 0
@@ -92,7 +96,7 @@ ListItemWithActions {
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
         }
-        return displayedEventTextMessage
+        return formatDisplayedText(displayedEventTextMessage)
     }
     anchors.left: parent.left
     anchors.right: parent.right
@@ -247,6 +251,9 @@ ListItemWithActions {
         elide: Text.ElideRight
         fontSize: "x-small"
         text: textMessage
+        // avoid any kind of formatting in the text message preview
+        textFormat: Text.PlainText
+        maximumLineCount: 1
     }
 
     Item {

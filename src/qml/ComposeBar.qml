@@ -31,7 +31,6 @@ Item {
 
     property bool showContents: true
     property int maxHeight: textEntry.height + units.gu(2)
-    property variant attachments: []
     property bool canSend: true
     property alias text: messageTextArea.text
     property bool audioAttached: attachments.count == 1 && attachments.get(0).contentType.toLowerCase().indexOf("audio/") > -1
@@ -316,7 +315,6 @@ Item {
             Repeater {
                 model: attachments
                 delegate: Loader {
-                    id: loader
                     height: units.gu(8)
                     source: {
                         var contentType = getContentType(filePath)
@@ -336,17 +334,16 @@ Item {
                     }
                     onStatusChanged: {
                         if (status == Loader.Ready) {
-                            item.index = index
                             item.filePath = filePath
                         }
                     }
 
                     Connections {
-                        target: loader.status == Loader.Ready ? loader.item : null
+                        target: status == Loader.Ready ? item : null
                         ignoreUnknownSignals: true
                         onPressAndHold: {
                             Qt.inputMethod.hide()
-                            _activeAttachmentIndex = target.index
+                            _activeAttachmentIndex = index
                             PopupUtils.open(attachmentPopover, parent)
                         }
                     }
@@ -484,6 +481,23 @@ Item {
         }
     }
 
+
+    SequentialAnimation {
+        id: enableRecordButton
+        running: false
+        alwaysRunToEnd: false
+        UbuntuNumberAnimation { target: sendButton; property: "opacity"; to: 0 }
+        UbuntuNumberAnimation { target: recordButton; property: "opacity"; to: 1 }
+    }
+
+    SequentialAnimation {
+        id: enableSendButton
+        running: false
+        alwaysRunToEnd: false
+        UbuntuNumberAnimation { target: recordButton; property: "opacity"; to: 0 }
+        UbuntuNumberAnimation { target: sendButton; property: "opacity"; to: 1 }
+    }
+
     TransparentButton {
         id: sendButton
         objectName: "sendButton"
@@ -491,15 +505,19 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: units.gu(2)
         iconSource: Qt.resolvedUrl("./assets/send.svg")
-        enabled: (canSend && (textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0))
-        opacity: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? 1.0 : 0.0
-        Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
+        enabled: !recordButton.enabled
+        onEnabledChanged: {
+            if (enabled) {
+                enableSendButton.start()
+            }
+        }
+        opacity: 0
+        visible: enabled
 
         onClicked: {
             // make sure we flush everything we have prepared in the OSK preedit
             Qt.inputMethod.commit();
-            if (textEntry.text == "" && attachments.count == 0) {
+            if ((textEntry.text == "" && attachments.count == 0) || !canSend) {
                 return
             }
 
@@ -521,9 +539,14 @@ Item {
             rightMargin: units.gu(2)
         }
 
-        opacity: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? 0.0 : 1.0
-        Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
+        enabled: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? false : true
+        onEnabledChanged: {
+            if (enabled) {
+                enableRecordButton.start()
+            }
+        }
+
+        visible: enabled
 
         iconColor: composeBar.recording ? "black" : "gray"
         iconName: "audio-input-microphone-symbolic"
