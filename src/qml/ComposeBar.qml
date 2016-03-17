@@ -138,6 +138,32 @@ Item {
         }
     }
 
+    Component {
+        id: microphoneWarningPopover
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem.Standard {
+                    text: i18n.tr("You have to press and hold the record icon")
+                    onClicked: {
+                        PopupUtils.close(popover)
+                    }
+                }
+                Connections {
+                    target: composeBar
+                    onTextChanged: PopupUtils.close(popover)
+                }
+            }
+        }
+    }
+
     ListItem.ThinDivider {
         anchors.top: parent.top
     }
@@ -551,6 +577,21 @@ Item {
         iconColor: composeBar.recording ? "black" : "gray"
         iconName: "audio-input-microphone-symbolic"
 
+        onClicked: {
+            if (!composeBar.audioAttached) {
+                var oskFocus = null
+                if (textEntry.activeFocus) {
+                    oskFocus = composeBar.forceFocus
+                } else if (multiRecipient.activeFocus) {
+                    oskFocus = multiRecipient.forceActiveFocus
+                }
+                PopupUtils.open(microphoneWarningPopover, recordButton)
+                // avoid dismissing the osk
+                if (oskFocus) {
+                    oskFocus()
+                }
+            }
+        }
         onPressed: audioRecordingBar.startRecording()
         onReleased: {
             audioRecordingBar.stopRecording()
