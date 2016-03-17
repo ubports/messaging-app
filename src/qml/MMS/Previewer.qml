@@ -54,6 +54,17 @@ Page {
         title: previewerPage.title
         leadingActionBar {
             id: leadingBar
+            actions: [
+                Action {
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "back"
+                    shortcut: "Esc"
+                    onTriggered: {
+                        mainStack.removePage(previewerPage)
+                    }
+                }
+            ]
         }
 
         trailingActionBar {
