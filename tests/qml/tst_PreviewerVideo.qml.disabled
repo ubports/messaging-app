@@ -21,7 +21,7 @@
 
 import QtQuick 2.2
 import QtTest 1.0
-import Ubuntu.Content 0.1
+import Ubuntu.Content 1.3
 import Ubuntu.Test 0.1
 
 import '../../src/qml/MMS'
