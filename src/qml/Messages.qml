@@ -658,7 +658,6 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
-                focus: true
 
                 Connections {
                     target: mainView.bottomEdge
