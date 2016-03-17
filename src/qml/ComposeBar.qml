@@ -556,11 +556,16 @@ Item {
 
         onClicked: {
             if (!composeBar.audioAttached) {
-                var oskFocus = textEntry.activeFocus
+                var oskFocus = null
+                if (textEntry.activeFocus) {
+                    oskFocus = composeBar.forceFocus
+                } else if (multiRecipient.activeFocus) {
+                    oskFocus = multiRecipient.forceActiveFocus
+                }
                 PopupUtils.open(microphoneWarningPopover, recordButton)
                 // avoid dismissing the osk
                 if (oskFocus) {
-                    composeBar.forceFocus()
+                    oskFocus()
                 }
             }
         }
