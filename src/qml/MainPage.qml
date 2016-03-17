@@ -230,7 +230,8 @@ Page {
         header: ListItem.Standard {
             id: newItem
             height: mainView.bottomEdge.status === BottomEdge.Committed &&
-                    !mainView.bottomEdge.showingConversation ? units.gu(10) : 0
+                    !mainView.bottomEdge.showingConversation &&
+                    mainView.dualPanel ? units.gu(10) : 0
             text: i18n.tr("New message")
             iconName: "message-new"
             iconFrame: false
@@ -306,7 +307,7 @@ Page {
             target: threadList
             property: 'contentY'
             value: -threadList.headerItem.height
-            when: mainView.composingNewMessage
+            when: mainView.composingNewMessage && mainView.dualPanel
         }
     }
 
