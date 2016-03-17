@@ -44,6 +44,7 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property QtObject bottomEdge: null
     property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
+    property alias inputInfo: inputInfoObject
 
     signal emptyStackRequested()
 
@@ -296,7 +297,7 @@ MainView {
     }
 
     InputInfo {
-        id: inputInfo
+        id: inputInfoObject
     }
 
     // WORKAROUND: Due the missing feature on SDK, they can not detect if
