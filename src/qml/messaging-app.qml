@@ -147,7 +147,7 @@ MainView {
     }
 
     automaticOrientation: true
-    width: Screen.desktopAvailableWidth > units.gu(100) ? units.gu(100) : units.gu(40)
+    width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
 
@@ -158,8 +158,6 @@ MainView {
         // when running in windowed mode, do not allow resizing
         view.minimumWidth  = units.gu(40)
         view.minimumHeight = units.gu(60)
-
-        emptyStack()
     }
 
     Connections {
@@ -233,11 +231,12 @@ MainView {
         mainStack.removePage(mainPage)
         layout.deleteInstances()
         showEmptyState()
+        mainPage.displayedThreadIndex = -1
     }
 
     function showEmptyState() {
-        if (mainStack.columns > 1) {
-            layout.addComponentToNextColumnSync(mainStack.primaryPage, emptyStatePageComponent)
+        if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
+            layout.addComponentToNextColumnSync(mainPage, emptyStatePageComponent)
         }
     }
 
@@ -341,6 +340,19 @@ MainView {
         id: emptyStatePageComponent
         Page {
             id: emptyStatePage
+            objectName: "emptyStatePage"
+            Connections {
+                target: layout
+                onColumnsChanged: {
+                    if (layout.columns == 1) {
+                        emptyStatePage.destroy(1)
+                        emptyStatePage.objectName = ""
+                        if (!application.findMessagingChild("fakeItem")) {
+                            layout.removePage(mainPage)
+                        }
+                    }
+                }
+            }
 
             EmptyState {
                 labelVisible: false
@@ -368,9 +380,14 @@ MainView {
 
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
-            if (mainPage.displayedThreadIndex < 0) {
+            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 layout.removePage(mainPage)
-                showEmptyState()
+                emptyStack()
+            }
+        }
+        Component.onCompleted: {
+            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
+                emptyStack()
             }
         }
     }

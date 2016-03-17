@@ -71,6 +71,14 @@ Item {
         }
     }
 
+    Item {
+        id: application
+        function findMessagingChild(name)
+        {
+            return null
+        }
+    }
+
     QtObject {
         id: testAccount
         property string accountId: "ofono/ofono/account0"
@@ -118,6 +126,27 @@ Item {
         name: 'swipeItemTestCase'
 
         when: windowShown
+
+        // we reimplement the function here and add a special
+        // case to deal with a null child without failing
+        function findChild(obj,objectName) {
+            var childs = new Array(0);
+            childs.push(obj)
+            while (childs.length > 0) {
+                // this is the special case
+                if (!childs[0]) {
+                    childs.splice(0, 1);
+                }
+                if (childs[0].objectName == objectName) {
+                    return childs[0]
+                }
+                for (var i in childs[0].children) {
+                    childs.push(childs[0].children[i])
+                }
+                childs.splice(0, 1);
+            }
+            return null;
+        }
 
         function init() {
         }

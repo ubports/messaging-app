@@ -68,7 +68,6 @@ Page {
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
 
-
     // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
     property var basePage: messages
 
@@ -732,12 +731,6 @@ Page {
         onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
     }
 
-    Component.onDestruction: {
-        if (!mainView.dualPanel && !startedFromBottomEdge) {
-            mainPage.displayedThreadIndex = -1
-        }
-    }
-
     onReady: {
         isReady = true
         if (participants.length === 0 && keyboardFocus)
@@ -748,6 +741,17 @@ Page {
         if (active && (eventModel.count > 0)){
             swipeItemDemo.enable()
         }
+    }
+
+    // These fake items are used to track if there are instances loaded
+    // on the second column because we have no access to the page stack
+    Loader {
+        sourceComponent: fakeItemComponent
+        active: !startedFromBottomEdge
+    }
+    Component {
+        id: fakeItemComponent
+        Item { objectName:"fakeItem"}
     }
 
     Connections {
