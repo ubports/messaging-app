@@ -115,7 +115,7 @@ Item {
     TransparentButton {
         id: recordingIcon
         objectName: "recordingIcon"
-        iconPulsate: true
+        iconPulsate: recordingBar.recording
         sideBySide: true
         spacing: units.gu(1)
         opacity: buttonOpacity
