@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -213,9 +213,9 @@ Page {
     }
 
     Connections {
-        target: newRecipientPage.head.sections
+        target: headerSections
         onSelectedIndexChanged: {
-            switch (newRecipientPage.head.sections.selectedIndex) {
+            switch (headerSections.selectedIndex) {
             case 0:
                 contactList.showAllContacts()
                 break;

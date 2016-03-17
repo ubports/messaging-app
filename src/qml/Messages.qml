@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -476,7 +476,7 @@ Page {
         flickable: null
 
         Sections {
-            id: sections
+            id: headerSections
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
@@ -491,7 +491,7 @@ Page {
             }
         }
 
-        extension: sections.model.length > 1 ? sections : null
+        extension: headerSections.model.length > 1 ? headerSections : null
 
         leadingActionBar {
             id: leadingBar
@@ -759,8 +759,8 @@ Page {
             // force reevaluation
             messages.account = Qt.binding(getCurrentAccount)
             messages.phoneAccount = Qt.binding(isPhoneAccount)
-            head.sections.model = Qt.binding(getSectionsModel)
-            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+            headerSections.model = Qt.binding(getSectionsModel)
+            headerSections.selectedIndex = Qt.binding(getSelectedIndex)
         }
     }
 
@@ -1155,7 +1155,7 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
-                messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+                headerSections.selectedIndex = Qt.binding(getSelectedIndex)
             }
 
             var newAttachments = []
