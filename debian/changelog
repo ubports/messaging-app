@@ -1,3 +1,27 @@
+messaging-app (0.1+16.04.20160317.2-0ubuntu1) xenial; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Do not display the "new conversation" item when in single panel as
+    this makes the header scroll.
+  * Fix handling of header sections.
+  * Fix sharing data from other apps.
+  * Hide and disable the Section object when it is not in use.
+  * Keep the "New conversation" header action visible all the time.
+
+  [ Ken VanDine ]
+  * Bump Ubuntu.Content import to 1.3 to fix theme issue (LP: #1554621)
+
+  [ Tiago Salem Herrmann ]
+  * Animate microphone icon only while recording. (LP: #1548696)
+  * Fix active focus management of multi recipient component. (LP:
+    #1555146)
+  * Fix some memory leaks Use another approach to decide when to display
+    the empty state view Avoid removing pages when resizing the
+    AdaptivePageLayout (LP: #1549352)
+  * Show notification when the the record icon is only clicked.
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Thu, 17 Mar 2016 21:10:24 +0000
+
 messaging-app (0.1+16.04.20160308-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
