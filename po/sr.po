@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2015-09-06 14:25+0000\n"
+"PO-Revision-Date: 2016-03-09 22:24+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-10 05:57+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -67,39 +67,39 @@ msgstr "Додај примаоца"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr "Сви"
+msgstr "Све"
 
-#: ../src/qml/ThreadDelegate.qml:87
+#: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Прилог: %1 потсетница"
-msgstr[1] "Прилог: %1 потсетнице"
-msgstr[2] "Прилог: %1 потсетница"
+msgstr[1] "Прилози: %1 потсетнице"
+msgstr[2] "Прилози: %1 потсетница"
 
-#: ../src/qml/ThreadDelegate.qml:93
+#: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Прилог: %1 датотека"
-msgstr[1] "Прилог: %1 датотеке"
-msgstr[2] "Прилог: %1 датотека"
+msgstr[1] "Прилози: %1 датотеке"
+msgstr[2] "Прилози: %1 датотека"
 
-#: ../src/qml/ThreadDelegate.qml:81
+#: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Прилог: %1 слика"
-msgstr[1] "Прилог: %1 слике"
-msgstr[2] "Прилог: %1 слика"
+msgstr[1] "Прилози: %1 слике"
+msgstr[2] "Прилози: %1 слика"
 
-#: ../src/qml/ThreadDelegate.qml:84
+#: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Прилог: %1 видео"
-msgstr[1] "Прилог: %1 видеа"
-msgstr[2] "Прилог: %1 видеа"
+msgstr[1] "Прилози: %1 видеа"
+msgstr[2] "Прилози: %1 видеа"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
@@ -123,7 +123,7 @@ msgstr "Пребаците све поруке телефона на %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:946
 msgid "Close"
 msgstr "Затвори"
 
@@ -135,11 +135,11 @@ msgstr "Састави нову поруку повлачењем на горе 
 msgid "Contact"
 msgstr "Контакт"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
+#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Копирај"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Обриши"
 
@@ -177,7 +177,7 @@ msgstr "Омиљени"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr "Тип документа није подржан"
+msgstr "Врста датотеке није подржана"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -201,7 +201,7 @@ msgstr "Група (%1)"
 msgid "Image Preview"
 msgstr "Преглед слике"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:178
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Инфо"
 
@@ -223,11 +223,11 @@ msgstr "Поруке"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr "Поруке;СМС;ММС;Текстуалне поруке;Текст"
+msgstr "поруке;СМС;ММС;текстуалне поруке;текст"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr "Поруке"
+msgstr "Дописивање"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
@@ -257,9 +257,9 @@ msgstr "Не"
 msgid "No SIM card selected"
 msgstr "Није изабрана СИМ картица"
 
-#: ../src/qml/Messages.qml:935
+#: ../src/qml/Messages.qml:942
 msgid "No network"
-msgstr "Без мреже"
+msgstr "Нема мреже"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -290,11 +290,11 @@ msgstr "Прочитана"
 msgid "Received"
 msgstr "Примљена"
 
-#: ../src/qml/ComposeBar.qml:131
+#: ../src/qml/ComposeBar.qml:130
 msgid "Remove"
 msgstr "Уклони"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:182
+#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Покушај поново"
 
@@ -318,7 +318,7 @@ msgstr "Тражи"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
-msgstr "Тражи..."
+msgstr "Потражи..."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
@@ -344,19 +344,19 @@ msgstr "Подешавања"
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
-msgstr "Подели"
+msgstr "Дели"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
 msgstr "Стање"
 
-#: ../src/qml/SwipeItemDemo.qml:257
+#: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
 msgstr "Превуците да обришете"
 
-#: ../src/qml/SwipeItemDemo.qml:207
+#: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr "Превуците да видите акције"
+msgstr "Превуците да видите радње"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -364,28 +364,28 @@ msgstr "Пређи на подразумевану СИМ картицу:"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr "Привремено неуспешно"
+msgstr "Привремени неуспех"
 
 #: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr "Текстуална порука копирана у оставу"
+msgstr "Текстуална порука је умножена у оставу"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:943
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Тренутно нема мреже на %1"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:943
 msgid "There is currently no network."
 msgstr "Тренутно нема мреже."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
-msgstr "За"
+msgstr "Прима"
 
 #: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
-msgstr "За:"
+msgstr "Прима:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -399,23 +399,23 @@ msgstr "Тип"
 msgid "Unknown"
 msgstr "Непознато"
 
-#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
 msgstr "Непозната особа"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
-msgstr "Преглед снимка"
+msgstr "Преглед видеа"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr "Видео прилог ниеј подржан"
+msgstr "Видео прилог није подржан"
 
-#: ../src/qml/SwipeItemDemo.qml:162
+#: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Добродошли у ваш Убунту Програм за поруке."
+msgstr "Добро дошли у Убунтуов програм за поруке."
 
-#: ../src/qml/ComposeBar.qml:394
+#: ../src/qml/ComposeBar.qml:391
 msgid "Write a message..."
 msgstr "Напиши поруку..."
 
