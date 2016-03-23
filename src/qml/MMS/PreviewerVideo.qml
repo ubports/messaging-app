@@ -59,7 +59,7 @@ Previewer {
     Connections {
         target: application
         onFullscreenChanged: {
-            videoPreviewer.head.visible = !application.fullscreen
+            videoPreviewer.header.visible = !application.fullscreen
             toolbar.collapsed = application.fullscreen
         }
     }

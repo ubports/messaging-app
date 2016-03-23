@@ -31,7 +31,7 @@ Previewer {
 
     Connections {
         target: application
-        onFullscreenChanged: imagePreviewer.head.visible = !application.fullscreen
+        onFullscreenChanged: imagePreviewer.header.visible = !application.fullscreen
     }
 
     title: i18n.tr("Image Preview")
