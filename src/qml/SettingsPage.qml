@@ -30,6 +30,17 @@ Page {
         }
     ]
 
+    // These fake items are used to track if there are instances loaded
+    // on the second column because we have no access to the page stack
+    Loader {
+        sourceComponent: fakeItemComponent
+        active: true
+    }
+    Component {
+        id: fakeItemComponent
+        Item { objectName:"fakeItem"}
+    }
+
     GSettings {
         id: gsettings
         schema.id: "com.ubuntu.phone"
@@ -38,6 +49,23 @@ Page {
     header: PageHeader {
         id: pageHeader
         title: settingsPage.title
+        leadingActionBar {
+            actions: [
+                Action {
+                    id: singlePanelBackAction
+                    objectName: "back"
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "back"
+                    shortcut: "Esc"
+                    visible: !mainView.dualPanel
+                    onTriggered: {
+                        // emptyStack will make sure the page gets removed.
+                        mainView.emptyStack()
+                    }
+                }
+            ]
+        }
     }
 
     Component {

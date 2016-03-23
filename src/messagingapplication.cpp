@@ -317,3 +317,8 @@ void MessagingApplication::showNotificationMessage(const QString &message, const
     }
     g_object_unref(G_OBJECT(notification));
 }
+
+QObject *MessagingApplication::findMessagingChild(const QString &objectName)
+{
+    return m_view->rootObject()->findChild<QObject*>(objectName);
+}

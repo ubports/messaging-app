@@ -99,7 +99,7 @@ Item {
             var image = findChild(mmsDelegate, "imageAttachment")
             verify(image != null)
             waitForRendering(image)
-            compare(image.source, "image://theme/image-missing")
+            tryCompare(image, "source", "image://theme/image-missing")
         }
     }
 

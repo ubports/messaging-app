@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-01-16 05:38+0000\n"
-"X-Generator: Launchpad (build 17886)\n"
+"X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:51
+#: ../src/qml/ThreadDelegate.qml:52
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -49,7 +49,7 @@ msgstr[0] "%1 секунда вызовов"
 msgstr[1] "%1 секунды вызовов"
 msgstr[2] "%1 секунд вызовов"
 
-#: ../src/qml/MainPage.qml:41
+#: ../src/qml/MessagingBottomEdge.qml:17
 msgid "+"
 msgstr "+"
 
@@ -57,19 +57,19 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Принято"
 
-#: ../src/qml/Messages.qml:894
+#: ../src/qml/Messages.qml:618
 msgid "Add"
 msgstr "Добавить"
 
-#: ../src/qml/NewRecipientPage.qml:50
+#: ../src/qml/NewRecipientPage.qml:55
 msgid "Add recipient"
 msgstr "Добавить получателя"
 
-#: ../src/qml/NewRecipientPage.qml:90
+#: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "Все"
 
-#: ../src/qml/ThreadDelegate.qml:83
+#: ../src/qml/ThreadDelegate.qml:87
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -77,7 +77,7 @@ msgstr[0] "Приложение: %1 контакт"
 msgstr[1] "Приложение: %1 контакта"
 msgstr[2] "Приложение: %1 контактов"
 
-#: ../src/qml/ThreadDelegate.qml:86
+#: ../src/qml/ThreadDelegate.qml:93
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -85,7 +85,7 @@ msgstr[0] "Приложение: %1 файл"
 msgstr[1] "Приложение: %1 файла"
 msgstr[2] "Приложение: %1 файлов"
 
-#: ../src/qml/ThreadDelegate.qml:77
+#: ../src/qml/ThreadDelegate.qml:81
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -93,7 +93,7 @@ msgstr[0] "Приложение: %1 изображение"
 msgstr[1] "Приложение: %1 изображения"
 msgstr[2] "Приложение: %1 изображений"
 
-#: ../src/qml/ThreadDelegate.qml:80
+#: ../src/qml/ThreadDelegate.qml:84
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -105,12 +105,13 @@ msgstr[2] "Приложение: %1 видео"
 msgid "Audio attachment not supported"
 msgstr "Вложенный аудиофайл не поддерживается"
 
-#: ../src/qml/Messages.qml:883 ../src/qml/Messages.qml:942
+#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "Вызов"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:104
+#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
+#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -122,16 +123,16 @@ msgstr "Привязать все сообщения к %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:720
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../src/qml/MainPage.qml:147
+#: ../src/qml/EmptyState.qml:32
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Чтобы написать новое сообщение, смахните вверх от нижнего края экрана."
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
 msgid "Contact"
 msgstr "Контакт"
 
@@ -139,7 +140,7 @@ msgstr "Контакт"
 msgid "Copy"
 msgstr "Копировать"
 
-#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
 msgid "Delete"
 msgstr "Удалить"
 
@@ -155,7 +156,7 @@ msgstr "Доставлено"
 msgid "Don't ask again"
 msgstr "Больше не спрашивать"
 
-#: ../src/qml/MessagingContactViewPage.qml:71
+#: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "Правка"
 
@@ -167,11 +168,11 @@ msgstr "Включить групповой MMS-чат"
 msgid "Failed"
 msgstr "Не удалось"
 
-#: ../src/qml/MessageDelegateFactory.qml:144
+#: ../src/qml/MessageDelegateFactory.qml:146
 msgid "Failed!"
 msgstr "Не удалось!"
 
-#: ../src/qml/NewRecipientPage.qml:90
+#: ../src/qml/NewRecipientPage.qml:77
 msgid "Favorites"
 msgstr "Избранное"
 
@@ -192,12 +193,12 @@ msgid "Group"
 msgstr "Группа"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:547
+#: ../src/qml/Messages.qml:592
 #, qt-format
 msgid "Group (%1)"
 msgstr "Группа (%1)"
 
-#: ../src/qml/MMS/PreviewerImage.qml:25
+#: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
 msgstr "Предпросмотр изображения"
 
@@ -217,7 +218,7 @@ msgstr "MMS"
 msgid "Message info"
 msgstr "Информация о сообщении"
 
-#: ../src/qml/MainPage.qml:37
+#: ../src/qml/MainPage.qml:68
 msgid "Messages"
 msgstr "Сообщения"
 
@@ -233,11 +234,11 @@ msgstr "Обмен сообщениями"
 msgid "Messaging App"
 msgstr "Приложение для обмена сообщениями"
 
-#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Приложение, позволяющее обмениваться сообщениями"
 
-#: ../src/qml/MMSDelegate.qml:217
+#: ../src/qml/MMSDelegate.qml:220
 msgid "Missing message data"
 msgstr "Отсутствуют данные о сообщении"
 
@@ -245,7 +246,7 @@ msgstr "Отсутствуют данные о сообщении"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:550
+#: ../src/qml/Messages.qml:475
 msgid "New Message"
 msgstr "Создать сообщение"
 
@@ -257,10 +258,12 @@ msgstr "Нет"
 msgid "No SIM card selected"
 msgstr "SIM-карта не выбрана"
 
-#: ../src/qml/Messages.qml:716
+#: ../src/qml/Messages.qml:935
 msgid "No network"
 msgstr "Сеть отсутствует"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
 msgstr "ОК"
@@ -287,7 +290,7 @@ msgstr "Прочитать"
 msgid "Received"
 msgstr "Получено"
 
-#: ../src/qml/Messages.qml:657
+#: ../src/qml/ComposeBar.qml:131
 msgid "Remove"
 msgstr "Удалить"
 
@@ -303,17 +306,17 @@ msgstr "SIM-карта заблокирована"
 msgid "SMS"
 msgstr "СМС"
 
-#: ../src/qml/MMS/Previewer.qml:67
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:83
+#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../src/qml/NewRecipientPage.qml:78
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Search"
 msgstr "Найти"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
+#: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
 msgstr "Поиск..."
 
@@ -334,13 +337,13 @@ msgstr "Отправить"
 msgid "Sent"
 msgstr "Отправлено"
 
-#: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../src/qml/MMS/Previewer.qml:74
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:91
-#: ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
+#: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
 msgstr "Поделиться"
 
@@ -364,16 +367,16 @@ msgstr "Переключиться на SIM-карту по умолчанию:"
 msgid "Temporarily Failed"
 msgstr "Временно не удаётся"
 
-#: ../src/qml/MMSDelegate.qml:75 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
 msgstr "Сообщение скопировано в буфер обмена"
 
-#: ../src/qml/Messages.qml:717
+#: ../src/qml/Messages.qml:936
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "В настоящий момент отсутствует доступ к сети %1"
 
-#: ../src/qml/Messages.qml:717
+#: ../src/qml/Messages.qml:936
 msgid "There is currently no network."
 msgstr "В настоящий момент сеть недоступна."
 
@@ -397,11 +400,11 @@ msgstr "Тип"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1183
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
 msgid "Unknown contact"
 msgstr "Неизвестный контакт"
 
-#: ../src/qml/MMS/PreviewerVideo.qml:25
+#: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "Предпросмотр видео"
 
@@ -413,7 +416,7 @@ msgstr "Вложенный видеофайл не поддерживается"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Ваше приложение для обмена сообщениями в Ubuntu."
 
-#: ../src/qml/Messages.qml:1327
+#: ../src/qml/ComposeBar.qml:394
 msgid "Write a message..."
 msgstr "Новое сообщение..."
 
@@ -430,7 +433,7 @@ msgid "You need to select a SIM card"
 msgstr "Необходимо выбрать SIM-карту"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
-#: ../src/qml/AccountSectionDelegate.qml:76
+#: ../src/qml/AccountSectionDelegate.qml:77
 #, qt-format
 msgid "You switched to %1 @ %2"
 msgstr "Вы переключились на %1 @ %2"

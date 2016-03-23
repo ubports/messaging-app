@@ -5,6 +5,19 @@ AdaptivePageLayout {
     id: layout
     property var _pagesToRemove: []
 
+    layouts: PageColumnsLayout {
+        when: mainStack.width >= units.gu(90)
+        PageColumn {
+            maximumWidth: units.gu(50)
+            minimumWidth: units.gu(40)
+            preferredWidth: units.gu(40)
+        }
+        PageColumn {
+            fillWidth: true
+        }
+    }
+
+
     function deleteInstances() {
         for (var i in _pagesToRemove) {
             if (_pagesToRemove[i].destroy) {

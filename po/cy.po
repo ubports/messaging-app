@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : (n != 8 && n != 11) ? "
 "2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-01-16 05:38+0000\n"
-"X-Generator: Launchpad (build 17886)\n"
+"X-Launchpad-Export-Date: 2016-03-01 05:51+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:51
+#: ../src/qml/ThreadDelegate.qml:52
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -52,7 +52,7 @@ msgstr[1] "Galwad %1 eiliad"
 msgstr[2] "Galwad %1 eiliad"
 msgstr[3] "Galwad %1 eiliad"
 
-#: ../src/qml/MainPage.qml:41
+#: ../src/qml/MessagingBottomEdge.qml:17
 msgid "+"
 msgstr "+"
 
@@ -60,19 +60,19 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Derbyniwyd"
 
-#: ../src/qml/Messages.qml:894
+#: ../src/qml/Messages.qml:618
 msgid "Add"
 msgstr "Ychwanegu"
 
-#: ../src/qml/NewRecipientPage.qml:50
+#: ../src/qml/NewRecipientPage.qml:55
 msgid "Add recipient"
 msgstr "Ychwanegu derbynnydd"
 
-#: ../src/qml/NewRecipientPage.qml:90
+#: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "Y cyfan"
 
-#: ../src/qml/ThreadDelegate.qml:83
+#: ../src/qml/ThreadDelegate.qml:87
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -81,7 +81,7 @@ msgstr[1] "Atodiadau: %1 cyswllt"
 msgstr[2] "Atodiadau: %1 cyswllt"
 msgstr[3] "Atodiadau: %1 cyswllt"
 
-#: ../src/qml/ThreadDelegate.qml:86
+#: ../src/qml/ThreadDelegate.qml:93
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -90,7 +90,7 @@ msgstr[1] "Atodiadau: %1 ffeil"
 msgstr[2] "Atodiadau: %1 ffeil"
 msgstr[3] "Atodiadau: %1 ffeil"
 
-#: ../src/qml/ThreadDelegate.qml:77
+#: ../src/qml/ThreadDelegate.qml:81
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -99,7 +99,7 @@ msgstr[1] "Atodiadau: %1 delwedd"
 msgstr[2] "Atodiadau: %1 delwedd"
 msgstr[3] "Atodiadau: %1 delwedd"
 
-#: ../src/qml/ThreadDelegate.qml:80
+#: ../src/qml/ThreadDelegate.qml:84
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -112,12 +112,13 @@ msgstr[3] "Atodiadau: %1 fideo"
 msgid "Audio attachment not supported"
 msgstr "Dim cefnogaeth i'r atodiad sain"
 
-#: ../src/qml/Messages.qml:883 ../src/qml/Messages.qml:942
+#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "Galw"
 
-#: ../src/qml/MainPage.qml:91 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:104
+#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
+#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "Diddymu"
 
@@ -129,15 +130,15 @@ msgstr "Newid pob cysylltiad Negeseuon i %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:720
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
 msgid "Close"
 msgstr "Cau"
 
-#: ../src/qml/MainPage.qml:147
+#: ../src/qml/EmptyState.qml:32
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Ysgrifennwch neges newydd drwy drawio i fyny o waelod y sgrîn"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
 msgid "Contact"
 msgstr "Cyswllt"
 
@@ -145,7 +146,7 @@ msgstr "Cyswllt"
 msgid "Copy"
 msgstr "Copïo"
 
-#: ../src/qml/MessageDelegateFactory.qml:42 ../src/qml/ThreadDelegate.qml:96
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
 msgid "Delete"
 msgstr "Dileu"
 
@@ -161,7 +162,7 @@ msgstr "Trosglwyddwyd"
 msgid "Don't ask again"
 msgstr "Peidiwch â gofyn eto"
 
-#: ../src/qml/MessagingContactViewPage.qml:71
+#: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "Golygu"
 
@@ -173,11 +174,11 @@ msgstr "Galluogi sgwrs MMS ar y cyd"
 msgid "Failed"
 msgstr "Methwyd"
 
-#: ../src/qml/MessageDelegateFactory.qml:144
+#: ../src/qml/MessageDelegateFactory.qml:146
 msgid "Failed!"
 msgstr "Methwyd!"
 
-#: ../src/qml/NewRecipientPage.qml:90
+#: ../src/qml/NewRecipientPage.qml:77
 msgid "Favorites"
 msgstr "Ffefrynnau"
 
@@ -198,12 +199,12 @@ msgid "Group"
 msgstr "Grŵp"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:547
+#: ../src/qml/Messages.qml:592
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grŵp (%1)"
 
-#: ../src/qml/MMS/PreviewerImage.qml:25
+#: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
 msgstr "Rhagolwg Delwedd"
 
@@ -223,7 +224,7 @@ msgstr "MMS"
 msgid "Message info"
 msgstr "Gwybodaeth neges"
 
-#: ../src/qml/MainPage.qml:37
+#: ../src/qml/MainPage.qml:68
 msgid "Messages"
 msgstr "Negeseuon"
 
@@ -239,11 +240,11 @@ msgstr "Negesu"
 msgid "Messaging App"
 msgstr "Ap Negeseuon"
 
-#: ../src/messagingapplication.cpp:167 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Ap Negeseuon"
 
-#: ../src/qml/MMSDelegate.qml:217
+#: ../src/qml/MMSDelegate.qml:220
 msgid "Missing message data"
 msgstr "Data neges ar goll"
 
@@ -251,7 +252,7 @@ msgstr "Data neges ar goll"
 msgid "Myself"
 msgstr "Fi fy hun"
 
-#: ../src/qml/Messages.qml:550
+#: ../src/qml/Messages.qml:475
 msgid "New Message"
 msgstr "Neges Newydd"
 
@@ -263,10 +264,12 @@ msgstr "Na"
 msgid "No SIM card selected"
 msgstr "Heb ddewis cerdyn SIM"
 
-#: ../src/qml/Messages.qml:716
+#: ../src/qml/Messages.qml:935
 msgid "No network"
 msgstr "Dim rhwydwaith"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
 msgstr "Iawn"
@@ -294,7 +297,7 @@ msgstr "Darllen"
 msgid "Received"
 msgstr "Derbyniwyd"
 
-#: ../src/qml/Messages.qml:657
+#: ../src/qml/ComposeBar.qml:131
 msgid "Remove"
 msgstr "Tynnu"
 
@@ -310,17 +313,17 @@ msgstr "Cerdyn SIM ar glo"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:67
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:83
+#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Cadw"
 
-#: ../src/qml/NewRecipientPage.qml:78
+#: ../src/qml/NewRecipientPage.qml:104
 msgid "Search"
 msgstr "Chwilio"
 
-#: ../src/qml/MainPage.qml:54 ../src/qml/NewRecipientPage.qml:66
+#: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
 msgstr "Chwilio..."
 
@@ -340,13 +343,13 @@ msgstr "Anfon"
 msgid "Sent"
 msgstr "Anfonwyd"
 
-#: ../src/qml/MainPage.qml:78 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
 msgstr "Gosodiadau"
 
-#: ../src/qml/MMS/Previewer.qml:74
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:91
-#: ../src/qml/MessagingContactViewPage.qml:60
+#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
+#: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
 msgstr "Rhannu"
 
@@ -370,16 +373,16 @@ msgstr "Newid i SIM diofyn:"
 msgid "Temporarily Failed"
 msgstr "Methiant Dros Dro"
 
-#: ../src/qml/MMSDelegate.qml:75 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
 msgstr "Copïwyd y neges destun i'r clipfwrdd"
 
-#: ../src/qml/Messages.qml:717
+#: ../src/qml/Messages.qml:936
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Does dim rhwydwaith ar %1 ar hyn o bryd"
 
-#: ../src/qml/Messages.qml:717
+#: ../src/qml/Messages.qml:936
 msgid "There is currently no network."
 msgstr "Does dim rhwydwaith ar hyn o bryd"
 
@@ -403,11 +406,11 @@ msgstr "Math"
 msgid "Unknown"
 msgstr "Anhysbys"
 
-#: ../src/qml/MMS/MMSContact.qml:47 ../src/qml/Messages.qml:1183
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
 msgid "Unknown contact"
 msgstr "Cyswllt anhysbys"
 
-#: ../src/qml/MMS/PreviewerVideo.qml:25
+#: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "Rhagolwg Fideo"
 
@@ -419,7 +422,7 @@ msgstr "Dim cefnogaeth i'r atodiad fideo"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Croeso i Ap Negeseuon Ubuntu"
 
-#: ../src/qml/Messages.qml:1327
+#: ../src/qml/ComposeBar.qml:394
 msgid "Write a message..."
 msgstr "Ysgrifennu neges..."
 
@@ -436,7 +439,7 @@ msgid "You need to select a SIM card"
 msgstr "Mae angen dewis cerdyn SIM"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
-#: ../src/qml/AccountSectionDelegate.qml:76
+#: ../src/qml/AccountSectionDelegate.qml:77
 #, qt-format
 msgid "You switched to %1 @ %2"
 msgstr "Wedi newid i %1 @ %2"

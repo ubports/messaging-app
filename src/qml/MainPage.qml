@@ -104,7 +104,6 @@ Page {
                     objectName: "newMessageAction"
                     text: i18n.tr("New message")
                     iconName: "add"
-                    visible: dualPanel
                     onTriggered: mainView.bottomEdge.commit()
                 }
 
@@ -230,7 +229,8 @@ Page {
         header: ListItem.Standard {
             id: newItem
             height: mainView.bottomEdge.status === BottomEdge.Committed &&
-                    !mainView.bottomEdge.showingConversation ? units.gu(10) : 0
+                    !mainView.bottomEdge.showingConversation &&
+                    mainView.dualPanel ? units.gu(10) : 0
             text: i18n.tr("New message")
             iconName: "message-new"
             iconFrame: false
@@ -251,9 +251,12 @@ Page {
             selected: {
                 if (selectionMode) {
                     return threadList.isSelected(threadDelegate)
+                } else if (mainView.bottomEdge.status === BottomEdge.Committed ||
+                           !mainView.inputInfo.hasKeyboard) {
+                    return false
                 } else {
                     // FIXME: there might be a better way of doing this
-                    return index === threadList.currentIndex && mainView.bottomEdge.status !== BottomEdge.Committed
+                    return index === threadList.currentIndex
                 }
             }
 
@@ -306,7 +309,7 @@ Page {
             target: threadList
             property: 'contentY'
             value: -threadList.headerItem.height
-            when: mainView.composingNewMessage
+            when: mainView.composingNewMessage && mainView.dualPanel
         }
     }
 

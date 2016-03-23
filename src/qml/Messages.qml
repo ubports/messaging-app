@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -21,7 +21,7 @@ import QtQuick.Window 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
-import Ubuntu.Content 0.1
+import Ubuntu.Content 1.3
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
@@ -67,7 +67,6 @@ Page {
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
-
 
     // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
     property var basePage: messages
@@ -477,12 +476,14 @@ Page {
         flickable: null
 
         Sections {
-            id: sections
+            id: headerSections
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
+            visible: headerSections.model.length > 1
+            enabled: visible
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
             onSelectedIndexChanged: {
@@ -492,7 +493,7 @@ Page {
             }
         }
 
-        extension: sections.model.length > 1 ? sections : null
+        extension: headerSections.model.length > 1 ? headerSections : null
 
         leadingActionBar {
             id: leadingBar
@@ -659,7 +660,6 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
-                focus: true
 
                 Connections {
                     target: mainView.bottomEdge
@@ -722,13 +722,14 @@ Page {
                 }
             }
         }
-        composeBar.addAttachments(sharedAttachmentsTransfer)
+        // if we add multiple attachments at the same time, it break the Repeater + Loaders
+        fillAttachmentsTimer.start()
     }
 
-    Component.onDestruction: {
-        if (!mainView.dualPanel && !startedFromBottomEdge) {
-            mainPage.displayedThreadIndex = -1
-        }
+    Timer {
+        id: fillAttachmentsTimer
+        interval: 50
+        onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
     }
 
     onReady: {
@@ -743,14 +744,25 @@ Page {
         }
     }
 
+    // These fake items are used to track if there are instances loaded
+    // on the second column because we have no access to the page stack
+    Loader {
+        sourceComponent: fakeItemComponent
+        active: !startedFromBottomEdge
+    }
+    Component {
+        id: fakeItemComponent
+        Item { objectName:"fakeItem"}
+    }
+
     Connections {
         target: telepathyHelper
         onSetupReady: {
             // force reevaluation
             messages.account = Qt.binding(getCurrentAccount)
             messages.phoneAccount = Qt.binding(isPhoneAccount)
-            head.sections.model = Qt.binding(getSectionsModel)
-            head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+            headerSections.model = Qt.binding(getSectionsModel)
+            headerSections.selectedIndex = Qt.binding(getSelectedIndex)
         }
     }
 
@@ -1145,7 +1157,7 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
-                messages.head.sections.selectedIndex = Qt.binding(getSelectedIndex)
+                headerSections.selectedIndex = Qt.binding(getSelectedIndex)
             }
 
             var newAttachments = []
