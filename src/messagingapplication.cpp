@@ -43,6 +43,8 @@
 #include <QStandardPaths>
 #include <QVersitReader>
 
+#define MESSAGING_FULLSCREEN_FLAG 0x00800000
+
 using namespace QtVersit;
 #define Pair QPair<QString,QString>
 
@@ -92,7 +94,8 @@ MessagingApplication::MessagingApplication(int &argc, char **argv)
 
 bool MessagingApplication::fullscreen() const
 {
-    return m_view->windowState() == Qt::WindowFullScreen;
+    // FIXME: Correct flag to be used will be defined in future releases
+    return m_view->flags() & static_cast <Qt::WindowFlags> (MESSAGING_FULLSCREEN_FLAG);
 }
 
 bool MessagingApplication::setup()
@@ -212,10 +215,11 @@ MessagingApplication::~MessagingApplication()
 
 void MessagingApplication::setFullscreen(bool fullscreen)
 {
+    // FIXME: Correct flag to be used will be defined in future releases
     if (fullscreen) {
-        m_view->setWindowState(Qt::WindowFullScreen);
+        m_view->setFlags(m_view->flags() | static_cast <Qt::WindowFlags> (MESSAGING_FULLSCREEN_FLAG));
     } else {
-        m_view->setWindowState(Qt::WindowNoState);
+        m_view->setFlags(m_view->flags() & !static_cast <Qt::WindowFlags> (MESSAGING_FULLSCREEN_FLAG));
     }
 
     Q_EMIT fullscreenChanged();
