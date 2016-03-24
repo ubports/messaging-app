@@ -12,6 +12,8 @@
 from __future__ import absolute_import
 
 import time
+import dbus
+import os
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, HasLength, Not
@@ -493,28 +495,36 @@ class MessagingTestSettings(MessagingAppTestCase):
         super(MessagingTestSettings, self).setUp()
 
     def test_mms_group_chat_settings(self):
-        gsettings = Gio.Settings.new('com.ubuntu.phone')
-        key = 'mms-group-chat-enabled'
-
         settingsPage = self.main_view.open_settings_page()
         self.assertThat(settingsPage.visible, Eventually(Equals(True)))
         option = settingsPage.get_mms_group_chat()
 
+
+        proxy = dbus.SystemBus().get_object('org.freedesktop.Accounts',
+                                            '/org/freedesktop/Accounts/User%d' % os.getuid())
+        properties_manager = dbus.Interface(proxy,
+                                            'org.freedesktop.DBus.Properties')
+        
         # read the current value and make sure the checkbox reflects it
-        settingsValue = gsettings.get_boolean(key)
+        settingsValue = properties_manager.Get('com.ubuntu.touch.AccountsService.Phone',
+                               'MmsGroupChatEnabled')
+
         self.assertThat(option.checked, Eventually(Equals(settingsValue)))
 
         # now toggle it and check that the value changes
         oldValue = settingsValue
         settingsPage.toggle_mms_group_chat()
+        time.sleep(2)
+        option = settingsPage.get_mms_group_chat()
         self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
 
         # give it some time
         time.sleep(2)
 
-        settingsValue = gsettings.get_boolean(key)
+        settingsValue = properties_manager.Get('com.ubuntu.touch.AccountsService.Phone',
+                               'MmsGroupChatEnabled')
         self.assertThat(option.checked,
-                        Eventually(Equals(gsettings.get_boolean(key))))
+                        Eventually(Equals(settingsValue)))
 
         # just reset it to the previous value
         settingsPage.toggle_mms_group_chat()
