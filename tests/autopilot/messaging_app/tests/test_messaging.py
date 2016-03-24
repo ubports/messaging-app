@@ -25,7 +25,6 @@ from messaging_app import helpers
 from messaging_app.tests import MessagingAppTestCase
 
 import ubuntuuitoolkit
-from gi.repository import Gio
 
 
 class BaseMessagingTestCase(MessagingAppTestCase):
@@ -499,15 +498,17 @@ class MessagingTestSettings(MessagingAppTestCase):
         self.assertThat(settingsPage.visible, Eventually(Equals(True)))
         option = settingsPage.get_mms_group_chat()
 
-
-        proxy = dbus.SystemBus().get_object('org.freedesktop.Accounts',
-                                            '/org/freedesktop/Accounts/User%d' % os.getuid())
+        proxy = dbus.SystemBus().get_object(
+                                'org.freedesktop.Accounts',
+                                '/org/freedesktop/Accounts/User%d' %
+                                os.getuid())
         properties_manager = dbus.Interface(proxy,
                                             'org.freedesktop.DBus.Properties')
-        
+
         # read the current value and make sure the checkbox reflects it
-        settingsValue = properties_manager.Get('com.ubuntu.touch.AccountsService.Phone',
-                               'MmsGroupChatEnabled')
+        settingsValue = properties_manager.Get(
+                'com.ubuntu.touch.AccountsService.Phone',
+                'MmsGroupChatEnabled')
 
         self.assertThat(option.checked, Eventually(Equals(settingsValue)))
 
@@ -521,8 +522,9 @@ class MessagingTestSettings(MessagingAppTestCase):
         # give it some time
         time.sleep(2)
 
-        settingsValue = properties_manager.Get('com.ubuntu.touch.AccountsService.Phone',
-                               'MmsGroupChatEnabled')
+        settingsValue = properties_manager.Get(
+                'com.ubuntu.touch.AccountsService.Phone',
+                'MmsGroupChatEnabled')
         self.assertThat(option.checked,
                         Eventually(Equals(settingsValue)))
 
