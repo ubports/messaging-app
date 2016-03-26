@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -42,7 +42,7 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "%1 စက္ကန့်ခေါ်ဆိုမှု့"
 
-#: ../src/qml/MessagingBottomEdge.qml:17
+#: ../src/qml/MessagingBottomEdge.qml:18
 msgid "+"
 msgstr "+"
 
@@ -50,7 +50,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr ""
 
-#: ../src/qml/Messages.qml:618
+#: ../src/qml/Messages.qml:619
 msgid "Add"
 msgstr "ပေါင်းထည့်သည်"
 
@@ -62,28 +62,28 @@ msgstr ""
 msgid "All"
 msgstr "အားလုံး"
 
-#: ../src/qml/ThreadDelegate.qml:87
+#: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:93
+#: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:81
+#: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:84
+#: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -94,13 +94,14 @@ msgstr[1] ""
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "ခေါ်မည်"
 
-#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
-#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131
+#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
 msgid "Cancel"
 msgstr "ပယ်ဖျက်သည်"
 
@@ -112,7 +113,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
 msgid "Close"
 msgstr "ပိတ်ရန်"
 
@@ -124,11 +125,11 @@ msgstr ""
 msgid "Contact"
 msgstr "အဆက်အသွယ်"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
+#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "မိတ္တူ"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "ပယ်ဖျက်ရန်"
 
@@ -181,7 +182,7 @@ msgid "Group"
 msgstr "အုပ်စု"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:592
+#: ../src/qml/Messages.qml:593
 #, qt-format
 msgid "Group (%1)"
 msgstr ""
@@ -190,7 +191,7 @@ msgstr ""
 msgid "Image Preview"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:178
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "သတင်း"
 
@@ -222,7 +223,7 @@ msgstr ""
 msgid "Messaging App"
 msgstr ""
 
-#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr ""
 
@@ -234,7 +235,7 @@ msgstr ""
 msgid "Myself"
 msgstr ""
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:474
 msgid "New Message"
 msgstr "စာ အသစ်"
 
@@ -246,7 +247,7 @@ msgstr "မဟုတ်ပါ"
 msgid "No SIM card selected"
 msgstr ""
 
-#: ../src/qml/Messages.qml:935
+#: ../src/qml/Messages.qml:947
 msgid "No network"
 msgstr ""
 
@@ -275,11 +276,11 @@ msgstr ""
 msgid "Received"
 msgstr "လက်ခံရရှိခဲ့သည်"
 
-#: ../src/qml/ComposeBar.qml:131
+#: ../src/qml/ComposeBar.qml:130
 msgid "Remove"
 msgstr "ဖယ်ရှားပါ"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:182
+#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "ထပ်ကြိုးစားပါ"
 
@@ -291,7 +292,7 @@ msgstr ""
 msgid "SMS"
 msgstr "အက်စ်အမ်အက်စ်"
 
-#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/Previewer.qml:84
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
@@ -323,7 +324,7 @@ msgstr "ပို့သည့်"
 msgid "Settings"
 msgstr ""
 
-#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/Previewer.qml:91
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
@@ -333,11 +334,11 @@ msgstr "ဝေမျှ"
 msgid "Status"
 msgstr "အနေအထား"
 
-#: ../src/qml/SwipeItemDemo.qml:257
+#: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
 msgstr ""
 
-#: ../src/qml/SwipeItemDemo.qml:207
+#: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
 msgstr ""
 
@@ -353,12 +354,12 @@ msgstr ""
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr ""
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 msgid "There is currently no network."
 msgstr ""
 
@@ -382,7 +383,7 @@ msgstr "အမျိုးအစား"
 msgid "Unknown"
 msgstr "အမည်မသိ"
 
-#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
 msgstr ""
 
@@ -394,11 +395,11 @@ msgstr "ဗီဒီယိုကို Preview"
 msgid "Video attachment not supported"
 msgstr ""
 
-#: ../src/qml/SwipeItemDemo.qml:162
+#: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:394
+#: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."
 msgstr "စာတစ်စောင်ရေးမည်"
 

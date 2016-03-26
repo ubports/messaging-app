@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -49,7 +49,7 @@ msgstr[0] "%1 секунда размовы"
 msgstr[1] "%1 секунды размовы"
 msgstr[2] "%1 секундаў размовы"
 
-#: ../src/qml/MessagingBottomEdge.qml:17
+#: ../src/qml/MessagingBottomEdge.qml:18
 msgid "+"
 msgstr "+"
 
@@ -57,7 +57,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Прыняць"
 
-#: ../src/qml/Messages.qml:618
+#: ../src/qml/Messages.qml:619
 msgid "Add"
 msgstr "Дадаць"
 
@@ -69,7 +69,7 @@ msgstr "Дадаць атрымальніка"
 msgid "All"
 msgstr "Усе"
 
-#: ../src/qml/ThreadDelegate.qml:87
+#: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -77,7 +77,7 @@ msgstr[0] "Дададзены: %1 кантакт"
 msgstr[1] "Дададзеныя: %1 кантакты"
 msgstr[2] "Дададзена: %1 кантактаў"
 
-#: ../src/qml/ThreadDelegate.qml:93
+#: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -85,7 +85,7 @@ msgstr[0] "Дададзены: %1 файл"
 msgstr[1] "Дададзены: %1 файлы"
 msgstr[2] "Дададзена: %1 файлаў"
 
-#: ../src/qml/ThreadDelegate.qml:81
+#: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -93,7 +93,7 @@ msgstr[0] "Дададзеная: %1 выява"
 msgstr[1] "Дададзеныя: %1 выявы"
 msgstr[2] "Дададзена: %1 выяваў"
 
-#: ../src/qml/ThreadDelegate.qml:84
+#: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -105,13 +105,14 @@ msgstr[2] "Дададзена: %1 відэа"
 msgid "Audio attachment not supported"
 msgstr "Падтрымкі дадання гукавых файлаў не прадугледжана"
 
-#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "Патэлефанаваць"
 
-#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
-#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131
+#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
 msgid "Cancel"
 msgstr "Скасаваць"
 
@@ -123,7 +124,7 @@ msgstr "Звязаць увесь абмен паведамленнямі з %1?
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
 msgid "Close"
 msgstr "Закрыць"
 
@@ -135,11 +136,11 @@ msgstr "Стварыце новае паведамленне рухам паль
 msgid "Contact"
 msgstr "Кантакт"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
+#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Капіяваць"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Выдаліць"
 
@@ -192,7 +193,7 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:592
+#: ../src/qml/Messages.qml:593
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
@@ -201,7 +202,7 @@ msgstr "Група (%1)"
 msgid "Image Preview"
 msgstr "Перадпрагляд выявы"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:178
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Звесткі"
 
@@ -233,7 +234,7 @@ msgstr "Абмен паведамленнямі"
 msgid "Messaging App"
 msgstr "Праграма для абмену паведамленнямі"
 
-#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Праграма для абмену паведамленнямі"
 
@@ -245,7 +246,7 @@ msgstr "Няма дадзеных паведамлення"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:474
 msgid "New Message"
 msgstr "Новае паведамленне"
 
@@ -257,7 +258,7 @@ msgstr "Не"
 msgid "No SIM card selected"
 msgstr "Не выбраная SIM-картка"
 
-#: ../src/qml/Messages.qml:935
+#: ../src/qml/Messages.qml:947
 msgid "No network"
 msgstr "Няма сеткі"
 
@@ -291,11 +292,11 @@ msgstr "Прачытанае"
 msgid "Received"
 msgstr "Атрымана"
 
-#: ../src/qml/ComposeBar.qml:131
+#: ../src/qml/ComposeBar.qml:130
 msgid "Remove"
 msgstr "Выдаліць"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:182
+#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Паўтарыць"
 
@@ -307,7 +308,7 @@ msgstr "SIM-картка заблакаваная"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/Previewer.qml:84
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
@@ -342,7 +343,7 @@ msgstr "Дасланыя"
 msgid "Settings"
 msgstr "Налады"
 
-#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/Previewer.qml:91
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
@@ -352,11 +353,11 @@ msgstr "Падзяліцца"
 msgid "Status"
 msgstr "Стан"
 
-#: ../src/qml/SwipeItemDemo.qml:257
+#: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
 msgstr "Правядзіце для выдалення"
 
-#: ../src/qml/SwipeItemDemo.qml:207
+#: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
 msgstr "Правядзіце, каб убачыць пункты дзеянняў"
 
@@ -372,12 +373,12 @@ msgstr "Часовая памылка"
 msgid "Text message copied to clipboard"
 msgstr "Тэкставае паведамленне скапіяванае ў буфер"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Зараз на %1 няма доступу да сеткі"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 msgid "There is currently no network."
 msgstr "Зараз няма доступу да сеткі."
 
@@ -401,7 +402,7 @@ msgstr "Тып"
 msgid "Unknown"
 msgstr "Невядомы"
 
-#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
 msgstr "Невядомы кантакт"
 
@@ -413,11 +414,11 @@ msgstr "Прагляд відэа"
 msgid "Video attachment not supported"
 msgstr "Падтрымкі далучэння відэафайлаў не прадугледжана"
 
-#: ../src/qml/SwipeItemDemo.qml:162
+#: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Сардэчна запрашаем у дадатак для абмену паведамленнямі Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:394
+#: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."
 msgstr "Стварэнне паведамлення..."
 

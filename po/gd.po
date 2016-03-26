@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 "Language: gd\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr[1] "Gairm %1 dhiog"
 msgstr[2] "Gairm %1 diogan"
 msgstr[3] "Gairm %1 diog"
 
-#: ../src/qml/MessagingBottomEdge.qml:17
+#: ../src/qml/MessagingBottomEdge.qml:18
 msgid "+"
 msgstr "+"
 
@@ -61,7 +61,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Air a ghabhail ris"
 
-#: ../src/qml/Messages.qml:618
+#: ../src/qml/Messages.qml:619
 msgid "Add"
 msgstr "Cuir ris"
 
@@ -73,7 +73,7 @@ msgstr "Cuir faightear ris"
 msgid "All"
 msgstr "Na h-uile"
 
-#: ../src/qml/ThreadDelegate.qml:87
+#: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -82,7 +82,7 @@ msgstr[1] "Ceanglachain: %1 luchd-aithne"
 msgstr[2] "Ceanglachain: %1 luchd-aithne"
 msgstr[3] "Ceanglachain: %1 luchd-aithne"
 
-#: ../src/qml/ThreadDelegate.qml:93
+#: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -91,7 +91,7 @@ msgstr[1] "Ceanglachain: %1 fhaidhle"
 msgstr[2] "Ceanglachain: %1 faidhlichean"
 msgstr[3] "Ceanglachain: %1 faidhle"
 
-#: ../src/qml/ThreadDelegate.qml:81
+#: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -100,7 +100,7 @@ msgstr[1] "Ceanglachain: %1 dhealbh"
 msgstr[2] "Ceanglachain: %1 dealbhan"
 msgstr[3] "Ceanglachain: %1 dealbh"
 
-#: ../src/qml/ThreadDelegate.qml:84
+#: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -113,13 +113,14 @@ msgstr[3] "Ceanglachain: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain fuaime"
 
-#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "Gairm"
 
-#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
-#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131
+#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -132,7 +133,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
 msgid "Close"
 msgstr "Dùin"
 
@@ -145,11 +146,11 @@ msgstr ""
 msgid "Contact"
 msgstr "Neach-aithne"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
+#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Dèan lethbhreac"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Sguab às"
 
@@ -202,7 +203,7 @@ msgid "Group"
 msgstr "Buidheann"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:592
+#: ../src/qml/Messages.qml:593
 #, qt-format
 msgid "Group (%1)"
 msgstr "Buidheann (%1)"
@@ -211,7 +212,7 @@ msgstr "Buidheann (%1)"
 msgid "Image Preview"
 msgstr "Ro-shealladh air dealbh"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:178
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Fiosrachadh"
 
@@ -244,7 +245,7 @@ msgstr "Teachdaireachdan"
 msgid "Messaging App"
 msgstr "Aplacaid nan teachdaireachdan"
 
-#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Aplacaid nan teachdaireachdan"
 
@@ -256,7 +257,7 @@ msgstr "Tha dàta na teachdaireachd a dhìth"
 msgid "Myself"
 msgstr "Mi fhìn"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:474
 msgid "New Message"
 msgstr "Teachdaireachd ùr"
 
@@ -268,7 +269,7 @@ msgstr "Chan eil"
 msgid "No SIM card selected"
 msgstr "Cha deach cairt SIM a thaghadh"
 
-#: ../src/qml/Messages.qml:935
+#: ../src/qml/Messages.qml:947
 msgid "No network"
 msgstr "Chan eil lìonra ann"
 
@@ -301,11 +302,11 @@ msgstr "Air a leughadh"
 msgid "Received"
 msgstr "Air a faighinn"
 
-#: ../src/qml/ComposeBar.qml:131
+#: ../src/qml/ComposeBar.qml:130
 msgid "Remove"
 msgstr "Thoir air falbh"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:182
+#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Feuch ris a-rithist"
 
@@ -317,7 +318,7 @@ msgstr "Tha a' chairt SIM glaiste"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/Previewer.qml:84
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
@@ -352,7 +353,7 @@ msgstr "Air a chur"
 msgid "Settings"
 msgstr "Roghainnean"
 
-#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/Previewer.qml:91
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
@@ -362,11 +363,11 @@ msgstr "Co-roinn"
 msgid "Status"
 msgstr "Staid"
 
-#: ../src/qml/SwipeItemDemo.qml:257
+#: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
 msgstr "Grad-shlaighd airson a sguabadh às"
 
-#: ../src/qml/SwipeItemDemo.qml:207
+#: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
 msgstr "Grad-shlaighd gus na gnìomhan a shealltainn"
 
@@ -382,12 +383,12 @@ msgstr "Dh'fhàillig leis gu sealach"
 msgid "Text message copied to clipboard"
 msgstr "Chaidh lethbhreac dhen teachdaireachd a chur air an stòr-bhòrd"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Chan eil lìonra air %1 an-dràsta"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 msgid "There is currently no network."
 msgstr "Chan eil lìonra ann an-dràsta."
 
@@ -411,7 +412,7 @@ msgstr "Seòrsa"
 msgid "Unknown"
 msgstr "Neo-aithnichte"
 
-#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
 msgstr "Neach neo-aithnichte"
 
@@ -423,11 +424,11 @@ msgstr "Ro-shealladh air video"
 msgid "Video attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain video"
 
-#: ../src/qml/SwipeItemDemo.qml:162
+#: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Fàilte gu aplacaid teachdaireachdan Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:394
+#: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."
 msgstr "Sgrìobh teachdaireachd..."
 

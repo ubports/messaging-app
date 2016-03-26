@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2016-03-05 06:18+0000\n"
-"X-Generator: Launchpad (build 17936)\n"
+"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 "Language: sk\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -49,7 +49,7 @@ msgstr[0] "%1 sekundový hovor"
 msgstr[1] "%1 sekundový hovor"
 msgstr[2] "%1 sekundový hovor"
 
-#: ../src/qml/MessagingBottomEdge.qml:17
+#: ../src/qml/MessagingBottomEdge.qml:18
 msgid "+"
 msgstr "+"
 
@@ -57,7 +57,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Prijaté"
 
-#: ../src/qml/Messages.qml:618
+#: ../src/qml/Messages.qml:619
 msgid "Add"
 msgstr "Pridať"
 
@@ -105,13 +105,14 @@ msgstr[2] "Príloha: %1 videá"
 msgid "Audio attachment not supported"
 msgstr "Audio príloha nie je podporovaná"
 
-#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "Hovor"
 
-#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
-#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131
+#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -123,7 +124,7 @@ msgstr "Zmeniť všetky asociácie správ na %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:946
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
 msgid "Close"
 msgstr "Zavrieť"
 
@@ -193,7 +194,7 @@ msgid "Group"
 msgstr "Skupina"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:592
+#: ../src/qml/Messages.qml:593
 #, qt-format
 msgid "Group (%1)"
 msgstr "Skupina (%1)"
@@ -234,7 +235,7 @@ msgstr "Správy"
 msgid "Messaging App"
 msgstr "Aplikácia Správy"
 
-#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Aplikácia Správy"
 
@@ -246,7 +247,7 @@ msgstr "Chýbajúce dáta správy"
 msgid "Myself"
 msgstr "Ja"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:474
 msgid "New Message"
 msgstr "Nová správa"
 
@@ -258,7 +259,7 @@ msgstr "Nie"
 msgid "No SIM card selected"
 msgstr "Nie je vybraná žiadna SIM karta"
 
-#: ../src/qml/Messages.qml:942
+#: ../src/qml/Messages.qml:947
 msgid "No network"
 msgstr "Žiadna sieť"
 
@@ -307,7 +308,7 @@ msgstr "SIM karta je uzamknutá"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/Previewer.qml:84
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
@@ -341,7 +342,7 @@ msgstr "Odoslané"
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/Previewer.qml:91
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
@@ -371,12 +372,12 @@ msgstr "Dočasne zlyhalo"
 msgid "Text message copied to clipboard"
 msgstr "Textová správa skopírovaná do schránky"
 
-#: ../src/qml/Messages.qml:943
+#: ../src/qml/Messages.qml:948
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Momentálne žiadna sieť %1"
 
-#: ../src/qml/Messages.qml:943
+#: ../src/qml/Messages.qml:948
 msgid "There is currently no network."
 msgstr "Momentálne žiadna sieť."
 
@@ -416,7 +417,7 @@ msgstr "Video príloha nie je podporovaná"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Vitajte vo svojej Ubuntu aplikácií Správy."
 
-#: ../src/qml/ComposeBar.qml:391
+#: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."
 msgstr "Napísať správu..."
 

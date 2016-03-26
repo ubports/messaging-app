@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2016-03-01 05:51+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -52,7 +52,7 @@ msgstr[1] "%1-sekundni klic"
 msgstr[2] "%1-sekundni klic"
 msgstr[3] "%1-sekundni klic"
 
-#: ../src/qml/MessagingBottomEdge.qml:17
+#: ../src/qml/MessagingBottomEdge.qml:18
 msgid "+"
 msgstr "+"
 
@@ -60,7 +60,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Sprejeto"
 
-#: ../src/qml/Messages.qml:618
+#: ../src/qml/Messages.qml:619
 msgid "Add"
 msgstr "Dodaj"
 
@@ -72,7 +72,7 @@ msgstr "Dodaj prejemnika"
 msgid "All"
 msgstr "Vsi"
 
-#: ../src/qml/ThreadDelegate.qml:87
+#: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -81,7 +81,7 @@ msgstr[1] "Priloga: %1 stik"
 msgstr[2] "Priloga: %1 stika"
 msgstr[3] "Priloga: %1 stiki"
 
-#: ../src/qml/ThreadDelegate.qml:93
+#: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -90,7 +90,7 @@ msgstr[1] "Priloga: %1 datoteka"
 msgstr[2] "Priloga: %1 datoteki"
 msgstr[3] "Priloga: %1 datoteke"
 
-#: ../src/qml/ThreadDelegate.qml:81
+#: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -99,7 +99,7 @@ msgstr[1] "Priloga: %1 slika"
 msgstr[2] "Priloga: %1 sliki"
 msgstr[3] "Priloga: %1 slike"
 
-#: ../src/qml/ThreadDelegate.qml:84
+#: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -112,13 +112,14 @@ msgstr[3] "Priloga: %1 videi"
 msgid "Audio attachment not supported"
 msgstr "Zvočna priponka ni podprta"
 
-#: ../src/qml/Messages.qml:607 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
 msgid "Call"
 msgstr "Kliči"
 
-#: ../src/qml/MainPage.qml:129 ../src/qml/Messages.qml:442
-#: ../src/qml/Messages.qml:456 ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131
+#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
 msgid "Cancel"
 msgstr "Prekliči"
 
@@ -130,7 +131,7 @@ msgstr "Ali se naj spremenijo povezave s Sporočanjem na %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:939
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
 msgid "Close"
 msgstr "Zapri"
 
@@ -142,11 +143,11 @@ msgstr "Sestavite novo sporočilo s potegom navzgor z dna zaslona."
 msgid "Contact"
 msgstr "Stik"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:186
+#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:103
+#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -199,7 +200,7 @@ msgid "Group"
 msgstr "Skupina"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:592
+#: ../src/qml/Messages.qml:593
 #, qt-format
 msgid "Group (%1)"
 msgstr "Skupina (%1)"
@@ -208,7 +209,7 @@ msgstr "Skupina (%1)"
 msgid "Image Preview"
 msgstr "Predogled slike"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:178
+#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Podrobnosti"
 
@@ -240,7 +241,7 @@ msgstr "Sporočanje"
 msgid "Messaging App"
 msgstr "Program za sporočanje"
 
-#: ../src/messagingapplication.cpp:201 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Program za sporočanje"
 
@@ -252,7 +253,7 @@ msgstr "Manjkajo podatki sporočila"
 msgid "Myself"
 msgstr "Jaz"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:474
 msgid "New Message"
 msgstr "Novo sporočilo"
 
@@ -264,7 +265,7 @@ msgstr "Ne"
 msgid "No SIM card selected"
 msgstr "Ni izbrane kartice SIM"
 
-#: ../src/qml/Messages.qml:935
+#: ../src/qml/Messages.qml:947
 msgid "No network"
 msgstr "Ni omrežja"
 
@@ -297,11 +298,11 @@ msgstr "Prebrano"
 msgid "Received"
 msgstr "Prejeto"
 
-#: ../src/qml/ComposeBar.qml:131
+#: ../src/qml/ComposeBar.qml:130
 msgid "Remove"
 msgstr "Odstrani"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:182
+#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Poskusi znova"
 
@@ -313,7 +314,7 @@ msgstr "Kartica SIM je zaklenjena"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:73
+#: ../src/qml/MMS/Previewer.qml:84
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
@@ -347,7 +348,7 @@ msgstr "Poslano"
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: ../src/qml/MMS/Previewer.qml:80
+#: ../src/qml/MMS/Previewer.qml:91
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
@@ -357,11 +358,11 @@ msgstr "Deli"
 msgid "Status"
 msgstr "Stanje"
 
-#: ../src/qml/SwipeItemDemo.qml:257
+#: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
 msgstr "Potegnite za izbris"
 
-#: ../src/qml/SwipeItemDemo.qml:207
+#: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
 msgstr "Potegnite za prikaz dejanj"
 
@@ -377,12 +378,12 @@ msgstr "Začasno spodletelo"
 msgid "Text message copied to clipboard"
 msgstr "Besedilo je kopirano v odložišče"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Trenutno ni omrežja na %1"
 
-#: ../src/qml/Messages.qml:936
+#: ../src/qml/Messages.qml:948
 msgid "There is currently no network."
 msgstr "Trenutno ni omrežja."
 
@@ -406,7 +407,7 @@ msgstr "Vrsta"
 msgid "Unknown"
 msgstr "Neznano"
 
-#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:45
+#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
 msgstr "Neznan stik"
 
@@ -418,11 +419,11 @@ msgstr "Predogled videa"
 msgid "Video attachment not supported"
 msgstr "Video priponka ni podprta"
 
-#: ../src/qml/SwipeItemDemo.qml:162
+#: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Dobrodošli v sporočilni program Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:394
+#: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."
 msgstr "Napišite sporočilo ..."
 
