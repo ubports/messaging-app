@@ -311,7 +311,7 @@ class MainView(toolkit_emulators.MainView):
     def open_settings_page(self):
         self.click_threads_header_settings()
         settings_page = self.wait_select_single(SettingsPage)
-        settings_page.active.waitFor(True)
+        settings_page.active.wait_for(True)
         return settings_page
 
     def get_swipe_item_demo(self):
