@@ -1,3 +1,13 @@
+messaging-app (0.1+16.04.20160328-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Move properties from gsettings to accounts service, (LP: #1418040)
+
+ -- Alfonso Sanchez-Beato <alfonso.sanchez-beato@canonical.com>  Mon, 28 Mar 2016 13:38:04 +0000
+
 messaging-app (0.1+16.04.20160323-0ubuntu1) xenial; urgency=medium
 
   [ Arthur Mello, Tiago Salem Herrmann ]
