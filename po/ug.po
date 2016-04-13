@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-13 05:43+0000\n"
+"X-Generator: Launchpad (build 17990)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -97,7 +97,7 @@ msgstr "چاقىر"
 #: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "ئەمەلدىن قالدۇر"
 
@@ -147,7 +147,7 @@ msgstr "قايتا سورىما"
 msgid "Edit"
 msgstr "تەھرىرلەش"
 
-#: ../src/qml/SettingsPage.qml:29
+#: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
 msgstr "كۆپ ۋاستلىك توپتا پاراڭلىشنىنى قوزغىتىش"
 
@@ -325,7 +325,7 @@ msgstr "يوللا"
 msgid "Sent"
 msgstr "ئەۋەتكەنلىرى"
 
-#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
 msgstr "تەڭشەكلەر"
 

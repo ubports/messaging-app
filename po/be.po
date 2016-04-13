@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-13 05:42+0000\n"
+"X-Generator: Launchpad (build 17990)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -112,7 +112,7 @@ msgstr "Патэлефанаваць"
 #: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "Скасаваць"
 
@@ -160,7 +160,7 @@ msgstr "Больш не пытацца"
 msgid "Edit"
 msgstr "Рэдагаваць"
 
-#: ../src/qml/SettingsPage.qml:29
+#: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
 msgstr "Включить групповой MMS-чат"
 
@@ -339,7 +339,7 @@ msgstr "Даслаць"
 msgid "Sent"
 msgstr "Дасланыя"
 
-#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
 msgstr "Налады"
 
