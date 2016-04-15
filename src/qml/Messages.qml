@@ -56,7 +56,7 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
-    property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+    property QtObject chatEntry: !account ? null : chatManager.chatEntryForProperties(account.accountId, {"Participants": participantIds}, true)
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -347,7 +347,17 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
+            var newParticipants = []
+            for (var i in participantIds) {
+                newParticipants.push(String(participantIds[i]))
+            }
+            properties["ChatType"] = thread.chatType
+            if (thread.chatType == 2) {
+                properties["RoomName"] = thread.threadId
+            } else {
+                properties["Participants"] = newParticipants
+            }
+            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, text, attachments, properties)
             // create the new thread and update the threadId list
             if (fallbackAccountId != messages.account.accountId) {
                 addNewThreadToFilter(fallbackAccountId, participantIds)
