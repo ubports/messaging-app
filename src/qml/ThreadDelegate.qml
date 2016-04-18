@@ -29,7 +29,7 @@ ListItemWithActions {
     id: delegate
 
     property var participant: participants ? participants[0] : {}
-    property bool groupChat: participants.length > 1
+    property bool groupChat: chatType == 2 || participants.length > 1
     property string searchTerm
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
@@ -40,6 +40,12 @@ ListItemWithActions {
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
+        if (chatType == 2) {
+            if (chatRoomInfo.Title != "") {
+                return chatRoomInfo.Title
+            }
+            return chatRoomInfo.RoomName
+        }
         var firstRecipient
         if (unknownContact) {
             firstRecipient = delegateHelper.phoneNumber

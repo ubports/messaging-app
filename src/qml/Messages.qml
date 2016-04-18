@@ -40,7 +40,7 @@ Page {
     property bool phoneAccount: isPhoneAccount()
     property variant participants: []
     property variant participantIds: []
-    property bool groupChat: participants.length > 1
+    property bool groupChat: (threads.length > 0 && threads[0].chatType == 2) || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -617,7 +617,18 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
-                title: i18n.tr("Group (%1)").arg(participants.length)
+                title: {
+                    if (threads.length == 1 && threads[0].chatType == 2) {
+                        var roomInfo = threads[0].chatRoomInfo
+                        if (roomInfo.Title != "") {
+                            return roomInfo.Title
+                        } else {
+                            return roomInfo.RoomName
+                        }
+                    } else {
+                        return i18n.tr("Group (%1)").arg(participants.length)
+                    }
+                }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
             }
