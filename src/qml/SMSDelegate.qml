@@ -73,6 +73,7 @@ MessageDelegate {
         messageTimeStamp: root.messageData.timestamp
         accountName: root.accountLabel
         messageStatus: root.messageData.textMessageStatus
+        sender: (messages.threads[0].chatType == 2 || root.messageData.participants.length > 1) ? root.messageData.sender.alias !== "" ? root.messageData.sender.alias : root.messageData.senderId : ""
         showDeliveryStatus: true
     }
 }

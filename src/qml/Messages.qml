@@ -56,7 +56,21 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
-    property QtObject chatEntry: !account ? null : chatManager.chatEntryForProperties(account.accountId, {"Participants": participantIds}, true)
+    property QtObject chatEntry: {
+        if (!account) {
+            return null
+        } else {
+            var properties = {}
+            properties["Participants"] = participantIds
+            if (threads.length > 0) {
+                properties["ChatType"] = threads[0].chatType
+                if (threads[0].chatType == 2) {
+                    properties["RoomName"] = threads[0].threadId
+                }
+            }
+            return chatManager.chatEntryForProperties(account.accountId, properties, true)
+        }
+    }
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -193,16 +207,16 @@ Page {
         return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
     }
 
-    function addNewThreadToFilter(newAccountId, participantIds) {
+    function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
         if (newAccount.type == AccountEntry.PhoneAccount || newAccount.type == AccountEntry.MultimediaAccount) {
             matchType = HistoryThreadModel.MatchPhoneNumber
         }
 
-        var thread = eventModel.threadForParticipants(newAccountId,
+        var thread = eventModel.threadForProperties(newAccountId,
                                            HistoryThreadModel.EventTypeText,
-                                           participantIds,
+                                           properties,
                                            matchType,
                                            true)
         var threadId = thread.threadId
@@ -274,8 +288,21 @@ Page {
             return false
         }
 
+        var newParticipants = []
+        for (var i in participantIds) {
+            newParticipants.push(String(participantIds[i]))
+        }
+        if (messages.threads.length > 0) {
+            properties["ChatType"] = threads[0].chatType
+            if (threads[0].chatType == 2) {
+                properties["RoomName"] = threads[0].threadId
+            } else {
+                properties["Participants"] = newParticipants
+            }
+        }
+
         // create the new thread and update the threadId list
-        var thread = addNewThreadToFilter(messages.account.accountId, participantIds)
+        var thread = addNewThreadToFilter(messages.account.accountId, properties)
 
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
@@ -347,20 +374,10 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            var newParticipants = []
-            for (var i in participantIds) {
-                newParticipants.push(String(participantIds[i]))
-            }
-            properties["ChatType"] = thread.chatType
-            if (thread.chatType == 2) {
-                properties["RoomName"] = thread.threadId
-            } else {
-                properties["Participants"] = newParticipants
-            }
             var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, text, attachments, properties)
             // create the new thread and update the threadId list
             if (fallbackAccountId != messages.account.accountId) {
-                addNewThreadToFilter(fallbackAccountId, participantIds)
+                addNewThreadToFilter(fallbackAccountId, properties)
             }
         }
 

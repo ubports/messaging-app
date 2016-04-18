@@ -104,6 +104,8 @@ BorderImage {
 
     Label {
         id: senderName
+        clip: true
+        elide: Text.ElideRight
 
         anchors {
             top: parent.top

@@ -224,7 +224,7 @@ MessageDelegate {
                 target: bubbleLoader.item
                 property: "sender"
                 value: messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId
-                when: messageData.participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+                when: (messageData.chatType == 2 || messageData.participants.length > 1) && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
             }
         }
     }
