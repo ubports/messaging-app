@@ -62,10 +62,10 @@ Page {
         } else {
             var properties = {}
             properties["Participants"] = participantIds
-            if (threads.length > 0) {
+            if (messages.threads.length > 0) {
                 properties["ChatType"] = threads[0].chatType
-                if (threads[0].chatType == 2) {
-                    properties["RoomName"] = threads[0].threadId
+                if (messages.threads[0].chatType == 2) {
+                    properties["RoomName"] = messages.threads[0].threadId
                 }
             }
             return chatManager.chatEntryForProperties(account.accountId, properties, true)
@@ -807,9 +807,17 @@ Page {
     Connections {
         target: chatManager
         onChatEntryCreated: {
-            // TODO: track using chatId and not participants
-            if (accountId == account.accountId &&
-                firstParticipant && participants[0] == firstParticipant.identifier) {
+            if (accountId != account.accountId || messages.threads.length == 0) {
+                return
+            }
+            // track using chatId and not participants on ChatRooms
+            if (messages.threads.length == 1 && // we never group chat rooms
+                messages.threads[0].chatType == chatEntry.chatType &&
+                messages.threads[0].threadId == chatEntry.chatId) {
+                messages.chatEntry = chatEntry
+                return
+            }
+            if (firstParticipant && participants[0] == firstParticipant.identifier) {
                 messages.chatEntry = chatEntry
             }
         }
@@ -817,6 +825,13 @@ Page {
             for (var i in chatManager.chats) {
                 var chat = chatManager.chats[i]
                 // TODO: track using chatId and not participants
+                if (messages.threads.length == 1 && // we never group chat rooms
+                    messages.threads[0].chatType == chat.chatType &&
+                    messages.threads[0].threadId == chat.chatId) {
+                    messages.chatEntry = chat
+                    return
+                }
+
                 if (chat.account.accountId == account.accountId &&
                     firstParticipant && chat.participants[0] == firstParticipant.identifier) {
                     messages.chatEntry = chat
