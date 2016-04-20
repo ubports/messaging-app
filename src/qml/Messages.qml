@@ -36,11 +36,13 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
+    property var threadId: threads.length > 0 ? threads[0].threadId : ""
+    property int chatType: threads.length > 0 ? threads[0].chatType : 0
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
     property variant participants: []
     property variant participantIds: []
-    property bool groupChat: (threads.length > 0 && threads[0].chatType == 2) || participants.length > 1
+    property bool groupChat: chatType == 2 || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -63,9 +65,9 @@ Page {
             var properties = {}
             properties["Participants"] = participantIds
             if (messages.threads.length > 0) {
-                properties["ChatType"] = threads[0].chatType
-                if (messages.threads[0].chatType == 2) {
-                    properties["RoomName"] = messages.threads[0].threadId
+                properties["ChatType"] = messages.chatType
+                if (messages.chatType == 2) {
+                    properties["RoomName"] = messages.threadId
                 }
             }
             return chatManager.chatEntryForProperties(account.accountId, properties, true)
@@ -293,9 +295,9 @@ Page {
             newParticipants.push(String(participantIds[i]))
         }
         if (messages.threads.length > 0) {
-            properties["ChatType"] = threads[0].chatType
-            if (threads[0].chatType == 2) {
-                properties["RoomName"] = threads[0].threadId
+            properties["ChatType"] = messages.chatType
+            if (messages.chatType == 2) {
+                properties["RoomName"] = messages.threadId
             } else {
                 properties["Participants"] = newParticipants
             }
@@ -394,9 +396,11 @@ Page {
         return true
     }
 
-    function updateFilters(accounts, participants, reload, threads) {
-        if (participants.length == 0 || accounts.length == 0) {
-            return null
+    function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        if (participantIds.length == 0 || accounts.length == 0) {
+            if (chatType != 2) {
+                return null
+            }
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
@@ -427,7 +431,7 @@ Page {
             var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
-                                                                 participants,
+                                                                 participantIds,
                                                                  account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                             : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
@@ -618,7 +622,7 @@ Page {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    if (threads.length == 1 && threads[0].chatType == 2) {
+                    if (threads.length == 1 && messages.chatType == 2) {
                         var roomInfo = threads[0].chatRoomInfo
                         if (roomInfo.Title != "") {
                             return roomInfo.Title
@@ -812,8 +816,8 @@ Page {
             }
             // track using chatId and not participants on ChatRooms
             if (messages.threads.length == 1 && // we never group chat rooms
-                messages.threads[0].chatType == chatEntry.chatType &&
-                messages.threads[0].threadId == chatEntry.chatId) {
+                messages.chatType == chatEntry.chatType &&
+                messages.threadId == chatEntry.chatId) {
                 messages.chatEntry = chatEntry
                 return
             }
@@ -826,8 +830,8 @@ Page {
                 var chat = chatManager.chats[i]
                 // TODO: track using chatId and not participants
                 if (messages.threads.length == 1 && // we never group chat rooms
-                    messages.threads[0].chatType == chat.chatType &&
-                    messages.threads[0].threadId == chat.chatId) {
+                    messages.chatType == chat.chatType &&
+                    messages.threadId == chat.chatId) {
                     messages.chatEntry = chat
                     return
                 }
@@ -970,10 +974,24 @@ Page {
                         ListItem.Standard {
                             id: participant
                             objectName: "participant%1".arg(index)
-                            text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
+                            text: {
+                                 if (contactWatcher.isUnknown) {
+                                     if (modelData.alias != "") {
+                                         return modelData.alias
+                                     } else {
+                                         return contactWatcher.identifier
+                                     }
+                                 } else {
+                                     return contactWatcher.alias
+                                 }
+                            }
                             onClicked: {
                                 PopupUtils.close(popover)
-                                mainView.startChat(contactWatcher.identifier)
+                                var properties = {}
+                                properties["accountId"] = modelData.accountId
+                                properties["participantIds"] = [modelData.identifier]
+                                properties["chatType"] = 1
+                                mainView.startChat(properties)
                             }
                         }
                         ContactWatcher {
@@ -1085,7 +1103,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.participantIds, messages.reloadFilters, messages.threads)
+        filter: updateFilters(telepathyHelper.accounts, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
         matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"

@@ -250,26 +250,70 @@ MainView {
         mainView.showBottomEdgePage(properties)
     }
 
-    function startChat(identifiers, text, accountId) {
-        var properties = {}
-        var participantIds = identifiers.split(";")
+    function startChat(properties) {
+        var participantIds = []
+        var threadId = ""
+        var accountId = ""
+        var chatType = 0
+        var match = HistoryThreadModel.MatchCaseSensitive;
 
-        if (participantIds.length === 0) {
+        if (properties.hasOwnProperty("participantIds")) {
+            participantIds = properties["participantIds"]
+        }
+
+        if (properties.hasOwnProperty("threadId")) {
+            threadId = properties["threadId"]
+        }
+
+        // fallback account if none is provided
+        if (properties.hasOwnProperty("accountId")) {
+            accountId = properties["accountId"]
+        } else {
+            accountId = mainView.account ? mainView.account.accountId : ""
+        }
+
+        // we might have changed the accountId, so we set it again
+        properties["accountId"] = accountId
+
+        if (accountId != "") {
+            var tmpAccount = telepathyHelper.accountForId(accountId)
+            if (tmpAccount && (tmpAccount.type == AccountEntry.PhoneAccount || AccountEntry.MultimediaAccount)) {
+                match = HistoryThreadModel.MatchPhoneNumber
+            }
+        } else {
+            // if no accountId is provided fallback to phone
+            match = HistoryThreadModel.MatchPhoneNumber
+        }
+
+        if (properties.hasOwnProperty("chatType")) {
+            chatType = parseInt(properties["chatType"])
+        } else {
+            // try to guess chatType based on participants
+            if (participantIds.length == 1) {
+                chatType = 1
+                properties["chatType"] = chatType;
+            }
+        }
+
+        // we need a list of participants for chatTypes: None or Contact
+        if (participantIds.length === 0 && (chatType == 0 || chatType == 1)) {
             return;
         }
 
-        if (mainView.account) {
-            var thread = threadModel.threadForParticipants(mainView.account.accountId,
-                                                           HistoryThreadModel.EventTypeText,
-                                                           participantIds,
-                                                           mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
-                                                                                                              : HistoryThreadModel.MatchCaseSensitive,
-                                                           false)
+        if (accountId != "") {
+            var thread = threadModel.threadForProperties(accountId,
+                                                         HistoryThreadModel.EventTypeText,
+                                                         properties,
+                                                         match,
+                                                         false)
+            properties["threads"] = [thread]
+
             if (thread.hasOwnProperty("participants")) {
                 properties["participants"] = thread.participants
             }
         }
 
+        // generate the list of participants manually if not provided
         if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
@@ -282,12 +326,6 @@ MainView {
                 participants.push(participant)
             }
             properties["participants"] = participants;
-        }
-
-        properties["participantIds"] = participantIds
-        properties["text"] = text
-        if (typeof(accountId)!=='undefined') {
-            properties["accountId"] = accountId
         }
 
         emptyStack()
