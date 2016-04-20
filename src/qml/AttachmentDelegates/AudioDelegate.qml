@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Canonical Ltd.
+ * Copyright 2015-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -24,7 +24,7 @@ import messagingapp.private 0.1
 import ".."
 import "../dateUtils.js" as DateUtils
 
-MMSBase {
+BaseDelegate {
     id: audioDelegate
 
     height: units.gu(5)

@@ -45,7 +45,11 @@ Column {
 
     function clicked(mouse)
     {
-        var childPoint = root.mapToItem(attachmentsView, mouse.x, mouse.y)
+        if (attachmentsRepeater.count === 0) {
+            return
+        }
+
+        var childPoint = parent.mapToItem(attachmentsView, mouse.x, mouse.y)
         var attachment = attachmentsView.childAt(childPoint.x, childPoint.y)
         if (attachment && attachment.item && attachment.item.previewer) {
             var properties = {}
@@ -65,12 +69,12 @@ Column {
             } else if (startsWith(attachment.contentType, "audio/")) {
                 attachmentsView.dataAttachments.push({"type": "audio",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSAudio.qml",
+                                      "delegateSource": "AttachmentDelegates/AudioDelegate.qml",
                                     })
             } else if (startsWith(attachment.contentType, "image/")) {
                 attachmentsView.dataAttachments.push({"type": "image",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSImage.qml",
+                                      "delegateSource": "AttachmentDelegates/ImageDelegate.qml",
                                     })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
@@ -79,17 +83,17 @@ Column {
                        startsWith(attachment.contentType, "text/x-vcard")) {
                 attachmentsView.dataAttachments.push({"type": "vcard",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSContact.qml"
+                                      "delegateSource": "AttachmentDelegates/ContactDelegate.qml"
                                     })
             } else if (startsWith(attachment.contentType, "video/")) {
                 attachmentsView.dataAttachments.push({"type": "video",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSVideo.qml",
+                                      "delegateSource": "AttachmentDelegates/VideoDelegate.qml",
                                     })
             } else {
                 attachmentsView.dataAttachments.push({"type": "default",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSDefault.qml"
+                                      "delegateSource": "AttachmentDelegates/DefaultDelegate.qml"
                                     })
             }
         }

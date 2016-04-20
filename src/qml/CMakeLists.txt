@@ -15,6 +15,6 @@ install(FILES ${QML_JS_FILES} DESTINATION ${MESSAGING_APP_DIR})
 install(DIRECTORY ${ASSETS_DIR} DESTINATION ${MESSAGING_APP_DIR})
 install(DIRECTORY ${3RD_PARTY_DIR} DESTINATION ${MESSAGING_APP_DIR})
 
-add_subdirectory(MMS)
+add_subdirectory(AttachmentDelegates)
 add_subdirectory(Dialogs)
 add_subdirectory(Stickers)

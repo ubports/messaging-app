@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -21,10 +21,10 @@ import Ubuntu.Components 1.3
 import Ubuntu.Thumbnailer 0.1
 import ".."
 
-MMSBase {
+BaseDelegate {
     id: videoDelegate
 
-    previewer: "MMS/PreviewerVideo.qml"
+    previewer: "AttachmentDelegates/PreviewerVideo.qml"
     height: videoAttachment.height
     width: videoAttachment.width
 
