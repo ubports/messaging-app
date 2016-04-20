@@ -18,7 +18,7 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
-import Ubuntu.Content 0.1
+import Ubuntu.Content 1.3
 import Ubuntu.Thumbnailer 0.1
 import ".."
 
@@ -31,7 +31,7 @@ Previewer {
 
     Connections {
         target: application
-        onFullscreenChanged: imagePreviewer.head.visible = !application.fullscreen
+        onFullscreenChanged: imagePreviewer.header.visible = !application.fullscreen
     }
 
     title: i18n.tr("Image Preview")

@@ -5,6 +5,7 @@ BottomEdge {
     id: bottomEdge
 
     function commitWithProperties(properties) {
+        _realPage.destroy()
         _realPage = messagesComponent.createObject(null, properties)
         commit()
     }
@@ -27,7 +28,12 @@ BottomEdge {
         _realPage = messagesComponent.createObject(null)
     }
 
+    Component.onDestruction: {
+        _realPage.destroy()
+    }
+
     onCollapseCompleted: {
+        _realPage.destroy()
         _realPage = messagesComponent.createObject(null)
     }
 

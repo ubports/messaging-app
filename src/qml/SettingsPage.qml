@@ -19,25 +19,51 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
-import GSettings 1.0
 
 Page {
     id: settingsPage
     title: i18n.tr("Settings")
+    property var setMethods: {
+        "mmsGroupChatEnabled": function(value) { telepathyHelper.mmsGroupChat = value }
+    }
     property var settingsModel: [
         { "name": "mmsGroupChatEnabled",
-          "description": i18n.tr("Enable MMS group chat")
+          "description": i18n.tr("Enable MMS group chat"),
+          "property": telepathyHelper.mmsGroupChat
         }
     ]
 
-    GSettings {
-        id: gsettings
-        schema.id: "com.ubuntu.phone"
+    // These fake items are used to track if there are instances loaded
+    // on the second column because we have no access to the page stack
+    Loader {
+        sourceComponent: fakeItemComponent
+        active: true
+    }
+    Component {
+        id: fakeItemComponent
+        Item { objectName:"fakeItem"}
     }
 
     header: PageHeader {
         id: pageHeader
         title: settingsPage.title
+        leadingActionBar {
+            actions: [
+                Action {
+                    id: singlePanelBackAction
+                    objectName: "back"
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "back"
+                    shortcut: "Esc"
+                    visible: !mainView.dualPanel
+                    onTriggered: {
+                        // emptyStack will make sure the page gets removed.
+                        mainView.emptyStack()
+                    }
+                }
+            ]
+        }
     }
 
     Component {
@@ -60,10 +86,10 @@ Page {
                 anchors.right: parent.right
                 anchors.rightMargin: units.gu(2)
                 anchors.verticalCenter: parent.verticalCenter
-                checked: eval("gsettings."+modelData.name) 
+                checked: modelData.property
                 onCheckedChanged: {
-                    if (eval("gsettings."+modelData.name) != checked) {
-                        eval("gsettings."+modelData.name+ "= checked")
+                    if (checked != modelData.property) {
+                        settingsPage.setMethods[modelData.name](checked)
                     }
                 }
             }

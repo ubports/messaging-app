@@ -115,7 +115,7 @@ Item {
     TransparentButton {
         id: recordingIcon
         objectName: "recordingIcon"
-        iconPulsate: true
+        iconPulsate: recordingBar.recording
         sideBySide: true
         spacing: units.gu(1)
         opacity: buttonOpacity
@@ -131,7 +131,7 @@ Item {
         iconColor: "red"
         iconName: "audio-input-microphone-symbolic"
 
-        textSize: FontUtils.sizeToPixels("x-small")
+        textSize: FontUtils.sizeToPixels("small")
         text: {
             if (audioRecorder.recording) {
                 return DateUtils.formattedTime(audioRecorder.duration / 1000)

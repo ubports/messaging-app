@@ -1,22 +1,23 @@
-# Amharic translation for messaging-app
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# Slovak translation for messaging-app
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
 # This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2015-07-16 13:41+0000\n"
-"Last-Translator: samson <Unknown>\n"
-"Language-Team: Amharic <am@li.org>\n"
+"PO-Revision-Date: 2016-03-04 08:58+0000\n"
+"Last-Translator: P_E_T_O <Unknown>\n"
+"Language-Team: Ubuntu Slovak Translators <ubuntu-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-04-13 05:42+0000\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Launchpad-Export-Date: 2016-04-13 05:43+0000\n"
 "X-Generator: Launchpad (build 17990)\n"
+"Language: sk\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -28,22 +29,25 @@ msgstr "%1 + %2"
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] "%1 hour call"
-msgstr[1] "%1 hours call"
+msgstr[0] "%1 hodinový hovor"
+msgstr[1] "%1 hodinový hovor"
+msgstr[2] "%1 hodinový hovor"
 
 #: ../src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] "%1 ደቂቃ ጥሪ"
-msgstr[1] "%1 ደቂቃዎች ጥሪ"
+msgstr[0] "%1 minútový hovor"
+msgstr[1] "%1 minútový hovor"
+msgstr[2] "%1 minútový hovor"
 
 #: ../src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] "%1 ሰከንድ ጥሪ"
-msgstr[1] "%1 ሰከንዶች ጥሪ"
+msgstr[0] "%1 sekundový hovor"
+msgstr[1] "%1 sekundový hovor"
+msgstr[2] "%1 sekundový hovor"
 
 #: ../src/qml/MessagingBottomEdge.qml:18
 msgid "+"
@@ -51,218 +55,223 @@ msgstr "+"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr "ተቀብያለሁ"
+msgstr "Prijaté"
 
 #: ../src/qml/Messages.qml:619
 msgid "Add"
-msgstr "መጨመሪያ"
+msgstr "Pridať"
 
 #: ../src/qml/NewRecipientPage.qml:55
 msgid "Add recipient"
-msgstr "ተቀባይ መጨመሪያ"
+msgstr "Pridať príjemcu"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr "ሁሉንም"
+msgstr "Všetko"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] "ማያያዣ: %1 ግንኙነት"
-msgstr[1] "ማያያዣዎች: %1 ግንኙነቶች"
+msgstr[0] "Príloha: %1 kontaktov"
+msgstr[1] "Príloha: %1 kontakt"
+msgstr[2] "Príloha: %1 kontakty"
 
 #: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] "ማያያዣ: %1 ፋይል"
-msgstr[1] "ማያያዣዎች: %1 ፋይሎች"
+msgstr[0] "Príloha: %1 súborov"
+msgstr[1] "Príloha: %1 súbor"
+msgstr[2] "Príloha: %1 súbory"
 
 #: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] "ማያያዣ: %1 ምስል"
-msgstr[1] "ማያያዣዎች: %1 ምስሎች"
+msgstr[0] "Príloha: %1 obrázkov"
+msgstr[1] "Príloha: %1 obrázok"
+msgstr[2] "Príloha: %1 obrázky"
 
 #: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] "ማያያዣ: %1 ቪዲዮ"
-msgstr[1] "ማያያዣዎች: %1 ቪዲዮዎች"
+msgstr[0] "Príloha: %1 videí"
+msgstr[1] "Príloha: %1 video"
+msgstr[2] "Príloha: %1 videá"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr "ድምፅ ማያያዝ አይቻልም"
+msgstr "Audio príloha nie je podporovaná"
 
 #: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
 msgid "Call"
-msgstr "ጥሪ"
+msgstr "Hovor"
 
 #: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
-msgstr "መሰረዣ"
+msgstr "Zrušiť"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "ሁሉንም የተዛመዱ መልእክቶች መቀየሪያ ወደ %1?"
+msgstr "Zmeniť všetky asociácie správ na %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
 msgid "Close"
-msgstr "መዝጊያ"
+msgstr "Zavrieť"
 
 #: ../src/qml/EmptyState.qml:32
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ"
+msgstr ""
+"Pre napísanie novej správy potiahnite hore od spodnej časti obrazovky."
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
 msgid "Contact"
-msgstr "ግንኙነት"
+msgstr "Kontakt"
 
 #: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
-msgstr "ኮፒ"
+msgstr "Kopírovať"
 
 #: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
-msgstr "ማጥፊያ"
+msgstr "Vymazať"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr "የጠፋ"
+msgstr "Vymazané"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr "ተልኳል"
+msgstr "Doručené"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr "በድጋሚ አትጠይቀኝ"
+msgstr "Nepýtať sa znova"
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
-msgstr "ማረሚያ"
+msgstr "Upraviť"
 
 #: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
-msgstr "በርካታ መገናኛ የ ቡድን ውይይት ማስቻያ"
+msgstr "Povoliť skupinové MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
-msgstr "ወድቋል"
+msgstr "Zlyhalo"
 
 #: ../src/qml/MessageDelegateFactory.qml:146
 msgid "Failed!"
-msgstr "ወድቋል!"
+msgstr "Zlyhalo!"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "Favorites"
-msgstr "የምወዳቸው"
+msgstr "Obľúbené"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr "ይህ አይነት ፋይል የተደገፈ አይደለም"
+msgstr "Typ súboru nie je podporovaný"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
-msgstr "ከ"
+msgstr "Od"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr "አገኘሁት"
+msgstr "Mám to"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
-msgstr "ቡድን"
+msgstr "Skupina"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
 #: ../src/qml/Messages.qml:593
 #, qt-format
 msgid "Group (%1)"
-msgstr "ቡድን (%1)"
+msgstr "Skupina (%1)"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
-msgstr "የ ምስል ቅድመ እይታ"
+msgstr "Náhľad obrázku"
 
 #: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
-msgstr "መረጃ"
+msgstr "Info"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
 msgid "Later"
-msgstr "በኋላ"
+msgstr "Neskôr"
 
 #: ../src/qml/MessagesListView.qml:71
 msgid "MMS"
-msgstr "ኤም ኤም ኤስ"
+msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
-msgstr "የ መልእክት መረጃ"
+msgstr "Info o správe"
 
 #: ../src/qml/MainPage.qml:68
 msgid "Messages"
-msgstr "መልእክቶች"
+msgstr "Správy"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr "መልእክቶች: ኤስ ኤም ኤስ: ኤም ኤም ኤስ: የ ጽሁፍ መልእክቶች: ጽሁፍ"
+msgstr "Správy;SMS;MMS;Textová správa;Text"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr "መልእክቶች"
+msgstr "Správy"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr "የ መልእክቶች መተግበሪያ"
+msgstr "Aplikácia Správy"
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "የ መልእክቶች መተግበሪያ"
+msgstr "Aplikácia Správy"
 
 #: ../src/qml/MMSDelegate.qml:220
 msgid "Missing message data"
-msgstr "የ መልእክት ዳታ አልተገኘም"
+msgstr "Chýbajúce dáta správy"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
-msgstr "እኔ ራሴ"
+msgstr "Ja"
 
 #: ../src/qml/Messages.qml:474
 msgid "New Message"
-msgstr "አዲስ መልእክት"
+msgstr "Nová správa"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr "አይ"
+msgstr "Nie"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
 msgid "No SIM card selected"
-msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
+msgstr "Nie je vybraná žiadna SIM karta"
 
 #: ../src/qml/Messages.qml:947
 msgid "No network"
-msgstr "ኔትዎርክ አልተገኘም"
+msgstr "Žiadna sieť"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "እሺ"
+msgstr "Ok"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr "ያልተወሰነ"
+msgstr "Čakajúce"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -270,167 +279,162 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"እባክዎን የ ሲም ካርዱን ይክፈቱ: ጥሪ ለማድረግ ወይንም መልእክቶች ለመላክ: ሲም ካርድ መክፈት ይችላሉ ከ ኔትዎርክ "
-"መጠቆሚያ በ መመልከቻው ከ ላይ በኩል ወይንም በመጎብ ኘት <a href=\"system_settings\">System "
-"Settings &gt; Security &amp; Privacy</a>."
+"Pre volanie alebo posielanie správ, prosím, odomknite SIM kartu. SIM kartu "
+"môžete odomknúť z panelu Siete v hornej časti obrazovky, alebo navštívte <a "
+"href=\"system_settings\">Systémové nastavenia &gt; Zabezpečenie a "
+"súkromie</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
-msgstr "ያንብቡ"
+msgstr "Prečítané"
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:119
 msgid "Received"
-msgstr "ተቀብለዋል"
+msgstr "Prijaté"
 
 #: ../src/qml/ComposeBar.qml:130
 msgid "Remove"
-msgstr "ማስወገጃ"
+msgstr "Odstrániť"
 
 #: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
-msgstr "እንደገና ይሞክሩ"
+msgstr "Skúsiť znova"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr "ሲም ካርድ አሁን ተቆልፏል"
+msgstr "SIM karta je uzamknutá"
 
 #: ../src/qml/MessagesListView.qml:71
 msgid "SMS"
-msgstr "ኤስ ኤም ኤስ"
+msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:84
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
-msgstr "ማስቀመጫ"
+msgstr "Uložiť"
 
 #: ../src/qml/NewRecipientPage.qml:104
 msgid "Search"
-msgstr "መፈለጊያ"
+msgstr "Hľadať"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
-msgstr "መፈለጊያ..."
+msgstr "Hľadať..."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
 msgid ""
 "Select a default SIM for all outgoing messages. You can always alter your "
 "choice in <a href=\"system_settings\">System Settings</a>."
 msgstr ""
-"ወደ ውጪ ለሚላኩ ጥሪዎች ነባር ሲም ይምረጡ: ምርጫዎትን በፈለጉ ጊዜ መቀየር ይችላሉ ከ <a "
-"href=\"ስርአት_ማሰናጃዎች\">ስርአት ማሰናጃዎች</a>."
+"Vyberte predvolenú SIM pre všetky odchádzajúce správy. Vždy to môžete zmeniť "
+"v <a href=\"system_settings\">Systémových nastaveniach</a>."
 
 #: ../src/qml/Messages.qml:987
 msgid "Send"
-msgstr "መላኪያ"
+msgstr "Poslať"
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
-msgstr "ተልኳል"
+msgstr "Odoslané"
 
 #: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
-msgstr "ማሰናጃዎች"
+msgstr "Nastavenia"
 
 #: ../src/qml/MMS/Previewer.qml:91
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
-msgstr "ማካፈያ"
+msgstr "Zdieľať"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
-msgstr "ሁኔታው"
+msgstr "Status"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr "ለማጥፋት ይጥረጉ"
+msgstr "Potiahnuť pre vymazanie"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr "ተግባሮቹን ለማየት ይጥረጉ"
+msgstr "Potiahnutím odhaliť akcie"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
-msgstr "መቀየሪያ ወደ ነባር ሲም:"
+msgstr "Prepnúť na predvolenú SIM:"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr "ለጊዜው ወድቋል"
+msgstr "Dočasne zlyhalo"
 
 #: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
 msgid "Text message copied to clipboard"
-msgstr "የ ጽሁፍ መልእክት ወደ ቁራጭ ሰሌዳ ኮፒ ተደርጓል"
+msgstr "Textová správa skopírovaná do schránky"
 
 #: ../src/qml/Messages.qml:948
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "አሁን ምንም ኔትዎርክ አልተገኘም በ %1"
+msgstr "Momentálne žiadna sieť %1"
 
 #: ../src/qml/Messages.qml:948
 msgid "There is currently no network."
-msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
+msgstr "Momentálne žiadna sieť."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
-msgstr "ለ"
+msgstr "Pre"
 
 #: ../src/qml/MultiRecipientInput.qml:148
 msgid "To:"
-msgstr "ለ:"
+msgstr "Pre:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
-msgstr "ዛሬ"
+msgstr "Dnes"
 
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
-msgstr "አይነት"
+msgstr "Typ"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr "ያልታወቀ"
+msgstr "Neznáme"
 
 #: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
-msgstr "ያልታወቀ ግንኙነት"
+msgstr "Neznámy kontakt"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
-msgstr "የ ቪዲዮ ቅድመ እይታ"
+msgstr "Náhľad videa"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr "ቪዲዮ ማያያዝ አይቻልም"
+msgstr "Video príloha nie je podporovaná"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "እንኳን ደህና መጡ ወደ እርስዎ የ ኡቡንቱ መልእክት መተግበሪያ"
+msgstr "Vitajte vo svojej Ubuntu aplikácií Správy."
 
 #: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."
-msgstr "መልእክት መጻፊያ..."
+msgstr "Napísať správu..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr "አዎ"
+msgstr "Áno"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
-msgstr "ትናንትና"
+msgstr "Včera"
 
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "You need to select a SIM card"
-msgstr "የ ሲም ካርድ መምረጥ አለብዎት"
+msgstr "Potrebujete zvoliť SIM kartu"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:77
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr "ቀይረዋል ወደ %1 @ %2"
-
-#~ msgid "Create new"
-#~ msgstr "አዲስ መፍጠሪያ"
-
-#~ msgid "+ Create New"
-#~ msgstr "+ አዲስ መፍጠሪያ"
+msgstr "Prepli ste na %1 @ %2"

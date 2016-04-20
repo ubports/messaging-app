@@ -17,11 +17,12 @@
  */
 
 import QtQuick 2.2
+import QtQuick.Window 2.2
 import Qt.labs.settings 1.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
-import Ubuntu.Content 0.1
+import Ubuntu.Content 1.3
 import Ubuntu.History 0.1
 import "Stickers"
 
@@ -43,6 +44,9 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property QtObject bottomEdge: null
     property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
+    property alias inputInfo: inputInfoObject
+
+    signal emptyStackRequested()
 
     activeFocusOnPress: false
 
@@ -146,7 +150,7 @@ MainView {
     }
 
     automaticOrientation: true
-    implicitWidth: units.gu(100)
+    implicitWidth: units.gu(90)
     implicitHeight: units.gu(71)
     anchorToKeyboard: false
 
@@ -157,8 +161,6 @@ MainView {
         // when running in windowed mode, do not allow resizing
         view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
         view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
-
-        emptyStack()
     }
 
     Connections {
@@ -229,14 +231,16 @@ MainView {
     }
 
     function emptyStack() {
+        mainView.emptyStackRequested()
         mainStack.removePage(mainPage)
         layout.deleteInstances()
         showEmptyState()
+        mainPage.displayedThreadIndex = -1
     }
 
     function showEmptyState() {
-        if (mainStack.columns > 1) {
-            layout.addComponentToNextColumnSync(mainStack.primaryPage, emptyStatePageComponent)
+        if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
+            layout.addComponentToNextColumnSync(mainPage, emptyStatePageComponent)
         }
     }
 
@@ -293,7 +297,7 @@ MainView {
     }
 
     InputInfo {
-        id: inputInfo
+        id: inputInfoObject
     }
 
     // WORKAROUND: Due the missing feature on SDK, they can not detect if
@@ -340,6 +344,31 @@ MainView {
         id: emptyStatePageComponent
         Page {
             id: emptyStatePage
+            objectName: "emptyStatePage"
+
+            function deleteMe() {
+                emptyStatePage.destroy(1)
+                emptyStatePage.objectName = ""
+            }
+
+            Connections {
+                target: layout
+                onColumnsChanged: {
+                    if (layout.columns == 1) {
+                        emptyStatePage.deleteMe()
+                        if (!application.findMessagingChild("fakeItem")) {
+                            layout.removePage(mainPage)
+                        }
+                    }
+                }
+            }
+
+            Connections {
+                target: mainView
+                onEmptyStackRequested: {
+                    emptyStatePage.deleteMe()
+                }
+            }
 
             EmptyState {
                 labelVisible: false
@@ -367,9 +396,14 @@ MainView {
 
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
-            if (mainPage.displayedThreadIndex < 0) {
+            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 layout.removePage(mainPage)
-                showEmptyState()
+                emptyStack()
+            }
+        }
+        Component.onCompleted: {
+            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
+                emptyStack()
             }
         }
     }
