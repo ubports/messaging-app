@@ -1,3 +1,13 @@
+messaging-app (0.1+16.04.20160421-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed vcard preview header. (LP: #1572758)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 21 Apr 2016 04:19:36 +0000
+
 messaging-app (0.1+16.04.20160328-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
