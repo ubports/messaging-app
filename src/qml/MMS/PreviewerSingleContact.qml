@@ -23,13 +23,14 @@ import "../"
 Previewer {
     id: root
 
-    title: contactView.title
+    title: contactView.header.title
     flickable: contactView.flickable
 
     MessagingContactViewPage {
         id: contactView
 
-        header: Item { height: 0 }
+        header.height: 0
+        header.visible: false
         contact: thumbnail.vcard.contacts.length > 0 ? thumbnail.vcard.contacts[0] : null
         editable: false
         anchors.fill: parent
