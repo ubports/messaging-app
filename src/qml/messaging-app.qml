@@ -252,17 +252,13 @@ MainView {
 
     function startChat(properties) {
         var participantIds = []
-        var threadId = ""
         var accountId = ""
         var chatType = 0
-        var match = HistoryThreadModel.MatchCaseSensitive;
+        var match = HistoryThreadModel.MatchCaseSensitive
 
         if (properties.hasOwnProperty("participantIds")) {
+            properties["participants"] = properties["participantIds"]
             participantIds = properties["participantIds"]
-        }
-
-        if (properties.hasOwnProperty("threadId")) {
-            threadId = properties["threadId"]
         }
 
         // fallback account if none is provided
@@ -277,7 +273,7 @@ MainView {
 
         if (accountId != "") {
             var tmpAccount = telepathyHelper.accountForId(accountId)
-            if (tmpAccount && (tmpAccount.type == AccountEntry.PhoneAccount || AccountEntry.MultimediaAccount)) {
+            if (tmpAccount && (tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)) {
                 match = HistoryThreadModel.MatchPhoneNumber
             }
         } else {
