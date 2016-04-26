@@ -62,15 +62,10 @@ Page {
         if (!account) {
             return null
         } else {
-            var properties = {}
-            properties["Participants"] = participantIds
-            if (messages.threads.length > 0) {
-                properties["ChatType"] = messages.chatType
-                if (messages.chatType == 2) {
-                    properties["RoomName"] = messages.threadId
-                }
+            if (threads.length > 0) {
+                return chatManager.chatEntryForProperties(account.accountId, threads[0], true)
             }
-            return chatManager.chatEntryForProperties(account.accountId, properties, true)
+            return null
         }
     }
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
@@ -295,11 +290,11 @@ Page {
             newParticipants.push(String(participantIds[i]))
         }
         if (messages.threads.length > 0) {
-            properties["ChatType"] = messages.chatType
+            properties["chatType"] = messages.chatType
             if (messages.chatType == 2) {
-                properties["RoomName"] = messages.threadId
+                properties["threadId"] = messages.threadId
             } else {
-                properties["Participants"] = newParticipants
+                properties["participantIds"] = newParticipants
             }
         }
 
