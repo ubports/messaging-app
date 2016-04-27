@@ -237,7 +237,7 @@ Page {
         }
 
         if (!found) {
-            messages.threads.push({"accountId": newAccountId, "threadId": threadId})
+            messages.threads.push(thread)
             reloadFilters = !reloadFilters
         }
 
@@ -285,18 +285,17 @@ Page {
             return false
         }
 
-        var newParticipants = []
-        for (var i in participantIds) {
-            newParticipants.push(String(participantIds[i]))
-        }
         if (messages.threads.length > 0) {
             properties["chatType"] = messages.chatType
-            if (messages.chatType == 2) {
-                properties["threadId"] = messages.threadId
-            } else {
-                properties["participantIds"] = newParticipants
-            }
+            properties["threadId"] = messages.threadId
         }
+
+        var newParticipantsIds = []
+        for (var i in participantIds) {
+            newParticipantsIds.push(String(participantIds[i]))
+        }
+
+        properties["participantIds"] = newParticipantsIds
 
         // create the new thread and update the threadId list
         var thread = addNewThreadToFilter(messages.account.accountId, properties)
@@ -314,7 +313,7 @@ Page {
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      thread.threadId,
-                                                     participantIds,
+                                                     newParticipantsIds,
                                                      "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
@@ -363,7 +362,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+            var isMmsGroupChat = newParticipantsIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
