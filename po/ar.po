@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2016-04-13 05:42+0000\n"
-"X-Generator: Launchpad (build 17990)\n"
+"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -130,7 +130,7 @@ msgstr "إرفاق الصوت غير مدعوم"
 msgid "Call"
 msgstr "اتصل"
 
-#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
@@ -327,8 +327,8 @@ msgstr "بطاقة SIM مقفلة"
 msgid "SMS"
 msgstr "رسالة قصيرة"
 
-#: ../src/qml/MMS/Previewer.qml:84
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
+#: ../src/qml/MMS/Previewer.qml:86
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "حفظ"
@@ -361,8 +361,8 @@ msgstr "مرسلة"
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: ../src/qml/MMS/Previewer.qml:91
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
+#: ../src/qml/MMS/Previewer.qml:93
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
 msgstr "مشاركة"

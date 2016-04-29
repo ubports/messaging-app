@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-04-13 05:42+0000\n"
-"X-Generator: Launchpad (build 17990)\n"
+"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -94,7 +94,7 @@ msgstr "មិនគាំទ្រឯកសារភ្ជាប់អូឌី
 msgid "Call"
 msgstr "ហៅ"
 
-#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
@@ -143,7 +143,7 @@ msgstr "កុំ​សួរ​ម្ដងទៀត"
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
-msgstr ""
+msgstr "កែសម្រួល"
 
 #: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
@@ -291,8 +291,8 @@ msgstr "ស៊ី​ម​កាត​ត្រូវ​បាន​ចាក់
 msgid "SMS"
 msgstr "សារ SMS"
 
-#: ../src/qml/MMS/Previewer.qml:84
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
+#: ../src/qml/MMS/Previewer.qml:86
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "រក្សា​​ទុក​​"
@@ -326,8 +326,8 @@ msgstr "បានផ្ញើ"
 msgid "Settings"
 msgstr ""
 
-#: ../src/qml/MMS/Previewer.qml:91
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
+#: ../src/qml/MMS/Previewer.qml:93
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
 msgstr "ចែក​រំលែក"
