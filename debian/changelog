@@ -1,3 +1,11 @@
+messaging-app (0.1+16.04.20160429-0ubuntu1) xenial; urgency=medium
+
+  [ Gerry Boland, Michał Sawicz ]
+  * Tweaks to support dynamic grid units better: MainView implicit
+    sizing and min/max size change on GU update
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Fri, 29 Apr 2016 21:11:18 +0000
+
 messaging-app (0.1+16.04.20160421-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
