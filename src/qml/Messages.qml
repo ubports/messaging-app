@@ -40,8 +40,14 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : 0
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
-    property variant participants: []
-    property variant participantIds: []
+    property variant participants: threads.length > 0 ? threads[0].participants : []
+    property variant participantIds: {
+        var ids = []
+        for (var i in participants) {
+            ids.push(participants[i].identifier)
+        }
+        return ids
+    }
     property bool groupChat: chatType == 2 || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
@@ -671,7 +677,7 @@ Page {
             // NOTE: in case the state name is changed here, the bottom edge component needs
             // to be updated too
             name: "newMessage"
-            when: participants.length === 0
+            when: participants.length === 0 && chatType != 2
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -799,6 +805,15 @@ Page {
             messages.phoneAccount = Qt.binding(isPhoneAccount)
             headerSections.model = Qt.binding(getSectionsModel)
             headerSections.selectedIndex = Qt.binding(getSelectedIndex)
+
+            if (threads.length == 0) {
+                var properties = {"chatType": chatType,
+                                  "accountId": accountId,
+                                  "threadId": threadId,
+                                  "participantIds": participantIds}
+                messages.threads = getThreadsForProperties(properties)
+            }
+            messages.reloadFilters = !messages.reloadFilters
         }
     }
 
@@ -919,7 +934,7 @@ Page {
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
-            if (!account) {
+            if (!account || chatType != 1) {
                 return ""
             }
             if (account.type == AccountEntry.PhoneAccount) {
