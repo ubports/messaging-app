@@ -92,6 +92,9 @@ Item {
            chatManager.messageSent(accountId, participantIds, text, attachments, properties)
            return accountId
         }
+        function chatEntryForParticipants(accountId, participantIds) {
+            return null
+        }
     }
 
     Loader {
@@ -150,13 +153,10 @@ Item {
             var textArea = findChild(messagesView, "messageTextArea")
             var contactSearchInput = findChild(messagesView, "contactSearchInput")
             var sendButton = findChild(messagesView, "sendButton")
+            contactSearchInput.text = "123"
             textArea.text = "test text"
-            contactSearchInput.text = "123456"
-            var swipeDemoButton = findChild(messagesView, "gotItButton")
-            if (swipeDemoButton != null) {
-                mouseClick(swipeDemoButton)
-            }
-            mouseClick(sendButton)
+            // on vivid mouseClick() does not work here
+            sendButton.clicked()
             tryCompare(messageSentSpy, 'count', 1)
             tryCompare(telepathyHelper.defaultMessagingAccount, 'accountId', messageSentSpy.signalArguments[0][0])
         }
