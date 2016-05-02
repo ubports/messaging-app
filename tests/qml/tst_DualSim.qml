@@ -152,6 +152,10 @@ Item {
             var sendButton = findChild(messagesView, "sendButton")
             textArea.text = "test text"
             contactSearchInput.text = "123456"
+            var swipeDemoButton = findChild(messagesView, "gotItButton")
+            if (swipeDemoButton != null) {
+                mouseClick(swipeDemoButton)
+            }
             mouseClick(sendButton)
             tryCompare(messageSentSpy, 'count', 1)
             tryCompare(telepathyHelper.defaultMessagingAccount, 'accountId', messageSentSpy.signalArguments[0][0])
