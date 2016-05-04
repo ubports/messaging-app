@@ -67,6 +67,7 @@ Page {
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
+    property bool newMessage: false
 
     // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
     property var basePage: messages
@@ -76,10 +77,16 @@ Page {
     signal ready
     signal cancel
 
+    function restoreBindings() {
+        messages.account = Qt.binding(getCurrentAccount)
+        messages.phoneAccount = Qt.binding(isPhoneAccount)
+        headerSections.selectedIndex = Qt.binding(getSelectedIndex)
+    }
+
     function getAccountsModel() {
         var accounts = []
         // on new chat dialogs display all possible accounts
-        if (accountId == "" && participants.length === 0) {
+        if (newMessage) {
             for (var i in telepathyHelper.activeAccounts) {
                 accounts.push(telepathyHelper.activeAccounts[i])
             }
@@ -123,7 +130,7 @@ Page {
     }
 
     function getSelectedIndex() {
-        if (accountId == "" && participants.length === 0) {
+        if (newMessage) {
             // if this is a new message, just pre select the the 
             // default phone account for messages if available
             if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
@@ -339,7 +346,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMmsGroupChat = participants.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
@@ -352,6 +359,14 @@ Page {
             if (fallbackAccountId != messages.account.accountId) {
                 addNewThreadToFilter(fallbackAccountId, participantIds)
             }
+        }
+
+        if (newMessage) {
+            newMessage = false
+            var currentIndex = headerSections.selectedIndex
+            headerSections.model = getSectionsModel()
+            restoreBindings()
+            headerSections.selectedIndex = currentIndex
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
@@ -491,6 +506,8 @@ Page {
                     messages.account = messages.accountsModel[selectedIndex]
                 }
             }
+            // force break the binding, so the index doesn't get reset
+            Component.onCompleted: model = getSectionsModel()
         }
 
         extension: headerSections.model.length > 1 ? headerSections : null
@@ -635,7 +652,7 @@ Page {
             // NOTE: in case the state name is changed here, the bottom edge component needs
             // to be updated too
             name: "newMessage"
-            when: participants.length === 0
+            when: messages.newMessage
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -722,6 +739,8 @@ Page {
                 }
             }
         }
+        newMessage = (messages.accountId == "" && messages.participants.length === 0)
+        restoreBindings()
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
     }
@@ -759,10 +778,8 @@ Page {
         target: telepathyHelper
         onSetupReady: {
             // force reevaluation
-            messages.account = Qt.binding(getCurrentAccount)
-            messages.phoneAccount = Qt.binding(isPhoneAccount)
-            headerSections.model = Qt.binding(getSectionsModel)
-            headerSections.selectedIndex = Qt.binding(getSelectedIndex)
+            headerSections.model = getSectionsModel()
+            restoreBindings()
         }
     }
 
@@ -1157,7 +1174,6 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
-                headerSections.selectedIndex = Qt.binding(getSelectedIndex)
             }
 
             var newAttachments = []
