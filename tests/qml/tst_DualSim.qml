@@ -69,7 +69,7 @@ Item {
         id: telepathyHelper
         property var activeAccounts: [testAccount, testAccount2]
         property alias accounts: telepathyHelper.activeAccounts
-        property QtObject defaultMessagingAccount: testAccount2
+        property QtObject defaultMessagingAccount: null
         function registerChannelObserver() {}
         function unregisterChannelObserver() {}
         function accountForId(accountId) {
@@ -99,6 +99,7 @@ Item {
 
     Loader {
         id: mainViewLoader
+        active: false
         property string i18nDirectory: ""
         source: '../../src/qml/messaging-app.qml'
     }
@@ -143,7 +144,70 @@ Item {
         function cleanup() {
         }
 
-        function test_dualSim() {
+        function test_checkDefaultSimSelected() {
+            mainViewLoader.active = false
+            mainViewLoader.active = true
+            tryCompare(mainViewLoader.item, 'applicationActive', true)
+
+            mainViewLoader.item.startNewMessage()
+            wait(1000)
+
+            var messagesView = findChild(mainViewLoader, "messagesPage")
+            var headerSections = findChild(messagesView, "headerSections")
+            compare(headerSections.selectedIndex, -1)
+
+            var sendButton = findChild(messagesView, "sendButton")
+            var textArea = findChild(messagesView, "messageTextArea")
+            var contactSearchInput = findChild(messagesView, "contactSearchInput")
+            contactSearchInput.text = "123"
+            textArea.text = "test text"
+            // on vivid mouseClick() does not work here
+            sendButton.clicked()
+
+            var dialogButton = findChild(root, "closeNoSimCardSelectedDialog")
+            compare(dialogButton == null, false)
+            mouseClick(dialogButton)
+
+            telepathyHelper.defaultMessagingAccount = testAccount
+            mainViewLoader.active = false
+            mainViewLoader.active = true
+            tryCompare(mainViewLoader.item, 'applicationActive', true)
+
+            mainViewLoader.item.startNewMessage()
+            wait(1000)
+
+            messagesView = findChild(mainViewLoader, "messagesPage")
+            headerSections = findChild(messagesView, "headerSections")
+
+            compare(headerSections.selectedIndex, 0)
+
+            telepathyHelper.defaultMessagingAccount = testAccount2
+            mainViewLoader.active = false
+            mainViewLoader.active = true
+            tryCompare(mainViewLoader.item, 'applicationActive', true)
+
+            mainViewLoader.item.startNewMessage()
+            wait(1000)
+
+            messagesView = findChild(mainViewLoader, "messagesPage")
+            headerSections = findChild(messagesView, "headerSections")
+
+            compare(headerSections.selectedIndex, 1)
+
+            mainViewLoader.item.startChat("123", "", testAccount.accountId)
+            wait(1000)
+
+            messagesView = findChild(mainViewLoader, "messagesPage")
+            headerSections = findChild(messagesView, "headerSections")
+            compare(headerSections.selectedIndex, 1)
+
+        }
+
+        function test_messageSentViaRightSim() {
+            telepathyHelper.defaultMessagingAccount = testAccount2
+            mainViewLoader.active = false
+            mainViewLoader.active = true
+
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
             mainViewLoader.item.startNewMessage()

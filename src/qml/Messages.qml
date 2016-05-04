@@ -482,6 +482,7 @@ Page {
 
         Sections {
             id: headerSections
+            objectName: "headerSections"
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
