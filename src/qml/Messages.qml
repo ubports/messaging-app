@@ -90,10 +90,6 @@ Page {
             for (var i in telepathyHelper.activeAccounts) {
                 accounts.push(telepathyHelper.activeAccounts[i])
             }
-            // suru divider must be empty if there is only one sim card
-            if (accounts.length == 1 && accounts[0].type == AccountEntry.PhoneAccount) {
-                return []
-            }
             return accounts
         }
  
