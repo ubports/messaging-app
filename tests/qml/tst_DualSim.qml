@@ -150,7 +150,7 @@ Item {
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
             mainViewLoader.item.startNewMessage()
-            wait(1000)
+            wait(1500)
 
             var messagesView = findChild(mainViewLoader, "messagesPage")
             var headerSections = findChild(messagesView, "headerSections")
@@ -174,7 +174,7 @@ Item {
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
             mainViewLoader.item.startNewMessage()
-            wait(1000)
+            wait(1500)
 
             messagesView = findChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
@@ -187,7 +187,7 @@ Item {
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
             mainViewLoader.item.startNewMessage()
-            wait(1000)
+            wait(1500)
 
             messagesView = findChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
@@ -195,7 +195,7 @@ Item {
             compare(headerSections.selectedIndex, 1)
 
             mainViewLoader.item.startChat("123", "", testAccount.accountId)
-            wait(1000)
+            wait(1500)
 
             messagesView = findChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
@@ -211,7 +211,7 @@ Item {
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
             mainViewLoader.item.startNewMessage()
-            wait(1000)
+            wait(1500)
 
             var messagesView = findChild(mainViewLoader, "messagesPage")
             var textArea = findChild(messagesView, "messageTextArea")
