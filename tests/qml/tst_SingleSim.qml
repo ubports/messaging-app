@@ -137,7 +137,7 @@ Item {
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
             mainViewLoader.item.startNewMessage()
-            wait(1500)
+            waitForRendering(mainViewLoader.item)
 
             var messagesView = findChild(mainViewLoader, "messagesPage")
             var textArea = findChild(messagesView, "messageTextArea")
