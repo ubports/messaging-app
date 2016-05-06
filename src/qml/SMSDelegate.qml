@@ -31,9 +31,10 @@ MessageDelegate {
 
     function resendMessage()
     {
-        eventModel.removeEvents([root.messageData.properties]);
         // FIXME: export this information for MessageDelegate
-        messages.sendMessage(textMessage, messages.participantIds, [])
+        if (messages.sendMessage(textMessage, messages.participantIds, [])) {
+            eventModel.removeEvents([root.messageData.properties]);
+        }
     }
 
     function copyMessage()

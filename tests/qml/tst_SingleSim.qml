@@ -51,23 +51,9 @@ Item {
         property var addressableVCardFields: ["tel"]
     }
 
-    QtObject {
-        id: testAccount2
-        property string accountId: "ofono/ofono/account1"
-        property var emergencyNumbers: [ "444", "555"]
-        property int type: AccountEntry.PhoneAccount
-        property string displayName: "SIM 2"
-        property bool connected: true
-        property bool emergencyCallsAvailable: true
-        property bool active: true
-        property string networkName: "Network name 2"
-        property bool simLocked: false
-        property var addressableVCardFields: ["tel"]
-    }
-
     Item {
         id: telepathyHelper
-        property var activeAccounts: [testAccount, testAccount2]
+        property var activeAccounts: [testAccount]
         property alias accounts: telepathyHelper.activeAccounts
         property QtObject defaultMessagingAccount: null
         function registerChannelObserver() {}
@@ -111,8 +97,8 @@ Item {
     }
 
     UbuntuTestCase {
-        id: dualSim
-        name: 'dualSim'
+        id: singleSim
+        name: 'singleSim'
 
         when: windowShown
 
@@ -144,68 +130,7 @@ Item {
         function cleanup() {
         }
 
-        function test_checkDefaultSimSelected() {
-            mainViewLoader.active = false
-            mainViewLoader.active = true
-            tryCompare(mainViewLoader.item, 'applicationActive', true)
-
-            mainViewLoader.item.startNewMessage()
-            waitForRendering(mainViewLoader.item)
-
-            var messagesView = findChild(mainViewLoader, "messagesPage")
-            var headerSections = findChild(messagesView, "headerSections")
-            compare(headerSections.selectedIndex, -1)
-
-            var sendButton = findChild(messagesView, "sendButton")
-            var textArea = findChild(messagesView, "messageTextArea")
-            var contactSearchInput = findChild(messagesView, "contactSearchInput")
-            contactSearchInput.text = "123"
-            textArea.text = "test text"
-            // on vivid mouseClick() does not work here
-            sendButton.clicked()
-
-            var dialogButton = findChild(root, "closeNoSimCardSelectedDialog")
-            compare(dialogButton == null, false)
-            mouseClick(dialogButton)
-
-            telepathyHelper.defaultMessagingAccount = testAccount
-            mainViewLoader.active = false
-            mainViewLoader.active = true
-            tryCompare(mainViewLoader.item, 'applicationActive', true)
-
-            mainViewLoader.item.startNewMessage()
-            waitForRendering(mainViewLoader.item)
-
-            messagesView = findChild(mainViewLoader, "messagesPage")
-            headerSections = findChild(messagesView, "headerSections")
-
-            compare(headerSections.selectedIndex, 0)
-
-            telepathyHelper.defaultMessagingAccount = testAccount2
-            mainViewLoader.active = false
-            mainViewLoader.active = true
-            tryCompare(mainViewLoader.item, 'applicationActive', true)
-
-            mainViewLoader.item.startNewMessage()
-            waitForRendering(mainViewLoader.item)
-
-
-            messagesView = findChild(mainViewLoader, "messagesPage")
-            headerSections = findChild(messagesView, "headerSections")
-
-            compare(headerSections.selectedIndex, 1)
-
-            mainViewLoader.item.startChat("123", "", testAccount.accountId)
-            waitForRendering(mainViewLoader.item)
-
-            messagesView = findChild(mainViewLoader, "messagesPage")
-            headerSections = findChild(messagesView, "headerSections")
-            compare(headerSections.selectedIndex, 1)
-
-        }
-
-        function test_messageSentViaRightSim() {
-            telepathyHelper.defaultMessagingAccount = testAccount2
+        function test_messageSentViaOnlySim() {
             mainViewLoader.active = false
             mainViewLoader.active = true
 
@@ -223,7 +148,7 @@ Item {
             // on vivid mouseClick() does not work here
             sendButton.clicked()
             tryCompare(messageSentSpy, 'count', 1)
-            tryCompare(telepathyHelper.defaultMessagingAccount, 'accountId', messageSentSpy.signalArguments[0][0])
+            tryCompare(testAccount, 'accountId', messageSentSpy.signalArguments[0][0])
         }
     }
 }

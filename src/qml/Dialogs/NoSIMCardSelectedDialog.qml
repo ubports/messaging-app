@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 1.3
 Component {
     Dialog {
         id: dialogue
+        objectName: "noSimCardSelectedDialog"
         title: i18n.tr("No SIM card selected")
         text: i18n.tr("You need to select a SIM card")
         Button {

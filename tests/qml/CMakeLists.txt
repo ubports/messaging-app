@@ -39,6 +39,7 @@ include_directories(
 )
 
 add_test(DualSim ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_DualSim.qml)
+add_test(SingleSim ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_SingleSim.qml)
 add_test(MessageBubble ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessageBubble.qml)
 add_test(MessagesView ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessagesView.qml)
 add_test(MMSDelegate ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MMSDelegate.qml)
