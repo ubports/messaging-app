@@ -802,6 +802,7 @@ Page {
                 return
             }
             messages.account = mainView.account
+            headerSections.selectedIndex = getSelectedIndex()
         }
 
         onApplicationActiveChanged: {
