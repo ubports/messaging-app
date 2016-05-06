@@ -26,6 +26,8 @@ Page {
 
     property variant attachment
     property variant thumbnail
+    property alias title: pageHeader.title
+    property alias flickable: pageHeader.flickable
 
     signal actionTriggered
 

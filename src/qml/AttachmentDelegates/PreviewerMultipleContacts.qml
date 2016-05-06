@@ -39,11 +39,13 @@ Previewer {
     }
 
     title: thumbnail.title
+    flickable: contactList
+
     MultipleSelectionListView {
         id: contactList
 
         anchors {
-            top: root.header.bottom
+            top: parent.top
             bottom: parent.bottom
             left: parent.left
             right: parent.right

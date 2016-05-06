@@ -150,8 +150,8 @@ MainView {
     }
 
     automaticOrientation: true
-    width: units.gu(90)
-    height: units.gu(71)
+    implicitWidth: units.gu(90)
+    implicitHeight: units.gu(71)
     anchorToKeyboard: false
 
     Component.onCompleted: {
@@ -159,8 +159,8 @@ MainView {
         i18n.bindtextdomain("messaging-app", i18nDirectory)
 
         // when running in windowed mode, do not allow resizing
-        view.minimumWidth  = units.gu(40)
-        view.minimumHeight = units.gu(60)
+        view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
+        view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
     }
 
     Connections {

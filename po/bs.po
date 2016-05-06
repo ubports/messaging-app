@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -109,10 +109,10 @@ msgstr "Audio prilog nije podržan"
 msgid "Call"
 msgstr "Poziv"
 
-#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "Otkaži"
 
@@ -158,11 +158,11 @@ msgstr "Ne pitaj ponovo"
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
-msgstr ""
+msgstr "Promijeni"
 
-#: ../src/qml/SettingsPage.qml:29
+#: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Omogući MMS grupni razgovor"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -186,7 +186,7 @@ msgstr "Od"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "Primljeno"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
@@ -307,8 +307,8 @@ msgstr "SIM kartica je zaključana"
 msgid "SMS"
 msgstr "SMS"
 
-#: ../src/qml/MMS/Previewer.qml:84
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
+#: ../src/qml/MMS/Previewer.qml:86
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "Snimi"
@@ -337,12 +337,12 @@ msgstr "Pošalji"
 msgid "Sent"
 msgstr "Poslano"
 
-#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
-msgstr ""
+msgstr "postavke"
 
-#: ../src/qml/MMS/Previewer.qml:91
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
+#: ../src/qml/MMS/Previewer.qml:93
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
 msgstr "Podijeli"
@@ -353,11 +353,11 @@ msgstr "Status"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Pritisni da obrišeš"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Pritisni da otvoriš nove mogućnosti"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Switch to default SIM:"
@@ -414,7 +414,7 @@ msgstr "Video prilog nije podržan"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Dobrodošli na vašu Ubuntu aplikaciju za dopisivanje!"
 
 #: ../src/qml/ComposeBar.qml:417
 msgid "Write a message..."

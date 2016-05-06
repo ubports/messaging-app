@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-03-26 05:43+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -94,10 +94,10 @@ msgstr "음악을 첨부할 수 없습니다."
 msgid "Call"
 msgstr "전화"
 
-#: ../src/qml/MMS/Previewer.qml:60 ../src/qml/MainPage.qml:128
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
 #: ../src/qml/MessagingContactEditorPage.qml:34
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:58
+#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "취소"
 
@@ -145,7 +145,7 @@ msgstr "다시 묻지 않기"
 msgid "Edit"
 msgstr "편집"
 
-#: ../src/qml/SettingsPage.qml:29
+#: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
 msgstr "MMS 그룹 채팅 활성화"
 
@@ -290,8 +290,8 @@ msgstr "심 카드가 잠져있습니다."
 msgid "SMS"
 msgstr "단문 메시지 서비스(SMS)"
 
-#: ../src/qml/MMS/Previewer.qml:84
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:88
+#: ../src/qml/MMS/Previewer.qml:86
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
 #: ../src/qml/MessagingContactEditorPage.qml:46
 msgid "Save"
 msgstr "저장"
@@ -320,12 +320,12 @@ msgstr "보내기"
 msgid "Sent"
 msgstr "보냄"
 
-#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
 msgstr "설정"
 
-#: ../src/qml/MMS/Previewer.qml:91
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:96
+#: ../src/qml/MMS/Previewer.qml:93
+#: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
 msgstr "공유"

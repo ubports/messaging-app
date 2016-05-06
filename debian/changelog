@@ -1,3 +1,38 @@
+messaging-app (0.1+16.04.20160504-0ubuntu1) xenial; urgency=medium
+
+  * Do not use bindings on sections model to avoid the index getting
+    reset. (LP: #1571686)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 04 May 2016 03:13:45 +0000
+
+messaging-app (0.1+16.04.20160429-0ubuntu1) xenial; urgency=medium
+
+  [ Gerry Boland, Michał Sawicz ]
+  * Tweaks to support dynamic grid units better: MainView implicit
+    sizing and min/max size change on GU update
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Fri, 29 Apr 2016 21:11:18 +0000
+
+messaging-app (0.1+16.04.20160421-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed vcard preview header. (LP: #1572758)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 21 Apr 2016 04:19:36 +0000
+
+messaging-app (0.1+16.04.20160328-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Tiago Salem Herrmann ]
+  * Move properties from gsettings to accounts service, (LP: #1418040)
+
+ -- Alfonso Sanchez-Beato <alfonso.sanchez-beato@canonical.com>  Mon, 28 Mar 2016 13:38:04 +0000
+
 messaging-app (0.1+16.04.20160323-0ubuntu1) xenial; urgency=medium
 
   [ Arthur Mello, Tiago Salem Herrmann ]
