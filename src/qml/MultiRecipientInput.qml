@@ -36,6 +36,48 @@ StyledItem {
 
     signal forceFocus()
 
+    function finalAccountId(account) {
+        if (!telepathyHelper.ready) {
+            return ""
+        }
+        if (!account) {
+            return ""
+        }
+        if (account.type == AccountEntry.PhoneAccount) {
+            for (var i in telepathyHelper.accounts) {
+                var tmpAccount = telepathyHelper.accounts[i]
+                if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                    return tmpAccount.accountId
+                }
+            }
+            return ""
+        }
+        return account.accountId
+    }
+
+    // this helper forces creating handles and getting the current online status
+    PresenceRequest {
+        id: presenceRequestHelper
+        accountId: finalAccountId(messages.accountsModel[headerSections.selectedIndex])
+        identifier: ""
+    }
+
+    Connections {
+       target: headerSections
+       onSelectedIndexChanged: {
+            if (headerSections.selectedIndex == -1) {
+                return
+            }
+            for (var i = 0; i<recipientModel.count; i++) {
+                var id = recipientModel.get(i).identifier
+                if (id == "") {
+                    continue
+                }
+                presenceRequestHelper.identifier = id
+            }
+        }
+    }
+
     MouseArea {
         anchors.fill: parent
         enabled: parent.focus === false
@@ -54,7 +96,7 @@ StyledItem {
 
         recipientModel.insert(recipientCount, { "identifier": identifier })
         scrollableArea.contentX = contactFlow.width
-
+        presenceRequestHelper.identifier = identifier
     }
 
     Behavior on height {
