@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
+"X-Generator: Launchpad (build 18025)\n"
 "Language: gd\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr[1] "Gairm %1 dhiog"
 msgstr[2] "Gairm %1 diogan"
 msgstr[3] "Gairm %1 diog"
 
-#: ../src/qml/MessagingBottomEdge.qml:18
+#: ../src/qml/MessagingBottomEdge.qml:36
 msgid "+"
 msgstr "+"
 
@@ -61,7 +61,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Air a ghabhail ris"
 
-#: ../src/qml/Messages.qml:619
+#: ../src/qml/Messages.qml:636
 msgid "Add"
 msgstr "Cuir ris"
 
@@ -113,12 +113,12 @@ msgstr[3] "Ceanglachain: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain fuaime"
 
-#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
 msgid "Call"
 msgstr "Gairm"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -133,16 +133,16 @@ msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
 msgid "Close"
 msgstr "Dùin"
 
-#: ../src/qml/EmptyState.qml:32
+#: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Grad-shlaighd suas o bhonn na sgrìn gus teachdaireachd ùr a sgrìobhadh."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
 msgid "Contact"
 msgstr "Neach-aithne"
 
@@ -203,7 +203,7 @@ msgid "Group"
 msgstr "Buidheann"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:593
+#: ../src/qml/Messages.qml:610
 #, qt-format
 msgid "Group (%1)"
 msgstr "Buidheann (%1)"
@@ -257,7 +257,7 @@ msgstr "Tha dàta na teachdaireachd a dhìth"
 msgid "Myself"
 msgstr "Mi fhìn"
 
-#: ../src/qml/Messages.qml:474
+#: ../src/qml/Messages.qml:489
 msgid "New Message"
 msgstr "Teachdaireachd ùr"
 
@@ -269,7 +269,7 @@ msgstr "Chan eil"
 msgid "No SIM card selected"
 msgstr "Cha deach cairt SIM a thaghadh"
 
-#: ../src/qml/Messages.qml:947
+#: ../src/qml/Messages.qml:964
 msgid "No network"
 msgstr "Chan eil lìonra ann"
 
@@ -383,12 +383,12 @@ msgstr "Dh'fhàillig leis gu sealach"
 msgid "Text message copied to clipboard"
 msgstr "Chaidh lethbhreac dhen teachdaireachd a chur air an stòr-bhòrd"
 
-#: ../src/qml/Messages.qml:948
+#: ../src/qml/Messages.qml:965
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Chan eil lìonra air %1 an-dràsta"
 
-#: ../src/qml/Messages.qml:948
+#: ../src/qml/Messages.qml:965
 msgid "There is currently no network."
 msgstr "Chan eil lìonra ann an-dràsta."
 
