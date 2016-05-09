@@ -53,7 +53,7 @@ MainView {
     function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
-        if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
+        if (multiplePhoneAccounts) {
             return telepathyHelper.defaultMessagingAccount
         } else {
             for (var i in telepathyHelper.activeAccounts) {

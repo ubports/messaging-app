@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
+"X-Generator: Launchpad (build 18025)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -49,7 +49,7 @@ msgstr[0] "Позив од %1 секунде"
 msgstr[1] "Позив од %1 секунде"
 msgstr[2] "Позив од %1 секунди"
 
-#: ../src/qml/MessagingBottomEdge.qml:18
+#: ../src/qml/MessagingBottomEdge.qml:36
 msgid "+"
 msgstr "+"
 
@@ -57,7 +57,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Прихваћено"
 
-#: ../src/qml/Messages.qml:619
+#: ../src/qml/Messages.qml:636
 msgid "Add"
 msgstr "Додај"
 
@@ -105,12 +105,12 @@ msgstr[2] "Прилози: %1 видеа"
 msgid "Audio attachment not supported"
 msgstr "Звучни прилог није подржан"
 
-#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
 msgid "Call"
 msgstr "Позови"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -124,15 +124,15 @@ msgstr "Пребаците све поруке телефона на %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
 msgid "Close"
 msgstr "Затвори"
 
-#: ../src/qml/EmptyState.qml:32
+#: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Састави нову поруку повлачењем на горе са дна екрана."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
 msgid "Contact"
 msgstr "Контакт"
 
@@ -193,7 +193,7 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:593
+#: ../src/qml/Messages.qml:610
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
@@ -246,7 +246,7 @@ msgstr "Недостају подаци поруке"
 msgid "Myself"
 msgstr "Ја"
 
-#: ../src/qml/Messages.qml:474
+#: ../src/qml/Messages.qml:489
 msgid "New Message"
 msgstr "Нова порука"
 
@@ -258,7 +258,7 @@ msgstr "Не"
 msgid "No SIM card selected"
 msgstr "Није изабрана СИМ картица"
 
-#: ../src/qml/Messages.qml:947
+#: ../src/qml/Messages.qml:964
 msgid "No network"
 msgstr "Нема мреже"
 
@@ -371,12 +371,12 @@ msgstr "Привремени неуспех"
 msgid "Text message copied to clipboard"
 msgstr "Текстуална порука је умножена у оставу"
 
-#: ../src/qml/Messages.qml:948
+#: ../src/qml/Messages.qml:965
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Тренутно нема мреже на %1"
 
-#: ../src/qml/Messages.qml:948
+#: ../src/qml/Messages.qml:965
 msgid "There is currently no network."
 msgstr "Тренутно нема мреже."
 

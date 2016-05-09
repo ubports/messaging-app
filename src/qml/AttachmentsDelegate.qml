@@ -59,6 +59,42 @@ Column {
         }
     }
 
+    function deleteMessage()
+    {
+        eventModel.removeEvents([messageData.properties]);
+    }
+
+    function resendMessage()
+    {
+        var newAttachments = []
+        for (var i = 0; i < attachments.length; i++) {
+            var attachment = []
+            var item = attachments[i]
+            // we dont include smil files. they will be auto generated
+            if (item.contentType.toLowerCase() === "application/smil") {
+                continue
+            }
+            // text messages will be sent as textMessage. skip it
+            // to avoid duplication
+            if (item.contentType.toLowerCase() === "text/plain") {
+                continue
+            }
+            attachment.push(item.attachmentId)
+            attachment.push(item.contentType)
+            attachment.push(item.filePath)
+            newAttachments.push(attachment)
+        }
+        if (messages.sendMessage(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})) {
+            deleteMessage()
+        }
+    }
+
+    function copyMessage()
+    {
+        Clipboard.push(root.messageText)
+        application.showNotificationMessage(i18n.tr("Text message copied to clipboard"), "edit-copy")
+    }
+
     onAttachmentsChanged: {
         attachmentsView.dataAttachments = []
         var textAttachments = []

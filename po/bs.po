@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
+"X-Generator: Launchpad (build 18025)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -49,7 +49,7 @@ msgstr[0] "%1 poziv sekunde"
 msgstr[1] "%1 poziv sekundi"
 msgstr[2] "%1 poziv sekundi"
 
-#: ../src/qml/MessagingBottomEdge.qml:18
+#: ../src/qml/MessagingBottomEdge.qml:36
 msgid "+"
 msgstr "+"
 
@@ -57,7 +57,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Prihvaćeno"
 
-#: ../src/qml/Messages.qml:619
+#: ../src/qml/Messages.qml:636
 msgid "Add"
 msgstr "Dodaj"
 
@@ -105,12 +105,12 @@ msgstr[2] "Prilozi: %1 videa"
 msgid "Audio attachment not supported"
 msgstr "Audio prilog nije podržan"
 
-#: ../src/qml/Messages.qml:608 ../src/qml/Messages.qml:690
+#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
 msgid "Call"
 msgstr "Poziv"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:441 ../src/qml/Messages.qml:455
+#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -124,15 +124,15 @@ msgstr "Promjeni sve Asocijacije poruka  u %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:951
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
 msgid "Close"
 msgstr "Zatvori"
 
-#: ../src/qml/EmptyState.qml:32
+#: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Kreiraj novu poruku prelaskom gore sa dna ekrana."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:701
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
 msgid "Contact"
 msgstr "Kontakt osoba"
 
@@ -193,7 +193,7 @@ msgid "Group"
 msgstr "Grupa"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:593
+#: ../src/qml/Messages.qml:610
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupa (%1)"
@@ -246,7 +246,7 @@ msgstr "Nedostaju podaci o poruci"
 msgid "Myself"
 msgstr "Ja"
 
-#: ../src/qml/Messages.qml:474
+#: ../src/qml/Messages.qml:489
 msgid "New Message"
 msgstr "Nova poruka"
 
@@ -258,7 +258,7 @@ msgstr "Ne"
 msgid "No SIM card selected"
 msgstr "Nije odabrana SIM kartica"
 
-#: ../src/qml/Messages.qml:947
+#: ../src/qml/Messages.qml:964
 msgid "No network"
 msgstr "Nema mreže"
 
@@ -371,12 +371,12 @@ msgstr "Privremeno nije uspjelo"
 msgid "Text message copied to clipboard"
 msgstr "Tekstualna poruka kopirana u clipboard"
 
-#: ../src/qml/Messages.qml:948
+#: ../src/qml/Messages.qml:965
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Trenutno nema mreže na %1"
 
-#: ../src/qml/Messages.qml:948
+#: ../src/qml/Messages.qml:965
 msgid "There is currently no network."
 msgstr "Trenutno nema mreže."
 

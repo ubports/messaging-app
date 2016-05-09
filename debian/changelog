@@ -1,3 +1,10 @@
+messaging-app (0.1+16.04.20160506-0ubuntu1) xenial; urgency=medium
+
+  * Do not pre-select sim 1. Prompt users to select one instead. (LP:
+    #1571686)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Fri, 06 May 2016 14:06:05 +0000
+
 messaging-app (0.1+16.04.20160504-0ubuntu1) xenial; urgency=medium
 
   * Do not use bindings on sections model to avoid the index getting

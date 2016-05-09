@@ -107,10 +107,6 @@ Page {
             for (var i in telepathyHelper.activeAccounts) {
                 accounts.push(telepathyHelper.activeAccounts[i])
             }
-            // suru divider must be empty if there is only one sim card
-            if (accounts.length == 1 && accounts[0].type == AccountEntry.PhoneAccount) {
-                return []
-            }
             return accounts
         }
  
@@ -157,14 +153,6 @@ Page {
                     }
                 }
             }
-            // otherwise pre-select the first available phone account if any
-            for (var i in messages.accountsModel) {
-                if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
-                    return i
-                }
-            }
-            // otherwise select none
-            return -1
         }
 
         // if we get here, just pre-select the account that is set in messages.account
@@ -188,18 +176,16 @@ Page {
             // if the selected account is a phone account, check if there is a default
             // phone account for messages
             if (tmpAccount && tmpAccount.type == AccountEntry.PhoneAccount) {
-                if (telepathyHelper.defaultMessagingAccount) {
+                if (multiplePhoneAccounts) {
+                    return telepathyHelper.defaultMessagingAccount
+                } else {
                     for (var i in messages.accountsModel) {
-                        if (messages.accountsModel[i] == telepathyHelper.defaultMessagingAccount) {
-                            return telepathyHelper.defaultMessagingAccount
+                        if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
+                            return messages.accountsModel[i]
                         }
                     }
                 }
-                for (var i in messages.accountsModel) {
-                    if (messages.accountsModel[i].type == AccountEntry.PhoneAccount) {
-                        return messages.accountsModel[i]
-                    }
-                }
+                return null
             }
             for (var i in messages.accountsModel) {
                 if (tmpAccount.accountId == messages.accountId) {
@@ -523,6 +509,7 @@ Page {
 
         Sections {
             id: headerSections
+            objectName: "headerSections"
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
@@ -880,6 +867,7 @@ Page {
                 return
             }
             messages.account = mainView.account
+            headerSections.selectedIndex = getSelectedIndex()
         }
 
         onApplicationActiveChanged: {
