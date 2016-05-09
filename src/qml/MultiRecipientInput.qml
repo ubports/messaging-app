@@ -33,6 +33,39 @@ StyledItem {
     clip: true
     height: contactFlow.height
     focus: activeFocus
+    property bool multimediaGroup: false
+    function getMultimediaGroup () {
+        if (recipients.length < 2) {
+            return false
+        }
+        for (var i=0; i < recipients.length; i++) {
+            var account = telepathyHelper.accountForId(presences.itemAt(i).accountId)
+            console.log(account.type, presences.itemAt(i).accountId)
+            if (!account || account.type != AccountEntry.MultimediaAccount) {
+               return false
+            }
+            if (presences.itemAt(i).type == PresenceRequest.PresenceTypeUnknown || presences.itemAt(i).type == PresenceRequest.PresenceTypeUnset) {
+                return false
+            }
+        }
+        return true
+    }
+
+    Repeater {
+        id: presences
+        model: recipients
+        Item {
+            property alias accountId: presence.accountId
+            property alias identifier: presence.identifier
+            property alias type: presence.type
+            PresenceRequest {
+                id: presence
+                accountId: finalAccountId(messages.accountsModel[headerSections.selectedIndex])
+                identifier: modelData
+                onTypeChanged: multiRecipientWidget.multimediaGroup = Qt.binding(getMultimediaGroup)
+            }
+        }
+    }
 
     signal forceFocus()
 
@@ -55,29 +88,6 @@ StyledItem {
         return account.accountId
     }
 
-    // this helper forces creating handles and getting the current online status
-    PresenceRequest {
-        id: presenceRequestHelper
-        accountId: finalAccountId(messages.accountsModel[headerSections.selectedIndex])
-        identifier: ""
-    }
-
-    Connections {
-       target: headerSections
-       onSelectedIndexChanged: {
-            if (headerSections.selectedIndex == -1) {
-                return
-            }
-            for (var i = 0; i<recipientModel.count; i++) {
-                var id = recipientModel.get(i).identifier
-                if (id == "") {
-                    continue
-                }
-                presenceRequestHelper.identifier = id
-            }
-        }
-    }
-
     MouseArea {
         anchors.fill: parent
         enabled: parent.focus === false
@@ -96,7 +106,6 @@ StyledItem {
 
         recipientModel.insert(recipientCount, { "identifier": identifier })
         scrollableArea.contentX = contactFlow.width
-        presenceRequestHelper.identifier = identifier
     }
 
     Behavior on height {

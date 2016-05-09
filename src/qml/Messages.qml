@@ -1288,6 +1288,10 @@ Page {
                 properties["x-canonical-tmp-files"] = true
             }
 
+            if (multiRecipient.multimediaGroup) {
+                properties["chatType"] = 2
+            }
+
             // if sendMessage succeeds it means the message was either sent or
             // injected into the history service so the user can retry later
             if (sendMessage(text, recipients, newAttachments, properties)) {
