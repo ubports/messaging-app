@@ -112,7 +112,7 @@ Page {
  
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
         // on generic accounts we don't give the option to switch to another account
-        if (tmpAccount && tmpAccount.type == AccountEntry.GenericAccount) {
+        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount || tmpAccount.type == AccountEntry.MultimediaAccount)) {
             return [tmpAccount]
         }
 
@@ -759,7 +759,9 @@ Page {
     ]
 
     Component.onCompleted: {
-        if (messages.accountId !== "") {
+        // we only revert back to phone account if this is a 1-1 chat,
+        // in which case the handler will fallback to multimedia if needed
+        if (messages.accountId !== "" && chatType !== 2) {
             var account = telepathyHelper.accountForId(messages.accountId)
             if (account && account.type == AccountEntry.MultimediaAccount) {
                 // fallback the first available phone account
