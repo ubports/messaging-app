@@ -156,7 +156,7 @@ StyledItem {
                         anchors.fill: parent
                         anchors.topMargin: units.gu(1)
                         anchors.bottomMargin: units.gu(1)
-                        color: UbuntuColors.warmGrey
+                        color: Theme.palette.selected.background
                         visible: selected
                         z: -1
                     }
@@ -180,7 +180,8 @@ StyledItem {
                     font.pixelSize: FontUtils.sizeToPixels("medium")
                     font.family: "Ubuntu"
                     font.weight: Font.Light
-                    color: selected ? "white" : "#752571"
+                    color: selected ? Theme.palette.selected.backgroundText :
+                                      Theme.palette.normal.backgroundText
                     verticalAlignment: Text.AlignVCenter
                     ContactWatcher {
                         id: contactWatcher
@@ -203,7 +204,7 @@ StyledItem {
                         visible: false
                         text: contactSearchInput.text
                     }
- 
+
                     objectName: "contactSearchInput"
                     focus: true
                     style: MultiRecipientFieldStyle {}
@@ -214,7 +215,7 @@ StyledItem {
                     placeholderText: multiRecipientWidget.recipientCount <= 0 ? hintLabel.text : ""
                     font.family: "Ubuntu"
                     font.weight: Font.Light
-                    color: "#752571"
+                    color: Theme.palette.normal.backgroundText
                     font.pixelSize: FontUtils.sizeToPixels("medium")
                     inputMethodHints: Qt.ImhNoPredictiveText
                     onActiveFocusChanged: {

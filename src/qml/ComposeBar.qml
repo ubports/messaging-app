@@ -419,7 +419,7 @@ Item {
             focus: textEntry.focus
             font.family: "Ubuntu"
             font.pixelSize: FontUtils.sizeToPixels("medium")
-            color: "#5d5d5d"
+            color: Theme.palette.normal.backgroundText
         }
     }
 
