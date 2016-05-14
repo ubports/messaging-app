@@ -207,7 +207,7 @@ StyledItem {
 
                     objectName: "contactSearchInput"
                     focus: true
-                    style: MultiRecipientFieldStyle {}
+                    style: TransparentTextFieldStype {}
                     height: units.gu(4)
                     width: text != "" ? textLabel.paintedWidth + units.gu(3) : hintLabel.paintedWidth + units.gu(3)
                     hasClearButton: false

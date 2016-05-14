@@ -37,7 +37,7 @@ Page {
     // in the suru divider
     property string accountId: ""
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
-    property int chatType: threads.length > 0 ? threads[0].chatType : 0
+    property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
     property variant participants: threads.length > 0 ? threads[0].participants : []
@@ -48,7 +48,7 @@ Page {
         }
         return ids
     }
-    property bool groupChat: chatType == 2 || participants.length > 1
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -618,7 +618,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
+                    onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads })
                 }
             ]
 
@@ -967,63 +967,6 @@ Page {
     }
 
     Component {
-        id: participantsPopover
-
-        Popover {
-            id: popover
-            anchorToKeyboard: false
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                Repeater {
-                    model: participants
-                    Item {
-                        height: childrenRect.height
-                        width: popover.width
-                        ListItem.Standard {
-                            id: participant
-                            objectName: "participant%1".arg(index)
-                            text: {
-                                 if (contactWatcher.isUnknown) {
-                                     if (modelData.alias != "") {
-                                         return modelData.alias
-                                     } else {
-                                         return contactWatcher.identifier
-                                     }
-                                 } else {
-                                     return contactWatcher.alias
-                                 }
-                            }
-                            onClicked: {
-                                PopupUtils.close(popover)
-                                var properties = {}
-                                properties["accountId"] = modelData.accountId
-                                properties["participantIds"] = [modelData.identifier]
-                                properties["chatType"] = 1
-                                mainView.startChat(properties)
-                            }
-                        }
-                        ContactWatcher {
-                            id: contactWatcher
-                            identifier: modelData.identifier
-                            contactId: modelData.contactId
-                            alias: modelData.alias
-                            avatar: modelData.avatar
-                            detailProperties: modelData.detailProperties
-
-                            addressableFields: messages.account.addressableVCardFields
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    Component {
         id: noNetworkDialogComponent
         Dialog {
             id: noNetworkDialog
@@ -1058,6 +1001,7 @@ Page {
             right: parent.right
             bottom: composeBar.top
         }
+
         z: 1
         Behavior on height {
             UbuntuNumberAnimation { }
@@ -1289,7 +1233,7 @@ Page {
             }
 
             if (multiRecipient.multimediaGroup) {
-                properties["chatType"] = 2
+                properties["chatType"] = HistoryThreadModel.ChatTypeRoom
             }
 
             // if sendMessage succeeds it means the message was either sent or
