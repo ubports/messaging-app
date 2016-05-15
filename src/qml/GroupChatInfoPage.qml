@@ -37,10 +37,11 @@ Page {
         title: i18n.tr("Group Info")
         // FIXME: uncomment once the header supports subtitle
         //subtitle: i18n.tr("%1 member", "%1 members", participants.length)
-        flickable: null
+        flickable: contentsFlickable
     }
 
     Flickable {
+        id: contentsFlickable
         anchors.fill: parent
 
         Column {
@@ -57,7 +58,7 @@ Page {
             Item {
                 id: groupInfo
                 height: visible ? groupAvatar.height : 0
-                //visible: chatRoom
+                visible: chatRoom
 
                 anchors {
                     left: parent.left
@@ -119,13 +120,12 @@ Page {
                     leftMargin: units.gu(1)
                 }
 
-                //visible: chatRoom
+                visible: chatRoom
                 text: i18n.tr("Add member")
             }
 
             Repeater {
                 model: participants
-                onCountChanged: console.log("BLABLA count is: " + count)
 
                 ParticipantDelegate {
                     participant: modelData
