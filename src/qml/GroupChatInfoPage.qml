@@ -96,6 +96,7 @@ Page {
             }
 
             ListItems.ThinDivider {
+                visible: groupInfo.visible
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -122,6 +123,13 @@ Page {
 
                 visible: chatRoom
                 text: i18n.tr("Add member")
+            }
+
+            ListItems.ThinDivider {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
             }
 
             Repeater {
