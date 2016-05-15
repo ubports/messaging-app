@@ -18,8 +18,9 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import Ubuntu.Contacts 0.1
 
-Item {
+ListItemWithActions {
     id: participantDelegate
 
     property variant participant: null
@@ -30,11 +31,38 @@ Item {
         right: parent.right
         rightMargin: units.gu(1)
     }
-    height: units.gu(5)
-    Label {
-        text: participant.identifier
-        anchors.centerIn: parent
+    height: units.gu(8)
+
+    ContactAvatar {
+        id: avatar
+
+        fallbackAvatarUrl: {
+            if (participant.avatar !== "") {
+                return participant.avatar
+            } else if (participant.alias === "") {
+                return "image://theme/contact"
+            }
+            return ""
+        }
+        fallbackDisplayName: participant.alias
+        showAvatarPicture: fallbackAvatarUrl !== ""
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+        }
+        height: units.gu(6)
+        width: units.gu(6)
     }
 
+    Label {
+        id: contactName
+        anchors {
+            left: avatar.right
+            leftMargin: units.gu(1)
+            verticalCenter: parent.verticalCenter
+        }
+        color: Theme.palette.normal.backgroundText
+        text: participant.alias !== "" ? participant.alias : participant.identifier
+    }
 }
 
