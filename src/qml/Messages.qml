@@ -216,10 +216,13 @@ Page {
                                            properties,
                                            matchType,
                                            true)
+        if (thread.length == 0) {
+            return thread
+        } 
         var threadId = thread.threadId
 
         // dont change the participants list
-        if (messages.participants.length == 0) {
+        if (!messages.participants || messages.participants.length == 0) {
             messages.participants = thread.participants
             var ids = []
             for (var i in messages.participants) {
@@ -396,6 +399,22 @@ Page {
         }
 
         return true
+    }
+
+    Connections {
+        id: tmpConnection
+        property bool active: false
+        target: active ? mainPage : null
+        onNewThreadCreated: {
+            var thread = eventModel.threadForProperties(newThread.accountId, HistoryEventModel.MessageTypeText, {'chatType': newThread.chatType, 'threadId': newThread.threadId}, HistoryThreadModel.MatchCaseSensitive, false)
+            messages.chatType = newThread.chatType
+            messages.threadId = newThread.threadId
+            messages.participants = newThread.participants
+            messages.threads = []
+            messages.threads.push(thread)
+            active = false
+            messages.reloadFilters = !messages.reloadFilters
+        }
     }
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
@@ -632,7 +651,7 @@ Page {
                         if (roomInfo.Title != "") {
                             return roomInfo.Title
                         } else {
-                            return roomInfo.RoomName
+                            return i18n.tr("Group")
                         }
                     } else {
                         return i18n.tr("Group (%1)").arg(participants.length)
@@ -1244,6 +1263,7 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
+                tmpConnection.active = true
             }
 
             var newAttachments = []

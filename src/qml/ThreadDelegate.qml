@@ -44,7 +44,8 @@ ListItemWithActions {
             if (chatRoomInfo.Title != "") {
                 return chatRoomInfo.Title
             }
-            return chatRoomInfo.RoomName
+            return i18n.tr("Group")
+            //return chatRoomInfo.RoomName
         }
         var firstRecipient
         if (unknownContact) {
