@@ -112,7 +112,8 @@ Page {
  
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
         // on generic accounts we don't give the option to switch to another account
-        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount || tmpAccount.type == AccountEntry.MultimediaAccount)) {
+        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount ||
+                           (tmpAccount.type == AccountEntry.MultimediaAccount && threads[0].chatType == HistoryThreadModel.ChatTypeRoom))) {
             return [tmpAccount]
         }
 
