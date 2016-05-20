@@ -59,7 +59,7 @@ BaseDelegate {
             if (FileOperations.link(attachment.filePath, tmpFile)) {
                 source = tmpFile;
             } else {
-                console.log("MMSAudio: Failed to link", attachment.filePath, "to", tmpFile)
+                console.log("AudioDelegate: Failed to link", attachment.filePath, "to", tmpFile)
                 return
             }
 
