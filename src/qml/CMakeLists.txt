@@ -2,10 +2,6 @@ project(qml)
 
 file(GLOB QML_JS_FILES *.qml *.js)
 
-set(QML_DIRS
-    MMS
-    )
-
 add_custom_target(messaging_app_QMlFiles ALL SOURCES ${QML_JS_FILES})
 
 set(ASSETS_DIR assets)
