@@ -315,7 +315,6 @@ MainView {
     function startChat(properties) {
         var participantIds = []
         var accountId = ""
-        var chatType = 0
         var match = HistoryThreadModel.MatchCaseSensitive
 
         properties["threads"] = getThreadsForProperties(properties)

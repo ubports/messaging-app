@@ -37,7 +37,7 @@ Page {
     // in the suru divider
     property string accountId: ""
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
-    property int chatType: threads.length > 0 ? threads[0].chatType : 0
+    property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
     property variant participants: threads.length > 0 ? threads[0].participants : []
@@ -48,7 +48,7 @@ Page {
         }
         return ids
     }
-    property bool groupChat: chatType == 2 || participants.length > 1
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -419,7 +419,7 @@ Page {
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
         if (participantIds.length == 0 || accounts.length == 0) {
-            if (chatType != 2) {
+            if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
             }
         }
@@ -646,7 +646,7 @@ Page {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    if (threads.length == 1 && messages.chatType == 2) {
+                    if (threads.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         var roomInfo = threads[0].chatRoomInfo
                         if (roomInfo.Title != "") {
                             return roomInfo.Title
@@ -783,7 +783,7 @@ Page {
     Component.onCompleted: {
         // we only revert back to phone account if this is a 1-1 chat,
         // in which case the handler will fallback to multimedia if needed
-        if (messages.accountId !== "" && chatType !== 2) {
+        if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
             var account = telepathyHelper.accountForId(messages.accountId)
             if (account && account.type == AccountEntry.MultimediaAccount) {
                 // fallback the first available phone account
@@ -962,7 +962,7 @@ Page {
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
-            if (!account || chatType != 1) {
+            if (!account || chatType != HistoryThreadModel.ChatTypeContact) {
                 return ""
             }
             if (account.type == AccountEntry.PhoneAccount) {
@@ -1027,7 +1027,7 @@ Page {
                                 var properties = {}
                                 properties["accountId"] = modelData.accountId
                                 properties["participantIds"] = [modelData.identifier]
-                                properties["chatType"] = 1
+                                properties["chatType"] = HistoryThreadModel.ChatTypeContact
                                 mainView.startChat(properties)
                             }
                         }
@@ -1314,7 +1314,7 @@ Page {
             }
 
             if (multiRecipient.multimediaGroup) {
-                properties["chatType"] = 2
+                properties["chatType"] = HistoryThreadModel.ChatTypeRoom
             }
 
             // if sendMessage succeeds it means the message was either sent or
