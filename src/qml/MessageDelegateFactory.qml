@@ -133,7 +133,7 @@ ListItemWithActions {
                 id: icon
 
                 name: "reload"
-                color: Theme.palette.normal.backgroundNegativeText
+                color: Theme.palette.normal.negative
                 height: units.gu(2)
                 width: units.gu(2)
                 anchors {
