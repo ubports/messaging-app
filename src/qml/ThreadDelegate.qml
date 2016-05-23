@@ -43,9 +43,10 @@ ListItemWithActions {
         if (chatType == 2) {
             if (chatRoomInfo.Title != "") {
                 return chatRoomInfo.Title
+            } else if (chatRoomInfo.RoomName != "") {
+                return chatRoomInfo.RoomName
             }
             return i18n.tr("Group")
-            //return chatRoomInfo.RoomName
         }
         var firstRecipient
         if (unknownContact) {
@@ -201,8 +202,8 @@ ListItemWithActions {
         width: units.gu(2)
         visible: source !== ""
         source: {
-            if (delegateHelper.presenceType != PresenceRequest.PresenceTypeUnknown
-                    && delegateHelper.presenceType != PresenceRequest.PresenceTypeUnset) {
+            if (chatType == 2 || (delegateHelper.presenceType != PresenceRequest.PresenceTypeUnknown
+                    && delegateHelper.presenceType != PresenceRequest.PresenceTypeUnset)) {
                 return telepathyHelper.accountForId(delegateHelper.presenceAccountId).protocolInfo.icon
             }
             return ""
