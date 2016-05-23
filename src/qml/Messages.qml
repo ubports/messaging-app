@@ -652,7 +652,7 @@ Page {
                             return roomInfo.Title
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
-                        }
+                        } else {
                             return i18n.tr("Group")
                         }
                     } else {
