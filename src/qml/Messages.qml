@@ -112,7 +112,8 @@ Page {
  
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
         // on generic accounts we don't give the option to switch to another account
-        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount || tmpAccount.type == AccountEntry.MultimediaAccount)) {
+        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount ||
+                           (tmpAccount.type == AccountEntry.MultimediaAccount && threads[0].chatType == HistoryThreadModel.ChatTypeRoom))) {
             return [tmpAccount]
         }
 
@@ -215,10 +216,13 @@ Page {
                                            properties,
                                            matchType,
                                            true)
+        if (thread.length == 0) {
+            return thread
+        } 
         var threadId = thread.threadId
 
         // dont change the participants list
-        if (messages.participants.length == 0) {
+        if (!messages.participants || messages.participants.length == 0) {
             messages.participants = thread.participants
             var ids = []
             for (var i in messages.participants) {
@@ -397,9 +401,25 @@ Page {
         return true
     }
 
+    Connections {
+        id: tmpConnection
+        property bool active: false
+        target: active ? mainPage : null
+        onNewThreadCreated: {
+            var thread = eventModel.threadForProperties(newThread.accountId, HistoryEventModel.MessageTypeText, {'chatType': newThread.chatType, 'threadId': newThread.threadId}, HistoryThreadModel.MatchCaseSensitive, false)
+            messages.chatType = newThread.chatType
+            messages.threadId = newThread.threadId
+            messages.participants = newThread.participants
+            messages.threads = []
+            messages.threads.push(thread)
+            active = false
+            messages.reloadFilters = !messages.reloadFilters
+        }
+    }
+
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
         if (participantIds.length == 0 || accounts.length == 0) {
-            if (chatType != 2) {
+            if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
             }
         }
@@ -626,12 +646,14 @@ Page {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    if (threads.length == 1 && messages.chatType == 2) {
+                    if (threads.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         var roomInfo = threads[0].chatRoomInfo
                         if (roomInfo.Title != "") {
                             return roomInfo.Title
-                        } else {
+                        } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
+                        } else {
+                            return i18n.tr("Group")
                         }
                     } else {
                         return i18n.tr("Group (%1)").arg(participants.length)
@@ -761,7 +783,7 @@ Page {
     Component.onCompleted: {
         // we only revert back to phone account if this is a 1-1 chat,
         // in which case the handler will fallback to multimedia if needed
-        if (messages.accountId !== "" && chatType !== 2) {
+        if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
             var account = telepathyHelper.accountForId(messages.accountId)
             if (account && account.type == AccountEntry.MultimediaAccount) {
                 // fallback the first available phone account
@@ -940,7 +962,7 @@ Page {
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
-            if (!account || chatType != 1) {
+            if (!account || chatType != HistoryThreadModel.ChatTypeContact) {
                 return ""
             }
             if (account.type == AccountEntry.PhoneAccount) {
@@ -1187,6 +1209,7 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
+                tmpConnection.active = true
             }
 
             var newAttachments = []

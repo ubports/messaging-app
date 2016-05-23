@@ -29,7 +29,7 @@ ListItemWithActions {
     id: delegate
 
     property var participant: participants ? participants[0] : {}
-    property bool groupChat: chatType == 2 || participants.length > 1
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
@@ -40,11 +40,13 @@ ListItemWithActions {
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
-        if (chatType == 2) {
+        if (chatType == HistoryThreadModel.ChatTypeRoom) {
             if (chatRoomInfo.Title != "") {
                 return chatRoomInfo.Title
+            } else if (chatRoomInfo.RoomName != "") {
+                return chatRoomInfo.RoomName
             }
-            return chatRoomInfo.RoomName
+            return i18n.tr("Group")
         }
         var firstRecipient
         if (unknownContact) {
@@ -202,6 +204,14 @@ ListItemWithActions {
         width: units.gu(2)
         visible: source !== ""
         source: {
+            if (!telepathyHelper.ready) {
+                return ""
+            }
+ 
+            // for any chat room, or generic account, show the icon
+            if (chatType == HistoryThreadModel.ChatTypeRoom || telepathyHelper.accountForId(model.accountId).type == AccountEntry.GenericAccount) {
+                return telepathyHelper.accountForId(model.accountId).protocolInfo.icon
+            }
             if (delegateHelper.presenceType != PresenceRequest.PresenceTypeUnknown
                     && delegateHelper.presenceType != PresenceRequest.PresenceTypeUnset) {
                 return telepathyHelper.accountForId(delegateHelper.presenceAccountId).protocolInfo.icon

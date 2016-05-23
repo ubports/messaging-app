@@ -210,7 +210,7 @@ ListItemWithActions {
         messageTimeStamp: messageData.timestamp
         accountName: messageDelegate.accountLabel
         messageStatus: messageData.textMessageStatus
-        sender: (messages.threads[0].chatType == 2 || messageData.participants.length > 1) ? messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId : ""
+        sender: (messages.threads[0].chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) ? messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId : ""
         showDeliveryStatus: true
     }
 
