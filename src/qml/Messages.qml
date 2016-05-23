@@ -650,7 +650,9 @@ Page {
                         var roomInfo = threads[0].chatRoomInfo
                         if (roomInfo.Title != "") {
                             return roomInfo.Title
-                        } else {
+                        } else if (roomInfo.RoomName != "") {
+                            return roomInfo.RoomName
+                        }
                             return i18n.tr("Group")
                         }
                     } else {
