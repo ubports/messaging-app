@@ -1209,7 +1209,6 @@ Page {
 
             if (messages.account && messages.accountId == "") {
                 messages.accountId = messages.account.accountId
-                tmpConnection.active = true
             }
 
             var newAttachments = []
@@ -1259,6 +1258,10 @@ Page {
 
             if (multiRecipient.multimediaGroup) {
                 properties["chatType"] = HistoryThreadModel.ChatTypeRoom
+                // remove this once PendingTask is done
+                if (messages.participants.length == 0) {
+                    tmpConnection.active = true
+                }
             }
 
             // if sendMessage succeeds it means the message was either sent or
