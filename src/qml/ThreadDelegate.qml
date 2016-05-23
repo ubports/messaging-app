@@ -147,7 +147,8 @@ ListItemWithActions {
             left: avatar.right
             leftMargin: units.gu(1)
         }
-        color: UbuntuColors.lightAubergine
+        color: Theme.palette.normal.backgroundText
+        font.bold: unreadCountIndicator.visible
         text: {
             if (groupChat) {
                 return groupChatLabel
@@ -181,6 +182,7 @@ ListItemWithActions {
             }
         }
         fontSize: "small"
+        color: Theme.palette.normal.backgroundTertiaryText
     }
 
     Image {
@@ -254,6 +256,7 @@ ListItemWithActions {
         // avoid any kind of formatting in the text message preview
         textFormat: Text.PlainText
         maximumLineCount: 1
+        color: Theme.palette.normal.backgroundSecondaryText
     }
 
     Item {

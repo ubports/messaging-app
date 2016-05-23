@@ -133,7 +133,8 @@ BorderImage {
         text: root.parseText(messageText)
         textFormat: Text.RichText
         wrapMode: Text.Wrap
-        color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
+        color: root.messageIncoming ? Theme.palette.normal.backgroundText :
+                                      Theme.palette.normal.positiveText
     }
 
     Row {
@@ -156,8 +157,9 @@ BorderImage {
             visible: !root.sending
             height: units.gu(2)
             width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
-            fontSize: "xx-small"
-            color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
+            fontSize: "x-small"
+            color: root.messageIncoming ? Theme.palette.normal.backgroundSecondaryText :
+                                          Theme.palette.normal.positiveText
             opacity: root.messageIncoming ? 1.0 : 0.8
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter

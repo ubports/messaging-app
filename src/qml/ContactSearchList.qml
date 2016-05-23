@@ -115,7 +115,7 @@ ListView {
                                 }
                             }
                             fontSize: "medium"
-                            color: UbuntuColors.lightAubergine
+                            color: Theme.palette.normal.backgroundText
                         }
                         Label {
                             anchors {
