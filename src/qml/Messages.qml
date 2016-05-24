@@ -291,6 +291,8 @@ Page {
         if (messages.threads.length > 0) {
             properties["chatType"] = messages.chatType
             properties["threadId"] = messages.threadId
+        } else {
+            messages.chatType = properties["chatType"]
         }
 
         var newParticipantsIds = []
@@ -385,7 +387,10 @@ Page {
             var currentIndex = headerSections.selectedIndex
             headerSections.model = getSectionsModel()
             restoreBindings()
-            headerSections.selectedIndex = currentIndex
+            // dont restore index if this is a chatroom
+            if (messages.chatType != HistoryThreadModel.ChatTypeRoom) {
+                headerSections.selectedIndex = currentIndex
+            }
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
@@ -1317,6 +1322,13 @@ Page {
                 // remove this once PendingTask is done
                 if (messages.participants.length == 0) {
                     tmpConnection.active = true
+                }
+                for (var i in telepathyHelper.accounts) {
+                    var tmpAccount = telepathyHelper.accounts[i]
+                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                        messages.accountId = tmpAccount.accountId
+                        break;
+                    }
                 }
             }
 
