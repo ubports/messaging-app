@@ -291,7 +291,7 @@ Page {
         if (messages.threads.length > 0) {
             properties["chatType"] = messages.chatType
             properties["threadId"] = messages.threadId
-        } else {
+        } else if (properties["chatType"]) {
             messages.chatType = properties["chatType"]
         }
 
