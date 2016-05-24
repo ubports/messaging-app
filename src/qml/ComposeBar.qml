@@ -23,6 +23,7 @@ import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 1.3
 import Ubuntu.Telephony 0.1
+import Ubuntu.History 0.1
 import messagingapp.private 0.1
 import "Stickers"
 
@@ -405,12 +406,10 @@ Item {
             placeholderText: {
                 if (telepathyHelper.ready) {
                     var account = telepathyHelper.accountForId(presenceRequest.accountId)
-                    if (account && 
+                    if (account && (messages.chatType == HistoryThreadModel.ChatTypeRoom ||
                             (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&
                              presenceRequest.type != PresenceRequest.PresenceTypeUnset) &&
-                             account.protocolInfo.serviceName !== "") {
-                        console.log(presenceRequest.accountId)
-                        console.log(presenceRequest.type)
+                             account.protocolInfo.serviceName !== "")) {
                         return account.protocolInfo.serviceName
                     }
                 }
