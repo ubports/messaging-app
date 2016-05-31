@@ -125,7 +125,8 @@ MainView {
                 participants.push(thread.participants[j].identifier)
             }
             // and acknowledge all messages for the threads to be removed
-            chatManager.acknowledgeAllMessages(participants, thread.accountId)
+            var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
+            chatManager.acknowledgeAllMessages(properties)
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
