@@ -30,11 +30,7 @@ Item {
         anchors.fill: parent
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
         fontSize: "small"
-    }
-    ListItem.ThinDivider {
-        anchors.bottom: parent.bottom
-        anchors.rightMargin: 0
-        anchors.leftMargin: 0
     }
 }
