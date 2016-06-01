@@ -64,16 +64,6 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
-    property QtObject chatEntry: {
-        if (!account) {
-            return null
-        } else {
-            if (threads.length > 0) {
-                return chatManager.chatEntryForProperties(account.accountId, threads[0], true)
-            }
-            return null
-        }
-    }
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -375,11 +365,7 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, text, attachments, properties)
-            // create the new thread and update the threadId list
-            if (fallbackAccountId != messages.account.accountId) {
-                addNewThreadToFilter(fallbackAccountId, properties)
-            }
+            chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
         }
 
         if (newMessage) {
@@ -849,44 +835,6 @@ Page {
         }
     }
 
-    Connections {
-        target: chatManager
-        onChatEntryCreated: {
-            if (accountId != account.accountId || messages.threads.length == 0) {
-                return
-            }
-            // track using chatId and not participants on ChatRooms
-            if (messages.threads.length == 1 && // we never group chat rooms
-                messages.chatType == chatEntry.chatType &&
-                messages.threadId == chatEntry.chatId) {
-                messages.chatEntry = chatEntry
-                return
-            }
-            if (firstParticipant && participants[0] == firstParticipant.identifier) {
-                messages.chatEntry = chatEntry
-            }
-        }
-        onChatsChanged: {
-            for (var i in chatManager.chats) {
-                var chat = chatManager.chats[i]
-                // TODO: track using chatId and not participants
-                if (messages.threads.length == 1 && // we never group chat rooms
-                    messages.chatType == chat.chatType &&
-                    messages.threadId == chat.chatId) {
-                    messages.chatEntry = chat
-                    return
-                }
-
-                if (chat.account.accountId == account.accountId &&
-                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
-                    messages.chatEntry = chat
-                    return
-                }
-            }
-            messages.chatEntry = null
-        }
-    }
-
     // this is necessary to automatically update the view when the
     // default account changes in system settings
     Connections {
@@ -918,8 +866,31 @@ Page {
         }
     }
 
+    ChatEntry {
+        id: chatEntry
+        chatType: messages.chatType
+        participants: messages.participantIds
+        chatId: messages.threadId
+        accountId: messages.accountId
+
+        onMessageSent: {
+            console.log("BLABLA message sent accountId:" + accountId)
+            // create the new thread and update the threadId list
+            if (accountId != messages.account.accountId) {
+                addNewThreadToFilter(accountId, properties)
+            }
+        }
+        onMessageSendingFailed: {
+            console.log("BLABLA message failed accountId:" + accountId)
+            // create the new thread and update the threadId list
+            if (accountId != messages.account.accountId) {
+                addNewThreadToFilter(accountId, properties)
+            }
+        }
+    }
+
     Repeater {
-        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        model: chatEntry.chatStates
         Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
