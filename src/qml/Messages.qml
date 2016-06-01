@@ -300,6 +300,12 @@ Page {
             newParticipantsIds.push(String(participantIds[i]))
         }
 
+        // fallback chatType to Contact
+        if (newParticipantsIds.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeNone) {
+            messages.chatType = HistoryThreadModel.ChatTypeContact
+        }
+
+        properties["chatType"] = messages.chatType
         properties["participantIds"] = newParticipantsIds
 
         // create the new thread and update the threadId list
