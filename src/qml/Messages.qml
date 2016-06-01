@@ -880,14 +880,12 @@ Page {
         accountId: messages.accountId
 
         onMessageSent: {
-            console.log("BLABLA message sent accountId:" + accountId)
             // create the new thread and update the threadId list
             if (accountId != messages.account.accountId) {
                 addNewThreadToFilter(accountId, properties)
             }
         }
         onMessageSendingFailed: {
-            console.log("BLABLA message failed accountId:" + accountId)
             // create the new thread and update the threadId list
             if (accountId != messages.account.accountId) {
                 addNewThreadToFilter(accountId, properties)
