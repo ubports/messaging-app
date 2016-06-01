@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -31,6 +31,8 @@ Item {
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        fontSize: "small"
+        fontSize: "x-small"
+        color: Theme.palette.normal.backgroundSecondaryText
+        font.weight: Font.Normal
     }
 }
