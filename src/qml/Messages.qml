@@ -71,6 +71,7 @@ Page {
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
+    property QtObject chatEntry: chatEntryObject
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
@@ -371,7 +372,7 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
+            messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
         }
 
         if (newMessage) {
@@ -873,7 +874,7 @@ Page {
     }
 
     ChatEntry {
-        id: chatEntry
+        id: chatEntryObject
         chatType: messages.chatType
         participants: messages.participantIds
         chatId: messages.threadId
@@ -894,7 +895,7 @@ Page {
     }
 
     Repeater {
-        model: chatEntry.chatStates
+        model: messages.chatEntry.chatStates
         Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
