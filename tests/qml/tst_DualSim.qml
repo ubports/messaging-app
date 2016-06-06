@@ -137,6 +137,18 @@ Item {
             return null;
         }
 
+        function waitFindChild(obj,objectName) {
+            var child = findChild(obj, objectName);
+            var timeout = 3000;
+            var interval = 50;
+            while (!child && timeout > 0) {
+                wait(interval)
+                timeout -= interval
+                child = findChild(obj, objectName)
+            }
+            return child
+        }
+
         function init() {
         }
 
@@ -151,7 +163,7 @@ Item {
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
 
-            var messagesView = findChild(mainViewLoader, "messagesPage")
+            var messagesView = waitFindChild(mainViewLoader, "messagesPage")
             var headerSections = findChild(messagesView, "headerSections")
             compare(headerSections.selectedIndex, -1)
 
@@ -176,7 +188,7 @@ Item {
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
 
-            messagesView = findChild(mainViewLoader, "messagesPage")
+            messagesView = waitFindChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
 
             compare(headerSections.selectedIndex, 0)
@@ -190,9 +202,8 @@ Item {
             waitForRendering(mainViewLoader.item)
 
 
-            messagesView = findChild(mainViewLoader, "messagesPage")
+            messagesView = waitFindChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
-
             compare(headerSections.selectedIndex, 1)
 
             var properties = {}
@@ -201,7 +212,7 @@ Item {
             mainViewLoader.item.startChat(properties)
             waitForRendering(mainViewLoader.item)
 
-            messagesView = findChild(mainViewLoader, "messagesPage")
+            messagesView = waitFindChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
             compare(headerSections.selectedIndex, 1)
 
@@ -217,7 +228,7 @@ Item {
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
 
-            var messagesView = findChild(mainViewLoader, "messagesPage")
+            var messagesView = waitFindChild(mainViewLoader, "messagesPage")
             var textArea = findChild(messagesView, "messageTextArea")
             var contactSearchInput = findChild(messagesView, "contactSearchInput")
             var sendButton = findChild(messagesView, "sendButton")
