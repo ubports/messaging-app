@@ -373,6 +373,8 @@ Page {
                 return false
             }
             messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
+            messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+            selfTypingTimer.start()
         }
 
         if (newMessage) {
@@ -797,6 +799,18 @@ Page {
     }
 
     Timer {
+        id: selfTypingTimer
+        interval: 15000
+        onTriggered: {
+            if (text != "") {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStatePaused)
+            } else {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+            }
+        }
+    }
+
+    Timer {
         id: fillAttachmentsTimer
         interval: 50
         onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
@@ -1174,6 +1188,15 @@ Page {
         showContents: !selectionMode && !isSearching
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
+        onTextChanged: {
+            if (text == "") {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+                selfTypingTimer.stop()
+                return
+            }
+            messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+            selfTypingTimer.start()
+        }
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
 
