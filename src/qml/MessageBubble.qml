@@ -178,8 +178,8 @@ BorderImage {
 
         DeliveryStatus {
             id: deliveryStatus
-            messageStatus: messageStatus
-            enabled: deliveryStatusAvailable
+            messageStatus: root.messageStatus
+            enabled: root.deliveryStatusAvailable
             anchors.verticalCenter: textTimestamp.verticalCenter
         }
     }
