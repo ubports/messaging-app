@@ -146,8 +146,10 @@ ListItemWithActions {
             topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
+            right: time.left
         }
         color: UbuntuColors.lightAubergine
+        elide: Text.ElideRight
         text: {
             if (groupChat) {
                 return groupChatLabel
