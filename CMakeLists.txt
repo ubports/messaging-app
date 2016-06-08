@@ -71,6 +71,6 @@ enable_testing()
 
 add_subdirectory(po)
 add_subdirectory(src)
-if (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "aarch64") AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64")))
+if (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "aarch64") AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64el")))
     add_subdirectory(tests)
 endif()
