@@ -28,7 +28,7 @@ set(SOURCES
 add_executable(${TEST} ${SOURCES})
 qt5_use_modules(${TEST} Core Multimedia Qml Quick QuickTest Sql)
 
-set(TEST_COMMAND ${XVFB_RUN_BIN} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
+set(TEST_COMMAND ${XVFB_COMMAND} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
                  -import ${CMAKE_BINARY_DIR}/src
                  -import ${UNITY8_QML_PATH})
 
