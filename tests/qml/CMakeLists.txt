@@ -6,6 +6,18 @@ find_package(Qt5Sql REQUIRED)
 
 set(TEST tst_QmlTests)
 
+set(XVFB_COMMAND)
+
+find_program(XVFB_RUN_BIN
+    NAMES xvfb-run
+)
+
+if(XVFB_RUN_BIN)
+    set(XVFB_COMMAND ${XVFB_RUN_BIN} -s "-screen 0 1024x768x24" -a)
+else()
+    message(WARNING "Qml tests disabled: xvfb-run not found")
+endif()
+
 set(SOURCES
     ${messaging-app_SOURCE_DIR}/src/audiorecorder.cpp
     ${messaging-app_SOURCE_DIR}/src/fileoperations.cpp
@@ -16,7 +28,7 @@ set(SOURCES
 add_executable(${TEST} ${SOURCES})
 qt5_use_modules(${TEST} Core Multimedia Qml Quick QuickTest Sql)
 
-set(TEST_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
+set(TEST_COMMAND ${XVFB_RUN_BIN} ${CMAKE_CURRENT_BINARY_DIR}/${TEST}
                  -import ${CMAKE_BINARY_DIR}/src
                  -import ${UNITY8_QML_PATH}
                  -platform offscreen)
