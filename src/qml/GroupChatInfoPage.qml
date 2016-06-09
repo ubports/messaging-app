@@ -27,6 +27,7 @@ Page {
 
     property variant threads: []
     property variant participants: threads.length > 0 ? threads[0].participants : []
+    property QtObject chatEntry: null
 
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
@@ -92,6 +93,20 @@ Page {
                         rightMargin: units.gu(1)
                         verticalCenter: parent.verticalCenter
                     }
+                }
+            }
+
+            Button {
+                id: destroyButton
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(1)
+                }
+                visible: chatRoom && chatEntry
+                text: i18n.tr("Delete group")
+                onClicked: {
+                    var result = chatEntry.destroyRoom()
+                    // FIXME: show a dialog in case of failure
                 }
             }
 

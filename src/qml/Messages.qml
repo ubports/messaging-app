@@ -638,7 +638,12 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads })
+                    onTriggered: {
+                        var properties = {}
+                        properties["threads"] = messages.threads
+                        properties["chatEntry"] = messages.chatEntry
+                        mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), properties)
+                    }
                 }
             ]
 
