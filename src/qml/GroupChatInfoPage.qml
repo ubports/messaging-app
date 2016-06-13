@@ -85,12 +85,23 @@ Page {
                     id: groupName
                     verticalAlignment: Text.AlignVCenter
                     style: TransparentTextFieldStype {}
+                    text: chatEntry.title
                     anchors {
                         left: groupAvatar.right
                         leftMargin: units.gu(1)
                         right: parent.right
                         rightMargin: units.gu(1)
                         verticalCenter: parent.verticalCenter
+                    }
+
+                    // FIXME: check if there is a way to replace the enter button
+                    // by a custom one saying "Rename" in OSK
+                    Keys.onEnterPressed: {
+                        chatEntry.title = groupName.text
+                    }
+
+                    Keys.onEscapePressed: {
+                        groupName.text = chatEntry.title
                     }
                 }
             }
