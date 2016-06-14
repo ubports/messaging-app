@@ -96,7 +96,7 @@ Page {
 
                     // FIXME: check if there is a way to replace the enter button
                     // by a custom one saying "Rename" in OSK
-                    Keys.onEnterPressed: {
+                    onAccepted: {
                         chatEntry.title = groupName.text
                     }
 
