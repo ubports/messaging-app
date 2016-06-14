@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -20,14 +20,19 @@ import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Telephony 0.1
 
-MessageDelegate {
-    id: root
+Column {
+    id: attachmentsView
 
-    property var attachments: messageData.textMessageAttachments
+    anchors {
+        top: parent.top
+        left: parent.left
+        right: parent.right
+    }
+    height: childrenRect.height
+    property var attachments: []
     property var dataAttachments: []
-    property var textAttachements: []
-    property string messageText: ""
-    swipeLocked: {
+    property bool incoming: false
+    property bool swipeLocked: {
         for (var i=0; i < attachmentsView.children.length; i++) {
             if (attachmentsView.children[i].item && !attachmentsView.children[i].item.swipeLocked) {
                 return false
@@ -35,11 +40,16 @@ MessageDelegate {
         }
         return true
     }
-
+    property string messageText: ""
+    property var lastItem: children.length > 0 ? children[children.length - 1] : null
 
     function clicked(mouse)
     {
-        var childPoint = root.mapToItem(attachmentsView, mouse.x, mouse.y)
+        if (attachmentsRepeater.count === 0) {
+            return
+        }
+
+        var childPoint = parent.mapToItem(attachmentsView, mouse.x, mouse.y)
         var attachment = attachmentsView.childAt(childPoint.x, childPoint.y)
         if (attachment && attachment.item && attachment.item.previewer) {
             var properties = {}
@@ -86,146 +96,86 @@ MessageDelegate {
     }
 
     onAttachmentsChanged: {
-        root.dataAttachments = []
-        root.textAttachements = []
+        attachmentsView.dataAttachments = []
+        var textAttachments = []
         for (var i=0; i < attachments.length; i++) {
             var attachment = attachments[i]
             if (startsWith(attachment.contentType, "text/plain") ) {
-                root.textAttachements.push(attachment)
+                textAttachments.push(attachment)
             } else if (startsWith(attachment.contentType, "audio/")) {
-                root.dataAttachments.push({"type": "audio",
+                attachmentsView.dataAttachments.push({"type": "audio",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSAudio.qml",
+                                      "delegateSource": "AttachmentDelegates/AudioDelegate.qml",
                                     })
             } else if (startsWith(attachment.contentType, "image/")) {
-                root.dataAttachments.push({"type": "image",
+                attachmentsView.dataAttachments.push({"type": "image",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSImage.qml",
+                                      "delegateSource": "AttachmentDelegates/ImageDelegate.qml",
                                     })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
                 // smil files will always be ignored here
             } else if (startsWith(attachment.contentType, "text/vcard") ||
                        startsWith(attachment.contentType, "text/x-vcard")) {
-                root.dataAttachments.push({"type": "vcard",
+                attachmentsView.dataAttachments.push({"type": "vcard",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSContact.qml"
+                                      "delegateSource": "AttachmentDelegates/ContactDelegate.qml"
                                     })
             } else if (startsWith(attachment.contentType, "video/")) {
-                root.dataAttachments.push({"type": "video",
+                attachmentsView.dataAttachments.push({"type": "video",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSVideo.qml",
+                                      "delegateSource": "AttachmentDelegates/VideoDelegate.qml",
                                     })
             } else {
-                root.dataAttachments.push({"type": "default",
+                attachmentsView.dataAttachments.push({"type": "default",
                                       "data": attachment,
-                                      "delegateSource": "MMS/MMSDefault.qml"
+                                      "delegateSource": "AttachmentDelegates/DefaultDelegate.qml"
                                     })
             }
         }
-        attachmentsRepeater.model = root.dataAttachments
-        if (root.textAttachements.length > 0) {
-            root.messageText = application.readTextFile(root.textAttachements[0].filePath)
-            bubbleLoader.active = true
-            root._lastItem = bubbleLoader
+        attachmentsRepeater.model = attachmentsView.dataAttachments
+        if (textAttachments.length > 0) {
+            attachmentsView.messageText = application.readTextFile(textAttachments[0].filePath)
         }
     }
-    height: attachmentsView.height
-    Column {
-        id: attachmentsView
 
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-        }
-        height: childrenRect.height
-
-        spacing: units.gu(0.1)
-        Repeater {
-            id: attachmentsRepeater
-
-            onCountChanged: {
-                if (bubbleLoader.active) {
-                    root._lastItem = bubbleLoader
-                } else {
-                    root._lastItem = itemAt(count - 1)
-                }
-            }
-
-            Loader {
-                id: attachmentLoader
-
-                states: [
-                    State {
-                        when: root.incoming
-                        name: "incoming"
-                        AnchorChanges {
-                            target: attachmentLoader
-                            anchors.left: parent ? parent.left : undefined
-                        }
-                    },
-                    State {
-                        when: !root.incoming
-                        name: "outgoing"
-                        AnchorChanges {
-                            target: attachmentLoader
-                            anchors.right: parent ? parent.right : undefined
-                        }
-                    }
-                ]
-                source: modelData.delegateSource
-                Binding {
-                    target: attachmentLoader.item ? attachmentLoader.item : null
-                    property: "attachment"
-                    value: modelData.data
-                    when: attachmentLoader.status === Loader.Ready
-                }
-                Binding {
-                    target: attachmentLoader.item ? attachmentLoader.item : null
-                    property: "lastItem"
-                    value: _lastItem === attachmentLoader
-                    when: attachmentLoader.status === Loader.Ready
-                }
-            }
-        }
+    spacing: units.gu(0.1)
+    Repeater {
+        id: attachmentsRepeater
 
         Loader {
-            id: bubbleLoader
-
-            source: Qt.resolvedUrl("MMSMessageBubble.qml")
-            active: false
+            id: attachmentLoader
 
             states: [
                 State {
-                    when: incoming
+                    when: attachmentsView.incoming
                     name: "incoming"
                     AnchorChanges {
-                        target: bubbleLoader
-                        anchors.left: parent.left
+                        target: attachmentLoader
+                        anchors.left: parent ? parent.left : undefined
                     }
                 },
                 State {
+                    when: !attachmentsView.incoming
                     name: "outgoing"
-                    when: !incoming
                     AnchorChanges {
-                        target: bubbleLoader
-                        anchors.right: parent.right
+                        target: attachmentLoader
+                        anchors.right: parent ? parent.right : undefined
                     }
                 }
             ]
-
+            source: modelData.delegateSource
             Binding {
-                target: bubbleLoader.item
-                property: "messageText"
-                value: root.messageText.length > 0 ? root.messageText : i18n.tr("Missing message data")
-                when: bubbleLoader.status === Loader.Ready
+                target: attachmentLoader.item ? attachmentLoader.item : null
+                property: "attachment"
+                value: modelData.data
+                when: attachmentLoader.status === Loader.Ready
             }
             Binding {
-                target: bubbleLoader.item
-                property: "sender"
-                value: messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId
-                when: messageData.participants.length > 1 && bubbleLoader.status === Loader.Ready && messageData.senderId !== "self"
+                target: attachmentLoader.item ? attachmentLoader.item : null
+                property: "lastItem"
+                value: attachmentsView.lastItem === attachmentLoader
+                when: attachmentLoader.status === Loader.Ready
             }
         }
     }

@@ -246,8 +246,7 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
-    QString text;
-    QString accountId;
+    QVariantMap properties;
     QUrl url(arg);
     QString scheme = url.scheme();
     QString value = url.path();
@@ -255,14 +254,24 @@ void MessagingApplication::parseArgument(const QString &arg)
     // message:///phonenumber and message:phonenumber
     if (value.startsWith("/")) {
         value = value.right(value.length()-1);
+        if (!value.isEmpty()) {
+            QStringList participantIds = value.split(";");
+            properties["participantIds"] = participantIds;
+        }
     }
     QUrlQuery query(url);
     Q_FOREACH(const Pair &item, query.queryItems(QUrl::FullyDecoded)) {
         if (item.first == "text") {
-            text = item.second;
+            properties["text"] = item.second;
         }
         if (item.first == "accountId") {
-            accountId = item.second;
+            properties["accountId"] = item.second;
+        }
+        if (item.first == "chatType") {
+            properties["chatType"] = item.second.toInt();
+        }
+        if (item.first == "threadId") {
+            properties["threadId"] = item.second;
         }
     }
 
@@ -272,10 +281,10 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
 
     if (scheme == "message") {
-        if (!value.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, value), Q_ARG(QVariant, text), Q_ARG(QVariant, accountId));
-        } else {
+        if (value.isEmpty() && properties.isEmpty()) {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
+        } else {
+            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, properties));
         }
     }
 }

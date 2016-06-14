@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -22,7 +22,7 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 import ".."
 
-MMSBase {
+BaseDelegate {
     id: vcardDelegate
 
     readonly property bool error: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
@@ -58,7 +58,7 @@ MMSBase {
         }
     }
 
-    previewer: vcardDelegate.contactsCount > 1 ? "MMS/PreviewerMultipleContacts.qml" : "MMS/PreviewerSingleContact.qml"
+    previewer: vcardDelegate.contactsCount > 1 ? "AttachmentDelegates/PreviewerMultipleContacts.qml" : "AttachmentDelegates/PreviewerSingleContact.qml"
     height: units.gu(9.5)
     width: units.gu(27)
 

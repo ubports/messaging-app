@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -29,7 +29,7 @@ ListItemWithActions {
     id: delegate
 
     property var participant: participants ? participants[0] : {}
-    property bool groupChat: participants.length > 1
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
@@ -40,6 +40,14 @@ ListItemWithActions {
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
+        if (chatType == HistoryThreadModel.ChatTypeRoom) {
+            if (chatRoomInfo.Title != "") {
+                return chatRoomInfo.Title
+            } else if (chatRoomInfo.RoomName != "") {
+                return chatRoomInfo.RoomName
+            }
+            return i18n.tr("Group")
+        }
         var firstRecipient
         if (unknownContact) {
             firstRecipient = delegateHelper.phoneNumber
@@ -147,7 +155,8 @@ ListItemWithActions {
             left: avatar.right
             leftMargin: units.gu(1)
         }
-        color: UbuntuColors.lightAubergine
+        color: Theme.palette.normal.backgroundText
+        font.bold: unreadCountIndicator.visible
         text: {
             if (groupChat) {
                 return groupChatLabel
@@ -181,6 +190,7 @@ ListItemWithActions {
             }
         }
         fontSize: "small"
+        color: Theme.palette.normal.backgroundTertiaryText
     }
 
     Image {
@@ -194,6 +204,14 @@ ListItemWithActions {
         width: units.gu(2)
         visible: source !== ""
         source: {
+            if (!telepathyHelper.ready) {
+                return ""
+            }
+ 
+            // for any chat room, or generic account, show the icon
+            if (chatType == HistoryThreadModel.ChatTypeRoom || telepathyHelper.accountForId(model.accountId).type == AccountEntry.GenericAccount) {
+                return telepathyHelper.accountForId(model.accountId).protocolInfo.icon
+            }
             if (delegateHelper.presenceType != PresenceRequest.PresenceTypeUnknown
                     && delegateHelper.presenceType != PresenceRequest.PresenceTypeUnset) {
                 return telepathyHelper.accountForId(delegateHelper.presenceAccountId).protocolInfo.icon
@@ -254,6 +272,7 @@ ListItemWithActions {
         // avoid any kind of formatting in the text message preview
         textFormat: Text.PlainText
         maximumLineCount: 1
+        color: Theme.palette.normal.backgroundSecondaryText
     }
 
     Item {

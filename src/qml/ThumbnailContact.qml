@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -87,7 +87,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
         text: attachment.title
         elide: Text.ElideMiddle
-        color: UbuntuColors.lightAubergine
+        color: Theme.palette.normal.backgroundText
     }
     MouseArea {
         anchors.fill: parent

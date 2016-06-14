@@ -117,7 +117,8 @@ ContactViewPage {
                 list.addRecipient(detail.value(0))
             } else {
                 console.warn("Action message without contactList")
-                mainView.startChat(detail.value(0), "")
+                var properties = {'participantIds': [detail.value(0)]}
+                mainView.startChat(properties)
                 return
             }
         } else {

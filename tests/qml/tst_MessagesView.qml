@@ -162,7 +162,9 @@ Item {
             // and instead will generate the list of participants, take advantage of that
             var account = mainViewLoader.item.account
             mainViewLoader.item.account = null
-            mainViewLoader.item.startChat(senderId, "")
+            var properties = {}
+            properties["participantIds"] = [senderId]
+            mainViewLoader.item.startChat(properties)
             mainViewLoader.item.account = account
             var messageList
             while (true) {
