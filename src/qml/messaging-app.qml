@@ -330,6 +330,7 @@ MainView {
             Loader {
                 id: messagesBottomEdgeLoader
                 active: mainView.dualPanel
+                asynchronous: true
                 sourceComponent: MessagingBottomEdge {
                     id: messagesBottomEdge
                     parent: messages
@@ -378,6 +379,7 @@ MainView {
 
             Loader {
                 id: bottomEdgeLoader
+                asynchronous: true
                 sourceComponent: MessagingBottomEdge {
                     parent: emptyStatePage
                     hint.text: ""

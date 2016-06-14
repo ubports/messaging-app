@@ -325,6 +325,7 @@ Page {
     Loader {
         id: bottomEdgeLoader
         active: !selectionMode && !searching && !mainView.dualPanel
+        asynchronous: true
         sourceComponent: MessagingBottomEdge {
             parent: mainPage
         }

@@ -110,6 +110,7 @@ Page {
     Loader {
         id: messagesBottomEdgeLoader
         active: mainView.dualPanel
+        asynchronous: true
         sourceComponent: MessagingBottomEdge {
             id: messagesBottomEdge
             parent: settingsPage
