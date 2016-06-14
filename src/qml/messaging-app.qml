@@ -331,12 +331,9 @@ MainView {
                 id: messagesBottomEdgeLoader
                 active: mainView.dualPanel
                 asynchronous: true
-                sourceComponent: MessagingBottomEdge {
-                    id: messagesBottomEdge
-                    parent: messages
-                    hint.text: ""
-                    hint.height: 0
-                }
+                Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": messages,
+                                                                             "hint.text": "",
+                                                                             "hint.height": 0})
             }
         }
     }
@@ -380,11 +377,10 @@ MainView {
             Loader {
                 id: bottomEdgeLoader
                 asynchronous: true
-                sourceComponent: MessagingBottomEdge {
-                    parent: emptyStatePage
-                    hint.text: ""
-                    hint.height: 0
-                }
+                Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": emptyStatePage,
+                                                                             "hint.text": "",
+                                                                             "hint.height": 0})
+
             }
         }
     }

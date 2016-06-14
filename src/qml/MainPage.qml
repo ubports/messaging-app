@@ -326,8 +326,6 @@ Page {
         id: bottomEdgeLoader
         active: !selectionMode && !searching && !mainView.dualPanel
         asynchronous: true
-        sourceComponent: MessagingBottomEdge {
-            parent: mainPage
-        }
+        Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": mainPage})
     }
 }

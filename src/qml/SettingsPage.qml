@@ -111,12 +111,9 @@ Page {
         id: messagesBottomEdgeLoader
         active: mainView.dualPanel
         asynchronous: true
-        sourceComponent: MessagingBottomEdge {
-            id: messagesBottomEdge
-            parent: settingsPage
-            hint.text: ""
-            hint.height: 0
-        }
+        Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": settingsPage,
+                                                                     "hint.text": "",
+                                                                     "hint.height": 0})
     }
 }
 
