@@ -228,7 +228,8 @@ Page {
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
             id: newItem
-            height: mainView.bottomEdge.status === BottomEdge.Committed &&
+            height: mainView.bottomEdge &&
+                    mainView.bottomEdge.status === BottomEdge.Committed &&
                     !mainView.bottomEdge.showingConversation &&
                     mainView.dualPanel ? units.gu(10) : 0
             text: i18n.tr("New message")
