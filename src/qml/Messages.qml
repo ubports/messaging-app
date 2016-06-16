@@ -921,6 +921,10 @@ Page {
             if (userTyping) {
                 return i18n.tr("Typing..")
             }
+            var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
+            if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
+                return ""
+            }
             switch (presenceRequest.type) {
             case PresenceRequest.PresenceTypeAvailable:
                 return i18n.tr("Online")
