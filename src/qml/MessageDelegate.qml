@@ -169,6 +169,12 @@ ListItemWithActions {
             value: accountLabel
             when: (attachmentsLoader.status === Loader.Ready)
         }
+        Binding {
+            target: attachmentsLoader.item
+            property: "incoming"
+            value: incoming
+            when: (attachmentsLoader.status === Loader.Ready)
+        }
     }
 
     MessageBubble {
