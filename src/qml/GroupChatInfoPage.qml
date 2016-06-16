@@ -41,7 +41,6 @@ Page {
         flickable: contentsFlickable
     }
 
-
     function addRecipient(identifier) {
         chatEntry.inviteParticipants([identifier], "")
     }
@@ -122,6 +121,12 @@ Page {
                 text: i18n.tr("Delete group")
                 onClicked: {
                     var result = chatEntry.destroyRoom()
+                    if (!result) {
+                        application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
+                    } else {
+                        application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
+                        mainView.emptyStack()
+                    }
                     // FIXME: show a dialog in case of failure
                 }
             }
@@ -172,7 +177,6 @@ Page {
                     onParticipantRemoved: chatEntry.removeParticipants([modelData.identifier], "")
                 }
             }
-
         }
     }
 }
