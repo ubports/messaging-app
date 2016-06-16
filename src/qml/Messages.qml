@@ -299,9 +299,6 @@ Page {
         properties["chatType"] = messages.chatType
         properties["participantIds"] = newParticipantsIds
 
-        // create the new thread and update the threadId list
-        var thread = addNewThreadToFilter(messages.account.accountId, properties)
-
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -901,13 +898,15 @@ Page {
 
         onMessageSent: {
             // create the new thread and update the threadId list
-            if (accountId != messages.account.accountId) {
+            if (accountId != messages.account.accountId ||
+                messages.threads.length === 0) {
                 addNewThreadToFilter(accountId, properties)
             }
         }
         onMessageSendingFailed: {
             // create the new thread and update the threadId list
-            if (accountId != messages.account.accountId) {
+            if (accountId != messages.account.accountId ||
+                messages.threads.length === 0) {
                 addNewThreadToFilter(accountId, properties)
             }
         }
@@ -940,6 +939,10 @@ Page {
         subtitle: {
             if (userTyping) {
                 return i18n.tr("Typing..")
+            }
+            var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
+            if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
+                return ""
             }
             switch (presenceRequest.type) {
             case PresenceRequest.PresenceTypeAvailable:
