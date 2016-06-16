@@ -41,6 +41,11 @@ Page {
         flickable: contentsFlickable
     }
 
+
+    function addRecipient(identifier) {
+        chatEntry.inviteParticipants([identifier], "")
+    }
+
     Flickable {
         id: contentsFlickable
         anchors.fill: parent
@@ -138,6 +143,7 @@ Page {
 
                 visible: chatRoom
                 text: i18n.tr("Add member")
+                onClicked: mainStack.addFileToCurrentColumnSync(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": groupChatInfoPage})
             }
 
             ListItems.ThinDivider {
@@ -152,6 +158,7 @@ Page {
 
                 ParticipantDelegate {
                     participant: modelData
+                    onParticipantRemoved: chatEntry.removeParticipants([modelData.identifier], "")
                 }
             }
 

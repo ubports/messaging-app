@@ -24,10 +24,18 @@ ListItemWithActions {
     id: participantDelegate
 
     property variant participant: null
+    signal participantRemoved
+
+    leftSideAction: Action {
+        iconName: "delete"
+        text: i18n.tr("Delete")
+        onTriggered: {
+            participantDelegate.participantRemoved()
+        }
+    }
 
     anchors {
         left: parent.left
-        leftMargin: units.gu(1)
         right: parent.right
         rightMargin: units.gu(1)
     }
