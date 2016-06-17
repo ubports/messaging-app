@@ -32,6 +32,9 @@ Page {
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
+    HistoryEventModel {
+       id: eventModel
+    }
 
     header: PageHeader {
         id: pageHeader
@@ -43,6 +46,14 @@ Page {
 
     function addRecipient(identifier) {
         chatEntry.inviteParticipants([identifier], "")
+        var newParticipantsIds = []
+        for (var i in groupChatInfoPage.threads[0].participants) {
+            newParticipantsIds.push(groupChatInfoPage.threads[0].participants[i].identifier)
+        }
+        eventModel.writeTextInformationEvent(groupChatInfoPage.threads[0].accountId,
+                                             groupChatInfoPage.threads[0].threadId,
+                                             newParticipantsIds,
+                                             i18n.tr("Contact %1 was invited to the chat").arg(identifier))
     }
 
     Flickable {
@@ -173,8 +184,23 @@ Page {
                 model: participants
 
                 ParticipantDelegate {
+                    id: participantDelegate
                     participant: modelData
-                    onParticipantRemoved: chatEntry.removeParticipants([modelData.identifier], "")
+                    onParticipantRemoved: {
+                        chatEntry.removeParticipants([modelData.identifier], "")
+                        var newParticipantsIds = []
+                        for (var i in groupChatInfoPage.threads[0].participants) {
+                            newParticipantsIds.push(groupChatInfoPage.threads[0].participants[i].identifier)
+                        }
+ 
+                        eventModel.writeTextInformationEvent(groupChatInfoPage.threads[0].accountId,
+                                                             groupChatInfoPage.threads[0].threadId,
+                                                             newParticipantsIds,
+                                                             i18n.tr("Contact %1 was removed from the chat").arg(modelData.identifier))
+ 
+                        participantDelegate.height = 0
+
+                    }
                 }
             }
         }
