@@ -169,6 +169,7 @@ Page {
 
         showAddNewButton: true
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
+        onlineAccountApplicationId: "messaging-app"
 
         filterTerm: searchField.text
         onContactClicked: {
