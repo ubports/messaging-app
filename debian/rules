@@ -7,6 +7,11 @@
 export DEB_BUILD_HARDENING=1
 export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 
+DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
+# Skip tests on the archs they are known to be flaky with current configuration
+# Ref.: https://bugs.launchpad.net/ubuntu/+source/mesa/+bug/1585942
+testskip_architectures := arm64
+
 %:
 	dh $@ --parallel --fail-missing --with translations
 
@@ -31,10 +36,11 @@ override_dh_installdeb:
 	dh_apparmor --profile-name=usr.bin.messaging-app -pmessaging-app
 	dh_installdeb
 
-
 override_dh_auto_test:
+ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
 	flake8  tests/autopilot/messaging_app/
 	cd obj-$(DEB_HOST_GNU_TYPE); ctest -V
+endif
 
 override_dh_translations:
 	# Override dh_translations to work around http://pad.lv/1183262.
