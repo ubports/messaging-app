@@ -1,3 +1,11 @@
+messaging-app (0.1+16.10.20160621.4-0ubuntu1) yakkety; urgency=medium
+
+  * Make sure that the placeholder text is visible for Contact Editor
+    Page. (LP: #1592422)
+  * overwrite "applicationId" used by online accounts. (LP: #1583014)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 21 Jun 2016 16:13:57 +0000
+
 messaging-app (0.1+16.04.20160506-0ubuntu1) xenial; urgency=medium
 
   * Do not pre-select sim 1. Prompt users to select one instead. (LP:
