@@ -33,7 +33,7 @@ override_dh_installdeb:
 
 
 override_dh_auto_test:
-	flake8  tests/autopilot/messaging_app/
+	python3 -m flake8 tests/autopilot/messaging_app/
 	cd obj-$(DEB_HOST_GNU_TYPE); ctest -V
 
 override_dh_translations:
