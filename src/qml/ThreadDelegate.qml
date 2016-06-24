@@ -146,7 +146,9 @@ ListItemWithActions {
             topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
+            right: time.left
         }
+        elide: Text.ElideRight
         color: Theme.palette.normal.backgroundText
         font.bold: unreadCountIndicator.visible
         text: {
