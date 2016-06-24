@@ -23,7 +23,9 @@ BottomEdge {
     id: bottomEdge
 
     function commitWithProperties(properties) {
-        _realPage.destroy()
+        if (_realPage) {
+            _realPage.destroy()
+        }
         _realPage = messagesComponent.createObject(null, properties)
         commit()
     }
@@ -43,15 +45,21 @@ BottomEdge {
 
     Component.onCompleted: {
         mainView.bottomEdge = bottomEdge
-        _realPage = messagesComponent.createObject(null)
+        if (!_realPage) {
+            _realPage = messagesComponent.createObject(null)
+        }
     }
 
     Component.onDestruction: {
-        _realPage.destroy()
+        if (_realPage) {
+            _realPage.destroy()
+        }
     }
 
     onCollapseCompleted: {
-        _realPage.destroy()
+        if (_realPage) {
+            _realPage.destroy()
+        }
         _realPage = messagesComponent.createObject(null)
     }
 

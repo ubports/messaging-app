@@ -131,8 +131,22 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
+    property var pendingCommitProperties
+    function bottomEdgeCommit() {
+        if (bottomEdge) {
+            mainView.onBottomEdgeChanged.disconnect(bottomEdgeCommit);
+            bottomEdge.commitWithProperties(pendingCommitProperties);
+            pendingCommitProperties = null;
+        }
+    }
+
     function showBottomEdgePage(properties) {
-        bottomEdge.commitWithProperties(properties)
+        pendingCommitProperties = properties;
+        if (bottomEdge) {
+            bottomEdgeCommit();
+        } else {
+            mainView.onBottomEdgeChanged.connect(bottomEdgeCommit);
+        }
     }
 
     Connections {
