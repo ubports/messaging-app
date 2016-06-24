@@ -169,6 +169,8 @@ Page {
 
         showAddNewButton: true
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
+        // this will be used to callback the app, after create account
+        onlineAccountApplicationId: "messaging-app"
 
         filterTerm: searchField.text
         onContactClicked: {
