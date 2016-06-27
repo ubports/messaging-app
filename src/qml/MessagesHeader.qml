@@ -29,8 +29,7 @@ Item {
     height: units.gu(8)
 
     anchors {
-        top: parent.top
-        topMargin: units.gu(1)
+        verticalCenter: parent.verticalCenter
     }
 
     Behavior on height {
@@ -38,7 +37,7 @@ Item {
     }
 
     Item {
-        height: Math.min(titleText.height + subtitleText.height + subtitleText.anchors.topMargin, header.height)
+        height: Math.min(titleText.height + (subtitleText.height ? subtitleText.height + subtitleText.anchors.topMargin : 0), header.height)
         width: header.width
         anchors {
             verticalCenter: parent.verticalCenter

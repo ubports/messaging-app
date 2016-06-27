@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-07-15 10:55-0300\n"
-"PO-Revision-Date: 2015-06-02 18:42+0000\n"
-"Last-Translator: Sebastien Bacher <seb128@ubuntu.com>\n"
+"PO-Revision-Date: 2016-05-09 20:10+0000\n"
+"Last-Translator: Sylvain Prado <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
+"X-Launchpad-Export-Date: 2016-05-10 05:48+0000\n"
 "X-Generator: Launchpad (build 18025)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Accepté"
 
-#: ../src/qml/Messages.qml:636
+#: ../src/qml/Messages.qml:623
 msgid "Add"
 msgstr "Ajouter"
 
@@ -97,12 +97,12 @@ msgstr[1] "Pièces jointes : %1 vidéos"
 msgid "Audio attachment not supported"
 msgstr "Pièce jointe audio non prise en charge"
 
-#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
+#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
 msgid "Call"
 msgstr "Appeler"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
+#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
 #: ../src/qml/MessagingContactEditorPage.qml:34
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -115,8 +115,8 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Changer toutes les associations de messages vers %1 ?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
 msgid "Close"
 msgstr "Fermer"
 
@@ -126,9 +126,9 @@ msgstr ""
 "Composer un nouveau message par un glissement vers le haut depuis le bord "
 "inférieur de l'écran."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
 msgid "Contact"
-msgstr "Contacter"
+msgstr "Contact"
 
 #: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
@@ -187,7 +187,7 @@ msgid "Group"
 msgstr "Groupe"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:610
+#: ../src/qml/Messages.qml:597
 #, qt-format
 msgid "Group (%1)"
 msgstr "Groupe (%1)"
@@ -232,7 +232,7 @@ msgstr "Application de messagerie"
 msgid "Messaging application"
 msgstr "Application de messagerie"
 
-#: ../src/qml/MMSDelegate.qml:220
+#: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
 msgstr "Données de message manquantes"
 
@@ -240,7 +240,7 @@ msgstr "Données de message manquantes"
 msgid "Myself"
 msgstr "Moi-même"
 
-#: ../src/qml/Messages.qml:489
+#: ../src/qml/Messages.qml:475
 msgid "New Message"
 msgstr "Nouveau message"
 
@@ -248,11 +248,11 @@ msgstr "Nouveau message"
 msgid "No"
 msgstr "Non"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "No SIM card selected"
 msgstr "Aucune carte SIM selectionnée"
 
-#: ../src/qml/Messages.qml:964
+#: ../src/qml/Messages.qml:952
 msgid "No network"
 msgstr "Aucun réseau"
 
@@ -362,16 +362,16 @@ msgstr "Basculer sur la carte SIM par défaut :"
 msgid "Temporarily Failed"
 msgstr "Échec provisoire"
 
-#: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
 msgid "Text message copied to clipboard"
 msgstr "Texte copié dans le presse-papier"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Il n'y a actuellement aucun réseau sur %1"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 msgid "There is currently no network."
 msgstr "Il n'y a actuellement aucun réseau."
 
@@ -423,7 +423,7 @@ msgstr "Oui"
 msgid "Yesterday"
 msgstr "Hier"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
 msgid "You need to select a SIM card"
 msgstr "Vous devez selectionner une carte SIM"
 
