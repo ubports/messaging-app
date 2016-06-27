@@ -59,7 +59,7 @@ Item {
             anchors.centerIn: parent
             height: iconSize
             width: height
-            color: "gray"
+            color: Theme.palette.normal.backgroundText
             Behavior on rotation {
                 UbuntuNumberAnimation { }
             }
@@ -89,7 +89,7 @@ Item {
 
     Text {
         id: label
-        color: "gray"
+        color: Theme.palette.normal.backgroundText
         height: text !== "" ? paintedHeight : 0
         anchors {
             left: sideBySide ? iconShape.right : parent.left

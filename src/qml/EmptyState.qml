@@ -48,7 +48,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         text: i18n.tr("Compose a new message by swiping up from the bottom of the screen.")
-        color: "#5d5d5d"
+        color: Theme.palette.normal.backgroundSecondaryText
         fontSize: "x-large"
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter

@@ -418,7 +418,7 @@ Item {
             focus: textEntry.focus
             font.family: "Ubuntu"
             font.pixelSize: FontUtils.sizeToPixels("medium")
-            color: "#5d5d5d"
+            color: Theme.palette.normal.backgroundText
         }
     }
 
@@ -573,7 +573,6 @@ Item {
 
         visible: enabled
 
-        iconColor: composeBar.recording ? "black" : "gray"
         iconName: "audio-input-microphone-symbolic"
 
         onClicked: {

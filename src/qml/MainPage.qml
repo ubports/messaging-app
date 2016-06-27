@@ -203,6 +203,7 @@ Page {
                 text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
                 verticalAlignment: Text.AlignVCenter
                 fontSize: "small"
+                color: Theme.palette.normal.backgroundTertiaryText
             }
             ListItem.ThinDivider {
                 anchors.bottom: parent.bottom

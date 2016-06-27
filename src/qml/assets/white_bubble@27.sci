@@ -1,4 +1,4 @@
-border.left:143
+border.left:135
 border.top: 27
 border.bottom: 48
 border.right: 135
