@@ -573,7 +573,6 @@ Item {
 
         visible: enabled
 
-        iconColor: composeBar.recording ? "black" : "gray"
         iconName: "audio-input-microphone-symbolic"
 
         onClicked: {
