@@ -154,7 +154,9 @@ ListItemWithActions {
             topMargin: units.gu(0.5)
             left: avatar.right
             leftMargin: units.gu(1)
+            right: time.left
         }
+        elide: Text.ElideRight
         color: Theme.palette.normal.backgroundText
         font.bold: unreadCountIndicator.visible
         text: {
@@ -232,11 +234,11 @@ ListItemWithActions {
         }
         z: 1
         visible: unreadCount > 0
-        color: "#38b44a"
+        color: Theme.palette.normal.positive
         Label {
             anchors.centerIn: parent
             text: unreadCount
-            color: "white"
+            color: Theme.palette.normal.positiveText
             fontSize: "x-small"
             font.weight: Font.Light
         }
@@ -251,7 +253,7 @@ ListItemWithActions {
             left: contactName.left
         }
         text: delegateHelper.phoneNumberSubTypeLabel
-        color: "gray"
+        color: Theme.palette.normal.backgroundSecondaryText
         fontSize: "x-small"
     }*/
 
