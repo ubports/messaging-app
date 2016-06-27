@@ -64,6 +64,7 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
+    property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -371,7 +372,7 @@ Page {
             }
             messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
             messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
-            selfTypingTimer.start()
+            selfTypingTimer.stop()
         }
 
         if (newMessage) {
@@ -913,6 +914,7 @@ Page {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
+                    messages.userTypingId = modelData.contactId
                     typingTimer.start()
                 } else {
                     messages.userTyping = false
@@ -926,6 +928,12 @@ Page {
         }
     }
 
+    ContactWatcher {
+        id: typingContactWatcher
+        identifier: messages.userTypingId
+        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+    }
+
     MessagesHeader {
         id: headerContents
         width: parent ? parent.width - units.gu(2) : undefined
@@ -933,7 +941,12 @@ Page {
         title: pageHeader.title
         subtitle: {
             if (userTyping) {
-                return i18n.tr("Typing..")
+                if (groupChat) {
+                    var contactAlias = typingContactWatcher.alias != "" ? typingContactWatcher.alias : typingContactWatcher.identifier
+                    return i18n.tr("%1 is typing..").arg(contactAlias)
+                } else {
+                    return i18n.tr("Typing..")
+                }
             }
             var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
             if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
