@@ -804,7 +804,7 @@ Page {
         id: selfTypingTimer
         interval: 15000
         onTriggered: {
-            if (text != "") {
+            if (composeBar.text != "" || composeBar.inputMethodComposing) {
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStatePaused)
             } else {
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
@@ -1197,12 +1197,14 @@ Page {
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
         onTextChanged: {
-            if (text == "") {
+            if (text == "" && !composeBar.inputMethodComposing) {
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
                 selfTypingTimer.stop()
                 return
             }
-            messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+            if (!selfTypingTimer.running) {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+            }
             selfTypingTimer.start()
         }
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
