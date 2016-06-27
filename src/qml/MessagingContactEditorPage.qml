@@ -28,6 +28,8 @@ ContactEditorPage {
 
     property var contactListPage: null
 
+    anchors.fill: parent
+
     leadingActions: Action {
         objectName: "cancel"
 

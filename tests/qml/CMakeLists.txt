@@ -4,6 +4,8 @@ find_package(Qt5Quick REQUIRED)
 find_package(Qt5QuickTest REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
+set(TEST tst_QmlTests)
+
 set(XVFB_COMMAND)
 
 find_program(XVFB_RUN_BIN
@@ -15,8 +17,6 @@ if(XVFB_RUN_BIN)
 else()
     message(WARNING "Qml tests disabled: xvfb-run not found")
 endif()
-
-set(TEST tst_QmlTests)
 
 set(SOURCES
     ${messaging-app_SOURCE_DIR}/src/audiorecorder.cpp
