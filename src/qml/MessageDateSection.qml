@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -30,11 +30,9 @@ Item {
         anchors.fill: parent
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
-        fontSize: "small"
-    }
-    ListItem.ThinDivider {
-        anchors.bottom: parent.bottom
-        anchors.rightMargin: 0
-        anchors.leftMargin: 0
+        horizontalAlignment: Text.AlignHCenter
+        fontSize: "x-small"
+        color: Theme.palette.normal.backgroundSecondaryText
+        font.weight: Font.Normal
     }
 }
