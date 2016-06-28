@@ -37,6 +37,14 @@ MessageDelegate {
         }
     }
 
+    function forwardMessage()
+    {
+        var properties = {}
+        emptyStack()
+        properties["text"] = textMessage
+        mainView.showBottomEdgePage(properties)
+    }
+
     function copyMessage()
     {
         Clipboard.push(bubble.messageText)

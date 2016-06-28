@@ -79,6 +79,7 @@ Column {
             if (messageData.textMessage !== "" || hasTextAttachments) {
                 actions.push(copyAction)
             }
+            actions.push(forwardAction)
             actions.push(infoAction)
             return actions
         }

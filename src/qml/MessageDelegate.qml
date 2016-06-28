@@ -43,6 +43,11 @@ Item {
         //virtual implemented by each Message type
     }
 
+    function forwardMessage()
+    {
+        //virtual implemented by each Message type
+    }
+
     function showMessageDetails(mouse)
     {
         //virtual implemented by each Message type

@@ -92,6 +92,13 @@ MultipleSelectionListView {
             iconName: "edit-copy"
             text: i18n.tr("Copy")
             onTriggered: value.copyMessage()
+        },
+        Action {
+            id: forwardAction
+
+            iconName: "mail-forward"
+            text: i18n.tr("Forward")
+            onTriggered: value.forwardMessage()
         }
     ]
 
