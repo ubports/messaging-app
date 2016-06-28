@@ -114,26 +114,37 @@ Page {
                 }
             }
 
-            Label {
-                id: participantsLabel
+            Item {
+                id: participantsHeader
                 anchors {
                     left: parent.left
-                    leftMargin: units.gu(1)
+                    right: parent.right
                 }
-                text: i18n.tr("Participants")
-                fontSize: "small"
-                color: Theme.palette.normal.backgroundTertiaryText
-            }
+                height: childrenRect.height
 
-            Button {
-                id: addParticipantButton
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(1)
+                Label {
+                    id: participantsLabel
+                    anchors {
+                        left: parent.left
+                        leftMargin: units.gu(1)
+                        verticalCenter: parent.verticalCenter
+                    }
+                    text: i18n.tr("Participants")
+                    fontSize: "small"
+                    color: Theme.palette.normal.backgroundTertiaryText
                 }
 
-                visible: chatRoom
-                text: i18n.tr("Add member")
+                Button {
+                    id: addParticipantButton
+                    anchors {
+                        right: parent.right
+                        rightMargin: units.gu(1)
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    visible: chatRoom
+                    text: i18n.tr("Add member")
+                }
             }
 
             ListItems.ThinDivider {
