@@ -25,4 +25,5 @@ Item {
     property bool lastItem: false
     property bool swipeLocked: false
     property bool showDeliveryStatus: true
+    property bool isMultimedia: false
 }
