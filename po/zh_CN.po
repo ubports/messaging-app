@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-06-29 05:43+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -50,7 +50,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "已接受"
 
-#: ../src/qml/Messages.qml:636
+#: ../src/qml/Messages.qml:623
 msgid "Add"
 msgstr "添加"
 
@@ -90,13 +90,13 @@ msgstr[0] "附件: %1 段视频"
 msgid "Audio attachment not supported"
 msgstr "不支持音频附件"
 
-#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
+#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
 msgid "Call"
 msgstr "拨号"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
-#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "取消"
@@ -108,8 +108,8 @@ msgid "Change all Messaging associations to %1?"
 msgstr "将所有短信与 %1 关联？"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
 msgid "Close"
 msgstr "关闭"
 
@@ -117,7 +117,7 @@ msgstr "关闭"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "从屏幕底部向上滑动来撰写一条新信息"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
 msgid "Contact"
 msgstr "联系人"
 
@@ -178,7 +178,7 @@ msgid "Group"
 msgstr "群组"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:610
+#: ../src/qml/Messages.qml:597
 #, qt-format
 msgid "Group (%1)"
 msgstr "群组 (%1)"
@@ -223,7 +223,7 @@ msgstr "短信应用"
 msgid "Messaging application"
 msgstr "短信应用程序"
 
-#: ../src/qml/MMSDelegate.qml:220
+#: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
 msgstr "丢失短信数据"
 
@@ -231,7 +231,7 @@ msgstr "丢失短信数据"
 msgid "Myself"
 msgstr "我自己"
 
-#: ../src/qml/Messages.qml:489
+#: ../src/qml/Messages.qml:475
 msgid "New Message"
 msgstr "新信息"
 
@@ -239,11 +239,11 @@ msgstr "新信息"
 msgid "No"
 msgstr "否"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "No SIM card selected"
 msgstr "未选择SIM卡"
 
-#: ../src/qml/Messages.qml:964
+#: ../src/qml/Messages.qml:952
 msgid "No network"
 msgstr "无网络"
 
@@ -292,7 +292,7 @@ msgstr "短信"
 
 #: ../src/qml/MMS/Previewer.qml:86
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
-#: ../src/qml/MessagingContactEditorPage.qml:46
+#: ../src/qml/MessagingContactEditorPage.qml:48
 msgid "Save"
 msgstr "保存"
 
@@ -348,16 +348,16 @@ msgstr "切换到默认 SIM 卡："
 msgid "Temporarily Failed"
 msgstr "暂时失败"
 
-#: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
 msgid "Text message copied to clipboard"
 msgstr "短信已复制到剪切板"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1 目前无网络"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 msgid "There is currently no network."
 msgstr "目前无网络"
 
@@ -365,7 +365,7 @@ msgstr "目前无网络"
 msgid "To"
 msgstr "收件人"
 
-#: ../src/qml/MultiRecipientInput.qml:148
+#: ../src/qml/MultiRecipientInput.qml:149
 msgid "To:"
 msgstr "收件人："
 
@@ -409,7 +409,7 @@ msgstr "是"
 msgid "Yesterday"
 msgstr "昨天"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
 msgid "You need to select a SIM card"
 msgstr "您需要选择SIM卡"
 
