@@ -53,7 +53,13 @@ Page {
                 right: parent.right
             }
 
+            height: childrenRect.height
             spacing: units.gu(1)
+
+            Item {
+                id: spacer
+                height: units.gu(1)
+            }
 
             Item {
                 id: groupInfo
@@ -112,6 +118,7 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
+                height: units.gu(4)
             }
 
             Item {
@@ -120,7 +127,7 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: childrenRect.height
+                height: Math.max(participantsLabel.height, addParticipantButton.height)
 
                 Label {
                     id: participantsLabel
