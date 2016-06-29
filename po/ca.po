@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-06-29 05:42+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Acceptat"
 
-#: ../src/qml/Messages.qml:636
+#: ../src/qml/Messages.qml:623
 msgid "Add"
 msgstr "Afegeix"
 
@@ -97,13 +97,13 @@ msgstr[1] "Adjunció: %1 vídeos"
 msgid "Audio attachment not supported"
 msgstr "L'adjunció d'àudio no és compatible"
 
-#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
+#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
 msgid "Call"
 msgstr "Truca-hi"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
-#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -115,8 +115,8 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Voleu canviar totes les associacions de missatgeria a %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
 msgid "Close"
 msgstr "Tanca"
 
@@ -126,7 +126,7 @@ msgstr ""
 "Redacteu un missatge nou fent lliscar el dit des de la vora inferior de la "
 "pantalla."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
 msgid "Contact"
 msgstr "Contacte"
 
@@ -187,7 +187,7 @@ msgid "Group"
 msgstr "Grup"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:610
+#: ../src/qml/Messages.qml:597
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grup (%1)"
@@ -232,7 +232,7 @@ msgstr "Aplicació de missatgeria"
 msgid "Messaging application"
 msgstr "Aplicació de missatgeria"
 
-#: ../src/qml/MMSDelegate.qml:220
+#: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
 msgstr "Manquen dades de missatge"
 
@@ -240,7 +240,7 @@ msgstr "Manquen dades de missatge"
 msgid "Myself"
 msgstr "Jo"
 
-#: ../src/qml/Messages.qml:489
+#: ../src/qml/Messages.qml:475
 msgid "New Message"
 msgstr "Missatge nou"
 
@@ -248,11 +248,11 @@ msgstr "Missatge nou"
 msgid "No"
 msgstr "No"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "No SIM card selected"
 msgstr "No s'ha seleccionat cap targeta SIM"
 
-#: ../src/qml/Messages.qml:964
+#: ../src/qml/Messages.qml:952
 msgid "No network"
 msgstr "Sense xarxa"
 
@@ -303,7 +303,7 @@ msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:86
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
-#: ../src/qml/MessagingContactEditorPage.qml:46
+#: ../src/qml/MessagingContactEditorPage.qml:48
 msgid "Save"
 msgstr "Desa"
 
@@ -362,16 +362,16 @@ msgstr "Canvia a la SIM predeterminada:"
 msgid "Temporarily Failed"
 msgstr "S'ha produït una fallada temporal"
 
-#: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
 msgid "Text message copied to clipboard"
 msgstr "S'ha copiat el missatge de text al porta-retalls"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "No hi ha cap xarxa a %1"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 msgid "There is currently no network."
 msgstr "No hi ha cap xarxa actualment."
 
@@ -379,7 +379,7 @@ msgstr "No hi ha cap xarxa actualment."
 msgid "To"
 msgstr "A"
 
-#: ../src/qml/MultiRecipientInput.qml:148
+#: ../src/qml/MultiRecipientInput.qml:149
 msgid "To:"
 msgstr "Per a:"
 
@@ -423,7 +423,7 @@ msgstr "Sí"
 msgid "Yesterday"
 msgstr "Ahir"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
 msgid "You need to select a SIM card"
 msgstr "Cal que seleccioneu una targeta SIM"
 
