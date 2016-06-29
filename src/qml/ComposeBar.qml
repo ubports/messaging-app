@@ -199,8 +199,7 @@ Item {
         TransparentButton {
             id: attachButton
             objectName: "attachButton"
-            iconName: "add"
-            iconRotation: attachmentPanel.expanded ? 45 : 0
+            iconName: attachmentPanel.expanded ? "close" : "attachment"
             onClicked: {
                 attachmentPanel.expanded = !attachmentPanel.expanded
                 if (attachmentPanel.expanded) {

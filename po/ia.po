@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-05-07 05:00+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-06-29 05:42+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Acceptate"
 
-#: ../src/qml/Messages.qml:636
+#: ../src/qml/Messages.qml:623
 msgid "Add"
 msgstr "Adder"
 
@@ -97,13 +97,13 @@ msgstr[1] "Alligatos: %1 videos"
 msgid "Audio attachment not supported"
 msgstr "Audio alligate non supportate"
 
-#: ../src/qml/Messages.qml:625 ../src/qml/Messages.qml:707
+#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
 msgid "Call"
 msgstr "Appello"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:456 ../src/qml/Messages.qml:470
-#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "Cancellar"
@@ -115,8 +115,8 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Cambiar tote le associationes de messages a %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:30
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:968
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
 msgid "Close"
 msgstr "Clauder"
 
@@ -124,7 +124,7 @@ msgstr "Clauder"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Componer un nove message per striar in alto ab le fundo del schermo."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:718
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
 msgid "Contact"
 msgstr "Contacto"
 
@@ -185,7 +185,7 @@ msgid "Group"
 msgstr "Gruppo"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:610
+#: ../src/qml/Messages.qml:597
 #, qt-format
 msgid "Group (%1)"
 msgstr "Gruppo (%1)"
@@ -230,7 +230,7 @@ msgstr "Application de messages"
 msgid "Messaging application"
 msgstr "Application de messages"
 
-#: ../src/qml/MMSDelegate.qml:220
+#: ../src/qml/MMSDelegate.qml:221
 msgid "Missing message data"
 msgstr "Datos del message perdite"
 
@@ -238,7 +238,7 @@ msgstr "Datos del message perdite"
 msgid "Myself"
 msgstr "Me ipse"
 
-#: ../src/qml/Messages.qml:489
+#: ../src/qml/Messages.qml:475
 msgid "New Message"
 msgstr "Nove message"
 
@@ -246,11 +246,11 @@ msgstr "Nove message"
 msgid "No"
 msgstr "Non"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:26
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
 msgid "No SIM card selected"
 msgstr "Nulle carta SIM seligite"
 
-#: ../src/qml/Messages.qml:964
+#: ../src/qml/Messages.qml:952
 msgid "No network"
 msgstr "Nulle rete"
 
@@ -301,7 +301,7 @@ msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:86
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
-#: ../src/qml/MessagingContactEditorPage.qml:46
+#: ../src/qml/MessagingContactEditorPage.qml:48
 msgid "Save"
 msgstr "Salvar"
 
@@ -359,16 +359,16 @@ msgstr "Commutar al SIM base:"
 msgid "Temporarily Failed"
 msgstr "Mancate temporarimente"
 
-#: ../src/qml/MMSDelegate.qml:84 ../src/qml/SMSDelegate.qml:42
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
 msgid "Text message copied to clipboard"
 msgstr "Message de texto copiate in le tabula de fragmento"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Actualmente il ha nulle rete sur %1"
 
-#: ../src/qml/Messages.qml:965
+#: ../src/qml/Messages.qml:953
 msgid "There is currently no network."
 msgstr "Actualmente il ha nulle rete."
 
@@ -376,7 +376,7 @@ msgstr "Actualmente il ha nulle rete."
 msgid "To"
 msgstr "A"
 
-#: ../src/qml/MultiRecipientInput.qml:148
+#: ../src/qml/MultiRecipientInput.qml:149
 msgid "To:"
 msgstr "A:"
 
@@ -420,7 +420,7 @@ msgstr "Si"
 msgid "Yesterday"
 msgstr "Heri"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
 msgid "You need to select a SIM card"
 msgstr "Selige un carta SIM"
 
