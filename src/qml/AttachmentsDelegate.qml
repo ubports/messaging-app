@@ -32,6 +32,7 @@ Column {
     property var attachments: []
     property var dataAttachments: []
     property bool incoming: false
+    property bool isMultimedia: false
     property bool swipeLocked: {
         for (var i=0; i < attachmentsView.children.length; i++) {
             if (attachmentsView.children[i].item && !attachmentsView.children[i].item.swipeLocked) {
@@ -139,7 +140,7 @@ Column {
         }
     }
 
-    spacing: units.gu(0.1)
+    spacing: units.gu(1)
     Repeater {
         id: attachmentsRepeater
 
@@ -175,6 +176,12 @@ Column {
                 target: attachmentLoader.item ? attachmentLoader.item : null
                 property: "lastItem"
                 value: attachmentsView.lastItem === attachmentLoader
+                when: attachmentLoader.status === Loader.Ready
+            }
+            Binding {
+                target: attachmentLoader.item ? attachmentLoader.item : null
+                property: "isMultimedia"
+                value: isMultimedia
                 when: attachmentLoader.status === Loader.Ready
             }
         }

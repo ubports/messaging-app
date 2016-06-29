@@ -66,6 +66,10 @@ Column {
             }
             return ""
         }
+        isMultimedia: {
+            var account = telepathyHelper.accountForId(accountId)
+            return account && account.type == AccountEntry.MultimediaAccount
+        }
 
         // TODO: need select only the item
         onItemClicked: {
