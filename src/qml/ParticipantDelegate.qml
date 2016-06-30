@@ -20,57 +20,43 @@ import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 
-ListItemWithActions {
+ListItem {
     id: participantDelegate
 
     property variant participant: null
-    signal participantRemoved
-
-    leftSideAction: Action {
-        iconName: "delete"
-        text: i18n.tr("Delete")
-        onTriggered: {
-            participantDelegate.participantRemoved()
-        }
-    }
 
     anchors {
         left: parent.left
         right: parent.right
         rightMargin: units.gu(1)
     }
-    height: units.gu(8)
+    height: layout.height
 
-    ContactAvatar {
-        id: avatar
+    ListItemLayout {
+        id: layout
+        title.text: participant.alias !== "" ? participant.alias : participant.identifier
 
-        fallbackAvatarUrl: {
-            if (participant.avatar !== "") {
-                return participant.avatar
-            } else if (participant.alias === "") {
-                return "image://theme/contact"
+        ContactAvatar {
+            id: avatar
+
+            fallbackAvatarUrl: {
+                if (participant.avatar !== "") {
+                    return participant.avatar
+                } else if (participant.alias === "") {
+                    return "image://theme/contact"
+                }
+                return ""
             }
-            return ""
+            fallbackDisplayName: participant.alias
+            showAvatarPicture: fallbackAvatarUrl !== ""
+            anchors {
+                left: parent.left
+                verticalCenter: parent.verticalCenter
+            }
+            height: units.gu(6)
+            width: units.gu(6)
+            SlotsLayout.position: SlotsLayout.Leading
         }
-        fallbackDisplayName: participant.alias
-        showAvatarPicture: fallbackAvatarUrl !== ""
-        anchors {
-            left: parent.left
-            verticalCenter: parent.verticalCenter
-        }
-        height: units.gu(6)
-        width: units.gu(6)
-    }
-
-    Label {
-        id: contactName
-        anchors {
-            left: avatar.right
-            leftMargin: units.gu(1)
-            verticalCenter: parent.verticalCenter
-        }
-        color: Theme.palette.normal.backgroundText
-        text: participant.alias !== "" ? participant.alias : participant.identifier
     }
 }
 
