@@ -50,6 +50,49 @@ MultipleSelectionListView {
         }
     }
 
+    function shareSelectedMessages()
+    {
+        var aggregatedText = [];
+        var transfer = {}
+        var items = []
+        for (var i = root.selectedItems.count -1; i >= 0 ; i--) {
+            var event = root.selectedItems.get(i).model
+            for (var j = 0; j < event.textMessageAttachments.length; j++) {
+                var attachment = event.textMessageAttachments[j]
+                var item = {"text":"", "url":""}
+                var hasAttachmentText = false
+                var contentType = application.fileMimeType(String(attachment.filePath))
+                // we dont include smil files. they will be auto generated
+                if (startsWith(contentType.toLowerCase(), "application/smil")) {
+                    continue
+                }
+                if (startsWith(contentType.toLowerCase(), "text/plain")) {
+                    item["text"] = application.readTextFile(attachment.filePath)
+                    hasAttachmentText = true
+                    items.push(item)
+                    continue
+                }
+                item["url"] = "file://" + attachment.filePath
+                items.push(item)
+            }
+            if (event.textMessage !== "" && !hasAttachmentText) {
+                aggregatedText.push(event.textMessage)
+            }
+        }
+        if (aggregatedText.length > 0) {
+            items.push({"text": aggregatedText.join("\n"), "url":""})
+        }
+        var properties = {}
+        var transfer = {}
+        transfer["items"] = items
+
+        properties["sharedAttachmentsTransfer"] = transfer
+        emptyStack()
+        mainView.showBottomEdgePage(properties)
+
+        root.cancelSelection()
+    }
+
     // fake bottomMargin
     header: Item {
         height: units.gu(1)
@@ -92,6 +135,13 @@ MultipleSelectionListView {
             iconName: "edit-copy"
             text: i18n.tr("Copy")
             onTriggered: value.copyMessage()
+        },
+        Action {
+            id: forwardAction
+
+            iconName: "mail-forward"
+            text: i18n.tr("Forward")
+            onTriggered: value.forwardMessage()
         }
     ]
 

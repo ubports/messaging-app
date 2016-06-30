@@ -33,11 +33,17 @@ Item {
     property int maxHeight: textEntry.height + units.gu(2)
     property bool canSend: true
     property alias text: messageTextArea.text
-    property bool audioAttached: attachments.count == 1 && attachments.get(0).contentType.toLowerCase().indexOf("audio/") > -1
+    property bool audioAttached: manuallyRecorded && attachments.count == 1 && attachments.get(0).contentType.toLowerCase().indexOf("audio/") > -1
+    property bool manuallyRecorded: false
     // Audio QML component needs to process the recorded audio to find duration and AudioRecorder seems to erase duration after some events
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+    onRecordingChanged: {
+        if (recording) {
+            manuallyRecorded = true
+        }
+    }
 
     signal sendRequested(string text, var attachments)
 
@@ -54,6 +60,7 @@ Item {
     }
 
     function reset() {
+        // avoid removing files coming from forward
         if (composeBar.audioAttached) {
             FileOperations.remove(attachments.get(0).filePath)
         }
