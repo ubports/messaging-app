@@ -21,6 +21,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
 import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
+import Ubuntu.Keyboard 0.1
 
 Page {
     id: groupChatInfoPage
@@ -43,6 +44,7 @@ Page {
     Flickable {
         id: contentsFlickable
         anchors.fill: parent
+        contentHeight: contentsColumn.height
 
         Column {
             id: contentsColumn
@@ -57,13 +59,8 @@ Page {
             spacing: units.gu(1)
 
             Item {
-                id: spacer
-                height: units.gu(1)
-            }
-
-            Item {
                 id: groupInfo
-                height: visible ? groupAvatar.height : 0
+                height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin : 0
                 visible: chatRoom
 
                 anchors {
@@ -81,7 +78,8 @@ Page {
                     anchors {
                         left: parent.left
                         leftMargin: units.gu(1)
-                        verticalCenter: parent.verticalCenter
+                        top: parent.top
+                        topMargin: units.gu(1)
                     }
                     height: units.gu(6)
                     width: units.gu(6)
@@ -97,8 +95,10 @@ Page {
                         leftMargin: units.gu(1)
                         right: parent.right
                         rightMargin: units.gu(1)
-                        verticalCenter: parent.verticalCenter
+                        verticalCenter: groupAvatar.verticalCenter
                     }
+
+                    InputMethod.extensions: { "enterKeyText": i18n.dtr("messaging-app", "Rename") }
 
                     // FIXME: check if there is a way to replace the enter button
                     // by a custom one saying "Rename" in OSK
@@ -118,7 +118,6 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(4)
             }
 
             Item {
@@ -127,7 +126,7 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: Math.max(participantsLabel.height, addParticipantButton.height)
+                height: Math.max(participantsLabel.height, addParticipantButton.height) + units.gu(2)
 
                 Label {
                     id: participantsLabel
