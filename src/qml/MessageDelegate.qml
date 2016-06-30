@@ -175,7 +175,7 @@ ListItemWithActions {
 
         anchors {
             bottom: textBubble.top
-            bottomMargin: attachmentsLoader.active ? units.gu(1) : 0
+            bottomMargin: attachmentsLoader.active && textBubble.visible ? units.gu(1) : 0
             left: contactAvatar.right
             leftMargin: avatarVisible ? units.gu(1) : 0
             right: parent.right
