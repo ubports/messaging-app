@@ -1,3 +1,9 @@
+messaging-app (0.1+16.10.20160630-0ubuntu1) yakkety; urgency=medium
+
+  * Implement support for message forwarding. (LP: #1461873)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Thu, 30 Jun 2016 12:52:56 +0000
+
 messaging-app (0.1+16.10.20160624.1-0ubuntu1) yakkety; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
