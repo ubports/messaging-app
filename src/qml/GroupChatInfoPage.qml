@@ -113,27 +113,6 @@ Page {
                 }
             }
 
-            Button {
-                id: destroyButton
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(1)
-                }
-                visible: chatRoom && chatEntry
-                text: i18n.tr("Delete group")
-                onClicked: {
-                    var result = chatEntry.destroyRoom()
-                    if (!result) {
-                        application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
-                    } else {
-                        application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
-                        mainView.emptyStack()
-                    }
-
-                    // FIXME: show a dialog in case of failure
-                }
-            }
-
             ListItems.ThinDivider {
                 visible: groupInfo.visible
                 anchors {
@@ -189,6 +168,36 @@ Page {
                     participant: modelData
                 }
             }
+
+            ListItems.ThinDivider {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+
+            Button {
+                id: destroyButton
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                }
+                visible: chatRoom && chatEntry
+                text: i18n.tr("End this group")
+                color: Theme.palette.normal.negative
+                onClicked: {
+                    var result = chatEntry.destroyRoom()
+                    if (!result) {
+                        application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
+                    } else {
+                        application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
+                        mainView.emptyStack()
+                    }
+
+                    // FIXME: show a dialog in case of failure
+                }
+            }
+
+
 
         }
     }
