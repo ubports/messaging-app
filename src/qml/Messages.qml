@@ -651,7 +651,9 @@ Page {
                 title: {
                     if (threads.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         var roomInfo = threads[0].chatRoomInfo
-                        if (roomInfo.Title != "") {
+                        if (chatEntry.title !== "") {
+                            return chatEntry.title
+                        } else if (roomInfo.Title != "") {
                             return roomInfo.Title
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
@@ -896,6 +898,10 @@ Page {
         participants: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
+
+        onChatTypeChanged: {
+            messages.chatType = chatEntryObject.chatType
+        }
 
         onMessageSent: {
             // create the new thread and update the threadId list
