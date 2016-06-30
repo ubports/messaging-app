@@ -640,6 +640,7 @@ Page {
                         var properties = {}
                         properties["threads"] = messages.threads
                         properties["chatEntry"] = messages.chatEntry
+                        properties["eventModel"] = eventModel
                         mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), properties)
                     }
                 }

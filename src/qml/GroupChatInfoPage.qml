@@ -29,13 +29,11 @@ Page {
     property variant threads: []
     property variant participants: threads.length > 0 ? threads[0].participants : []
     property QtObject chatEntry: null
+    property QtObject eventModel: null
 
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
-    HistoryEventModel {
-       id: eventModel
-    }
 
     header: PageHeader {
         id: pageHeader
