@@ -169,13 +169,6 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-            }
-
             Button {
                 id: destroyButton
                 anchors {
