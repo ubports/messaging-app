@@ -641,6 +641,7 @@ Page {
                         properties["threads"] = messages.threads
                         properties["chatEntry"] = messages.chatEntry
                         properties["eventModel"] = eventModel
+                        properties["participants"] = messages.participants
                         mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), properties)
                     }
                 }
