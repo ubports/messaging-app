@@ -37,6 +37,19 @@ MessageDelegate {
         }
     }
 
+    function forwardMessage()
+    {
+        var properties = {}
+        var items = [{"text": textMessage, "url":""}]
+        emptyStack()
+        var transfer = {}
+        transfer["items"] = items
+
+        properties["sharedAttachmentsTransfer"] = transfer
+
+        mainView.showBottomEdgePage(properties)
+    }
+
     function copyMessage()
     {
         Clipboard.push(bubble.messageText)

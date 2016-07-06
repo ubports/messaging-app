@@ -87,7 +87,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
         text: attachment.title
         elide: Text.ElideMiddle
-        color: UbuntuColors.lightAubergine
+        color: Theme.palette.normal.backgroundText
     }
     MouseArea {
         anchors.fill: parent

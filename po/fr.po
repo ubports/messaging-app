@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-05-10 05:48+0000\n"
-"X-Generator: Launchpad (build 18025)\n"
+"X-Launchpad-Export-Date: 2016-06-29 05:42+0000\n"
+"X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -103,7 +103,7 @@ msgstr "Appeler"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
-#: ../src/qml/MessagingContactEditorPage.qml:34
+#: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
 msgstr "Annuler"
@@ -303,7 +303,7 @@ msgstr "SMS"
 
 #: ../src/qml/MMS/Previewer.qml:86
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
-#: ../src/qml/MessagingContactEditorPage.qml:46
+#: ../src/qml/MessagingContactEditorPage.qml:48
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -379,7 +379,7 @@ msgstr "Il n'y a actuellement aucun réseau."
 msgid "To"
 msgstr "À"
 
-#: ../src/qml/MultiRecipientInput.qml:148
+#: ../src/qml/MultiRecipientInput.qml:149
 msgid "To:"
 msgstr "À :"
 

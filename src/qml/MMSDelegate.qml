@@ -85,6 +85,34 @@ MessageDelegate {
         application.showNotificationMessage(i18n.tr("Text message copied to clipboard"), "edit-copy")
     }
 
+    function forwardMessage()
+    {
+        var properties = {}
+        emptyStack()
+        var items = []
+        for (var i = 0; i < attachments.length; i++) {
+            var attachment = attachments[i]
+            var item = {"text":"", "url":""}
+            var contentType = application.fileMimeType(String(attachment.filePath))
+            // we dont include smil files. they will be auto generated
+            if (startsWith(contentType.toLowerCase(), "application/smil")) {
+                continue
+            }
+            if (startsWith(contentType.toLowerCase(), "text/plain")) {
+                item["text"] = application.readTextFile(attachment.filePath)
+                items.push(item)
+                continue
+            }
+            item["url"] = "file://" + attachment.filePath
+            items.push(item)
+        }
+        var transfer = {}
+        transfer["items"] = items
+
+        properties["sharedAttachmentsTransfer"] = transfer
+        mainView.showBottomEdgePage(properties)
+    }
+
     onAttachmentsChanged: {
         root.dataAttachments = []
         root.textAttachements = []

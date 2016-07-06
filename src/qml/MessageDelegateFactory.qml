@@ -34,6 +34,7 @@ ListItemWithActions {
     signal deleteMessage()
     signal resendMessage()
     signal copyMessage()
+    signal forwardMessage()
     signal showMessageDetails()
     color: "transparent"
     locked: loader.item.swipeLocked
@@ -72,6 +73,7 @@ ListItemWithActions {
                 messageFactory.resendMessage.connect(item.resendMessage)
                 messageFactory.deleteMessage.connect(item.deleteMessage)
                 messageFactory.copyMessage.connect(item.copyMessage)
+                messageFactory.forwardMessage.connect(item.forwardMessage)
                 messageFactory.showMessageDetails(item.showMessageDetails)
             }
         }
@@ -133,7 +135,7 @@ ListItemWithActions {
                 id: icon
 
                 name: "reload"
-                color: "red"
+                color: Theme.palette.normal.negative
                 height: units.gu(2)
                 width: units.gu(2)
                 anchors {

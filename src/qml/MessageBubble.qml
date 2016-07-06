@@ -90,7 +90,7 @@ BorderImage {
     smooth: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
-    height: senderName.height + senderName.anchors.topMargin + textLabel.height + border.bottom + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin)
+    height: senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin)
 
     // if possible, put the timestamp and the delivery status in the same line as the text
     property int oneLineWidth: textLabel.contentWidth + messageFooter.width
@@ -133,7 +133,8 @@ BorderImage {
         text: root.parseText(messageText)
         textFormat: Text.RichText
         wrapMode: Text.Wrap
-        color: root.messageIncoming ? UbuntuColors.darkGrey : "white"
+        color: root.messageIncoming ? Theme.palette.normal.backgroundText :
+                                      Theme.palette.normal.positiveText
     }
 
     Row {
@@ -156,8 +157,9 @@ BorderImage {
             visible: !root.sending
             height: units.gu(2)
             width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
-            fontSize: "xx-small"
-            color: root.messageIncoming ? UbuntuColors.lightGrey : "white"
+            fontSize: "x-small"
+            color: root.messageIncoming ? Theme.palette.normal.backgroundSecondaryText :
+                                          Theme.palette.normal.positiveText
             opacity: root.messageIncoming ? 1.0 : 0.8
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter

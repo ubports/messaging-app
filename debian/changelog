@@ -1,3 +1,32 @@
+messaging-app (0.1+16.10.20160630-0ubuntu1) yakkety; urgency=medium
+
+  * Implement support for message forwarding. (LP: #1461873)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Thu, 30 Jun 2016 12:52:56 +0000
+
+messaging-app (0.1+16.10.20160624.1-0ubuntu1) yakkety; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Update colors, sizes and message bubbles to the latest spec. (LP:
+    #1581206)
+
+  [ Michael Terry ]
+  * Center contact name in the page header. (LP: #1547581)
+
+  [ Tiago Salem Herrmann ]
+  * Avoid text overlap in the main view. (LP: #1582630)
+  * Don't run tests when cross compiling and don't use xvfb.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Fri, 24 Jun 2016 13:50:22 +0000
+
+messaging-app (0.1+16.10.20160621.4-0ubuntu1) yakkety; urgency=medium
+
+  * Make sure that the placeholder text is visible for Contact Editor
+    Page. (LP: #1592422)
+  * overwrite "applicationId" used by online accounts. (LP: #1583014)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 21 Jun 2016 16:13:57 +0000
+
 messaging-app (0.1+16.04.20160506-0ubuntu1) xenial; urgency=medium
 
   * Do not pre-select sim 1. Prompt users to select one instead. (LP:
