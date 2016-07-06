@@ -629,7 +629,14 @@ Page {
                     enabled: messageList.selectedItems.count > 0
                     iconName: "delete"
                     onTriggered: messageList.endSelection()
+                },
+                Action {
+                    objectName: "selectionModeForwardAction"
+                    enabled: messageList.selectedItems.count > 0
+                    iconName: "mail-forward"
+                    onTriggered: messageList.shareSelectedMessages()
                 }
+
             ]
 
             PropertyChanges {

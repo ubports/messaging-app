@@ -49,6 +49,49 @@ MultipleSelectionListView {
         }
     }
 
+    function shareSelectedMessages()
+    {
+        var aggregatedText = [];
+        var transfer = {}
+        var items = []
+        for (var i = root.selectedItems.count -1; i >= 0 ; i--) {
+            var event = root.selectedItems.get(i).model
+            for (var j = 0; j < event.textMessageAttachments.length; j++) {
+                var attachment = event.textMessageAttachments[j]
+                var item = {"text":"", "url":""}
+                var hasAttachmentText = false
+                var contentType = application.fileMimeType(String(attachment.filePath))
+                // we dont include smil files. they will be auto generated
+                if (startsWith(contentType.toLowerCase(), "application/smil")) {
+                    continue
+                }
+                if (startsWith(contentType.toLowerCase(), "text/plain")) {
+                    item["text"] = application.readTextFile(attachment.filePath)
+                    hasAttachmentText = true
+                    items.push(item)
+                    continue
+                }
+                item["url"] = "file://" + attachment.filePath
+                items.push(item)
+            }
+            if (event.textMessage !== "" && !hasAttachmentText) {
+                aggregatedText.push(event.textMessage)
+            }
+        }
+        if (aggregatedText.length > 0) {
+            items.push({"text": aggregatedText.join("\n"), "url":""})
+        }
+        var properties = {}
+        var transfer = {}
+        transfer["items"] = items
+
+        properties["sharedAttachmentsTransfer"] = transfer
+        emptyStack()
+        mainView.showBottomEdgePage(properties)
+
+        root.cancelSelection()
+    }
+
     // fake bottomMargin
     header: Item {
         height: units.gu(1)
@@ -59,13 +102,12 @@ MultipleSelectionListView {
     // this is to keep the scrolling smooth
     cacheBuffer: units.gu(10)*20
     currentIndex: 0
-
     listDelegate: Loader {
         id: loader
         anchors.left: parent.left
         anchors.right: parent.right
         height: status == Loader.Ready ? item.height : 0
-        
+
         Component.onCompleted: {
             var properties = {"messageData": model}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
