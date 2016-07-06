@@ -53,6 +53,31 @@ ListItemWithActions {
         eventModel.removeEvents([messageData.properties]);
     }
 
+    function forwardMessage()
+    {
+        var properties = {}
+        var items = [{"text": textMessage, "url":""}]
+        emptyStack()
+        var transfer = {}
+
+        for (var i = 0; i < dataAttachments.length; i++) {
+            var attachment = dataAttachments[i]
+            var item = {"text":"", "url":""}
+            var contentType = application.fileMimeType(String(attachment.filePath))
+            // we dont include smil files. they will be auto generated
+            if (startsWith(contentType.toLowerCase(), "application/smil")) {
+                continue
+            }
+            item["url"] = "file://" + attachment.filePath
+            items.push(item)
+        }
+
+        transfer["items"] = items
+        properties["sharedAttachmentsTransfer"] = transfer
+
+        mainView.showBottomEdgePage(properties)
+    }
+
     function copyMessage()
     {
         Clipboard.push(messageText)
@@ -117,6 +142,13 @@ ListItemWithActions {
             text: i18n.tr("Copy")
             visible: messageText !== ""
             onTriggered: messageDelegate.copyMessage()
+        },
+        Action {
+            id: forwardAction
+
+            iconName: "mail-forward"
+            text: i18n.tr("Forward")
+            onTriggered: messageDelegate.forwardMessage()
         },
         Action {
             id: infoAction
