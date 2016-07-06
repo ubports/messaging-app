@@ -897,7 +897,7 @@ Page {
     ChatEntry {
         id: chatEntryObject
         chatType: messages.chatType
-        participants: messages.participantIds
+        participantIds: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
 
@@ -918,6 +918,19 @@ Page {
                 messages.threads.length === 0) {
                 addNewThreadToFilter(accountId, properties)
             }
+        }
+
+        function updateMessagesParticipants() {
+            if (participants.length > 0) {
+                messages.participants = Qt.binding(function() { return chatEntryObject.participants })
+            }
+        }
+
+        onParticipantsChanged: {
+            updateMessagesParticipants()
+        }
+        Component.onCompleted: {
+            updateMessagesParticipants()
         }
     }
 
