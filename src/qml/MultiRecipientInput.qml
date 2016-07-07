@@ -34,6 +34,7 @@ StyledItem {
     height: contactFlow.height
     focus: activeFocus
     property bool multimediaGroup: false
+    property string defaultHint: i18n.tr("To:")
     function getMultimediaGroup () {
         if (recipients.length < 2) {
             return false
@@ -197,7 +198,7 @@ StyledItem {
                     Label {
                         id: hintLabel 
                         visible: false
-                        text: i18n.tr("To:")
+                        text: multiRecipientWidget.defaultHint
                     }
                     Label {
                         id: textLabel

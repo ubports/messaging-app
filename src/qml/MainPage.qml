@@ -19,8 +19,10 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
 Page {
@@ -88,6 +90,7 @@ Page {
                 Action {
                     objectName: "searchAction"
                     iconName: "search"
+                    text: i18n.tr("Search")
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -107,8 +110,25 @@ Page {
                     text: i18n.tr("New message")
                     iconName: "add"
                     onTriggered: mainView.bottomEdge.commit()
+                },
+                Action {
+                    objectName: "newGroupAction"
+                    text: i18n.tr("New Group")
+                    iconName: "contact-group"
+                    visible: {
+                        for (var i in telepathyHelper.accounts) {
+                            var tmpAccount = telepathyHelper.accounts[i]
+                            // TODO: check for accounts that support room channels
+                            if (tmpAccount.type == AccountEntry.MultimediaAccount && tmpAccount.connected) {
+                                return true
+                            }
+                        }
+                        return false
+                    }
+                    onTriggered: {
+                        PopupUtils.open(Qt.createComponent("Dialogs/NewGroupDialog.qml").createObject(mainView))
+                    }
                 }
-
             ]
 
             PropertyChanges {
