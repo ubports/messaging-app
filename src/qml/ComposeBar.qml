@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -23,6 +23,7 @@ import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 1.3
 import Ubuntu.Telephony 0.1
+import Ubuntu.History 0.1
 import messagingapp.private 0.1
 import "Stickers"
 
@@ -39,6 +40,7 @@ Item {
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+    property alias inputMethodComposing: messageTextArea.inputMethodComposing
     onRecordingChanged: {
         if (recording) {
             manuallyRecorded = true
@@ -204,8 +206,7 @@ Item {
         TransparentButton {
             id: attachButton
             objectName: "attachButton"
-            iconName: "add"
-            iconRotation: attachmentPanel.expanded ? 45 : 0
+            iconName: attachmentPanel.expanded ? "close" : "attachment"
             onClicked: {
                 attachmentPanel.expanded = !attachmentPanel.expanded
                 if (attachmentPanel.expanded) {
@@ -412,12 +413,10 @@ Item {
             placeholderText: {
                 if (telepathyHelper.ready) {
                     var account = telepathyHelper.accountForId(presenceRequest.accountId)
-                    if (account && 
+                    if (account && (messages.chatType == HistoryThreadModel.ChatTypeRoom ||
                             (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&
                              presenceRequest.type != PresenceRequest.PresenceTypeUnset) &&
-                             account.protocolInfo.serviceName !== "") {
-                        console.log(presenceRequest.accountId)
-                        console.log(presenceRequest.type)
+                             account.protocolInfo.serviceName !== "")) {
                         return account.protocolInfo.serviceName
                     }
                 }

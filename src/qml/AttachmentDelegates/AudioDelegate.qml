@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Canonical Ltd.
+ * Copyright 2015-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -24,7 +24,7 @@ import messagingapp.private 0.1
 import ".."
 import "../dateUtils.js" as DateUtils
 
-MMSBase {
+BaseDelegate {
     id: audioDelegate
 
     height: units.gu(5)
@@ -59,7 +59,7 @@ MMSBase {
             if (FileOperations.link(attachment.filePath, tmpFile)) {
                 source = tmpFile;
             } else {
-                console.log("MMSAudio: Failed to link", attachment.filePath, "to", tmpFile)
+                console.log("AudioDelegate: Failed to link", attachment.filePath, "to", tmpFile)
                 return
             }
 

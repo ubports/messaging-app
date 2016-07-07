@@ -72,7 +72,8 @@ Previewer {
             editable: false
             onActionTrigerred: {
                 if ((action === "message") || (action == "default")) {
-                    mainView.startChat(detail.value(0), "")
+                    var properties = {'participantIds': [detail.value(0)]}
+                    mainView.startChat(properties)
                     return
                 } else {
                     Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))

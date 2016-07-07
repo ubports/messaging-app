@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -25,4 +25,5 @@ Item {
     property bool lastItem: false
     property bool swipeLocked: false
     property bool showDeliveryStatus: true
+    property bool isMultimedia: false
 }

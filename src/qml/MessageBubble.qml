@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 
 import "dateUtils.js" as DateUtils
@@ -34,6 +35,7 @@ BorderImage {
     property var messageTimeStamp
     property int maxDelegateWidth: units.gu(27)
     property string accountName
+    property bool isMultimedia: false
     // FIXME for now we just display the delivery status if it's greater than Accepted
     property bool showDeliveryStatus: false
     property bool deliveryStatusAvailable: showDeliveryStatus && (statusDelivered || statusRead)
@@ -81,8 +83,9 @@ BorderImage {
             return "grey"
         } else if (messageIncoming) {
             return "white"
+        } else if (isMultimedia) {
+            return "blue"
         } else {
-            // FIXME: use blue for IM accounts
             return "green"
         }
     }
@@ -90,7 +93,7 @@ BorderImage {
     smooth: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
-    height: senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin)
+    height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
 
     // if possible, put the timestamp and the delivery status in the same line as the text
     property int oneLineWidth: textLabel.contentWidth + messageFooter.width
@@ -104,6 +107,8 @@ BorderImage {
 
     Label {
         id: senderName
+        clip: true
+        elide: Text.ElideRight
 
         anchors {
             top: parent.top
@@ -178,8 +183,8 @@ BorderImage {
 
         DeliveryStatus {
             id: deliveryStatus
-            messageStatus: messageStatus
-            enabled: deliveryStatusAvailable
+            messageStatus: root.messageStatus
+            enabled: root.deliveryStatusAvailable
             anchors.verticalCenter: textTimestamp.verticalCenter
         }
     }

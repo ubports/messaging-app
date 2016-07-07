@@ -125,7 +125,8 @@ MainView {
                 participants.push(thread.participants[j].identifier)
             }
             // and acknowledge all messages for the threads to be removed
-            chatManager.acknowledgeAllMessages(participants, thread.accountId)
+            var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
+            chatManager.acknowledgeAllMessages(properties)
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
@@ -250,30 +251,85 @@ MainView {
         mainView.showBottomEdgePage(properties)
     }
 
-    function startChat(identifiers, text, accountId) {
-        var properties = {}
-        var participantIds = identifiers.split(";")
+    function getThreadsForProperties(properties) {
+        var threads = []
+        var account = null
+        var accountId = properties["accountId"]
 
-        if (participantIds.length === 0) {
-            return;
+        // dont do anything while telepathy isnt ready
+        if (!telepathyHelper.ready) {
+            return threads
         }
 
-        if (mainView.account) {
-            var thread = threadModel.threadForParticipants(mainView.account.accountId,
-                                                           HistoryThreadModel.EventTypeText,
-                                                           participantIds,
-                                                           mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
-                                                                                                              : HistoryThreadModel.MatchCaseSensitive,
-                                                           false)
-            if (thread.hasOwnProperty("participants")) {
-                properties["participants"] = thread.participants
+        if (accountId == "") {
+            // no accountId means fallback to phone or multimedia
+            if (mainView.account) {
+                account = mainView.account.accountId 
+            } else {
+                return threads
+            }
+        } else {
+            // if the account is passed but not found, just return
+            account = telepathyHelper.accountForId(accountId)
+            if (!account) {
+                return threads
             }
         }
 
+
+        // on phone and multimedia accounts we need to get threads for all available accounts
+        switch(account.type) {
+        case AccountEntry.PhoneAccount:
+        case AccountEntry.MultimediaAccount:
+            // get all accounts for phone and multimedia
+            for (var i in [AccountEntry.PhoneAccount, AccountEntry.MultimediaAccount]) {
+                var thisAccounts = telepathyHelper.accountsForType(i)
+                for (var j in thisAccounts) {
+                    var thisAccountId = telepathyHelper.accountForId(thisAccounts[j].accountId)
+                    var thread = threadModel.threadForProperties(thisAccountId,
+                                                                 HistoryThreadModel.EventTypeText,
+                                                                 properties,
+                                                                 HistoryThreadModel.MatchPhoneNumber,
+                                                                 false)
+                    // check if dict is not empty
+                    if (Object.keys(thread).length != 0) {
+                       threads.push(thread)
+                    }
+                }
+            }
+            break;
+        case AccountEntry.GenericAccount:
+            var thread = threadModel.threadForProperties(accountId,
+                                                         HistoryThreadModel.EventTypeText,
+                                                         properties,
+                                                         HistoryThreadModel.MatchCaseSensitive,
+                                                         false)
+            // check if dict is not empty
+            if (Object.keys(thread).length != 0) {
+               threads.push(thread)
+            }
+            break;
+        }
+        return threads
+    }
+
+    function startChat(properties) {
+        var participantIds = []
+        var accountId = ""
+        var match = HistoryThreadModel.MatchCaseSensitive
+
+        properties["threads"] = getThreadsForProperties(properties)
+
+        if (properties.hasOwnProperty("participantIds")) {
+            participantIds = properties["participantIds"]
+        }
+
+        // generate the list of participants manually if not provided
         if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}
+                participant["accountId"] = accountId
                 participant["identifier"] = participantIds[i]
                 participant["contactId"] = ""
                 participant["alias"] = ""
@@ -281,13 +337,9 @@ MainView {
                 participant["detailProperties"] = {}
                 participants.push(participant)
             }
-            properties["participants"] = participants;
-        }
-
-        properties["participantIds"] = participantIds
-        properties["text"] = text
-        if (typeof(accountId)!=='undefined') {
-            properties["accountId"] = accountId
+            if (participants.length != 0) {
+                properties["participants"] = participants;
+            }
         }
 
         emptyStack()
