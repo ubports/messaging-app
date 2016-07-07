@@ -55,6 +55,15 @@ Page {
                                              i18n.tr("Contact %1 was invited to the chat").arg(identifier))
     }
 
+    Connections {
+        target: chatEntry
+        onParticipantsChanged: {
+            if (chatEntry.participants.length > 0) {
+                groupChatInfoPage.participants = chatEntry.participants
+            }
+        }
+    }
+
     Flickable {
         id: contentsFlickable
         anchors.fill: parent
