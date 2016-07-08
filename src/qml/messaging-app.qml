@@ -418,9 +418,11 @@ MainView {
             id: mainPage
         }
 
+        property bool completed: false
+
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
-            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+            if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 layout.removePage(mainPage)
                 emptyStack()
             }
@@ -429,6 +431,7 @@ MainView {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
                 emptyStack()
             }
+            layout.completed = true;
         }
     }
 }
