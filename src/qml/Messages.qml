@@ -1175,6 +1175,7 @@ Page {
         id: messageList
         objectName: "messageList"
         visible: !isSearching
+        listModel: messages.newMessage ? null : eventModel
 
         Rectangle {
             color: Theme.palette.normal.background
