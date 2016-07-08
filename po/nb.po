@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-06-29 05:43+0000\n"
+"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Godkjent"
 
-#: ../src/qml/Messages.qml:623
+#: ../src/qml/Messages.qml:630
 msgid "Add"
 msgstr "Legg til"
 
@@ -97,7 +97,7 @@ msgstr[1] "Vedlegg: %1 videoer"
 msgid "Audio attachment not supported"
 msgstr "Lyd-vedlegg støttes ikke"
 
-#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
 msgid "Call"
 msgstr "Ring"
 
@@ -116,7 +116,7 @@ msgstr "Vil du endre standard SIM-kort for meldinger til %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
 msgid "Close"
 msgstr "Lukk"
 
@@ -124,15 +124,15 @@ msgstr "Lukk"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Skyv oppover fra bunnen av skjermen for å lage en ny melding."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Kopier"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Slett"
 
@@ -160,7 +160,7 @@ msgstr "Slå på MMS-gruppesamtale"
 msgid "Failed"
 msgstr "Mislyktes"
 
-#: ../src/qml/MessageDelegateFactory.qml:146
+#: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Mislykket!"
 
@@ -185,7 +185,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:604
 #, qt-format
 msgid "Group (%1)"
 msgstr "Gruppe (%1)"
@@ -194,7 +194,7 @@ msgstr "Gruppe (%1)"
 msgid "Image Preview"
 msgstr "Forhåndsvisning av bilde"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Info"
 
@@ -202,7 +202,7 @@ msgstr "Info"
 msgid "Later"
 msgstr "Senere"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
 msgstr "MMS"
 
@@ -230,7 +230,7 @@ msgstr "Meldingsprogram"
 msgid "Messaging application"
 msgstr "Meldingsprogram"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
 msgstr "Meldingsdata mangler"
 
@@ -250,7 +250,7 @@ msgstr "Nei"
 msgid "No SIM card selected"
 msgstr "Intet SIM-kort er valgt"
 
-#: ../src/qml/Messages.qml:952
+#: ../src/qml/Messages.qml:959
 msgid "No network"
 msgstr "Intet nettverk"
 
@@ -283,11 +283,11 @@ msgstr "Les"
 msgid "Received"
 msgstr "Mottatt"
 
-#: ../src/qml/ComposeBar.qml:130
+#: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
 msgstr "Fjern"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Prøv igjen"
 
@@ -295,7 +295,7 @@ msgstr "Prøv igjen"
 msgid "SIM Card is locked"
 msgstr "SIM-kortet er låst"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
 msgstr "SMS"
 
@@ -360,16 +360,16 @@ msgstr "Bytt til standard SIM-kort:"
 msgid "Temporarily Failed"
 msgstr "Midlertidig mislykket"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
 msgstr "Melding kopiert til utklippstavle"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Telefonnettet på %1 er utilgjengelig"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 msgid "There is currently no network."
 msgstr "Telefonnettet er utilgjengelig."
 
@@ -409,7 +409,7 @@ msgstr "Video-vedlegg støttes ikke"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Velkommen til Ubuntus meldingsprogram."
 
-#: ../src/qml/ComposeBar.qml:417
+#: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
 msgstr "Skriv en melding …"
 
