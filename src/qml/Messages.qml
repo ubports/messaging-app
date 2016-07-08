@@ -518,7 +518,7 @@ Page {
                 return firstRecipientAlias
             }
 
-            return i18n.tr("New Message")
+            return " "
         }
         flickable: null
 
