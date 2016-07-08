@@ -54,9 +54,6 @@ BottomEdge {
         if (_realPage) {
             _realPage.destroy()
         }
-        if (mainView.bottomEdge == bottomEdge) {
-            mainView.bottomEdge = null;
-        }
     }
 
     onCollapseCompleted: {
