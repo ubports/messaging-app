@@ -19,17 +19,54 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
+import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 import ".."
 
 Component {
     Dialog {
         id: dialogue
-        title: creationInProgress ? i18n.tr("Creating Group...")  :i18n.tr("New Group")
+        title: creationInProgress ? i18n.tr("Creating Group...") : i18n.tr("New Group")
         property bool creationInProgress: false
         function onPhonePickedDuringSearch(phoneNumber) {
             multiRecipient.addRecipient(phoneNumber)
             multiRecipient.clearSearch()
             multiRecipient.forceActiveFocus()
+        }
+        ChatEntry {
+            id: chatEntry
+            accountId: {
+                for (var i in telepathyHelper.accounts) {
+                    var account = telepathyHelper.accounts[i]
+                    if (account.type == AccountEntry.MultimediaAccount && account.connected) {
+                        return account.accountId
+                    }
+                }
+            }
+            title: groupTitle.text
+            chatType: HistoryThreadModel.ChatTypeRoom
+            onChatReady: {
+                console.log("chat ready", chatEntry.accountId, chatEntry.chatId, chatEntry.chatType)
+                // give history service time to create the thread
+                creationTimer.start()
+            }
+            participantIds: multiRecipient.recipients
+            onStartChatFailed: {
+                PopupUtils.close(dialogue)
+            }
+        }
+        Timer {
+            id: creationTimer
+            interval: 1000
+            onTriggered: {
+                var properties ={}
+                properties["accountId"] = chatEntry.accountId
+                properties["threadId"] = chatEntry.chatId
+                properties["chatType"] = chatEntry.chatType
+
+                mainView.startChat(properties)
+                PopupUtils.close(dialogue)
+            }
         }
         Column {
             anchors.left: parent.left
@@ -107,6 +144,7 @@ Component {
                     color: UbuntuColors.orange
                     onClicked: {
                         dialogue.creationInProgress = true
+                        chatEntry.startChat()
                     }
                 }
             }

@@ -105,7 +105,7 @@ Page {
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
         // on generic accounts we don't give the option to switch to another account
         if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount ||
-                           (tmpAccount.type == AccountEntry.MultimediaAccount && threads[0].chatType == HistoryThreadModel.ChatTypeRoom))) {
+                           (tmpAccount.type == AccountEntry.MultimediaAccount && messages.chatType == HistoryThreadModel.ChatTypeRoom))) {
             return [tmpAccount]
         }
 
@@ -399,23 +399,8 @@ Page {
         return true
     }
 
-    Connections {
-        id: tmpConnection
-        property bool active: false
-        target: active ? mainPage : null
-        onNewThreadCreated: {
-            var thread = eventModel.threadForProperties(newThread.accountId, HistoryEventModel.MessageTypeText, {'chatType': newThread.chatType, 'threadId': newThread.threadId}, HistoryThreadModel.MatchCaseSensitive, false)
-            messages.chatType = newThread.chatType
-            messages.threadId = newThread.threadId
-            messages.participants = newThread.participants
-            messages.threads = []
-            messages.threads.push(thread)
-            active = false
-            messages.reloadFilters = !messages.reloadFilters
-        }
-    }
-
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        console.log(accounts, chatType, participantIds.length, reload, threads.length)
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
@@ -807,6 +792,9 @@ Page {
         }
         newMessage = (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
+        if (threadId !== "" && accountId !== "" && threads.length == 0) {
+            addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
+        }
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
     }
@@ -1308,21 +1296,6 @@ Page {
             var properties = {}
             if (composeBar.audioAttached) {
                 properties["x-canonical-tmp-files"] = true
-            }
-
-            if (multiRecipient.multimediaGroup) {
-                properties["chatType"] = HistoryThreadModel.ChatTypeRoom
-                // remove this once PendingTask is done
-                if (messages.participants.length == 0) {
-                    tmpConnection.active = true
-                }
-                for (var i in telepathyHelper.accounts) {
-                    var tmpAccount = telepathyHelper.accounts[i]
-                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
-                        messages.accountId = tmpAccount.accountId
-                        break;
-                    }
-                }
             }
 
             // if sendMessage succeeds it means the message was either sent or
