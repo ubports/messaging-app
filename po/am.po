@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-06-29 05:42+0000\n"
+"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "ተቀብያለሁ"
 
-#: ../src/qml/Messages.qml:623
+#: ../src/qml/Messages.qml:630
 msgid "Add"
 msgstr "መጨመሪያ"
 
@@ -97,7 +97,7 @@ msgstr[1] "ማያያዣዎች: %1 ቪዲዮዎች"
 msgid "Audio attachment not supported"
 msgstr "ድምፅ ማያያዝ አይቻልም"
 
-#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
 msgid "Call"
 msgstr "ጥሪ"
 
@@ -116,7 +116,7 @@ msgstr "ሁሉንም የተዛመዱ መልእክቶች መቀየሪያ ወደ %
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
 msgid "Close"
 msgstr "መዝጊያ"
 
@@ -124,15 +124,15 @@ msgstr "መዝጊያ"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
 msgid "Contact"
 msgstr "ግንኙነት"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "ኮፒ"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "ማጥፊያ"
 
@@ -160,7 +160,7 @@ msgstr "በርካታ መገናኛ የ ቡድን ውይይት ማስቻያ"
 msgid "Failed"
 msgstr "ወድቋል"
 
-#: ../src/qml/MessageDelegateFactory.qml:146
+#: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "ወድቋል!"
 
@@ -185,7 +185,7 @@ msgid "Group"
 msgstr "ቡድን"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:604
 #, qt-format
 msgid "Group (%1)"
 msgstr "ቡድን (%1)"
@@ -194,7 +194,7 @@ msgstr "ቡድን (%1)"
 msgid "Image Preview"
 msgstr "የ ምስል ቅድመ እይታ"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "መረጃ"
 
@@ -202,7 +202,7 @@ msgstr "መረጃ"
 msgid "Later"
 msgstr "በኋላ"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
 msgstr "ኤም ኤም ኤስ"
 
@@ -230,7 +230,7 @@ msgstr "የ መልእክቶች መተግበሪያ"
 msgid "Messaging application"
 msgstr "የ መልእክቶች መተግበሪያ"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
 msgstr "የ መልእክት ዳታ አልተገኘም"
 
@@ -250,7 +250,7 @@ msgstr "አይ"
 msgid "No SIM card selected"
 msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
 
-#: ../src/qml/Messages.qml:952
+#: ../src/qml/Messages.qml:959
 msgid "No network"
 msgstr "ኔትዎርክ አልተገኘም"
 
@@ -282,11 +282,11 @@ msgstr "ያንብቡ"
 msgid "Received"
 msgstr "ተቀብለዋል"
 
-#: ../src/qml/ComposeBar.qml:130
+#: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
 msgstr "ማስወገጃ"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "እንደገና ይሞክሩ"
 
@@ -294,7 +294,7 @@ msgstr "እንደገና ይሞክሩ"
 msgid "SIM Card is locked"
 msgstr "ሲም ካርድ አሁን ተቆልፏል"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
 msgstr "ኤስ ኤም ኤስ"
 
@@ -358,16 +358,16 @@ msgstr "መቀየሪያ ወደ ነባር ሲም:"
 msgid "Temporarily Failed"
 msgstr "ለጊዜው ወድቋል"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
 msgstr "የ ጽሁፍ መልእክት ወደ ቁራጭ ሰሌዳ ኮፒ ተደርጓል"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "አሁን ምንም ኔትዎርክ አልተገኘም በ %1"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 msgid "There is currently no network."
 msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 
@@ -407,7 +407,7 @@ msgstr "ቪዲዮ ማያያዝ አይቻልም"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "እንኳን ደህና መጡ ወደ እርስዎ የ ኡቡንቱ መልእክት መተግበሪያ"
 
-#: ../src/qml/ComposeBar.qml:417
+#: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
 msgstr "መልእክት መጻፊያ..."
 

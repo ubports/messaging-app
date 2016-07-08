@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-06-29 05:43+0000\n"
+"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -57,7 +57,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Zaakceptowano"
 
-#: ../src/qml/Messages.qml:623
+#: ../src/qml/Messages.qml:630
 msgid "Add"
 msgstr "Dodaj"
 
@@ -105,7 +105,7 @@ msgstr[2] "Załączniki: %1 filmów"
 msgid "Audio attachment not supported"
 msgstr "Załączniki dźwiękowe nie są obsługiwane"
 
-#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
 msgid "Call"
 msgstr "Połączenie"
 
@@ -124,7 +124,7 @@ msgstr "Czy zmienić wszystkie powiązania wiadomości dla %1?"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
 msgid "Close"
 msgstr "Zamknij"
 
@@ -132,15 +132,15 @@ msgstr "Zamknij"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Utwórz nową wiadomość przeciągając palcem z dołu ekranu."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Kopiuj"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Usuń"
 
@@ -168,7 +168,7 @@ msgstr "Włącz czat grupowy MMS"
 msgid "Failed"
 msgstr "Niepowodzenie"
 
-#: ../src/qml/MessageDelegateFactory.qml:146
+#: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Niepowodzenie!"
 
@@ -193,7 +193,7 @@ msgid "Group"
 msgstr "Grupa"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:604
 #, qt-format
 msgid "Group (%1)"
 msgstr "Osób w grupie: (%1)"
@@ -202,7 +202,7 @@ msgstr "Osób w grupie: (%1)"
 msgid "Image Preview"
 msgstr "Podgląd obrazu"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Informacje"
 
@@ -210,7 +210,7 @@ msgstr "Informacje"
 msgid "Later"
 msgstr "Później"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
 msgstr "MMS"
 
@@ -238,7 +238,7 @@ msgstr "Wiadomości"
 msgid "Messaging application"
 msgstr "Menedżer wiadomości"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
 msgstr "Brak części wiadomości"
 
@@ -258,7 +258,7 @@ msgstr "Nie"
 msgid "No SIM card selected"
 msgstr "Nie wybrano karty SIM"
 
-#: ../src/qml/Messages.qml:952
+#: ../src/qml/Messages.qml:959
 msgid "No network"
 msgstr "Brak sieci"
 
@@ -291,11 +291,11 @@ msgstr "Przeczytane"
 msgid "Received"
 msgstr "Odebrane"
 
-#: ../src/qml/ComposeBar.qml:130
+#: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
 msgstr "Usuń"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Spróbuj ponownie"
 
@@ -303,7 +303,7 @@ msgstr "Spróbuj ponownie"
 msgid "SIM Card is locked"
 msgstr "Karta SIM jest zablokowana"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
 msgstr "SMS"
 
@@ -367,16 +367,16 @@ msgstr "Przełącz na domyślną kartę SIM"
 msgid "Temporarily Failed"
 msgstr "W tej chwili nie udało się wykonać operacji"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
 msgstr "Wiadomość skopiowana do schowka"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Brak zasięgu sieci dla %1"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 msgid "There is currently no network."
 msgstr "Brak połączenia z siecią."
 
@@ -416,7 +416,7 @@ msgstr "Załączniki wideo nie są obsługiwane"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Witaj w programie komunikatora Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:417
+#: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
 msgstr "Napisz wiadomość..."
 
