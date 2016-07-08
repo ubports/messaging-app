@@ -46,12 +46,12 @@ Component {
             title: groupTitle.text
             chatType: HistoryThreadModel.ChatTypeRoom
             onChatReady: {
-                console.log("chat ready", chatEntry.accountId, chatEntry.chatId, chatEntry.chatType)
                 // give history service time to create the thread
                 creationTimer.start()
             }
             participantIds: multiRecipient.recipients
             onStartChatFailed: {
+                application.showNotificationMessage(i18n.tr("Failed to create group"), "dialog-error-symbolic")
                 PopupUtils.close(dialogue)
             }
         }
