@@ -96,7 +96,7 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
-                        emptyStack()
+                        emptyStack(false)
                         pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
@@ -282,7 +282,7 @@ Page {
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    emptyStack()
+                    emptyStack(false)
                     mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
 
                     // mark this item as current

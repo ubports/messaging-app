@@ -244,11 +244,14 @@ MainView {
         return ContentType.Unknown
     }
 
-    function emptyStack() {
+    function emptyStack(showEmpty) {
+        if (typeof showEmpty === 'undefined') { showEmpty = true; }
         mainView.emptyStackRequested()
         mainStack.removePage(mainPage)
         layout.deleteInstances()
-        showEmptyState()
+        if (showEmpty) {
+            showEmptyState()
+        }
         mainPage.displayedThreadIndex = -1
     }
 
@@ -304,7 +307,7 @@ MainView {
             properties["accountId"] = accountId
         }
 
-        emptyStack()
+        emptyStack(false)
         // FIXME: AdaptivePageLayout takes a really long time to create pages,
         // so we create manually and push that
         mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
