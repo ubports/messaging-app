@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-06-29 05:43+0000\n"
+"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "स्वीकारले"
 
-#: ../src/qml/Messages.qml:623
+#: ../src/qml/Messages.qml:630
 msgid "Add"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr[1] ""
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
 msgid "Call"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
 msgid "Close"
 msgstr ""
 
@@ -124,15 +124,15 @@ msgstr ""
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
 msgid "Contact"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr ""
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr ""
 
@@ -160,7 +160,7 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: ../src/qml/MessageDelegateFactory.qml:146
+#: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr ""
 
@@ -185,7 +185,7 @@ msgid "Group"
 msgstr ""
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:604
 #, qt-format
 msgid "Group (%1)"
 msgstr ""
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Image Preview"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr ""
 
@@ -202,7 +202,7 @@ msgstr ""
 msgid "Later"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgstr ""
 msgid "Messaging application"
 msgstr ""
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
 msgstr ""
 
@@ -250,7 +250,7 @@ msgstr ""
 msgid "No SIM card selected"
 msgstr ""
 
-#: ../src/qml/Messages.qml:952
+#: ../src/qml/Messages.qml:959
 msgid "No network"
 msgstr ""
 
@@ -279,11 +279,11 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:130
+#: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgstr ""
 msgid "SIM Card is locked"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
 msgstr ""
 
@@ -353,16 +353,16 @@ msgstr ""
 msgid "Temporarily Failed"
 msgstr ""
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr ""
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 msgid "There is currently no network."
 msgstr ""
 
@@ -402,7 +402,7 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:417
+#: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
 msgstr ""
 
