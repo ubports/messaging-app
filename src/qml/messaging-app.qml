@@ -345,9 +345,16 @@ MainView {
                 id: messagesBottomEdgeLoader
                 active: mainView.dualPanel
                 asynchronous: true
-                Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": messages,
-                                                                             "hint.text": "",
-                                                                             "hint.height": 0})
+                /* FIXME: would be even more efficient to use setSource() to
+                   delay the compilation step but a bug in Qt prevents us.
+                   Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+                */
+                sourceComponent: MessagingBottomEdge {
+                    id: messagesBottomEdge
+                    parent: messages
+                    hint.text: ""
+                    hint.height: 0
+                }
             }
         }
     }
@@ -391,10 +398,15 @@ MainView {
             Loader {
                 id: bottomEdgeLoader
                 asynchronous: true
-                Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": emptyStatePage,
-                                                                             "hint.text": "",
-                                                                             "hint.height": 0})
-
+                /* FIXME: would be even more efficient to use setSource() to
+                   delay the compilation step but a bug in Qt prevents us.
+                   Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+                */
+                sourceComponent: MessagingBottomEdge {
+                    parent: emptyStatePage
+                    hint.text: ""
+                    hint.height: 0
+                }
             }
         }
     }

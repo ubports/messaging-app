@@ -328,6 +328,12 @@ Page {
         id: bottomEdgeLoader
         active: !selectionMode && !searching && !mainView.dualPanel
         asynchronous: true
-        Component.onCompleted: setSource("MessagingBottomEdge.qml", {"parent": mainPage})
+        /* FIXME: would be even more efficient to use setSource() to
+           delay the compilation step but a bug in Qt prevents us.
+           Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+        */
+        sourceComponent: MessagingBottomEdge {
+            parent: mainPage
+        }
     }
 }
