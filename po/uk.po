@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-06-29 05:43+0000\n"
+"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -57,7 +57,7 @@ msgstr "+"
 msgid "Accepted"
 msgstr "Прийнято"
 
-#: ../src/qml/Messages.qml:623
+#: ../src/qml/Messages.qml:630
 msgid "Add"
 msgstr "Додати"
 
@@ -105,7 +105,7 @@ msgstr[2] "Долучення: %1 відео"
 msgid "Audio attachment not supported"
 msgstr "Підтримки долучення звукових файлів не передбачено"
 
-#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
 msgid "Call"
 msgstr "Подзвонити"
 
@@ -124,7 +124,7 @@ msgstr "Пов’язати увесь обмін повідомленнями �
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
 msgid "Close"
 msgstr "Закрити"
 
@@ -132,15 +132,15 @@ msgstr "Закрити"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Створіть нове повідомлення рухом пальця з нижньої частини екрана."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
 msgid "Contact"
 msgstr "Контакт"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Копіювати"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "Вилучити"
 
@@ -168,7 +168,7 @@ msgstr "Увімкнути групове спілкування MMS"
 msgid "Failed"
 msgstr "Помилка"
 
-#: ../src/qml/MessageDelegateFactory.qml:146
+#: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Невдача!"
 
@@ -193,7 +193,7 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:604
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
@@ -202,7 +202,7 @@ msgstr "Група (%1)"
 msgid "Image Preview"
 msgstr "Перегляд зображення"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Відомості"
 
@@ -210,7 +210,7 @@ msgstr "Відомості"
 msgid "Later"
 msgstr "Пізніше"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
 msgstr "MMS"
 
@@ -240,7 +240,7 @@ msgstr "Програма для обміну повідомленнями"
 msgid "Messaging application"
 msgstr "Програма для обміну повідомленнями"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
 msgstr "Немає даних повідомлення"
 
@@ -260,7 +260,7 @@ msgstr "Ні"
 msgid "No SIM card selected"
 msgstr "Не вибрано SIM-картки"
 
-#: ../src/qml/Messages.qml:952
+#: ../src/qml/Messages.qml:959
 msgid "No network"
 msgstr "Немає мережі"
 
@@ -294,11 +294,11 @@ msgstr "Прочитане"
 msgid "Received"
 msgstr "Отримано"
 
-#: ../src/qml/ComposeBar.qml:130
+#: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
 msgstr "Вилучити"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Повторити"
 
@@ -306,7 +306,7 @@ msgstr "Повторити"
 msgid "SIM Card is locked"
 msgstr "SIM-картку заблоковано"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
 msgstr "SMS"
 
@@ -371,16 +371,16 @@ msgstr "Перемкнутися на типову SIM-картку:"
 msgid "Temporarily Failed"
 msgstr "Тимчасова помилка"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
 msgstr "Текстове повідомлення скопійовано до буфера"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Зараз на %1 немає доступу до мережі"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 msgid "There is currently no network."
 msgstr "Зараз немає доступу до мережі."
 
@@ -420,7 +420,7 @@ msgstr "Підтримки долучення відеофайлів не пер
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Вітаємо у програмі для роботи з повідомленнями Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:417
+#: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
 msgstr "Створення повідомлення…"
 
