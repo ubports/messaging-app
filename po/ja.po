@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-06-29 05:43+0000\n"
+"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
 "X-Generator: Launchpad (build 18115)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Accepted"
 msgstr "受理済み"
 
-#: ../src/qml/Messages.qml:623
+#: ../src/qml/Messages.qml:630
 msgid "Add"
 msgstr "追加"
 
@@ -90,7 +90,7 @@ msgstr[0] "添付：%1個の動画"
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:612 ../src/qml/Messages.qml:694
+#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
 msgid "Call"
 msgstr "発信"
 
@@ -109,7 +109,7 @@ msgstr "すべてのメッセージを%1経由に変更しますか？"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:956
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
 msgid "Close"
 msgstr "閉じる"
 
@@ -117,15 +117,15 @@ msgstr "閉じる"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "新規メッセージを作成するには画面の下から上へスワイプ"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:705
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
 msgid "Contact"
 msgstr "連絡先"
 
-#: ../src/qml/MessagesListView.qml:93 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "コピー"
 
-#: ../src/qml/MessageDelegateFactory.qml:44 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
 msgstr "削除"
 
@@ -153,7 +153,7 @@ msgstr ""
 msgid "Failed"
 msgstr "失敗しました"
 
-#: ../src/qml/MessageDelegateFactory.qml:146
+#: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "失敗！"
 
@@ -178,7 +178,7 @@ msgid "Group"
 msgstr "グループ"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:604
 #, qt-format
 msgid "Group (%1)"
 msgstr "グループ (%1)"
@@ -187,7 +187,7 @@ msgstr "グループ (%1)"
 msgid "Image Preview"
 msgstr "画像のプレビュー"
 
-#: ../src/qml/MessagesListView.qml:68 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "詳細"
 
@@ -195,7 +195,7 @@ msgstr "詳細"
 msgid "Later"
 msgstr "後で"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
 msgstr "MMS"
 
@@ -223,7 +223,7 @@ msgstr "メッセージアプリ"
 msgid "Messaging application"
 msgstr "メッセージアプリ"
 
-#: ../src/qml/MMSDelegate.qml:221
+#: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
 msgstr "メッセージデータがありません"
 
@@ -243,7 +243,7 @@ msgstr "いいえ"
 msgid "No SIM card selected"
 msgstr "SIMカードが選択されていません"
 
-#: ../src/qml/Messages.qml:952
+#: ../src/qml/Messages.qml:959
 msgid "No network"
 msgstr "ネットワークなし"
 
@@ -274,11 +274,11 @@ msgstr "読む"
 msgid "Received"
 msgstr "受信済み"
 
-#: ../src/qml/ComposeBar.qml:130
+#: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
 msgstr "削除"
 
-#: ../src/qml/MessagesListView.qml:86 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "再試行"
 
@@ -286,7 +286,7 @@ msgstr "再試行"
 msgid "SIM Card is locked"
 msgstr "SIMカードはロックされています"
 
-#: ../src/qml/MessagesListView.qml:71
+#: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
 msgstr "SMS"
 
@@ -350,16 +350,16 @@ msgstr "デフォルトのSIMに切り替える:"
 msgid "Temporarily Failed"
 msgstr "一時的な失敗"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:43
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1には現在ネットワークがありません"
 
-#: ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:960
 msgid "There is currently no network."
 msgstr "現在ネットワークがありません"
 
@@ -399,7 +399,7 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:417
+#: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
 msgstr "メッセージを書く..."
 
