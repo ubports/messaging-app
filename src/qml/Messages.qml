@@ -642,11 +642,12 @@ Page {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    if (threads.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
-                        var roomInfo = threads[0].chatRoomInfo
+                    if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         if (chatEntry.title !== "") {
                             return chatEntry.title
-                        } else if (roomInfo.Title != "") {
+                        }
+                        var roomInfo = threads[0].chatRoomInfo
+                        if (roomInfo.Title != "") {
                             return roomInfo.Title
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
