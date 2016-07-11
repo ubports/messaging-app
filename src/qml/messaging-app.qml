@@ -52,30 +52,26 @@ MainView {
 
     property var bottomEdgeQueue: []
     function setBottomEdge(newBottomEdge) {
-        if (!bottomEdge) {
+        if (!bottomEdge && bottomEdgeQueue.length == 0) {
             bottomEdge = newBottomEdge;
         } else {
-            bottomEdgeQueue.unshift(bottomEdge)
-            bottomEdge = null
+            if (bottomEdge) {
+                bottomEdgeQueue.unshift(bottomEdge)
+                bottomEdge = null
+            }
             bottomEdgeQueue.push(newBottomEdge)
         }
     }
 
     function unsetBottomEdge(oldBottomEdge) {
         if (bottomEdge == oldBottomEdge) {
-            var newBottomEdge;
-            if (bottomEdgeQueue.length == 1) {
-                newBottomEdge = bottomEdgeQueue.shift();
-            } else {
-                newBottomEdge = null;
-            }
-            bottomEdge = newBottomEdge;
+            bottomEdge = null;
         } else {
             var index = bottomEdgeQueue.indexOf(oldBottomEdge);
             if (index != -1) {
                 bottomEdgeQueue.splice(index, 1);
                 if (bottomEdgeQueue.length == 1) {
-                    bottomEdge = bottomEdgeQueue.shift();
+                    bottomEdge = bottomEdgeQueue.pop();
                 }
             }
         }
