@@ -44,18 +44,16 @@ BottomEdge {
     }
 
     Component.onCompleted: {
-        mainView.bottomEdge = bottomEdge
         if (!_realPage) {
             _realPage = messagesComponent.createObject(null)
         }
+        mainView.setBottomEdge(bottomEdge)
     }
 
     Component.onDestruction: {
+        mainView.unsetBottomEdge(bottomEdge)
         if (_realPage) {
             _realPage.destroy()
-        }
-        if (mainView.bottomEdge == bottomEdge) {
-            mainView.bottomEdge = null;
         }
     }
 

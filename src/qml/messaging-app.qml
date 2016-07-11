@@ -50,6 +50,37 @@ MainView {
 
     activeFocusOnPress: false
 
+    property var bottomEdgeQueue: []
+    function setBottomEdge(newBottomEdge) {
+        if (!bottomEdge) {
+            bottomEdge = newBottomEdge;
+        } else {
+            bottomEdgeQueue.unshift(bottomEdge)
+            bottomEdge = null
+            bottomEdgeQueue.push(newBottomEdge)
+        }
+    }
+
+    function unsetBottomEdge(oldBottomEdge) {
+        if (bottomEdge == oldBottomEdge) {
+            var newBottomEdge;
+            if (bottomEdgeQueue.length == 1) {
+                newBottomEdge = bottomEdgeQueue.shift();
+            } else {
+                newBottomEdge = null;
+            }
+            bottomEdge = newBottomEdge;
+        } else {
+            var index = bottomEdgeQueue.indexOf(oldBottomEdge);
+            if (index != -1) {
+                bottomEdgeQueue.splice(index, 1);
+                if (bottomEdgeQueue.length == 1) {
+                    bottomEdge = bottomEdgeQueue.shift();
+                }
+            }
+        }
+    }
+
     function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
