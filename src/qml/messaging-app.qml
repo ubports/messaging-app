@@ -50,8 +50,16 @@ MainView {
 
     activeFocusOnPress: false
 
+    /* Multiple MessagingBottomEdge instances can be created simultaneously
+       and ask to become the unique 'bottomEdge'.
+       Queue the requests until only one MessagingBottomEdge instance is left.
+    */
     property var bottomEdgeQueue: []
     function setBottomEdge(newBottomEdge) {
+        /* If the queue is empty and no other bottom edge is set then
+           set 'bottomEdge' to newBottomEdge. Otherwise insert newBottomEdge
+           in the queue
+        */
         if (!bottomEdge && bottomEdgeQueue.length == 0) {
             bottomEdge = newBottomEdge;
         } else {
@@ -64,6 +72,9 @@ MainView {
     }
 
     function unsetBottomEdge(oldBottomEdge) {
+        /* Remove all references to oldBottomEdge (from the queue and from 'bottomEdge')
+           If only one bottom edge remains in the queue then set 'bottomEdge' to it
+        */
         if (bottomEdge == oldBottomEdge) {
             bottomEdge = null;
         } else {
