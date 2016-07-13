@@ -70,6 +70,8 @@ Item {
         property var activeAccounts: [testAccount, testAccount2]
         property alias accounts: telepathyHelper.activeAccounts
         property QtObject defaultMessagingAccount: null
+        property bool flightMode: false
+        property var phoneAccounts: accounts
         function registerChannelObserver() {}
         function unregisterChannelObserver() {}
         function accountForId(accountId) {
@@ -164,7 +166,7 @@ Item {
             // on vivid mouseClick() does not work here
             sendButton.clicked()
 
-            var dialogButton = findChild(root, "closeNoSimCardSelectedDialog")
+            var dialogButton = findChild(root, "closeInformationDialog")
             compare(dialogButton == null, false)
             mouseClick(dialogButton)
 
