@@ -12,6 +12,10 @@ DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
 # Ref.: https://bugs.launchpad.net/ubuntu/+source/mesa/+bug/1585942
 testskip_architectures := arm64
 
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+export DEB_BUILD_PROFILES := cross
+endif
+
 %:
 	dh $@ --parallel --fail-missing --with translations
 
