@@ -35,6 +35,7 @@ ContactViewPage {
     readonly property string contactEditorPageURL: Qt.resolvedUrl("MessagingContactEditorPage.qml")
     property string addPhoneToContact: ""
     property var contactListPage: null
+    model: null
 
     function addPhoneToContactImpl(contact, phoneNumber)
     {

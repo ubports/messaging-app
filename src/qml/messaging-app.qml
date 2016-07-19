@@ -67,8 +67,13 @@ MainView {
     }
 
     function showContactDetails(currentPage, contact, contactListPage, contactsModel) {
-        var initialProperties =  { "contactListPage": contactListPage,
-                                   "model": contactsModel}
+        var initialProperties = {}
+        if (contactListPage) {
+            initialProperties["contactListPage"] = contactListPage
+        }
+        if (contactsModel) {
+            initialProperties["model"] = contactsModel
+        }
 
         if (typeof(contact) == 'string') {
             initialProperties['contactId'] = contact
@@ -81,23 +86,19 @@ MainView {
                                          initialProperties)
     }
 
-    function addNewContact(currentPage, phoneNumber, contactListPage) {
-        mainStack.addPageToCurrentColumn(currentPage,
-                                         Qt.resolvedUrl("MessagingContactEditorPage.qml"),
-                                         { "contactId": contactId,
-                                           "addPhoneToContact": phoneNumber,
-                                           "contactListPage": contactListPage })
-    }
-
     function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
         if (contact === "") {
             mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("NewRecipientPage.qml"),
                                              { "phoneToAdd": phoneNumber })
         } else {
-            var initialProperties = { "addPhoneToContact": phoneNumber,
-                                      "contactListPage": contactListPage,
-                                      "model": contactsModel }
+            var initialProperties = { "addPhoneToContact": phoneNumber }
+            if (contactListPage) {
+                initialProperties["contactListPage"] = contactListPage
+            }
+            if (contactsModel) {
+                initialProperties["model"] = contactsModel
+            }
             if (typeof(contact) == 'string') {
                 initialProperties['contactId'] = contact
             } else {
