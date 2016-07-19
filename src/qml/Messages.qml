@@ -676,7 +676,7 @@ Page {
                     iconName: "contact"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                        mainStack.addPageToCurrentColumn(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
                     }
                 }
 
