@@ -96,7 +96,6 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
-                        emptyStack()
                         pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
@@ -230,7 +229,8 @@ Page {
         header: ListItem.Standard {
             // FIXME: update
             id: newItem
-            height: mainView.bottomEdge.status === BottomEdge.Committed &&
+            height: mainView.bottomEdge &&
+                    mainView.bottomEdge.status === BottomEdge.Committed &&
                     !mainView.bottomEdge.showingConversation &&
                     mainView.dualPanel ? units.gu(10) : 0
             text: i18n.tr("New message")
@@ -323,9 +323,18 @@ Page {
         align: Qt.AlignTrailing
     }
 
-    MessagingBottomEdge {
-        parent: mainPage
-        enabled: !mainView.dualPanel
-        hint.visible: enabled
+    Loader {
+        id: bottomEdgeLoader
+        active: !selectionMode && !searching && !mainView.dualPanel
+        asynchronous: true
+        /* FIXME: would be even more efficient to use setSource() to
+           delay the compilation step but a bug in Qt prevents us.
+           Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+        */
+        sourceComponent: MessagingBottomEdge {
+            parent: mainPage
+            enabled: !mainView.dualPanel
+            hint.visible: enabled
+        }
     }
 }

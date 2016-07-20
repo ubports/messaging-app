@@ -135,8 +135,7 @@ MainView {
     }
 
     function showBottomEdgePage(properties) {
-        layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
-        //bottomEdge.commitWithProperties(properties)
+        showMessagesPage(properties)
     }
 
     Connections {
@@ -234,10 +233,13 @@ MainView {
         return ContentType.Unknown
     }
 
-    function emptyStack() {
+    function emptyStack(showEmpty) {
+        if (typeof showEmpty === 'undefined') { showEmpty = true; }
         mainView.emptyStackRequested()
         mainStack.removePages(mainPage)
-        showEmptyState()
+        if (showEmpty) {
+            showEmptyState()
+        }
         mainPage.displayedThreadIndex = -1
     }
 
@@ -355,14 +357,15 @@ MainView {
             id: mainPage
         }
 
+        property bool completed: false
+
         onColumnsChanged: {
-            if (layout.columns == 1) {
+            if (layout.completed && layout.columns == 1) {
                 if (application.findMessagingChild("emptyStatePage")) {
                     console.log("FOOOOOOOOOOOOOOOO")
                     emptyStack()
                 }
-            } else if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
-
+            } else if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 // we only have things to do here in case no thread is selected
                 emptyStack()
             }
@@ -371,6 +374,7 @@ MainView {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
                 emptyStack()
             }
+            layout.completed = true;
         }
     }
 }
