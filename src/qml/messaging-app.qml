@@ -134,10 +134,6 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
-    function showBottomEdgePage(properties) {
-        showMessagesPage(properties)
-    }
-
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -208,9 +204,8 @@ MainView {
         target: ContentHub
         onShareRequested: {
             var properties = {}
-            emptyStack()
             properties["sharedAttachmentsTransfer"] = transfer
-            mainView.showBottomEdgePage(properties)
+            mainView.showMessagesView(properties)
         }
     }
 

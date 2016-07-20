@@ -47,7 +47,7 @@ MessageDelegate {
 
         properties["sharedAttachmentsTransfer"] = transfer
 
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
     }
 
     function copyMessage()
