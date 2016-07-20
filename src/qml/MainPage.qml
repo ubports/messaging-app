@@ -104,7 +104,7 @@ Page {
                     objectName: "newMessageAction"
                     text: i18n.tr("New message")
                     iconName: "add"
-                    onTriggered: mainView.bottomEdge.commit()
+                    onTriggered: mainView.startNewMessage()
                 }
 
             ]
@@ -228,6 +228,7 @@ Page {
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
+            // FIXME: update
             id: newItem
             height: mainView.bottomEdge.status === BottomEdge.Committed &&
                     !mainView.bottomEdge.showingConversation &&
@@ -281,8 +282,7 @@ Page {
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    emptyStack()
-                    mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
+                    mainView.showMessagesView(properties)
 
                     // mark this item as current
                     threadList.currentIndex = index
@@ -323,11 +323,9 @@ Page {
         align: Qt.AlignTrailing
     }
 
-    Loader {
-        id: bottomEdgeLoader
-        active: !selectionMode && !searching && !mainView.dualPanel
-        sourceComponent: MessagingBottomEdge {
-            parent: mainPage
-        }
+    MessagingBottomEdge {
+        parent: mainPage
+        enabled: !mainView.dualPanel
+        hint.visible: enabled
     }
 }

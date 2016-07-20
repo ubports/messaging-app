@@ -42,8 +42,10 @@ MainView {
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
-    property QtObject bottomEdge: null
-    property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
+    property bool composingNewMessage: {
+        var messages = application.findMessagingChild("messagesPage")
+        return messages && messages.newMessage
+    }
     property alias inputInfo: inputInfoObject
 
     signal emptyStackRequested()
@@ -133,7 +135,8 @@ MainView {
     }
 
     function showBottomEdgePage(properties) {
-        bottomEdge.commitWithProperties(properties)
+        layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
+        //bottomEdge.commitWithProperties(properties)
     }
 
     Connections {
@@ -246,8 +249,11 @@ MainView {
 
     function startNewMessage() {
         var properties = {}
-        emptyStack()
-        mainView.showBottomEdgePage(properties)
+        showMessagesView(properties)
+    }
+
+    function showMessagesView(properties) {
+        layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
 
     function startChat(identifiers, text, accountId) {
@@ -290,10 +296,7 @@ MainView {
             properties["accountId"] = accountId
         }
 
-        emptyStack()
-        // FIXME: AdaptivePageLayout takes a really long time to create pages,
-        // so we create manually and push that
-        mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
+        showMessagesView(properties)
     }
 
     InputInfo {
@@ -306,7 +309,7 @@ MainView {
     Binding {
         target:  QuickUtils
         property: "mouseAttached"
-        value: inputInfo.hasMouse
+        value: true //inputInfo.hasMouse
     }
 
 
@@ -320,57 +323,16 @@ MainView {
     }
 
     Component {
-        id: messagesWithBottomEdge
-
-        Messages {
-            id: messages
-            height: mainPage.height
-
-            Component.onCompleted: mainPage._messagesPage = messages
-            Loader {
-                id: messagesBottomEdgeLoader
-                active: mainView.dualPanel
-                sourceComponent: MessagingBottomEdge {
-                    id: messagesBottomEdge
-                    parent: messages
-                    hint.text: ""
-                    hint.height: 0
-                }
-            }
-        }
-    }
-
-    Component {
         id: emptyStatePageComponent
         Page {
             id: emptyStatePage
             objectName: "emptyStatePage"
-
-            Connections {
-                target: layout
-                onColumnsChanged: {
-                    if (layout.columns == 1) {
-                        if (!application.findMessagingChild("fakeItem")) {
-                            emptyStack()
-                        }
-                    }
-                }
-            }
 
             EmptyState {
                 labelVisible: false
             }
 
             header: PageHeader { }
-
-            Loader {
-                id: bottomEdgeLoader
-                sourceComponent: MessagingBottomEdge {
-                    parent: emptyStatePage
-                    hint.text: ""
-                    hint.height: 0
-                }
-            }
         }
     }
 
@@ -394,8 +356,14 @@ MainView {
         }
 
         onColumnsChanged: {
-            // we only have things to do here in case no thread is selected
-            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+            if (layout.columns == 1) {
+                if (application.findMessagingChild("emptyStatePage")) {
+                    console.log("FOOOOOOOOOOOOOOOO")
+                    emptyStack()
+                }
+            } else if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+
+                // we only have things to do here in case no thread is selected
                 emptyStack()
             }
         }

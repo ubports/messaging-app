@@ -69,11 +69,6 @@ Page {
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     property bool newMessage: false
 
-    // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
-    property var basePage: messages
-
-    property bool startedFromBottomEdge: false
-
     signal ready
     signal cancel
 
@@ -455,36 +450,6 @@ Page {
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
 
-        property list<QtObject> bottomEdgeLeadingActions: [
-            Action {
-                id: backAction
-
-                objectName: "cancel"
-                name: "cancel"
-                text: i18n.tr("Cancel")
-                iconName: "down"
-                shortcut: "Esc"
-                onTriggered: {
-                    messages.cancel()
-                }
-            }
-        ]
-
-        property list<QtObject> singlePanelLeadingActions: [
-            Action {
-                id: singlePanelBackAction
-                objectName: "back"
-                name: "cancel"
-                text: i18n.tr("Cancel")
-                iconName: "back"
-                shortcut: "Esc"
-                onTriggered: {
-                    // emptyStack will make sure the page gets removed.
-                    mainView.emptyStack()
-                }
-            }
-        ]
-
         title: {
             if (landscape) {
                 return ""
@@ -523,25 +488,20 @@ Page {
 
         leadingActionBar {
             id: leadingBar
-
-            states: [
-                State {
-                    name: "bottomEdgeBack"
-                    when: startedFromBottomEdge
-                    PropertyChanges {
-                        target: leadingBar
-                        actions: pageHeader.bottomEdgeLeadingActions
-                    }
-                },
-                State {
-                    name: "singlePanelBack"
-                    when: !mainView.dualPanel && !startedFromBottomEdge
-                    PropertyChanges {
-                        target: leadingBar
-                        actions: pageHeader.singlePanelLeadingActions
+            actions: [
+                Action {
+                    id: backAction
+                    objectName: "back"
+                    name: "cancel"
+                    text: i18n.tr("Cancel")
+                    iconName: "back"
+                    shortcut: "Esc"
+                    visible: !mainView.dualPanel || messages.state === "newMessage"
+                    onTriggered: {
+                        // emptyStack will make sure the page gets removed.
+                        mainView.emptyStack()
                     }
                 }
-
             ]
         }
 
@@ -676,7 +636,7 @@ Page {
                     iconName: "contact"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainStack.addPageToCurrentColumn(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                        mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
                     }
                 }
 
@@ -733,7 +693,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        mainView.showContactDetails(messages.basePage, contactWatcher.contactId, null, null)
+                        mainView.showContactDetails(messages, contactWatcher.contactId, null, null)
                     }
                 }
             ]
@@ -781,13 +741,9 @@ Page {
 
     // These fake items are used to track if there are instances loaded
     // on the second column because we have no access to the page stack
-    Loader {
-        sourceComponent: fakeItemComponent
-        active: !startedFromBottomEdge
-    }
-    Component {
-        id: fakeItemComponent
-        Item { objectName:"fakeItem"}
+    Item {
+        objectName:"fakeItem"
+        Component.onCompleted: console.log("BLABLA I'm here!!!")
     }
 
     Connections {
