@@ -46,7 +46,6 @@ MainView {
         var messages = application.findMessagingChild("messagesPage")
         return messages && messages.newMessage
     }
-    property alias inputInfo: inputInfoObject
 
     signal emptyStackRequested()
 
@@ -295,20 +294,6 @@ MainView {
 
         showMessagesView(properties)
     }
-
-    InputInfo {
-        id: inputInfoObject
-    }
-
-    // WORKAROUND: Due the missing feature on SDK, they can not detect if
-    // there is a mouse attached to device or not. And this will cause the
-    // bootom edge component to not work correct on desktop.
-    Binding {
-        target:  QuickUtils
-        property: "mouseAttached"
-        value: true //inputInfo.hasMouse
-    }
-
 
     Connections {
         target: UriHandler

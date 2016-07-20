@@ -88,7 +88,6 @@ MessageDelegate {
     function forwardMessage()
     {
         var properties = {}
-        emptyStack()
         var items = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = attachments[i]
