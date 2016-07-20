@@ -50,6 +50,44 @@ MainView {
 
     activeFocusOnPress: false
 
+    /* Multiple MessagingBottomEdge instances can be created simultaneously
+       and ask to become the unique 'bottomEdge'.
+       Queue the requests until only one MessagingBottomEdge instance is left.
+    */
+    property var bottomEdgeQueue: []
+    function setBottomEdge(newBottomEdge) {
+        /* If the queue is empty and no other bottom edge is set then
+           set 'bottomEdge' to newBottomEdge. Otherwise insert newBottomEdge
+           in the queue
+        */
+        if (!bottomEdge && bottomEdgeQueue.length == 0) {
+            bottomEdge = newBottomEdge;
+        } else {
+            if (bottomEdge) {
+                bottomEdgeQueue.unshift(bottomEdge)
+                bottomEdge = null
+            }
+            bottomEdgeQueue.push(newBottomEdge)
+        }
+    }
+
+    function unsetBottomEdge(oldBottomEdge) {
+        /* Remove all references to oldBottomEdge (from the queue and from 'bottomEdge')
+           If only one bottom edge remains in the queue then set 'bottomEdge' to it
+        */
+        if (bottomEdge == oldBottomEdge) {
+            bottomEdge = null;
+        } else {
+            var index = bottomEdgeQueue.indexOf(oldBottomEdge);
+            if (index != -1) {
+                bottomEdgeQueue.splice(index, 1);
+                if (bottomEdgeQueue.length == 1) {
+                    bottomEdge = bottomEdgeQueue.pop();
+                }
+            }
+        }
+    }
+
     function defaultPhoneAccount() {
         // we only use the default account property if we have more
         // than one account, otherwise we use always the first one
@@ -132,8 +170,22 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
+    property var pendingCommitProperties
+    function bottomEdgeCommit() {
+        if (bottomEdge) {
+            mainView.onBottomEdgeChanged.disconnect(bottomEdgeCommit);
+            bottomEdge.commitWithProperties(pendingCommitProperties);
+            pendingCommitProperties = null;
+        }
+    }
+
     function showBottomEdgePage(properties) {
-        bottomEdge.commitWithProperties(properties)
+        pendingCommitProperties = properties;
+        if (bottomEdge) {
+            bottomEdgeCommit();
+        } else {
+            mainView.onBottomEdgeChanged.connect(bottomEdgeCommit);
+        }
     }
 
     Connections {
@@ -231,10 +283,13 @@ MainView {
         return ContentType.Unknown
     }
 
-    function emptyStack() {
+    function emptyStack(showEmpty) {
+        if (typeof showEmpty === 'undefined') { showEmpty = true; }
         mainView.emptyStackRequested()
         mainStack.removePages(mainPage)
-        showEmptyState()
+        if (showEmpty) {
+            showEmptyState()
+        }
         mainPage.displayedThreadIndex = -1
     }
 
@@ -290,7 +345,7 @@ MainView {
             properties["accountId"] = accountId
         }
 
-        emptyStack()
+        emptyStack(false)
         // FIXME: AdaptivePageLayout takes a really long time to create pages,
         // so we create manually and push that
         mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
@@ -330,6 +385,11 @@ MainView {
             Loader {
                 id: messagesBottomEdgeLoader
                 active: mainView.dualPanel
+                asynchronous: true
+                /* FIXME: would be even more efficient to use setSource() to
+                   delay the compilation step but a bug in Qt prevents us.
+                   Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+                */
                 sourceComponent: MessagingBottomEdge {
                     id: messagesBottomEdge
                     parent: messages
@@ -365,6 +425,11 @@ MainView {
 
             Loader {
                 id: bottomEdgeLoader
+                asynchronous: true
+                /* FIXME: would be even more efficient to use setSource() to
+                   delay the compilation step but a bug in Qt prevents us.
+                   Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+                */
                 sourceComponent: MessagingBottomEdge {
                     parent: emptyStatePage
                     hint.text: ""
@@ -393,9 +458,11 @@ MainView {
             id: mainPage
         }
 
+        property bool completed: false
+
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
-            if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+            if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 emptyStack()
             }
         }
@@ -403,6 +470,7 @@ MainView {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
                 emptyStack()
             }
+            layout.completed = true;
         }
     }
 }
