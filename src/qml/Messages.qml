@@ -488,21 +488,6 @@ Page {
 
         leadingActionBar {
             id: leadingBar
-            actions: [
-                Action {
-                    id: backAction
-                    objectName: "back"
-                    name: "cancel"
-                    text: i18n.tr("Cancel")
-                    iconName: "back"
-                    shortcut: "Esc"
-                    visible: !mainView.dualPanel || messages.state === "newMessage"
-                    onTriggered: {
-                        // emptyStack will make sure the page gets removed.
-                        mainView.emptyStack()
-                    }
-                }
-            ]
         }
 
         trailingActionBar {
