@@ -36,7 +36,7 @@ ListItemWithActions {
     property string threadId: model.threadId
     property var displayedEvent: null
     property var displayedEventTextAttachments: displayedEvent ? displayedEvent.textMessageAttachments : eventTextAttachments
-    property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : eventTimestamp
+    property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : timestamp
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
