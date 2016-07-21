@@ -320,7 +320,6 @@ Page {
 
     Loader {
         id: bottomEdgeLoader
-        active: !selectionMode && !searching && !mainView.dualPanel
         asynchronous: true
         /* FIXME: would be even more efficient to use setSource() to
            delay the compilation step but a bug in Qt prevents us.
