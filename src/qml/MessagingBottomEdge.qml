@@ -35,7 +35,7 @@ BottomEdge {
         id: messagesComponent
 
         Messages {
-            height: bottomEdge.height
+            height: mainView.height
         }
     }
 
