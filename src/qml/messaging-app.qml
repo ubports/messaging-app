@@ -338,8 +338,9 @@ MainView {
 
         onColumnsChanged: {
             if (layout.completed && layout.columns == 1) {
+                // in 1 column mode we don't have empty state as a page, so remove it
                 if (application.findMessagingChild("emptyStatePage")) {
-                    emptyStack()
+                    emptyStack(false)
                 }
             } else if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 // we only have things to do here in case no thread is selected
@@ -348,6 +349,7 @@ MainView {
         }
         Component.onCompleted: {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
+                // add the empty state page if necessary
                 emptyStack()
             }
             layout.completed = true;
