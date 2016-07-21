@@ -1,3 +1,18 @@
+messaging-app (0.1+16.10.20160718-0ubuntu1) yakkety; urgency=medium
+
+  [ Florian Boucault ]
+  * Always load MessagingBottomEdge asynchronously.
+  * Fix packaging for crossbuilding.
+
+ -- bill.filler@canonical.com <bill.filler@canonical.com>  Mon, 18 Jul 2016 13:49:27 +0000
+
+messaging-app (0.1+16.10.20160713.1-0ubuntu1) yakkety; urgency=medium
+
+  * Improve error messages. Inform users the real reason why messages
+    are failing to get sent.
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 13 Jul 2016 21:39:30 +0000
+
 messaging-app (0.1+16.10.20160630-0ubuntu1) yakkety; urgency=medium
 
   * Implement support for message forwarding. (LP: #1461873)
