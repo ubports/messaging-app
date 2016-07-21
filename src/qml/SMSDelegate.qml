@@ -41,7 +41,6 @@ MessageDelegate {
     {
         var properties = {}
         var items = [{"text": textMessage, "url":""}]
-        emptyStack()
         var transfer = {}
         transfer["items"] = items
 

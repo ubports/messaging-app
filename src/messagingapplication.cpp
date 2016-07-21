@@ -320,7 +320,33 @@ void MessagingApplication::showNotificationMessage(const QString &message, const
     g_object_unref(G_OBJECT(notification));
 }
 
+// find QQuickItem childs
+inline QObject *findRecursiveChild(QQuickItem *object, const QString &objectName)
+{
+    // check the object
+    if (!object) {
+        return NULL;
+    }
+
+    // check the direct children first
+    Q_FOREACH(QQuickItem *child, object->childItems()) {
+        if (child->objectName() == objectName) {
+            return child;
+        }
+    }
+
+    // now check the grand-children
+    Q_FOREACH(QQuickItem *child, object->childItems()) {
+        QObject *result = findRecursiveChild(child, objectName);
+        if (result) {
+            return result;
+        }
+    }
+
+    return NULL;
+}
+
 QObject *MessagingApplication::findMessagingChild(const QString &objectName)
 {
-    return m_view->rootObject()->findChild<QObject*>(objectName);
+    return findRecursiveChild(m_view->rootObject(), objectName);
 }

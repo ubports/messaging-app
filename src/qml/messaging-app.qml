@@ -47,8 +47,6 @@ MainView {
         return messages && messages.newMessage
     }
 
-    signal emptyStackRequested()
-
     activeFocusOnPress: false
 
     function defaultPhoneAccount() {
@@ -229,7 +227,6 @@ MainView {
 
     function emptyStack(showEmpty) {
         if (typeof showEmpty === 'undefined') { showEmpty = true; }
-        mainView.emptyStackRequested()
         mainStack.removePages(mainPage)
         if (showEmpty) {
             showEmptyState()
@@ -342,7 +339,6 @@ MainView {
         onColumnsChanged: {
             if (layout.completed && layout.columns == 1) {
                 if (application.findMessagingChild("emptyStatePage")) {
-                    console.log("FOOOOOOOOOOOOOOOO")
                     emptyStack()
                 }
             } else if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {

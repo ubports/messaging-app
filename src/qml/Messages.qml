@@ -728,7 +728,6 @@ Page {
     // on the second column because we have no access to the page stack
     Item {
         objectName:"fakeItem"
-        Component.onCompleted: console.log("BLABLA I'm here!!!")
     }
 
     Connections {
