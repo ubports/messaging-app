@@ -110,24 +110,6 @@ Page {
                     text: i18n.tr("New message")
                     iconName: "add"
                     onTriggered: mainView.bottomEdge.commit()
-                },
-                Action {
-                    objectName: "newGroupAction"
-                    text: i18n.tr("New Group")
-                    iconName: "contact-group"
-                    visible: {
-                        for (var i in telepathyHelper.accounts) {
-                            var tmpAccount = telepathyHelper.accounts[i]
-                            // TODO: check for accounts that support room channels
-                            if (tmpAccount.type == AccountEntry.MultimediaAccount && tmpAccount.connected) {
-                                return true
-                            }
-                        }
-                        return false
-                    }
-                    onTriggered: {
-                        PopupUtils.open(Qt.createComponent("Dialogs/NewGroupDialog.qml").createObject(mainView))
-                    }
                 }
             ]
 

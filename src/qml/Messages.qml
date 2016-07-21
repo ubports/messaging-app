@@ -736,14 +736,14 @@ Page {
 
             property list<QtObject> trailingActions: [
                 Action {
-                    objectName: "contactList"
-                    iconName: "contact"
+                    id: groupSelectionAction
+                    objectName: "groupSelection"
+                    iconName: "contact-group"
                     onTriggered: {
-                        Qt.inputMethod.hide()
-                        mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                        contextMenu.caller = header;
+                        contextMenu.show();
                     }
                 }
-
             ]
 
             property Item contents: MultiRecipientInput {
@@ -756,6 +756,24 @@ Page {
                     rightMargin: units.gu(2)
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
+                }
+
+                Icon {
+                    name: "add"
+                    height: units.gu(2)
+                    anchors {
+                        right: parent.right
+                        rightMargin: units.gu(2)
+                        verticalCenter: parent.verticalCenter
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            Qt.inputMethod.hide()
+                            mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                        }
+                        z: 2
+                    }
                 }
 
                 Connections {
@@ -871,6 +889,25 @@ Page {
         Item { objectName:"fakeItem"}
     }
 
+    ActionSelectionPopover {
+        id: contextMenu
+        z: 100
+        delegate: ListItem.Standard {
+            text: action.text
+        }
+        actions: ActionList {
+            Action {
+                text: i18n.tr("Create MMS Group...")
+                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"recipients": multiRecipient.recipients, "basePage": basePage})
+            }
+            Action {
+                text: i18n.tr("Create Group...")
+                enabled: mainView.hasMultimedia
+                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "recipients": multiRecipient.recipients, "basePage": basePage})
+            }
+        }
+    }
+
     Connections {
         target: telepathyHelper
         onSetupReady: {
@@ -925,6 +962,7 @@ Page {
         participantIds: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
+        autoRequest: !newMessage
 
         onChatTypeChanged: {
             messages.chatType = chatEntryObject.chatType
@@ -1267,7 +1305,7 @@ Page {
             }
             selfTypingTimer.start()
         }
-        canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        canSend: chatType == 2 || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
 
         Component.onCompleted: {
