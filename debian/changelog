@@ -1,3 +1,11 @@
+messaging-app (0.1+16.10.20160721-0ubuntu1) yakkety; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Register app as "destination" for "contacts", "pictures", "links",
+    "text", "videos";
+
+ -- bill.filler@canonical.com <bill.filler@canonical.com>  Thu, 21 Jul 2016 19:47:30 +0000
+
 messaging-app (0.1+16.10.20160718-0ubuntu1) yakkety; urgency=medium
 
   [ Florian Boucault ]
