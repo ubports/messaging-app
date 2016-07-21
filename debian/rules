@@ -12,6 +12,10 @@ DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
 # Ref.: https://bugs.launchpad.net/ubuntu/+source/mesa/+bug/1585942
 testskip_architectures := arm64 s390x
 
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+export DEB_BUILD_PROFILES := cross
+endif
+
 %:
 	dh $@ --parallel --fail-missing --with translations
 
@@ -27,7 +31,9 @@ apparmor:
 	(head -n -2 ./debian/usr.bin.messaging-app; cat ./debian/messaging-app-apparmor.additions; \
 	echo } ) > ./debian/usr.bin.messaging-app2
 	mv ./debian/usr.bin.messaging-app2 ./debian/usr.bin.messaging-app
+ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	apparmor_parser -QTK ./debian/usr.bin.messaging-app
+endif
 
 override_dh_install: apparmor
 	dh_install --fail-missing
@@ -38,10 +44,10 @@ override_dh_installdeb:
 
 override_dh_auto_test:
 ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
-	flake8  tests/autopilot/messaging_app/
-        ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
-	    cd obj-$(DEB_HOST_GNU_TYPE); ctest -V
-        endif
+	python3 -m flake8 tests/autopilot/messaging_app/
+ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+	cd obj-$(DEB_HOST_GNU_TYPE); ctest -V
+endif
 endif
 
 override_dh_translations:
