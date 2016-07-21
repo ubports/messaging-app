@@ -284,7 +284,29 @@ Page {
             Qt.inputMethod.hide()
             // workaround for bug #1461861
             messages.focus = false
-            PopupUtils.open(Qt.createComponent("Dialogs/NoSIMCardSelectedDialog.qml").createObject(messages))
+            var properties = {}
+
+            var activePhoneAccounts = 0;
+            for (var i in telepathyHelper.phoneAccounts) {
+                if (telepathyHelper.phoneAccounts[i].active) {
+                    activePhoneAccounts++
+                }
+            }
+
+            if (telepathyHelper.flightMode) {
+                properties["title"] = i18n.tr("You have to disable flight mode")
+                properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
+            } else if (multiplePhoneAccounts) {
+                properties["title"] = i18n.tr("No SIM card selected")
+                properties["text"] = i18n.tr("You need to select a SIM card")
+            } else if (telepathyHelper.phoneAccounts.length > 0 && activePhoneAccounts == 0) {
+                properties["title"] = i18n.tr("No SIM card")
+                properties["text"] = i18n.tr("Please insert a SIM card and try again.")
+            } else {
+                properties["text"] = i18n.tr("It is not possible to send the message")
+                properties["title"] = i18n.tr("Failed to send the message")
+            }
+            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
             return false
         }
 
