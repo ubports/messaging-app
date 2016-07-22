@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"POT-Creation-Date: 2016-07-21 11:02-0300\n"
 "PO-Revision-Date: 2015-06-08 11:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
-"X-Generator: Launchpad (build 18115)\n"
+"X-Launchpad-Export-Date: 2016-07-22 05:53+0000\n"
+"X-Generator: Launchpad (build 18147)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -49,15 +49,19 @@ msgstr[0] "%1-секундний дзвінок"
 msgstr[1] "%1-секундний дзвінок"
 msgstr[2] "%1-секундний дзвінок"
 
-#: ../src/qml/MessagingBottomEdge.qml:36
+#: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
 msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:156
+msgid "<<< Swipe to cancel"
+msgstr "<<< Проведіть, щоб скасувати"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Прийнято"
 
-#: ../src/qml/Messages.qml:630
+#: ../src/qml/Messages.qml:652
 msgid "Add"
 msgstr "Додати"
 
@@ -68,6 +72,14 @@ msgstr "Додати отримувача"
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "Усі"
+
+#: ../src/qml/ThreadDelegate.qml:94
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "Долучення: %1 аудіокліп"
+msgstr[1] "Долучення: %1 аудіокліпи"
+msgstr[2] "Долучення: %1 аудіокліпів"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -105,12 +117,24 @@ msgstr[2] "Долучення: %1 відео"
 msgid "Audio attachment not supported"
 msgstr "Підтримки долучення звукових файлів не передбачено"
 
-#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
+#: ../src/qml/Messages.qml:890
+msgid "Away"
+msgstr "Немає на місці"
+
+#: ../src/qml/NewRecipientPage.qml:64
+msgid "Back"
+msgstr "На місці"
+
+#: ../src/qml/Messages.qml:892
+msgid "Busy"
+msgstr "Зайнято"
+
+#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
 msgstr "Подзвонити"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -122,9 +146,9 @@ msgstr "Скасувати"
 msgid "Change all Messaging associations to %1?"
 msgstr "Пов’язати увесь обмін повідомленнями з %1?"
 
+#: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
 msgstr "Закрити"
 
@@ -132,7 +156,7 @@ msgstr "Закрити"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Створіть нове повідомлення рухом пальця з нижньої частини екрана."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
 msgstr "Контакт"
 
@@ -156,6 +180,10 @@ msgstr "Доставлено"
 msgid "Don't ask again"
 msgstr "Більше не питати"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+msgid "Don't show again"
+msgstr "Не показувати знов"
+
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "Змінити"
@@ -168,6 +196,10 @@ msgstr "Увімкнути групове спілкування MMS"
 msgid "Failed"
 msgstr "Помилка"
 
+#: ../src/qml/Messages.qml:286
+msgid "Failed to send the message"
+msgstr ""
+
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Невдача!"
@@ -176,9 +208,17 @@ msgstr "Невдача!"
 msgid "Favorites"
 msgstr "Вибрані"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "Попередження щодо розміру файлів"
+
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
 msgstr "Підтримки цього типу файлів не передбачено"
+
+#: ../src/qml/MessagesListView.qml:143
+msgid "Forward"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -193,10 +233,22 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:626
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Якщо вам потрібно змінити SIM-картку та інші параметри мобільного зв’язку, "
+"зверніться до <a href=\"system_settings\">Параметрів системи</a>."
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "Зображення"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -206,9 +258,13 @@ msgstr "Перегляд зображення"
 msgid "Info"
 msgstr "Відомості"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
-msgid "Later"
-msgstr "Пізніше"
+#: ../src/qml/Messages.qml:277
+msgid "It is not possible to send messages in flight mode"
+msgstr ""
+
+#: ../src/qml/Messages.qml:285
+msgid "It is not possible to send the message"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -248,21 +304,37 @@ msgstr "Немає даних повідомлення"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:497
 msgid "New Message"
+msgstr "Нове повідомлення"
+
+#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+msgid "New message"
 msgstr "Нове повідомлення"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "Ні"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Messages.qml:282
+msgid "No SIM card"
+msgstr ""
+
+#: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
 msgstr "Не вибрано SIM-картки"
 
-#: ../src/qml/Messages.qml:959
+#: ../src/qml/Messages.qml:981
 msgid "No network"
 msgstr "Немає мережі"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "Немає дозволу щодо доступу до мікрофона"
+
+#: ../src/qml/Messages.qml:888
+msgid "Offline"
+msgstr "Поза мережею"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -270,9 +342,26 @@ msgstr "Немає мережі"
 msgid "Ok"
 msgstr "Гаразд"
 
+#: ../src/qml/Messages.qml:886
+msgid "Online"
+msgstr "У мережі"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "В очікуванні"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+"Будь ласка, надайте доступ за допомогою сторінки <a "
+"href=\"system_settings\">Системні параметри &gt; Безпека &amp; "
+"Конфіденційність</a>."
+
+#: ../src/qml/Messages.qml:283
+msgid "Please insert a SIM card and try again."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -324,19 +413,6 @@ msgstr "Пошук"
 msgid "Search..."
 msgstr "Шукати…"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
-msgid ""
-"Select a default SIM for all outgoing messages. You can always alter your "
-"choice in <a href=\"system_settings\">System Settings</a>."
-msgstr ""
-"Виберіть типову SIM-картку для усіх вихідних повідомлень. Ваш вибір можна "
-"будь-коли змінити за допомогою <a href=\"system_settings\">Системних "
-"параметрів</a>."
-
-#: ../src/qml/Messages.qml:987
-msgid "Send"
-msgstr "Надіслати"
-
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Надіслані"
@@ -363,10 +439,6 @@ msgstr "Проведіть для вилучення"
 msgid "Swipe to reveal actions"
 msgstr "Проведіть, щоб побачити пункти дій"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
-msgid "Switch to default SIM:"
-msgstr "Перемкнутися на типову SIM-картку:"
-
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "Тимчасова помилка"
@@ -375,12 +447,12 @@ msgstr "Тимчасова помилка"
 msgid "Text message copied to clipboard"
 msgstr "Текстове повідомлення скопійовано до буфера"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Зараз на %1 немає доступу до мережі"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
 msgstr "Зараз немає доступу до мережі."
 
@@ -400,6 +472,10 @@ msgstr "Сьогодні"
 msgid "Type"
 msgstr "Тип"
 
+#: ../src/qml/Messages.qml:882
+msgid "Typing.."
+msgstr "Набирає повідомлення…"
+
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
 msgstr "Невідомий"
@@ -408,6 +484,10 @@ msgstr "Невідомий"
 msgid "Unknown contact"
 msgstr "Невідомий контакт"
 
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "Відео"
+
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "Перегляд відео"
@@ -415,6 +495,10 @@ msgstr "Перегляд відео"
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
 msgstr "Підтримки долучення відеофайлів не передбачено"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "Вітаємо у вашій програмі для обміну повідомленнями!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
@@ -432,7 +516,23 @@ msgstr "Так"
 msgid "Yesterday"
 msgstr "Вчора"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+"Ви намагаєтеся надсилати файли значного розміру (понад 300 кБ). Деякі "
+"оператори можуть блокувати подібне надсилання."
+
+#: ../src/qml/Messages.qml:276
+msgid "You have to disable flight mode"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:161
+msgid "You have to press and hold the record icon"
+msgstr "Вам слід натиснути і утримувати піктограму запису"
+
+#: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
 msgstr "Вам слід вибрати SIM-картку"
 
@@ -444,6 +544,23 @@ msgstr "Ви перемкнулися на %1 о %2"
 
 #~ msgid "Create new"
 #~ msgstr "Створити"
+
+#~ msgid "Later"
+#~ msgstr "Пізніше"
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Перемкнутися на типову SIM-картку:"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Виберіть типову SIM-картку для усіх вихідних повідомлень. Ваш вибір можна "
+#~ "будь-коли змінити за допомогою <a href=\"system_settings\">Системних "
+#~ "параметрів</a>."
+
+#~ msgid "Send"
+#~ msgstr "Надіслати"
 
 #~ msgid "+ Create New"
 #~ msgstr "+ Створити"
