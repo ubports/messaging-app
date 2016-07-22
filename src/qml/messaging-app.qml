@@ -42,12 +42,14 @@ MainView {
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
-    property bool composingNewMessage: {
-        var messages = application.findMessagingChild("messagesPage")
-        return messages && messages.newMessage
-    }
+    property bool composingNewMessage: false
 
-    activeFocusOnPress: false
+    function updateNewMessageStatus() {
+        mainView.composingNewMessage = Qt.binding(function() {
+            var messages = application.findMessagingChild("messagesPage")
+            return messages && messages.newMessage && messages.active
+        })
+    }
 
     function defaultPhoneAccount() {
         // we only use the default account property if we have more
@@ -149,6 +151,7 @@ MainView {
     implicitWidth: units.gu(90)
     implicitHeight: units.gu(71)
     anchorToKeyboard: false
+    activeFocusOnPress: false
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"

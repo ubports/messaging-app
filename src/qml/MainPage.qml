@@ -229,10 +229,7 @@ Page {
         header: ListItem.Standard {
             // FIXME: update
             id: newItem
-            height: mainView.bottomEdge &&
-                    mainView.bottomEdge.status === BottomEdge.Committed &&
-                    !mainView.bottomEdge.showingConversation &&
-                    mainView.dualPanel ? units.gu(10) : 0
+            height: mainView.dualPanel && mainView.composingNewMessage ? units.gu(8) : 0
             text: i18n.tr("New message")
             iconName: "message-new"
             iconFrame: false

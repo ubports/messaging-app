@@ -704,6 +704,7 @@ Page {
         restoreBindings()
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
+        mainView.updateNewMessageStatus()
     }
 
     Timer {
