@@ -18,6 +18,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItems
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import ".."
@@ -27,11 +28,25 @@ Page {
     property bool multimedia: false
     property bool creationInProgress: false
     property var basePage: null
-    property var recipients: []
-    function onPhonePickedDuringSearch(phoneNumber) {
-        multiRecipient.addRecipient(phoneNumber)
-        multiRecipient.clearSearch()
-        multiRecipient.forceActiveFocus()
+    property var participants: []
+
+    function addRecipient(identifier, contact) {
+        var alias = contact.displayLabel.label
+        if (alias == "") {
+            alias = identifier
+        }
+        onContactPickedDuringSearch(identifier, alias, contact.avatar.imageUrl)
+    }
+
+    function onContactPickedDuringSearch(identifier, alias, avatar) {
+        for (var i=0; i < participantsModel.count; i++) {
+            if (identifier == participantsModel.get(i).identifier) {
+                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                return
+            }
+        }
+        contactSearch.text = ""
+        participantsModel.append({"identifier": identifier, "alias": alias, "avatar": avatar })
     }
 
     header: PageHeader {
@@ -39,6 +54,24 @@ Page {
         title: creationInProgress ? i18n.tr("Creating Group...") : i18n.tr("New Group")
     }
 
+    ListModel {
+        id: participantsModel
+        dynamicRoles: true
+        property var participantIds: {
+            var ids = []
+            for (var i=0; i < participantsModel.count; i++) {
+                console.log(participantsModel.get(i).identifier)
+                ids.push(participantsModel.get(i).identifier)
+            }
+            return ids
+        }
+        Component.onCompleted: {
+            for (var i in newGroupPage.participants) {
+                console.log(participants[i].identifier)
+                participantsModel.append(newGroupPage.participants[i])
+            }
+        }
+    }
 
     ChatEntry {
         id: chatEntry
@@ -57,7 +90,7 @@ Page {
             // give history service time to create the thread
             creationTimer.start()
         }
-        participantIds: multiRecipient.recipients
+        participantIds: participantsModel.participantIds
         onStartChatFailed: {
             application.showNotificationMessage(i18n.tr("Failed to create group"), "dialog-error-symbolic")
             mainStack.removePage(newGroupPage)
@@ -90,24 +123,28 @@ Page {
         contentWidth: parent.width
         contentHeight: contentColumn.height
 
-        Column {
+        Item {
             id: contentColumn
             height: childrenRect.height
             anchors.left: parent.left
             anchors.right: parent.right
-            spacing: units.gu(2)
+            anchors.topMargin: units.gu(2)
             enabled: !creationInProgress
-            anchors.horizontalCenter: parent.horizontalCenter
 
-            ActivityIndicator {
+/*            ActivityIndicator {
                 anchors.horizontalCenter: parent.horizontalCenter
                 running: creationInProgress
                 visible: running
-            }
+            }*/
             Row {
+                id: groupTitleRow
                 spacing: units.gu(4)
-                anchors.horizontalCenter: parent.horizontalCenter
-        
+                anchors.topMargin: units.gu(2)
+                anchors {
+                    top: contentColumn.top
+                    left: parent.left
+                    right: parent.right
+                }
                 Label {
                     height: units.gu(4)
                     verticalAlignment: Text.AlignVCenter
@@ -119,19 +156,26 @@ Page {
                     placeholderText: i18n.tr("Type a name...")
                 }
             }
-            MultiRecipientInput {
-                id: multiRecipient
+            TextField {
+                id: contactSearch
+                anchors.top: groupTitleRow.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
+                anchors.topMargin: units.gu(2)
                 anchors.leftMargin: units.gu(2)
                 anchors.rightMargin: units.gu(2)
-                defaultHint: i18n.tr("Members..")
                 height: units.gu(4)
-                Component.onCompleted: {
-                    for (var i in newGroupPage.recipients) {
-                        addRecipient(newGroupPage.recipients[i])
-                    }
+                style: null
+                hasClearButton: false
+                placeholderText: i18n.tr("Number or contact name")
+                inputMethodHints: Qt.ImhNoPredictiveText
+                Keys.onReturnPressed: {
+                    if (text == "")
+                        return
+                    onContactPickedDuringSearch(text, "","")
+                    text = ""
                 }
+
                 Icon {
                     name: "add"
                     height: units.gu(2)
@@ -144,7 +188,7 @@ Page {
                         anchors.fill: parent
                         onClicked: {
                             Qt.inputMethod.hide()
-                            mainStack.addFileToCurrentColumnSync(basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                            mainStack.addFileToCurrentColumnSync(basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": newGroupPage})
                         }
                         z: 2
                     }
@@ -155,14 +199,14 @@ Page {
 
                 property int resultCount: (status === Loader.Ready) ? item.count : 0
 
-                source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
+                source: (contactSearch.text !== "") && contactSearch.focus ?
                         Qt.resolvedUrl("ContactSearchList.qml") : ""
                 visible: source != ""
-                // TODO: make this variable depending on the size of the screen
-                anchors.top: multiRecipient.bottom
-                height: visible ? units.gu(15) : 0
-                width: multiRecipient.width
+                anchors.top: contactSearch.bottom
+                height: item ? item.childrenRect.height : 0
+                width: contactSearch.width
                 clip: true
+                z: 2
                 Behavior on height {
                     UbuntuNumberAnimation { }
                 }
@@ -175,13 +219,40 @@ Page {
                 Binding {
                     target: searchListLoader.item
                     property: "filterTerm"
-                    value: multiRecipient.searchString
+                    value: contactSearch.text
                     when: (searchListLoader.status === Loader.Ready)
                 }
 
                 onStatusChanged: {
                     if (status === Loader.Ready) {
-                        item.phonePicked.connect(newGroupPage.onPhonePickedDuringSearch)
+                        item.contactPicked.connect(newGroupPage.onContactPickedDuringSearch)
+                    }
+                }
+            }
+            ListItemActions {
+                id: participantLeadingActions
+                actions: [
+                    Action {
+                        iconName: "delete"
+                        text: i18n.tr("Delete")
+                        onTriggered: {
+                            participantsModel.remove(value)
+                        }
+                    }
+                ]
+            }
+            Column {
+                anchors.top: contactSearch.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                Repeater {
+                    id: participantsRepeater
+                    model: participantsModel
+
+                    delegate: ParticipantDelegate {
+                        id: participantDelegate
+                        participant: participantsModel.get(index)
+                        leadingActions: participantLeadingActions
                     }
                 }
             }
@@ -205,9 +276,10 @@ Page {
         Button {
             objectName: "okCreateDialog"
             text: i18n.tr("Create")
-            color: UbuntuColors.orange
-            enabled: (groupTitle.text != "" || groupTitle.inputMethodComposing) && multiRecipient.recipients.length > 0
+            color: UbuntuColors.green
+            enabled: (groupTitle.text != "" || groupTitle.inputMethodComposing) && participantsModel.count > 0
             onClicked: {
+                Qt.inputMethod.commit()
                 newGroupPage.creationInProgress = true
                 chatEntry.startChat()
             }

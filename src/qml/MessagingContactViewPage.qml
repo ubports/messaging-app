@@ -114,7 +114,7 @@ ContactViewPage {
         if ((action === "message") || (action == "default")) {
             if (root.contactListPage) {
                 var list = root.contactListPage
-                list.addRecipient(detail.value(0))
+                list.addRecipient(detail.value(0), root.contact)
             } else {
                 console.warn("Action message without contactList")
                 var properties = {'participantIds': [detail.value(0)]}

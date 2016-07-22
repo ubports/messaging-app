@@ -260,8 +260,8 @@ Page {
     }
 
     // FIXME: support more stuff than just phone number
-    function onPhonePickedDuringSearch(phoneNumber) {
-        multiRecipient.addRecipient(phoneNumber)
+    function onContactPickedDuringSearch(identifier, displayName, avatar) {
+        multiRecipient.addRecipient(identifier)
         multiRecipient.clearSearch()
         multiRecipient.forceActiveFocus()
     }
@@ -770,7 +770,7 @@ Page {
                         anchors.fill: parent
                         onClicked: {
                             Qt.inputMethod.hide()
-                            mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                            mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
                         }
                         z: 2
                     }
@@ -898,12 +898,12 @@ Page {
         actions: ActionList {
             Action {
                 text: i18n.tr("Create MMS Group...")
-                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"recipients": multiRecipient.recipients, "basePage": basePage})
+                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage})
             }
             Action {
                 text: i18n.tr("Create Group...")
                 enabled: mainView.hasMultimedia
-                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "recipients": multiRecipient.recipients, "basePage": basePage})
+                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "basePage": basePage})
             }
         }
     }
@@ -1155,7 +1155,7 @@ Page {
 
         onStatusChanged: {
             if (status === Loader.Ready) {
-                item.phonePicked.connect(messages.onPhonePickedDuringSearch)
+                item.contactPicked.connect(messages.onContactPickedDuringSearch)
             }
         }
 

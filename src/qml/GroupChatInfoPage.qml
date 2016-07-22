@@ -43,7 +43,7 @@ Page {
         flickable: contentsFlickable
     }
 
-    function addRecipient(identifier) {
+    function addRecipient(identifier, contact) {
         chatEntry.inviteParticipants([identifier], "")
         var newParticipantsIds = []
         for (var i in groupChatInfoPage.threads[0].participants) {
@@ -173,7 +173,7 @@ Page {
 
                     visible: chatRoom
                     text: i18n.tr("Add member")
-                    onClicked: mainStack.addFileToCurrentColumnSync(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": groupChatInfoPage})
+                    onClicked: mainStack.addFileToCurrentColumnSync(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": groupChatInfoPage})
                 }
             }
 

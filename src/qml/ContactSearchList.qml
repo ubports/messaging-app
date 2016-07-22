@@ -30,7 +30,7 @@ ListView {
     property alias filterTerm: contactModel.filterTerm
     onFilterTermChanged: console.debug("FILTER :" + filterTerm)
 
-    signal phonePicked(string phoneNumber)
+    signal contactPicked(string identifier, string label, string avatar)
 
     model: ContactListModel {
         id: contactModel
@@ -90,7 +90,7 @@ ListView {
                     }
                     height: units.gu(5)
 
-                    onClicked: root.phonePicked(contact.phoneNumbers[index].number)
+                    onClicked: root.contactPicked(contact.phoneNumbers[index].number, contact.displayLabel.label, contact.avatar.url)
 
                     Column {
                         anchors.fill: parent

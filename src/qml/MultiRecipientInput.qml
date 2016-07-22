@@ -27,7 +27,9 @@ StyledItem {
     property int recipientCount: recipientModel.count-1
     property int selectedIndex: -1
     property variant recipients: []
+    readonly property var participants: getParticipants()
     property string searchString: ""
+    property var repeater: null
     signal clearSearch()
     styleName: "TextFieldStyle"
     clip: true
@@ -35,6 +37,7 @@ StyledItem {
     focus: activeFocus
     property bool multimediaGroup: false
     property string defaultHint: i18n.tr("To:")
+    onRecipientsChanged: getParticipants()
     function getMultimediaGroup () {
         if (recipients.length < 2) {
             return false
@@ -50,6 +53,20 @@ StyledItem {
             }
         }
         return true
+    }
+
+    function getParticipants() {
+        var participants = []
+        var repeater = multiRecipientWidget.repeater
+        for (var i=0; i< repeater.count-1; i++) {
+            var delegate = repeater.itemAt(i).item
+            var participant = {}
+            participant["identifier"] = delegate.identifier
+            participant["alias"] = delegate.contactName
+            participant["avatar"] = delegate.avatar
+            participants.push(participant)
+        }
+        return participants
     }
 
     Repeater {
@@ -96,7 +113,7 @@ StyledItem {
         z: 1
     }
 
-    function addRecipient(identifier) {
+    function addRecipient(identifier, contact) {
         for (var i = 0; i<recipientModel.count; i++) {
             // FIXME: replace by a phone number comparison method
             if (recipientModel.get(i).identifier === identifier) {
@@ -172,6 +189,7 @@ StyledItem {
                         return contactWatcher.alias
                     }
                     property alias identifier: contactWatcher.identifier
+                    property alias avatar: contactWatcher.avatar
                     property int index
                     property bool selected: selectedIndex == index
                     property string separator: index == recipientCount-1 ? "" : ","
@@ -278,6 +296,7 @@ StyledItem {
             Repeater {
                 id: rpt
                 model: recipientModel
+                Component.onCompleted: multiRecipientWidget.repeater = rpt
                 delegate: Loader {
                     sourceComponent: {
                         if (searchItem)
