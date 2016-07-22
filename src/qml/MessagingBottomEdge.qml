@@ -25,6 +25,7 @@ BottomEdge {
     height: parent ? parent.height : 0
     hint.text: i18n.tr("+")
     contentComponent: messagesComponent
+    preloadContent: true
 
     onCommitCompleted: {
         layout.addPageToNextColumn(mainPage, messagesComponent);
