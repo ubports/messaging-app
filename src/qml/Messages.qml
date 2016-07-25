@@ -638,15 +638,6 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
-
-                Connections {
-                    target: mainView.bottomEdge
-                    onStatusChanged: {
-                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
-                            multiRecipient.forceFocus()
-                        }
-                    }
-                }
             }
 
             PropertyChanges {
@@ -723,6 +714,7 @@ Page {
         if (active && (eventModel.count > 0)){
             swipeItemDemo.enable()
         }
+        mainView.updateNewMessageStatus()
     }
 
     // These fake items are used to track if there are instances loaded
