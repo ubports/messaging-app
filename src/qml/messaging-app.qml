@@ -188,6 +188,13 @@ MainView {
         }
     }
 
+    function startImport(transfer) {
+        var properties = {}
+        emptyStack()
+        properties["sharedAttachmentsTransfer"] = transfer
+        mainView.showBottomEdgePage(properties)
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -256,12 +263,8 @@ MainView {
 
     Connections {
         target: ContentHub
-        onShareRequested: {
-            var properties = {}
-            emptyStack()
-            properties["sharedAttachmentsTransfer"] = transfer
-            mainView.showBottomEdgePage(properties)
-        }
+        onImportRequested: startImport(transfer)
+        onShareRequested: startImport(transfer)
     }
 
     signal applicationReady
