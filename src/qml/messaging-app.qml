@@ -133,6 +133,13 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
+    function startImport(transfer) {
+        var properties = {}
+        emptyStack()
+        properties["sharedAttachmentsTransfer"] = transfer
+        mainView.showMessagesView(properties)
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -202,11 +209,8 @@ MainView {
 
     Connections {
         target: ContentHub
-        onShareRequested: {
-            var properties = {}
-            properties["sharedAttachmentsTransfer"] = transfer
-            mainView.showMessagesView(properties)
-        }
+        onImportRequested: startImport(transfer)
+        onShareRequested: startImport(transfer)
     }
 
     signal applicationReady
