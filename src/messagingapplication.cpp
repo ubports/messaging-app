@@ -321,7 +321,7 @@ void MessagingApplication::showNotificationMessage(const QString &message, const
 }
 
 // find QQuickItem childs
-inline QObject *findRecursiveChild(QQuickItem *object, const QString &objectName)
+inline QObject *findRecursiveChild(QQuickItem *object, const QString &objectName, const QString &property = QString::null, const QVariant &value = QVariant())
 {
     // check the object
     if (!object) {
@@ -331,13 +331,17 @@ inline QObject *findRecursiveChild(QQuickItem *object, const QString &objectName
     // check the direct children first
     Q_FOREACH(QQuickItem *child, object->childItems()) {
         if (child->objectName() == objectName) {
-            return child;
+            if (property.isEmpty()) {
+                return child;
+            } else if (child->property(property.toLatin1().data()) == value) {
+                return child;
+            }
         }
     }
 
     // now check the grand-children
     Q_FOREACH(QQuickItem *child, object->childItems()) {
-        QObject *result = findRecursiveChild(child, objectName);
+        QObject *result = findRecursiveChild(child, objectName, property, value);
         if (result) {
             return result;
         }
@@ -349,4 +353,9 @@ inline QObject *findRecursiveChild(QQuickItem *object, const QString &objectName
 QObject *MessagingApplication::findMessagingChild(const QString &objectName)
 {
     return findRecursiveChild(m_view->rootObject(), objectName);
+}
+
+QObject *MessagingApplication::findMessagingChild(const QString &objectName, const QString &property, const QVariant &value)
+{
+    return findRecursiveChild(m_view->rootObject(), objectName, property, value);
 }

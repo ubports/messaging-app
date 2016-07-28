@@ -42,13 +42,11 @@ MainView {
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
-    property bool composingNewMessage: false
+    property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
+    property QtObject activeMessagesView: null
 
     function updateNewMessageStatus() {
-        mainView.composingNewMessage = Qt.binding(function() {
-            var messages = application.findMessagingChild("messagesPage")
-            return messages && messages.newMessage && messages.active
-        })
+        activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
     }
 
     function defaultPhoneAccount() {
@@ -248,8 +246,10 @@ MainView {
     }
 
     function startNewMessage() {
-        var properties = {}
-        showMessagesView(properties)
+        if (!mainView.composingNewMessage) {
+            var properties = {}
+            showMessagesView(properties)
+        }
     }
 
     function showMessagesView(properties) {

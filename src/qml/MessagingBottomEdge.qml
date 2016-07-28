@@ -28,8 +28,8 @@ BottomEdge {
     preloadContent: true
 
     onCommitCompleted: {
-        layout.addPageToNextColumn(mainPage, messagesComponent);
-        collapse();
+        layout.addPageToNextColumn(mainPage, messagesComponent)
+        collapse()
     }
 
     Component {

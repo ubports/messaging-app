@@ -698,6 +698,12 @@ Page {
         mainView.updateNewMessageStatus()
     }
 
+    Component.onDestruction: {
+        newMessage = false
+        active = false
+        mainView.updateNewMessageStatus()
+    }
+
     Timer {
         id: fillAttachmentsTimer
         interval: 50
