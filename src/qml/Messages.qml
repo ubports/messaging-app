@@ -721,6 +721,9 @@ Page {
             swipeItemDemo.enable()
         }
         mainView.updateNewMessageStatus()
+        if (!isReady) {
+            messages.ready()
+        }
     }
 
     // These fake items are used to track if there are instances loaded
