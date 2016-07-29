@@ -58,7 +58,7 @@ Previewer {
             property var contact: thumbnail.vcard.contacts[index]
 
             onClicked: {
-                mainStack.addComponentToCurrentColumnSync(root, sigleContatPreviewer, {'contact': contact})
+                mainStack.addPageToCurrentColumn(root, sigleContatPreviewer, {'contact': contact})
             }
         }
     }

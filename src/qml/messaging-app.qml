@@ -105,8 +105,13 @@ MainView {
     }
 
     function showContactDetails(currentPage, contact, contactListPage, contactsModel) {
-        var initialProperties =  { "contactListPage": contactListPage,
-                                   "model": contactsModel}
+        var initialProperties = {}
+        if (contactListPage) {
+            initialProperties["contactListPage"] = contactListPage
+        }
+        if (contactsModel) {
+            initialProperties["model"] = contactsModel
+        }
 
         if (typeof(contact) == 'string') {
             initialProperties['contactId'] = contact
@@ -114,34 +119,30 @@ MainView {
             initialProperties['contact'] = contact
         }
 
-        mainStack.addFileToCurrentColumnSync(currentPage,
+        mainStack.addPageToCurrentColumn(currentPage,
                                          Qt.resolvedUrl("MessagingContactViewPage.qml"),
                                          initialProperties)
     }
 
-    function addNewContact(currentPage, phoneNumber, contactListPage) {
-        mainStack.addFileToCurrentColumnSync(currentPage,
-                                         Qt.resolvedUrl("MessagingContactEditorPage.qml"),
-                                         { "contactId": contactId,
-                                           "addPhoneToContact": phoneNumber,
-                                           "contactListPage": contactListPage })
-    }
-
     function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
         if (contact === "") {
-            mainStack.addFileToCurrentColumnSync(currentPage,
+            mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("NewRecipientPage.qml"),
                                              { "phoneToAdd": phoneNumber })
         } else {
-            var initialProperties = { "addPhoneToContact": phoneNumber,
-                                      "contactListPage": contactListPage,
-                                      "model": contactsModel }
+            var initialProperties = { "addPhoneToContact": phoneNumber }
+            if (contactListPage) {
+                initialProperties["contactListPage"] = contactListPage
+            }
+            if (contactsModel) {
+                initialProperties["model"] = contactsModel
+            }
             if (typeof(contact) == 'string') {
                 initialProperties['contactId'] = contact
             } else {
                 initialProperties['contact'] = contact
             }
-            mainStack.addFileToCurrentColumnSync(currentPage,
+            mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("MessagingContactViewPage.qml"),
                                              initialProperties)
         }
@@ -288,8 +289,7 @@ MainView {
     function emptyStack(showEmpty) {
         if (typeof showEmpty === 'undefined') { showEmpty = true; }
         mainView.emptyStackRequested()
-        mainStack.removePage(mainPage)
-        layout.deleteInstances()
+        mainStack.removePages(mainPage)
         if (showEmpty) {
             showEmptyState()
         }
@@ -298,7 +298,7 @@ MainView {
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
-            layout.addComponentToNextColumnSync(mainPage, emptyStatePageComponent)
+            layout.addPageToNextColumn(mainPage, emptyStatePageComponent)
         }
     }
 
@@ -351,7 +351,7 @@ MainView {
         emptyStack(false)
         // FIXME: AdaptivePageLayout takes a really long time to create pages,
         // so we create manually and push that
-        mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
+        mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
     }
 
     InputInfo {
@@ -409,27 +409,14 @@ MainView {
             id: emptyStatePage
             objectName: "emptyStatePage"
 
-            function deleteMe() {
-                emptyStatePage.destroy(1)
-                emptyStatePage.objectName = ""
-            }
-
             Connections {
                 target: layout
                 onColumnsChanged: {
                     if (layout.columns == 1) {
-                        emptyStatePage.deleteMe()
                         if (!application.findMessagingChild("fakeItem")) {
-                            layout.removePage(mainPage)
+                            emptyStack()
                         }
                     }
-                }
-            }
-
-            Connections {
-                target: mainView
-                onEmptyStackRequested: {
-                    emptyStatePage.deleteMe()
                 }
             }
 
@@ -455,9 +442,21 @@ MainView {
         }
     }
 
-    MessagingPageLayout {
+    AdaptivePageLayout {
         id: layout
         anchors.fill: parent
+        layouts: PageColumnsLayout {
+            when: mainStack.width >= units.gu(90)
+            PageColumn {
+                maximumWidth: units.gu(50)
+                minimumWidth: units.gu(40)
+                preferredWidth: units.gu(40)
+            }
+            PageColumn {
+                fillWidth: true
+            }
+        }
+        asynchronous: false
         primaryPage: MainPage {
             id: mainPage
         }
@@ -467,7 +466,6 @@ MainView {
         onColumnsChanged: {
             // we only have things to do here in case no thread is selected
             if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
-                layout.removePage(mainPage)
                 emptyStack()
             }
         }

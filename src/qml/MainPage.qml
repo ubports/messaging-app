@@ -96,8 +96,7 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
-                        emptyStack(false)
-                        pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                        pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
                 Action {
@@ -282,8 +281,7 @@ Page {
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    emptyStack(false)
-                    mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
+                    mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
 
                     // mark this item as current
                     threadList.currentIndex = index
