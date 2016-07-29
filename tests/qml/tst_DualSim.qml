@@ -153,10 +153,10 @@ Item {
 
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
-            tryCompare(mainViewLoader.item, 'pendingCommitProperties', null)
-            waitForRendering(mainViewLoader.item.bottomEdge)
 
             var messagesView = findChild(mainViewLoader, "messagesPage")
+            waitForRendering(messagesView)
+
             var headerSections = findChild(messagesView, "headerSections")
             compare(headerSections.selectedIndex, -1)
 
@@ -217,10 +217,10 @@ Item {
 
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
-            tryCompare(mainViewLoader.item, 'pendingCommitProperties', null)
-            waitForRendering(mainViewLoader.item.bottomEdge)
 
             var messagesView = findChild(mainViewLoader, "messagesPage")
+            waitForRendering(messagesView)
+
             var textArea = findChild(messagesView, "messageTextArea")
             var contactSearchInput = findChild(messagesView, "contactSearchInput")
             var sendButton = findChild(messagesView, "sendButton")

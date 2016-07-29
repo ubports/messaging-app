@@ -42,50 +42,11 @@ MainView {
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
-    property QtObject bottomEdge: null
-    property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
-    property alias inputInfo: inputInfoObject
+    property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
+    property QtObject activeMessagesView: null
 
-    signal emptyStackRequested()
-
-    activeFocusOnPress: false
-
-    /* Multiple MessagingBottomEdge instances can be created simultaneously
-       and ask to become the unique 'bottomEdge'.
-       Queue the requests until only one MessagingBottomEdge instance is left.
-    */
-    property var bottomEdgeQueue: []
-    function setBottomEdge(newBottomEdge) {
-        /* If the queue is empty and no other bottom edge is set then
-           set 'bottomEdge' to newBottomEdge. Otherwise insert newBottomEdge
-           in the queue
-        */
-        if (!bottomEdge && bottomEdgeQueue.length == 0) {
-            bottomEdge = newBottomEdge;
-        } else {
-            if (bottomEdge) {
-                bottomEdgeQueue.unshift(bottomEdge)
-                bottomEdge = null
-            }
-            bottomEdgeQueue.push(newBottomEdge)
-        }
-    }
-
-    function unsetBottomEdge(oldBottomEdge) {
-        /* Remove all references to oldBottomEdge (from the queue and from 'bottomEdge')
-           If only one bottom edge remains in the queue then set 'bottomEdge' to it
-        */
-        if (bottomEdge == oldBottomEdge) {
-            bottomEdge = null;
-        } else {
-            var index = bottomEdgeQueue.indexOf(oldBottomEdge);
-            if (index != -1) {
-                bottomEdgeQueue.splice(index, 1);
-                if (bottomEdgeQueue.length == 1) {
-                    bottomEdge = bottomEdgeQueue.pop();
-                }
-            }
-        }
+    function updateNewMessageStatus() {
+        activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
     }
 
     function defaultPhoneAccount() {
@@ -170,29 +131,11 @@ MainView {
         threadModel.removeThreads(threads);
     }
 
-    property var pendingCommitProperties
-    function bottomEdgeCommit() {
-        if (bottomEdge) {
-            mainView.onBottomEdgeChanged.disconnect(bottomEdgeCommit);
-            bottomEdge.commitWithProperties(pendingCommitProperties);
-            pendingCommitProperties = null;
-        }
-    }
-
-    function showBottomEdgePage(properties) {
-        pendingCommitProperties = properties;
-        if (bottomEdge) {
-            bottomEdgeCommit();
-        } else {
-            mainView.onBottomEdgeChanged.connect(bottomEdgeCommit);
-        }
-    }
-
     function startImport(transfer) {
         var properties = {}
         emptyStack()
         properties["sharedAttachmentsTransfer"] = transfer
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
     }
 
     Connections {
@@ -213,6 +156,7 @@ MainView {
     implicitWidth: units.gu(90)
     implicitHeight: units.gu(71)
     anchorToKeyboard: false
+    activeFocusOnPress: false
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
@@ -288,7 +232,6 @@ MainView {
 
     function emptyStack(showEmpty) {
         if (typeof showEmpty === 'undefined') { showEmpty = true; }
-        mainView.emptyStackRequested()
         mainStack.removePages(mainPage)
         if (showEmpty) {
             showEmptyState()
@@ -303,9 +246,14 @@ MainView {
     }
 
     function startNewMessage() {
-        var properties = {}
-        emptyStack()
-        mainView.showBottomEdgePage(properties)
+        if (!mainView.composingNewMessage) {
+            var properties = {}
+            showMessagesView(properties)
+        }
+    }
+
+    function showMessagesView(properties) {
+        layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
 
     function startChat(identifiers, text, accountId) {
@@ -348,25 +296,8 @@ MainView {
             properties["accountId"] = accountId
         }
 
-        emptyStack(false)
-        // FIXME: AdaptivePageLayout takes a really long time to create pages,
-        // so we create manually and push that
-        mainStack.addPageToNextColumn(mainPage, messagesWithBottomEdge, properties)
+        showMessagesView(properties)
     }
-
-    InputInfo {
-        id: inputInfoObject
-    }
-
-    // WORKAROUND: Due the missing feature on SDK, they can not detect if
-    // there is a mouse attached to device or not. And this will cause the
-    // bootom edge component to not work correct on desktop.
-    Binding {
-        target:  QuickUtils
-        property: "mouseAttached"
-        value: inputInfo.hasMouse
-    }
-
 
     Connections {
         target: UriHandler
@@ -378,67 +309,16 @@ MainView {
     }
 
     Component {
-        id: messagesWithBottomEdge
-
-        Messages {
-            id: messages
-            height: mainPage.height
-
-            Component.onCompleted: mainPage._messagesPage = messages
-            Loader {
-                id: messagesBottomEdgeLoader
-                active: mainView.dualPanel
-                asynchronous: true
-                /* FIXME: would be even more efficient to use setSource() to
-                   delay the compilation step but a bug in Qt prevents us.
-                   Ref.: https://bugreports.qt.io/browse/QTBUG-54657
-                */
-                sourceComponent: MessagingBottomEdge {
-                    id: messagesBottomEdge
-                    parent: messages
-                    hint.text: ""
-                    hint.height: 0
-                }
-            }
-        }
-    }
-
-    Component {
         id: emptyStatePageComponent
         Page {
             id: emptyStatePage
             objectName: "emptyStatePage"
-
-            Connections {
-                target: layout
-                onColumnsChanged: {
-                    if (layout.columns == 1) {
-                        if (!application.findMessagingChild("fakeItem")) {
-                            emptyStack()
-                        }
-                    }
-                }
-            }
 
             EmptyState {
                 labelVisible: false
             }
 
             header: PageHeader { }
-
-            Loader {
-                id: bottomEdgeLoader
-                asynchronous: true
-                /* FIXME: would be even more efficient to use setSource() to
-                   delay the compilation step but a bug in Qt prevents us.
-                   Ref.: https://bugreports.qt.io/browse/QTBUG-54657
-                */
-                sourceComponent: MessagingBottomEdge {
-                    parent: emptyStatePage
-                    hint.text: ""
-                    hint.height: 0
-                }
-            }
         }
     }
 
@@ -464,13 +344,19 @@ MainView {
         property bool completed: false
 
         onColumnsChanged: {
-            // we only have things to do here in case no thread is selected
-            if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+            if (layout.completed && layout.columns == 1) {
+                // in 1 column mode we don't have empty state as a page, so remove it
+                if (application.findMessagingChild("emptyStatePage")) {
+                    emptyStack(false)
+                }
+            } else if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+                // we only have things to do here in case no thread is selected
                 emptyStack()
             }
         }
         Component.onCompleted: {
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
+                // add the empty state page if necessary
                 emptyStack()
             }
             layout.completed = true;

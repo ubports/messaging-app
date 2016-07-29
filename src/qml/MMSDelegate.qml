@@ -45,7 +45,7 @@ MessageDelegate {
             var properties = {}
             properties["attachment"] = attachment.item.attachment
             properties["thumbnail"] = attachment.item
-            mainStack.addPageToCurrentColumn(messages.basePage, Qt.resolvedUrl(attachment.item.previewer), properties)
+            mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl(attachment.item.previewer), properties)
         }
     }
 
@@ -88,7 +88,6 @@ MessageDelegate {
     function forwardMessage()
     {
         var properties = {}
-        emptyStack()
         var items = []
         for (var i = 0; i < attachments.length; i++) {
             var attachment = attachments[i]
@@ -110,7 +109,7 @@ MessageDelegate {
         transfer["items"] = items
 
         properties["sharedAttachmentsTransfer"] = transfer
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
     }
 
     onAttachmentsChanged: {

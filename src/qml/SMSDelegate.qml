@@ -41,13 +41,12 @@ MessageDelegate {
     {
         var properties = {}
         var items = [{"text": textMessage, "url":""}]
-        emptyStack()
         var transfer = {}
         transfer["items"] = items
 
         properties["sharedAttachmentsTransfer"] = transfer
 
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
     }
 
     function copyMessage()
