@@ -740,6 +740,14 @@ Page {
                     objectName: "groupSelection"
                     iconName: "contact-group"
                     onTriggered: {
+                        if (!mainView.multimediaAccount) {
+                            if (!telepathyHelper.mmsGroupChat) {
+                                application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
+                                return
+                            }
+                            mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage})
+                            return
+                        }
                         contextMenu.caller = header;
                         contextMenu.show();
                     }
@@ -899,11 +907,13 @@ Page {
             Action {
                 text: i18n.tr("Create MMS Group...")
                 onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage})
+                visible: telepathyHelper.mmsGroupChat
             }
             Action {
-                text: i18n.tr("Create Group...")
-                enabled: mainView.hasMultimedia
+                text: i18n.tr("Create %1 Group...").arg(mainView.multimediaAccount.displayName)
+                enabled: mainView.multimediaAccount != null
                 onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "basePage": basePage})
+                visible: mainView.multimediaAccount.connected
             }
         }
     }

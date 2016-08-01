@@ -51,8 +51,18 @@ Page {
 
     header: PageHeader {
         id: pageHeader
-        title: creationInProgress ? i18n.tr("Creating Group...") : i18n.tr("New Group")
+        title: {
+            if (creationInProgress) {
+                return i18n.tr("Creating Group...")
+            }
+            if (multimedia) {
+                return i18n.tr("New %1 Group").arg(mainView.multimediaAccount.displayName)
+            } else {
+                return i18n.tr("New MMS Group")
+            }
+        }
     }
+    Component.onCompleted: groupTitleField.forceActiveFocus()
 
     ListModel {
         id: participantsModel
@@ -76,6 +86,9 @@ Page {
     ChatEntry {
         id: chatEntry
         accountId: {
+            if (!newGroupPage.multimedia) {
+                return messages.account.accountId
+            }
             for (var i in telepathyHelper.accounts) {
                 var account = telepathyHelper.accounts[i]
                 if (account.type == AccountEntry.MultimediaAccount && account.connected) {
@@ -83,9 +96,9 @@ Page {
                 }
             }
         }
-        title: groupTitle.text
+        title: groupTitleField.text
         autoRequest: false
-        chatType: HistoryThreadModel.ChatTypeRoom
+        chatType: newGroupPage.multimedia ? HistoryThreadModel.ChatTypeRoom : HistoryThreadModel.ChatTypeNone
         onChatReady: {
             // give history service time to create the thread
             creationTimer.start()
@@ -109,9 +122,44 @@ Page {
             mainView.startChat(properties)
         }
     }
+    Loader {
+        id: searchListLoader
+
+        property int resultCount: (status === Loader.Ready) ? item.count : 0
+
+        source: (contactSearch.text !== "") && contactSearch.focus ?
+                Qt.resolvedUrl("ContactSearchList.qml") : ""
+        visible: source != ""
+        height: flick.emptySpaceHeight
+        anchors.left: parent.left
+        anchors.bottom: bottomPanel.top
+        width: contactSearch.width
+        clip: true
+        z: 2
+        Rectangle {
+            anchors.fill: parent
+            color: Theme.palette.normal.background
+        }
+
+        Binding {
+            target: searchListLoader.item
+            property: "filterTerm"
+            value: contactSearch.text
+            when: (searchListLoader.status === Loader.Ready)
+        }
+
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                item.contactPicked.connect(newGroupPage.onContactPickedDuringSearch)
+            }
+        }
+    }
+
 
     Flickable {
+        id: flick
         clip: true
+        property var emptySpaceHeight: height - contentColumn.topItemsHeight+flick.contentY
         flickableDirection: Flickable.VerticalFlick
         anchors {
             left: parent.left
@@ -125,10 +173,11 @@ Page {
 
         Item {
             id: contentColumn
+            property var topItemsHeight: groupTitleItem.height+membersLabel.height+contactSearch.height+units.gu(4)
             height: childrenRect.height
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.topMargin: units.gu(2)
+            anchors.rightMargin: units.gu(2)
             enabled: !creationInProgress
 
 /*            ActivityIndicator {
@@ -136,36 +185,52 @@ Page {
                 running: creationInProgress
                 visible: running
             }*/
-            Row {
-                id: groupTitleRow
-                spacing: units.gu(4)
-                anchors.topMargin: units.gu(2)
+            Item {
+                id: groupTitleItem
+ 
+                height: childrenRect.height
                 anchors {
                     top: contentColumn.top
                     left: parent.left
                     right: parent.right
+                    leftMargin: units.gu(2)
                 }
                 Label {
+                    id: groupNameLabel
                     height: units.gu(4)
                     verticalAlignment: Text.AlignVCenter
+                    anchors.left: parent.left
                     text: i18n.tr("Group name:")
                 }
                 TextField {
-                    id: groupTitle
+                    id: groupTitleField
+                    anchors {
+                        left: groupNameLabel.right
+                        right: parent.right
+                    }
                     height: units.gu(4)
                     placeholderText: i18n.tr("Type a name...")
                 }
             }
+            Label {
+                id: membersLabel
+                anchors.top: groupTitleItem.bottom
+                anchors.topMargin: units.gu(2)
+                anchors.left: parent.left
+                anchors.leftMargin: units.gu(2)
+                height: units.gu(4)
+                verticalAlignment: Text.AlignVCenter
+                text: i18n.tr("Members:")
+            }
             TextField {
                 id: contactSearch
-                anchors.top: groupTitleRow.bottom
+                anchors.top: membersLabel.bottom
                 anchors.left: parent.left
+                anchors.leftMargin: units.gu(2)
                 anchors.right: parent.right
                 anchors.topMargin: units.gu(2)
-                anchors.leftMargin: units.gu(2)
-                anchors.rightMargin: units.gu(2)
                 height: units.gu(4)
-                style: null
+                style: TransparentTextFieldStype { }
                 hasClearButton: false
                 placeholderText: i18n.tr("Number or contact name")
                 inputMethodHints: Qt.ImhNoPredictiveText
@@ -194,41 +259,7 @@ Page {
                     }
                 }
             }
-            Loader {
-                id: searchListLoader
 
-                property int resultCount: (status === Loader.Ready) ? item.count : 0
-
-                source: (contactSearch.text !== "") && contactSearch.focus ?
-                        Qt.resolvedUrl("ContactSearchList.qml") : ""
-                visible: source != ""
-                anchors.top: contactSearch.bottom
-                height: item ? item.childrenRect.height : 0
-                width: contactSearch.width
-                clip: true
-                z: 2
-                Behavior on height {
-                    UbuntuNumberAnimation { }
-                }
-
-                Rectangle {
-                    anchors.fill: parent
-                    color: Theme.palette.normal.background
-                }
-
-                Binding {
-                    target: searchListLoader.item
-                    property: "filterTerm"
-                    value: contactSearch.text
-                    when: (searchListLoader.status === Loader.Ready)
-                }
-
-                onStatusChanged: {
-                    if (status === Loader.Ready) {
-                        item.contactPicked.connect(newGroupPage.onContactPickedDuringSearch)
-                    }
-                }
-            }
             ListItemActions {
                 id: participantLeadingActions
                 actions: [
@@ -242,6 +273,7 @@ Page {
                 ]
             }
             Column {
+                id: participantsColumn
                 anchors.top: contactSearch.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -263,10 +295,11 @@ Page {
         id: bottomPanel
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: keyboard.top
-        anchors.bottomMargin: units.gu(2)
-	spacing: units.gu(10)
+        height: units.gu(6)
+        spacing: units.gu(8)
         Button {
             objectName: "cancelCreateDialog"
+            anchors.verticalCenter: parent.verticalCenter
             text: i18n.tr("Cancel")
             color: UbuntuColors.orange
             onClicked: {
@@ -275,9 +308,10 @@ Page {
         }
         Button {
             objectName: "okCreateDialog"
+            anchors.verticalCenter: parent.verticalCenter
             text: i18n.tr("Create")
             color: UbuntuColors.green
-            enabled: (groupTitle.text != "" || groupTitle.inputMethodComposing) && participantsModel.count > 0
+            enabled: (groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 0
             onClicked: {
                 Qt.inputMethod.commit()
                 newGroupPage.creationInProgress = true

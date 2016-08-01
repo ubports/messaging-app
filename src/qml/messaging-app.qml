@@ -45,15 +45,15 @@ MainView {
     property QtObject bottomEdge: null
     property bool composingNewMessage: bottomEdge.status === BottomEdge.Committed
     property alias inputInfo: inputInfoObject
-    property bool hasMultimedia: {
+    property QtObject multimediaAccount: {
         for (var i in telepathyHelper.accounts) {
             var tmpAccount = telepathyHelper.accounts[i]
             // TODO: check for accounts that support room channels
             if (tmpAccount.type == AccountEntry.MultimediaAccount && tmpAccount.connected) {
-                return true
+                return tmpAccount
             }
         }
-        return false
+        return null
     }
 
     signal emptyStackRequested()
