@@ -259,6 +259,49 @@ Page {
         return true
     }
 
+    function checkSelectedAccount() {
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
+            var properties = {}
+
+            var activePhoneAccounts = 0;
+            for (var i in telepathyHelper.phoneAccounts) {
+                if (telepathyHelper.phoneAccounts[i].active) {
+                    activePhoneAccounts++
+                }
+            }
+
+            if (telepathyHelper.flightMode) {
+                properties["title"] = i18n.tr("You have to disable flight mode")
+                properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
+            } else if (multiplePhoneAccounts) {
+                properties["title"] = i18n.tr("No SIM card selected")
+                properties["text"] = i18n.tr("You need to select a SIM card")
+            } else if (telepathyHelper.phoneAccounts.length > 0 && activePhoneAccounts == 0) {
+                properties["title"] = i18n.tr("No SIM card")
+                properties["text"] = i18n.tr("Please insert a SIM card and try again.")
+            } else {
+                properties["text"] = i18n.tr("Failed")
+                properties["title"] = i18n.tr("It is not possible to send messages at the moment")
+            }
+            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+            return false
+        }
+        if (messages.account.type == AccountEntry.PhoneAccount) {
+            return sendMessageNetworkCheck()
+        }
+        if (!account.connected) {
+            var properties = {}
+            properties["title"] = i18n.tr("Not available")
+            properties["text"] = i18n.tr("The selected account is not available at the moment")
+            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+            return false
+        }
+        return true
+    }
+
     // FIXME: support more stuff than just phone number
     function onContactPickedDuringSearch(identifier, displayName, avatar) {
         multiRecipient.addRecipient(identifier)
@@ -740,6 +783,9 @@ Page {
                     objectName: "groupSelection"
                     iconName: "contact-group"
                     onTriggered: {
+                        if (!checkSelectedAccount()) {
+                            return
+                        }
                         if (!mainView.multimediaAccount) {
                             if (!telepathyHelper.mmsGroupChat) {
                                 application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
@@ -906,13 +952,21 @@ Page {
         actions: ActionList {
             Action {
                 text: i18n.tr("Create MMS Group...")
-                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage})
-                visible: telepathyHelper.mmsGroupChat
+                onTriggered: {
+                    if (!telepathyHelper.mmsGroupChat) {
+                        var properties = {}
+                        properties["title"] = i18n.tr("MMS group chat is disabled")
+                        properties["text"] = i18n.tr("You need to enable MMS group chat in the app settings")
+                        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+                        return
+                    }
+                    mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage, "account": messages.account})
+                }
             }
             Action {
                 text: i18n.tr("Create %1 Group...").arg(mainView.multimediaAccount.displayName)
                 enabled: mainView.multimediaAccount != null
-                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "basePage": basePage})
+                onTriggered: mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "basePage": basePage, "account": messages.account})
                 visible: mainView.multimediaAccount.connected
             }
         }

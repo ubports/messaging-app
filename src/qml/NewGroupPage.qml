@@ -29,6 +29,7 @@ Page {
     property bool creationInProgress: false
     property var basePage: null
     property var participants: []
+    property var account: null
 
     function addRecipient(identifier, contact) {
         var alias = contact.displayLabel.label
@@ -61,6 +62,25 @@ Page {
                 return i18n.tr("New MMS Group")
             }
         }
+        extension: Sections {
+            id: newGroupHeaderSections
+            objectName: "newGroupHeaderSections"
+            anchors {
+                left: parent.left
+                right: parent.right
+                leftMargin: units.gu(2)
+                bottom: parent.bottom
+            }
+            visible: {
+                if (newGroupPage.account.type == AccountEntry.GenericType) {
+                    return true
+                }
+                // only show if we have more than one sim card
+                return mainView.multiplePhoneAccounts
+            }
+            enabled: visible
+            model: [account.displayName]
+        }
     }
     Component.onCompleted: groupTitleField.forceActiveFocus()
 
@@ -70,14 +90,12 @@ Page {
         property var participantIds: {
             var ids = []
             for (var i=0; i < participantsModel.count; i++) {
-                console.log(participantsModel.get(i).identifier)
                 ids.push(participantsModel.get(i).identifier)
             }
             return ids
         }
         Component.onCompleted: {
             for (var i in newGroupPage.participants) {
-                console.log(participants[i].identifier)
                 participantsModel.append(newGroupPage.participants[i])
             }
         }
@@ -109,6 +127,7 @@ Page {
             mainStack.removePage(newGroupPage)
         }
     }
+
     Timer {
         id: creationTimer
         interval: 1000
@@ -122,6 +141,7 @@ Page {
             mainView.startChat(properties)
         }
     }
+
     Loader {
         id: searchListLoader
 
@@ -155,7 +175,6 @@ Page {
         }
     }
 
-
     Flickable {
         id: flick
         clip: true
@@ -165,19 +184,18 @@ Page {
             left: parent.left
             right: parent.right
             top: header.bottom
-            topMargin: units.gu(2)
+            topMargin: units.gu(1)
             bottom: bottomPanel.top
         }
         contentWidth: parent.width
         contentHeight: contentColumn.height
 
-        Item {
+        FocusScope {
             id: contentColumn
-            property var topItemsHeight: groupTitleItem.height+membersLabel.height+contactSearch.height+units.gu(4)
+            property var topItemsHeight: groupTitleItem.height+membersLabel.height+contactSearch.height+units.gu(1)
             height: childrenRect.height
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: units.gu(2)
             enabled: !creationInProgress
 
 /*            ActivityIndicator {
@@ -194,6 +212,7 @@ Page {
                     left: parent.left
                     right: parent.right
                     leftMargin: units.gu(2)
+                    rightMargin: units.gu(2)
                 }
                 Label {
                     id: groupNameLabel
@@ -206,16 +225,25 @@ Page {
                     id: groupTitleField
                     anchors {
                         left: groupNameLabel.right
+                        leftMargin: units.gu(2)
                         right: parent.right
                     }
                     height: units.gu(4)
                     placeholderText: i18n.tr("Type a name...")
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                    Timer {
+                        interval: 1
+                        onTriggered: {
+                            groupTitleField.forceActiveFocus()
+                        }
+                        Component.onCompleted: start()
+                    }
                 }
             }
             Label {
                 id: membersLabel
                 anchors.top: groupTitleItem.bottom
-                anchors.topMargin: units.gu(2)
+                anchors.topMargin: units.gu(1)
                 anchors.left: parent.left
                 anchors.leftMargin: units.gu(2)
                 height: units.gu(4)
@@ -228,8 +256,7 @@ Page {
                 anchors.left: parent.left
                 anchors.leftMargin: units.gu(2)
                 anchors.right: parent.right
-                anchors.topMargin: units.gu(2)
-                height: units.gu(4)
+                height: units.gu(5)
                 style: TransparentTextFieldStype { }
                 hasClearButton: false
                 placeholderText: i18n.tr("Number or contact name")
@@ -259,7 +286,26 @@ Page {
                     }
                 }
             }
-
+            Rectangle {
+               anchors {
+                   left: parent.left
+                   right: parent.right
+                   top: contactSearch.top
+               }
+               height: 1
+               color: UbuntuColors.lightGrey
+               z: 2
+            }
+            Rectangle {
+               anchors {
+                   left: parent.left
+                   right: parent.right
+                   bottom: contactSearch.bottom
+               }
+               height: 1
+               color: UbuntuColors.lightGrey
+               z: 2
+            }
             ListItemActions {
                 id: participantLeadingActions
                 actions: [
