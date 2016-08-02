@@ -62,6 +62,10 @@ Page {
                 return i18n.tr("New MMS Group")
             }
         }
+        leadingActionBar {
+            actions: []
+        }
+
         extension: Sections {
             id: newGroupHeaderSections
             objectName: "newGroupHeaderSections"
