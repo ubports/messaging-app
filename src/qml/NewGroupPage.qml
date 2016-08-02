@@ -104,15 +104,10 @@ Page {
     ChatEntry {
         id: chatEntry
         accountId: {
-            if (!newGroupPage.multimedia) {
-                return messages.account.accountId
+            if (newGroupPage.multimedia) {
+                return mainView.multimediaAccount.accountId
             }
-            for (var i in telepathyHelper.accounts) {
-                var account = telepathyHelper.accounts[i]
-                if (account.type == AccountEntry.MultimediaAccount && account.connected) {
-                    return account.accountId
-                }
-            }
+            return newGroupPage.account.accountId
         }
         title: groupTitleField.text
         autoRequest: false
