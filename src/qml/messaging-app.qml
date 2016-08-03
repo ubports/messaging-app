@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import QtQuick.Window 2.2
 import Qt.labs.settings 1.0
+import GSettings 1.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
@@ -250,6 +251,12 @@ MainView {
         property bool messagesDontShowFileSizeWarning: false
         property bool messagesDontAsk: false
         property bool mainViewIgnoreFirstTimeDialog: false
+    }
+
+    Settings {
+        id: msgSettings
+        category: "SMS"
+        property bool showCharacterCount: false
     }
 
     StickerPacksModel {

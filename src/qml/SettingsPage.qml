@@ -23,13 +23,19 @@ import Ubuntu.Components.ListItems 1.3 as ListItem
 Page {
     id: settingsPage
     title: i18n.tr("Settings")
+
     property var setMethods: {
-        "mmsGroupChatEnabled": function(value) { telepathyHelper.mmsGroupChat = value }
+        "mmsGroupChatEnabled": function(value) { telepathyHelper.mmsGroupChat = value },
+        "characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
     property var settingsModel: [
         { "name": "mmsGroupChatEnabled",
           "description": i18n.tr("Enable MMS group chat"),
           "property": telepathyHelper.mmsGroupChat
+        },
+        { "name": "characterCountEnabled",
+          "description": i18n.tr("Show character count"),
+          "property": msgSettings.showCharacterCount
         }
     ]
 
@@ -123,4 +129,3 @@ Page {
         }
     }
 }
-

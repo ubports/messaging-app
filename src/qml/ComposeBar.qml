@@ -39,6 +39,7 @@ Item {
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+
     onRecordingChanged: {
         if (recording) {
             manuallyRecorded = true
@@ -49,7 +50,9 @@ Item {
 
     // internal properties
     property int _activeAttachmentIndex: -1
-    property int _defaultHeight: textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2)
+    property int _defaultHeight: charCount.height + textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2)
+    property int messageCount: 0
+    property int smsLength: 160
 
     Component.onDestruction: {
         composeBar.reset()
@@ -173,6 +176,20 @@ Item {
 
     ListItem.ThinDivider {
         anchors.top: parent.top
+    }
+
+    Label {
+        id: charCount
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            top: parent.top
+            topMargin: visible ? units.gu(.5) : 0
+        }
+        height: visible ? units.gu(1) : 0
+        text: messageTextArea.length + "/160 (" + messageCount + ")"
+        fontSize: "small"
+        color: Theme.palette.normal.backgroundTertiaryText
+        visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
     }
 
     Row {
@@ -301,7 +318,8 @@ Item {
         style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
         anchors {
             topMargin: units.gu(1)
-            top: parent.top
+ //           top: parent.top
+            top: charCount.bottom
             left: anchorPoint.right
             leftMargin: units.gu(2)
             right: sendButton.left
@@ -323,6 +341,7 @@ Item {
             if (text !== "" && composeBar.audioAttached) {
                 attachments.clear()
             }
+            messageCount = (messageTextArea.length + smsLength - 1) / smsLength
         }
 
         focus: false
@@ -395,6 +414,7 @@ Item {
             }
             visible: attachments.count > 0
         }
+
 
         TextArea {
             id: messageTextArea
