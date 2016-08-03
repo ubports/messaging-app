@@ -51,7 +51,6 @@ Page {
     }
 
     header: PageHeader {
-        id: pageHeader
         title: {
             if (creationInProgress) {
                 return i18n.tr("Creating Group...")
@@ -63,12 +62,36 @@ Page {
             }
         }
         leadingActionBar {
-            actions: []
+            actions: [
+                Action {
+                    objectName: "cancelAction"
+                    iconName: "close"
+                    onTriggered: {
+                        Qt.inputMethod.commit()
+                        mainStack.removePage(newGroupPage)
+                    }
+                }
+            ]
+        }
+        trailingActionBar {
+            actions: [
+                Action {
+                    objectName: "createAction"
+                    enabled: (groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 0
+                    iconName: "ok"
+                    onTriggered: {
+                        Qt.inputMethod.commit()
+                        newGroupPage.creationInProgress = true
+                        chatEntry.startChat()
+                    }
+                }
+            ]
         }
 
         extension: Sections {
             id: newGroupHeaderSections
             objectName: "newGroupHeaderSections"
+            height: !visible ? 0: undefined
             anchors {
                 left: parent.left
                 right: parent.right
@@ -79,6 +102,7 @@ Page {
                 if (newGroupPage.account.type == AccountEntry.GenericType) {
                     return true
                 }
+                console.log("mainView.multiplePhoneAccounts", mainView.multiplePhoneAccounts)
                 // only show if we have more than one sim card
                 return mainView.multiplePhoneAccounts
             }
@@ -86,7 +110,6 @@ Page {
             model: [account.displayName]
         }
     }
-    Component.onCompleted: groupTitleField.forceActiveFocus()
 
     ListModel {
         id: participantsModel
@@ -151,7 +174,7 @@ Page {
         visible: source != ""
         height: flick.emptySpaceHeight
         anchors.left: parent.left
-        anchors.bottom: bottomPanel.top
+        anchors.bottom: keyboard.top
         width: contactSearch.width
         clip: true
         z: 2
@@ -184,7 +207,7 @@ Page {
             right: parent.right
             top: header.bottom
             topMargin: units.gu(1)
-            bottom: bottomPanel.top
+            bottom: keyboard.top
         }
         contentWidth: parent.width
         contentHeight: contentColumn.height
@@ -332,35 +355,6 @@ Page {
                         leadingActions: participantLeadingActions
                     }
                 }
-            }
-        }
-    }
-
-    Row {
-        id: bottomPanel
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: keyboard.top
-        height: units.gu(6)
-        spacing: units.gu(8)
-        Button {
-            objectName: "cancelCreateDialog"
-            anchors.verticalCenter: parent.verticalCenter
-            text: i18n.tr("Cancel")
-            color: UbuntuColors.orange
-            onClicked: {
-                mainStack.removePage(newGroupPage)
-            }
-        }
-        Button {
-            objectName: "okCreateDialog"
-            anchors.verticalCenter: parent.verticalCenter
-            text: i18n.tr("Create")
-            color: UbuntuColors.green
-            enabled: (groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 0
-            onClicked: {
-                Qt.inputMethod.commit()
-                newGroupPage.creationInProgress = true
-                chatEntry.startChat()
             }
         }
     }
