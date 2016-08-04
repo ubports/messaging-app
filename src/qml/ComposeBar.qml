@@ -192,7 +192,7 @@ Item {
         height: visible ? units.gu(1) : 0
         text: {
             if ((attachments.count > 0) || usingMMS) {
-                "MMS"
+                i18n.tr("MMS")
             } else {
                 if (messageCount == 1) {
                     messageTextArea.length + "/160"
