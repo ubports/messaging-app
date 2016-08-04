@@ -86,8 +86,7 @@ MultipleSelectionListView {
         transfer["items"] = items
 
         properties["sharedAttachmentsTransfer"] = transfer
-        emptyStack()
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
 
         root.cancelSelection()
     }

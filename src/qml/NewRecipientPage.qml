@@ -47,7 +47,7 @@ Page {
                 itemCallback.forceActiveFocus()
             }
         }
-        mainStack.removePage(newRecipientPage)
+        mainStack.removePages(newRecipientPage)
     }
 
     header: PageHeader {
@@ -68,7 +68,7 @@ Page {
                     text: i18n.tr("Back")
                     iconName: "back"
                     onTriggered: {
-                        mainStack.removePage(newRecipientPage)
+                        mainStack.removePages(newRecipientPage)
                         newRecipientPage.destroy()
                     }
                 }
@@ -194,7 +194,7 @@ Page {
 
         onAddNewContactClicked: {
             var newContact = ContactsJS.createEmptyContact(newRecipientPage.phoneToAdd, newRecipientPage)
-            mainStack.addFileToCurrentColumnSync(newRecipientPage,
+            mainStack.addPageToCurrentColumn(newRecipientPage,
                                              Qt.resolvedUrl("MessagingContactEditorPage.qml"),
                                              { model: contactList.listModel,
                                                contact: newContact,

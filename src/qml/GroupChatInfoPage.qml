@@ -68,6 +68,7 @@ Page {
         id: contentsFlickable
         anchors.fill: parent
         contentHeight: contentsColumn.height
+        clip: true
 
         Column {
             id: contentsColumn

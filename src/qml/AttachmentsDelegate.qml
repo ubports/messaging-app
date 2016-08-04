@@ -56,7 +56,7 @@ Column {
             var properties = {}
             properties["attachment"] = attachment.item.attachment
             properties["thumbnail"] = attachment.item
-            mainStack.addFileToCurrentColumnSync(messages.basePage, Qt.resolvedUrl(attachment.item.previewer), properties)
+            mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl(attachment.item.previewer), properties)
         }
     }
 
