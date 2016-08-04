@@ -39,6 +39,7 @@ Item {
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+    property bool usingMMS: false
 
     onRecordingChanged: {
         if (recording) {
@@ -178,6 +179,9 @@ Item {
         anchors.top: parent.top
     }
 
+    // show the counts if option is enabled, and more than one line
+    // If MMS indicate such on the label and don't show the count
+    // if word prediction is on italicize the count while its still composing
     Label {
         id: charCount
         anchors {
@@ -186,8 +190,19 @@ Item {
             topMargin: visible ? units.gu(.5) : 0
         }
         height: visible ? units.gu(1) : 0
-        text: messageTextArea.length + "/160 (" + messageCount + ")"
+        text: {
+            if ((attachments.count > 0) || usingMMS) {
+                "MMS"
+            } else {
+                if (messageCount == 1) {
+                    messageTextArea.length + "/160"
+                } else {
+                    messageTextArea.length + "/160 (" + messageCount + ")"
+                }
+            }
+        }
         fontSize: "small"
+        font.italic: messageTextArea.inputMethodComposing && (attachments.count == 0) && !usingMMS
         color: Theme.palette.normal.backgroundTertiaryText
         visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
     }
