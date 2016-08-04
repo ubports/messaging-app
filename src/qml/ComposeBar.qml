@@ -333,7 +333,6 @@ Item {
         style: Theme.createStyleComponent("TextAreaStyle.qml", textEntry)
         anchors {
             topMargin: units.gu(1)
- //           top: parent.top
             top: charCount.bottom
             left: anchorPoint.right
             leftMargin: units.gu(2)
@@ -429,7 +428,6 @@ Item {
             }
             visible: attachments.count > 0
         }
-
 
         TextArea {
             id: messageTextArea
