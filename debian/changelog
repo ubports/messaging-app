@@ -1,3 +1,13 @@
+messaging-app (0.1+16.10.20160729.1-0ubuntu1) yakkety; urgency=medium
+
+  * Now that AdaptivePageLayout supports loading pages synchronously and
+    that the memory management bugs are fixed, remove the workarounds
+    from the app.
+  * Do not use bottom edge when in two columns mode and preserve the
+    views when alternating between one and two columns. (LP: #1599184)
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Fri, 29 Jul 2016 23:29:27 +0000
+
 messaging-app (0.1+16.10.20160721-0ubuntu1) yakkety; urgency=medium
 
   [ Renato Araujo Oliveira Filho ]
