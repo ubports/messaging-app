@@ -174,7 +174,7 @@ Page {
 
                     visible: chatRoom
                     text: i18n.tr("Add member")
-                    onClicked: mainStack.addFileToCurrentColumnSync(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": groupChatInfoPage})
+                    onClicked: mainStack.addPageToCurrentColumn(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": groupChatInfoPage})
                 }
             }
 

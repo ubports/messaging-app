@@ -27,7 +27,6 @@ Page {
     id: newGroupPage
     property bool multimedia: false
     property bool creationInProgress: false
-    property var basePage: null
     property var participants: []
     property var account: null
 
@@ -68,7 +67,7 @@ Page {
                     iconName: "close"
                     onTriggered: {
                         Qt.inputMethod.commit()
-                        mainStack.removePage(newGroupPage)
+                        mainStack.removePages(newGroupPage)
                     }
                 }
             ]
@@ -314,9 +313,19 @@ Page {
                         anchors.fill: parent
                         onClicked: {
                             Qt.inputMethod.hide()
-                            mainStack.addFileToCurrentColumnSync(basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": newGroupPage})
+                            mainStack.addPageToCurrentColumn(newGroupPage, Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": newGroupPage})
                         }
                         z: 2
+                    }
+                    Timer {
+                        interval: 1
+                        onTriggered: {
+                            if (!multimedia) {
+                                return
+                            }
+                            groupTitleField.forceActiveFocus()
+                        }
+                        Component.onCompleted: start()
                     }
                 }
             }

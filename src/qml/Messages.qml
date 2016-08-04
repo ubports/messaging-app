@@ -645,7 +645,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel, participants: messages.participants})
+                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel, participants: messages.participants})
                 }
             ]
 
@@ -730,7 +730,7 @@ Page {
                                 application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
                                 return
                             }
-                            mainStack.addPageToCurrentColumn(basePage,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage})
+                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants})
                             return
                         }
                         contextMenu.caller = header;
@@ -763,7 +763,7 @@ Page {
                         anchors.fill: parent
                         onClicked: {
                             Qt.inputMethod.hide()
-                            mainStack.addPageToCurrentColumn(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
+                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
                         }
                         z: 2
                     }
@@ -905,13 +905,13 @@ Page {
                         PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
                         return
                     }
-                    mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "basePage": basePage, "account": messages.account})
+                    mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
                 }
             }
             Action {
                 text: i18n.tr("Create %1 Group...").arg(mainView.multimediaAccount.displayName)
                 enabled: mainView.multimediaAccount != null
-                onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "basePage": basePage, "account": messages.account})
+                onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "account": messages.account})
                 visible: mainView.multimediaAccount.connected
             }
         }
