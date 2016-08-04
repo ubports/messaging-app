@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"POT-Creation-Date: 2016-07-21 11:02-0300\n"
 "PO-Revision-Date: 2015-03-01 11:16+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
-"X-Generator: Launchpad (build 18115)\n"
+"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
+"X-Generator: Launchpad (build 18147)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -42,15 +42,19 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "通話 %1 秒"
 
-#: ../src/qml/MessagingBottomEdge.qml:36
+#: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
 msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:156
+msgid "<<< Swipe to cancel"
+msgstr "<<< 滑動來取消"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "已接受"
 
-#: ../src/qml/Messages.qml:630
+#: ../src/qml/Messages.qml:652
 msgid "Add"
 msgstr "加入"
 
@@ -61,6 +65,12 @@ msgstr "加入收件人"
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "所有"
+
+#: ../src/qml/ThreadDelegate.qml:94
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "附件：%1 份音訊剪輯"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -90,12 +100,24 @@ msgstr[0] "附件：%1 條影片"
 msgid "Audio attachment not supported"
 msgstr "不支援音訊附件"
 
-#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
+#: ../src/qml/Messages.qml:890
+msgid "Away"
+msgstr "離開"
+
+#: ../src/qml/NewRecipientPage.qml:64
+msgid "Back"
+msgstr "返回"
+
+#: ../src/qml/Messages.qml:892
+msgid "Busy"
+msgstr "正忙"
+
+#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
 msgstr "通話"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -107,9 +129,9 @@ msgstr "取消"
 msgid "Change all Messaging associations to %1?"
 msgstr "是否要將所有簡訊動作轉用 %1？"
 
+#: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
 msgstr "關閉"
 
@@ -117,7 +139,7 @@ msgstr "關閉"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "由下而上掃過螢幕以撰寫新訊息。"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
 msgstr "聯絡人"
 
@@ -141,6 +163,10 @@ msgstr "已送出"
 msgid "Don't ask again"
 msgstr "不要再問"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+msgid "Don't show again"
+msgstr "別再顯示"
+
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "編輯"
@@ -153,6 +179,10 @@ msgstr "啟用 MMS 群組聊天功能"
 msgid "Failed"
 msgstr "失敗"
 
+#: ../src/qml/Messages.qml:286
+msgid "Failed to send the message"
+msgstr ""
+
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "失敗！"
@@ -161,9 +191,17 @@ msgstr "失敗！"
 msgid "Favorites"
 msgstr "最愛"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "檔案大小警告"
+
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
 msgstr "檔案類型不支援"
+
+#: ../src/qml/MessagesListView.qml:143
+msgid "Forward"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -178,10 +216,20 @@ msgid "Group"
 msgstr "群組"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:626
 #, qt-format
 msgid "Group (%1)"
 msgstr "群組 (%1)"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr "若您想要編輯 SIM 和其他行動裝置偏好設定，請前往「<a href=\"system_settings\">系統設定值</a>」。"
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "影像"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -191,9 +239,13 @@ msgstr "影像預覽"
 msgid "Info"
 msgstr "資訊"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
-msgid "Later"
-msgstr "稍後"
+#: ../src/qml/Messages.qml:277
+msgid "It is not possible to send messages in flight mode"
+msgstr ""
+
+#: ../src/qml/Messages.qml:285
+msgid "It is not possible to send the message"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -231,21 +283,37 @@ msgstr "缺少訊息資訊"
 msgid "Myself"
 msgstr "本人"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:497
 msgid "New Message"
+msgstr "新訊息"
+
+#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+msgid "New message"
 msgstr "新訊息"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "沒有"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Messages.qml:282
+msgid "No SIM card"
+msgstr ""
+
+#: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
 msgstr "沒有選取 SIM 卡"
 
-#: ../src/qml/Messages.qml:959
+#: ../src/qml/Messages.qml:981
 msgid "No network"
 msgstr "沒有網路"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "未獲得麥克風的存取授權"
+
+#: ../src/qml/Messages.qml:888
+msgid "Offline"
+msgstr "離線"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -253,9 +321,23 @@ msgstr "沒有網路"
 msgid "Ok"
 msgstr "確定"
 
+#: ../src/qml/Messages.qml:886
+msgid "Online"
+msgstr "在線"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "待處理"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr "請到 <a href=\"system_settings\">系統設定值 &gt; 安全性與隱私</a> 中提升權限。"
+
+#: ../src/qml/Messages.qml:283
+msgid "Please insert a SIM card and try again."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -304,16 +386,6 @@ msgstr "搜尋"
 msgid "Search..."
 msgstr "搜尋..."
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
-msgid ""
-"Select a default SIM for all outgoing messages. You can always alter your "
-"choice in <a href=\"system_settings\">System Settings</a>."
-msgstr "為外發的訊息選取預設 SIM 卡。以後可在<a href=\"system_settings\">系統設定</a>修改。"
-
-#: ../src/qml/Messages.qml:987
-msgid "Send"
-msgstr "傳送"
-
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "送出"
@@ -340,10 +412,6 @@ msgstr "右滑刪除"
 msgid "Swipe to reveal actions"
 msgstr "左滑顯示功能"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
-msgid "Switch to default SIM:"
-msgstr "切換到預設 SIM 卡："
-
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "暫時失敗"
@@ -352,12 +420,12 @@ msgstr "暫時失敗"
 msgid "Text message copied to clipboard"
 msgstr "文字訊息已複製到剪貼簿"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "%1 目前沒有網路"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
 msgstr "目前沒有網路"
 
@@ -377,6 +445,10 @@ msgstr "今日"
 msgid "Type"
 msgstr "類型"
 
+#: ../src/qml/Messages.qml:882
+msgid "Typing.."
+msgstr "打字中.."
+
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
 msgstr "不明"
@@ -385,6 +457,10 @@ msgstr "不明"
 msgid "Unknown contact"
 msgstr "聯絡人不明"
 
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "視訊"
+
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "影片預覽"
@@ -392,6 +468,10 @@ msgstr "影片預覽"
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
 msgstr "不支援視訊附件"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "歡迎使用傳訊 App！"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
@@ -409,7 +489,21 @@ msgstr "是"
 msgid "Yesterday"
 msgstr "昨日"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr "您試圖傳送大型檔案（超過 300Kb）。有些服務商可能無法傳送大檔案。"
+
+#: ../src/qml/Messages.qml:276
+msgid "You have to disable flight mode"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:161
+msgid "You have to press and hold the record icon"
+msgstr "您必須按住錄音圖示"
+
+#: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
 msgstr "要選取 SIM 卡"
 
@@ -421,6 +515,20 @@ msgstr "您已切換到 %1 @ %2"
 
 #~ msgid "Create new"
 #~ msgstr "建立新"
+
+#~ msgid "Later"
+#~ msgstr "稍後"
+
+#~ msgid "Send"
+#~ msgstr "傳送"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr "為外發的訊息選取預設 SIM 卡。以後可在<a href=\"system_settings\">系統設定</a>修改。"
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "切換到預設 SIM 卡："
 
 #~ msgid "+ Create New"
 #~ msgstr "+ 建立新的"

@@ -78,11 +78,6 @@ Page {
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     property bool newMessage: false
 
-    // When using this view from the bottom edge, we are not in the stack, so we need to push on top of the parent page
-    property var basePage: messages
-
-    property bool startedFromBottomEdge: false
-
     signal ready
     signal cancel
 
@@ -512,36 +507,6 @@ Page {
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
 
-        property list<QtObject> bottomEdgeLeadingActions: [
-            Action {
-                id: backAction
-
-                objectName: "cancel"
-                name: "cancel"
-                text: i18n.tr("Cancel")
-                iconName: "down"
-                shortcut: "Esc"
-                onTriggered: {
-                    messages.cancel()
-                }
-            }
-        ]
-
-        property list<QtObject> singlePanelLeadingActions: [
-            Action {
-                id: singlePanelBackAction
-                objectName: "back"
-                name: "cancel"
-                text: i18n.tr("Cancel")
-                iconName: "back"
-                shortcut: "Esc"
-                onTriggered: {
-                    // emptyStack will make sure the page gets removed.
-                    mainView.emptyStack()
-                }
-            }
-        ]
-
         title: {
             if (landscape) {
                 return ""
@@ -580,26 +545,6 @@ Page {
 
         leadingActionBar {
             id: leadingBar
-
-            states: [
-                State {
-                    name: "bottomEdgeBack"
-                    when: startedFromBottomEdge
-                    PropertyChanges {
-                        target: leadingBar
-                        actions: pageHeader.bottomEdgeLeadingActions
-                    }
-                },
-                State {
-                    name: "singlePanelBack"
-                    when: !mainView.dualPanel && !startedFromBottomEdge
-                    PropertyChanges {
-                        target: leadingBar
-                        actions: pageHeader.singlePanelLeadingActions
-                    }
-                }
-
-            ]
         }
 
         trailingActionBar {
@@ -672,14 +617,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: {
-                        var properties = {}
-                        properties["threads"] = messages.threads
-                        properties["chatEntry"] = messages.chatEntry
-                        properties["eventModel"] = eventModel
-                        properties["participants"] = messages.participants
-                        mainStack.addFileToCurrentColumnSync(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), properties)
-                    }
+                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel, participants: messages.participants})
                 }
             ]
 
@@ -754,7 +692,7 @@ Page {
                     iconName: "contact"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainStack.addFileToCurrentColumnSync(messages.basePage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                        mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
                     }
                 }
 
@@ -770,15 +708,6 @@ Page {
                     rightMargin: units.gu(2)
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
-                }
-
-                Connections {
-                    target: mainView.bottomEdge
-                    onStatusChanged: {
-                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
-                            multiRecipient.forceFocus()
-                        }
-                    }
                 }
             }
 
@@ -811,7 +740,7 @@ Page {
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
-                        mainView.showContactDetails(messages.basePage, contactWatcher.contactId, null, null)
+                        mainView.showContactDetails(messages, contactWatcher.contactId, null, null)
                     }
                 }
             ]
@@ -839,6 +768,13 @@ Page {
         restoreBindings()
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
+        mainView.updateNewMessageStatus()
+    }
+
+    Component.onDestruction: {
+        newMessage = false
+        active = false
+        mainView.updateNewMessageStatus()
     }
 
     Timer {
@@ -869,17 +805,16 @@ Page {
         if (active && (eventModel.count > 0)){
             swipeItemDemo.enable()
         }
+        mainView.updateNewMessageStatus()
+        if (!isReady) {
+            messages.ready()
+        }
     }
 
     // These fake items are used to track if there are instances loaded
     // on the second column because we have no access to the page stack
-    Loader {
-        sourceComponent: fakeItemComponent
-        active: !startedFromBottomEdge
-    }
-    Component {
-        id: fakeItemComponent
-        Item { objectName:"fakeItem"}
+    Item {
+        objectName:"fakeItem"
     }
 
     Connections {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"POT-Creation-Date: 2016-07-21 11:02-0300\n"
 "PO-Revision-Date: 2015-09-18 21:36+0000\n"
 "Last-Translator: Folmer Fredslund <Unknown>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
-"X-Generator: Launchpad (build 18115)\n"
+"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
+"X-Generator: Launchpad (build 18147)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -46,15 +46,19 @@ msgid_plural "%1 seconds call"
 msgstr[0] "%1 sekunds opkald"
 msgstr[1] "%1 sekunders opkald"
 
-#: ../src/qml/MessagingBottomEdge.qml:36
+#: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
 msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:156
+msgid "<<< Swipe to cancel"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Accepteret"
 
-#: ../src/qml/Messages.qml:630
+#: ../src/qml/Messages.qml:652
 msgid "Add"
 msgstr "Tilføj"
 
@@ -65,6 +69,13 @@ msgstr "Tilføj modtager"
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "Alle"
+
+#: ../src/qml/ThreadDelegate.qml:94
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -98,12 +109,24 @@ msgstr[1] "Vedhæftet: %1 videoer"
 msgid "Audio attachment not supported"
 msgstr "Lydvedhæftning ikke understøttet"
 
-#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
+#: ../src/qml/Messages.qml:890
+msgid "Away"
+msgstr ""
+
+#: ../src/qml/NewRecipientPage.qml:64
+msgid "Back"
+msgstr ""
+
+#: ../src/qml/Messages.qml:892
+msgid "Busy"
+msgstr ""
+
+#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
 msgstr "Opkald"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -115,9 +138,9 @@ msgstr "Annullér"
 msgid "Change all Messaging associations to %1?"
 msgstr "Tilknyt alle beskeder til %1"
 
+#: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
 msgstr "Luk"
 
@@ -125,7 +148,7 @@ msgstr "Luk"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Skriv en ny besked ved at swipe op fra bunden af skærmen"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -149,6 +172,10 @@ msgstr "Sendt"
 msgid "Don't ask again"
 msgstr "Spørg ikke igen"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+msgid "Don't show again"
+msgstr ""
+
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "Redigér"
@@ -161,6 +188,10 @@ msgstr "Aktiver MMS-gruppechat"
 msgid "Failed"
 msgstr "Mislykkedes"
 
+#: ../src/qml/Messages.qml:286
+msgid "Failed to send the message"
+msgstr ""
+
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Fejl!"
@@ -169,9 +200,17 @@ msgstr "Fejl!"
 msgid "Favorites"
 msgstr "Foretrukne"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr ""
+
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
 msgstr "Filtype ikke understøttet"
+
+#: ../src/qml/MessagesListView.qml:143
+msgid "Forward"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -186,10 +225,20 @@ msgid "Group"
 msgstr "Gruppe"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:626
 #, qt-format
 msgid "Group (%1)"
 msgstr "Gruppe (%1)"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr ""
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -199,9 +248,13 @@ msgstr "Billedforhåndsvisning"
 msgid "Info"
 msgstr "Info"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
-msgid "Later"
-msgstr "Senere"
+#: ../src/qml/Messages.qml:277
+msgid "It is not possible to send messages in flight mode"
+msgstr ""
+
+#: ../src/qml/Messages.qml:285
+msgid "It is not possible to send the message"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -239,21 +292,37 @@ msgstr "Mangler besked data"
 msgid "Myself"
 msgstr "Jeg"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:497
 msgid "New Message"
 msgstr "Ny besked"
+
+#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+msgid "New message"
+msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "Nej"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Messages.qml:282
+msgid "No SIM card"
+msgstr ""
+
+#: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
 msgstr "Der er ikke valgt SIM-kort"
 
-#: ../src/qml/Messages.qml:959
+#: ../src/qml/Messages.qml:981
 msgid "No network"
 msgstr "Intet netværk"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr ""
+
+#: ../src/qml/Messages.qml:888
+msgid "Offline"
+msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -261,9 +330,23 @@ msgstr "Intet netværk"
 msgid "Ok"
 msgstr "Ok"
 
+#: ../src/qml/Messages.qml:886
+msgid "Online"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "I kø"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+
+#: ../src/qml/Messages.qml:283
+msgid "Please insert a SIM card and try again."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -314,18 +397,6 @@ msgstr "Søg"
 msgid "Search..."
 msgstr "Søg..."
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
-msgid ""
-"Select a default SIM for all outgoing messages. You can always alter your "
-"choice in <a href=\"system_settings\">System Settings</a>."
-msgstr ""
-"Vælg et standard SIM til alle udgående beskeder. Du kan altid ændre dit valg "
-"i <a href=\"system_settings\">System indstillinger</a>"
-
-#: ../src/qml/Messages.qml:987
-msgid "Send"
-msgstr "Send"
-
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Sendt"
@@ -352,10 +423,6 @@ msgstr "Stryg for at slette"
 msgid "Swipe to reveal actions"
 msgstr "Stryg for at vise handlinger"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
-msgid "Switch to default SIM:"
-msgstr "Skift til standard-simkort:"
-
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "Midlertidig fejl"
@@ -364,12 +431,12 @@ msgstr "Midlertidig fejl"
 msgid "Text message copied to clipboard"
 msgstr "Besked kopieret til udklipsholder"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Der er i øjeblikket intet netværk på %1"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
 msgstr "Der er i øjeblikket intet netværk."
 
@@ -389,6 +456,10 @@ msgstr "I dag"
 msgid "Type"
 msgstr "Type"
 
+#: ../src/qml/Messages.qml:882
+msgid "Typing.."
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
 msgstr "Ukendt"
@@ -397,6 +468,10 @@ msgstr "Ukendt"
 msgid "Unknown contact"
 msgstr "Ukendt kontakt"
 
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr ""
+
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "Videoforhåndsvisning"
@@ -404,6 +479,10 @@ msgstr "Videoforhåndsvisning"
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
 msgstr "Videovedhæftning ikke understøttet"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr ""
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
@@ -421,7 +500,21 @@ msgstr "Ja"
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+
+#: ../src/qml/Messages.qml:276
+msgid "You have to disable flight mode"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:161
+msgid "You have to press and hold the record icon"
+msgstr ""
+
+#: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
 msgstr "Du skal vælge et SIM-kort"
 
@@ -431,5 +524,21 @@ msgstr "Du skal vælge et SIM-kort"
 msgid "You switched to %1 @ %2"
 msgstr "Du skiftede til %1 @ %2"
 
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Vælg et standard SIM til alle udgående beskeder. Du kan altid ændre dit valg "
+#~ "i <a href=\"system_settings\">System indstillinger</a>"
+
 #~ msgid "+ Create New"
 #~ msgstr "+ Opret ny"
+
+#~ msgid "Later"
+#~ msgstr "Senere"
+
+#~ msgid "Send"
+#~ msgstr "Send"
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Skift til standard-simkort:"

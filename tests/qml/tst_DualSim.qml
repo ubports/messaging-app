@@ -165,8 +165,6 @@ Item {
 
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
-            tryCompare(mainViewLoader.item, 'pendingCommitProperties', null)
-            waitForRendering(mainViewLoader.item.bottomEdge)
 
             var messagesView = waitFindChild(mainViewLoader, "messagesPage")
             var headerSections = findChild(messagesView, "headerSections")
@@ -232,8 +230,6 @@ Item {
 
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
-            tryCompare(mainViewLoader.item, 'pendingCommitProperties', null)
-            waitForRendering(mainViewLoader.item.bottomEdge)
 
             var messagesView = waitFindChild(mainViewLoader, "messagesPage")
             var textArea = findChild(messagesView, "messageTextArea")

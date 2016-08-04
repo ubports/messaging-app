@@ -35,6 +35,7 @@ ContactViewPage {
     readonly property string contactEditorPageURL: Qt.resolvedUrl("MessagingContactEditorPage.qml")
     property string addPhoneToContact: ""
     property var contactListPage: null
+    model: null
 
     function addPhoneToContactImpl(contact, phoneNumber)
     {
@@ -62,7 +63,7 @@ ContactViewPage {
             iconName: "share"
             visible: root.editable
             onTriggered: {
-                pageStack.addComponentToCurrentColumnSync(root, contactShareComponent,
+                pageStack.addPageToCurrentColumn(root, contactShareComponent,
                                { contactModel: root.model,
                                  contacts: [root.contact] })
             }
@@ -73,7 +74,7 @@ ContactViewPage {
             iconName: "edit"
             visible: root.editable
             onTriggered: {
-                pageStack.addFileToCurrentColumnSync(root, contactEditorPageURL,
+                pageStack.addPageToCurrentColumn(root, contactEditorPageURL,
                                { model: root.model,
                                  contact: root.contact,
                                  contactListPage: root.contactListPage })
@@ -124,9 +125,9 @@ ContactViewPage {
         } else {
             Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
         }
-        pageStack.removePage(root)
+        pageStack.removePages(root)
     }
-    onContactRemoved: pageStack.removePage(root)
+    onContactRemoved: pageStack.removePages(root)
     onContactFetched: {
         root.contact = contact
         if (root.active && root.addPhoneToContact != "") {
