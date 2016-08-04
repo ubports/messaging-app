@@ -77,7 +77,15 @@ Page {
             actions: [
                 Action {
                     objectName: "createAction"
-                    enabled: (groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 0
+                    enabled: {
+                        if (participantsModel.count == 0) {
+                            return false
+                        }
+                        if (multimedia) {
+                            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 0)
+                        }
+                        return participantsModel.count > 1
+                    }
                     iconName: "ok"
                     onTriggered: {
                         Qt.inputMethod.commit()
@@ -158,6 +166,7 @@ Page {
             properties["accountId"] = chatEntry.accountId
             properties["threadId"] = chatEntry.chatId
             properties["chatType"] = chatEntry.chatType
+            properties["participantIds"] = chatEntry.participantIds
 
             mainView.emptyStack()
             mainView.startChat(properties)
@@ -227,8 +236,8 @@ Page {
             }*/
             Item {
                 id: groupTitleItem
- 
-                height: childrenRect.height
+                clip: true 
+                height: multimedia ? childrenRect.height : 0
                 anchors {
                     top: contentColumn.top
                     left: parent.left
@@ -256,6 +265,9 @@ Page {
                     Timer {
                         interval: 1
                         onTriggered: {
+                            if (!multimedia) {
+                                return
+                            }
                             groupTitleField.forceActiveFocus()
                         }
                         Component.onCompleted: start()
