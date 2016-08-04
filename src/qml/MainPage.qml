@@ -98,15 +98,14 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
-                        emptyStack(false)
-                        pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                        pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
                 Action {
                     objectName: "newMessageAction"
                     text: i18n.tr("New message")
                     iconName: "add"
-                    onTriggered: mainView.bottomEdge.commit()
+                    onTriggered: mainView.startNewMessage()
                 }
 
             ]
@@ -230,11 +229,9 @@ Page {
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
+            // FIXME: update
             id: newItem
-            height: mainView.bottomEdge &&
-                    mainView.bottomEdge.status === BottomEdge.Committed &&
-                    !mainView.bottomEdge.showingConversation &&
-                    mainView.dualPanel ? units.gu(10) : 0
+            height: mainView.dualPanel && mainView.composingNewMessage ? units.gu(8) : 0
             text: i18n.tr("New message")
             iconName: "message-new"
             iconFrame: false
@@ -256,13 +253,8 @@ Page {
             selected: {
                 if (selectionMode) {
                     return threadList.isSelected(threadDelegate)
-                } else if (mainView.bottomEdge.status === BottomEdge.Committed ||
-                           !mainView.inputInfo.hasKeyboard) {
-                    return false
-                } else {
-                    // FIXME: there might be a better way of doing this
-                    return index === threadList.currentIndex
                 }
+                return false
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
@@ -285,8 +277,7 @@ Page {
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
-                    emptyStack(false)
-                    mainStack.addComponentToNextColumnSync(mainPage, messagesWithBottomEdge, properties)
+                    mainView.showMessagesView(properties)
 
                     // mark this item as current
                     threadList.currentIndex = index
@@ -329,7 +320,6 @@ Page {
 
     Loader {
         id: bottomEdgeLoader
-        active: !selectionMode && !searching && !mainView.dualPanel
         asynchronous: true
         /* FIXME: would be even more efficient to use setSource() to
            delay the compilation step but a bug in Qt prevents us.
@@ -337,6 +327,8 @@ Page {
         */
         sourceComponent: MessagingBottomEdge {
             parent: mainPage
+            enabled: !mainView.dualPanel
+            hint.visible: enabled
         }
     }
 }
