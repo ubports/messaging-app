@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"POT-Creation-Date: 2016-07-21 11:02-0300\n"
 "PO-Revision-Date: 2014-01-17 09:30+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
-"X-Generator: Launchpad (build 18115)\n"
+"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
+"X-Generator: Launchpad (build 18147)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -45,15 +45,19 @@ msgid_plural "%1 seconds call"
 msgstr[0] "Panggilan %1 saat"
 msgstr[1] "Panggilan %1 saat"
 
-#: ../src/qml/MessagingBottomEdge.qml:36
+#: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
 msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:156
+msgid "<<< Swipe to cancel"
+msgstr "<<< Leret untuk batal"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Diterima"
 
-#: ../src/qml/Messages.qml:630
+#: ../src/qml/Messages.qml:652
 msgid "Add"
 msgstr "Tambah"
 
@@ -64,6 +68,13 @@ msgstr "Tambah penerima"
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "Semua"
+
+#: ../src/qml/ThreadDelegate.qml:94
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "Lampiran: %1 klip audio"
+msgstr[1] "Lampiran: %1 klip audio"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -97,12 +108,24 @@ msgstr[1] "Lampiran: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Lampiran audio tidak disokong"
 
-#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
+#: ../src/qml/Messages.qml:890
+msgid "Away"
+msgstr "Menghilang"
+
+#: ../src/qml/NewRecipientPage.qml:64
+msgid "Back"
+msgstr "Kembali"
+
+#: ../src/qml/Messages.qml:892
+msgid "Busy"
+msgstr "Sibuk"
+
+#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
 msgstr "Panggilan"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -114,9 +137,9 @@ msgstr "Batal"
 msgid "Change all Messaging associations to %1?"
 msgstr "Ubah semua perkaitan Pemesejan kepada %1?"
 
+#: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
 msgstr "Tutup"
 
@@ -125,7 +148,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Gubah mesej baharu dengan meleret ke atas bermula dari bahagian bawah skrin"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
 msgstr "Kenalan"
 
@@ -149,6 +172,10 @@ msgstr "Dihantar"
 msgid "Don't ask again"
 msgstr "Jangan tanya lagi"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+msgid "Don't show again"
+msgstr "Jangan tunjuk lagi"
+
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "Sunting"
@@ -161,6 +188,10 @@ msgstr "Benarkan sembang kumpulan MMS"
 msgid "Failed"
 msgstr "Gagal"
 
+#: ../src/qml/Messages.qml:286
+msgid "Failed to send the message"
+msgstr ""
+
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Gagal!"
@@ -169,9 +200,17 @@ msgstr "Gagal!"
 msgid "Favorites"
 msgstr "Kegemaran"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "Amaran saiz fail"
+
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
 msgstr "Jenis fail tidak disokong"
+
+#: ../src/qml/MessagesListView.qml:143
+msgid "Forward"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -186,10 +225,22 @@ msgid "Group"
 msgstr "Kumpulan"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:626
 #, qt-format
 msgid "Group (%1)"
 msgstr "Kumpulan (%1)"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Jika anda mahu sunting SIM anda dan lain-lain keutamaan telefon bimbit, sila "
+"lawati <a href=\"system_settings\">Tetapan Sistem</a>."
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "Imej"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -199,9 +250,13 @@ msgstr "Pratonton Imej"
 msgid "Info"
 msgstr "Maklumat"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
-msgid "Later"
-msgstr "Kemudian"
+#: ../src/qml/Messages.qml:277
+msgid "It is not possible to send messages in flight mode"
+msgstr ""
+
+#: ../src/qml/Messages.qml:285
+msgid "It is not possible to send the message"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -239,21 +294,37 @@ msgstr "Data mesej hilang"
 msgid "Myself"
 msgstr "Diri Saya"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:497
 msgid "New Message"
+msgstr "Mesej Baharu"
+
+#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+msgid "New message"
 msgstr "Mesej Baharu"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "Tidak"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Messages.qml:282
+msgid "No SIM card"
+msgstr ""
+
+#: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
 msgstr "Tiada kad SIM dipilih"
 
-#: ../src/qml/Messages.qml:959
+#: ../src/qml/Messages.qml:981
 msgid "No network"
 msgstr "Tiada rangkaian"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "Tiada kebenaran mencapai mikrofon"
+
+#: ../src/qml/Messages.qml:888
+msgid "Offline"
+msgstr "Luar talian"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -261,9 +332,25 @@ msgstr "Tiada rangkaian"
 msgid "Ok"
 msgstr "Ok"
 
+#: ../src/qml/Messages.qml:886
+msgid "Online"
+msgstr "Atas talian"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "Tertangguh"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+"Sila beri capaian pada <a href=\"system_settings\">Tetapan Sistem &gt; "
+"Keselamatan &amp; Kerahsiaan</a>."
+
+#: ../src/qml/Messages.qml:283
+msgid "Please insert a SIM card and try again."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -314,18 +401,6 @@ msgstr "Gelintar"
 msgid "Search..."
 msgstr "Gelintar..."
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
-msgid ""
-"Select a default SIM for all outgoing messages. You can always alter your "
-"choice in <a href=\"system_settings\">System Settings</a>."
-msgstr ""
-"Pilih SIM lalai untuk semua mesej keluar. Anda boleh ubah pilihan anda di "
-"dalam  <a href=\"system_settings\">Tetapan Sistem</a>."
-
-#: ../src/qml/Messages.qml:987
-msgid "Send"
-msgstr "Hantar"
-
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Hantar"
@@ -352,10 +427,6 @@ msgstr "Leret untuk padam"
 msgid "Swipe to reveal actions"
 msgstr "Leret untuk dedahkan tindakan"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
-msgid "Switch to default SIM:"
-msgstr "Tukar ke SIM lalai:"
-
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "Gagal Buat Sementara"
@@ -364,12 +435,12 @@ msgstr "Gagal Buat Sementara"
 msgid "Text message copied to clipboard"
 msgstr "Mesej teks disalin ke clipboard"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Buat masa ini tiada rangkaian pada %1"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
 msgstr "Buat masa ini tiada rangkaian."
 
@@ -389,6 +460,10 @@ msgstr "Hari ini"
 msgid "Type"
 msgstr "Jenis"
 
+#: ../src/qml/Messages.qml:882
+msgid "Typing.."
+msgstr "Menaip..."
+
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
 msgstr "Tidak Diketahui"
@@ -397,6 +472,10 @@ msgstr "Tidak Diketahui"
 msgid "Unknown contact"
 msgstr "Kenalan tidak diketahui"
 
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "Video"
+
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "Pratonton Video"
@@ -404,6 +483,10 @@ msgstr "Pratonton Video"
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
 msgstr "Lampiran video tidak disokong"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "Selamat datang ke apl Pemesejan anda!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
@@ -421,7 +504,23 @@ msgstr "Ya"
 msgid "Yesterday"
 msgstr "Semalam"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+"Anda cuba menghantar fail bersaiz besar (melebihi 300Kb). Sesetengah "
+"operator mungkin tidak berupaya menghantarnya."
+
+#: ../src/qml/Messages.qml:276
+msgid "You have to disable flight mode"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:161
+msgid "You have to press and hold the record icon"
+msgstr "Anda perlu tekan dan tahan ikon rakam"
+
+#: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
 msgstr "Anda perlu pilih satu kad SIM"
 
@@ -434,5 +533,21 @@ msgstr "Anda tukarkan ke %1 @ %2"
 #~ msgid "Create new"
 #~ msgstr "Cipta baharu"
 
+#~ msgid "Later"
+#~ msgstr "Kemudian"
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Tukar ke SIM lalai:"
+
+#~ msgid "Send"
+#~ msgstr "Hantar"
+
 #~ msgid "+ Create New"
 #~ msgstr "+ Cipta Baharu"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Pilih SIM lalai untuk semua mesej keluar. Anda boleh ubah pilihan anda di "
+#~ "dalam  <a href=\"system_settings\">Tetapan Sistem</a>."

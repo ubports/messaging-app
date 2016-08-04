@@ -1,4 +1,11 @@
 {
+    "destination": [
+        "contacts",
+        "pictures",
+        "links",
+        "text",
+        "videos"
+    ],
     "share": [
         "contacts",
         "pictures",
