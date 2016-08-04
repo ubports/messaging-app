@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-15 10:55-0300\n"
+"POT-Creation-Date: 2016-07-21 11:02-0300\n"
 "PO-Revision-Date: 2015-09-03 13:18+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-07-08 05:39+0000\n"
-"X-Generator: Launchpad (build 18115)\n"
+"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
+"X-Generator: Launchpad (build 18147)\n"
 "Language: gd\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,15 +53,19 @@ msgstr[1] "Gairm %1 dhiog"
 msgstr[2] "Gairm %1 diogan"
 msgstr[3] "Gairm %1 diog"
 
-#: ../src/qml/MessagingBottomEdge.qml:36
+#: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
 msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:156
+msgid "<<< Swipe to cancel"
+msgstr "<<< Grad-shlaighd gus sgur dheth"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
 msgstr "Air a ghabhail ris"
 
-#: ../src/qml/Messages.qml:630
+#: ../src/qml/Messages.qml:652
 msgid "Add"
 msgstr "Cuir ris"
 
@@ -72,6 +76,15 @@ msgstr "Cuir faightear ris"
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
 msgstr "Na h-uile"
+
+#: ../src/qml/ThreadDelegate.qml:94
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "Ceanglachan: %1 chliop fuaime"
+msgstr[1] "Ceanglachain: %1 chliop fuaime"
+msgstr[2] "Ceanglachain: %1 cliopaichean fuaime"
+msgstr[3] "Ceanglachain: %1 cliop fuaime"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -113,12 +126,24 @@ msgstr[3] "Ceanglachain: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain fuaime"
 
-#: ../src/qml/Messages.qml:619 ../src/qml/Messages.qml:701
+#: ../src/qml/Messages.qml:890
+msgid "Away"
+msgstr "Air falbh"
+
+#: ../src/qml/NewRecipientPage.qml:64
+msgid "Back"
+msgstr "Air ais"
+
+#: ../src/qml/Messages.qml:892
+msgid "Busy"
+msgstr "Trang"
+
+#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
 msgstr "Gairm"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:442 ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
@@ -131,9 +156,9 @@ msgid "Change all Messaging associations to %1?"
 msgstr ""
 "A bheil thu airson gach co-cheangal nan teachdaireachd atharrachadh gu %1?"
 
+#: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:31
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:963
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
 msgstr "Dùin"
 
@@ -142,7 +167,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Grad-shlaighd suas o bhonn na sgrìn gus teachdaireachd ùr a sgrìobhadh."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:712
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
 msgstr "Neach-aithne"
 
@@ -166,6 +191,10 @@ msgstr "Air a lìbhrigeadh"
 msgid "Don't ask again"
 msgstr "Na faighnich dhìom a-rithist"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+msgid "Don't show again"
+msgstr "Na seall dhomh seo a-rithist"
+
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
 msgstr "Deasaich"
@@ -178,6 +207,10 @@ msgstr "Cuir cabadaich buidhinn MMS an comas"
 msgid "Failed"
 msgstr "Dh'fhàillig e"
 
+#: ../src/qml/Messages.qml:286
+msgid "Failed to send the message"
+msgstr ""
+
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
 msgstr "Dh'fhàillig leis!"
@@ -186,9 +219,17 @@ msgstr "Dh'fhàillig leis!"
 msgid "Favorites"
 msgstr "Annsachdan"
 
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "Rabhadh mu mheud faidhle"
+
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
 msgstr "Cha chuirear taic ris an t-seòrsa faidhle"
+
+#: ../src/qml/MessagesListView.qml:143
+msgid "Forward"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -203,10 +244,22 @@ msgid "Group"
 msgstr "Buidheann"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:604
+#: ../src/qml/Messages.qml:626
 #, qt-format
 msgid "Group (%1)"
 msgstr "Buidheann (%1)"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Ma tha thu airson roghainnean an t-SIM is mobile agad a dheasachadh, tadhail "
+"air <a href=\"system_settings\">roghainnean an t-siostaim</a>."
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "Dealbh"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -216,9 +269,13 @@ msgstr "Ro-shealladh air dealbh"
 msgid "Info"
 msgstr "Fiosrachadh"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:80
-msgid "Later"
-msgstr "Às a dhèidh seo"
+#: ../src/qml/Messages.qml:277
+msgid "It is not possible to send messages in flight mode"
+msgstr ""
+
+#: ../src/qml/Messages.qml:285
+msgid "It is not possible to send the message"
+msgstr ""
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -257,21 +314,37 @@ msgstr "Tha dàta na teachdaireachd a dhìth"
 msgid "Myself"
 msgstr "Mi fhìn"
 
-#: ../src/qml/Messages.qml:475
+#: ../src/qml/Messages.qml:497
 msgid "New Message"
+msgstr "Teachdaireachd ùr"
+
+#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+msgid "New message"
 msgstr "Teachdaireachd ùr"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "Chan eil"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:27
+#: ../src/qml/Messages.qml:282
+msgid "No SIM card"
+msgstr ""
+
+#: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
 msgstr "Cha deach cairt SIM a thaghadh"
 
-#: ../src/qml/Messages.qml:959
+#: ../src/qml/Messages.qml:981
 msgid "No network"
 msgstr "Chan eil lìonra ann"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "Chan eil cead gus am micreofon inntrigeadh ann"
+
+#: ../src/qml/Messages.qml:888
+msgid "Offline"
+msgstr "Far loidhne"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -279,9 +352,25 @@ msgstr "Chan eil lìonra ann"
 msgid "Ok"
 msgstr "Ceart ma-thà"
 
+#: ../src/qml/Messages.qml:886
+msgid "Online"
+msgstr "Air loidhne"
+
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
 msgstr "Ri dhèiligeadh"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+"Thoir cead-inntrigidh dha air <a href=\"system_settings\">Roghainnean an t-"
+"siostaim &gt; Tèarainteachd ⁊ Prìobhaideachd</a>."
+
+#: ../src/qml/Messages.qml:283
+msgid "Please insert a SIM card and try again."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -332,19 +421,6 @@ msgstr "Lorg"
 msgid "Search..."
 msgstr "Lorg..."
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:58
-msgid ""
-"Select a default SIM for all outgoing messages. You can always alter your "
-"choice in <a href=\"system_settings\">System Settings</a>."
-msgstr ""
-"Tagh SIM tùsail airson gach teachdaireachd a-mach. 'S urrainn dhut an "
-"roghainn agad atharrachadh ann an <a href=\"system_settings\">Roghainnean an "
-"t-Siostaim</a> uair sam bith."
-
-#: ../src/qml/Messages.qml:987
-msgid "Send"
-msgstr "Cuir"
-
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
 msgstr "Air a chur"
@@ -371,10 +447,6 @@ msgstr "Grad-shlaighd airson a sguabadh às"
 msgid "Swipe to reveal actions"
 msgstr "Grad-shlaighd gus na gnìomhan a shealltainn"
 
-#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
-msgid "Switch to default SIM:"
-msgstr "Gearr leum gun SIM tùsail:"
-
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "Dh'fhàillig leis gu sealach"
@@ -383,12 +455,12 @@ msgstr "Dh'fhàillig leis gu sealach"
 msgid "Text message copied to clipboard"
 msgstr "Chaidh lethbhreac dhen teachdaireachd a chur air an stòr-bhòrd"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Chan eil lìonra air %1 an-dràsta"
 
-#: ../src/qml/Messages.qml:960
+#: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
 msgstr "Chan eil lìonra ann an-dràsta."
 
@@ -408,6 +480,10 @@ msgstr "An-diugh"
 msgid "Type"
 msgstr "Seòrsa"
 
+#: ../src/qml/Messages.qml:882
+msgid "Typing.."
+msgstr "A' sgrìobhadh"
+
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
 msgstr "Neo-aithnichte"
@@ -416,6 +492,10 @@ msgstr "Neo-aithnichte"
 msgid "Unknown contact"
 msgstr "Neach neo-aithnichte"
 
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "Video"
+
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "Ro-shealladh air video"
@@ -423,6 +503,10 @@ msgstr "Ro-shealladh air video"
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain video"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "Fàilte gu aplacaid nan teachdaireachdan!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
@@ -440,7 +524,23 @@ msgstr "Tha"
 msgid "Yesterday"
 msgstr "An-dè"
 
-#: ../src/qml/Dialogs/NoSIMCardSelectedDialog.qml:28
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+"Tha thu a' feuchainn ri faidhlichean mòra a chur (corr is 300Kb). "
+"Dh'fhaoidte nach bi comas aig gach giùlanair gus an cur."
+
+#: ../src/qml/Messages.qml:276
+msgid "You have to disable flight mode"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:161
+msgid "You have to press and hold the record icon"
+msgstr "Feumaidh tu ìomhaigheag a' chlàraidh a bhrùthadh 's a chumail sìos"
+
+#: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
 msgstr "Feumaidh tu cairt SIM a thaghadh"
 
@@ -450,8 +550,25 @@ msgstr "Feumaidh tu cairt SIM a thaghadh"
 msgid "You switched to %1 @ %2"
 msgstr "Thòisich thu air %1 a chleachdadh %2"
 
+#~ msgid "Later"
+#~ msgstr "Às a dhèidh seo"
+
+#~ msgid "Send"
+#~ msgstr "Cuir"
+
 #~ msgid "Create new"
 #~ msgstr "Cruthaich tè ùr"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Tagh SIM tùsail airson gach teachdaireachd a-mach. 'S urrainn dhut an "
+#~ "roghainn agad atharrachadh ann an <a href=\"system_settings\">Roghainnean an "
+#~ "t-Siostaim</a> uair sam bith."
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Gearr leum gun SIM tùsail:"
 
 #~ msgid "+ Create New"
 #~ msgstr "+ Cruthaich fear ùr"

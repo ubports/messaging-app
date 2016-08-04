@@ -63,7 +63,7 @@ Page {
                     iconName: "back"
                     shortcut: "Esc"
                     onTriggered: {
-                        mainStack.removePage(previewerPage)
+                        mainStack.removePages(previewerPage)
                     }
                 }
             ]
@@ -133,11 +133,11 @@ Page {
 
             onPeerSelected: {
                 picker.curTransfer = peer.request();
-                mainStack.removePage(picker);
+                mainStack.removePages(picker);
                 if (picker.curTransfer.state === ContentTransfer.InProgress)
                     picker.__exportItems(picker.url);
             }
-            onCancelPressed: mainStack.removePage(picker);
+            onCancelPressed: mainStack.removePages(picker);
         }
 
         Connections {
