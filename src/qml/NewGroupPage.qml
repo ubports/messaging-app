@@ -55,7 +55,11 @@ Page {
                 return i18n.tr("Creating Group...")
             }
             if (multimedia) {
-                return i18n.tr("New %1 Group").arg(mainView.multimediaAccount.displayName)
+                var protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceDisplayName;
+                if (protocolDisplayName === "") {
+                   protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceName;
+                }
+                return i18n.tr("New %1 Group").arg(protocolDisplayName);
             } else {
                 return i18n.tr("New MMS Group")
             }

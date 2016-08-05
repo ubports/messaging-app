@@ -909,7 +909,13 @@ Page {
                 }
             }
             Action {
-                text: i18n.tr("Create %1 Group...").arg(mainView.multimediaAccount.displayName)
+                text: {
+                    var protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceDisplayName;
+                    if (protocolDisplayName === "") {
+                       protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceName;
+                    }
+                    return i18n.tr("Create %1 Group...").arg(protocolDisplayName);
+                }
                 enabled: mainView.multimediaAccount != null
                 onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "account": messages.account})
                 visible: mainView.multimediaAccount.connected
