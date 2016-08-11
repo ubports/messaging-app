@@ -81,6 +81,9 @@ Page {
                 Action {
                     objectName: "createAction"
                     enabled: {
+                        if (newGroupPage.creationInProgress) {
+                            return false
+                        }
                         if (participantsModel.count == 0) {
                             return false
                         }
