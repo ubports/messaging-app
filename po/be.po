@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -49,7 +49,7 @@ msgstr[0] "%1 секунда размовы"
 msgstr[1] "%1 секунды размовы"
 msgstr[2] "%1 секундаў размовы"
 
-#: ../src/qml/MessagingBottomEdge.qml:38
+#: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
 msgstr "+"
 
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Accepted"
 msgstr "Прыняць"
 
-#: ../src/qml/Messages.qml:652
+#: ../src/qml/Messages.qml:597
 msgid "Add"
 msgstr "Дадаць"
 
@@ -116,7 +116,7 @@ msgstr[2] "Дададзена: %1 відэа"
 msgid "Audio attachment not supported"
 msgstr "Падтрымкі дадання гукавых файлаў не прадугледжана"
 
-#: ../src/qml/Messages.qml:890
+#: ../src/qml/Messages.qml:832
 msgid "Away"
 msgstr "Адышоў"
 
@@ -124,18 +124,17 @@ msgstr "Адышоў"
 msgid "Back"
 msgstr "Вярнуцца"
 
-#: ../src/qml/Messages.qml:892
+#: ../src/qml/Messages.qml:834
 msgid "Busy"
 msgstr "Заняты(ая)"
 
-#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
+#: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
 msgstr "Патэлефанаваць"
 
-#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:127
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "Скасаваць"
 
@@ -147,7 +146,7 @@ msgstr "Звязаць увесь абмен паведамленнямі з %1?
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:927
 msgid "Close"
 msgstr "Закрыць"
 
@@ -155,11 +154,11 @@ msgstr "Закрыць"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Стварыце новае паведамленне рухам пальца з ніжняй частцы экрана."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:670
 msgid "Contact"
 msgstr "Кантакт"
 
-#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:135 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Капіяваць"
 
@@ -183,7 +182,7 @@ msgstr "Больш не пытацца"
 msgid "Don't show again"
 msgstr ""
 
-#: ../src/qml/MessagingContactViewPage.qml:72
+#: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
 msgstr "Рэдагаваць"
 
@@ -195,7 +194,7 @@ msgstr "Включить групповой MMS-чат"
 msgid "Failed"
 msgstr "Памылка"
 
-#: ../src/qml/Messages.qml:286
+#: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
 msgstr ""
 
@@ -215,7 +214,7 @@ msgstr ""
 msgid "File type not supported"
 msgstr "Падтрымкі гэтага тыпу файлаў не прадугледжана"
 
-#: ../src/qml/MessagesListView.qml:143
+#: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
 msgstr ""
 
@@ -232,7 +231,7 @@ msgid "Group"
 msgstr "Група"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:626
+#: ../src/qml/Messages.qml:571
 #, qt-format
 msgid "Group (%1)"
 msgstr "Група (%1)"
@@ -253,19 +252,19 @@ msgstr ""
 msgid "Image Preview"
 msgstr "Перадпрагляд выявы"
 
-#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:110 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Звесткі"
 
-#: ../src/qml/Messages.qml:277
+#: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
 msgstr ""
 
-#: ../src/qml/Messages.qml:285
+#: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -293,7 +292,7 @@ msgstr "Праграма для абмену паведамленнямі"
 msgid "Messaging application"
 msgstr "Праграма для абмену паведамленнямі"
 
-#: ../src/qml/MMSDelegate.qml:249
+#: ../src/qml/MMSDelegate.qml:248
 msgid "Missing message data"
 msgstr "Няма дадзеных паведамлення"
 
@@ -301,11 +300,11 @@ msgstr "Няма дадзеных паведамлення"
 msgid "Myself"
 msgstr "Я"
 
-#: ../src/qml/Messages.qml:497
+#: ../src/qml/Messages.qml:462
 msgid "New Message"
 msgstr "Новае паведамленне"
 
-#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+#: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
 msgstr ""
 
@@ -313,15 +312,15 @@ msgstr ""
 msgid "No"
 msgstr "Не"
 
-#: ../src/qml/Messages.qml:282
+#: ../src/qml/Messages.qml:277
 msgid "No SIM card"
 msgstr ""
 
-#: ../src/qml/Messages.qml:279
+#: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
 msgstr "Не выбраная SIM-картка"
 
-#: ../src/qml/Messages.qml:981
+#: ../src/qml/Messages.qml:923
 msgid "No network"
 msgstr "Няма сеткі"
 
@@ -329,7 +328,7 @@ msgstr "Няма сеткі"
 msgid "No permission to access microphone"
 msgstr ""
 
-#: ../src/qml/Messages.qml:888
+#: ../src/qml/Messages.qml:830
 msgid "Offline"
 msgstr "Адлучана"
 
@@ -339,7 +338,7 @@ msgstr "Адлучана"
 msgid "Ok"
 msgstr "Добра"
 
-#: ../src/qml/Messages.qml:886
+#: ../src/qml/Messages.qml:828
 msgid "Online"
 msgstr "У сеціве"
 
@@ -353,7 +352,7 @@ msgid ""
 "Security &amp; Privacy</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:283
+#: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
 msgstr ""
 
@@ -381,7 +380,7 @@ msgstr "Атрымана"
 msgid "Remove"
 msgstr "Выдаліць"
 
-#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:128 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Паўтарыць"
 
@@ -389,7 +388,7 @@ msgstr "Паўтарыць"
 msgid "SIM Card is locked"
 msgstr "SIM-картка заблакаваная"
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "SMS"
 msgstr "SMS"
 
@@ -417,7 +416,7 @@ msgstr "Налады"
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
-#: ../src/qml/MessagingContactViewPage.qml:61
+#: ../src/qml/MessagingContactViewPage.qml:62
 msgid "Share"
 msgstr "Падзяліцца"
 
@@ -437,16 +436,16 @@ msgstr "Правядзіце, каб убачыць пункты дзеяння�
 msgid "Temporarily Failed"
 msgstr "Часовая памылка"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:55
 msgid "Text message copied to clipboard"
 msgstr "Тэкставае паведамленне скапіяванае ў буфер"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Зараз на %1 няма доступу да сеткі"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 msgid "There is currently no network."
 msgstr "Зараз няма доступу да сеткі."
 
@@ -466,7 +465,7 @@ msgstr "Сёння"
 msgid "Type"
 msgstr "Тып"
 
-#: ../src/qml/Messages.qml:882
+#: ../src/qml/Messages.qml:824
 msgid "Typing.."
 msgstr "Друкуя..."
 
@@ -516,7 +515,7 @@ msgid ""
 "able to send it."
 msgstr ""
 
-#: ../src/qml/Messages.qml:276
+#: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
 msgstr ""
 
@@ -524,7 +523,7 @@ msgstr ""
 msgid "You have to press and hold the record icon"
 msgstr ""
 
-#: ../src/qml/Messages.qml:280
+#: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
 msgstr "Вам варта абраць SIM-картку"
 
