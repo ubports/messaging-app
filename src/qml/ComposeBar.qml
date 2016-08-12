@@ -456,7 +456,7 @@ Item {
                     if ((attachments.count > 0) || usingMMS) {
                         i18n.tr("MMS")
                     } else {
-                        messageTextArea.length + "(" + messageCount + ")"
+                        messageTextArea.length + " (" + messageCount + ")"
                     }
                 }
                 fontSize: "small"
