@@ -324,6 +324,9 @@ Page {
 
         properties["chatType"] = messages.chatType
         properties["participantIds"] = newParticipantsIds
+        if (messages.threadId !== "") {
+            properties["threadId"] = messages.threadId
+        }
 
         // create the new thread and update the threadId list
         var thread = addNewThreadToFilter(messages.account.accountId, properties)
