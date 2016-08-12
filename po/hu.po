@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -45,7 +45,7 @@ msgid_plural "%1 seconds call"
 msgstr[0] "%1 másodperces hívás"
 msgstr[1] "%1 másodperces hívás"
 
-#: ../src/qml/MessagingBottomEdge.qml:38
+#: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
 msgstr "+"
 
@@ -57,7 +57,7 @@ msgstr "<<< Csúsztasson a megszakításhoz"
 msgid "Accepted"
 msgstr "Elfogadva"
 
-#: ../src/qml/Messages.qml:652
+#: ../src/qml/Messages.qml:597
 msgid "Add"
 msgstr "Hozzáadás"
 
@@ -108,7 +108,7 @@ msgstr[1] "Melléklet: %1 videó"
 msgid "Audio attachment not supported"
 msgstr "Audiomelléklet nem támogatott"
 
-#: ../src/qml/Messages.qml:890
+#: ../src/qml/Messages.qml:832
 msgid "Away"
 msgstr "Távol"
 
@@ -116,18 +116,17 @@ msgstr "Távol"
 msgid "Back"
 msgstr "Vissza"
 
-#: ../src/qml/Messages.qml:892
+#: ../src/qml/Messages.qml:834
 msgid "Busy"
 msgstr "Elfoglalt"
 
-#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
+#: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
 msgstr "Hívás"
 
-#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:127
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -139,7 +138,7 @@ msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:927
 msgid "Close"
 msgstr "Bezárás"
 
@@ -147,11 +146,11 @@ msgstr "Bezárás"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Új üzenet írásához húzza az ujját felfelé a kijelző aljáról indulva."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:670
 msgid "Contact"
 msgstr "Névjegy"
 
-#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:135 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Másolás"
 
@@ -175,7 +174,7 @@ msgstr "Ne kérdezze többször"
 msgid "Don't show again"
 msgstr "Ne mutassa újra"
 
-#: ../src/qml/MessagingContactViewPage.qml:72
+#: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
 msgstr "Szerkesztés"
 
@@ -187,7 +186,7 @@ msgstr "MMS csoportos csevegés"
 msgid "Failed"
 msgstr "Sikertelen"
 
-#: ../src/qml/Messages.qml:286
+#: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
 msgstr "Nem sikerült az üzenet elküldése"
 
@@ -207,7 +206,7 @@ msgstr "Fájlméret figyelmeztetés"
 msgid "File type not supported"
 msgstr "Ez a fájltípus nem támogatott"
 
-#: ../src/qml/MessagesListView.qml:143
+#: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
 msgstr "Továbbítás"
 
@@ -224,7 +223,7 @@ msgid "Group"
 msgstr "Csoport"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:626
+#: ../src/qml/Messages.qml:571
 #, qt-format
 msgid "Group (%1)"
 msgstr "Csoport (%1)"
@@ -246,19 +245,19 @@ msgstr "Kép"
 msgid "Image Preview"
 msgstr "Előnézeti kép"
 
-#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:110 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Információ"
 
-#: ../src/qml/Messages.qml:277
+#: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
 msgstr "Repülőgépes módban nem küldhet üzenetet"
 
-#: ../src/qml/Messages.qml:285
+#: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
 msgstr "Nem lehetséges az üzenetküldés"
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -286,7 +285,7 @@ msgstr "Üzenetküldő alkalmazás"
 msgid "Messaging application"
 msgstr "Üzenetküldő alkalmazás"
 
-#: ../src/qml/MMSDelegate.qml:249
+#: ../src/qml/MMSDelegate.qml:248
 msgid "Missing message data"
 msgstr "Hiányzó üzenetadat"
 
@@ -294,11 +293,11 @@ msgstr "Hiányzó üzenetadat"
 msgid "Myself"
 msgstr "Én"
 
-#: ../src/qml/Messages.qml:497
+#: ../src/qml/Messages.qml:462
 msgid "New Message"
 msgstr "Új üzenet"
 
-#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+#: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
 msgstr "Új üzenet"
 
@@ -306,15 +305,15 @@ msgstr "Új üzenet"
 msgid "No"
 msgstr "Nem"
 
-#: ../src/qml/Messages.qml:282
+#: ../src/qml/Messages.qml:277
 msgid "No SIM card"
 msgstr "Nincs SIM kártya"
 
-#: ../src/qml/Messages.qml:279
+#: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
 msgstr "Nincs SIM kártya kiválasztva"
 
-#: ../src/qml/Messages.qml:981
+#: ../src/qml/Messages.qml:923
 msgid "No network"
 msgstr "Nincs hálózat"
 
@@ -322,7 +321,7 @@ msgstr "Nincs hálózat"
 msgid "No permission to access microphone"
 msgstr "Nincs jogosultsága a mikrofon eléréséhez"
 
-#: ../src/qml/Messages.qml:888
+#: ../src/qml/Messages.qml:830
 msgid "Offline"
 msgstr "Nem elérhető"
 
@@ -332,7 +331,7 @@ msgstr "Nem elérhető"
 msgid "Ok"
 msgstr "OK"
 
-#: ../src/qml/Messages.qml:886
+#: ../src/qml/Messages.qml:828
 msgid "Online"
 msgstr "Elérhető"
 
@@ -348,7 +347,7 @@ msgstr ""
 "Ezen változtathat a <a href=\"system_settings\">Rendszerbeállítások &gt; "
 "Biztonság és adatvédelem</a> alatt."
 
-#: ../src/qml/Messages.qml:283
+#: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
 msgstr "Helyezzen be egy SIM kártyát, majd próbálja újra."
 
@@ -375,7 +374,7 @@ msgstr "Fogadva"
 msgid "Remove"
 msgstr "Törlés"
 
-#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:128 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Újra"
 
@@ -383,7 +382,7 @@ msgstr "Újra"
 msgid "SIM Card is locked"
 msgstr "A SIM kártya zárolva van"
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "SMS"
 msgstr "SMS"
 
@@ -411,7 +410,7 @@ msgstr "Beállítások"
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
-#: ../src/qml/MessagingContactViewPage.qml:61
+#: ../src/qml/MessagingContactViewPage.qml:62
 msgid "Share"
 msgstr "Megosztás"
 
@@ -431,16 +430,16 @@ msgstr "Húzza el a műveletek megjelenítéséhez"
 msgid "Temporarily Failed"
 msgstr "Ideiglenes hiba"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:55
 msgid "Text message copied to clipboard"
 msgstr "Az üzenet a vágólapra másolva"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Jelenleg nincs hálózat ezen: %1"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 msgid "There is currently no network."
 msgstr "Jelenleg nincs hálózat"
 
@@ -460,7 +459,7 @@ msgstr "Ma"
 msgid "Type"
 msgstr "Típus"
 
-#: ../src/qml/Messages.qml:882
+#: ../src/qml/Messages.qml:824
 msgid "Typing.."
 msgstr "Gépel…"
 
@@ -512,7 +511,7 @@ msgstr ""
 "Túl nagy fájlt (300Kb felett) szeretne küldeni, de néhány szolgáltató nem "
 "engedélyezi ezt."
 
-#: ../src/qml/Messages.qml:276
+#: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
 msgstr "Ki kell kapcsolnia a repülőgépes módot"
 
@@ -520,7 +519,7 @@ msgstr "Ki kell kapcsolnia a repülőgépes módot"
 msgid "You have to press and hold the record icon"
 msgstr "Tartsa lenyomva az ikont a felvétel alatt"
 
-#: ../src/qml/Messages.qml:280
+#: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
 msgstr "Ki kell választania egy SIM kártyát"
 
