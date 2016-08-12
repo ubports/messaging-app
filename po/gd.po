@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 "Language: gd\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -53,7 +53,7 @@ msgstr[1] "Gairm %1 dhiog"
 msgstr[2] "Gairm %1 diogan"
 msgstr[3] "Gairm %1 diog"
 
-#: ../src/qml/MessagingBottomEdge.qml:38
+#: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
 msgstr "+"
 
@@ -65,7 +65,7 @@ msgstr "<<< Grad-shlaighd gus sgur dheth"
 msgid "Accepted"
 msgstr "Air a ghabhail ris"
 
-#: ../src/qml/Messages.qml:652
+#: ../src/qml/Messages.qml:597
 msgid "Add"
 msgstr "Cuir ris"
 
@@ -126,7 +126,7 @@ msgstr[3] "Ceanglachain: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Cha chuirear taic ri ceanglachain fuaime"
 
-#: ../src/qml/Messages.qml:890
+#: ../src/qml/Messages.qml:832
 msgid "Away"
 msgstr "Air falbh"
 
@@ -134,18 +134,17 @@ msgstr "Air falbh"
 msgid "Back"
 msgstr "Air ais"
 
-#: ../src/qml/Messages.qml:892
+#: ../src/qml/Messages.qml:834
 msgid "Busy"
 msgstr "Trang"
 
-#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
+#: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
 msgstr "Gairm"
 
-#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:127
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -158,7 +157,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:927
 msgid "Close"
 msgstr "Dùin"
 
@@ -167,11 +166,11 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Grad-shlaighd suas o bhonn na sgrìn gus teachdaireachd ùr a sgrìobhadh."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:670
 msgid "Contact"
 msgstr "Neach-aithne"
 
-#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:135 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Dèan lethbhreac"
 
@@ -195,7 +194,7 @@ msgstr "Na faighnich dhìom a-rithist"
 msgid "Don't show again"
 msgstr "Na seall dhomh seo a-rithist"
 
-#: ../src/qml/MessagingContactViewPage.qml:72
+#: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
 msgstr "Deasaich"
 
@@ -207,7 +206,7 @@ msgstr "Cuir cabadaich buidhinn MMS an comas"
 msgid "Failed"
 msgstr "Dh'fhàillig e"
 
-#: ../src/qml/Messages.qml:286
+#: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
 msgstr ""
 
@@ -227,7 +226,7 @@ msgstr "Rabhadh mu mheud faidhle"
 msgid "File type not supported"
 msgstr "Cha chuirear taic ris an t-seòrsa faidhle"
 
-#: ../src/qml/MessagesListView.qml:143
+#: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
 msgstr ""
 
@@ -244,7 +243,7 @@ msgid "Group"
 msgstr "Buidheann"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:626
+#: ../src/qml/Messages.qml:571
 #, qt-format
 msgid "Group (%1)"
 msgstr "Buidheann (%1)"
@@ -265,19 +264,19 @@ msgstr "Dealbh"
 msgid "Image Preview"
 msgstr "Ro-shealladh air dealbh"
 
-#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:110 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Fiosrachadh"
 
-#: ../src/qml/Messages.qml:277
+#: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
 msgstr ""
 
-#: ../src/qml/Messages.qml:285
+#: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -306,7 +305,7 @@ msgstr "Aplacaid nan teachdaireachdan"
 msgid "Messaging application"
 msgstr "Aplacaid nan teachdaireachdan"
 
-#: ../src/qml/MMSDelegate.qml:249
+#: ../src/qml/MMSDelegate.qml:248
 msgid "Missing message data"
 msgstr "Tha dàta na teachdaireachd a dhìth"
 
@@ -314,11 +313,11 @@ msgstr "Tha dàta na teachdaireachd a dhìth"
 msgid "Myself"
 msgstr "Mi fhìn"
 
-#: ../src/qml/Messages.qml:497
+#: ../src/qml/Messages.qml:462
 msgid "New Message"
 msgstr "Teachdaireachd ùr"
 
-#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+#: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
 msgstr "Teachdaireachd ùr"
 
@@ -326,15 +325,15 @@ msgstr "Teachdaireachd ùr"
 msgid "No"
 msgstr "Chan eil"
 
-#: ../src/qml/Messages.qml:282
+#: ../src/qml/Messages.qml:277
 msgid "No SIM card"
 msgstr ""
 
-#: ../src/qml/Messages.qml:279
+#: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
 msgstr "Cha deach cairt SIM a thaghadh"
 
-#: ../src/qml/Messages.qml:981
+#: ../src/qml/Messages.qml:923
 msgid "No network"
 msgstr "Chan eil lìonra ann"
 
@@ -342,7 +341,7 @@ msgstr "Chan eil lìonra ann"
 msgid "No permission to access microphone"
 msgstr "Chan eil cead gus am micreofon inntrigeadh ann"
 
-#: ../src/qml/Messages.qml:888
+#: ../src/qml/Messages.qml:830
 msgid "Offline"
 msgstr "Far loidhne"
 
@@ -352,7 +351,7 @@ msgstr "Far loidhne"
 msgid "Ok"
 msgstr "Ceart ma-thà"
 
-#: ../src/qml/Messages.qml:886
+#: ../src/qml/Messages.qml:828
 msgid "Online"
 msgstr "Air loidhne"
 
@@ -368,7 +367,7 @@ msgstr ""
 "Thoir cead-inntrigidh dha air <a href=\"system_settings\">Roghainnean an t-"
 "siostaim &gt; Tèarainteachd ⁊ Prìobhaideachd</a>."
 
-#: ../src/qml/Messages.qml:283
+#: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
 msgstr ""
 
@@ -395,7 +394,7 @@ msgstr "Air a faighinn"
 msgid "Remove"
 msgstr "Thoir air falbh"
 
-#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:128 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Feuch ris a-rithist"
 
@@ -403,7 +402,7 @@ msgstr "Feuch ris a-rithist"
 msgid "SIM Card is locked"
 msgstr "Tha a' chairt SIM glaiste"
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "SMS"
 msgstr "SMS"
 
@@ -431,7 +430,7 @@ msgstr "Roghainnean"
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
-#: ../src/qml/MessagingContactViewPage.qml:61
+#: ../src/qml/MessagingContactViewPage.qml:62
 msgid "Share"
 msgstr "Co-roinn"
 
@@ -451,16 +450,16 @@ msgstr "Grad-shlaighd gus na gnìomhan a shealltainn"
 msgid "Temporarily Failed"
 msgstr "Dh'fhàillig leis gu sealach"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:55
 msgid "Text message copied to clipboard"
 msgstr "Chaidh lethbhreac dhen teachdaireachd a chur air an stòr-bhòrd"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Chan eil lìonra air %1 an-dràsta"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 msgid "There is currently no network."
 msgstr "Chan eil lìonra ann an-dràsta."
 
@@ -480,7 +479,7 @@ msgstr "An-diugh"
 msgid "Type"
 msgstr "Seòrsa"
 
-#: ../src/qml/Messages.qml:882
+#: ../src/qml/Messages.qml:824
 msgid "Typing.."
 msgstr "A' sgrìobhadh"
 
@@ -532,7 +531,7 @@ msgstr ""
 "Tha thu a' feuchainn ri faidhlichean mòra a chur (corr is 300Kb). "
 "Dh'fhaoidte nach bi comas aig gach giùlanair gus an cur."
 
-#: ../src/qml/Messages.qml:276
+#: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
 msgstr ""
 
@@ -540,7 +539,7 @@ msgstr ""
 msgid "You have to press and hold the record icon"
 msgstr "Feumaidh tu ìomhaigheag a' chlàraidh a bhrùthadh 's a chumail sìos"
 
-#: ../src/qml/Messages.qml:280
+#: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
 msgstr "Feumaidh tu cairt SIM a thaghadh"
 

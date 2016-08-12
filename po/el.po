@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -45,7 +45,7 @@ msgid_plural "%1 seconds call"
 msgstr[0] "κλήση %1 δευτερολέπτου"
 msgstr[1] "%1 δευτερόλεπτα κλήση"
 
-#: ../src/qml/MessagingBottomEdge.qml:38
+#: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
 msgstr "+"
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Accepted"
 msgstr "Αποδέχθη"
 
-#: ../src/qml/Messages.qml:652
+#: ../src/qml/Messages.qml:597
 msgid "Add"
 msgstr "Προσθήκη"
 
@@ -108,7 +108,7 @@ msgstr[1] "Συνημμένα: %1 βίντεο"
 msgid "Audio attachment not supported"
 msgstr "Το επισυναπτόμενο αρχείο ήχου δεν υποστηρίζεται"
 
-#: ../src/qml/Messages.qml:890
+#: ../src/qml/Messages.qml:832
 msgid "Away"
 msgstr "Απουσιάζει"
 
@@ -116,18 +116,17 @@ msgstr "Απουσιάζει"
 msgid "Back"
 msgstr ""
 
-#: ../src/qml/Messages.qml:892
+#: ../src/qml/Messages.qml:834
 msgid "Busy"
 msgstr "Απασχολημένος/η"
 
-#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
+#: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
 msgstr "Κλήση"
 
-#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:127
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -139,7 +138,7 @@ msgstr "Αλλαγή όλων των συσχετίσεων των Μηνυμά�
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:927
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -148,11 +147,11 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Δημιουργία ενός νέου μηνύματος σέρνοντας προς τα πάνω από τη βάση της οθόνης."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:670
 msgid "Contact"
 msgstr "Επαφή"
 
-#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:135 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "Αντιγραφή"
 
@@ -176,7 +175,7 @@ msgstr "Να μην ερωτηθώ ξανά"
 msgid "Don't show again"
 msgstr ""
 
-#: ../src/qml/MessagingContactViewPage.qml:72
+#: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
 msgstr "Επεξεργασία"
 
@@ -188,7 +187,7 @@ msgstr "Ενεργοποίηση συνομιλία ομάδας ΜΜS"
 msgid "Failed"
 msgstr "Απέτυχε"
 
-#: ../src/qml/Messages.qml:286
+#: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
 msgstr ""
 
@@ -208,7 +207,7 @@ msgstr ""
 msgid "File type not supported"
 msgstr "Το είδος αρχείου δεν υποστηρίζεται"
 
-#: ../src/qml/MessagesListView.qml:143
+#: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
 msgstr ""
 
@@ -225,7 +224,7 @@ msgid "Group"
 msgstr "Ομάδα"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:626
+#: ../src/qml/Messages.qml:571
 #, qt-format
 msgid "Group (%1)"
 msgstr "Ομάδα (%1)"
@@ -247,19 +246,19 @@ msgstr ""
 msgid "Image Preview"
 msgstr "Προεπισκόπηση εικόνας"
 
-#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:110 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../src/qml/Messages.qml:277
+#: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
 msgstr ""
 
-#: ../src/qml/Messages.qml:285
+#: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -287,7 +286,7 @@ msgstr "Εφαρμογή Μηνύματα"
 msgid "Messaging application"
 msgstr "Εφαρμογή μηνυμάτων"
 
-#: ../src/qml/MMSDelegate.qml:249
+#: ../src/qml/MMSDelegate.qml:248
 msgid "Missing message data"
 msgstr "Χαμένα δεδομένα μηνύματος"
 
@@ -295,11 +294,11 @@ msgstr "Χαμένα δεδομένα μηνύματος"
 msgid "Myself"
 msgstr "Εγώ"
 
-#: ../src/qml/Messages.qml:497
+#: ../src/qml/Messages.qml:462
 msgid "New Message"
 msgstr "Νέο μήνυμα"
 
-#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+#: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
 msgstr ""
 
@@ -307,15 +306,15 @@ msgstr ""
 msgid "No"
 msgstr "Όχι"
 
-#: ../src/qml/Messages.qml:282
+#: ../src/qml/Messages.qml:277
 msgid "No SIM card"
 msgstr ""
 
-#: ../src/qml/Messages.qml:279
+#: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
 msgstr "Δεν επιλέχτηκε κάρτα SIM"
 
-#: ../src/qml/Messages.qml:981
+#: ../src/qml/Messages.qml:923
 msgid "No network"
 msgstr "Απουσία δικτύου"
 
@@ -323,7 +322,7 @@ msgstr "Απουσία δικτύου"
 msgid "No permission to access microphone"
 msgstr ""
 
-#: ../src/qml/Messages.qml:888
+#: ../src/qml/Messages.qml:830
 msgid "Offline"
 msgstr "Εκτός σύνδεσης"
 
@@ -333,7 +332,7 @@ msgstr "Εκτός σύνδεσης"
 msgid "Ok"
 msgstr "Εντάξει"
 
-#: ../src/qml/Messages.qml:886
+#: ../src/qml/Messages.qml:828
 msgid "Online"
 msgstr "Σε σύνδεση"
 
@@ -347,7 +346,7 @@ msgid ""
 "Security &amp; Privacy</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:283
+#: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
 msgstr ""
 
@@ -375,7 +374,7 @@ msgstr "Παρελήφθη"
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:128 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "Επανάληψη"
 
@@ -383,7 +382,7 @@ msgstr "Επανάληψη"
 msgid "SIM Card is locked"
 msgstr "Η κάρτα SIM είναι κλειδωμένη"
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "SMS"
 msgstr "SMS"
 
@@ -411,7 +410,7 @@ msgstr "Ρυθμίσεις"
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
-#: ../src/qml/MessagingContactViewPage.qml:61
+#: ../src/qml/MessagingContactViewPage.qml:62
 msgid "Share"
 msgstr "Κοινοποίηση"
 
@@ -431,16 +430,16 @@ msgstr "Σύρετε για να εμφανίσετε ενέργειες"
 msgid "Temporarily Failed"
 msgstr "Προσωρινά απέτυχε"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:55
 msgid "Text message copied to clipboard"
 msgstr "Το μήνυμα κειμένου έχει αντιγραφεί στο πρόχειρο"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "Προς το παρόν δεν υπάρχει δίκτυο στο %1"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 msgid "There is currently no network."
 msgstr "Προς το παρόν δεν υπάρχει δίκτυο."
 
@@ -460,7 +459,7 @@ msgstr "Σήμερα"
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../src/qml/Messages.qml:882
+#: ../src/qml/Messages.qml:824
 msgid "Typing.."
 msgstr "Πληκτρολογεί..."
 
@@ -510,7 +509,7 @@ msgid ""
 "able to send it."
 msgstr ""
 
-#: ../src/qml/Messages.qml:276
+#: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
 msgstr ""
 
@@ -518,7 +517,7 @@ msgstr ""
 msgid "You have to press and hold the record icon"
 msgstr ""
 
-#: ../src/qml/Messages.qml:280
+#: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
 msgstr "Πρέπει να επιλέξετε μια κάρτα SIM"
 
