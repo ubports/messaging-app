@@ -57,8 +57,8 @@ BorderImage {
     function parseText(text) {
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
-        // replace line breaks
-        text = text.replace(/\n/g, '<br />');
+        // wrap text in a div to keep whitespaces and new lines from collapsing
+        text = '<div style="white-space: pre-wrap;">' + text + '</div>';
         // check for links
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
