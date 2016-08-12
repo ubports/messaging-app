@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:41+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -42,7 +42,7 @@ msgid "%1 second call"
 msgid_plural "%1 seconds call"
 msgstr[0] "ការ​ហៅ %1 វិនាទី"
 
-#: ../src/qml/MessagingBottomEdge.qml:38
+#: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
 msgstr "+"
 
@@ -54,7 +54,7 @@ msgstr "<<< បញ្ឈដើម្បីបោះបង់"
 msgid "Accepted"
 msgstr "ព្រម​ទទួល"
 
-#: ../src/qml/Messages.qml:652
+#: ../src/qml/Messages.qml:597
 msgid "Add"
 msgstr "បន្ថែម​"
 
@@ -101,7 +101,7 @@ msgstr[0] "ឯកសារ​ភ្ជាប់៖ វីដេអូ %1"
 msgid "Audio attachment not supported"
 msgstr "មិនគាំទ្រឯកសារភ្ជាប់អូឌីយ៉ូ"
 
-#: ../src/qml/Messages.qml:890
+#: ../src/qml/Messages.qml:832
 msgid "Away"
 msgstr "ចាកឆ្ងាយ"
 
@@ -109,18 +109,17 @@ msgstr "ចាកឆ្ងាយ"
 msgid "Back"
 msgstr "ថយក្រោយ"
 
-#: ../src/qml/Messages.qml:892
+#: ../src/qml/Messages.qml:834
 msgid "Busy"
 msgstr "រវល់"
 
-#: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
+#: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
 msgstr "ហៅ"
 
-#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
-#: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
+#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:127
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
+#: ../src/qml/NewRecipientPage.qml:131
 msgid "Cancel"
 msgstr "បោះ​បង់"
 
@@ -132,7 +131,7 @@ msgstr "ប្តូរការភ្ជាប់ការផ្ញើសារ
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
+#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:927
 msgid "Close"
 msgstr "បិទ"
 
@@ -140,11 +139,11 @@ msgstr "បិទ"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "តែង​សារ​ថ្មី​ដោយ​រុញ​ឡើង​ពី​បាត​អេក្រង់។"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:670
 msgid "Contact"
 msgstr "ទំនាក់ទំនង"
 
-#: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/MessagesListView.qml:135 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
 msgstr "​ចម្លង"
 
@@ -168,7 +167,7 @@ msgstr "កុំ​សួរ​ម្ដងទៀត"
 msgid "Don't show again"
 msgstr "មិនបង្ហាញជាថ្មីម្តងទៀត"
 
-#: ../src/qml/MessagingContactViewPage.qml:72
+#: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
 msgstr "កែសម្រួល"
 
@@ -180,7 +179,7 @@ msgstr ""
 msgid "Failed"
 msgstr "បាន​បរាជ័យ"
 
-#: ../src/qml/Messages.qml:286
+#: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
 msgstr ""
 
@@ -200,7 +199,7 @@ msgstr "ការព្រមានទំហំឯកសារ"
 msgid "File type not supported"
 msgstr "មិនគាំទ្រប្រភេទឯកសារ"
 
-#: ../src/qml/MessagesListView.qml:143
+#: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
 msgstr ""
 
@@ -217,7 +216,7 @@ msgid "Group"
 msgstr "ក្រុម"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:626
+#: ../src/qml/Messages.qml:571
 #, qt-format
 msgid "Group (%1)"
 msgstr "ក្រុម (%1)"
@@ -236,19 +235,19 @@ msgstr "រូបភាព"
 msgid "Image Preview"
 msgstr "មើល​រូបភាព​ជា​មុន"
 
-#: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/MessagesListView.qml:110 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
 msgstr "ព័ត៌មាន"
 
-#: ../src/qml/Messages.qml:277
+#: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
 msgstr ""
 
-#: ../src/qml/Messages.qml:285
+#: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "សារ MMS"
 
@@ -276,7 +275,7 @@ msgstr ""
 msgid "Messaging application"
 msgstr "កម្មវិធី​ផ្ញើ​សារ"
 
-#: ../src/qml/MMSDelegate.qml:249
+#: ../src/qml/MMSDelegate.qml:248
 msgid "Missing message data"
 msgstr "បាត់​ទិន្នន័យ​សារ"
 
@@ -284,11 +283,11 @@ msgstr "បាត់​ទិន្នន័យ​សារ"
 msgid "Myself"
 msgstr "ខ្លួនខ្ញុំ"
 
-#: ../src/qml/Messages.qml:497
+#: ../src/qml/Messages.qml:462
 msgid "New Message"
 msgstr "សារ​ថ្មី"
 
-#: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
+#: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
 msgstr "សារ​ថ្មី"
 
@@ -296,15 +295,15 @@ msgstr "សារ​ថ្មី"
 msgid "No"
 msgstr "ទេ"
 
-#: ../src/qml/Messages.qml:282
+#: ../src/qml/Messages.qml:277
 msgid "No SIM card"
 msgstr ""
 
-#: ../src/qml/Messages.qml:279
+#: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
 msgstr "មិន​បាន​ជ្រើស​ស៊ីម​កាត"
 
-#: ../src/qml/Messages.qml:981
+#: ../src/qml/Messages.qml:923
 msgid "No network"
 msgstr "មិន​មាន​បណ្ដាញ"
 
@@ -312,7 +311,7 @@ msgstr "មិន​មាន​បណ្ដាញ"
 msgid "No permission to access microphone"
 msgstr ""
 
-#: ../src/qml/Messages.qml:888
+#: ../src/qml/Messages.qml:830
 msgid "Offline"
 msgstr "ក្រៅ​បណ្តាញ"
 
@@ -322,7 +321,7 @@ msgstr "ក្រៅ​បណ្តាញ"
 msgid "Ok"
 msgstr "យល់ព្រម"
 
-#: ../src/qml/Messages.qml:886
+#: ../src/qml/Messages.qml:828
 msgid "Online"
 msgstr ""
 
@@ -336,7 +335,7 @@ msgid ""
 "Security &amp; Privacy</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:283
+#: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
 msgstr ""
 
@@ -362,7 +361,7 @@ msgstr "បាន​ទទួល"
 msgid "Remove"
 msgstr "លុបចេញ"
 
-#: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/MessagesListView.qml:128 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
 msgstr "ព្យាយាម​ម្ដងទៀត"
 
@@ -370,7 +369,7 @@ msgstr "ព្យាយាម​ម្ដងទៀត"
 msgid "SIM Card is locked"
 msgstr "ស៊ី​ម​កាត​ត្រូវ​បាន​ចាក់សោ"
 
-#: ../src/qml/MessagesListView.qml:114
+#: ../src/qml/MessagesListView.qml:113
 msgid "SMS"
 msgstr "សារ SMS"
 
@@ -398,7 +397,7 @@ msgstr ""
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
-#: ../src/qml/MessagingContactViewPage.qml:61
+#: ../src/qml/MessagingContactViewPage.qml:62
 msgid "Share"
 msgstr "ចែក​រំលែក"
 
@@ -418,16 +417,16 @@ msgstr ""
 msgid "Temporarily Failed"
 msgstr "បាន​បរាជ័យ​ជា​បណ្ដោះអាសន្ន"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
+#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:55
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "បច្ចុប្បន្ន​មិន​មាន​សេវា​នៅ​លើ %1"
 
-#: ../src/qml/Messages.qml:982
+#: ../src/qml/Messages.qml:924
 msgid "There is currently no network."
 msgstr "បច្ចុប្បន្ន​មិន​មាន​សេវា។"
 
@@ -447,7 +446,7 @@ msgstr "ថ្ងៃ​នេះ"
 msgid "Type"
 msgstr "ប្រភេទ"
 
-#: ../src/qml/Messages.qml:882
+#: ../src/qml/Messages.qml:824
 msgid "Typing.."
 msgstr ""
 
@@ -497,7 +496,7 @@ msgid ""
 "able to send it."
 msgstr ""
 
-#: ../src/qml/Messages.qml:276
+#: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
 msgstr ""
 
@@ -505,7 +504,7 @@ msgstr ""
 msgid "You have to press and hold the record icon"
 msgstr ""
 
-#: ../src/qml/Messages.qml:280
+#: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
 msgstr "អ្នក​ត្រូវ​ជ្រើស​ស៊ីម​កាត"
 
