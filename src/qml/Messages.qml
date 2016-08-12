@@ -359,6 +359,9 @@ Page {
 
         properties["chatType"] = messages.chatType
         properties["participantIds"] = newParticipantsIds
+        if (messages.threadId !== "") {
+            properties["threadId"] = messages.threadId
+        }
 
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
