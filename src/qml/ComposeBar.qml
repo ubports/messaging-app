@@ -79,7 +79,7 @@ Item {
         }
 
         for (var i = 0; i < transfer.items.length; i++) {
-            if (String(transfer.items[i].text).length > 0) {
+            if (String(transfer.items[i].text).length > 0 && String(transfer.items[i].url).length == 0) {
                 composeBar.text = String(transfer.items[i].text)
                 continue
             }
