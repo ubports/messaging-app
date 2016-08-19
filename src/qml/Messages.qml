@@ -1138,7 +1138,7 @@ Page {
         visible: source != ""
         anchors {
             top: parent.top
-            topMargin: header.height + units.gu(2)
+            topMargin: header.height
             left: parent.left
             right: parent.right
             bottom: composeBar.top

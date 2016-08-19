@@ -190,7 +190,7 @@ Page {
         height: flick.emptySpaceHeight
         anchors.left: parent.left
         anchors.bottom: keyboard.top
-        width: contactSearch.width
+        width: parent.width
         clip: true
         z: 2
         Rectangle {
@@ -221,7 +221,6 @@ Page {
             left: parent.left
             right: parent.right
             top: header.bottom
-            topMargin: units.gu(1)
             bottom: keyboard.top
         }
         contentWidth: parent.width
@@ -229,7 +228,7 @@ Page {
 
         FocusScope {
             id: contentColumn
-            property var topItemsHeight: groupTitleItem.height+membersLabel.height+contactSearch.height+units.gu(1)
+            property var topItemsHeight: groupNameItem.height+contactSearch.height
             height: childrenRect.height
             anchors.left: parent.left
             anchors.right: parent.right
@@ -241,9 +240,9 @@ Page {
                 visible: running
             }*/
             Item {
-                id: groupTitleItem
+                id: groupNameItem
                 clip: true 
-                height: multimedia ? childrenRect.height : 0
+                height: multimedia ? units.gu(6) : 0
                 anchors {
                     top: contentColumn.top
                     left: parent.left
@@ -253,8 +252,9 @@ Page {
                 }
                 Label {
                     id: groupNameLabel
-                    height: units.gu(4)
+                    height: units.gu(2)
                     verticalAlignment: Text.AlignVCenter
+                    anchors.verticalCenter: groupTitleField.verticalCenter
                     anchors.left: parent.left
                     text: i18n.tr("Group name:")
                 }
@@ -264,6 +264,8 @@ Page {
                         left: groupNameLabel.right
                         leftMargin: units.gu(2)
                         right: parent.right
+                        topMargin: units.gu(1)
+                        top: parent.top
                     }
                     height: units.gu(4)
                     placeholderText: i18n.tr("Type a name...")
@@ -280,23 +282,34 @@ Page {
                     }
                 }
             }
+            Rectangle {
+               id: separator
+               anchors {
+                   left: parent.left
+                   right: parent.right
+                   bottom: groupNameItem.bottom
+               }
+               height: 1
+               color: UbuntuColors.lightGrey
+               z: 2
+            }
+
             Label {
                 id: membersLabel
-                anchors.top: groupTitleItem.bottom
-                anchors.topMargin: units.gu(1)
                 anchors.left: parent.left
                 anchors.leftMargin: units.gu(2)
-                height: units.gu(4)
+                height: units.gu(2)
                 verticalAlignment: Text.AlignVCenter
+                anchors.verticalCenter: contactSearch.verticalCenter
                 text: i18n.tr("Members:")
             }
             TextField {
                 id: contactSearch
-                anchors.top: membersLabel.bottom
-                anchors.left: parent.left
-                anchors.leftMargin: units.gu(2)
+                anchors.top: groupNameItem.bottom
+                anchors.left: membersLabel.right
+                anchors.leftMargin: units.gu(1)
                 anchors.right: parent.right
-                height: units.gu(5)
+                height: units.gu(6)
                 style: TransparentTextFieldStype { }
                 hasClearButton: false
                 placeholderText: i18n.tr("Number or contact name")
@@ -337,16 +350,7 @@ Page {
                 }
             }
             Rectangle {
-               anchors {
-                   left: parent.left
-                   right: parent.right
-                   top: contactSearch.top
-               }
-               height: 1
-               color: UbuntuColors.lightGrey
-               z: 2
-            }
-            Rectangle {
+               id: separator2
                anchors {
                    left: parent.left
                    right: parent.right

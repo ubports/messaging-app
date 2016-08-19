@@ -71,12 +71,10 @@ ListView {
         anchors {
             left: parent.left
             right: parent.right
-            margins: units.gu(2)
         }
         height: phoneRepeater.count * units.gu(6)
         Column {
             anchors.fill: parent
-            spacing: units.gu(1)
 
             Repeater {
                 id: phoneRepeater
@@ -88,16 +86,21 @@ ListView {
                         left: parent.left
                         right: parent.right
                     }
-                    height: units.gu(5)
+                    height: units.gu(6)
 
                     onClicked: root.contactPicked(contact.phoneNumbers[index].number, contact.displayLabel.label, contact.avatar.url)
 
                     Column {
-                        anchors.fill: parent
+                        anchors.right: parent.right
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        height: childrenRect.height
+                        spacing: units.gu(.5)
 
                         Label {
                             anchors {
                                 left: parent.left
+                                leftMargin: units.gu(2)
                                 right: parent.right
                             }
                             height: units.gu(2)
@@ -120,6 +123,7 @@ ListView {
                         Label {
                             anchors {
                                 left: parent.left
+                                leftMargin: units.gu(2)
                                 right: parent.right
                             }
                             height: units.gu(2)
@@ -128,13 +132,7 @@ ListView {
                                 return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
                                                 .arg(phoneDetail.number)
                             }
-                        }
-                        Item {
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-                            }
-                            height: units.gu(1)
+                            color: "#5D5D5D"
                         }
 
                         ListItem.ThinDivider {}
