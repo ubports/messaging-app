@@ -88,7 +88,7 @@ Page {
                             return false
                         }
                         if (multimedia) {
-                            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 0)
+                            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 1)
                         }
                         return participantsModel.count > 1
                     }

@@ -101,7 +101,7 @@ Page {
                     showAvatarPicture: groupName.text.length === 0
                     anchors {
                         left: parent.left
-                        leftMargin: units.gu(1)
+                        leftMargin: units.gu(2)
                         top: parent.top
                         topMargin: units.gu(1)
                     }
@@ -117,21 +117,38 @@ Page {
                     anchors {
                         left: groupAvatar.right
                         leftMargin: units.gu(1)
-                        right: parent.right
+                        right: editIcon.left
                         rightMargin: units.gu(1)
                         verticalCenter: groupAvatar.verticalCenter
                     }
 
                     InputMethod.extensions: { "enterKeyText": i18n.dtr("messaging-app", "Rename") }
 
-                    // FIXME: check if there is a way to replace the enter button
-                    // by a custom one saying "Rename" in OSK
                     onAccepted: {
                         chatEntry.title = groupName.text
                     }
 
                     Keys.onEscapePressed: {
                         groupName.text = chatEntry.title
+                    }
+                }
+                Icon {
+                    id: editIcon
+                    height: units.gu(2)
+                    width: units.gu(2)
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        rightMargin: units.gu(2)
+                    }
+                    name: "edit"
+                    MouseArea {
+                        anchors.fill: parent
+                        anchors.margins: units.gu(-1)
+                        onClicked: { 
+                            groupName.forceActiveFocus()
+                            groupName.cursorPosition = groupName.text.length
+                        }
                     }
                 }
             }
@@ -150,30 +167,28 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: Math.max(participantsLabel.height, addParticipantButton.height) + units.gu(2)
+                height: units.gu(6)
 
                 Label {
                     id: participantsLabel
                     anchors {
                         left: parent.left
-                        leftMargin: units.gu(1)
-                        verticalCenter: parent.verticalCenter
+                        leftMargin: units.gu(2)
+                        verticalCenter: addParticipantButton.verticalCenter
                     }
-                    text: i18n.tr("Participants")
-                    fontSize: "small"
-                    color: Theme.palette.normal.backgroundTertiaryText
+                    text: i18n.tr("Participants: %1").arg(participants.length)
                 }
 
                 Button {
                     id: addParticipantButton
                     anchors {
                         right: parent.right
-                        rightMargin: units.gu(1)
-                        verticalCenter: parent.verticalCenter
+                        rightMargin: units.gu(2)
+                        bottom: parent.bottom
                     }
 
                     visible: chatRoom
-                    text: i18n.tr("Add member")
+                    text: i18n.tr("Add...")
                     onClicked: mainStack.addPageToCurrentColumn(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": groupChatInfoPage})
                 }
             }
