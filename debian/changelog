@@ -1,3 +1,21 @@
+messaging-app (0.1+16.10.20160819-0ubuntu1) yakkety; urgency=medium
+
+  [ Devid Antonio Filoni ]
+  * Preserve empty lines and leading spaces. (LP: #1366592)
+
+  [ Pat McGowan ]
+  * This adds support for showing the current character count and number
+    of messages to be sent via SMS. It includes a new label on top of
+    the text area showing number of characters / 160 (number of
+    messages). It is shown once the message is over 1 line in length,
+    per other systems. (LP: #1278790)
+
+  [ Tiago Salem Herrmann ]
+  * Share text only if there is no url in the content-hub transfer. (LP:
+    #1613338)
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Fri, 19 Aug 2016 15:15:35 +0000
+
 messaging-app (0.1+16.10.20160729.1-0ubuntu1) yakkety; urgency=medium
 
   * Now that AdaptivePageLayout supports loading pages synchronously and
