@@ -198,6 +198,12 @@ MainView {
         property bool mainViewIgnoreFirstTimeDialog: false
     }
 
+    Settings {
+        id: msgSettings
+        category: "SMS"
+        property bool showCharacterCount: false
+    }
+
     StickerPacksModel {
         id: stickerPacksModel
     }

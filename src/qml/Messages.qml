@@ -1218,6 +1218,7 @@ Page {
         }
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
+        usingMMS: (participantIds.length > 1 || multiRecipient.recipientCount > 1 ) && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
 
         Component.onCompleted: {
             // if page is active, it means this is not a bottom edge page
