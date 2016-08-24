@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-08-23 06:06+0000\n"
-"X-Generator: Launchpad (build 18176)\n"
+"X-Launchpad-Export-Date: 2016-08-24 05:42+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -187,7 +187,7 @@ msgstr "Не приказуј поново"
 msgid "Edit"
 msgstr "Уреди"
 
-#: ../src/qml/SettingsPage.qml:31
+#: ../src/qml/SettingsPage.qml:33
 msgid "Enable MMS group chat"
 msgstr "Омогући ММС групно ћаскање"
 
@@ -265,7 +265,7 @@ msgstr "Није могуће послати поруку у режиму лет
 msgid "It is not possible to send the message"
 msgstr "Није могуће послати поруку"
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "ММС"
 
@@ -378,7 +378,7 @@ msgstr "Прочитана"
 msgid "Received"
 msgstr "Примљена"
 
-#: ../src/qml/ComposeBar.qml:137
+#: ../src/qml/ComposeBar.qml:141
 msgid "Remove"
 msgstr "Уклони"
 
@@ -499,7 +499,7 @@ msgstr "Добро дошли у програм за поруке!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Добро дошли у Убунтуов програм за поруке."
 
-#: ../src/qml/ComposeBar.qml:424
+#: ../src/qml/ComposeBar.qml:435
 msgid "Write a message..."
 msgstr "Напиши поруку..."
 
@@ -523,7 +523,7 @@ msgstr ""
 msgid "You have to disable flight mode"
 msgstr "Морате искључити режим летења"
 
-#: ../src/qml/ComposeBar.qml:161
+#: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
 msgstr "Треба да притиснете и да држите иконицу за снимање"
 
