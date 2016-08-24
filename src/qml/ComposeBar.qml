@@ -40,6 +40,8 @@ Item {
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+    property bool usingMMS: false
+
     onRecordingChanged: {
         if (recording) {
             manuallyRecorded = true
@@ -50,7 +52,9 @@ Item {
 
     // internal properties
     property int _activeAttachmentIndex: -1
-    property int _defaultHeight: textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2)
+    property int _defaultHeight: charCount.height + textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2)
+    property int messageCount: 0
+    property int smsLength: 160
 
     Component.onDestruction: {
         composeBar.reset()
@@ -76,7 +80,7 @@ Item {
         }
 
         for (var i = 0; i < transfer.items.length; i++) {
-            if (String(transfer.items[i].text).length > 0) {
+            if (String(transfer.items[i].text).length > 0 && String(transfer.items[i].url).length == 0) {
                 composeBar.text = String(transfer.items[i].text)
                 continue
             }
@@ -323,6 +327,7 @@ Item {
             if (text !== "" && composeBar.audioAttached) {
                 attachments.clear()
             }
+            messageCount = (messageTextArea.length + smsLength - 1) / smsLength
         }
 
         focus: false
@@ -396,38 +401,72 @@ Item {
             visible: attachments.count > 0
         }
 
-        TextArea {
-            id: messageTextArea
-            objectName: "messageTextArea"
+        Item {
             anchors {
                 top: attachments.count == 0 ? textEntry.top : attachmentThumbnails.bottom
                 left: parent.left
                 right: parent.right
             }
-            // this value is to avoid letter being cut off
-            height: units.gu(4.3)
-            style: LocalTextAreaStyle {}
-            autoSize: true
-            maximumLineCount: attachments.count == 0 ? 8 : 4
-            placeholderText: {
-                if (telepathyHelper.ready) {
-                    var account = telepathyHelper.accountForId(presenceRequest.accountId)
-                    if (account && (messages.chatType == HistoryThreadModel.ChatTypeRoom ||
-                            (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&
-                             presenceRequest.type != PresenceRequest.PresenceTypeUnset) &&
-                             account.protocolInfo.serviceName !== "")) {
-                        return account.protocolInfo.serviceName
+            TextArea {
+                id: messageTextArea
+                objectName: "messageTextArea"
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+                // this value is to avoid letter being cut off
+                height: units.gu(4.3)
+                style: LocalTextAreaStyle {}
+                autoSize: true
+                maximumLineCount: attachments.count == 0 ? 8 : 4
+                placeholderText: {
+                    if (telepathyHelper.ready) {
+                        var account = telepathyHelper.accountForId(presenceRequest.accountId)
+                        if (account &&
+                                (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&
+                                 presenceRequest.type != PresenceRequest.PresenceTypeUnset) &&
+                                account.protocolInfo.serviceName !== "") {
+                            console.log(presenceRequest.accountId)
+                            console.log(presenceRequest.type)
+                            return account.protocolInfo.serviceName
+                        }
+                    }
+                    return i18n.tr("Write a message...")
+                }
+                focus: textEntry.focus
+                font.family: "Ubuntu"
+                font.pixelSize: FontUtils.sizeToPixels("medium")
+                color: Theme.palette.normal.backgroundText
+            }
+
+            // show the counts if option is enabled, and more than one line
+            // If MMS indicate such on the label and don't show the count
+            // if word prediction is on italicize the count while its still composing
+            Label {
+                id: charCount
+                anchors {
+                    right: messageTextArea.right
+                    top: messageTextArea.bottom
+                    topMargin: visible ? units.gu(.5) : 0
+                    bottomMargin: visible ? units.gu(.5) : 0
+                }
+                height: visible ? units.gu(2) : 0
+                text: {
+                    if ((attachments.count > 0) || usingMMS) {
+                        i18n.tr("MMS")
+                    } else {
+                        messageTextArea.length + " (" + messageCount + ")"
                     }
                 }
-                return i18n.tr("Write a message...")
+                fontSize: "small"
+                font.italic: messageTextArea.inputMethodComposing && (attachments.count == 0) && !usingMMS
+                color: Theme.palette.normal.backgroundTertiaryText
+                visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
             }
-            focus: textEntry.focus
-            font.family: "Ubuntu"
-            font.pixelSize: FontUtils.sizeToPixels("medium")
-            color: Theme.palette.normal.backgroundText
         }
     }
-
+    
     AttachmentPanel {
         id: attachmentPanel
 
