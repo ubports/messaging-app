@@ -121,6 +121,7 @@ Page {
                         rightMargin: units.gu(1)
                         verticalCenter: groupAvatar.verticalCenter
                     }
+                    readOnly: !chatEntry.canUpdateConfiguration
 
                     InputMethod.extensions: { "enterKeyText": i18n.dtr("messaging-app", "Rename") }
 
