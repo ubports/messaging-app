@@ -733,7 +733,7 @@ Page {
                                 application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
                                 return
                             }
-                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants})
+                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
                             return
                         }
                         contextMenu.caller = header;
