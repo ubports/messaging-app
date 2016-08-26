@@ -27,7 +27,50 @@ Page {
     id: groupChatInfoPage
 
     property variant threads: []
-    property variant participants: threads.length > 0 ? threads[0].participants : []
+    property variant participants: {
+        if (chatEntry.active) {
+            return chatEntry.participants
+        } else if (threads.length > 0) {
+            return threads[0].participants
+        }
+        return []
+    }
+    property variant localPendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.localPendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].localPendingParticipants
+        }
+        return []
+    }
+    property variant remotePendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.remotePendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].remotePendingParticipants
+        }
+        return []
+    }
+    property variant allParticipants: {
+        var participantList = []
+
+        for (var i in participants) {
+            var participant = participants[i]
+            participant["state"] = 0
+            participantList.push(participant)
+        }
+        for (var i in localPendingParticipants) {
+            var participant = localPendingParticipants[i]
+            participant["state"] = 1
+            participantList.push(participant)
+        }
+        for (var i in remotePendingParticipants) {
+            var participant = remotePendingParticipants[i]
+            participant["state"] = 2
+            participantList.push(participant)
+        }
+        return participantList
+    }
     property QtObject chatEntry: null
     property QtObject eventModel: null
 
@@ -39,7 +82,7 @@ Page {
         id: pageHeader
         title: i18n.tr("Group Info")
         // FIXME: uncomment once the header supports subtitle
-        //subtitle: i18n.tr("%1 member", "%1 members", participants.length)
+        //subtitle: i18n.tr("%1 member", "%1 members", allParticipants.length)
         flickable: contentsFlickable
     }
 
@@ -48,8 +91,8 @@ Page {
     }
 
     function addRecipient(identifier, contact) {
-        for (var i=0; i < participants; i++) {
-            if (identifier == participants[i].identifier) {
+        for (var i=0; i < allParticipants; i++) {
+            if (identifier == allParticipants[i].identifier) {
                 application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
                 return
             }
@@ -67,15 +110,6 @@ Page {
                                              i18n.tr("Contact %1 was invited to the chat").arg(identifier))
     }
 
-    Connections {
-        target: chatEntry
-        onParticipantsChanged: {
-            if (chatEntry.participants.length > 0) {
-                groupChatInfoPage.participants = chatEntry.participants
-            }
-        }
-    }
-
     Flickable {
         id: contentsFlickable
         property var emptySpaceHeight: height - contentsColumn.topItemsHeight+contentsFlickable.contentY
@@ -91,6 +125,7 @@ Page {
         Column {
             id: contentsColumn
             property var topItemsHeight: groupInfo.height+participantsHeader.height+searchItem.height+units.gu(1)
+            enabled: chatEntry.active
 
             anchors {
                 top: parent.top
@@ -131,7 +166,18 @@ Page {
                     id: groupName
                     verticalAlignment: Text.AlignVCenter
                     style: TransparentTextFieldStype {}
-                    text: chatEntry.title
+                    text: {
+                        if (chatEntry.title !== "") {
+                            return chatEntry.title
+                        }
+                        var roomInfo = groupChatInfoPage.threads[0].chatRoomInfo
+                        if (roomInfo.Title != "") {
+                            return roomInfo.Title
+                        } else if (roomInfo.RoomName != "") {
+                            return roomInfo.RoomName
+                        }
+                        return ""
+                    }
                     anchors {
                         left: groupAvatar.right
                         leftMargin: units.gu(1)
@@ -196,7 +242,7 @@ Page {
                         leftMargin: units.gu(2)
                         verticalCenter: addParticipantButton.verticalCenter
                     }
-                    text: !searchItem.enabled ? i18n.tr("Participants: %1").arg(participants.length) : i18n.tr("Add participant:")
+                    text: !searchItem.enabled ? i18n.tr("Participants: %1").arg(allParticipants.length) : i18n.tr("Add participant:")
                 }
 
                 Button {
@@ -287,7 +333,7 @@ Page {
 
             Repeater {
                 id: participantsRepeater
-                model: participants
+                model: allParticipants
 
                 ParticipantDelegate {
                     id: participantDelegate
