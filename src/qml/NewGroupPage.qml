@@ -35,17 +35,17 @@ Page {
         if (alias == "") {
             alias = identifier
         }
-        onContactPickedDuringSearch(identifier, alias, contact.avatar.imageUrl)
+        addRecipientFromSearch(identifier, alias, contact.avatar.imageUrl)
     }
 
-    function onContactPickedDuringSearch(identifier, alias, avatar) {
+    function addRecipientFromSearch(identifier, alias, avatar) {
         for (var i=0; i < participantsModel.count; i++) {
             if (identifier == participantsModel.get(i).identifier) {
                 application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
                 return
             }
         }
-        contactSearch.text = ""
+        searchItem.text = ""
         participantsModel.append({"identifier": identifier, "alias": alias, "avatar": avatar })
     }
 
@@ -105,7 +105,7 @@ Page {
         extension: Sections {
             id: newGroupHeaderSections
             objectName: "newGroupHeaderSections"
-            height: !visible ? 0: undefined
+            height: !visible ? 0 : undefined
             anchors {
                 left: parent.left
                 right: parent.right
@@ -121,7 +121,7 @@ Page {
                 return mainView.multiplePhoneAccounts
             }
             enabled: visible
-            model: [account.displayName]
+            model: visible ? [account.displayName] : undefined
         }
     }
 
@@ -179,39 +179,6 @@ Page {
         }
     }
 
-    Loader {
-        id: searchListLoader
-
-        property int resultCount: (status === Loader.Ready) ? item.count : 0
-
-        source: (contactSearch.text !== "") && contactSearch.focus ?
-                Qt.resolvedUrl("ContactSearchList.qml") : ""
-        visible: source != ""
-        height: flick.emptySpaceHeight
-        anchors.left: parent.left
-        anchors.bottom: keyboard.top
-        width: parent.width
-        clip: true
-        z: 2
-        Rectangle {
-            anchors.fill: parent
-            color: Theme.palette.normal.background
-        }
-
-        Binding {
-            target: searchListLoader.item
-            property: "filterTerm"
-            value: contactSearch.text
-            when: (searchListLoader.status === Loader.Ready)
-        }
-
-        onStatusChanged: {
-            if (status === Loader.Ready) {
-                item.contactPicked.connect(newGroupPage.onContactPickedDuringSearch)
-            }
-        }
-    }
-
     Flickable {
         id: flick
         clip: true
@@ -228,7 +195,7 @@ Page {
 
         FocusScope {
             id: contentColumn
-            property var topItemsHeight: groupNameItem.height+contactSearch.height
+            property var topItemsHeight: groupNameItem.height+searchItem.height
             height: childrenRect.height
             anchors.left: parent.left
             anchors.right: parent.right
@@ -293,60 +260,15 @@ Page {
                color: UbuntuColors.lightGrey
                z: 2
             }
-
-            Label {
-                id: membersLabel
-                anchors.left: parent.left
-                anchors.leftMargin: units.gu(2)
-                height: units.gu(2)
-                verticalAlignment: Text.AlignVCenter
-                anchors.verticalCenter: contactSearch.verticalCenter
-                text: i18n.tr("Members:")
-            }
-            TextField {
-                id: contactSearch
-                anchors.top: groupNameItem.bottom
-                anchors.left: membersLabel.right
-                anchors.leftMargin: units.gu(1)
-                anchors.right: parent.right
-                height: units.gu(6)
-                style: TransparentTextFieldStype { }
-                hasClearButton: false
-                placeholderText: i18n.tr("Number or contact name")
-                inputMethodHints: Qt.ImhNoPredictiveText
-                Keys.onReturnPressed: {
-                    if (text == "")
-                        return
-                    onContactPickedDuringSearch(text, "","")
-                    text = ""
-                }
-
-                Icon {
-                    name: "add"
-                    height: units.gu(2)
-                    anchors {
-                        right: parent.right
-                        rightMargin: units.gu(2)
-                        verticalCenter: parent.verticalCenter
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            Qt.inputMethod.hide()
-                            mainStack.addPageToCurrentColumn(newGroupPage, Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": newGroupPage})
-                        }
-                        z: 2
-                    }
-                    Timer {
-                        interval: 1
-                        onTriggered: {
-                            if (!multimedia) {
-                                return
-                            }
-                            groupTitleField.forceActiveFocus()
-                        }
-                        Component.onCompleted: start()
-                    }
+            ContactSearchWidget {
+                id: searchItem
+                parentPage: newGroupPage
+                searchResultsHeight: flick.emptySpaceHeight
+                onContactPicked: addRecipientFromSearch(identifier, alias, avatar)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: groupNameItem.bottom
                 }
             }
             Rectangle {
@@ -354,7 +276,7 @@ Page {
                anchors {
                    left: parent.left
                    right: parent.right
-                   bottom: contactSearch.bottom
+                   bottom: searchItem.bottom
                }
                height: 1
                color: UbuntuColors.lightGrey
@@ -374,7 +296,7 @@ Page {
             }
             Column {
                 id: participantsColumn
-                anchors.top: contactSearch.bottom
+                anchors.top: searchItem.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
                 Repeater {

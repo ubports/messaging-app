@@ -40,7 +40,30 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
-    property variant participants: threads.length > 0 ? threads[0].participants : []
+    property variant participants: {
+        if (chatEntry.active) {
+            return chatEntry.participants
+        } else if (threads.length > 0) {
+            return threads[0].participants
+        }
+        return []
+    }
+    property variant localPendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.localPendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].localPendingParticipants
+        }
+        return []
+    }
+    property variant remotePendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.remotePendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].remotePendingParticipants
+        }
+        return []
+    }
     property variant participantIds: {
         var ids = []
         for (var i in participants) {
@@ -648,7 +671,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel, participants: messages.participants})
+                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel})
                 }
             ]
 
@@ -733,7 +756,7 @@ Page {
                                 application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
                                 return
                             }
-                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants})
+                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
                             return
                         }
                         contextMenu.caller = header;
@@ -999,19 +1022,6 @@ Page {
                 messages.threads.length === 0) {
                 addNewThreadToFilter(accountId, properties)
             }
-        }
-
-        function updateMessagesParticipants() {
-            if (participants.length > 0) {
-                messages.participants = Qt.binding(function() { return chatEntryObject.participants })
-            }
-        }
-
-        onParticipantsChanged: {
-            updateMessagesParticipants()
-        }
-        Component.onCompleted: {
-            updateMessagesParticipants()
         }
     }
 

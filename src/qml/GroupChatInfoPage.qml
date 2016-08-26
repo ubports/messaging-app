@@ -27,7 +27,50 @@ Page {
     id: groupChatInfoPage
 
     property variant threads: []
-    property variant participants: threads.length > 0 ? threads[0].participants : []
+    property variant participants: {
+        if (chatEntry.active) {
+            return chatEntry.participants
+        } else if (threads.length > 0) {
+            return threads[0].participants
+        }
+        return []
+    }
+    property variant localPendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.localPendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].localPendingParticipants
+        }
+        return []
+    }
+    property variant remotePendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.remotePendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].remotePendingParticipants
+        }
+        return []
+    }
+    property variant allParticipants: {
+        var participantList = []
+
+        for (var i in participants) {
+            var participant = participants[i]
+            participant["state"] = 0
+            participantList.push(participant)
+        }
+        for (var i in localPendingParticipants) {
+            var participant = localPendingParticipants[i]
+            participant["state"] = 1
+            participantList.push(participant)
+        }
+        for (var i in remotePendingParticipants) {
+            var participant = remotePendingParticipants[i]
+            participant["state"] = 2
+            participantList.push(participant)
+        }
+        return participantList
+    }
     property QtObject chatEntry: null
     property QtObject eventModel: null
 
@@ -39,11 +82,23 @@ Page {
         id: pageHeader
         title: i18n.tr("Group Info")
         // FIXME: uncomment once the header supports subtitle
-        //subtitle: i18n.tr("%1 member", "%1 members", participants.length)
+        //subtitle: i18n.tr("%1 member", "%1 members", allParticipants.length)
         flickable: contentsFlickable
     }
 
+    function addRecipientFromSearch(identifier, alias, avatar) {
+        addRecipient(identifier, null)
+    }
+
     function addRecipient(identifier, contact) {
+        for (var i=0; i < allParticipants; i++) {
+            if (identifier == allParticipants[i].identifier) {
+                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                return
+            }
+        }
+        searchItem.text = ""
+
         chatEntry.inviteParticipants([identifier], "")
         var newParticipantsIds = []
         for (var i in groupChatInfoPage.threads[0].participants) {
@@ -55,23 +110,22 @@ Page {
                                              i18n.tr("Contact %1 was invited to the chat").arg(identifier))
     }
 
-    Connections {
-        target: chatEntry
-        onParticipantsChanged: {
-            if (chatEntry.participants.length > 0) {
-                groupChatInfoPage.participants = chatEntry.participants
-            }
-        }
-    }
-
     Flickable {
         id: contentsFlickable
-        anchors.fill: parent
+        property var emptySpaceHeight: height - contentsColumn.topItemsHeight+contentsFlickable.contentY
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboard.top
+        }
         contentHeight: contentsColumn.height
         clip: true
 
         Column {
             id: contentsColumn
+            property var topItemsHeight: groupInfo.height+participantsHeader.height+searchItem.height+units.gu(1)
+            enabled: chatEntry.active
 
             anchors {
                 top: parent.top
@@ -80,11 +134,10 @@ Page {
             }
 
             height: childrenRect.height
-            spacing: units.gu(1)
 
             Item {
                 id: groupInfo
-                height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin : 0
+                height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin + units.gu(1) : 0
                 visible: chatRoom
 
                 anchors {
@@ -113,7 +166,18 @@ Page {
                     id: groupName
                     verticalAlignment: Text.AlignVCenter
                     style: TransparentTextFieldStype {}
-                    text: chatEntry.title
+                    text: {
+                        if (chatEntry.title !== "") {
+                            return chatEntry.title
+                        }
+                        var roomInfo = groupChatInfoPage.threads[0].chatRoomInfo
+                        if (roomInfo.Title != "") {
+                            return roomInfo.Title
+                        } else if (roomInfo.RoomName != "") {
+                            return roomInfo.RoomName
+                        }
+                        return ""
+                    }
                     anchors {
                         left: groupAvatar.right
                         leftMargin: units.gu(1)
@@ -135,6 +199,7 @@ Page {
                 }
                 Icon {
                     id: editIcon
+                    color: Theme.palette.normal.backgroundText
                     height: units.gu(2)
                     width: units.gu(2)
                     anchors {
@@ -168,7 +233,7 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(6)
+                height: units.gu(7)
 
                 Label {
                     id: participantsLabel
@@ -177,7 +242,7 @@ Page {
                         leftMargin: units.gu(2)
                         verticalCenter: addParticipantButton.verticalCenter
                     }
-                    text: i18n.tr("Participants: %1").arg(participants.length)
+                    text: !searchItem.enabled ? i18n.tr("Participants: %1").arg(allParticipants.length) : i18n.tr("Add participant:")
                 }
 
                 Button {
@@ -186,11 +251,15 @@ Page {
                         right: parent.right
                         rightMargin: units.gu(2)
                         bottom: parent.bottom
+                        bottomMargin: units.gu(1)
                     }
 
                     visible: chatRoom
-                    text: i18n.tr("Add...")
-                    onClicked: mainStack.addPageToCurrentColumn(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": groupChatInfoPage})
+                    text: !searchItem.enabled ? i18n.tr("Add...") : i18n.tr("Cancel")
+                    onClicked: {
+                        searchItem.enabled = !searchItem.enabled
+                        searchItem.text = ""
+                    }
                 }
             }
 
@@ -201,12 +270,46 @@ Page {
                 }
             }
 
+            ContactSearchWidget {
+                id: searchItem
+                enabled: false
+                height: enabled ? units.gu(6) : 0
+                clip: true
+                parentPage: groupChatInfoPage
+                searchResultsHeight: contentsFlickable.emptySpaceHeight
+                onContactPicked: addRecipientFromSearch(identifier, alias, avatar)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                Behavior on height {
+                    UbuntuNumberAnimation {}
+                }
+            }
+
+            ListItems.ThinDivider {
+                visible: searchItem.enabled
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+
+
             ListItemActions {
                 id: participantLeadingActions
+                delegate: Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    height: contentHeight
+                    width: contentWidth+units.gu(2)
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    text: i18n.tr("Remove")
+                }
                 actions: [
                     Action {
-                        iconName: "delete"
-                        text: i18n.tr("Delete")
+                        text: i18n.tr("Remove")
                         onTriggered: {
                             // ListItem provides us the index for the item that triggered the action
                             var participantDelegate = participantsRepeater.itemAt(value)
@@ -230,22 +333,28 @@ Page {
 
             Repeater {
                 id: participantsRepeater
-                model: participants
+                model: allParticipants
 
                 ParticipantDelegate {
                     id: participantDelegate
                     participant: modelData
-                    leadingActions: participantLeadingActions
+                    leadingActions: chatRoom ? participantLeadingActions : undefined
                 }
             }
-
+            Item {
+               id: padding
+               height: units.gu(3)
+               anchors.left: parent.left
+               anchors.right: parent.right
+            }
             Button {
                 id: destroyButton
                 anchors {
-                    horizontalCenter: parent.horizontalCenter
+                    right: parent.right
+                    rightMargin: units.gu(2)
                 }
                 visible: chatRoom && chatEntry
-                text: i18n.tr("End this group")
+                text: i18n.tr("End group")
                 color: Theme.palette.normal.negative
                 onClicked: {
                     var result = chatEntry.destroyRoom()
@@ -260,6 +369,9 @@ Page {
                 }
             }
         }
+    }
+    KeyboardRectangle {
+        id: keyboard
     }
 }
 
