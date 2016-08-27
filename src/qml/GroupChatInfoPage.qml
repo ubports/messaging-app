@@ -202,6 +202,7 @@ Page {
                     color: Theme.palette.normal.backgroundText
                     height: units.gu(2)
                     width: units.gu(2)
+                    enabled: chatEntry.canUpdateConfiguration
                     anchors {
                         verticalCenter: parent.verticalCenter
                         right: parent.right
