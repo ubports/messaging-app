@@ -22,6 +22,7 @@ import Ubuntu.Components.ListItems 1.3 as ListItems
 import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.Keyboard 0.1
+import Ubuntu.Telephony 0.1
 
 Page {
     id: groupChatInfoPage
@@ -254,7 +255,12 @@ Page {
                         bottomMargin: units.gu(1)
                     }
 
-                    visible: chatRoom
+                    visible: {
+                        if (!chatRoom || !chatEntry.active) {
+                            return false
+                        }
+                        return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanAdd)
+                    }
                     text: !searchItem.enabled ? i18n.tr("Add...") : i18n.tr("Cancel")
                     onClicked: {
                         searchItem.enabled = !searchItem.enabled
@@ -337,8 +343,15 @@ Page {
 
                 ParticipantDelegate {
                     id: participantDelegate
+                    function canRemove() {
+                        console.log(groupChatInfoPage.chatRoom, chatEntry.active, chatEntry.groupFlags)
+                        if (!groupChatInfoPage.chatRoom || !chatEntry.active) {
+                            return false
+                        }
+                        return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
+                    }
                     participant: modelData
-                    leadingActions: chatRoom ? participantLeadingActions : undefined
+                    leadingActions: canRemove() ? participantLeadingActions : undefined
                 }
             }
             Item {
