@@ -79,6 +79,17 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
 
+    Connections {
+        target: chatEntry
+        onLeaveChatSuccess: {
+            application.showNotificationMessage(i18n.tr("Successfully left group"), "tick")
+            mainView.emptyStack()
+        }
+        onLeaveChatFailed: {
+            application.showNotificationMessage(i18n.tr("Failed to leave group"), "dialog-error-symbolic")
+        }
+    }
+
     header: PageHeader {
         id: pageHeader
         title: i18n.tr("Group Info")
@@ -345,8 +356,7 @@ Page {
                 ParticipantDelegate {
                     id: participantDelegate
                     function canRemove() {
-                        console.log(groupChatInfoPage.chatRoom, chatEntry.active, chatEntry.groupFlags)
-                        if (!groupChatInfoPage.chatRoom || !chatEntry.active) {
+                        if (!groupChatInfoPage.chatRoom || !chatEntry.active || modelData.roles & 2) {
                             return false
                         }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
@@ -361,25 +371,37 @@ Page {
                anchors.left: parent.left
                anchors.right: parent.right
             }
-            Button {
-                id: destroyButton
+            Row {
                 anchors {
                     right: parent.right
                     rightMargin: units.gu(2)
                 }
-                visible: chatRoom && chatEntry
-                text: i18n.tr("End group")
-                color: Theme.palette.normal.negative
-                onClicked: {
-                    var result = chatEntry.destroyRoom()
-                    if (!result) {
-                        application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
-                    } else {
-                        application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
-                        mainView.emptyStack()
-                    }
+                layoutDirection: Qt.RightToLeft
+                spacing: units.gu(1)
+                Button {
+                    id: destroyButton
+                    visible: chatRoom && chatEntry.active && chatEntry.selfContactRoles == 3
+                    text: i18n.tr("End group")
+                    color: Theme.palette.normal.negative
+                    onClicked: {
+                        var result = chatEntry.destroyRoom()
+                        if (!result) {
+                            application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
+                        } else {
+                            application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
+                            mainView.emptyStack()
+                        }
 
-                    // FIXME: show a dialog in case of failure
+                        // FIXME: show a dialog in case of failure
+                    }
+                }
+                Button {
+                    id: leaveButton
+                    visible: chatRoom && chatEntry.active && (chatEntry.selfContactRoles & 1)
+                    text: i18n.tr("Leave group")
+                    onClicked: {
+                        chatEntry.leaveChat()
+                   }
                 }
             }
         }
