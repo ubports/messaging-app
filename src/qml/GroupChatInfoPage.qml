@@ -79,17 +79,6 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
 
-    Connections {
-        target: chatEntry
-        onLeaveChatSuccess: {
-            application.showNotificationMessage(i18n.tr("Successfully left group"), "tick")
-            mainView.emptyStack()
-        }
-        onLeaveChatFailed: {
-            application.showNotificationMessage(i18n.tr("Failed to leave group"), "dialog-error-symbolic")
-        }
-    }
-
     header: PageHeader {
         id: pageHeader
         title: i18n.tr("Group Info")
@@ -356,6 +345,7 @@ Page {
                 ParticipantDelegate {
                     id: participantDelegate
                     function canRemove() {
+                        console.log(chatEntry.selfContactRoles)
                         if (!groupChatInfoPage.chatRoom || !chatEntry.active || modelData.roles & 2) {
                             return false
                         }
@@ -400,8 +390,13 @@ Page {
                     visible: chatRoom && chatEntry.active && (chatEntry.selfContactRoles & 1)
                     text: i18n.tr("Leave group")
                     onClicked: {
-                        chatEntry.leaveChat()
-                   }
+                        if (chatEntry.leaveChat()) {
+                            application.showNotificationMessage(i18n.tr("Successfully left group"), "tick")
+                            mainView.emptyStack()
+                        } else {
+                            application.showNotificationMessage(i18n.tr("Failed to leave group"), "dialog-error-symbolic")
+                        }
+                    }
                 }
             }
         }
