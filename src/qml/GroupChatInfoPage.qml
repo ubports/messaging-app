@@ -108,7 +108,7 @@ Page {
         eventModel.writeTextInformationEvent(groupChatInfoPage.threads[0].accountId,
                                              groupChatInfoPage.threads[0].threadId,
                                              newParticipantsIds,
-                                             i18n.tr("Contact %1 was invited to the chat").arg(identifier))
+                                             i18n.tr("Contact %1 was invited to the group").arg(identifier))
     }
 
     Flickable {
@@ -322,16 +322,6 @@ Page {
                             var participantDelegate = participantsRepeater.itemAt(value)
                             var participant = participantDelegate.participant
                             chatEntry.removeParticipants([participant.identifier], "")
-                            var newParticipantsIds = []
-                            for (var i in groupChatInfoPage.threads[0].participants) {
-                                newParticipantsIds.push(groupChatInfoPage.threads[0].participants[i].identifier)
-                            }
-
-                            eventModel.writeTextInformationEvent(groupChatInfoPage.threads[0].accountId,
-                                                                 groupChatInfoPage.threads[0].threadId,
-                                                                 newParticipantsIds,
-                                                                 i18n.tr("Contact %1 was removed from the chat").arg(participant.identifier))
-
                             participantDelegate.height = 0
                         }
                     }
