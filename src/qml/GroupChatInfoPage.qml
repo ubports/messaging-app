@@ -203,6 +203,7 @@ Page {
                     color: Theme.palette.normal.backgroundText
                     height: units.gu(2)
                     width: units.gu(2)
+                    visible: chatEntry.canUpdateConfiguration
                     enabled: chatEntry.canUpdateConfiguration
                     anchors {
                         verticalCenter: parent.verticalCenter
