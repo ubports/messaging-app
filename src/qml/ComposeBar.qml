@@ -463,7 +463,9 @@ Item {
                 fontSize: "small"
                 font.italic: messageTextArea.inputMethodComposing && (attachments.count == 0) && !usingMMS
                 color: Theme.palette.normal.backgroundTertiaryText
-                visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
+                // hide this option for now
+                //visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
+                visible: false
             }
         }
     }
