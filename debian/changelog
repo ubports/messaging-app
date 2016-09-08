@@ -1,3 +1,12 @@
+messaging-app (0.1+16.10.20160831-0ubuntu1) yakkety; urgency=medium
+
+  [ Pat McGowan ]
+  * The character count logic is much more complex and needs to account
+    for escape characters and different encoding schemes that change the
+    counts. (LP: #1618917)
+
+ -- bill.filler@canonical.com <bill.filler@canonical.com>  Wed, 31 Aug 2016 21:57:48 +0000
+
 messaging-app (0.1+16.10.20160819-0ubuntu1) yakkety; urgency=medium
 
   [ Devid Antonio Filoni ]
