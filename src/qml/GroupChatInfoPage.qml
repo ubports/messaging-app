@@ -203,6 +203,7 @@ Page {
                     color: Theme.palette.normal.backgroundText
                     height: units.gu(2)
                     width: units.gu(2)
+                    visible: chatEntry.canUpdateConfiguration
                     enabled: chatEntry.canUpdateConfiguration
                     anchors {
                         verticalCenter: parent.verticalCenter
@@ -336,7 +337,10 @@ Page {
                     id: participantDelegate
                     function canRemove() {
                         console.log(chatEntry.selfContactRoles)
-                        if (!groupChatInfoPage.chatRoom || !chatEntry.active || modelData.roles & 2) {
+                        if (!groupChatInfoPage.chatRoom /*not a group*/
+                                || !chatEntry.active /*not active*/
+                                || modelData.roles & 2 /*not admin*/
+                                || modelData.state === 2 /*remote pending*/) {
                             return false
                         }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
