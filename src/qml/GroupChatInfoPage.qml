@@ -386,7 +386,7 @@ Page {
                 }
                 Button {
                     id: leaveButton
-                    visible: chatRoom && chatEntry.active && (chatEntry.selfContactRoles & 1)
+                    visible: chatRoom && chatEntry.active && !(chatEntry.selfContactRoles & 2)
                     text: i18n.tr("Leave group")
                     onClicked: {
                         if (chatEntry.leaveChat()) {
