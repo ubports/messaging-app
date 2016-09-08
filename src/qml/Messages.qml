@@ -509,12 +509,22 @@ Page {
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
         var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
-        if (!mainView.applicationActive) {
+        if (!mainView.applicationActive || !messages.active) {
            pendingEventsToMarkAsRead.push(pendingEvent)
            return false
         }
         chatManager.acknowledgeMessage(pendingEvent)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    function processPendingEvents() {
+        if (mainView.applicationActive && messages.active) {
+            for (var i in pendingEventsToMarkAsRead) {
+                var event = pendingEventsToMarkAsRead[i]
+                markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
+            }
+            pendingEventsToMarkAsRead = []
+        }
     }
 
     header: PageHeader {
@@ -811,6 +821,7 @@ Page {
         if (!isReady) {
             messages.ready()
         }
+        processPendingEvents()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -887,13 +898,7 @@ Page {
         }
 
         onApplicationActiveChanged: {
-            if (mainView.applicationActive) {
-                for (var i in pendingEventsToMarkAsRead) {
-                    var event = pendingEventsToMarkAsRead[i]
-                    markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
-                }
-                pendingEventsToMarkAsRead = []
-            }
+            processPendingEvents()
         }
     }
 
