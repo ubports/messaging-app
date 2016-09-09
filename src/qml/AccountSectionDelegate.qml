@@ -21,10 +21,13 @@ import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Contacts 0.1
+import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 
 import "dateUtils.js" as DateUtils
 
 ListItemWithActions {
+    id: informationEvent
     property var messageData: null
     property int index: -1
     property Item delegateItem
@@ -33,9 +36,40 @@ ListItemWithActions {
 
     // update the accountLabel when the list of accounts become available
     Item {
+        id: internalItem
+        property var displayName: { 
+            if (internalWatcher.alias == "") {
+                return internalWatcher.identifier
+            }
+            return internalWatcher.alias
+        }
         Connections {
             target: telepathyHelper
             onAccountsChanged: accountLabel = telepathyHelper.accountForId(messageData.accountId).displayName
+        }
+        ContactWatcher {
+            id: internalWatcher
+            identifier: {
+                switch(messageData.textInformationType) {
+                case HistoryThreadModel.InformationTypeNone:
+                case HistoryThreadModel.InformationTypeText:
+                case HistoryThreadModel.InformationTypeSimChange:
+                case HistoryThreadModel.InformationTypeSelfJoined:
+                case HistoryThreadModel.InformationTypeSelfLeaving:
+                case HistoryThreadModel.InformationTypeSelfAdminGranted:
+                case HistoryThreadModel.InformationTypeSelfAdminRemoved:
+                    break;
+                case HistoryThreadModel.InformationTypeJoined:
+                case HistoryThreadModel.InformationTypeTitleChanged:
+                case HistoryThreadModel.InformationTypeInvitationSent:
+                case HistoryThreadModel.InformationTypeLeaving:
+                case HistoryThreadModel.InformationTypeAdminGranted:
+                case HistoryThreadModel.InformationTypeAdminRemoved:
+                    return messageData.textSubject
+                }
+                return ""
+            }
+            addressableFields: account ? account.addressableVCardFields : ["tel"] // just to have a fallback there
         }
     }
 
@@ -75,13 +109,37 @@ ListItemWithActions {
         clip: true
         // TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
         text: {
-               if (messageData.textMessage == "") {
-                   return i18n.tr("You switched to %1 @ %2")
-                              .arg(accountLabel)
-                              .arg(DateUtils.formatLogDate(messageData.timestamp))
-               } else {
-                   return messageData.textMessage
-               }
+            switch(messageData.textInformationType) {
+            case HistoryThreadModel.InformationTypeNone:
+            case HistoryThreadModel.InformationTypeText:
+                return messageData.textMessage
+            case HistoryThreadModel.InformationTypeInvitationSent:
+                return i18n.tr("%1 was invited to this group").arg(internalItem.displayName)
+            case HistoryThreadModel.InformationTypeSimChange:
+                return i18n.tr("You switched to %1 @ %2")
+                           .arg(accountLabel)
+                           .arg(DateUtils.formatLogDate(messageData.timestamp))
+            case HistoryThreadModel.InformationTypeSelfLeaving:
+                return i18n.tr("You left this group")
+            case HistoryThreadModel.InformationTypeTitleChanged:
+                return i18n.tr("Title changed to: %2").arg(messageData.textSubject)
+            case HistoryThreadModel.InformationTypeLeaving:
+                return i18n.tr("%1 left this group").arg(internalItem.displayName)
+            case HistoryThreadModel.InformationTypeSelfJoined:
+                return i18n.tr("You joined this group")
+            case HistoryThreadModel.InformationTypeJoined:
+                return i18n.tr("%1 joined this group").arg(internalItem.displayName)
+            case HistoryThreadModel.InformationTypeAdminGranted:
+                return i18n.tr("%1 is Admin").arg(internalItem.displayName)
+            case HistoryThreadModel.InformationTypeSelfAdminGranted:
+                return i18n.tr("You are Admin")
+            case HistoryThreadModel.InformationTypeAdminRemoved:
+                return i18n.tr("%1 is not Admin").arg(internalItem.displayName)
+            case HistoryThreadModel.InformationTypeSelfAdminRemoved:
+                return i18n.tr("You are not Admin")
+
+            }
+            return ""
         }
         fontSize: "x-small"
         horizontalAlignment: Text.AlignHCenter
