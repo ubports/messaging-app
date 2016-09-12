@@ -70,6 +70,19 @@ Page {
             participant["state"] = 2
             participantList.push(participant)
         }
+
+        if (chatRoom) {
+            var participant = {"alias": i18n.tr("You"), "identifier": "self", "avatar":""}
+            if (chatEntry.active) {
+                participant["state"] = 0
+                participant["roles"] = chatEntry.selfContactRoles
+                participantList.push(participant)
+            } else  if (chatRoomInfo.Joined) {
+                participant["state"] = 0
+                participant["roles"] = chatRoomInfo.SelfRoles
+                participantList.push(participant)
+            }
+        }
         return participantList
     }
     property QtObject chatEntry: null
@@ -78,6 +91,7 @@ Page {
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
+    property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
 
     header: PageHeader {
         id: pageHeader
