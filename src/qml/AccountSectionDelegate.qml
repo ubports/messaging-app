@@ -58,6 +58,7 @@ ListItemWithActions {
                 case HistoryThreadModel.InformationTypeSelfLeaving:
                 case HistoryThreadModel.InformationTypeSelfAdminGranted:
                 case HistoryThreadModel.InformationTypeSelfAdminRemoved:
+                case HistoryThreadModel.InformationTypeSelfKicked:
                     break;
                 case HistoryThreadModel.InformationTypeJoined:
                 case HistoryThreadModel.InformationTypeTitleChanged:
@@ -141,7 +142,8 @@ ListItemWithActions {
                 return i18n.tr("%1 is not Admin").arg(internalItem.displayName)
             case HistoryThreadModel.InformationTypeSelfAdminRemoved:
                 return i18n.tr("You are not Admin")
-
+            case HistoryThreadModel.InformationTypeSelfKicked:
+                return i18n.tr("You were removed from this group")
             }
             return ""
         }
