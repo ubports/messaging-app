@@ -19,6 +19,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.History 0.1
 import Ubuntu.Contacts 0.1
 import Ubuntu.Keyboard 0.1
@@ -123,6 +124,13 @@ Page {
                                              groupChatInfoPage.threads[0].threadId,
                                              newParticipantsIds,
                                              i18n.tr("Contact %1 was invited to the group").arg(identifier))
+    }
+
+    function removeParticipant(index) {
+        var participantDelegate = participantsRepeater.itemAt(index)
+        var participant = participantDelegate.participant
+        chatEntry.removeParticipants([participant.identifier], "")
+        participantDelegate.height = 0
     }
 
     Flickable {
@@ -333,11 +341,15 @@ Page {
                     Action {
                         text: i18n.tr("Remove")
                         onTriggered: {
-                            // ListItem provides us the index for the item that triggered the action
-                            var participantDelegate = participantsRepeater.itemAt(value)
-                            var participant = participantDelegate.participant
-                            chatEntry.removeParticipants([participant.identifier], "")
-                            participantDelegate.height = 0
+                            // in case account is of type Multimedia, alert if the group is going to have no active participants that the group could
+                            // be dissolved by the server
+                            if (mainView.multimediaAccount !== null && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
+                                var properties = {}
+                                properties["selectedIndex"] = value
+                                PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)
+                            } else {
+                                removeParticipant(value);
+                            }
                         }
                     }
                 ]
