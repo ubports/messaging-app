@@ -681,7 +681,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel})
+                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: threadInformation.threads, chatEntry: messages.chatEntry, eventModel: eventModel})
                 }
             ]
 
@@ -693,7 +693,7 @@ Page {
                         if (chatEntry.title !== "") {
                             return chatEntry.title
                         }
-                        var roomInfo = threads[0].chatRoomInfo
+                        var roomInfo = threadInformation.chatRoomInfo
                         if (roomInfo.Title != "") {
                             return roomInfo.Title
                         } else if (roomInfo.RoomName != "") {
@@ -1233,12 +1233,18 @@ Page {
 
     ListView {
         id: threadInformation
-        property var threads
+        property var chatRoomInfo: null
+        property var participants: null
+        property var threads: null
         model: threadsModel
         visible: false
         delegate: Item {
             property var threads: model.threads
-            onThreadsChanged: messages.threads = model.threads
+            onThreadsChanged: {
+                threadInformation.chatRoomInfo = model.threads[0].chatRoomInfo
+                threadInformation.participants = model.threads[0].participants
+                threadInformation.threads = model.threads
+            }
         }
     }
 
@@ -1361,7 +1367,7 @@ Page {
                return false
             }
             if (threads.length > 0) {
-                return !threads[0].chatRoomInfo.Joined
+                return !threadInformation.chatRoomInfo.Joined
             }
             return false
         }
