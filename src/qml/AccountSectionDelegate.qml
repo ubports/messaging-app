@@ -123,8 +123,8 @@ ListItemWithActions {
             case HistoryThreadModel.InformationTypeSelfLeaving:
                 return i18n.tr("You left this group")
             case HistoryThreadModel.InformationTypeTitleChanged:
-                if (internalItem.displayName === "") {
-                    return i18n.tr("Renamed group to: %1").arg(messageData.textMessage)
+                if (messageData.textMessage === "") {
+                    return i18n.tr("Renamed group to: %1").arg(internalItem.displayName)
                 } else {
                     return i18n.tr("%1 renamed group to: %2").arg(internalItem.displayName).arg(messageData.textMessage)
                 }
