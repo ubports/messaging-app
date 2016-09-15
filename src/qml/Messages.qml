@@ -1156,7 +1156,7 @@ Page {
             topMargin: header.height
             left: parent.left
             right: parent.right
-            bottom: composeBar.top
+            bottom: chatInactiveLabel.top
         }
 
         z: 1
@@ -1212,6 +1212,34 @@ Page {
         avatar: firstParticipant ? firstParticipant.avatar : ""
         detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+    }
+
+    HistoryUnionFilter {
+        id: filters
+        HistoryIntersectionFilter { 
+            HistoryFilter { filterProperty: "accountId"; filterValue: messages.accountId }
+            HistoryFilter { filterProperty: "threadId"; filterValue: messages.threadId }
+        }
+    }
+
+    HistoryGroupedThreadsModel {
+        id: threadsModel
+        type: HistoryThreadModel.EventTypeText
+        sort: HistorySort {}
+        groupingProperty: "participants"
+        filter: messages.accountId != "" && messages.threadId != "" ? filters : null
+        matchContacts: true
+    }
+
+    ListView {
+        id: threadInformation
+        property var threads
+        model: threadsModel
+        visible: false
+        delegate: Item {
+            property var threads: model.threads
+            onThreadsChanged: messages.threads = model.threads
+        }
     }
 
     HistoryEventModel {
@@ -1312,7 +1340,37 @@ Page {
             top: screenTop.bottom
             left: parent.left
             right: parent.right
+            bottom: chatInactiveLabel.top
+        }
+    }
+
+    Item {
+        id: chatInactiveLabel
+        height: visible ? units.gu(8) : 0
+        anchors {
+            left: parent.left
+            right: parent.right
             bottom: composeBar.top
+        }
+        ListItem.ThinDivider {
+            anchors.top: parent.top
+        }
+
+        visible: {
+            if (messages.newMessage || messages.chatType !== HistoryThreadModel.ChatTypeRoom) {
+               return false
+            }
+            if (threads.length > 0) {
+                return !threads[0].chatRoomInfo.Joined
+            }
+            return false
+        }
+        Label {
+            anchors.fill: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            text: i18n.tr("You can't send messages to this group because you are no longer a participant")
         }
     }
 
@@ -1324,7 +1382,7 @@ Page {
             right: parent.right
         }
 
-        showContents: !selectionMode && !isSearching
+        showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
         onTextChanged: {
