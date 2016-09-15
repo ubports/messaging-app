@@ -111,10 +111,6 @@ Item {
     visible: showContents
     clip: true
 
-    Behavior on height {
-        UbuntuNumberAnimation { }
-    }
-
     MouseArea {
         enabled: !composeBar.audioAttached
         anchors.fill: parent
