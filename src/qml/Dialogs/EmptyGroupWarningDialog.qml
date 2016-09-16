@@ -26,8 +26,9 @@ Component {
 
     Dialog {
         id: dialogue
-        property int selectedIndex: -1;
-        text: i18n.tr("There won't be active members after removal and the group could be cancelled");
+        property var groupName: ""
+        property
+        text: i18n.tr("Removing last member will cause '%1' to be dissolved. Would you like to continue?").arg(groupName);
         Column {
             anchors.left: parent.left
             anchors.right: parent.right
@@ -37,7 +38,7 @@ Component {
                 spacing: units.gu(4)
                 Button {
                     objectName: "emptyGroupWarningDialogCancel"
-                    text: i18n.tr("Cancel")
+                    text: i18n.tr("No")
                     color: UbuntuColors.orange
                     onClicked: {
                         PopupUtils.close(dialogue)
@@ -46,28 +47,12 @@ Component {
                 }
                 Button {
                     objectName: "emptyGroupWarningDialogOk"
-                    text: i18n.tr("Ok")
+                    text: i18n.tr("Yes")
                     color: UbuntuColors.orange
                     onClicked: {
                         PopupUtils.close(dialogue)
                         Qt.inputMethod.hide()
-                        dialogue.caller.removeParticipant(selectedIndex);
-                    }
-                }
-            }
-            Row {
-                spacing: units.gu(1)
-                CheckBox {
-                    id: dontAskAgainCheckbox
-                    checked: false
-                    onCheckedChanged: settings.messagesDontShowEmptyGroupWarning = checked
-                }
-                Label {
-                    text: i18n.tr("Don't ask again")
-                    anchors.verticalCenter: dontAskAgainCheckbox.verticalCenter
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: dontAskAgainCheckbox.checked = !dontAskAgainCheckbox.checked
+                        dialogue.caller.destroyGroup()
                     }
                 }
             }
