@@ -27,7 +27,6 @@ Component {
     Dialog {
         id: dialogue
         property var groupName: ""
-        property
         text: i18n.tr("Removing last member will cause '%1' to be dissolved. Would you like to continue?").arg(groupName);
         Column {
             anchors.left: parent.left
