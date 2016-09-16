@@ -133,6 +133,16 @@ Page {
         participantDelegate.height = 0
     }
 
+    function destroyGroup() {
+        var result = chatEntry.destroyRoom()
+        if (!result) {
+            application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
+        } else {
+            application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
+            mainView.emptyStack()
+        }
+    }
+
     Flickable {
         id: contentsFlickable
         property var emptySpaceHeight: height - contentsColumn.topItemsHeight+contentsFlickable.contentY
@@ -346,6 +356,7 @@ Page {
                             if (mainView.multimediaAccount !== null && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
                                 var properties = {}
                                 properties["selectedIndex"] = value
+                                properties["groupName"] = groupName.text
                                 PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)
                             } else {
                                 removeParticipant(value);
@@ -393,17 +404,7 @@ Page {
                     visible: chatRoom && chatEntry.active && chatEntry.selfContactRoles == 3
                     text: i18n.tr("End group")
                     color: Theme.palette.normal.negative
-                    onClicked: {
-                        var result = chatEntry.destroyRoom()
-                        if (!result) {
-                            application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
-                        } else {
-                            application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
-                            mainView.emptyStack()
-                        }
-
-                        // FIXME: show a dialog in case of failure
-                    }
+                    onClicked: destroyGroup()
                 }
                 Button {
                     id: leaveButton
