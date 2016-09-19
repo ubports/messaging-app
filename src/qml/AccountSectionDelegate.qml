@@ -138,6 +138,8 @@ ListItemWithActions {
                 return i18n.tr("You are not Admin")
             case HistoryThreadModel.InformationTypeSelfKicked:
                 return i18n.tr("You were removed from this group")
+            case HistoryThreadModel.InformationTypeGroupGone:
+                return i18n.tr("Group has been dissolved")
             }
             return ""
         }
