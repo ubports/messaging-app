@@ -304,11 +304,10 @@ MainView {
         case AccountEntry.PhoneAccount:
         case AccountEntry.MultimediaAccount:
             // get all accounts for phone and multimedia
-            for (var i in [AccountEntry.PhoneAccount, AccountEntry.MultimediaAccount]) {
-                var thisAccounts = telepathyHelper.accountsForType(i)
-                for (var j in thisAccounts) {
-                    var thisAccountId = telepathyHelper.accountForId(thisAccounts[j].accountId)
-                    var thread = threadModel.threadForProperties(thisAccountId,
+            for (var i in telepathyHelper.accounts) {
+                var thisAccount = telepathyHelper.accounts[i]
+                if (thisAccount.type == AccountEntry.PhoneAccount || thisAccount.type == AccountEntry.MultimediaAccount) {
+                    var thread = threadModel.threadForProperties(thisAccount.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  properties,
                                                                  HistoryThreadModel.MatchPhoneNumber,
