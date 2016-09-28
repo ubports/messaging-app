@@ -150,7 +150,6 @@ Page {
         Column {
             id: contentsColumn
             property var topItemsHeight: groupInfo.height+participantsHeader.height+searchItem.height+units.gu(1)
-            enabled: chatEntry.active
 
             anchors {
                 top: parent.top
@@ -164,6 +163,7 @@ Page {
                 id: groupInfo
                 height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin + units.gu(1) : 0
                 visible: chatRoom
+                enabled: chatEntry.active
 
                 anchors {
                     left: parent.left
@@ -256,6 +256,7 @@ Page {
 
             Item {
                 id: participantsHeader
+                enabled: chatEntry.active
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -374,8 +375,19 @@ Page {
                         }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
                     }
+                    function removeFromGroup() {
+                        leadingActions.actions[0].trigger()
+                    }
                     participant: modelData
                     leadingActions: canRemove() ? participantLeadingActions : undefined
+                    onClicked: mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
+                    Icon {
+                       anchors.right: parent.right
+                       anchors.rightMargin: units.gu(1)
+                       anchors.verticalCenter: parent.verticalCenter
+                       height: units.gu(2)
+                       name: "go-next"
+                    }
                 }
             }
             Item {
@@ -385,6 +397,7 @@ Page {
                anchors.right: parent.right
             }
             Row {
+                enabled: chatEntry.active
                 anchors {
                     right: parent.right
                     rightMargin: units.gu(2)
