@@ -52,6 +52,13 @@ Page {
             height: childrenRect.height
 
             Item {
+               id: padding2
+               height: units.gu(2)
+               anchors.left: parent.left
+               anchors.right: parent.right
+            }
+
+            Item {
                 id: groupInfo
                 height: visible ? contactAvatar.height + contactAvatar.anchors.topMargin + units.gu(1) : 0
 
@@ -91,31 +98,26 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-            }
-
             Item {
                id: padding
                height: units.gu(3)
                anchors.left: parent.left
                anchors.right: parent.right
             }
+
             Column {
                 anchors {
                     right: parent.right
                     rightMargin: units.gu(2)
                 }
-                spacing: units.gu(1)
+                spacing: units.gu(2)
                 Button {
                     id: showInContactsButton
                     visible: participant.contactId !== ""
                     text: i18n.tr("Show in Contacts")
                     onClicked: mainView.showContactDetails(participantInfoPage, participant.contactId, null, null)
                 }
+
                 Button {
                     id: setAsAdminButton
                     text: i18n.tr("Set as Admin...")
