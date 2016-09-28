@@ -82,7 +82,7 @@ Previewer {
                 if (FileOperations.link(attachment.filePath, tmpFile)) {
                     videoLoader.item.source = tmpFile
                 } else {
-                    console.log("MMSVideo: Failed to link", attachment.filePath, "to", tmpFile)
+                    console.log("PreviewerVideo: Failed to link", attachment.filePath, "to", tmpFile)
                 }
             }
         }

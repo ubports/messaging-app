@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -29,7 +29,6 @@ MultipleSelectionListView {
     id: root
 
     property var _currentSwipedItem: null
-    property list<Action> _availableActions
     property string latestEventId: ""
 
     function updateSwippedItem(item)
@@ -96,60 +95,19 @@ MultipleSelectionListView {
     header: Item {
         height: units.gu(1)
     }
-    listModel: participants.length > 0 ? eventModel : null
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
     // this is to keep the scrolling smooth
     cacheBuffer: units.gu(10)*20
     currentIndex: 0
-    _availableActions: [
-        Action {
-            id: infoAction
-
-            iconName: "info"
-            text: i18n.tr("Info")
-            onTriggered: {
-                var messageData = listModel.get(value._index)
-                var messageType = messageData.textMessageAttachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                var messageInfo = {"type": messageType,
-                                   "senderId": messageData.senderId,
-                                   "sender": messageData.sender,
-                                   "timestamp": messageData.timestamp,
-                                   "textReadTimestamp": messageData.textReadTimestamp,
-                                   "status": messageData.textMessageStatus,
-                                   "participants": messages.participants}
-                messageInfoDialog.showMessageInfo(messageInfo)
-            }
-        },
-        Action {
-            id: reloadAction
-
-            iconName: "reload"
-            text: i18n.tr("Retry")
-            onTriggered: value.resendMessage()
-        },
-        Action {
-            id: copyAction
-
-            iconName: "edit-copy"
-            text: i18n.tr("Copy")
-            onTriggered: value.copyMessage()
-        },
-        Action {
-            id: forwardAction
-
-            iconName: "mail-forward"
-            text: i18n.tr("Forward")
-            onTriggered: value.forwardMessage()
-        }
-    ]
+    spacing: units.gu(1)
 
     listDelegate: Loader {
         id: loader
         anchors.left: parent.left
         anchors.right: parent.right
         height: status == Loader.Ready ? item.height : 0
-        
+
         Component.onCompleted: {
             var properties = {"messageData": model}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"

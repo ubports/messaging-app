@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -27,14 +27,84 @@ StyledItem {
     property int recipientCount: recipientModel.count-1
     property int selectedIndex: -1
     property variant recipients: []
+    readonly property var participants: getParticipants()
     property string searchString: ""
+    property var repeater: null
     signal clearSearch()
     styleName: "TextFieldStyle"
     clip: true
     height: contactFlow.height
     focus: activeFocus
+    property bool multimediaGroup: false
+    property string defaultHint: i18n.tr("To:")
+    onRecipientsChanged: getParticipants()
+    function getMultimediaGroup () {
+        if (recipients.length < 2) {
+            return false
+        }
+        for (var i=0; i < recipients.length; i++) {
+            var account = telepathyHelper.accountForId(presences.itemAt(i).accountId)
+            console.log(account.type, presences.itemAt(i).accountId)
+            if (!account || account.type != AccountEntry.MultimediaAccount) {
+               return false
+            }
+            if (presences.itemAt(i).type == PresenceRequest.PresenceTypeUnknown || presences.itemAt(i).type == PresenceRequest.PresenceTypeUnset) {
+                return false
+            }
+        }
+        return true
+    }
+
+    function getParticipants() {
+        var participants = []
+        var repeater = multiRecipientWidget.repeater
+        for (var i=0; i< repeater.count-1; i++) {
+            var delegate = repeater.itemAt(i).item
+            var participant = {}
+            participant["identifier"] = delegate.identifier
+            participant["alias"] = delegate.contactName
+            participant["avatar"] = delegate.avatar
+            participants.push(participant)
+        }
+        return participants
+    }
+
+    Repeater {
+        id: presences
+        model: recipients
+        Item {
+            property alias accountId: presence.accountId
+            property alias identifier: presence.identifier
+            property alias type: presence.type
+            PresenceRequest {
+                id: presence
+                accountId: finalAccountId(messages.accountsModel[headerSections.selectedIndex])
+                identifier: modelData
+                onTypeChanged: multiRecipientWidget.multimediaGroup = Qt.binding(getMultimediaGroup)
+            }
+        }
+    }
 
     signal forceFocus()
+
+    function finalAccountId(account) {
+        if (!telepathyHelper.ready) {
+            return ""
+        }
+        if (!account) {
+            return ""
+        }
+        if (account.type == AccountEntry.PhoneAccount) {
+            for (var i in telepathyHelper.accounts) {
+                var tmpAccount = telepathyHelper.accounts[i]
+                if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                    return tmpAccount.accountId
+                }
+            }
+            return ""
+        }
+        return account.accountId
+    }
 
     MouseArea {
         anchors.fill: parent
@@ -43,7 +113,7 @@ StyledItem {
         z: 1
     }
 
-    function addRecipient(identifier) {
+    function addRecipient(identifier, contact) {
         for (var i = 0; i<recipientModel.count; i++) {
             // FIXME: replace by a phone number comparison method
             if (recipientModel.get(i).identifier === identifier) {
@@ -54,7 +124,6 @@ StyledItem {
 
         recipientModel.insert(recipientCount, { "identifier": identifier })
         scrollableArea.contentX = contactFlow.width
-
     }
 
     Behavior on height {
@@ -120,6 +189,7 @@ StyledItem {
                         return contactWatcher.alias
                     }
                     property alias identifier: contactWatcher.identifier
+                    property alias avatar: contactWatcher.avatar
                     property int index
                     property bool selected: selectedIndex == index
                     property string separator: index == recipientCount-1 ? "" : ","
@@ -146,7 +216,7 @@ StyledItem {
                     Label {
                         id: hintLabel 
                         visible: false
-                        text: i18n.tr("To:")
+                        text: multiRecipientWidget.defaultHint
                     }
                     Label {
                         id: textLabel
@@ -156,7 +226,7 @@ StyledItem {
 
                     objectName: "contactSearchInput"
                     focus: true
-                    style: MultiRecipientFieldStyle {}
+                    style: TransparentTextFieldStype {}
                     height: units.gu(4)
                     width: text != "" ? textLabel.paintedWidth + units.gu(3) : hintLabel.paintedWidth + units.gu(3)
                     hasClearButton: false
@@ -226,6 +296,7 @@ StyledItem {
             Repeater {
                 id: rpt
                 model: recipientModel
+                Component.onCompleted: multiRecipientWidget.repeater = rpt
                 delegate: Loader {
                     sourceComponent: {
                         if (searchItem)

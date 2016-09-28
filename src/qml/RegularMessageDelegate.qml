@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -22,6 +22,7 @@ import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
 Column {
+    id: regularDelegate
     height: childrenRect.height
     property var messageData: null
     property Item delegateItem
@@ -48,8 +49,9 @@ Column {
         visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
     }
 
-    MessageDelegateFactory {
+    MessageDelegate {
         objectName: "message%1".arg(index)
+        messageData: regularDelegate.messageData
 
         incoming: senderId != "self"
         // TODO: we have several items inside
@@ -64,24 +66,9 @@ Column {
             }
             return ""
         }
-        rightSideActions: {
-            var actions = []
-            if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-                actions.push(reloadAction)
-            }
-            var hasTextAttachments = false
-            for (var i=0; i < textMessageAttachments.length; i++) {
-                if (startsWith(textMessageAttachments[i].contentType, "text/plain")) {
-                    hasTextAttachments = true
-                    break
-                }
-            }
-            if (messageData.textMessage !== "" || hasTextAttachments) {
-                actions.push(copyAction)
-            }
-            actions.push(forwardAction)
-            actions.push(infoAction)
-            return actions
+        isMultimedia: {
+            var account = telepathyHelper.accountForId(accountId)
+            return account && account.type == AccountEntry.MultimediaAccount
         }
 
         // TODO: need select only the item

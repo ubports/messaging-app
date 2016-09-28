@@ -36,11 +36,42 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
+    property var threadId: threads.length > 0 ? threads[0].threadId : ""
+    property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
-    property variant participants: []
-    property variant participantIds: []
-    property bool groupChat: participants.length > 1
+    property variant participants: {
+        if (chatEntry.active) {
+            return chatEntry.participants
+        } else if (threads.length > 0) {
+            return threads[0].participants
+        }
+        return []
+    }
+    property variant localPendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.localPendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].localPendingParticipants
+        }
+        return []
+    }
+    property variant remotePendingParticipants: {
+        if (chatEntry.active) {
+            return chatEntry.remotePendingParticipants
+        } else if (threads.length > 0) {
+            return threads[0].remotePendingParticipants
+        }
+        return []
+    }
+    property variant participantIds: {
+        var ids = []
+        for (var i in participants) {
+            ids.push(participants[i].identifier)
+        }
+        return ids
+    }
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -56,7 +87,7 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
-    property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+    property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -64,6 +95,7 @@ Page {
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
+    property QtObject chatEntry: chatEntryObject
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
@@ -90,7 +122,8 @@ Page {
  
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
         // on generic accounts we don't give the option to switch to another account
-        if (tmpAccount && tmpAccount.type == AccountEntry.GenericAccount) {
+        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount ||
+                           (tmpAccount.type == AccountEntry.MultimediaAccount && messages.chatType == HistoryThreadModel.ChatTypeRoom))) {
             return [tmpAccount]
         }
 
@@ -181,22 +214,25 @@ Page {
         return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
     }
 
-    function addNewThreadToFilter(newAccountId, participantIds) {
+    function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
         if (newAccount.type == AccountEntry.PhoneAccount || newAccount.type == AccountEntry.MultimediaAccount) {
             matchType = HistoryThreadModel.MatchPhoneNumber
         }
 
-        var thread = eventModel.threadForParticipants(newAccountId,
+        var thread = eventModel.threadForProperties(newAccountId,
                                            HistoryThreadModel.EventTypeText,
-                                           participantIds,
+                                           properties,
                                            matchType,
                                            true)
+        if (thread.length == 0) {
+            return thread
+        } 
         var threadId = thread.threadId
 
         // dont change the participants list
-        if (messages.participants.length == 0) {
+        if (!messages.participants || messages.participants.length == 0) {
             messages.participants = thread.participants
             var ids = []
             for (var i in messages.participants) {
@@ -214,7 +250,7 @@ Page {
         }
 
         if (!found) {
-            messages.threads.push({"accountId": newAccountId, "threadId": threadId})
+            messages.threads.push(thread)
             reloadFilters = !reloadFilters
         }
 
@@ -241,9 +277,52 @@ Page {
         return true
     }
 
+    function checkSelectedAccount() {
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
+            var properties = {}
+
+            var activePhoneAccounts = 0;
+            for (var i in telepathyHelper.phoneAccounts) {
+                if (telepathyHelper.phoneAccounts[i].active) {
+                    activePhoneAccounts++
+                }
+            }
+
+            if (telepathyHelper.flightMode) {
+                properties["title"] = i18n.tr("You have to disable flight mode")
+                properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
+            } else if (multiplePhoneAccounts) {
+                properties["title"] = i18n.tr("No SIM card selected")
+                properties["text"] = i18n.tr("You need to select a SIM card")
+            } else if (telepathyHelper.phoneAccounts.length > 0 && activePhoneAccounts == 0) {
+                properties["title"] = i18n.tr("No SIM card")
+                properties["text"] = i18n.tr("Please insert a SIM card and try again.")
+            } else {
+                properties["text"] = i18n.tr("Failed")
+                properties["title"] = i18n.tr("It is not possible to send messages at the moment")
+            }
+            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+            return false
+        }
+        if (messages.account.type == AccountEntry.PhoneAccount) {
+            return sendMessageNetworkCheck()
+        }
+        if (!account.connected) {
+            var properties = {}
+            properties["title"] = i18n.tr("Not available")
+            properties["text"] = i18n.tr("The selected account is not available at the moment")
+            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+            return false
+        }
+        return true
+    }
+
     // FIXME: support more stuff than just phone number
-    function onPhonePickedDuringSearch(phoneNumber) {
-        multiRecipient.addRecipient(phoneNumber)
+    function onContactPickedDuringSearch(identifier, displayName, avatar) {
+        multiRecipient.addRecipient(identifier)
         multiRecipient.clearSearch()
         multiRecipient.forceActiveFocus()
     }
@@ -284,8 +363,28 @@ Page {
             return false
         }
 
-        // create the new thread and update the threadId list
-        var thread = addNewThreadToFilter(messages.account.accountId, participantIds)
+        if (messages.threads.length > 0) {
+            properties["chatType"] = messages.chatType
+            properties["threadId"] = messages.threadId
+        } else if (properties["chatType"]) {
+            messages.chatType = properties["chatType"]
+        }
+
+        var newParticipantsIds = []
+        for (var i in participantIds) {
+            newParticipantsIds.push(String(participantIds[i]))
+        }
+
+        // fallback chatType to Contact
+        if (newParticipantsIds.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeNone) {
+            messages.chatType = HistoryThreadModel.ChatTypeContact
+        }
+
+        properties["chatType"] = messages.chatType
+        properties["participantIds"] = newParticipantsIds
+        if (messages.threadId !== "") {
+            properties["threadId"] = messages.threadId
+        }
 
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
@@ -300,7 +399,7 @@ Page {
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      thread.threadId,
-                                                     participantIds,
+                                                     newParticipantsIds,
                                                      "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
@@ -349,7 +448,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+            var isMmsGroupChat = newParticipantsIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
@@ -357,11 +456,9 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
-            // create the new thread and update the threadId list
-            if (fallbackAccountId != messages.account.accountId) {
-                addNewThreadToFilter(fallbackAccountId, participantIds)
-            }
+            messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
+            messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+            selfTypingTimer.stop()
         }
 
         if (newMessage) {
@@ -369,7 +466,10 @@ Page {
             var currentIndex = headerSections.selectedIndex
             headerSections.model = getSectionsModel()
             restoreBindings()
-            headerSections.selectedIndex = currentIndex
+            // dont restore index if this is a chatroom
+            if (messages.chatType != HistoryThreadModel.ChatTypeRoom) {
+                headerSections.selectedIndex = currentIndex
+            }
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
@@ -385,9 +485,12 @@ Page {
         return true
     }
 
-    function updateFilters(accounts, participants, reload, threads) {
-        if (participants.length == 0 || accounts.length == 0) {
-            return null
+    function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        console.log(accounts, chatType, participantIds.length, reload, threads.length)
+        if (participantIds.length == 0 || accounts.length == 0) {
+            if (chatType != HistoryThreadModel.ChatTypeRoom) {
+                return null
+            }
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
@@ -398,6 +501,14 @@ Page {
                 var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
                 componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
             }
+            return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
+        }
+
+        // if we have all info but not threads, we force the filter generation
+        if (messages.chatType == HistoryThreadModel.ChatTypeRoom && messages.threadId !== "" && messages.accountId !== "") {
+            var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(messages.accountId)
+            var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(messages.threadId)
+            componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
 
@@ -418,7 +529,7 @@ Page {
             var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
-                                                                 participants,
+                                                                 participantIds,
                                                                  account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                             : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
@@ -435,13 +546,23 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
-        if (!mainView.applicationActive) {
-           var pendingEvent = {"accountId": accountId, "threadId": threadId, "eventId": eventId, "type": type}
+        var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
+        if (!mainView.applicationActive || !messages.active) {
            pendingEventsToMarkAsRead.push(pendingEvent)
            return false
         }
-        chatManager.acknowledgeMessage(participantIds, eventId, accountId)
+        chatManager.acknowledgeMessage(pendingEvent)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    function processPendingEvents() {
+        if (mainView.applicationActive && messages.active) {
+            for (var i in pendingEventsToMarkAsRead) {
+                var event = pendingEventsToMarkAsRead[i]
+                markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
+            }
+            pendingEventsToMarkAsRead = []
+        }
     }
 
     header: PageHeader {
@@ -459,7 +580,7 @@ Page {
                 return firstRecipientAlias
             }
 
-            return i18n.tr("New Message")
+            return " "
         }
         flickable: null
 
@@ -541,7 +662,6 @@ Page {
                     iconName: "mail-forward"
                     onTriggered: messageList.shareSelectedMessages()
                 }
-
             ]
 
             PropertyChanges {
@@ -561,14 +681,30 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
+                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: threadInformation.threads, chatEntry: messages.chatEntry, eventModel: eventModel})
                 }
             ]
 
             PropertyChanges {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
-                title: i18n.tr("Group (%1)").arg(participants.length)
+                title: {
+                    if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
+                        if (chatEntry.title !== "") {
+                            return chatEntry.title
+                        }
+                        var roomInfo = threadInformation.chatRoomInfo
+                        if (roomInfo.Title != "") {
+                            return roomInfo.Title
+                        } else if (roomInfo.RoomName != "") {
+                            return roomInfo.RoomName
+                        } else {
+                            return i18n.tr("Group")
+                        }
+                    } else {
+                        return i18n.tr("Group (%1)").arg(participants.length)
+                    }
+                }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
             }
@@ -617,14 +753,26 @@ Page {
 
             property list<QtObject> trailingActions: [
                 Action {
-                    objectName: "contactList"
-                    iconName: "contact"
+                    id: groupSelectionAction
+                    objectName: "groupSelection"
+                    iconName: "contact-group"
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": multiRecipient})
+                        if (!checkSelectedAccount()) {
+                            return
+                        }
+                        if (!mainView.multimediaAccount) {
+                            if (!telepathyHelper.mmsGroupChat) {
+                                application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
+                                return
+                            }
+                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
+                            return
+                        }
+                        contextMenu.caller = header;
+                        contextMenu.show();
                     }
                 }
-
             ]
 
             property Item contents: MultiRecipientInput {
@@ -637,6 +785,33 @@ Page {
                     rightMargin: units.gu(2)
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
+                }
+
+                Icon {
+                    name: "add"
+                    height: units.gu(2)
+                    anchors {
+                        right: parent.right
+                        rightMargin: units.gu(2)
+                        verticalCenter: parent.verticalCenter
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            Qt.inputMethod.hide()
+                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
+                        }
+                        z: 2
+                    }
+                }
+
+                Connections {
+                    target: mainView.bottomEdge
+                    onStatusChanged: {
+                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
+                            multiRecipient.forceFocus()
+                        }
+                    }
                 }
             }
 
@@ -682,7 +857,9 @@ Page {
     ]
 
     Component.onCompleted: {
-        if (messages.accountId !== "") {
+        // we only revert back to phone account if this is a 1-1 chat,
+        // in which case the handler will fallback to multimedia if needed
+        if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
             var account = telepathyHelper.accountForId(messages.accountId)
             if (account && account.type == AccountEntry.MultimediaAccount) {
                 // fallback the first available phone account
@@ -693,6 +870,9 @@ Page {
         }
         newMessage = (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
+        if (threadId !== "" && accountId !== "" && threads.length == 0) {
+            addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
+        }
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
         mainView.updateNewMessageStatus()
@@ -702,6 +882,18 @@ Page {
         newMessage = false
         active = false
         mainView.updateNewMessageStatus()
+    }
+
+    Timer {
+        id: selfTypingTimer
+        interval: 15000
+        onTriggered: {
+            if (composeBar.text != "" || composeBar.inputMethodComposing) {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStatePaused)
+            } else {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+            }
+        }
     }
 
     Timer {
@@ -724,6 +916,7 @@ Page {
         if (!isReady) {
             messages.ready()
         }
+        processPendingEvents()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -732,35 +925,55 @@ Page {
         objectName:"fakeItem"
     }
 
-    Connections {
-        target: telepathyHelper
-        onSetupReady: {
-            // force reevaluation
-            headerSections.model = getSectionsModel()
-            restoreBindings()
+    ActionSelectionPopover {
+        id: contextMenu
+        z: 100
+        delegate: ListItem.Standard {
+            text: action.text
+        }
+        actions: ActionList {
+            Action {
+                text: i18n.tr("Create MMS Group...")
+                onTriggered: {
+                    if (!telepathyHelper.mmsGroupChat) {
+                        var properties = {}
+                        properties["title"] = i18n.tr("MMS group chat is disabled")
+                        properties["text"] = i18n.tr("You need to enable MMS group chat in the app settings")
+                        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+                        return
+                    }
+                    mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
+                }
+            }
+            Action {
+                text: {
+                    var protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceDisplayName;
+                    if (protocolDisplayName === "") {
+                       protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceName;
+                    }
+                    return i18n.tr("Create %1 Group...").arg(protocolDisplayName);
+                }
+                enabled: mainView.multimediaAccount != null
+                onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "account": messages.account})
+                visible: mainView.multimediaAccount.connected
+            }
         }
     }
 
     Connections {
-        target: chatManager
-        onChatEntryCreated: {
-            // TODO: track using chatId and not participants
-            if (accountId == account.accountId &&
-                firstParticipant && participants[0] == firstParticipant.identifier) {
-                messages.chatEntry = chatEntry
+        target: telepathyHelper
+        onSetupReady: {
+            // force reevaluation
+            if (threads.length == 0) {
+                var properties = {"chatType": chatType,
+                                  "accountId": accountId,
+                                  "threadId": threadId,
+                                  "participantIds": participantIds}
+                messages.threads = getThreadsForProperties(properties)
             }
-        }
-        onChatsChanged: {
-            for (var i in chatManager.chats) {
-                var chat = chatManager.chats[i]
-                // TODO: track using chatId and not participants
-                if (chat.account.accountId == account.accountId &&
-                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
-                    messages.chatEntry = chat
-                    return
-                }
-            }
-            messages.chatEntry = null
+            messages.reloadFilters = !messages.reloadFilters
+            headerSections.model = getSectionsModel()
+            restoreBindings()
         }
     }
 
@@ -777,13 +990,7 @@ Page {
         }
 
         onApplicationActiveChanged: {
-            if (mainView.applicationActive) {
-                for (var i in pendingEventsToMarkAsRead) {
-                    var event = pendingEventsToMarkAsRead[i]
-                    markMessageAsRead(event.accountId, event.threadId, event.eventId, event.type)
-                }
-                pendingEventsToMarkAsRead = []
-            }
+            processPendingEvents()
         }
     }
 
@@ -795,12 +1002,41 @@ Page {
         }
     }
 
+    ChatEntry {
+        id: chatEntryObject
+        chatType: messages.chatType
+        participantIds: messages.participantIds
+        chatId: messages.threadId
+        accountId: messages.accountId
+        autoRequest: !newMessage
+
+        onChatTypeChanged: {
+            messages.chatType = chatEntryObject.chatType
+        }
+
+        onMessageSent: {
+            // create the new thread and update the threadId list
+            if (accountId != messages.account.accountId ||
+                messages.threads.length === 0) {
+                addNewThreadToFilter(accountId, properties)
+            }
+        }
+        onMessageSendingFailed: {
+            // create the new thread and update the threadId list
+            if (accountId != messages.account.accountId ||
+                messages.threads.length === 0) {
+                addNewThreadToFilter(accountId, properties)
+            }
+        }
+    }
+
     Repeater {
-        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        model: messages.chatEntry.chatStates
         Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
+                    messages.userTypingId = modelData.contactId
                     typingTimer.start()
                 } else {
                     messages.userTyping = false
@@ -814,6 +1050,12 @@ Page {
         }
     }
 
+    ContactWatcher {
+        id: typingContactWatcher
+        identifier: messages.userTypingId
+        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+    }
+
     MessagesHeader {
         id: headerContents
         width: parent ? parent.width - units.gu(2) : undefined
@@ -821,7 +1063,16 @@ Page {
         title: pageHeader.title
         subtitle: {
             if (userTyping) {
-                return i18n.tr("Typing..")
+                if (groupChat) {
+                    var contactAlias = typingContactWatcher.alias != "" ? typingContactWatcher.alias : typingContactWatcher.identifier
+                    return i18n.tr("%1 is typing..").arg(contactAlias)
+                } else {
+                    return i18n.tr("Typing..")
+                }
+            }
+            var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
+            if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
+                return ""
             }
             switch (presenceRequest.type) {
             case PresenceRequest.PresenceTypeAvailable:
@@ -844,7 +1095,7 @@ Page {
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
-            if (!account) {
+            if (!account || chatType != HistoryThreadModel.ChatTypeContact) {
                 return ""
             }
             if (account.type == AccountEntry.PhoneAccount) {
@@ -870,49 +1121,6 @@ Page {
         }
         running: isSearching
         visible: running
-    }
-
-    Component {
-        id: participantsPopover
-
-        Popover {
-            id: popover
-            anchorToKeyboard: false
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                Repeater {
-                    model: participants
-                    Item {
-                        height: childrenRect.height
-                        width: popover.width
-                        ListItem.Standard {
-                            id: participant
-                            objectName: "participant%1".arg(index)
-                            text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
-                            onClicked: {
-                                PopupUtils.close(popover)
-                                mainView.startChat(contactWatcher.identifier)
-                            }
-                        }
-                        ContactWatcher {
-                            id: contactWatcher
-                            identifier: modelData.identifier
-                            contactId: modelData.contactId
-                            alias: modelData.alias
-                            avatar: modelData.avatar
-                            detailProperties: modelData.detailProperties
-
-                            addressableFields: messages.account.addressableVCardFields
-                        }
-                    }
-                }
-            }
-        }
     }
 
     Component {
@@ -945,11 +1153,12 @@ Page {
         visible: source != ""
         anchors {
             top: parent.top
-            topMargin: header.height + units.gu(2)
+            topMargin: header.height
             left: parent.left
             right: parent.right
-            bottom: composeBar.top
+            bottom: chatInactiveLabel.top
         }
+
         z: 1
         Behavior on height {
             UbuntuNumberAnimation { }
@@ -979,7 +1188,7 @@ Page {
 
         onStatusChanged: {
             if (status === Loader.Ready) {
-                item.phonePicked.connect(messages.onPhonePickedDuringSearch)
+                item.contactPicked.connect(messages.onContactPickedDuringSearch)
             }
         }
 
@@ -1005,10 +1214,44 @@ Page {
         addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
     }
 
+    HistoryUnionFilter {
+        id: filters
+        HistoryIntersectionFilter { 
+            HistoryFilter { filterProperty: "accountId"; filterValue: messages.accountId }
+            HistoryFilter { filterProperty: "threadId"; filterValue: messages.threadId }
+        }
+    }
+
+    HistoryGroupedThreadsModel {
+        id: threadsModel
+        type: HistoryThreadModel.EventTypeText
+        sort: HistorySort {}
+        groupingProperty: "participants"
+        filter: messages.accountId != "" && messages.threadId != "" ? filters : null
+        matchContacts: true
+    }
+
+    ListView {
+        id: threadInformation
+        property var chatRoomInfo: null
+        property var participants: null
+        property var threads: null
+        model: threadsModel
+        visible: false
+        delegate: Item {
+            property var threads: model.threads
+            onThreadsChanged: {
+                threadInformation.chatRoomInfo = model.threads[0].chatRoomInfo
+                threadInformation.participants = model.threads[0].participants
+                threadInformation.threads = model.threads
+            }
+        }
+    }
+
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.participantIds, messages.reloadFilters, messages.threads)
+        filter: updateFilters(telepathyHelper.accounts, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
         matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
@@ -1068,6 +1311,7 @@ Page {
         id: messageList
         objectName: "messageList"
         visible: !isSearching
+        listModel: messages.newMessage ? null : eventModel
 
         Rectangle {
             color: Theme.palette.normal.background
@@ -1102,7 +1346,37 @@ Page {
             top: screenTop.bottom
             left: parent.left
             right: parent.right
+            bottom: chatInactiveLabel.top
+        }
+    }
+
+    Item {
+        id: chatInactiveLabel
+        height: visible ? units.gu(8) : 0
+        anchors {
+            left: parent.left
+            right: parent.right
             bottom: composeBar.top
+        }
+        ListItem.ThinDivider {
+            anchors.top: parent.top
+        }
+
+        visible: {
+            if (messages.newMessage || messages.chatType !== HistoryThreadModel.ChatTypeRoom) {
+               return false
+            }
+            if (threads.length > 0) {
+                return !threadInformation.chatRoomInfo.Joined
+            }
+            return false
+        }
+        Label {
+            anchors.fill: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            text: i18n.tr("You can't send messages to this group because the group is no longer active")
         }
     }
 
@@ -1114,10 +1388,21 @@ Page {
             right: parent.right
         }
 
-        showContents: !selectionMode && !isSearching
+        showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
-        canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        onTextChanged: {
+            if (text == "" && !composeBar.inputMethodComposing) {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+                selfTypingTimer.stop()
+                return
+            }
+            if (!selfTypingTimer.running) {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+            }
+            selfTypingTimer.start()
+        }
+        canSend: chatType == 2 || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
         usingMMS: (participantIds.length > 1 || multiRecipient.recipientCount > 1 ) && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
 

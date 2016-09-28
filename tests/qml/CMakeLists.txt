@@ -42,7 +42,7 @@ add_test(DualSim ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_DualSim.
 add_test(SingleSim ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_SingleSim.qml)
 add_test(MessageBubble ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessageBubble.qml)
 add_test(MessagesView ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessagesView.qml)
-add_test(MMSDelegate ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MMSDelegate.qml)
+add_test(AttachmentsDelegate ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_AttachmentsDelegate.qml)
 add_test(StickersHistoryModel ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_StickersHistoryModel.qml)
 
 # make qml files visible in QtCreator
