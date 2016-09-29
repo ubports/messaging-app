@@ -100,6 +100,7 @@ Page {
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     property bool newMessage: false
+    property var lastTypingTimestamp: 0
 
     signal ready
     signal cancel
@@ -996,7 +997,7 @@ Page {
 
     Timer {
         id: typingTimer
-        interval: 6000
+        interval: 15000
         onTriggered: {
             messages.userTyping = false;
         }
@@ -1037,7 +1038,7 @@ Page {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
                     messages.userTypingId = modelData.contactId
-                    typingTimer.start()
+                    typingTimer.restart()
                 } else {
                     messages.userTyping = false
                 }
@@ -1397,10 +1398,19 @@ Page {
                 selfTypingTimer.stop()
                 return
             }
+            var currentTimestamp = new Date().getTime()
             if (!selfTypingTimer.running) {
+                messages.lastTypingTimestamp = currentTimestamp
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+            } else {
+                // if more than 8 seconds passed since last typing signal, then send another one
+                if ((currentTimestamp - messages.lastTypingTimestamp) > 8000) {
+                    messages.lastTypingTimestamp = currentTimestamp
+                    messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+                }
             }
-            selfTypingTimer.start()
+            selfTypingTimer.restart()
+
         }
         canSend: chatType == 2 || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
