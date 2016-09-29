@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2015-11-02 17:52+0000\n"
-"Last-Translator: enolp <enolp@softastur.org>\n"
+"PO-Revision-Date: 2016-09-25 13:49+0000\n"
+"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-09-26 06:15+0000\n"
+"X-Generator: Launchpad (build 18204)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -51,7 +51,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "<<< Barrer pa encaboxar"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -73,8 +73,8 @@ msgstr "Too"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Axuntu: %1 clip de soníu"
+msgstr[1] "Axuntos: %1 clips de soníu"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -110,15 +110,15 @@ msgstr "Nun tán sofitaos los axuntos d'audiu"
 
 #: ../src/qml/Messages.qml:832
 msgid "Away"
-msgstr ""
+msgstr "Ausente"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr ""
+msgstr "Anterior"
 
 #: ../src/qml/Messages.qml:834
 msgid "Busy"
-msgstr ""
+msgstr "Ocupáu"
 
 #: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
@@ -174,13 +174,13 @@ msgstr "Nun entrugar más"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
-msgstr ""
+msgstr "Nun amosar más"
 
 #: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
 msgstr "Editar"
 
-#: ../src/qml/SettingsPage.qml:31
+#: ../src/qml/SettingsPage.qml:33
 msgid "Enable MMS group chat"
 msgstr "Habilitar charra de grupu MMS"
 
@@ -190,7 +190,7 @@ msgstr "Falló"
 
 #: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Nun pudo unviase'l mensaxe"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -202,7 +202,7 @@ msgstr "Favoritos"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "Avisu de tamañu de ficheru"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
@@ -210,7 +210,7 @@ msgstr "Nun ta sofitada la triba de ficheru"
 
 #: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
-msgstr ""
+msgstr "Reunviar"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -235,10 +235,12 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Si quies editar la SIM y otres preferencies del móvil, visita les <a "
+"href=\"system_settings\">Preferencies del sistema</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr ""
+msgstr "Imaxe"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -250,13 +252,13 @@ msgstr "Info"
 
 #: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Nun pueden unviase mensaxes en mou vuelu"
 
 #: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Nun pudo unviase'l mensaxe"
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -298,7 +300,7 @@ msgstr "Mensaxe nuevu"
 
 #: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
-msgstr ""
+msgstr "Mensaxe nuevu"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
@@ -306,7 +308,7 @@ msgstr "Non"
 
 #: ../src/qml/Messages.qml:277
 msgid "No SIM card"
-msgstr ""
+msgstr "Nun hai tarxeta SIM"
 
 #: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
@@ -318,11 +320,11 @@ msgstr "Ensin rede"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr ""
+msgstr "Nun hai permisu d'accesu al micrófonu"
 
 #: ../src/qml/Messages.qml:830
 msgid "Offline"
-msgstr ""
+msgstr "Desconectáu"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -332,7 +334,7 @@ msgstr "Aceutar"
 
 #: ../src/qml/Messages.qml:828
 msgid "Online"
-msgstr ""
+msgstr "Conectáu"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -343,10 +345,12 @@ msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
+"Da permisu d'accesu n'<a href=\"system_settings\">Axustes del sistema &gt; "
+"Seguridá y privacidá</a>."
 
 #: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Introduz una tarxeta SIM y tenta nuevamente."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -367,7 +371,7 @@ msgstr "Lleíos"
 msgid "Received"
 msgstr "Recibío"
 
-#: ../src/qml/ComposeBar.qml:137
+#: ../src/qml/ComposeBar.qml:141
 msgid "Remove"
 msgstr "Desaniciar"
 
@@ -458,7 +462,7 @@ msgstr "Tipu"
 
 #: ../src/qml/Messages.qml:824
 msgid "Typing.."
-msgstr ""
+msgstr "Escribiendo..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
@@ -470,7 +474,7 @@ msgstr "Contautu desconocíu"
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr ""
+msgstr "Videu"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
@@ -482,13 +486,13 @@ msgstr "Nun tán sofitaos los axuntos de video"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr ""
+msgstr "¡Afáyate na app de mensaxería!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Bienllegáu a la to aplicación de mensaxería d'Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:424
+#: ../src/qml/ComposeBar.qml:435
 msgid "Write a message..."
 msgstr "Escribi un mensaxe..."
 
@@ -505,14 +509,16 @@ msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
 msgstr ""
+"Tas tentando unviar ficheros grandes (más de 300Kb). Delles operadores "
+"seique nun puedan unvialos."
 
 #: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Tienes de desactivar el mou vuelu"
 
-#: ../src/qml/ComposeBar.qml:161
+#: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
-msgstr ""
+msgstr "Tienes de caltener primíu l'iconu de grabación"
 
 #: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
