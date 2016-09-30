@@ -73,7 +73,7 @@ Page {
         }
 
         if (chatRoom) {
-            var participant = {"alias": i18n.tr("You"), "identifier": "self", "avatar":""}
+            var participant = {"alias": i18n.tr("Me"), "identifier": "self", "avatar":""}
             if (chatEntry.active) {
                 participant["state"] = 0
                 participant["roles"] = chatEntry.selfContactRoles
@@ -380,8 +380,13 @@ Page {
                     }
                     participant: modelData
                     leadingActions: canRemove() ? participantLeadingActions : undefined
-                    onClicked: mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
+                    onClicked: {
+                        if (participant.identifier != "self") {
+                            mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
+                        }
+                    }
                     Icon {
+                       visible: participant.identifier != "self"
                        anchors.right: parent.right
                        anchors.rightMargin: units.gu(1)
                        anchors.verticalCenter: parent.verticalCenter

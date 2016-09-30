@@ -27,6 +27,7 @@ Page {
     property var participant: delegate.participant
     property var chatEntry
     property bool chatRoom: false
+    property bool knownContact: participant.contactId !== ""
 
     header: PageHeader {
         id: pageHeader
@@ -52,13 +53,6 @@ Page {
             height: childrenRect.height
 
             Item {
-               id: padding2
-               height: units.gu(2)
-               anchors.left: parent.left
-               anchors.right: parent.right
-            }
-
-            Item {
                 id: groupInfo
                 height: visible ? contactAvatar.height + contactAvatar.anchors.topMargin + units.gu(1) : 0
 
@@ -78,7 +72,7 @@ Page {
                         left: parent.left
                         leftMargin: units.gu(2)
                         top: parent.top
-                        topMargin: units.gu(1)
+                        topMargin: units.gu(2)
                     }
                     height: units.gu(6)
                     width: units.gu(6)
@@ -87,48 +81,75 @@ Page {
                 Label {
                     id: contactName
                     verticalAlignment: Text.AlignVCenter
-                    text: participant.alias
+                    text: {
+                        if (participant.alias !== "") {
+                            return participant.alias
+                        } else {
+                            return participant.identifier
+                        }
+                    }
                     anchors {
                         left: contactAvatar.right
-                        leftMargin: units.gu(1)
+                        leftMargin: units.gu(2)
                         right: parent.right
                         rightMargin: units.gu(1)
-                        verticalCenter: contactAvatar.verticalCenter
+                        top: contactAvatar.top
+                        topMargin: units.gu(1)
                     }
                 }
             }
 
             Item {
                id: padding
-               height: units.gu(3)
+               height: units.gu(1)
+               anchors.left: parent.left
+               anchors.right: parent.right
+            }
+
+            ListItems.ThinDivider {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+            }
+
+            Item {
+               id: padding3
+               height: units.gu(2)
                anchors.left: parent.left
                anchors.right: parent.right
             }
 
             Column {
                 anchors {
-                    right: parent.right
-                    rightMargin: units.gu(2)
+                    left: parent.left
+                    leftMargin: units.gu(2)
                 }
                 spacing: units.gu(2)
                 Button {
                     id: showInContactsButton
-                    visible: participant.contactId !== ""
-                    text: i18n.tr("Show in Contacts")
-                    onClicked: mainView.showContactDetails(participantInfoPage, participant.contactId, null, null)
+                    text: knownContact ? i18n.tr("See in contacts") : i18n.tr("Add to contacts")
+                    onClicked: { 
+                        if (knownContact) {
+                            mainView.showContactDetails(participantInfoPage, participant.contactId, null, null)
+                        } else {
+                            mainView.addPhoneToContact(participantInfoPage, "", participant.identifier, null, null)
+                        }
+                    }
                 }
 
                 Button {
                     id: setAsAdminButton
-                    text: i18n.tr("Set as Admin...")
+                    text: i18n.tr("Set as admin")
                     visible: false
                     // disabled until backends support this feature
                     //visible: chatRoom && chatEntry.active && chatEntry.selfContactRoles == 3
                 }
+
                 Button {
                     id: leaveButton
                     visible: delegate.canRemove()
-                    text: i18n.tr("Remove From Group...")
+                    text: i18n.tr("Remove from group")
                     color: Theme.palette.normal.negative
                     onClicked: {
                         delegate.removeFromGroup()
