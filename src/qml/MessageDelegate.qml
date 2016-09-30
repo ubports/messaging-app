@@ -61,7 +61,7 @@ ListItemWithActions {
         var transfer = {}
 
         for (var i = 0; i < dataAttachments.length; i++) {
-            var attachment = dataAttachments[i]
+            var attachment = dataAttachments[i].data
             var item = {"text":"", "url":""}
             var contentType = application.fileMimeType(String(attachment.filePath))
             // we dont include smil files. they will be auto generated
@@ -75,7 +75,7 @@ ListItemWithActions {
         transfer["items"] = items
         properties["sharedAttachmentsTransfer"] = transfer
 
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
     }
 
     function copyMessage()
@@ -232,6 +232,12 @@ ListItemWithActions {
             property: "incoming"
             value: incoming
             when: (attachmentsLoader.status === Loader.Ready)
+        }
+        Binding {
+            target: messageDelegate
+            property: "dataAttachments"
+            value: attachmentsLoader.item.dataAttachments
+            when: (attachmentsLoader.status === Loader.Ready && attachmentsLoader.item)
         }
     }
 
