@@ -247,7 +247,7 @@ MainView {
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
-            layout.addPageToNextColumn(mainPage, emptyStatePageComponent)
+            layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("EmptyStatePage.qml"))
         }
     }
 
@@ -312,20 +312,6 @@ MainView {
                application.parseArgument(uris[i])
            }
        }
-    }
-
-    Component {
-        id: emptyStatePageComponent
-        Page {
-            id: emptyStatePage
-            objectName: "emptyStatePage"
-
-            EmptyState {
-                labelVisible: false
-            }
-
-            header: PageHeader { }
-        }
     }
 
     AdaptivePageLayout {
