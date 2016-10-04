@@ -187,24 +187,7 @@ Page {
 
     Component {
         id: sectionDelegate
-        Item {
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: units.gu(2)
-            }
-            height: units.gu(3)
-            Label {
-                anchors.fill: parent
-                elide: Text.ElideRight
-                text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
-                verticalAlignment: Text.AlignVCenter
-                fontSize: "small"
-                color: Theme.palette.normal.backgroundTertiaryText
-            }
-            ListItem.ThinDivider {
-                anchors.bottom: parent.bottom
-            }
+        ThreadsSectionDelegate {
         }
     }
 
