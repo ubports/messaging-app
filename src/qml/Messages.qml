@@ -234,7 +234,8 @@ Page {
             Qt.inputMethod.hide()
             // workaround for bug #1461861
             messages.focus = false
-            PopupUtils.open(noNetworkDialogComponent)
+            PopupUtils.open(Qt.resolvedUrl("Dialogs/NoNetworkDialog.qml"), null, {'multiplePhoneAccounts': multiplePhoneAccounts,
+                                                                          'accountName': messages.account.displayName})
             return false
         }
 
@@ -561,7 +562,9 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
+                    onTriggered: PopupUtils.open(Qt.resolvedUrl("ParticipantsPopover.qml"),
+                                                 trailingActionArea,
+                                                 {'participants': messages.participants})
                 }
             ]
 
@@ -870,68 +873,6 @@ Page {
         }
         running: isSearching
         visible: running
-    }
-
-    Component {
-        id: participantsPopover
-
-        Popover {
-            id: popover
-            anchorToKeyboard: false
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                Repeater {
-                    model: participants
-                    Item {
-                        height: childrenRect.height
-                        width: popover.width
-                        ListItem.Standard {
-                            id: participant
-                            objectName: "participant%1".arg(index)
-                            text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
-                            onClicked: {
-                                PopupUtils.close(popover)
-                                mainView.startChat(contactWatcher.identifier)
-                            }
-                        }
-                        ContactWatcher {
-                            id: contactWatcher
-                            identifier: modelData.identifier
-                            contactId: modelData.contactId
-                            alias: modelData.alias
-                            avatar: modelData.avatar
-                            detailProperties: modelData.detailProperties
-
-                            addressableFields: messages.account.addressableVCardFields
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    Component {
-        id: noNetworkDialogComponent
-        Dialog {
-            id: noNetworkDialog
-            objectName: "noNetworkDialog"
-            title: i18n.tr("No network")
-            text: multiplePhoneAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
-            Button {
-                objectName: "closeNoNetworkDialog"
-                text: i18n.tr("Close")
-                color: UbuntuColors.orange
-                onClicked: {
-                    PopupUtils.close(noNetworkDialog)
-                    Qt.inputMethod.hide()
-                }
-            }
-        }
     }
 
     Loader {
