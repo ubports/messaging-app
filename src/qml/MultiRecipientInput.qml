@@ -35,26 +35,8 @@ StyledItem {
     clip: true
     height: contactFlow.height
     focus: activeFocus
-    property bool multimediaGroup: false
     property string defaultHint: i18n.tr("To:")
     onRecipientsChanged: getParticipants()
-    function getMultimediaGroup () {
-        if (recipients.length < 2) {
-            return false
-        }
-        for (var i=0; i < recipients.length; i++) {
-            var account = telepathyHelper.accountForId(presences.itemAt(i).accountId)
-            console.log(account.type, presences.itemAt(i).accountId)
-            if (!account || account.type != AccountEntry.MultimediaAccount) {
-               return false
-            }
-            if (presences.itemAt(i).type == PresenceRequest.PresenceTypeUnknown || presences.itemAt(i).type == PresenceRequest.PresenceTypeUnset) {
-                return false
-            }
-        }
-        return true
-    }
-
     function getParticipants() {
         var participants = []
         var repeater = multiRecipientWidget.repeater
@@ -69,42 +51,7 @@ StyledItem {
         return participants
     }
 
-    Repeater {
-        id: presences
-        model: recipients
-        Item {
-            property alias accountId: presence.accountId
-            property alias identifier: presence.identifier
-            property alias type: presence.type
-            PresenceRequest {
-                id: presence
-                accountId: finalAccountId(messages.accountsModel[headerSections.selectedIndex])
-                identifier: modelData
-                onTypeChanged: multiRecipientWidget.multimediaGroup = Qt.binding(getMultimediaGroup)
-            }
-        }
-    }
-
     signal forceFocus()
-
-    function finalAccountId(account) {
-        if (!telepathyHelper.ready) {
-            return ""
-        }
-        if (!account) {
-            return ""
-        }
-        if (account.type == AccountEntry.PhoneAccount) {
-            for (var i in telepathyHelper.accounts) {
-                var tmpAccount = telepathyHelper.accounts[i]
-                if (tmpAccount.type == AccountEntry.MultimediaAccount) {
-                    return tmpAccount.accountId
-                }
-            }
-            return ""
-        }
-        return account.accountId
-    }
 
     MouseArea {
         anchors.fill: parent

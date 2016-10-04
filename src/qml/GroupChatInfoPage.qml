@@ -346,7 +346,7 @@ Page {
                         onTriggered: {
                             // in case account is of type Multimedia, alert if the group is going to have no active participants that the group could
                             // be dissolved by the server
-                            if (mainView.multimediaAccount !== null && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
+                            if (chatEntry.chatType == ChatEntry.ChatTypeRoom && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
                                 var properties = {}
                                 properties["selectedIndex"] = value
                                 properties["groupName"] = groupName.text

@@ -69,9 +69,12 @@ Item {
         id: telepathyHelper
         property var activeAccounts: [testAccount, testAccount2]
         property alias accounts: telepathyHelper.activeAccounts
+
+        property alias textAccounts: textAccountsItem
+        property alias phoneAccounts: phoneAccountsItem
+
         property QtObject defaultMessagingAccount: null
         property bool flightMode: false
-        property var phoneAccounts: accounts
         function registerChannelObserver() {}
         function unregisterChannelObserver() {}
         function accountForId(accountId) {
@@ -81,6 +84,20 @@ Item {
                }
             }
             return null
+        }
+
+        Item {
+            id: textAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
+
+        Item {
+            id: phoneAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
         }
     }
 

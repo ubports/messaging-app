@@ -29,31 +29,13 @@ import "Stickers"
 MainView {
     id: mainView
 
-    property bool multiplePhoneAccounts: {
-        var numAccounts = 0
-        for (var i in telepathyHelper.activeAccounts) {
-            if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
-                numAccounts++
-            }
-        }
-        return numAccounts > 1
-    }
+    property bool multiplePhoneAccounts: telepathyHelper.phoneAccounts.active.length > 1
     property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
-    property QtObject multimediaAccount: {
-        for (var i in telepathyHelper.accounts) {
-            var tmpAccount = telepathyHelper.accounts[i]
-            // TODO: check for accounts that support room channels
-            if (tmpAccount.type == AccountEntry.MultimediaAccount && tmpAccount.connected) {
-                return tmpAccount
-            }
-        }
-        return null
-    }
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -64,13 +46,8 @@ MainView {
         // than one account, otherwise we use always the first one
         if (multiplePhoneAccounts) {
             return telepathyHelper.defaultMessagingAccount
-        } else {
-            for (var i in telepathyHelper.activeAccounts) {
-                var tmpAccount = telepathyHelper.activeAccounts[i]
-                if (tmpAccount.type == AccountEntry.PhoneAccount) {
-                    return tmpAccount
-                }
-            }
+        } else if (telepathyHelper.phoneAccounts.active.length > 0){
+            return telepathyHelper.phoneAccounts.active[0]
         }
         return null
     }
@@ -150,17 +127,30 @@ MainView {
     }
 
     Connections {
-        target: telepathyHelper
-        // restore default bindings if any system settings changed
-        onActiveAccountsChanged: {
-            for (var i in telepathyHelper.activeAccounts) {
-                if (telepathyHelper.activeAccounts[i] == account) {
+        target: telepathyHelper.textAccounts
+        onActiveChanged: {
+            for (var i in telepathyHelper.textAccounts.active) {
+                if (telepathyHelper.textAccounts.active[i] == account) {
                     return;
                 }
             }
             account = Qt.binding(defaultPhoneAccount)
         }
-        onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
+    }
+
+    Connections {
+        target: telepathyHelper
+        // restore default bindings if any system settings changed
+        onDefaultMessagingAccountChanged: {
+            account = Qt.binding(defaultPhoneAccount)
+        }
+
+        onSetupReady: {
+            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
+                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
+                PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
+            }
+        }
     }
 
     automaticOrientation: true
@@ -176,16 +166,6 @@ MainView {
         // when running in windowed mode, do not allow resizing
         view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
         view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
-    }
-
-    Connections {
-        target: telepathyHelper
-        onSetupReady: {
-            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
-                PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
-            }
-        }
     }
 
     HistoryGroupedThreadsModel {
@@ -298,38 +278,25 @@ MainView {
             }
         }
 
+        // we need to get the threads also for account overload and fallback
+        var accounts = telepathyHelper.checkAccountOverload(account)
+        accounts.concat(telepathyHelper.checkAccountFallback(account))
+        accounts.concat([account])
 
-        // on phone and multimedia accounts we need to get threads for all available accounts
-        switch(account.type) {
-        case AccountEntry.PhoneAccount:
-        case AccountEntry.MultimediaAccount:
-            // get all accounts for phone and multimedia
-            for (var i in telepathyHelper.accounts) {
-                var thisAccount = telepathyHelper.accounts[i]
-                if (thisAccount.type == AccountEntry.PhoneAccount || thisAccount.type == AccountEntry.MultimediaAccount) {
-                    var thread = threadModel.threadForProperties(thisAccount.accountId,
-                                                                 HistoryThreadModel.EventTypeText,
-                                                                 properties,
-                                                                 HistoryThreadModel.MatchPhoneNumber,
-                                                                 false)
-                    // check if dict is not empty
-                    if (Object.keys(thread).length != 0) {
-                       threads.push(thread)
-                    }
-                }
-            }
-            break;
-        case AccountEntry.GenericAccount:
-            var thread = threadModel.threadForProperties(accountId,
+        console.log("BLABLA accounts length is " + accounts.length)
+
+        for (var i in accounts) {
+            var thisAccount = accounts[i]
+            var thread = threadModel.threadForProperties(thisAccount.accountId,
                                                          HistoryThreadModel.EventTypeText,
                                                          properties,
-                                                         HistoryThreadModel.MatchCaseSensitive,
+                                                         thisAccount.addressableVCardFields.find("tel") ? HistoryThreadModel.MatchPhoneNumber :
+                                                                                                          HistoryThreadModel.MatchCaseSensitive,
                                                          false)
             // check if dict is not empty
             if (Object.keys(thread).length != 0) {
                threads.push(thread)
             }
-            break;
         }
         return threads
     }

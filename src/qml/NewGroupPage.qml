@@ -25,7 +25,7 @@ import ".."
 
 Page {
     id: newGroupPage
-    property bool multimedia: false
+    property bool mmsGroup: true
     property bool creationInProgress: false
     property var participants: []
     property var account: null
@@ -54,14 +54,14 @@ Page {
             if (creationInProgress) {
                 return i18n.tr("Creating Group...")
             }
-            if (multimedia) {
-                var protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceDisplayName;
+            if (mmsGroup) {
+                return i18n.tr("New MMS Group")
+            } else {
+                var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                 if (protocolDisplayName === "") {
-                   protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceName;
+                   protocolDisplayName = account.protocolInfo.serviceName;
                 }
                 return i18n.tr("New %1 Group").arg(protocolDisplayName);
-            } else {
-                return i18n.tr("New MMS Group")
             }
         }
         leadingActionBar {
@@ -87,7 +87,7 @@ Page {
                         if (participantsModel.count == 0) {
                             return false
                         }
-                        if (multimedia) {
+                        if (!mmsGroup) {
                             return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 1)
                         }
                         return participantsModel.count > 1
@@ -113,12 +113,8 @@ Page {
                 bottom: parent.bottom
             }
             visible: {
-                if (newGroupPage.account.type == AccountEntry.GenericType) {
-                    return true
-                }
-                console.log("mainView.multiplePhoneAccounts", mainView.multiplePhoneAccounts)
                 // only show if we have more than one sim card
-                return mainView.multiplePhoneAccounts
+                return account.type == AccountEntry.PhoneAccount && mainView.multiplePhoneAccounts
             }
             enabled: visible
             model: visible ? [account.displayName] : undefined
@@ -144,15 +140,11 @@ Page {
 
     ChatEntry {
         id: chatEntry
-        accountId: {
-            if (newGroupPage.multimedia) {
-                return mainView.multimediaAccount.accountId
-            }
-            return newGroupPage.account.accountId
-        }
+        accountId: newGroupPage.account.accountId
         title: groupTitleField.text
         autoRequest: false
-        chatType: newGroupPage.multimedia ? HistoryThreadModel.ChatTypeRoom : HistoryThreadModel.ChatTypeNone
+        // FIXME: we need to change the way MMS groups are created
+        chatType: newGroupPage.mmsGroup ? HistoryThreadModel.ChatTypeNone : HistoryThreadModel.ChatTypeRoom
         onChatReady: {
             // give history service time to create the thread
             creationTimer.start()
@@ -201,15 +193,10 @@ Page {
             anchors.right: parent.right
             enabled: !creationInProgress
 
-/*            ActivityIndicator {
-                anchors.horizontalCenter: parent.horizontalCenter
-                running: creationInProgress
-                visible: running
-            }*/
             Item {
                 id: groupNameItem
                 clip: true 
-                height: multimedia ? units.gu(6) : 0
+                height: mmsGroup ? 0 : units.gu(6)
                 anchors {
                     top: contentColumn.top
                     left: parent.left
@@ -240,7 +227,7 @@ Page {
                     Timer {
                         interval: 1
                         onTriggered: {
-                            if (!multimedia) {
+                            if (mmsGroup) {
                                 return
                             }
                             groupTitleField.forceActiveFocus()

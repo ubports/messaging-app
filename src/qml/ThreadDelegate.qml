@@ -383,9 +383,10 @@ ListItemWithActions {
                     return ""
                 }
                 if (account.type == AccountEntry.PhoneAccount) {
-                    for (var i in telepathyHelper.accounts) {
-                        var tmpAccount = telepathyHelper.accounts[i]
-                        if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                    var accounts = telepathyHelper.checkAccountOverload(account)
+                    for (var i in accounts) {
+                        var tmpAccount = accounts[i]
+                        if (tmpAccount.active) {
                             return tmpAccount.accountId
                         }
                     }
