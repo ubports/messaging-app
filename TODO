@@ -1,0 +1,4 @@
+- Right now if you call startChat() in the two panel layout, it won't select the
+  thread on the left side
+- Creating an MMS group is now an explicit action so we don't need to have an
+  option in settings for that.
