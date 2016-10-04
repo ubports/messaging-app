@@ -293,9 +293,36 @@ Page {
         id: keyboard
     }
 
-    Scrollbar {
-        flickableItem: threadList
-        align: Qt.AlignTrailing
+    function createQmlObjectAsynchronously(url, parent, properties, callback) {
+        var component = Qt.createComponent(url, Component.Asynchronous);
+        var incubator;
+
+        function componentCreated() {
+            if (component.status == Component.Ready) {
+                incubator = component.incubateObject(parent, properties, Qt.Asynchronous);
+
+                function objectCreated(status) {
+                    if (status == Component.Ready && callback != null) {
+                        callback(incubator.object);
+                    }
+                }
+                incubator.onStatusChanged = objectCreated;
+
+            } else if (component.status == Component.Error) {
+                console.log("Error loading component:", component.errorString());
+            }
+        }
+
+        component.statusChanged.connect(componentCreated);
+    }
+
+    Timer {
+        interval: 1
+        repeat: false
+        running: true
+        onTriggered: createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
+                                                   mainPage,
+                                                   {"flickableItem": threadList})
     }
 
     Loader {
