@@ -204,7 +204,6 @@ Page {
         }
         listModel: threadModel
         clip: true
-        cacheBuffer: threadList.height * 2
         section.property: "eventDate"
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
@@ -229,7 +228,7 @@ Page {
                 right: parent.right
             }
             height: units.gu(8)
-            selectionMode: threadList.isInSelectionMode
+            selectMode: threadList.isInSelectionMode
             selected: {
                 if (selectionMode) {
                     return threadList.isSelected(threadDelegate)
@@ -238,7 +237,7 @@ Page {
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
-            onItemClicked: {
+            onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
@@ -263,7 +262,7 @@ Page {
                     threadList.currentIndex = index
                 }
             }
-            onItemPressAndHold: {
+            onPressAndHold: {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }
