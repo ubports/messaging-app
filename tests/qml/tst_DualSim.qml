@@ -68,11 +68,7 @@ Item {
     Item {
         id: telepathyHelper
         property var activeAccounts: [testAccount, testAccount2]
-        property alias accounts: telepathyHelper.activeAccounts
-
-        property alias textAccounts: textAccountsItem
-        property alias phoneAccounts: phoneAccountsItem
-
+        property alias accounts: telepathyHelper.activeAccounts        
         property QtObject defaultMessagingAccount: null
         property bool flightMode: false
         function registerChannelObserver() {}
@@ -85,6 +81,9 @@ Item {
             }
             return null
         }
+
+        property alias textAccounts: textAccountsItem
+        property alias phoneAccounts: phoneAccountsItem
 
         Item {
             id: textAccountsItem
