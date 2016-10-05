@@ -40,6 +40,10 @@ StyledItem {
     function getParticipants() {
         var participants = []
         var repeater = multiRecipientWidget.repeater
+        if (!repeater) {
+            return participants
+        }
+
         for (var i=0; i< repeater.count-1; i++) {
             var delegate = repeater.itemAt(i).item
             var participant = {}

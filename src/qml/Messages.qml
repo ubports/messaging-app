@@ -189,8 +189,7 @@ Page {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
         // if the addressable fields contains "tel", assume we should do phone match
-        if (newAccount.addressableVCardFields.find("tel")) {
-            console.log("addNewThreadToFilter: matching phone number for account " + newAccount.accountId)
+        if (newAccount.usePhoneNumbers) {
             matchType = HistoryThreadModel.MatchPhoneNumber
         }
 
@@ -446,7 +445,6 @@ Page {
     }
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
-        console.log(accounts, chatType, participantIds.length, reload, threads.length)
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
@@ -484,8 +482,8 @@ Page {
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participantIds,
-                                                                 account.addressableVCardFields.find("tel") ? HistoryThreadModel.MatchPhoneNumber
-                                                                                                            : HistoryThreadModel.MatchCaseSensitive);
+                                                                 account.usePhoneNumbers ? HistoryThreadModel.MatchPhoneNumber :
+                                                                                           HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
                 continue
             }
@@ -496,7 +494,6 @@ Page {
         if (componentFilters === "") {
             return null
         }
-        console.log("BLABLA component filters: " + componentFilters)
         return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
     }
 
@@ -772,15 +769,6 @@ Page {
                         z: 2
                     }
                 }
-
-                Connections {
-                    target: mainView.bottomEdge
-                    onStatusChanged: {
-                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
-                            multiRecipient.forceFocus()
-                        }
-                    }
-                }
             }
 
             PropertyChanges {
@@ -923,30 +911,40 @@ Page {
             }
         }
 
-        Repeater {
-            id: otherGroupsRepeater
-            model: telepathyHelper.textAccounts.active
-
+        Component {
+            id: customGroupChatActionComponent
             Action {
+                property var participants: null
+                property var account: null
                 text: {
-                    var protocolDisplayName = modelData.protocolInfo.serviceDisplayName;
+                    var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
-                       protocolDisplayName = modelData.protocolInfo.serviceName;
+                       protocolDisplayName = account.protocolInfo.serviceName;
                     }
                     return i18n.tr("Create %1 Group...").arg(protocolDisplayName);
                 }
                 // FIXME: this multimedia: true property needs to be replaced by the accountId
-                onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "account": modelData})
-                visible: modelData.type != AccountEntry.PhoneAccount
+                onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"mmsGroup": false, "participants": participants, "account": account})
             }
         }
 
         function updateGroupTypes() {
+            // remove the previous actions
+            actionList.removeAction(mmsGroupAction)
+            for (var i in actionList.actions) {
+                actionList.actions[i].destroy()
+            }
             actionList.actions = []
+
             actionList.addAction(mmsGroupAction)
 
-            for (var i in otherGroupsRepeater.children) {
-                actionList.addAction(otherGroupsRepeater.children[i])
+            for (var i in telepathyHelper.textAccounts.active) {
+                var account = telepathyHelper.textAccounts.active[i]
+                if (account.type == AccountEntry.PhoneAccount) {
+                    continue
+                }
+                var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
+                actionList.addAction(action)
             }
         }
     }
