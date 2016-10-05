@@ -279,9 +279,9 @@ MainView {
         }
 
         // we need to get the threads also for account overload and fallback
-        var accounts = telepathyHelper.checkAccountOverload(account)
+        var accounts = [account]
+        accounts.concat(telepathyHelper.checkAccountOverload(account))
         accounts.concat(telepathyHelper.checkAccountFallback(account))
-        accounts.concat([account])
 
         console.log("BLABLA accounts length is " + accounts.length)
 
@@ -290,8 +290,8 @@ MainView {
             var thread = threadModel.threadForProperties(thisAccount.accountId,
                                                          HistoryThreadModel.EventTypeText,
                                                          properties,
-                                                         thisAccount.addressableVCardFields.find("tel") ? HistoryThreadModel.MatchPhoneNumber :
-                                                                                                          HistoryThreadModel.MatchCaseSensitive,
+                                                         thisAccount.usePhoneNumbers ? HistoryThreadModel.MatchPhoneNumber :
+                                                                                       HistoryThreadModel.MatchCaseSensitive,
                                                          false)
             // check if dict is not empty
             if (Object.keys(thread).length != 0) {
