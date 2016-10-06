@@ -82,6 +82,14 @@ Item {
             return null
         }
 
+        function checkAccountOverload(account) {
+            return []
+        }
+
+        function checkAccountFallback(account) {
+            return []
+        }
+
         property alias textAccounts: textAccountsItem
         property alias phoneAccounts: phoneAccountsItem
 
