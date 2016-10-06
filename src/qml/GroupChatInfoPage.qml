@@ -60,38 +60,31 @@ Page {
         for (var i in participants) {
             var participant = participants[i]
             participant["state"] = 0
+            participant["selfContact"] = false
             participantList.push(participant)
         }
         for (var i in localPendingParticipants) {
             var participant = localPendingParticipants[i]
             participant["state"] = 1
+            participant["selfContact"] = false
             participantList.push(participant)
         }
         for (var i in remotePendingParticipants) {
             var participant = remotePendingParticipants[i]
             participant["state"] = 2
+            participant["selfContact"] = false
             participantList.push(participant)
         }
 
-        if (chatRoom) {
-            var participant = {"alias": i18n.tr("Me"), "identifier": selfContactWatcher.identifier, "avatar":""}
-            if (selfContactWatcher.contactId !== "") {
-                participant.alias = selfContactWatcher.alias
-                participant.avatar = selfContactWatcher.avatar
-                participant.contactId = selfContactWatcher.contactId
-            }
-            if (chatEntry.active) {
-                participant["state"] = 0
-                participant["roles"] = chatEntry.selfContactRoles
-                participantList.push(participant)
-            } else  if (chatRoomInfo.Joined) {
-                participant["state"] = 0
-                participant["roles"] = chatRoomInfo.SelfRoles
+        if (chatRoom && (chatEntry.active || chatRoomInfo.Joined)) {
+            var participant = selfContactWatcher
+            if (chatEntry.active || chatRoomInfo.Joined) {
                 participantList.push(participant)
             }
         }
         return participantList
     }
+
     property QtObject chatEntry: null
     property QtObject eventModel: null
 
@@ -100,10 +93,34 @@ Page {
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
     property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
 
-    ContactWatcher {
+    // self contact isn't provided by history or chatEntry, so we manually add it here
+    Item {
         id: selfContactWatcher
-        identifier: groupChatInfoPage.account.selfContactId
-        addressableFields: groupChatInfoPage.account ? groupChatInfoPage.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        property alias identifier: internalContactWatcher.identifier
+        property alias contactId: internalContactWatcher.contactId
+        property alias avatar: internalContactWatcher.avatar
+        property var alias: {
+            if (contactId == "") {
+                return i18n.tr("Me")
+            }
+            return internalContactWatcher.alias
+        }
+        property bool selfContact: true
+        property int state: 0
+        property int roles: {
+            if(chatEntry.active) {
+                return chatEntry.selfContactRoles
+            } else if (chatRoomInfo.Joined) {
+                return chatRoomInfo.SelfRoles
+            }
+            return 0
+        }
+
+        ContactWatcher {
+            id: internalContactWatcher
+            identifier: groupChatInfoPage.account.selfContactId
+            addressableFields: groupChatInfoPage.account ? groupChatInfoPage.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        }
     }
 
     header: PageHeader {
@@ -398,12 +415,6 @@ Page {
                     }
                     Icon {
                        id: openProfileButton
-                       visible: {
-                           if (participant.identifier == groupChatInfoPage.account.selfContactId && selfContactWatcher.contactId == "") {
-                               return false
-                           }
-                           return true
-                       }
                        anchors.right: parent.right
                        anchors.rightMargin: units.gu(1)
                        anchors.verticalCenter: parent.verticalCenter
