@@ -225,7 +225,7 @@ Page {
         }
         listModel: threadModel
         clip: true
-        cacheBuffer: threadList.height * 2
+        cacheBuffer: Math.max(threadList.height * 2, 0)
         section.property: "eventDate"
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0

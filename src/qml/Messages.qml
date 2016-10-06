@@ -1322,6 +1322,10 @@ Page {
                         accountId = presenceRequest.accountId
                     }
 
+                    if (accountId == "") {
+                        return ""
+                    }
+
                     return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
                 }
                 z: 1
