@@ -21,6 +21,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1
+import Ubuntu.Telephony 0.1
 
 import "dateUtils.js" as DateUtils
 
