@@ -29,6 +29,7 @@ Page {
     id: groupChatInfoPage
 
     property variant threads: []
+    property var account: telepathyHelper.accountForId(threads[0].accountId)
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
@@ -73,7 +74,12 @@ Page {
         }
 
         if (chatRoom) {
-            var participant = {"alias": i18n.tr("Me"), "identifier": "self", "avatar":""}
+            var participant = {"alias": i18n.tr("Me"), "identifier": selfContactWatcher.identifier, "avatar":""}
+            if (selfContactWatcher.contactId !== "") {
+                participant.alias = selfContactWatcher.alias
+                participant.avatar = selfContactWatcher.avatar
+                participant.contactId = selfContactWatcher.contactId
+            }
             if (chatEntry.active) {
                 participant["state"] = 0
                 participant["roles"] = chatEntry.selfContactRoles
@@ -93,6 +99,12 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
     property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
+
+    ContactWatcher {
+        id: selfContactWatcher
+        identifier: groupChatInfoPage.account.selfContactId
+        addressableFields: groupChatInfoPage.account ? groupChatInfoPage.account.addressableVCardFields : ["tel"] // just to have a fallback there
+    }
 
     header: PageHeader {
         id: pageHeader
@@ -366,7 +378,6 @@ Page {
                 ParticipantDelegate {
                     id: participantDelegate
                     function canRemove() {
-                        console.log(chatEntry.selfContactRoles)
                         if (!groupChatInfoPage.chatRoom /*not a group*/
                                 || !chatEntry.active /*not active*/
                                 || modelData.roles & 2 /*not admin*/
@@ -381,12 +392,18 @@ Page {
                     participant: modelData
                     leadingActions: canRemove() ? participantLeadingActions : undefined
                     onClicked: {
-                        if (participant.identifier != "self") {
+                        if (openProfileButton.visible) {
                             mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
                         }
                     }
                     Icon {
-                       visible: participant.identifier != "self"
+                       id: openProfileButton
+                       visible: {
+                           if (participant.identifier == groupChatInfoPage.account.selfContactId && selfContactWatcher.contactId == "") {
+                               return false
+                           }
+                           return true
+                       }
                        anchors.right: parent.right
                        anchors.rightMargin: units.gu(1)
                        anchors.verticalCenter: parent.verticalCenter
