@@ -29,6 +29,7 @@ Page {
     id: groupChatInfoPage
 
     property variant threads: []
+    property var account: telepathyHelper.accountForId(threads[0].accountId)
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
@@ -59,33 +60,31 @@ Page {
         for (var i in participants) {
             var participant = participants[i]
             participant["state"] = 0
+            participant["selfContact"] = false
             participantList.push(participant)
         }
         for (var i in localPendingParticipants) {
             var participant = localPendingParticipants[i]
             participant["state"] = 1
+            participant["selfContact"] = false
             participantList.push(participant)
         }
         for (var i in remotePendingParticipants) {
             var participant = remotePendingParticipants[i]
             participant["state"] = 2
+            participant["selfContact"] = false
             participantList.push(participant)
         }
 
-        if (chatRoom) {
-            var participant = {"alias": i18n.tr("Me"), "identifier": "self", "avatar":""}
-            if (chatEntry.active) {
-                participant["state"] = 0
-                participant["roles"] = chatEntry.selfContactRoles
-                participantList.push(participant)
-            } else  if (chatRoomInfo.Joined) {
-                participant["state"] = 0
-                participant["roles"] = chatRoomInfo.SelfRoles
+        if (chatRoom && (chatEntry.active || chatRoomInfo.Joined)) {
+            var participant = selfContactWatcher
+            if (chatEntry.active || chatRoomInfo.Joined) {
                 participantList.push(participant)
             }
         }
         return participantList
     }
+
     property QtObject chatEntry: null
     property QtObject eventModel: null
 
@@ -93,6 +92,36 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
     property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
+
+    // self contact isn't provided by history or chatEntry, so we manually add it here
+    Item {
+        id: selfContactWatcher
+        property alias identifier: internalContactWatcher.identifier
+        property alias contactId: internalContactWatcher.contactId
+        property alias avatar: internalContactWatcher.avatar
+        property var alias: {
+            if (contactId == "") {
+                return i18n.tr("Me")
+            }
+            return internalContactWatcher.alias
+        }
+        property bool selfContact: true
+        property int state: 0
+        property int roles: {
+            if(chatEntry.active) {
+                return chatEntry.selfContactRoles
+            } else if (chatRoomInfo.Joined) {
+                return chatRoomInfo.SelfRoles
+            }
+            return 0
+        }
+
+        ContactWatcher {
+            id: internalContactWatcher
+            identifier: groupChatInfoPage.account.selfContactId
+            addressableFields: groupChatInfoPage.account ? groupChatInfoPage.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        }
+    }
 
     header: PageHeader {
         id: pageHeader
@@ -366,7 +395,6 @@ Page {
                 ParticipantDelegate {
                     id: participantDelegate
                     function canRemove() {
-                        console.log(chatEntry.selfContactRoles)
                         if (!groupChatInfoPage.chatRoom /*not a group*/
                                 || !chatEntry.active /*not active*/
                                 || modelData.roles & 2 /*not admin*/
@@ -381,12 +409,12 @@ Page {
                     participant: modelData
                     leadingActions: canRemove() ? participantLeadingActions : undefined
                     onClicked: {
-                        if (participant.identifier != "self") {
+                        if (openProfileButton.visible) {
                             mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
                         }
                     }
                     Icon {
-                       visible: participant.identifier != "self"
+                       id: openProfileButton
                        anchors.right: parent.right
                        anchors.rightMargin: units.gu(1)
                        anchors.verticalCenter: parent.verticalCenter

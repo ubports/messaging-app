@@ -1398,6 +1398,7 @@ Page {
                 // if more than 8 seconds passed since last typing signal, then send another one
                 if ((currentTimestamp - messages.lastTypingTimestamp) > 8000) {
                     messages.lastTypingTimestamp = currentTimestamp
+                    messages.chatEntry.setChatState(ChatEntry.ChannelChatStatePaused)
                     messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
                 }
             }
