@@ -1,0 +1,4 @@
+file(GLOB ATTACHMENT_QML_JS_FILES *.qml *.js)
+
+add_custom_target(messaging_app_ATTACHMENT_QMlFiles ALL SOURCES ${ATTACHMENT_QML_JS_FILES})
+install(FILES ${ATTACHMENT_QML_JS_FILES} DESTINATION ${MESSAGING_APP_DIR}/AttachmentDelegates)

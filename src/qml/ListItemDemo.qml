@@ -107,7 +107,7 @@ Rectangle {
         }
     }
     
-    MessageDelegateFactory {
+    MessageDelegate {
         id: listItem
         
         property int xPos: 0

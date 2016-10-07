@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -20,10 +20,10 @@ import QtQuick 2.2
 import Ubuntu.Components 1.3
 import ".."
 
-MMSBase {
+BaseDelegate {
     id: imageDelegate
 
-    previewer: "MMS/PreviewerImage.qml"
+    previewer: "AttachmentDelegates/PreviewerImage.qml"
     height: imageAttachment.height
     width: imageAttachment.width
 
