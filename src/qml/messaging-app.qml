@@ -280,10 +280,8 @@ MainView {
 
         // we need to get the threads also for account overload and fallback
         var accounts = [account]
-        accounts.concat(telepathyHelper.checkAccountOverload(account))
-        accounts.concat(telepathyHelper.checkAccountFallback(account))
-
-        console.log("BLABLA accounts length is " + accounts.length)
+        accounts.concat(telepathyHelper.accountOverload(account))
+        accounts.concat(telepathyHelper.accountFallback(account))
 
         for (var i in accounts) {
             var thisAccount = accounts[i]

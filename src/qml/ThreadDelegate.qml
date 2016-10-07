@@ -383,7 +383,7 @@ ListItemWithActions {
                     return ""
                 }
                 if (account.type == AccountEntry.PhoneAccount) {
-                    var accounts = telepathyHelper.checkAccountOverload(account)
+                    var accounts = telepathyHelper.accountOverload(account)
                     for (var i in accounts) {
                         var tmpAccount = accounts[i]
                         if (tmpAccount.active) {

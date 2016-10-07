@@ -821,7 +821,7 @@ Page {
             // if the account is not supposed to be displayed, we check if it has a fallback
             if (account && !account.protocolInfo.showOnSelector) {
                 // check if there is a fallback account to use
-                var accounts = telepathyHelper.checkAccountFallback(account);
+                var accounts = telepathyHelper.accountFallback(account);
                 if (accounts.length > 0) {
                     messages.accountId = accounts[0].accountId
                 }
@@ -1087,7 +1087,7 @@ Page {
             // FIXME: for accounts that we don't want to show the online status, we have to check if the overloaded account
             // might be available for that. If that account should not use the
             if (account.type == AccountEntry.PhoneAccount) {
-                var accounts = telepathyHelper.checkAccountOverload(account)
+                var accounts = telepathyHelper.accountOverload(account)
                 for (var i in accounts) {
                     var tmpAccount = accounts[i]
                     if (tmpAccount.active) {
@@ -1447,7 +1447,7 @@ Page {
                 var isPhone = (account && account.type == AccountEntry.PhoneAccount)
                 if (isPhone) {
                     // check if an account overload might be used
-                    var accounts = telepathyHelper.checkAccountOverload(account)
+                    var accounts = telepathyHelper.accountOverload(account)
                     for (var i in accounts) {
                         var tmpAccount = accounts[i]
                         if (tmpAccount.active) {

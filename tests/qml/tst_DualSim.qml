@@ -82,11 +82,11 @@ Item {
             return null
         }
 
-        function checkAccountOverload(account) {
+        function accountOverload(account) {
             return []
         }
 
-        function checkAccountFallback(account) {
+        function accountFallback(account) {
             return []
         }
 
