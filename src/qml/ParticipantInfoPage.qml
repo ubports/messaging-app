@@ -31,7 +31,7 @@ Page {
 
     header: PageHeader {
         id: pageHeader
-        title: i18n.tr("Participant Info")
+        title: i18n.tr("Info")
         flickable: contentsFlickable
     }
 
@@ -64,10 +64,17 @@ Page {
                 ContactAvatar {
                     id: contactAvatar
 
-                    // FIXME: set to the group picture once implemented
-                    //fallbackAvatarUrl:
+                    fallbackAvatarUrl: {
+                        console.log(participant.avatar)
+                        if (participant.avatar !== "") {
+                            return participant.avatar
+                        } else if (participant.alias === "") {
+                            return "image://theme/contact"
+                        }
+                        return ""
+                    }
                     fallbackDisplayName: contactName.text
-                    showAvatarPicture: contactName.text.length === 0
+                    showAvatarPicture: fallbackAvatarUrl !== ""
                     anchors {
                         left: parent.left
                         leftMargin: units.gu(2)
