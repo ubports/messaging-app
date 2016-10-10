@@ -1,5 +1,5 @@
-border.left:135
-border.top: 27
-border.bottom: 27
-border.right: 135
+border.left:35
+border.top: 35
+border.bottom: 35
+border.right: 35
 source: blue_bubble@27.png
