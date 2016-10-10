@@ -35,4 +35,5 @@ Image {
         }
         return ""
     }
+    asynchronous: true
 }
