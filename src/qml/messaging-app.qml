@@ -266,7 +266,7 @@ MainView {
         if (accountId == "") {
             // no accountId means fallback to phone or multimedia
             if (mainView.account) {
-                account = mainView.account.accountId 
+                account = mainView.account
             } else {
                 return threads
             }
@@ -280,11 +280,27 @@ MainView {
 
         // we need to get the threads also for account overload and fallback
         var accounts = [account]
-        accounts.concat(telepathyHelper.checkAccountOverload(account))
-        accounts.concat(telepathyHelper.checkAccountFallback(account))
+        accounts.concat(telepathyHelper.accountOverload(account))
+        accounts.concat(telepathyHelper.accountFallback(account))
 
-        console.log("BLABLA accounts length is " + accounts.length)
+        // if any of the accounts in the list is a phone account, we need to get for all available SIMs
+        // FIXME: there has to be a better way for doing this.
+        var accountIds = [""]
+        for (var i in accounts) {
+            if (accounts[i].type == AccountEntry.PhoneAccount) {
+                accountIds.push(accounts[i].accountId)
+            }
+        }
+        if (accountIds.length > 0) {
+            for (var i in telepathyHelper.phoneAccounts.all) {
+                var phoneAccount = telepathyHelper.phoneAccounts.all[i]
+                if (accountIds.indexOf(phoneAccount.accountId) < 0) {
+                    accounts.push(phoneAccount)
+                }
+            }
+        }
 
+        // and finally, get the threads for all accounts
         for (var i in accounts) {
             var thisAccount = accounts[i]
             var thread = threadModel.threadForProperties(thisAccount.accountId,
