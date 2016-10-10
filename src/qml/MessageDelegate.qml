@@ -285,69 +285,15 @@ ListItemWithActions {
         showDeliveryStatus: true
     }
 
-    Item {
-        id: statusIcon
-
-        height: units.gu(4)
-        width: units.gu(4)
-        parent: messageDelegate._lastItem
-        onParentChanged: {
-            // The spinner gets stuck once parent changes, this is a workaround
-            indicator.running = false
-            // if temporarily failed or unknown status, then show the spinner
-            indicator.running = Qt.binding(function(){ return !incoming && 
-                    (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                     textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)});
-        }
-        anchors {
-            verticalCenter: parent ? parent.verticalCenter : undefined
-            right: parent ? parent.left : undefined
-            rightMargin: units.gu(2)
-        }
-
-        visible: !incoming && !selectionMode
-        ActivityIndicator {
-            id: indicator
-
-            anchors.centerIn: parent
-            height: units.gu(2)
-            width: units.gu(2)
-            visible: running && !selectionMode
-        }
-
-        Item {
-            id: retrybutton
-
-            anchors.fill: parent
-            Icon {
-                id: icon
-
-                name: "reload"
-                color: Theme.palette.normal.negative
-                height: units.gu(2)
-                width: units.gu(2)
-                anchors {
-                    centerIn: parent
-                    verticalCenterOffset: units.gu(-1)
-                }
-            }
-
-            Label {
-                text: i18n.tr("Failed!")
-                fontSize: "small"
-                color: "red"
-                anchors {
-                    horizontalCenter: retrybutton.horizontalCenter
-                    top: icon.bottom
-                }
-            }
-            visible: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
-            MouseArea {
-                id: retrybuttonMouseArea
-
-                anchors.fill: parent
-                onClicked: messageDelegate.resendMessage()
-            }
-        }
+    Loader {
+        id: statusIconLoader
+        active: !incoming && !selectMode
+        Component.onCompleted: setSource(Qt.resolvedUrl("MessageStatusIcon.qml"),
+                                         {"parent": Qt.binding(function(){ return messageDelegate._lastItem }),
+                                          "incoming": Qt.binding(function(){ return messageDelegate.incoming }),
+                                          "selectMode": Qt.binding(function(){ return messageDelegate.selectMode }),
+                                          "textMessageStatus": Qt.binding(function(){ return messageData.textMessageStatus }),
+                                          "messageDelegate": messageDelegate,
+                                         });
     }
 }
