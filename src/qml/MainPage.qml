@@ -235,7 +235,7 @@ Page {
             height: units.gu(8)
             selectMode: threadList.isInSelectionMode
             selected: {
-                if (selectionMode) {
+                if (selectMode) {
                     return threadList.isSelected(threadDelegate)
                 }
                 return false
