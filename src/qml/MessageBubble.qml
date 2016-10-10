@@ -89,8 +89,11 @@ BorderImage {
             return "green"
         }
     }
-    source: "assets/" + color + "_bubble.sci"
+    property bool completed
+    Component.onCompleted: completed = true
+    source: completed ? "assets/" + color + "_bubble.sci" : ""
     smooth: true
+    cache: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
     height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
