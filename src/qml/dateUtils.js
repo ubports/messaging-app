@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+.pragma library
+
 function areSameDay(date1, date2) {
     if (!date1 || !date2)
         return false
@@ -38,14 +40,16 @@ function formatLogDate(timestamp) {
 function friendlyDay(timestamp) {
     var date = new Date(timestamp);
     var today = new Date();
-    var yesterday = new Date();
-    yesterday.setDate(today.getDate()-1);
     if (areSameDay(today, date)) {
         return i18n.tr("Today");
-    } else if (areSameDay(yesterday, date)) {
-        return i18n.tr("Yesterday");
     } else {
-        return Qt.formatDate(date, Qt.DefaultLocaleShortDate);
+        var yesterday = new Date();
+        yesterday.setDate(today.getDate()-1);
+        if (areSameDay(yesterday, date)) {
+            return i18n.tr("Yesterday");
+        } else {
+            return Qt.formatDate(date, Qt.DefaultLocaleShortDate);
+        }
     }
 }
 
