@@ -28,13 +28,14 @@ import Ubuntu.Telephony 0.1
 Page {
     id: groupChatInfoPage
 
-    property variant threads: []
+    property variant threads: threadInformation.threads
     property var account: telepathyHelper.accountForId(threads[0].accountId)
+    property var threadInformation: null
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
         } else if (threads.length > 0) {
-            return threads[0].participants
+            return threadInformation.participants
         }
         return []
     }
@@ -42,7 +43,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.localPendingParticipants
         } else if (threads.length > 0) {
-            return threads[0].localPendingParticipants
+            return threadInformation.localPendingParticipants
         }
         return []
     }
@@ -50,7 +51,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.remotePendingParticipants
         } else if (threads.length > 0) {
-            return threads[0].remotePendingParticipants
+            return threadInformation.remotePendingParticipants
         }
         return []
     }
