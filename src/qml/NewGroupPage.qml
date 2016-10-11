@@ -143,8 +143,7 @@ Page {
         accountId: newGroupPage.account.accountId
         title: groupTitleField.text
         autoRequest: false
-        // FIXME: we need to change the way MMS groups are created
-        chatType: newGroupPage.mmsGroup ? HistoryThreadModel.ChatTypeNone : HistoryThreadModel.ChatTypeRoom
+        chatType: HistoryThreadModel.ChatTypeRoom
         onChatReady: {
             // give history service time to create the thread
             creationTimer.start()
