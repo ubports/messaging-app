@@ -17,13 +17,14 @@
  */
 
 import QtQuick 2.2
+import Ubuntu.Components 1.3
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
-Column {
+Item {
     id: regularDelegate
-    height: childrenRect.height
+    height: messageDelegate.height + (headerLoader.active ? headerLoader.height : 0)
     property var messageData: null
     property Item delegateItem
     property var timestamp: messageData.timestamp
@@ -38,19 +39,29 @@ Column {
 
     // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
     // bellow the item
-    MessageDateSection {
-        text: visible ? DateUtils.friendlyDay(timestamp) : ""
+    Loader {
+        id: headerLoader
         anchors {
             left: parent.left
             right: parent.right
             leftMargin: units.gu(2)
             rightMargin: units.gu(2)
         }
-        visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
+        height: units.gu(3)
+        active: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
+        Component.onCompleted: setSource(Qt.resolvedUrl("MessageDateSection.qml"),
+                                         {"text": Qt.binding(function () {return DateUtils.friendlyDay(timestamp)})})
     }
 
     MessageDelegate {
+        id: messageDelegate
         objectName: "message%1".arg(index)
+        anchors {
+            top: headerLoader.active ? headerLoader.bottom : parent.top
+            left: parent.left
+            right: parent.right
+        }
+
         messageData: regularDelegate.messageData
 
         incoming: senderId != "self"
