@@ -21,7 +21,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
-ListItemWithActions {
+ListItem {
     id: messageDelegate
     objectName: "messageDelegate"
 
@@ -46,7 +46,7 @@ ListItemWithActions {
     property string accountLabel: ""
     property bool isMultimedia: false
     property var _lastItem: textBubble.visible ? textBubble : attachmentsLoader.item.lastItem
-    property bool swipeLocked: attachmentsLoader.item && attachmentsLoader.item.swipeLocked
+    swipeEnabled: !(attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
 
     function deleteMessage()
     {
@@ -108,76 +108,92 @@ ListItemWithActions {
         deleteMessage();
     }
 
-    function clicked(mouse)
-    {
-        // we only have actions for attachment items, so forward the click
-        if (attachmentsLoader.item) {
-            attachmentsLoader.item.clicked(mouse)
-        }
-    }
-
     color: "transparent"
-    locked: swipeLocked
 
     width: messageList.width
-    leftSideAction: Action {
-        iconName: "delete"
-        text: i18n.tr("Delete")
-        onTriggered: deleteMessage()
-    }
-
-    rightSideActions: [
-        Action {
-            id: retryAction
-
-            iconName: "reload"
-            text: i18n.tr("Retry")
-            visible: messageData.textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed
-            onTriggered: messageDelegate.resendMessage()
-        },
-        Action {
-            id: copyAction
-
-            iconName: "edit-copy"
-            text: i18n.tr("Copy")
-            visible: messageText !== ""
-            onTriggered: messageDelegate.copyMessage()
-        },
-        Action {
-            id: forwardAction
-
-            iconName: "mail-forward"
-            text: i18n.tr("Forward")
-            onTriggered: messageDelegate.forwardMessage()
-        },
-        Action {
-            id: infoAction
-
-            iconName: "info"
-            text: i18n.tr("Info")
-            onTriggered: {
-                var messageType = attachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                var messageInfo = {"type": messageType,
-                                   "senderId": messageData.senderId,
-                                   "sender": messageData.sender,
-                                   "timestamp": messageData.timestamp,
-                                   "textReadTimestamp": messageData.textReadTimestamp,
-                                   "status": messageData.textMessageStatus,
-                                   "participants": messages.participants}
-                messageInfoDialog.showMessageInfo(messageInfo)
+    leadingActions: ListItemActions {
+        actions: [
+            Action {
+                iconName: "delete"
+                text: i18n.tr("Delete")
+                onTriggered: deleteMessage()
+            }
+        ]
+        delegate: Rectangle {
+            width: height + units.gu(4.5)
+            color: UbuntuColors.red
+            Icon {
+                name: action.iconName
+                width: units.gu(3)
+                height: width
+                color: "white"
+                anchors.centerIn: parent
             }
         }
-    ]
+    }
+
+    trailingActions: ListItemActions {
+        actions: [
+            Action {
+                id: retryAction
+
+                iconName: "reload"
+                text: i18n.tr("Retry")
+                visible: messageData.textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed
+                onTriggered: messageDelegate.resendMessage()
+            },
+            Action {
+                id: copyAction
+
+                iconName: "edit-copy"
+                text: i18n.tr("Copy")
+                visible: messageText !== ""
+                onTriggered: messageDelegate.copyMessage()
+            },
+            Action {
+                id: forwardAction
+
+                iconName: "mail-forward"
+                text: i18n.tr("Forward")
+                onTriggered: messageDelegate.forwardMessage()
+            },
+            Action {
+                id: infoAction
+
+                iconName: "info"
+                text: i18n.tr("Info")
+                onTriggered: {
+                    var messageType = attachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
+                    var messageInfo = {"type": messageType,
+                                       "senderId": messageData.senderId,
+                                       "sender": messageData.sender,
+                                       "timestamp": messageData.timestamp,
+                                       "textReadTimestamp": messageData.textReadTimestamp,
+                                       "status": messageData.textMessageStatus,
+                                       "participants": messages.participants}
+                    messageInfoDialog.showMessageInfo(messageInfo)
+                }
+            }
+        ]
+    }
 
     height: Math.max(attachmentsLoader.height + textBubble.height, contactAvatar.height) + units.gu(1)
-    internalAnchors {
+    divider.visible: false
+    contentItem.clip: false
+    contentItem.anchors {
+        leftMargin: units.gu(2)
+        rightMargin: units.gu(2)
         topMargin: units.gu(0.5)
         bottomMargin: units.gu(0.5)
     }
+    highlightColor: "transparent"
 
-    onItemClicked: {
-        if (!selectionMode) {
-            messageDelegate.clicked(mouse)
+    onClicked: {
+        if (!selectMode) {
+            // we only have actions for attachment items, so forward the click
+            if (attachmentsLoader.item) {
+                attachmentsLoader.item.clicked(mouse)
+            }
         }
     }
 
@@ -215,6 +231,7 @@ ListItemWithActions {
         source: Qt.resolvedUrl("AttachmentsDelegate.qml")
         active: attachments.length > 0
         height: status == Loader.Ready ? item.height : 0
+
         Binding {
             target: attachmentsLoader.item
             property: "attachments"
@@ -291,7 +308,7 @@ ListItemWithActions {
         Component.onCompleted: setSource(Qt.resolvedUrl("MessageStatusIcon.qml"),
                                          {"parent": Qt.binding(function(){ return messageDelegate._lastItem }),
                                           "incoming": Qt.binding(function(){ return messageDelegate.incoming }),
-                                          "selectMode": Qt.binding(function(){ return messageDelegate.selectionMode }),
+                                          "selectMode": Qt.binding(function(){ return messageDelegate.selectMode }),
                                           "textMessageStatus": Qt.binding(function(){ return messageData.textMessageStatus }),
                                           "messageDelegate": messageDelegate,
                                          });

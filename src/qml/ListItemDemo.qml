@@ -69,7 +69,7 @@ Rectangle {
         spacing: units.gu(2)
         
         Image {
-            visible: listItem.swipeState === "RightToLeft"
+            visible: listItem.swipePosition < 0
             source: Qt.resolvedUrl("./assets/swipe_arrow.svg")
             rotation: 180
             Layout.preferredWidth: sourceSize.width
@@ -94,7 +94,7 @@ Rectangle {
         }
         
         Image {
-            visible: listItem.swipeState === "LeftToRight"
+            visible: listItem.swipePosition > 0
             source: Qt.resolvedUrl("./assets/swipe_arrow.svg")
             Layout.preferredWidth: sourceSize.width
             height: parent.height
@@ -109,8 +109,7 @@ Rectangle {
     
     MessageDelegate {
         id: listItem
-        
-        property int xPos: 0
+
         // message data
         property int index: 10
         property int textMessageStatus: 1
@@ -142,33 +141,32 @@ Rectangle {
                 "accountLabel" : ""}
         }
         
-        rightSideActions: [
-            Action {
-                id: infoAction
-                
-                iconName: "info"
-                text: i18n.tr("Info")
-            },
-            Action {
-                iconName: "reload"
-                text: i18n.tr("Retry")
-            },
-            Action {
-                iconName: "edit-copy"
-                text: i18n.tr("Copy")
-            }
-        ]
-        
-        animated: false
-        onXPosChanged: listItem.updatePosition(xPos)
-        
+        trailingActions: ListItemActions {
+            actions: [
+                Action {
+                    id: infoAction
+
+                    iconName: "info"
+                    text: i18n.tr("Info")
+                },
+                Action {
+                    iconName: "reload"
+                    text: i18n.tr("Retry")
+                },
+                Action {
+                    iconName: "edit-copy"
+                    text: i18n.tr("Copy")
+                }
+            ]
+        }
     }
-    
+
     SequentialAnimation {
         id: slideAnimation
-        
-        readonly property real leftToRightXpos: (-3 * (listItem.actionWidth + units.gu(2)))
-        readonly property real rightToLeftXpos: listItem.leftActionWidth
+
+        readonly property real leadingActionsWidth: listItem.leadingActions.actions.length * units.gu(6) + units.gu(2)
+        readonly property real trailingActionsWidth: listItem.trailingActions.actions.length * units.gu(6) + units.gu(2)
+
         
         loops: Animation.Infinite
         running: listItemDemo.enabled
@@ -188,9 +186,9 @@ Rectangle {
         ParallelAnimation {
             PropertyAnimation {
                 target:  listItem
-                property: "xPos"
+                property: "swipePosition"
                 from: 0
-                to: slideAnimation.leftToRightXpos
+                to: -slideAnimation.trailingActionsWidth
                 duration: 2000
             }
             PropertyAnimation {
@@ -216,8 +214,8 @@ Rectangle {
             
             PropertyAnimation {
                 target: listItem
-                property: "xPos"
-                from: slideAnimation.leftToRightXpos
+                property: "swipePosition"
+                from: -slideAnimation.trailingActionsWidth
                 to: 0
                 duration: UbuntuAnimation.SleepyDuration
             }
@@ -238,9 +236,9 @@ Rectangle {
         ParallelAnimation {
             PropertyAnimation {
                 target: listItem
-                property: "xPos"
+                property: "swipePosition"
                 from: 0
-                to: slideAnimation.rightToLeftXpos
+                to: slideAnimation.leadingActionsWidth
                 duration: UbuntuAnimation.SleepyDuration
             }
             PropertyAnimation {
@@ -266,8 +264,8 @@ Rectangle {
             
             PropertyAnimation {
                 target: listItem
-                property: "xPos"
-                from: slideAnimation.rightToLeftXpos
+                property: "swipePosition"
+                from: slideAnimation.leadingActionsWidth
                 to: 0
                 duration: UbuntuAnimation.SleepyDuration
             }

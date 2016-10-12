@@ -67,7 +67,7 @@ Item {
         incoming: senderId != "self"
         // TODO: we have several items inside
         selected: root.isSelected(delegateItem)
-        selectionMode: root.isInSelectionMode
+        selectMode: root.isInSelectionMode
         accountLabel: {
             var account = telepathyHelper.accountForId(accountId)
             // we only show those labels when using phone + fallback and when having multiple phone accounts
@@ -84,14 +84,14 @@ Item {
         }
 
         // TODO: need select only the item
-        onItemClicked: {
+        onClicked: {
             if (root.isInSelectionMode) {
                 if (!root.selectItem(delegateItem)) {
                     root.deselectItem(delegateItem)
                 }
             }
         }
-        onItemPressAndHold: {
+        onPressAndHold: {
             root.startSelection()
             root.selectItem(delegateItem)
         }
