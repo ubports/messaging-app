@@ -127,6 +127,7 @@ Rectangle {
             left: parent.left
             right: parent.right
         }
+        height: units.gu(4)
         
         Component.onCompleted: {
             messageData = {
