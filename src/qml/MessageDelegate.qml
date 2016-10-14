@@ -205,35 +205,23 @@ ListItemWithActions {
         anchors {
             bottom: textBubble.top
             bottomMargin: attachmentsLoader.active && textBubble.visible ? units.gu(1) : 0
-            left: contactAvatar.right
+            left: contactAvatarLoader.right
             leftMargin: avatarVisible ? units.gu(1) : 0
             right: parent.right
         }
-        source: Qt.resolvedUrl("AttachmentsDelegate.qml")
+        Component.onCompleted: {
+            var properties = {"attachments": Qt.binding(function(){ return messageDelegate.attachments }),
+                              "accountLabel": Qt.binding(function(){ return messageDelegate.accountLabel }),
+                              "incoming": Qt.binding(function(){ return messageDelegate.incoming })};
+            attachmentsLoader.setSource(Qt.resolvedUrl("AttachmentsDelegate.qml"), properties);
+        }
+
         active: attachments.length > 0
         height: status == Loader.Ready ? item.height : 0
         Binding {
-            target: attachmentsLoader.item
-            property: "attachments"
-            value: attachments
-            when: (attachmentsLoader.status === Loader.Ready)
-        }
-        Binding {
-            target: attachmentsLoader.item
-            property: "accountLabel"
-            value: accountLabel
-            when: (attachmentsLoader.status === Loader.Ready)
-        }
-        Binding {
-            target: attachmentsLoader.item
-            property: "incoming"
-            value: incoming
-            when: (attachmentsLoader.status === Loader.Ready)
-        }
-        Binding {
             target: messageDelegate
             property: "dataAttachments"
-            value: attachmentsLoader.item.dataAttachments
+            value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : null
             when: (attachmentsLoader.status === Loader.Ready && attachmentsLoader.item)
         }
     }
