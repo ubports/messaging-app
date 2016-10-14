@@ -211,7 +211,7 @@ ListItem {
             if (!displayedEvent) {
                 Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
             } else {
-                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"))
+                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"), i18n)
             }
         }
         fontSize: "small"

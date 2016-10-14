@@ -32,7 +32,7 @@ Item {
     Label {
         anchors.fill: parent
         elide: Text.ElideRight
-        text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
+        text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
         verticalAlignment: Text.AlignVCenter
         fontSize: "small"
         color: Theme.palette.normal.backgroundTertiaryText

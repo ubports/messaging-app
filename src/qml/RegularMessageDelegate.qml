@@ -52,7 +52,7 @@ Item {
         property var nextEventModel: eventModel.get(index+1)
         active: (index === root.count) || !DateUtils.areSameDay(nextEventModel.timestamp, timestamp)
         Component.onCompleted: setSource(Qt.resolvedUrl("MessageDateSection.qml"),
-                                         {"text": Qt.binding(function () {return DateUtils.friendlyDay(timestamp)})})
+                                         {"text": Qt.binding(function () {return DateUtils.friendlyDay(timestamp, i18n)})})
     }
 
     MessageDelegate {

@@ -37,7 +37,7 @@ function formatLogDate(timestamp) {
     }
 }
 
-function friendlyDay(timestamp) {
+function friendlyDay(timestamp, i18n) {
     var date = new Date(timestamp);
     var today = new Date();
     if (areSameDay(today, date)) {
@@ -57,24 +57,6 @@ function formatFriendlyDate(timestamp) {
     return Qt.formatTime(timestamp, Qt.DefaultLocaleShortDate) + " - " + friendlyDay(timestamp);
 }
 
-function formatFriendlyCallDuration(duration) {
-    var time = new Date(duration);
-    var text = "";
-
-    var hours = time.getHours();
-    var minutes = time.getMinutes();
-    var seconds = time.getSeconds();
-
-    if (hours > 0) {
-        text = i18n.tr("%1 hour call", "%1 hours call", hours).arg(hours)
-    } else if (minutes > 0) {
-        text = i18n.tr("%1 minute call", "%1 minutes call", minutes).arg(minutes)
-    } else {
-        text = i18n.tr("%1 second call", "%1 seconds call", seconds).arg(seconds)
-    }
-
-    return text;
-}
 
 function formattedTime(time) {
     var d = new Date(0, 0, 0, 0, 0, time)
