@@ -48,7 +48,9 @@ Item {
             rightMargin: units.gu(2)
         }
         height: units.gu(3)
-        active: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
+        // FIXME: for some reason eventModel.get() is pretty slow: around 4ms on krillin
+        property var nextEventModel: eventModel.get(index+1)
+        active: (index === root.count) || !DateUtils.areSameDay(nextEventModel.timestamp, timestamp)
         Component.onCompleted: setSource(Qt.resolvedUrl("MessageDateSection.qml"),
                                          {"text": Qt.binding(function () {return DateUtils.friendlyDay(timestamp)})})
     }
