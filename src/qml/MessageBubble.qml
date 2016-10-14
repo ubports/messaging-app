@@ -57,6 +57,10 @@ BorderImage {
     }
 
     function parseText(text) {
+        if (!text) {
+            return text;
+        }
+
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // wrap text in a div to keep whitespaces and new lines from collapsing
@@ -92,7 +96,6 @@ BorderImage {
     property bool completed
     Component.onCompleted: completed = true
     source: completed ? "assets/" + color + "_bubble.sci" : ""
-    smooth: true
     cache: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
