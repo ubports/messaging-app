@@ -17,27 +17,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
-import "dateUtils.js" as DateUtils
+import Ubuntu.Contacts 0.1
 
-Item {
-    id: threadsSectionDelegate
-    anchors {
-        left: parent.left
-        right: parent.right
-        margins: units.gu(2)
-    }
-    height: units.gu(3)
-    Label {
-        anchors.fill: parent
-        elide: Text.ElideRight
-        text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
-        verticalAlignment: Text.AlignVCenter
-        fontSize: "small"
-        color: Theme.palette.normal.backgroundTertiaryText
-    }
-    ListItem.ThinDivider {
-        anchors.bottom: parent.bottom
-    }
+ContactAvatar {
 }
