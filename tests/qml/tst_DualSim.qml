@@ -199,7 +199,10 @@ Item {
 
             compare(headerSections.selectedIndex, 1)
 
-            mainViewLoader.item.startChat("123", "", testAccount.accountId)
+            var properties = {}
+            properties["accountId"] = testAccount.accountId
+            properties["participantIds"] = ["123"]
+            mainViewLoader.item.startChat(properties)
             waitForRendering(mainViewLoader.item)
 
             messagesView = findChild(mainViewLoader, "messagesPage")

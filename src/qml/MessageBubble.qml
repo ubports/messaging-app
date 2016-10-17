@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -90,7 +90,7 @@ BorderImage {
     smooth: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
-    height: senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin)
+    height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
 
     // if possible, put the timestamp and the delivery status in the same line as the text
     property int oneLineWidth: textLabel.contentWidth + messageFooter.width
@@ -104,6 +104,8 @@ BorderImage {
 
     Label {
         id: senderName
+        clip: true
+        elide: Text.ElideRight
 
         anchors {
             top: parent.top
@@ -178,8 +180,8 @@ BorderImage {
 
         DeliveryStatus {
             id: deliveryStatus
-            messageStatus: messageStatus
-            enabled: deliveryStatusAvailable
+            messageStatus: root.messageStatus
+            enabled: root.deliveryStatusAvailable
             anchors.verticalCenter: textTimestamp.verticalCenter
         }
     }

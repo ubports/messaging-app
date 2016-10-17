@@ -36,11 +36,19 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
+    property var threadId: threads.length > 0 ? threads[0].threadId : ""
+    property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property bool phoneAccount: isPhoneAccount()
-    property variant participants: []
-    property variant participantIds: []
-    property bool groupChat: participants.length > 1
+    property variant participants: threads.length > 0 ? threads[0].participants : []
+    property variant participantIds: {
+        var ids = []
+        for (var i in participants) {
+            ids.push(participants[i].identifier)
+        }
+        return ids
+    }
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -56,7 +64,16 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
-    property QtObject chatEntry: !account ? null : chatManager.chatEntryForParticipants(account.accountId, participants, true)
+    property QtObject chatEntry: {
+        if (!account) {
+            return null
+        } else {
+            if (threads.length > 0) {
+                return chatManager.chatEntryForProperties(account.accountId, threads[0], true)
+            }
+            return null
+        }
+    }
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -90,7 +107,8 @@ Page {
  
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
         // on generic accounts we don't give the option to switch to another account
-        if (tmpAccount && tmpAccount.type == AccountEntry.GenericAccount) {
+        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount ||
+                           (tmpAccount.type == AccountEntry.MultimediaAccount && threads[0].chatType == HistoryThreadModel.ChatTypeRoom))) {
             return [tmpAccount]
         }
 
@@ -181,22 +199,25 @@ Page {
         return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
     }
 
-    function addNewThreadToFilter(newAccountId, participantIds) {
+    function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
         if (newAccount.type == AccountEntry.PhoneAccount || newAccount.type == AccountEntry.MultimediaAccount) {
             matchType = HistoryThreadModel.MatchPhoneNumber
         }
 
-        var thread = eventModel.threadForParticipants(newAccountId,
+        var thread = eventModel.threadForProperties(newAccountId,
                                            HistoryThreadModel.EventTypeText,
-                                           participantIds,
+                                           properties,
                                            matchType,
                                            true)
+        if (thread.length == 0) {
+            return thread
+        } 
         var threadId = thread.threadId
 
         // dont change the participants list
-        if (messages.participants.length == 0) {
+        if (!messages.participants || messages.participants.length == 0) {
             messages.participants = thread.participants
             var ids = []
             for (var i in messages.participants) {
@@ -214,7 +235,7 @@ Page {
         }
 
         if (!found) {
-            messages.threads.push({"accountId": newAccountId, "threadId": threadId})
+            messages.threads.push(thread)
             reloadFilters = !reloadFilters
         }
 
@@ -284,8 +305,31 @@ Page {
             return false
         }
 
+        if (messages.threads.length > 0) {
+            properties["chatType"] = messages.chatType
+            properties["threadId"] = messages.threadId
+        } else if (properties["chatType"]) {
+            messages.chatType = properties["chatType"]
+        }
+
+        var newParticipantsIds = []
+        for (var i in participantIds) {
+            newParticipantsIds.push(String(participantIds[i]))
+        }
+
+        // fallback chatType to Contact
+        if (newParticipantsIds.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeNone) {
+            messages.chatType = HistoryThreadModel.ChatTypeContact
+        }
+
+        properties["chatType"] = messages.chatType
+        properties["participantIds"] = newParticipantsIds
+        if (messages.threadId !== "") {
+            properties["threadId"] = messages.threadId
+        }
+
         // create the new thread and update the threadId list
-        var thread = addNewThreadToFilter(messages.account.accountId, participantIds)
+        var thread = addNewThreadToFilter(messages.account.accountId, properties)
 
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
@@ -300,7 +344,7 @@ Page {
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      thread.threadId,
-                                                     participantIds,
+                                                     newParticipantsIds,
                                                      "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
@@ -349,7 +393,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMmsGroupChat = participantIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+            var isMmsGroupChat = newParticipantsIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
@@ -357,10 +401,10 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, participantIds, text, attachments, properties)
+            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, text, attachments, properties)
             // create the new thread and update the threadId list
             if (fallbackAccountId != messages.account.accountId) {
-                addNewThreadToFilter(fallbackAccountId, participantIds)
+                addNewThreadToFilter(fallbackAccountId, properties)
             }
         }
 
@@ -369,7 +413,10 @@ Page {
             var currentIndex = headerSections.selectedIndex
             headerSections.model = getSectionsModel()
             restoreBindings()
-            headerSections.selectedIndex = currentIndex
+            // dont restore index if this is a chatroom
+            if (messages.chatType != HistoryThreadModel.ChatTypeRoom) {
+                headerSections.selectedIndex = currentIndex
+            }
         }
 
         // FIXME: soon it won't be just about SIM cards, so the dialogs need updating
@@ -385,9 +432,27 @@ Page {
         return true
     }
 
-    function updateFilters(accounts, participants, reload, threads) {
-        if (participants.length == 0 || accounts.length == 0) {
-            return null
+    Connections {
+        id: tmpConnection
+        property bool active: false
+        target: active ? mainPage : null
+        onNewThreadCreated: {
+            var thread = eventModel.threadForProperties(newThread.accountId, HistoryEventModel.MessageTypeText, {'chatType': newThread.chatType, 'threadId': newThread.threadId}, HistoryThreadModel.MatchCaseSensitive, false)
+            messages.chatType = newThread.chatType
+            messages.threadId = newThread.threadId
+            messages.participants = newThread.participants
+            messages.threads = []
+            messages.threads.push(thread)
+            active = false
+            messages.reloadFilters = !messages.reloadFilters
+        }
+    }
+
+    function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        if (participantIds.length == 0 || accounts.length == 0) {
+            if (chatType != HistoryThreadModel.ChatTypeRoom) {
+                return null
+            }
         }
 
         var componentUnion = "import Ubuntu.History 0.1; HistoryUnionFilter { %1 }"
@@ -398,6 +463,14 @@ Page {
                 var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
                 componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
             }
+            return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
+        }
+
+        // if we have all info but not threads, we force the filter generation
+        if (messages.chatType == HistoryThreadModel.ChatTypeRoom && messages.threadId !== "" && messages.accountId !== "") {
+            var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(messages.accountId)
+            var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(messages.threadId)
+            componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
 
@@ -418,7 +491,7 @@ Page {
             var account = filterAccounts[i];
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
-                                                                 participants,
+                                                                 participantIds,
                                                                  account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount ? HistoryThreadModel.MatchPhoneNumber
                                                                                                             : HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
@@ -435,13 +508,23 @@ Page {
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
-        if (!mainView.applicationActive) {
-           var pendingEvent = {"accountId": accountId, "threadId": threadId, "eventId": eventId, "type": type}
+        var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
+        if (!mainView.applicationActive || !messages.active) {
            pendingEventsToMarkAsRead.push(pendingEvent)
            return false
         }
-        chatManager.acknowledgeMessage(participantIds, eventId, accountId)
+        chatManager.acknowledgeMessage(pendingEvent)
         return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+    }
+
+    function processPendingEvents() {
+        if (mainView.applicationActive && messages.active) {
+            for (var i in pendingEventsToMarkAsRead) {
+                var event = pendingEventsToMarkAsRead[i]
+                markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
+            }
+            pendingEventsToMarkAsRead = []
+        }
     }
 
     header: PageHeader {
@@ -568,7 +651,20 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
-                title: i18n.tr("Group (%1)").arg(participants.length)
+                title: {
+                    if (threads.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
+                        var roomInfo = threads[0].chatRoomInfo
+                        if (roomInfo.Title != "") {
+                            return roomInfo.Title
+                        } else if (roomInfo.RoomName != "") {
+                            return roomInfo.RoomName
+                        } else {
+                            return i18n.tr("Group")
+                        }
+                    } else {
+                        return i18n.tr("Group (%1)").arg(participants.length)
+                    }
+                }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
             }
@@ -682,7 +778,9 @@ Page {
     ]
 
     Component.onCompleted: {
-        if (messages.accountId !== "") {
+        // we only revert back to phone account if this is a 1-1 chat,
+        // in which case the handler will fallback to multimedia if needed
+        if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
             var account = telepathyHelper.accountForId(messages.accountId)
             if (account && account.type == AccountEntry.MultimediaAccount) {
                 // fallback the first available phone account
@@ -724,6 +822,7 @@ Page {
         if (!isReady) {
             messages.ready()
         }
+        processPendingEvents()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -736,6 +835,14 @@ Page {
         target: telepathyHelper
         onSetupReady: {
             // force reevaluation
+            if (threads.length == 0) {
+                var properties = {"chatType": chatType,
+                                  "accountId": accountId,
+                                  "threadId": threadId,
+                                  "participantIds": participantIds}
+                messages.threads = getThreadsForProperties(properties)
+            }
+            messages.reloadFilters = !messages.reloadFilters
             headerSections.model = getSectionsModel()
             restoreBindings()
         }
@@ -744,9 +851,17 @@ Page {
     Connections {
         target: chatManager
         onChatEntryCreated: {
-            // TODO: track using chatId and not participants
-            if (accountId == account.accountId &&
-                firstParticipant && participants[0] == firstParticipant.identifier) {
+            if (accountId != account.accountId || messages.threads.length == 0) {
+                return
+            }
+            // track using chatId and not participants on ChatRooms
+            if (messages.threads.length == 1 && // we never group chat rooms
+                messages.chatType == chatEntry.chatType &&
+                messages.threadId == chatEntry.chatId) {
+                messages.chatEntry = chatEntry
+                return
+            }
+            if (firstParticipant && participants[0] == firstParticipant.identifier) {
                 messages.chatEntry = chatEntry
             }
         }
@@ -754,6 +869,13 @@ Page {
             for (var i in chatManager.chats) {
                 var chat = chatManager.chats[i]
                 // TODO: track using chatId and not participants
+                if (messages.threads.length == 1 && // we never group chat rooms
+                    messages.chatType == chat.chatType &&
+                    messages.threadId == chat.chatId) {
+                    messages.chatEntry = chat
+                    return
+                }
+
                 if (chat.account.accountId == account.accountId &&
                     firstParticipant && chat.participants[0] == firstParticipant.identifier) {
                     messages.chatEntry = chat
@@ -777,13 +899,7 @@ Page {
         }
 
         onApplicationActiveChanged: {
-            if (mainView.applicationActive) {
-                for (var i in pendingEventsToMarkAsRead) {
-                    var event = pendingEventsToMarkAsRead[i]
-                    markMessageAsRead(event.accountId, event.threadId, event.eventId, event.type)
-                }
-                pendingEventsToMarkAsRead = []
-            }
+            processPendingEvents()
         }
     }
 
@@ -823,6 +939,10 @@ Page {
             if (userTyping) {
                 return i18n.tr("Typing..")
             }
+            var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
+            if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
+                return ""
+            }
             switch (presenceRequest.type) {
             case PresenceRequest.PresenceTypeAvailable:
                 return i18n.tr("Online")
@@ -844,7 +964,7 @@ Page {
         accountId: {
             // if this is a regular sms chat, try requesting the presence on
             // a multimedia account
-            if (!account) {
+            if (!account || chatType != HistoryThreadModel.ChatTypeContact) {
                 return ""
             }
             if (account.type == AccountEntry.PhoneAccount) {
@@ -893,10 +1013,24 @@ Page {
                         ListItem.Standard {
                             id: participant
                             objectName: "participant%1".arg(index)
-                            text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
+                            text: {
+                                 if (contactWatcher.isUnknown) {
+                                     if (modelData.alias != "") {
+                                         return modelData.alias
+                                     } else {
+                                         return contactWatcher.identifier
+                                     }
+                                 } else {
+                                     return contactWatcher.alias
+                                 }
+                            }
                             onClicked: {
                                 PopupUtils.close(popover)
-                                mainView.startChat(contactWatcher.identifier)
+                                var properties = {}
+                                properties["accountId"] = modelData.accountId
+                                properties["participantIds"] = [modelData.identifier]
+                                properties["chatType"] = HistoryThreadModel.ChatTypeContact
+                                mainView.startChat(properties)
                             }
                         }
                         ContactWatcher {
@@ -1008,7 +1142,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.participantIds, messages.reloadFilters, messages.threads)
+        filter: updateFilters(telepathyHelper.accounts, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
         matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
@@ -1179,6 +1313,21 @@ Page {
             var properties = {}
             if (composeBar.audioAttached) {
                 properties["x-canonical-tmp-files"] = true
+            }
+
+            if (multiRecipient.multimediaGroup) {
+                properties["chatType"] = HistoryThreadModel.ChatTypeRoom
+                // remove this once PendingTask is done
+                if (messages.participants.length == 0) {
+                    tmpConnection.active = true
+                }
+                for (var i in telepathyHelper.accounts) {
+                    var tmpAccount = telepathyHelper.accounts[i]
+                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                        messages.accountId = tmpAccount.accountId
+                        break;
+                    }
+                }
             }
 
             // if sendMessage succeeds it means the message was either sent or

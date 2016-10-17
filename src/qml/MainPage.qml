@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -36,6 +36,8 @@ Page {
     function startSelection() {
         threadList.startSelection()
     }
+
+    signal newThreadCreated(var newThread)
 
     TextField {
         id: searchField
@@ -240,6 +242,7 @@ Page {
             id: threadDelegate
             // FIXME: find a better unique name
             objectName: "thread%1".arg(participants[0].identifier)
+            Component.onCompleted: mainPage.newThreadCreated(model)
 
             anchors {
                 left: parent.left
