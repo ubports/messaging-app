@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Canonical Ltd.
+ * Copyright 2015-2016 Canonical Ltd.
  *
  * Authors:
  *  Arthur Mello <arthur.mello@canonical.com>
