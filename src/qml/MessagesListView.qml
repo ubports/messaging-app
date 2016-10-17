@@ -101,6 +101,8 @@ MultipleSelectionListView {
     // this is to keep the scrolling smooth
     cacheBuffer: units.gu(10)*20
     currentIndex: 0
+    spacing: units.gu(1)
+
     listDelegate: Loader {
         id: loader
         anchors.left: parent.left

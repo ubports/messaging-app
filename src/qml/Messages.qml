@@ -542,7 +542,7 @@ Page {
                 return firstRecipientAlias
             }
 
-            return i18n.tr("New Message")
+            return " "
         }
         flickable: null
 
@@ -624,7 +624,6 @@ Page {
                     iconName: "mail-forward"
                     onTriggered: messageList.shareSelectedMessages()
                 }
-
             ]
 
             PropertyChanges {
@@ -644,7 +643,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: PopupUtils.open(participantsPopover, trailingActionArea)
+                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads })
                 }
             ]
 
@@ -993,63 +992,6 @@ Page {
     }
 
     Component {
-        id: participantsPopover
-
-        Popover {
-            id: popover
-            anchorToKeyboard: false
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                Repeater {
-                    model: participants
-                    Item {
-                        height: childrenRect.height
-                        width: popover.width
-                        ListItem.Standard {
-                            id: participant
-                            objectName: "participant%1".arg(index)
-                            text: {
-                                 if (contactWatcher.isUnknown) {
-                                     if (modelData.alias != "") {
-                                         return modelData.alias
-                                     } else {
-                                         return contactWatcher.identifier
-                                     }
-                                 } else {
-                                     return contactWatcher.alias
-                                 }
-                            }
-                            onClicked: {
-                                PopupUtils.close(popover)
-                                var properties = {}
-                                properties["accountId"] = modelData.accountId
-                                properties["participantIds"] = [modelData.identifier]
-                                properties["chatType"] = HistoryThreadModel.ChatTypeContact
-                                mainView.startChat(properties)
-                            }
-                        }
-                        ContactWatcher {
-                            id: contactWatcher
-                            identifier: modelData.identifier
-                            contactId: modelData.contactId
-                            alias: modelData.alias
-                            avatar: modelData.avatar
-                            detailProperties: modelData.detailProperties
-
-                            addressableFields: messages.account.addressableVCardFields
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    Component {
         id: noNetworkDialogComponent
         Dialog {
             id: noNetworkDialog
@@ -1084,6 +1026,7 @@ Page {
             right: parent.right
             bottom: composeBar.top
         }
+
         z: 1
         Behavior on height {
             UbuntuNumberAnimation { }

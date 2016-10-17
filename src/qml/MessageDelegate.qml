@@ -37,11 +37,14 @@ ListItemWithActions {
         }
         return ""
     }
+    property string avatar: messageData.sender && messageData.sender.avatar ? messageData.sender.avatar : ""
+    property bool avatarVisible: incoming && messages.groupChat
     property var attachments: messageData.textMessageAttachments
     property var dataAttachments: []
     property var textAttachments: []
     property bool incoming: (messageData && messageData.senderId !== "self")
     property string accountLabel: ""
+    property bool isMultimedia: false
     property var _lastItem: textBubble.visible ? textBubble : attachmentsLoader.item.lastItem
     property bool swipeLocked: attachmentsLoader.item && attachmentsLoader.item.swipeLocked
 
@@ -58,7 +61,7 @@ ListItemWithActions {
         var transfer = {}
 
         for (var i = 0; i < dataAttachments.length; i++) {
-            var attachment = dataAttachments[i]
+            var attachment = dataAttachments[i].data
             var item = {"text":"", "url":""}
             var contentType = application.fileMimeType(String(attachment.filePath))
             // we dont include smil files. they will be auto generated
@@ -72,7 +75,7 @@ ListItemWithActions {
         transfer["items"] = items
         properties["sharedAttachmentsTransfer"] = transfer
 
-        mainView.showBottomEdgePage(properties)
+        mainView.showMessagesView(properties)
     }
 
     function copyMessage()
@@ -166,7 +169,7 @@ ListItemWithActions {
         }
     ]
 
-    height: attachmentsLoader.height + textBubble.height + units.gu(1)
+    height: Math.max(attachmentsLoader.height + textBubble.height, contactAvatar.height) + units.gu(1)
     internalAnchors {
         topMargin: units.gu(0.5)
         bottomMargin: units.gu(0.5)
@@ -178,12 +181,35 @@ ListItemWithActions {
         }
     }
 
+    ContactAvatar {
+        id: contactAvatar
+
+        fallbackAvatarUrl: {
+            if (messageDelegate.avatar !== "") {
+                return messageDelegate.avatar
+            } else {
+                return "image://theme/contact"
+            }
+        }
+        fallbackDisplayName: textBubble.sender
+        showAvatarPicture: messageDelegate.avatar !== "" || initials.length === 0
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+        }
+        height: visible ? units.gu(4) : 0
+        width: visible? units.gu(4) : 0
+        visible: avatarVisible
+    }
+
     Loader {
         id: attachmentsLoader
 
         anchors {
-            top: parent.top
-            left: parent.left
+            bottom: textBubble.top
+            bottomMargin: attachmentsLoader.active && textBubble.visible ? units.gu(1) : 0
+            left: contactAvatar.right
+            leftMargin: avatarVisible ? units.gu(1) : 0
             right: parent.right
         }
         source: Qt.resolvedUrl("AttachmentsDelegate.qml")
@@ -207,13 +233,20 @@ ListItemWithActions {
             value: incoming
             when: (attachmentsLoader.status === Loader.Ready)
         }
+        Binding {
+            target: messageDelegate
+            property: "dataAttachments"
+            value: attachmentsLoader.item.dataAttachments
+            when: (attachmentsLoader.status === Loader.Ready && attachmentsLoader.item)
+        }
     }
 
     MessageBubble {
         id: textBubble
+        isMultimedia: messageDelegate.isMultimedia
         anchors {
-            top: attachmentsLoader.bottom
-            topMargin: attachmentsLoader.active ? units.gu(1) : 0
+            bottom: parent.bottom
+            leftMargin: avatarVisible ? units.gu(1) : 0
         }
 
         states: [
@@ -222,7 +255,7 @@ ListItemWithActions {
                 when: messageDelegate.incoming && visible
                 AnchorChanges {
                     target: textBubble
-                    anchors.left: parent.left
+                    anchors.left: contactAvatar.right
                 }
             },
             State {
