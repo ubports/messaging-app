@@ -487,7 +487,6 @@ Page {
     }
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
-        console.log(accounts, chatType, participantIds.length, reload, threads.length)
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
