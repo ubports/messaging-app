@@ -35,6 +35,16 @@ ListItem {
     ListItemLayout {
         id: layout
         title.text: participant.alias !== "" ? participant.alias : participant.identifier
+        subtitle.text: {
+            // FIXME: use enums instead of hardcoded values
+            if (participant.roles == 3) {
+                return i18n.tr("Admin")
+            }
+            if (participant.state == 2) {
+                return i18n.tr("Pending")
+            }
+            return ""
+        }
 
         ContactAvatar {
             id: avatar

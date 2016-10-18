@@ -44,6 +44,16 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    property QtObject multimediaAccount: {
+        for (var i in telepathyHelper.accounts) {
+            var tmpAccount = telepathyHelper.accounts[i]
+            // TODO: check for accounts that support room channels
+            if (tmpAccount.type == AccountEntry.MultimediaAccount && tmpAccount.connected) {
+                return tmpAccount
+            }
+        }
+        return null
+    }
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)

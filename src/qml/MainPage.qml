@@ -19,8 +19,10 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
 Page {
@@ -88,6 +90,7 @@ Page {
                 Action {
                     objectName: "searchAction"
                     iconName: "search"
+                    text: i18n.tr("Search")
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -107,7 +110,6 @@ Page {
                     iconName: "add"
                     onTriggered: mainView.startNewMessage()
                 }
-
             ]
 
             PropertyChanges {
@@ -265,6 +267,7 @@ Page {
                     }
                 } else {
                     var properties = model.properties
+                    
                     properties["keyboardFocus"] = false
                     properties["threads"] = model.threads
                     var participantIds = [];
@@ -272,11 +275,13 @@ Page {
                         participantIds.push(model.participants[i].identifier)
                     }
                     properties["participantIds"] = participantIds
-                    properties["participants"] = model.participants
                     properties["presenceRequest"] = threadDelegate.presenceItem
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
+                    delete properties["participants"]
+                    delete properties["localPendingParticipants"]
+                    delete properties["remotePendingParticipants"]
                     mainView.showMessagesView(properties)
 
                     // mark this item as current
