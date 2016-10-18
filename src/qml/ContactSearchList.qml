@@ -132,7 +132,7 @@ ListView {
                                 return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
                                                 .arg(phoneDetail.number)
                             }
-                            color: "#5D5D5D"
+                            color: Theme.palette.normal.backgroundSecondaryText
                         }
 
                         ListItem.ThinDivider {}
