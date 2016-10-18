@@ -36,7 +36,7 @@ ListItem {
         id: layout
         title.text: participant.alias !== "" ? participant.alias : participant.identifier
         subtitle.text: {
-            console.log(participant.roles, participant.state)
+            // FIXME: use enums instead of hardcoded values
             if (participant.roles == 3) {
                 return i18n.tr("Admin")
             }
