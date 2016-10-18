@@ -631,7 +631,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads })
+                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry})
                 }
             ]
 

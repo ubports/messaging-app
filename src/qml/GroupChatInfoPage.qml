@@ -28,6 +28,7 @@ Page {
 
     property variant threads: []
     property variant participants: threads.length > 0 ? threads[0].participants : []
+    property QtObject chatEntry: null
 
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
@@ -168,6 +169,29 @@ Page {
                     participant: modelData
                 }
             }
+
+            Button {
+                id: destroyButton
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                }
+                visible: chatRoom && chatEntry
+                text: i18n.tr("End this group")
+                color: Theme.palette.normal.negative
+                onClicked: {
+                    var result = chatEntry.destroyRoom()
+                    if (!result) {
+                        application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
+                    } else {
+                        application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
+                        mainView.emptyStack()
+                    }
+
+                    // FIXME: show a dialog in case of failure
+                }
+            }
+
+
 
         }
     }
