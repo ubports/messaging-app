@@ -35,42 +35,12 @@ ListItemWithActions {
     property string accountLabel: account ? account.displayName : ""
 
     // update the accountLabel when the list of accounts become available
+
     Item {
         id: internalItem
-        property var displayName: { 
-            if (internalWatcher.alias == "") {
-                return internalWatcher.identifier
-            }
-            return internalWatcher.alias
-        }
         Connections {
             target: telepathyHelper
             onAccountsChanged: accountLabel = telepathyHelper.accountForId(messageData.accountId).displayName
-        }
-        ContactWatcher {
-            id: internalWatcher
-            identifier: {
-                switch(messageData.textInformationType) {
-                case HistoryThreadModel.InformationTypeNone:
-                case HistoryThreadModel.InformationTypeText:
-                case HistoryThreadModel.InformationTypeSimChange:
-                case HistoryThreadModel.InformationTypeSelfJoined:
-                case HistoryThreadModel.InformationTypeSelfLeaving:
-                case HistoryThreadModel.InformationTypeSelfAdminGranted:
-                case HistoryThreadModel.InformationTypeSelfAdminRemoved:
-                case HistoryThreadModel.InformationTypeSelfKicked:
-                    break;
-                case HistoryThreadModel.InformationTypeJoined:
-                case HistoryThreadModel.InformationTypeTitleChanged:
-                case HistoryThreadModel.InformationTypeInvitationSent:
-                case HistoryThreadModel.InformationTypeLeaving:
-                case HistoryThreadModel.InformationTypeAdminGranted:
-                case HistoryThreadModel.InformationTypeAdminRemoved:
-                    return messageData.textSubject
-                }
-                return ""
-            }
-            addressableFields: account ? account.addressableVCardFields : ["tel"] // just to have a fallback there
         }
     }
 
@@ -115,7 +85,13 @@ ListItemWithActions {
             case HistoryThreadModel.InformationTypeText:
                 return messageData.textMessage
             case HistoryThreadModel.InformationTypeInvitationSent:
-                return i18n.tr("%1 was invited to this group").arg(internalItem.displayName)
+                if (messageData.senderId === "") {
+                    return i18n.tr("%1 was invited to this group").arg(messageData.subjectAsAlias)
+                } else if (messageData.senderId === "self") {
+                    return i18n.tr("You invited %1 to this group").arg(messageData.subjectAsAlias)
+                } else {
+                    return i18n.tr("%1 invited %2 to this group").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                }
             case HistoryThreadModel.InformationTypeSimChange:
                 return i18n.tr("You switched to %1 @ %2")
                            .arg(accountLabel)
@@ -123,23 +99,41 @@ ListItemWithActions {
             case HistoryThreadModel.InformationTypeSelfLeaving:
                 return i18n.tr("You left this group")
             case HistoryThreadModel.InformationTypeTitleChanged:
-                if (messageData.textMessage === "") {
-                    return i18n.tr("Renamed group to: %1").arg(internalItem.displayName)
+                if (messageData.senderId === "") {
+                    return i18n.tr("Renamed group to: %1").arg(messageData.textSubject)
+                } else if (messageData.senderId === "self") {
+                    return i18n.tr("You renamed group to: %1").arg(messageData.textSubject)
                 } else {
-                    return i18n.tr("%1 renamed group to: %2").arg(internalItem.displayName).arg(messageData.textMessage)
+                    return i18n.tr("%1 renamed group to: %2").arg(messageData.sender.alias).arg(messageData.textSubject)
                 }
             case HistoryThreadModel.InformationTypeLeaving:
-                return i18n.tr("%1 left this group").arg(internalItem.displayName)
+                if (messageData.senderId !== "" && messageData.senderId !== "self") {
+                    return i18n.tr("%1 removed %2 from this group").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                } else {
+                    return i18n.tr("%1 left this group").arg(messageData.subjectAsAlias)
+                }
             case HistoryThreadModel.InformationTypeSelfJoined:
                 return i18n.tr("You joined this group")
             case HistoryThreadModel.InformationTypeJoined:
-                return i18n.tr("%1 joined this group").arg(internalItem.displayName)
+                if (messageData.senderId !== "" && messageData.senderId !== "self") {
+                    return i18n.tr("%1 added %2 to this group").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                } else {
+                    return i18n.tr("%1 joined this group").arg(messageData.subjectAsAlias)
+                }
             case HistoryThreadModel.InformationTypeAdminGranted:
-                return i18n.tr("%1 is Admin").arg(internalItem.displayName)
+                if (messageData.senderId !== "" && messageData.senderId !== "self") {
+                    return i18n.tr("%1 set %2 as Admin").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                } else {
+                    return i18n.tr("%1 is Admin").arg(messageData.subjectAsAlias)
+                }
             case HistoryThreadModel.InformationTypeSelfAdminGranted:
                 return i18n.tr("You are Admin")
             case HistoryThreadModel.InformationTypeAdminRemoved:
-                return i18n.tr("%1 is not Admin").arg(internalItem.displayName)
+                if (messageData.senderId !== "" && messageData.senderId !== "self") {
+                    return i18n.tr("%1 set %2 as not Admin").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                } else {
+                    return i18n.tr("%1 is not Admin").arg(messageData.subjectAsAlias)
+                }
             case HistoryThreadModel.InformationTypeSelfAdminRemoved:
                 return i18n.tr("You are not Admin")
             case HistoryThreadModel.InformationTypeSelfKicked:
