@@ -64,6 +64,7 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
+    property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -76,6 +77,7 @@ Page {
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     property bool newMessage: false
+    property var lastTypingTimestamp: 0
 
     signal ready
     signal cancel
@@ -390,6 +392,8 @@ Page {
                 return false
             }
             messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
+            messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+            selfTypingTimer.stop()
         }
 
         if (newMessage) {
@@ -788,6 +792,18 @@ Page {
     }
 
     Timer {
+        id: selfTypingTimer
+        interval: 15000
+        onTriggered: {
+            if (composeBar.text != "" || composeBar.inputMethodComposing) {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStatePaused)
+            } else {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+            }
+        }
+    }
+
+    Timer {
         id: fillAttachmentsTimer
         interval: 50
         onTriggered: composeBar.addAttachments(sharedAttachmentsTransfer)
@@ -852,7 +868,7 @@ Page {
 
     Timer {
         id: typingTimer
-        interval: 6000
+        interval: 15000
         onTriggered: {
             messages.userTyping = false;
         }
@@ -891,7 +907,8 @@ Page {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
-                    typingTimer.start()
+                    messages.userTypingId = modelData.contactId
+                    typingTimer.restart()
                 } else {
                     messages.userTyping = false
                 }
@@ -904,6 +921,12 @@ Page {
         }
     }
 
+    ContactWatcher {
+        id: typingContactWatcher
+        identifier: messages.userTypingId
+        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+    }
+
     MessagesHeader {
         id: headerContents
         width: parent ? parent.width - units.gu(2) : undefined
@@ -911,7 +934,12 @@ Page {
         title: pageHeader.title
         subtitle: {
             if (userTyping) {
-                return i18n.tr("Typing..")
+                if (groupChat) {
+                    var contactAlias = typingContactWatcher.alias != "" ? typingContactWatcher.alias : typingContactWatcher.identifier
+                    return i18n.tr("%1 is typing..").arg(contactAlias)
+                } else {
+                    return i18n.tr("Typing..")
+                }
             }
             var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
             if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
@@ -1169,6 +1197,27 @@ Page {
         showContents: !selectionMode && !isSearching
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
+        onTextChanged: {
+            if (text == "" && !composeBar.inputMethodComposing) {
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
+                selfTypingTimer.stop()
+                return
+            }
+            var currentTimestamp = new Date().getTime()
+            if (!selfTypingTimer.running) {
+                messages.lastTypingTimestamp = currentTimestamp
+                messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+            } else {
+                // if more than 8 seconds passed since last typing signal, then send another one
+                if ((currentTimestamp - messages.lastTypingTimestamp) > 8000) {
+                    messages.lastTypingTimestamp = currentTimestamp
+                    messages.chatEntry.setChatState(ChatEntry.ChannelChatStatePaused)
+                    messages.chatEntry.setChatState(ChatEntry.ChannelChatStateComposing)
+                }
+            }
+            selfTypingTimer.restart()
+
+        }
         canSend: participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
         usingMMS: (participantIds.length > 1 || multiRecipient.recipientCount > 1 ) && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount

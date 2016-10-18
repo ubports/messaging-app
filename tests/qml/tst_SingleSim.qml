@@ -77,6 +77,7 @@ Item {
 
         signal messageSent(string accountId, string text, var attachments, var properties)
 
+        function setChatState(state) {}
         function sendMessage(accountId, text, attachments, properties) {
             chatEntryObject.messageSent(accountId, text, attachments, properties)
         }

@@ -40,6 +40,7 @@ Item {
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+    property alias inputMethodComposing: messageTextArea.inputMethodComposing
     property bool usingMMS: false
 
     onRecordingChanged: {
