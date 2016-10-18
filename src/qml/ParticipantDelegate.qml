@@ -34,6 +34,7 @@ ListItem {
 
     ListItemLayout {
         id: layout
+        enabled: participant.state !== 2 //disable pending participants
         title.text: participant.alias !== "" ? participant.alias : participant.identifier
         subtitle.text: {
             // FIXME: use enums instead of hardcoded values
@@ -48,7 +49,7 @@ ListItem {
 
         ContactAvatar {
             id: avatar
-
+            enabled: true
             fallbackAvatarUrl: {
                 if (participant.avatar !== "") {
                     return participant.avatar

@@ -58,6 +58,7 @@ ListItemWithActions {
                 case HistoryThreadModel.InformationTypeSelfLeaving:
                 case HistoryThreadModel.InformationTypeSelfAdminGranted:
                 case HistoryThreadModel.InformationTypeSelfAdminRemoved:
+                case HistoryThreadModel.InformationTypeSelfKicked:
                     break;
                 case HistoryThreadModel.InformationTypeJoined:
                 case HistoryThreadModel.InformationTypeTitleChanged:
@@ -122,7 +123,11 @@ ListItemWithActions {
             case HistoryThreadModel.InformationTypeSelfLeaving:
                 return i18n.tr("You left this group")
             case HistoryThreadModel.InformationTypeTitleChanged:
-                return i18n.tr("Title changed to: %2").arg(messageData.textSubject)
+                if (messageData.textMessage === "") {
+                    return i18n.tr("Renamed group to: %1").arg(internalItem.displayName)
+                } else {
+                    return i18n.tr("%1 renamed group to: %2").arg(internalItem.displayName).arg(messageData.textMessage)
+                }
             case HistoryThreadModel.InformationTypeLeaving:
                 return i18n.tr("%1 left this group").arg(internalItem.displayName)
             case HistoryThreadModel.InformationTypeSelfJoined:
@@ -137,7 +142,8 @@ ListItemWithActions {
                 return i18n.tr("%1 is not Admin").arg(internalItem.displayName)
             case HistoryThreadModel.InformationTypeSelfAdminRemoved:
                 return i18n.tr("You are not Admin")
-
+            case HistoryThreadModel.InformationTypeSelfKicked:
+                return i18n.tr("You were removed from this group")
             }
             return ""
         }
