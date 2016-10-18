@@ -29,6 +29,7 @@ Page {
     property variant threads: []
     property variant participants: threads.length > 0 ? threads[0].participants : []
     property QtObject chatEntry: null
+    property QtObject eventModel: null
 
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
@@ -40,6 +41,27 @@ Page {
         // FIXME: uncomment once the header supports subtitle
         //subtitle: i18n.tr("%1 member", "%1 members", participants.length)
         flickable: contentsFlickable
+    }
+
+    function addRecipient(identifier) {
+        chatEntry.inviteParticipants([identifier], "")
+        var newParticipantsIds = []
+        for (var i in groupChatInfoPage.threads[0].participants) {
+            newParticipantsIds.push(groupChatInfoPage.threads[0].participants[i].identifier)
+        }
+        eventModel.writeTextInformationEvent(groupChatInfoPage.threads[0].accountId,
+                                             groupChatInfoPage.threads[0].threadId,
+                                             newParticipantsIds,
+                                             i18n.tr("Contact %1 was invited to the chat").arg(identifier))
+    }
+
+    Connections {
+        target: chatEntry
+        onParticipantsChanged: {
+            if (chatEntry.participants.length > 0) {
+                groupChatInfoPage.participants = chatEntry.participants
+            }
+        }
     }
 
     Flickable {
@@ -152,6 +174,7 @@ Page {
 
                     visible: chatRoom
                     text: i18n.tr("Add member")
+                    onClicked: mainStack.addFileToCurrentColumnSync(groupChatInfoPage,  Qt.resolvedUrl("NewRecipientPage.qml"), {"multiRecipient": groupChatInfoPage})
                 }
             }
 
@@ -162,11 +185,41 @@ Page {
                 }
             }
 
+            ListItemActions {
+                id: participantLeadingActions
+                actions: [
+                    Action {
+                        iconName: "delete"
+                        text: i18n.tr("Delete")
+                        onTriggered: {
+                            // ListItem provides us the index for the item that triggered the action
+                            var participantDelegate = participantsRepeater.itemAt(value)
+                            var participant = participantDelegate.participant
+                            chatEntry.removeParticipants([participant.identifier], "")
+                            var newParticipantsIds = []
+                            for (var i in groupChatInfoPage.threads[0].participants) {
+                                newParticipantsIds.push(groupChatInfoPage.threads[0].participants[i].identifier)
+                            }
+
+                            eventModel.writeTextInformationEvent(groupChatInfoPage.threads[0].accountId,
+                                                                 groupChatInfoPage.threads[0].threadId,
+                                                                 newParticipantsIds,
+                                                                 i18n.tr("Contact %1 was removed from the chat").arg(participant.identifier))
+
+                            participantDelegate.height = 0
+                        }
+                    }
+                ]
+            }
+
             Repeater {
+                id: participantsRepeater
                 model: participants
 
                 ParticipantDelegate {
+                    id: participantDelegate
                     participant: modelData
+                    leadingActions: participantLeadingActions
                 }
             }
 
@@ -190,9 +243,6 @@ Page {
                     // FIXME: show a dialog in case of failure
                 }
             }
-
-
-
         }
     }
 }

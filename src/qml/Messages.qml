@@ -631,7 +631,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry})
+                    onTriggered: mainStack.addPageToCurrentColumn(basePage, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: messages.threads, chatEntry: messages.chatEntry, eventModel: eventModel, participants: messages.participants})
                 }
             ]
 
@@ -877,7 +877,7 @@ Page {
     ChatEntry {
         id: chatEntryObject
         chatType: messages.chatType
-        participants: messages.participantIds
+        participantIds: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
 
@@ -898,6 +898,19 @@ Page {
                 messages.threads.length === 0) {
                 addNewThreadToFilter(accountId, properties)
             }
+        }
+
+        function updateMessagesParticipants() {
+            if (participants.length > 0) {
+                messages.participants = Qt.binding(function() { return chatEntryObject.participants })
+            }
+        }
+
+        onParticipantsChanged: {
+            updateMessagesParticipants()
+        }
+        Component.onCompleted: {
+            updateMessagesParticipants()
         }
     }
 
@@ -1148,6 +1161,7 @@ Page {
         id: messageList
         objectName: "messageList"
         visible: !isSearching
+        listModel: messages.newMessage ? null : eventModel
 
         Rectangle {
             color: Theme.palette.normal.background

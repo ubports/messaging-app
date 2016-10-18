@@ -74,9 +74,15 @@ ListItemWithActions {
         height: paintedHeight
         clip: true
         // TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
-        text: i18n.tr("You switched to %1 @ %2")
-              .arg(accountLabel)
-              .arg(DateUtils.formatLogDate(messageData.timestamp))
+        text: {
+               if (messageData.textMessage == "") {
+                   return i18n.tr("You switched to %1 @ %2")
+                              .arg(accountLabel)
+                              .arg(DateUtils.formatLogDate(messageData.timestamp))
+               } else {
+                   return messageData.textMessage
+               }
+        }
         fontSize: "x-small"
         horizontalAlignment: Text.AlignHCenter
     }

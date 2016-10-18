@@ -95,7 +95,6 @@ MultipleSelectionListView {
     header: Item {
         height: units.gu(1)
     }
-    listModel: participants.length > 0 ? eventModel : null
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
     // this is to keep the scrolling smooth
