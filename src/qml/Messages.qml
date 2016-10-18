@@ -64,16 +64,6 @@ Page {
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
-    property QtObject chatEntry: {
-        if (!account) {
-            return null
-        } else {
-            if (threads.length > 0) {
-                return chatManager.chatEntryForProperties(account.accountId, threads[0], true)
-            }
-            return null
-        }
-    }
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
     property variant firstParticipant: participants.length > 0 ? participants[0] : null
     property var threads: []
@@ -81,6 +71,7 @@ Page {
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
+    property QtObject chatEntry: chatEntryObject
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
@@ -328,9 +319,6 @@ Page {
             properties["threadId"] = messages.threadId
         }
 
-        // create the new thread and update the threadId list
-        var thread = addNewThreadToFilter(messages.account.accountId, properties)
-
         for (var i=0; i < eventModel.count; i++) {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
@@ -401,11 +389,7 @@ Page {
                 // and use it in the telepathy-ofono account as selfContactId.
                 return false
             }
-            var fallbackAccountId = chatManager.sendMessage(messages.account.accountId, text, attachments, properties)
-            // create the new thread and update the threadId list
-            if (fallbackAccountId != messages.account.accountId) {
-                addNewThreadToFilter(fallbackAccountId, properties)
-            }
+            messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
         }
 
         if (newMessage) {
@@ -653,7 +637,9 @@ Page {
                 title: {
                     if (threads.length == 1 && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         var roomInfo = threads[0].chatRoomInfo
-                        if (roomInfo.Title != "") {
+                        if (chatEntry.title !== "") {
+                            return chatEntry.title
+                        } else if (roomInfo.Title != "") {
                             return roomInfo.Title
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
@@ -847,44 +833,6 @@ Page {
         }
     }
 
-    Connections {
-        target: chatManager
-        onChatEntryCreated: {
-            if (accountId != account.accountId || messages.threads.length == 0) {
-                return
-            }
-            // track using chatId and not participants on ChatRooms
-            if (messages.threads.length == 1 && // we never group chat rooms
-                messages.chatType == chatEntry.chatType &&
-                messages.threadId == chatEntry.chatId) {
-                messages.chatEntry = chatEntry
-                return
-            }
-            if (firstParticipant && participants[0] == firstParticipant.identifier) {
-                messages.chatEntry = chatEntry
-            }
-        }
-        onChatsChanged: {
-            for (var i in chatManager.chats) {
-                var chat = chatManager.chats[i]
-                // TODO: track using chatId and not participants
-                if (messages.threads.length == 1 && // we never group chat rooms
-                    messages.chatType == chat.chatType &&
-                    messages.threadId == chat.chatId) {
-                    messages.chatEntry = chat
-                    return
-                }
-
-                if (chat.account.accountId == account.accountId &&
-                    firstParticipant && chat.participants[0] == firstParticipant.identifier) {
-                    messages.chatEntry = chat
-                    return
-                }
-            }
-            messages.chatEntry = null
-        }
-    }
-
     // this is necessary to automatically update the view when the
     // default account changes in system settings
     Connections {
@@ -910,8 +858,35 @@ Page {
         }
     }
 
+    ChatEntry {
+        id: chatEntryObject
+        chatType: messages.chatType
+        participants: messages.participantIds
+        chatId: messages.threadId
+        accountId: messages.accountId
+
+        onChatTypeChanged: {
+            messages.chatType = chatEntryObject.chatType
+        }
+
+        onMessageSent: {
+            // create the new thread and update the threadId list
+            if (accountId != messages.account.accountId ||
+                messages.threads.length === 0) {
+                addNewThreadToFilter(accountId, properties)
+            }
+        }
+        onMessageSendingFailed: {
+            // create the new thread and update the threadId list
+            if (accountId != messages.account.accountId ||
+                messages.threads.length === 0) {
+                addNewThreadToFilter(accountId, properties)
+            }
+        }
+    }
+
     Repeater {
-        model: messages.chatEntry ? messages.chatEntry.chatStates : null
+        model: messages.chatEntry.chatStates
         Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
