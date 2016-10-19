@@ -1366,6 +1366,10 @@ Page {
             if (messages.newMessage || messages.chatType !== HistoryThreadModel.ChatTypeRoom) {
                return false
             }
+            var account = telepathyHelper.accountForId(messages.accountId)
+            if (account && account.type == AccountEntry.PhoneAccount) {
+                return false
+            }
             if (threads.length > 0) {
                 return !threadInformation.chatRoomInfo.Joined
             }
