@@ -111,8 +111,12 @@ Page {
 
     function getAccountsModel() {
         // on chat rooms we don't give the option to switch to another account
+        // also, if we have a broadcast chat of a protocol we display on selector,
+        // we should not display other accounts
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
-        if (!newMessage && tmpAccount && tmpAccount.type != AccountEntry.PhoneAccount && messages.chatType == HistoryThreadModel.ChatTypeRoom) {
+        if (!newMessage && tmpAccount && tmpAccount.type != AccountEntry.PhoneAccount &&
+            (messages.chatType == HistoryThreadModel.ChatTypeRoom ||
+             tmpAccount.protocolInfo.showOnSelector)) {
             return [tmpAccount]
         }
 
