@@ -1376,7 +1376,7 @@ Page {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            text: i18n.tr("You can't send messages to this group because you are no longer a participant")
+            text: i18n.tr("You can't send messages to this group because the group is no longer active")
         }
     }
 

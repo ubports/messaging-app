@@ -130,7 +130,7 @@ Page {
         if (!result) {
             application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
         } else {
-            application.showNotificationMessage(i18n.tr("Successfully removed group"), "tick")
+            application.showNotificationMessage(i18n.tr("Group has been dissolved"), "tick")
             mainView.emptyStack()
         }
     }
