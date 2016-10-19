@@ -148,13 +148,6 @@ Page {
         chatEntry.inviteParticipants([identifier], "")
     }
 
-    function removeParticipant(index) {
-        var participantDelegate = participantsRepeater.itemAt(index)
-        var participant = participantDelegate.participant
-        chatEntry.removeParticipants([participant.identifier], "")
-        participantDelegate.height = 0
-    }
-
     function destroyGroup() {
         var result = chatEntry.destroyRoom()
         if (!result) {
@@ -378,11 +371,11 @@ Page {
                             // be dissolved by the server
                             if (mainView.multimediaAccount !== null && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
                                 var properties = {}
-                                properties["selectedIndex"] = value
                                 properties["groupName"] = groupName.text
                                 PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)
                             } else {
-                                removeParticipant(value);
+                                var delegate = participantsRepeater.itemAt(value)
+                                delegate.removeFromGroup();
                             }
                         }
                     }
@@ -405,7 +398,9 @@ Page {
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
                     }
                     function removeFromGroup() {
-                        leadingActions.actions[0].trigger()
+                        var participant = participantDelegate.participant
+                        chatEntry.removeParticipants([participant.identifier], "")
+                        participantDelegate.height = 0
                     }
                     participant: modelData
                     leadingActions: canRemove() ? participantLeadingActions : undefined
