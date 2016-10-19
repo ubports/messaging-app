@@ -44,7 +44,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.participants
         } else if (threads.length > 0) {
-            return threads[0].participants
+            return threadInformation.participants
         }
         return []
     }
@@ -52,7 +52,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.localPendingParticipants
         } else if (threads.length > 0) {
-            return threads[0].localPendingParticipants
+            return threadInformation.localPendingParticipants
         }
         return []
     }
@@ -60,7 +60,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.remotePendingParticipants
         } else if (threads.length > 0) {
-            return threads[0].remotePendingParticipants
+            return threadInformation.remotePendingParticipants
         }
         return []
     }
@@ -681,7 +681,7 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threads: threadInformation.threads, chatEntry: messages.chatEntry, eventModel: eventModel})
+                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
                 }
             ]
 
@@ -1235,14 +1235,18 @@ Page {
         id: threadInformation
         property var chatRoomInfo: null
         property var participants: null
+        property var localPendingParticipants: null
+        property var remotePendingParticipants: null
         property var threads: null
         model: threadsModel
         visible: false
         delegate: Item {
             property var threads: model.threads
             onThreadsChanged: {
-                threadInformation.chatRoomInfo = model.threads[0].chatRoomInfo
-                threadInformation.participants = model.threads[0].participants
+                threadInformation.chatRoomInfo = model.chatRoomInfo
+                threadInformation.participants = model.participants
+                threadInformation.localPendingParticipants = model.localPendingParticipants
+                threadInformation.remotePendingParticipants = model.remotePendingParticipants
                 threadInformation.threads = model.threads
             }
         }

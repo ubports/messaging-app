@@ -28,12 +28,14 @@ import Ubuntu.Telephony 0.1
 Page {
     id: groupChatInfoPage
 
-    property variant threads: []
+    property variant threads: threadInformation.threads
+    property var account: telepathyHelper.accountForId(threads[0].accountId)
+    property var threadInformation: null
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
         } else if (threads.length > 0) {
-            return threads[0].participants
+            return threadInformation.participants
         }
         return []
     }
@@ -41,7 +43,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.localPendingParticipants
         } else if (threads.length > 0) {
-            return threads[0].localPendingParticipants
+            return threadInformation.localPendingParticipants
         }
         return []
     }
@@ -49,7 +51,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.remotePendingParticipants
         } else if (threads.length > 0) {
-            return threads[0].remotePendingParticipants
+            return threadInformation.remotePendingParticipants
         }
         return []
     }
@@ -59,33 +61,31 @@ Page {
         for (var i in participants) {
             var participant = participants[i]
             participant["state"] = 0
+            participant["selfContact"] = false
             participantList.push(participant)
         }
         for (var i in localPendingParticipants) {
             var participant = localPendingParticipants[i]
             participant["state"] = 1
+            participant["selfContact"] = false
             participantList.push(participant)
         }
         for (var i in remotePendingParticipants) {
             var participant = remotePendingParticipants[i]
             participant["state"] = 2
+            participant["selfContact"] = false
             participantList.push(participant)
         }
 
-        if (chatRoom) {
-            var participant = {"alias": i18n.tr("You"), "identifier": "self", "avatar":""}
-            if (chatEntry.active) {
-                participant["state"] = 0
-                participant["roles"] = chatEntry.selfContactRoles
-                participantList.push(participant)
-            } else  if (chatRoomInfo.Joined) {
-                participant["state"] = 0
-                participant["roles"] = chatRoomInfo.SelfRoles
+        if (chatRoom && (chatEntry.active || chatRoomInfo.Joined)) {
+            var participant = selfContactWatcher
+            if (chatEntry.active || chatRoomInfo.Joined) {
                 participantList.push(participant)
             }
         }
         return participantList
     }
+
     property QtObject chatEntry: null
     property QtObject eventModel: null
 
@@ -93,6 +93,36 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
     property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
+
+    // self contact isn't provided by history or chatEntry, so we manually add it here
+    Item {
+        id: selfContactWatcher
+        property alias identifier: internalContactWatcher.identifier
+        property alias contactId: internalContactWatcher.contactId
+        property alias avatar: internalContactWatcher.avatar
+        property var alias: {
+            if (contactId == "") {
+                return i18n.tr("Me")
+            }
+            return internalContactWatcher.alias
+        }
+        property bool selfContact: true
+        property int state: 0
+        property int roles: {
+            if(chatEntry.active) {
+                return chatEntry.selfContactRoles
+            } else if (chatRoomInfo.Joined) {
+                return chatRoomInfo.SelfRoles
+            }
+            return 0
+        }
+
+        ContactWatcher {
+            id: internalContactWatcher
+            identifier: groupChatInfoPage.account.selfContactId
+            addressableFields: groupChatInfoPage.account ? groupChatInfoPage.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        }
+    }
 
     header: PageHeader {
         id: pageHeader
@@ -116,13 +146,6 @@ Page {
         searchItem.text = ""
 
         chatEntry.inviteParticipants([identifier], "")
-    }
-
-    function removeParticipant(index) {
-        var participantDelegate = participantsRepeater.itemAt(index)
-        var participant = participantDelegate.participant
-        chatEntry.removeParticipants([participant.identifier], "")
-        participantDelegate.height = 0
     }
 
     function destroyGroup() {
@@ -150,7 +173,6 @@ Page {
         Column {
             id: contentsColumn
             property var topItemsHeight: groupInfo.height+participantsHeader.height+searchItem.height+units.gu(1)
-            enabled: chatEntry.active
 
             anchors {
                 top: parent.top
@@ -164,6 +186,7 @@ Page {
                 id: groupInfo
                 height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin + units.gu(1) : 0
                 visible: chatRoom
+                enabled: chatEntry.active
 
                 anchors {
                     left: parent.left
@@ -256,6 +279,7 @@ Page {
 
             Item {
                 id: participantsHeader
+                enabled: chatEntry.active
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -347,11 +371,11 @@ Page {
                             // be dissolved by the server
                             if (mainView.multimediaAccount !== null && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
                                 var properties = {}
-                                properties["selectedIndex"] = value
                                 properties["groupName"] = groupName.text
                                 PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)
                             } else {
-                                removeParticipant(value);
+                                var delegate = participantsRepeater.itemAt(value)
+                                delegate.removeFromGroup();
                             }
                         }
                     }
@@ -365,7 +389,6 @@ Page {
                 ParticipantDelegate {
                     id: participantDelegate
                     function canRemove() {
-                        console.log(chatEntry.selfContactRoles)
                         if (!groupChatInfoPage.chatRoom /*not a group*/
                                 || !chatEntry.active /*not active*/
                                 || modelData.roles & 2 /*not admin*/
@@ -374,8 +397,26 @@ Page {
                         }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
                     }
+                    function removeFromGroup() {
+                        var participant = participantDelegate.participant
+                        chatEntry.removeParticipants([participant.identifier], "")
+                        participantDelegate.height = 0
+                    }
                     participant: modelData
                     leadingActions: canRemove() ? participantLeadingActions : undefined
+                    onClicked: {
+                        if (openProfileButton.visible) {
+                            mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
+                        }
+                    }
+                    Icon {
+                       id: openProfileButton
+                       anchors.right: parent.right
+                       anchors.rightMargin: units.gu(1)
+                       anchors.verticalCenter: parent.verticalCenter
+                       height: units.gu(2)
+                       name: "go-next"
+                    }
                 }
             }
             Item {
@@ -385,6 +426,7 @@ Page {
                anchors.right: parent.right
             }
             Row {
+                enabled: chatEntry.active
                 anchors {
                     right: parent.right
                     rightMargin: units.gu(2)
