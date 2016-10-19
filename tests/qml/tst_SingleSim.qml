@@ -66,6 +66,23 @@ Item {
             }
             return null
         }
+
+        property alias textAccounts: textAccountsItem
+        property alias phoneAccounts: phoneAccountsItem
+
+        Item {
+            id: textAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
+
+        Item {
+            id: phoneAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
     }
 
     Item {

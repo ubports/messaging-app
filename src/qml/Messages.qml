@@ -39,7 +39,6 @@ Page {
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
-    property bool phoneAccount: isPhoneAccount()
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
@@ -107,51 +106,31 @@ Page {
 
     function restoreBindings() {
         messages.account = Qt.binding(getCurrentAccount)
-        messages.phoneAccount = Qt.binding(isPhoneAccount)
         headerSections.selectedIndex = Qt.binding(getSelectedIndex)
     }
 
     function getAccountsModel() {
-        var accounts = []
-        // on new chat dialogs display all possible accounts
-        if (newMessage) {
-            for (var i in telepathyHelper.activeAccounts) {
-                accounts.push(telepathyHelper.activeAccounts[i])
-            }
-            return accounts
-        }
- 
+        // on chat rooms we don't give the option to switch to another account
+        // also, if we have a broadcast chat of a protocol we display on selector,
+        // we should not display other accounts
         var tmpAccount = telepathyHelper.accountForId(messages.accountId)
-        // on generic accounts we don't give the option to switch to another account
-        if (tmpAccount && (tmpAccount.type == AccountEntry.GenericAccount ||
-                           (tmpAccount.type == AccountEntry.MultimediaAccount && messages.chatType == HistoryThreadModel.ChatTypeRoom))) {
+        if (!newMessage && tmpAccount && tmpAccount.type != AccountEntry.PhoneAccount &&
+            (messages.chatType == HistoryThreadModel.ChatTypeRoom ||
+             tmpAccount.protocolInfo.showOnSelector)) {
             return [tmpAccount]
         }
 
-        // if we get here, this is a regular sms conversation. just
-        // add the available phone accounts next
-        for (var i in telepathyHelper.activeAccounts) {
-            var account = telepathyHelper.activeAccounts[i]
-            if (account.type == AccountEntry.PhoneAccount) {
-                accounts.push(account)
-            }
-        }
-
-        return accounts
+        // show only the text accounts meant to be displayed
+        return telepathyHelper.textAccounts.displayed
     }
 
     function getSectionsModel() {
         var accountNames = []
-        // suru divider must be empty if there is only one sim card
-        if (messages.accountsModel.length == 1 &&
-                messages.accountsModel[0].type == AccountEntry.PhoneAccount) {
-            return []
-        }
- 
+        // suru divider must be empty if there is only one account
         for (var i in messages.accountsModel) {
             accountNames.push(messages.accountsModel[i].displayName)
         }
-        return accountNames.length > 0 ? accountNames : []
+        return accountNames.length > 1 ? accountNames : []
     }
 
     function getSelectedIndex() {
@@ -210,15 +189,11 @@ Page {
         }
     }
 
-    function isPhoneAccount() {
-        var tmpAccount = telepathyHelper.accountForId(accountId)
-        return (!tmpAccount || tmpAccount.type == AccountEntry.PhoneAccount || tmpAccount.type == AccountEntry.MultimediaAccount)
-    }
-
     function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
-        if (newAccount.type == AccountEntry.PhoneAccount || newAccount.type == AccountEntry.MultimediaAccount) {
+        // if the addressable fields contains "tel", assume we should do phone match
+        if (newAccount.usePhoneNumbers) {
             matchType = HistoryThreadModel.MatchPhoneNumber
         }
 
@@ -285,20 +260,13 @@ Page {
             messages.focus = false
             var properties = {}
 
-            var activePhoneAccounts = 0;
-            for (var i in telepathyHelper.phoneAccounts) {
-                if (telepathyHelper.phoneAccounts[i].active) {
-                    activePhoneAccounts++
-                }
-            }
-
             if (telepathyHelper.flightMode) {
                 properties["title"] = i18n.tr("You have to disable flight mode")
                 properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
             } else if (multiplePhoneAccounts) {
                 properties["title"] = i18n.tr("No SIM card selected")
                 properties["text"] = i18n.tr("You need to select a SIM card")
-            } else if (telepathyHelper.phoneAccounts.length > 0 && activePhoneAccounts == 0) {
+            } else if (telepathyHelper.phoneAccounts.all.length > 0 && telepathyHelper.phoneAccounts.active.length == 0) {
                 properties["title"] = i18n.tr("No SIM card")
                 properties["text"] = i18n.tr("Please insert a SIM card and try again.")
             } else {
@@ -311,7 +279,7 @@ Page {
         if (messages.account.type == AccountEntry.PhoneAccount) {
             return sendMessageNetworkCheck()
         }
-        if (!account.connected) {
+        if (!messages.account.connected) {
             var properties = {}
             properties["title"] = i18n.tr("Not available")
             properties["text"] = i18n.tr("The selected account is not available at the moment")
@@ -340,20 +308,13 @@ Page {
             messages.focus = false
             var properties = {}
 
-            var activePhoneAccounts = 0;
-            for (var i in telepathyHelper.phoneAccounts) {
-                if (telepathyHelper.phoneAccounts[i].active) {
-                    activePhoneAccounts++
-                }
-            }
-
             if (telepathyHelper.flightMode) {
                 properties["title"] = i18n.tr("You have to disable flight mode")
                 properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
             } else if (multiplePhoneAccounts) {
                 properties["title"] = i18n.tr("No SIM card selected")
                 properties["text"] = i18n.tr("You need to select a SIM card")
-            } else if (telepathyHelper.phoneAccounts.length > 0 && activePhoneAccounts == 0) {
+            } else if (telepathyHelper.phoneAccounts.all.length > 0 && telepathyHelper.phoneAccounts.active.length == 0) {
                 properties["title"] = i18n.tr("No SIM card")
                 properties["text"] = i18n.tr("Please insert a SIM card and try again.")
             } else {
@@ -391,7 +352,7 @@ Page {
             var event = eventModel.get(i)
             if (event.senderId == "self" && event.accountId != messages.account.accountId) {
                 var tmpAccount = telepathyHelper.accountForId(event.accountId)
-                if (!tmpAccount || (tmpAccount.type == AccountEntry.MultimediaAccount && messages.account.type == AccountEntry.PhoneAccount)) {
+                if (!tmpAccount || (tmpAccount.type != AccountEntry.PhoneAccount && messages.account.type == AccountEntry.PhoneAccount)) {
                     // we don't add the information event if the last outgoing message
                     // was a fallback to a multimedia service
                     break;
@@ -449,6 +410,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
+            // FIXME: we need to change the way of detecting MMS group chat
             var isMmsGroupChat = newParticipantsIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
@@ -514,15 +476,9 @@ Page {
 
         var filterAccounts = []
 
-        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
-            filterAccounts = [messages.accountsModel[0]]
-        } else {
-            for (var i in telepathyHelper.accounts) {
-                var account = telepathyHelper.accounts[i]
-                if (account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount) {
-                    filterAccounts.push(account)
-                }
-            }
+        for (var i in accounts) {
+            var account = accounts[i]
+            filterAccounts.push(account)
         }
 
         for (var i in filterAccounts) {
@@ -530,8 +486,8 @@ Page {
             var filterValue = eventModel.threadIdForParticipants(account.accountId,
                                                                  HistoryThreadModel.EventTypeText,
                                                                  participantIds,
-                                                                 account.type === AccountEntry.PhoneAccount || account.type === AccountEntry.MultimediaAccount ? HistoryThreadModel.MatchPhoneNumber
-                                                                                                            : HistoryThreadModel.MatchCaseSensitive);
+                                                                 account.usePhoneNumbers ? HistoryThreadModel.MatchPhoneNumber :
+                                                                                           HistoryThreadModel.MatchCaseSensitive);
             if (filterValue === "") {
                 continue
             }
@@ -761,7 +717,19 @@ Page {
                         if (!checkSelectedAccount()) {
                             return
                         }
-                        if (!mainView.multimediaAccount) {
+
+                        // check if we support more than one kind of group
+                        var multipleGroupTypes = false
+                        for (var i in telepathyHelper.textAccounts.active) {
+                            var account = telepathyHelper.textAccounts.active[i]
+                            if (account.type != AccountEntry.PhoneAccount) {
+                                multipleGroupTypes = true
+                                break
+                            }
+                        }
+
+                        if (!multipleGroupTypes) {
+                            // FIXME: remove that: now that creating an MMS group is an explicit action we don't need to have a settings for that
                             if (!telepathyHelper.mmsGroupChat) {
                                 application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
                                 return
@@ -770,6 +738,7 @@ Page {
                             return
                         }
                         contextMenu.caller = header;
+                        contextMenu.updateGroupTypes();
                         contextMenu.show();
                     }
                 }
@@ -804,15 +773,6 @@ Page {
                         z: 2
                     }
                 }
-
-                Connections {
-                    target: mainView.bottomEdge
-                    onStatusChanged: {
-                        if (mainView.bottomEdge.status === BottomEdge.Committed) {
-                            multiRecipient.forceFocus()
-                        }
-                    }
-                }
             }
 
             PropertyChanges {
@@ -829,7 +789,7 @@ Page {
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1 && messages.phoneAccount
+                    visible: participants.length == 1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -840,7 +800,7 @@ Page {
                 },
                 Action {
                     objectName: "contactProfileAction"
-                    visible: !contactWatcher.isUnknown && participants.length == 1 && messages.phoneAccount
+                    visible: !contactWatcher.isUnknown && participants.length == 1
                     iconSource: "image://theme/contact"
                     text: i18n.tr("Contact")
                     onTriggered: {
@@ -861,10 +821,13 @@ Page {
         // in which case the handler will fallback to multimedia if needed
         if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
             var account = telepathyHelper.accountForId(messages.accountId)
-            if (account && account.type == AccountEntry.MultimediaAccount) {
-                // fallback the first available phone account
-                if (telepathyHelper.phoneAccounts.length > 0) {
-                    messages.accountId = telepathyHelper.phoneAccounts[0].accountId
+
+            // if the account is not supposed to be displayed, we check if it has a fallback
+            if (account && !account.protocolInfo.showOnSelector) {
+                // check if there is a fallback account to use
+                var accounts = telepathyHelper.accountFallback(account);
+                if (accounts.length > 0) {
+                    messages.accountId = accounts[0].accountId
                 }
             }
         }
@@ -928,34 +891,63 @@ Page {
     ActionSelectionPopover {
         id: contextMenu
         z: 100
+
         delegate: ListItem.Standard {
             text: action.text
         }
         actions: ActionList {
-            Action {
-                text: i18n.tr("Create MMS Group...")
-                onTriggered: {
-                    if (!telepathyHelper.mmsGroupChat) {
-                        var properties = {}
-                        properties["title"] = i18n.tr("MMS group chat is disabled")
-                        properties["text"] = i18n.tr("You need to enable MMS group chat in the app settings")
-                        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
-                        return
-                    }
-                    mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
+            id: actionList
+        }
+
+        Action {
+            id: mmsGroupAction
+            text: i18n.tr("Create MMS Group...")
+            onTriggered: {
+                // FIXME: remove that, there is no need to have a MMS group chat option anymore
+                if (!telepathyHelper.mmsGroupChat) {
+                    var properties = {}
+                    properties["title"] = i18n.tr("MMS group chat is disabled")
+                    properties["text"] = i18n.tr("You need to enable MMS group chat in the app settings")
+                    PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+                    return
                 }
+                mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
             }
+        }
+
+        Component {
+            id: customGroupChatActionComponent
             Action {
+                property var participants: null
+                property var account: null
                 text: {
-                    var protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceDisplayName;
+                    var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
-                       protocolDisplayName = mainView.multimediaAccount.protocolInfo.serviceName;
+                       protocolDisplayName = account.protocolInfo.serviceName;
                     }
                     return i18n.tr("Create %1 Group...").arg(protocolDisplayName);
                 }
-                enabled: mainView.multimediaAccount != null
-                onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"multimedia": true, "participants": multiRecipient.participants, "account": messages.account})
-                visible: mainView.multimediaAccount.connected
+                onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"mmsGroup": false, "participants": participants, "account": account})
+            }
+        }
+
+        function updateGroupTypes() {
+            // remove the previous actions
+            actionList.removeAction(mmsGroupAction)
+            for (var i in actionList.actions) {
+                actionList.actions[i].destroy()
+            }
+            actionList.actions = []
+
+            actionList.addAction(mmsGroupAction)
+
+            for (var i in telepathyHelper.textAccounts.active) {
+                var account = telepathyHelper.textAccounts.active[i]
+                if (account.type == AccountEntry.PhoneAccount) {
+                    continue
+                }
+                var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
+                actionList.addAction(action)
             }
         }
     }
@@ -982,9 +974,6 @@ Page {
     Connections {
         target: mainView
         onAccountChanged: {
-            if (!messages.phoneAccount) {
-                return
-            }
             messages.account = mainView.account
             headerSections.selectedIndex = getSelectedIndex()
         }
@@ -1071,7 +1060,7 @@ Page {
                 }
             }
             var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
-            if (presenceAccount && presenceAccount.type == AccountEntry.MultimediaAccount) {
+            if (!presenceAccount || !presenceAccount.protocolInfo.showOnlineStatus) {
                 return ""
             }
             switch (presenceRequest.type) {
@@ -1098,10 +1087,13 @@ Page {
             if (!account || chatType != HistoryThreadModel.ChatTypeContact) {
                 return ""
             }
+            // FIXME: for accounts that we don't want to show the online status, we have to check if the overloaded account
+            // might be available for that.
             if (account.type == AccountEntry.PhoneAccount) {
-                for (var i in telepathyHelper.accounts) {
-                    var tmpAccount = telepathyHelper.accounts[i]
-                    if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                var accounts = telepathyHelper.accountOverload(account)
+                for (var i in accounts) {
+                    var tmpAccount = accounts[i]
+                    if (tmpAccount.active) {
                         return tmpAccount.accountId
                     }
                 }
@@ -1255,7 +1247,7 @@ Page {
     HistoryEventModel {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
-        filter: updateFilters(telepathyHelper.accounts, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
+        filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
         matchContacts: true
         sort: HistorySort {
            sortField: "timestamp"
@@ -1335,6 +1327,10 @@ Page {
                     if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
                             && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
                         accountId = presenceRequest.accountId
+                    }
+
+                    if (accountId == "") {
+                        return ""
                     }
 
                     return telepathyHelper.accountForId(accountId).protocolInfo.backgroundImage
@@ -1453,17 +1449,16 @@ Page {
                 newAttachments.push(attachment)
             }
             if (videoSize > 307200 && !settings.messagesDontShowFileSizeWarning) {
-                // FIXME we are guessing here if the handler will try to send it over multimedia account
+                // FIXME we are guessing here if the handler will try to send it over an overloaded account
+                // FIXME: this should be revisited when changing the MMS group implementation
                 var isPhone = (account && account.type == AccountEntry.PhoneAccount)
                 if (isPhone) {
-                    for (var i in telepathyHelper.accounts) {
-                        var tmpAccount = telepathyHelper.accounts[i]
-                        if (tmpAccount.type == AccountEntry.MultimediaAccount) {
-                            // now check if the user is at least known by the account
-                            if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
-                                     && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
-                                isPhone = false
-                            }
+                    // check if an account overload might be used
+                    var accounts = telepathyHelper.accountOverload(account)
+                    for (var i in accounts) {
+                        var tmpAccount = accounts[i]
+                        if (tmpAccount.active) {
+                            isPhone = false
                         }
                     }
                 }

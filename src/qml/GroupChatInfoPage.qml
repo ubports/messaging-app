@@ -367,9 +367,9 @@ Page {
                     Action {
                         text: i18n.tr("Remove")
                         onTriggered: {
-                            // in case account is of type Multimedia, alert if the group is going to have no active participants that the group could
-                            // be dissolved by the server
-                            if (mainView.multimediaAccount !== null && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
+                            // in case account is not a phone one, alert that if the group is going to have no active participants
+                            // it can be dissolved by the server
+                            if (chatEntry.chatType == ChatEntry.ChatTypeRoom && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
                                 var properties = {}
                                 properties["groupName"] = groupName.text
                                 PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)

@@ -59,7 +59,8 @@ Column {
         selectionMode: root.isInSelectionMode
         accountLabel: {
             var account = telepathyHelper.accountForId(accountId)
-            if (account && (account.type == AccountEntry.PhoneAccount || account.type == AccountEntry.MultimediaAccount)) {
+            // we only show those labels when using phone + fallback and when having multiple phone accounts
+            if (account && (account.type == AccountEntry.PhoneAccount || account.protocolInfo.fallbackProtocol == "ofono")) {
                 if (multiplePhoneAccounts) {
                     return account.displayName
                 }
@@ -68,7 +69,7 @@ Column {
         }
         isMultimedia: {
             var account = telepathyHelper.accountForId(accountId)
-            return account && account.type == AccountEntry.MultimediaAccount
+            return account && account.type != AccountEntry.PhoneAccount
         }
 
         // TODO: need select only the item
