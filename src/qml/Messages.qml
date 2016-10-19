@@ -923,7 +923,6 @@ Page {
                     }
                     return i18n.tr("Create %1 Group...").arg(protocolDisplayName);
                 }
-                // FIXME: this multimedia: true property needs to be replaced by the accountId
                 onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"mmsGroup": false, "participants": participants, "account": account})
             }
         }
@@ -1085,7 +1084,7 @@ Page {
                 return ""
             }
             // FIXME: for accounts that we don't want to show the online status, we have to check if the overloaded account
-            // might be available for that. If that account should not use the
+            // might be available for that.
             if (account.type == AccountEntry.PhoneAccount) {
                 var accounts = telepathyHelper.accountOverload(account)
                 for (var i in accounts) {
