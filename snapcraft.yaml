@@ -1,0 +1,55 @@
+name: messaging-app
+version: 0.1
+summary: Messaging application for Ubuntu
+description: Messaging application for Ubuntu
+confinement: devmode  # use "strict" to enforce system access only via declared interfaces
+grade: devel
+
+apps:
+    messaging-app:
+        command: desktop-launch $SNAP/usr/bin/messaging-app --desktop_file_hint=unity8 "$@"
+        plugs: [unity7, opengl]
+
+parts:
+    messaging-app:
+        plugin: cmake
+        configflags: [-DCMAKE_INSTALL_PREFIX=/usr, -DCLICK_MODE=off]
+        source: .
+        build-packages:
+            - cmake
+            - intltool
+            - pkg-config
+            - libnotify-dev
+            - qt5-default
+            - qtbase5-dev
+            - qtdeclarative5-dev
+            - qtdeclarative5-dev-tools
+            - qtmultimedia5-dev
+            - qtpim5-dev
+
+        stage-packages:
+            - libqt5multimedia5
+            - qml-module-qt-labs-folderlistmodel
+            - qml-module-qt-labs-settings
+            - qml-module-ubuntu-components
+            - qml-module-qtmultimedia
+            - qml-module-ofono
+            - qtdeclarative5-ubuntu-telephony-phonenumber0.1
+            - qtdeclarative5-ubuntu-history0.1
+            - qtdeclarative5-ubuntu-telephony0.1
+            - qtdeclarative5-qtcontacts-plugin
+            - ttf-ancient-fonts-symbola
+            - qtdeclarative5-gsettings1.0
+            - qtdeclarative5-ubuntu-addressbook0.1
+            - qtdeclarative5-ubuntu-content1
+            - qtdeclarative5-ubuntu-keyboard-extensions0.1
+            - qtubuntu-desktop
+            - suru-icon-theme
+            - mir-graphics-drivers-desktop
+
+        snap:
+            - -usr/lib/python3
+            - -usr/share/doc
+            - -usr/include         
+
+        after: [desktop-qt5]
