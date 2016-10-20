@@ -1,3 +1,10 @@
+messaging-app (0.1+17.04.20161020-0ubuntu1) zesty; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Snap package.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Thu, 20 Oct 2016 15:15:59 +0000
+
 messaging-app (0.1+16.10.20160831-0ubuntu1) yakkety; urgency=medium
 
   [ Pat McGowan ]
