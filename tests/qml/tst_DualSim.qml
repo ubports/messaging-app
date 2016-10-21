@@ -68,10 +68,9 @@ Item {
     Item {
         id: telepathyHelper
         property var activeAccounts: [testAccount, testAccount2]
-        property alias accounts: telepathyHelper.activeAccounts
+        property alias accounts: telepathyHelper.activeAccounts        
         property QtObject defaultMessagingAccount: null
         property bool flightMode: false
-        property var phoneAccounts: accounts
         function registerChannelObserver() {}
         function unregisterChannelObserver() {}
         function accountForId(accountId) {
@@ -82,20 +81,45 @@ Item {
             }
             return null
         }
+
+        function accountOverload(account) {
+            return []
+        }
+
+        function accountFallback(account) {
+            return []
+        }
+
+        property alias textAccounts: textAccountsItem
+        property alias phoneAccounts: phoneAccountsItem
+
+        Item {
+            id: textAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
+
+        Item {
+            id: phoneAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
     }
 
     Item {
-        id: chatManager
-        signal messageSent(string accountId, var participantIds, string text, var attachments, var properties)
-        function acknowledgeMessage(recipients, messageId, accountId) {
-            chatManager.messageAcknowledged(recipients, messageId, accountId)
-        }
-        function sendMessage(accountId, participantIds, text, attachments, properties) {
-           chatManager.messageSent(accountId, participantIds, text, attachments, properties)
-           return accountId
-        }
-        function chatEntryForParticipants(accountId, participantIds) {
-            return null
+        id: chatEntryObject
+        property int chatType: 1
+        property var participants: []
+        property var chatId: ""
+        property var accountId: testAccount.accountId
+
+        signal messageSent(string accountId, string text, var attachments, var properties)
+
+        function setChatState(state) {}
+        function sendMessage(accountId, text, attachments, properties) {
+            chatEntryObject.messageSent(accountId, text, attachments, properties)
         }
     }
 
@@ -108,7 +132,7 @@ Item {
 
     SignalSpy {
        id: messageSentSpy
-       target: chatManager
+       target: chatEntryObject
        signalName: "messageSent"
     }
 
@@ -140,6 +164,18 @@ Item {
             return null;
         }
 
+        function waitFindChild(obj,objectName) {
+            var child = findChild(obj, objectName);
+            var timeout = 3000;
+            var interval = 50;
+            while (!child && timeout > 0) {
+                wait(interval)
+                timeout -= interval
+                child = findChild(obj, objectName)
+            }
+            return child
+        }
+
         function init() {
         }
 
@@ -154,9 +190,7 @@ Item {
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
 
-            var messagesView = findChild(mainViewLoader, "messagesPage")
-            waitForRendering(messagesView)
-
+            var messagesView = waitFindChild(mainViewLoader, "messagesPage")
             var headerSections = findChild(messagesView, "headerSections")
             compare(headerSections.selectedIndex, -1)
 
@@ -166,6 +200,7 @@ Item {
             contactSearchInput.text = "123"
             textArea.text = "test text"
             // on vivid mouseClick() does not work here
+            messagesView.chatEntry = chatEntryObject
             sendButton.clicked()
 
             var dialogButton = findChild(root, "closeInformationDialog")
@@ -180,7 +215,7 @@ Item {
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
 
-            messagesView = findChild(mainViewLoader, "messagesPage")
+            messagesView = waitFindChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
 
             compare(headerSections.selectedIndex, 0)
@@ -194,15 +229,17 @@ Item {
             waitForRendering(mainViewLoader.item)
 
 
-            messagesView = findChild(mainViewLoader, "messagesPage")
+            messagesView = waitFindChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
-
             compare(headerSections.selectedIndex, 1)
 
-            mainViewLoader.item.startChat("123", "", testAccount.accountId)
+            var properties = {}
+            properties["accountId"] = testAccount.accountId
+            properties["participantIds"] = ["123"]
+            mainViewLoader.item.startChat(properties)
             waitForRendering(mainViewLoader.item)
 
-            messagesView = findChild(mainViewLoader, "messagesPage")
+            messagesView = waitFindChild(mainViewLoader, "messagesPage")
             headerSections = findChild(messagesView, "headerSections")
             compare(headerSections.selectedIndex, 1)
 
@@ -218,15 +255,14 @@ Item {
             mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
 
-            var messagesView = findChild(mainViewLoader, "messagesPage")
-            waitForRendering(messagesView)
-
+            var messagesView = waitFindChild(mainViewLoader, "messagesPage")
             var textArea = findChild(messagesView, "messageTextArea")
             var contactSearchInput = findChild(messagesView, "contactSearchInput")
             var sendButton = findChild(messagesView, "sendButton")
             contactSearchInput.text = "123"
             textArea.text = "test text"
             // on vivid mouseClick() does not work here
+            messagesView.chatEntry = chatEntryObject
             sendButton.clicked()
             tryCompare(messageSentSpy, 'count', 1)
             tryCompare(telepathyHelper.defaultMessagingAccount, 'accountId', messageSentSpy.signalArguments[0][0])

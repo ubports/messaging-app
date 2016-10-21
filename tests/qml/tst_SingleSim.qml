@@ -66,20 +66,37 @@ Item {
             }
             return null
         }
+
+        property alias textAccounts: textAccountsItem
+        property alias phoneAccounts: phoneAccountsItem
+
+        Item {
+            id: textAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
+
+        Item {
+            id: phoneAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
     }
 
     Item {
-        id: chatManager
-        signal messageSent(string accountId, var participantIds, string text, var attachments, var properties)
-        function acknowledgeMessage(recipients, messageId, accountId) {
-            chatManager.messageAcknowledged(recipients, messageId, accountId)
-        }
-        function sendMessage(accountId, participantIds, text, attachments, properties) {
-           chatManager.messageSent(accountId, participantIds, text, attachments, properties)
-           return accountId
-        }
-        function chatEntryForParticipants(accountId, participantIds) {
-            return null
+        id: chatEntryObject
+        property int chatType: 1
+        property var participants: []
+        property var chatId: ""
+        property var accountId: testAccount.accountId
+
+        signal messageSent(string accountId, string text, var attachments, var properties)
+
+        function setChatState(state) {}
+        function sendMessage(accountId, text, attachments, properties) {
+            chatEntryObject.messageSent(accountId, text, attachments, properties)
         }
     }
 
@@ -92,7 +109,7 @@ Item {
 
     SignalSpy {
        id: messageSentSpy
-       target: chatManager
+       target: chatEntryObject
        signalName: "messageSent"
     }
 
@@ -147,6 +164,7 @@ Item {
             var sendButton = findChild(messagesView, "sendButton")
             contactSearchInput.text = "123"
             textArea.text = "test text"
+            messagesView.chatEntry = chatEntryObject
             // on vivid mouseClick() does not work here
             sendButton.clicked()
             tryCompare(messageSentSpy, 'count', 1)

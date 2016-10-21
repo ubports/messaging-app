@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -82,7 +82,7 @@ Previewer {
                 if (FileOperations.link(attachment.filePath, tmpFile)) {
                     videoLoader.item.source = tmpFile
                 } else {
-                    console.log("MMSVideo: Failed to link", attachment.filePath, "to", tmpFile)
+                    console.log("PreviewerVideo: Failed to link", attachment.filePath, "to", tmpFile)
                 }
             }
         }

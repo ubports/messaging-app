@@ -25,7 +25,7 @@ Page {
     id: newRecipientPage
     objectName: "newRecipientPage"
 
-    property Item multiRecipient: null
+    property var itemCallback: null
     property string phoneToAdd: ""
     property QtObject contactIndex: null
 
@@ -39,10 +39,14 @@ Page {
         }
     }
 
-    function addRecipient(phoneNumber)
+    function addRecipient(identifier, contact)
     {
-        multiRecipient.addRecipient(phoneNumber)
-        multiRecipient.forceActiveFocus()
+        if (itemCallback) {
+            itemCallback.addRecipient(identifier, contact)
+            if (itemCallback.forceActiveFocus) {
+                itemCallback.forceActiveFocus()
+            }
+        }
         mainStack.removePages(newRecipientPage)
     }
 

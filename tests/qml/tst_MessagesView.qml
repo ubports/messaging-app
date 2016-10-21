@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Canonical Ltd.
+ * Copyright 2015-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -99,6 +99,23 @@ Item {
         function unregisterChannelObserver() {}
         property var activeAccounts: [testAccount]
         property alias accounts: telepathyHelper.activeAccounts
+
+        property alias textAccounts: textAccountsItem
+        property alias phoneAccounts: phoneAccountsItem
+
+        Item {
+            id: textAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
+
+        Item {
+            id: phoneAccountsItem
+            property alias all: telepathyHelper.activeAccounts
+            property alias active: telepathyHelper.activeAccounts
+            property alias displayed: telepathyHelper.activeAccounts
+        }
     }
 
     Item {
@@ -162,7 +179,9 @@ Item {
             // and instead will generate the list of participants, take advantage of that
             var account = mainViewLoader.item.account
             mainViewLoader.item.account = null
-            mainViewLoader.item.startChat(senderId, "")
+            var properties = {}
+            properties["participantIds"] = [senderId]
+            mainViewLoader.item.startChat(properties)
             mainViewLoader.item.account = account
             var messageList
             while (true) {

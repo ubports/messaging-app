@@ -1,3 +1,0 @@
-- Right now if you call startChat() in the two panel layout, it won't select the
-  thread on the left side, and if you resize it to one panel, the conversation
-  is closed.
