@@ -109,23 +109,11 @@ MultipleSelectionListView {
         height: status == Loader.Ready ? item.height : 0
 
         Component.onCompleted: {
-            var properties = {"messageData": model}
+            var properties = {"messageData": model,
+                              "index": Qt.binding(function(){ return index }),
+                              "delegateItem": Qt.binding(function(){ return loader })}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
-        }
-
-        Binding {
-            target: loader.item
-            property: "index"
-            value: index
-            when: (loader.status === Loader.Ready)
-        }
-
-        Binding {
-            target: loader.item
-            property: "delegateItem"
-            value: loader
-            when: (loader.status === Loader.Ready)
         }
     }
 
@@ -149,7 +137,7 @@ MultipleSelectionListView {
         interval: 50
         repeat: false
         onTriggered: positionViewAtBeginning()
-    } 
+    }
 
     onCountChanged: {
         if (count == 0) {

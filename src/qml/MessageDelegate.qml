@@ -37,7 +37,7 @@ ListItemWithActions {
         }
         return ""
     }
-    property string avatar: messageData.sender && messageData.sender.avatar ? messageData.sender.avatar : ""
+    property string avatar: messageData.sender && messageData.sender.avatar ? messageData.sender.avatar : "image://theme/contact"
     property bool avatarVisible: incoming && messages.groupChat
     property var attachments: messageData.textMessageAttachments
     property var dataAttachments: []
@@ -169,7 +169,7 @@ ListItemWithActions {
         }
     ]
 
-    height: Math.max(attachmentsLoader.height + textBubble.height, contactAvatar.height) + units.gu(1)
+    height: Math.max(attachmentsLoader.height + textBubble.height, contactAvatarLoader.height) + units.gu(1)
     internalAnchors {
         topMargin: units.gu(0.5)
         bottomMargin: units.gu(0.5)
@@ -181,25 +181,22 @@ ListItemWithActions {
         }
     }
 
-    ContactAvatar {
-        id: contactAvatar
-
-        fallbackAvatarUrl: {
-            if (messageDelegate.avatar !== "") {
-                return messageDelegate.avatar
-            } else {
-                return "image://theme/contact"
-            }
-        }
-        fallbackDisplayName: textBubble.sender
-        showAvatarPicture: messageDelegate.avatar !== "" || initials.length === 0
+    Loader {
+        id: contactAvatarLoader
+        active: avatarVisible
+        visible: avatarVisible
         anchors {
             left: parent.left
             bottom: parent.bottom
         }
         height: visible ? units.gu(4) : 0
         width: visible? units.gu(4) : 0
-        visible: avatarVisible
+        Component.onCompleted: {
+            var properties = {"fallbackAvatarUrl": Qt.binding(function(){ return messageDelegate.avatar }),
+                              "fallbackDisplayName": Qt.binding(function(){ return textBubble.sender }),
+                              "showAvatarPicture": Qt.binding(function(){ return messageDelegate.avatar !== "" || initials.length === 0 })};
+            contactAvatarLoader.setSource(Qt.resolvedUrl("LocalContactAvatar.qml"), properties);
+        }
     }
 
     Loader {
@@ -208,35 +205,23 @@ ListItemWithActions {
         anchors {
             bottom: textBubble.top
             bottomMargin: attachmentsLoader.active && textBubble.visible ? units.gu(1) : 0
-            left: contactAvatar.right
+            left: contactAvatarLoader.right
             leftMargin: avatarVisible ? units.gu(1) : 0
             right: parent.right
         }
-        source: Qt.resolvedUrl("AttachmentsDelegate.qml")
+        Component.onCompleted: {
+            var properties = {"attachments": Qt.binding(function(){ return messageDelegate.attachments }),
+                              "accountLabel": Qt.binding(function(){ return messageDelegate.accountLabel }),
+                              "incoming": Qt.binding(function(){ return messageDelegate.incoming })};
+            attachmentsLoader.setSource(Qt.resolvedUrl("AttachmentsDelegate.qml"), properties);
+        }
+
         active: attachments.length > 0
         height: status == Loader.Ready ? item.height : 0
         Binding {
-            target: attachmentsLoader.item
-            property: "attachments"
-            value: attachments
-            when: (attachmentsLoader.status === Loader.Ready)
-        }
-        Binding {
-            target: attachmentsLoader.item
-            property: "accountLabel"
-            value: accountLabel
-            when: (attachmentsLoader.status === Loader.Ready)
-        }
-        Binding {
-            target: attachmentsLoader.item
-            property: "incoming"
-            value: incoming
-            when: (attachmentsLoader.status === Loader.Ready)
-        }
-        Binding {
             target: messageDelegate
             property: "dataAttachments"
-            value: attachmentsLoader.item.dataAttachments
+            value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : null
             when: (attachmentsLoader.status === Loader.Ready && attachmentsLoader.item)
         }
     }
@@ -255,7 +240,7 @@ ListItemWithActions {
                 when: messageDelegate.incoming && visible
                 AnchorChanges {
                     target: textBubble
-                    anchors.left: contactAvatar.right
+                    anchors.left: contactAvatarLoader.right
                 }
             },
             State {
@@ -285,69 +270,15 @@ ListItemWithActions {
         showDeliveryStatus: true
     }
 
-    Item {
-        id: statusIcon
-
-        height: units.gu(4)
-        width: units.gu(4)
-        parent: messageDelegate._lastItem
-        onParentChanged: {
-            // The spinner gets stuck once parent changes, this is a workaround
-            indicator.running = false
-            // if temporarily failed or unknown status, then show the spinner
-            indicator.running = Qt.binding(function(){ return !incoming && 
-                    (textMessageStatus === HistoryThreadModel.MessageStatusUnknown ||
-                     textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed)});
-        }
-        anchors {
-            verticalCenter: parent ? parent.verticalCenter : undefined
-            right: parent ? parent.left : undefined
-            rightMargin: units.gu(2)
-        }
-
-        visible: !incoming && !selectionMode
-        ActivityIndicator {
-            id: indicator
-
-            anchors.centerIn: parent
-            height: units.gu(2)
-            width: units.gu(2)
-            visible: running && !selectionMode
-        }
-
-        Item {
-            id: retrybutton
-
-            anchors.fill: parent
-            Icon {
-                id: icon
-
-                name: "reload"
-                color: Theme.palette.normal.negative
-                height: units.gu(2)
-                width: units.gu(2)
-                anchors {
-                    centerIn: parent
-                    verticalCenterOffset: units.gu(-1)
-                }
-            }
-
-            Label {
-                text: i18n.tr("Failed!")
-                fontSize: "small"
-                color: "red"
-                anchors {
-                    horizontalCenter: retrybutton.horizontalCenter
-                    top: icon.bottom
-                }
-            }
-            visible: (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed)
-            MouseArea {
-                id: retrybuttonMouseArea
-
-                anchors.fill: parent
-                onClicked: messageDelegate.resendMessage()
-            }
-        }
+    Loader {
+        id: statusIconLoader
+        active: !incoming && !selectMode
+        Component.onCompleted: setSource(Qt.resolvedUrl("MessageStatusIcon.qml"),
+                                         {"parent": Qt.binding(function(){ return messageDelegate._lastItem }),
+                                          "incoming": Qt.binding(function(){ return messageDelegate.incoming }),
+                                          "selectMode": Qt.binding(function(){ return messageDelegate.selectionMode }),
+                                          "textMessageStatus": Qt.binding(function(){ return messageData.textMessageStatus }),
+                                          "messageDelegate": messageDelegate,
+                                         });
     }
 }
