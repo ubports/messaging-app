@@ -31,24 +31,6 @@ MultipleSelectionListView {
     property var _currentSwipedItem: null
     property string latestEventId: ""
 
-    function updateSwippedItem(item)
-    {
-        if (item.swipping) {
-            return
-        }
-
-        if (item.swipeState !== "Normal") {
-            if (_currentSwipedItem !== item) {
-                if (_currentSwipedItem) {
-                    _currentSwipedItem.resetSwipe()
-                }
-                _currentSwipedItem = item
-            }
-        } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
-            _currentSwipedItem = null
-        }
-    }
-
     function shareSelectedMessages()
     {
         var aggregatedText = [];
@@ -97,8 +79,6 @@ MultipleSelectionListView {
     }
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
-    // this is to keep the scrolling smooth
-    cacheBuffer: units.gu(10)*20
     currentIndex: 0
     spacing: units.gu(1)
 
