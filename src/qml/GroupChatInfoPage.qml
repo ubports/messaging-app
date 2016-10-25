@@ -158,6 +158,14 @@ Page {
         }
     }
 
+    Connections {
+        target: chatEntry
+        onSetTitleFailed: {
+            application.showNotificationMessage(i18n.tr("Failed to modify group title"), "dialog-error-symbolic")
+            groupName.text = chatEntry.title
+        }
+    }
+
     Flickable {
         id: contentsFlickable
         property var emptySpaceHeight: height - contentsColumn.topItemsHeight+contentsFlickable.contentY
