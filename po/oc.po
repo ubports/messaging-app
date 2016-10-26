@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-10-26 05:39+0000\n"
+"X-Generator: Launchpad (build 18246)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -180,7 +180,7 @@ msgstr "Afichar pas mai"
 msgid "Edit"
 msgstr "Modificar"
 
-#: ../src/qml/SettingsPage.qml:31
+#: ../src/qml/SettingsPage.qml:33
 msgid "Enable MMS group chat"
 msgstr "Activar los MMS per la messatjariá en grop"
 
@@ -190,7 +190,7 @@ msgstr "Fracàs"
 
 #: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Fracàs del mandadís del messatge"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -210,7 +210,7 @@ msgstr "Tipe de fichièr pas pres en carga"
 
 #: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
-msgstr ""
+msgstr "Seguent"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -253,13 +253,13 @@ msgstr "Informacions"
 
 #: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Impossible de mandar de messatges en mòde avion"
 
 #: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Impossible de mandar lo messatge"
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -277,7 +277,7 @@ msgstr "Messatges;SMS;MMS;Messatges tèxte;Texto"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr "Messatges"
+msgstr "Messatjariá"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
@@ -297,11 +297,11 @@ msgstr "Ieu meteis"
 
 #: ../src/qml/Messages.qml:462
 msgid "New Message"
-msgstr "Novèl messatge"
+msgstr "Messatge novèl"
 
 #: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
-msgstr "Novèl messatge"
+msgstr "Messatge novèl"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
@@ -309,7 +309,7 @@ msgstr "Non"
 
 #: ../src/qml/Messages.qml:277
 msgid "No SIM card"
-msgstr ""
+msgstr "Pas cap de carta SIM"
 
 #: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
@@ -351,7 +351,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Inserissètz una carta SIM e ensajatz tornamai."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -372,7 +372,7 @@ msgstr "Legir"
 msgid "Received"
 msgstr "Recebut"
 
-#: ../src/qml/ComposeBar.qml:137
+#: ../src/qml/ComposeBar.qml:141
 msgid "Remove"
 msgstr "Levar"
 
@@ -493,7 +493,7 @@ msgstr "Benvenguda dins vòstra aplicacion de messatjariá !"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Benvenguda dins vòstra aplicacion de messatjariá sus Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:424
+#: ../src/qml/ComposeBar.qml:435
 msgid "Write a message..."
 msgstr "Redigir un messatge..."
 
@@ -515,9 +515,9 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Vos cal desactivar lo mòde avion"
 
-#: ../src/qml/ComposeBar.qml:161
+#: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
 msgstr "Vos cal manténer quichada l'icòna d'enregistrament"
 

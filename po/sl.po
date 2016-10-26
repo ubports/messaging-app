@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-10-26 05:39+0000\n"
+"X-Generator: Launchpad (build 18246)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -195,7 +195,7 @@ msgstr "Ne prikaži več"
 msgid "Edit"
 msgstr "Uredi"
 
-#: ../src/qml/SettingsPage.qml:31
+#: ../src/qml/SettingsPage.qml:33
 msgid "Enable MMS group chat"
 msgstr "Omogoči skupinski MMS pogovor"
 
@@ -205,7 +205,7 @@ msgstr "Spodletelo"
 
 #: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Spodletelo pošiljanje sporočila"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -225,7 +225,7 @@ msgstr "Vrsta datoteke ni podprta"
 
 #: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
-msgstr ""
+msgstr "Posreduj"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -267,13 +267,13 @@ msgstr "Podrobnosti"
 
 #: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Ni mogoče poslati sporočila v načinu letenja"
 
 #: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Ni mogoče poslati sporočila"
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -323,7 +323,7 @@ msgstr "Ne"
 
 #: ../src/qml/Messages.qml:277
 msgid "No SIM card"
-msgstr ""
+msgstr "Ni kartice SIM"
 
 #: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
@@ -365,7 +365,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Vstavite kartico SIM in poskusite znova."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -386,7 +386,7 @@ msgstr "Prebrano"
 msgid "Received"
 msgstr "Prejeto"
 
-#: ../src/qml/ComposeBar.qml:137
+#: ../src/qml/ComposeBar.qml:141
 msgid "Remove"
 msgstr "Odstrani"
 
@@ -507,7 +507,7 @@ msgstr "Dobrodošli v Programu za sporočanje!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Dobrodošli v sporočilni program Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:424
+#: ../src/qml/ComposeBar.qml:435
 msgid "Write a message..."
 msgstr "Napišite sporočilo ..."
 
@@ -529,9 +529,9 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Morate onemogočiti način letenja"
 
-#: ../src/qml/ComposeBar.qml:161
+#: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
 msgstr "Morate pritisnite in držati ikono za snemanje"
 
