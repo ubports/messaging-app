@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-08-06 05:44+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-10-26 05:39+0000\n"
+"X-Generator: Launchpad (build 18246)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -170,7 +170,7 @@ msgstr "以后不要再显示"
 msgid "Edit"
 msgstr "编辑"
 
-#: ../src/qml/SettingsPage.qml:31
+#: ../src/qml/SettingsPage.qml:33
 msgid "Enable MMS group chat"
 msgstr "启用彩信群组聊天"
 
@@ -246,7 +246,7 @@ msgstr ""
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -355,7 +355,7 @@ msgstr "已读"
 msgid "Received"
 msgstr "已接收"
 
-#: ../src/qml/ComposeBar.qml:137
+#: ../src/qml/ComposeBar.qml:141
 msgid "Remove"
 msgstr "移除"
 
@@ -476,7 +476,7 @@ msgstr "欢迎使用您的信息应用！"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "欢迎来到您的 Ubuntu 短信应用。"
 
-#: ../src/qml/ComposeBar.qml:424
+#: ../src/qml/ComposeBar.qml:435
 msgid "Write a message..."
 msgstr "编写新信息..."
 
@@ -498,7 +498,7 @@ msgstr "你在试图发送（超过300kb的）大文件。某些运营商可能�
 msgid "You have to disable flight mode"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:161
+#: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
 msgstr "你必须按住录音图标"
 

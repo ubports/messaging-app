@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-08-06 05:43+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-10-26 05:39+0000\n"
+"X-Generator: Launchpad (build 18246)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -170,7 +170,7 @@ msgstr "다시 보이지 않음"
 msgid "Edit"
 msgstr "편집"
 
-#: ../src/qml/SettingsPage.qml:31
+#: ../src/qml/SettingsPage.qml:33
 msgid "Enable MMS group chat"
 msgstr "MMS 그룹 채팅 활성화"
 
@@ -180,7 +180,7 @@ msgstr "실패함"
 
 #: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
-msgstr ""
+msgstr "메시지 보내기 실패"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -200,7 +200,7 @@ msgstr "파일 형식을 지원하지 않습니다."
 
 #: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
-msgstr ""
+msgstr "전달"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -241,13 +241,13 @@ msgstr "정보"
 
 #: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "비행 모드에서는 메시지를 보낼 수 없습니다."
 
 #: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "메시지를 보낼 수 없습니다."
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
 msgstr "MMS"
 
@@ -297,7 +297,7 @@ msgstr "아니요"
 
 #: ../src/qml/Messages.qml:277
 msgid "No SIM card"
-msgstr ""
+msgstr "SIM 카드 없음"
 
 #: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
@@ -338,7 +338,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "SIM 카드를 넣고 다시 시도해주십시오,."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -357,7 +357,7 @@ msgstr "읽기"
 msgid "Received"
 msgstr "받음"
 
-#: ../src/qml/ComposeBar.qml:137
+#: ../src/qml/ComposeBar.qml:141
 msgid "Remove"
 msgstr "제거"
 
@@ -478,7 +478,7 @@ msgstr "메시지 앱을 사용해주셔서 감사합니다!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "우분투 메시지 어플리케이션에 오신걸 환영합니다."
 
-#: ../src/qml/ComposeBar.qml:424
+#: ../src/qml/ComposeBar.qml:435
 msgid "Write a message..."
 msgstr "메시지 쓰기..."
 
@@ -498,9 +498,9 @@ msgstr "300Kb 이상의 큰 파일을 보내려 합니다. 일부 통신사에�
 
 #: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "비행 모드를 꺼야 합니다."
 
-#: ../src/qml/ComposeBar.qml:161
+#: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
 msgstr "녹음 아이콘을 누른 상태로 기다려야합니다."
 
