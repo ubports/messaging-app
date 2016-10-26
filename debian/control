@@ -32,6 +32,7 @@ Build-Depends: apparmor:native,
                qml-module-qt-labs-settings,
                qml-module-qtmultimedia,
                qtpim5-dev,
+               upstart,
                xvfb,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
