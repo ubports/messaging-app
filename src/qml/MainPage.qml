@@ -191,24 +191,7 @@ Page {
 
     Component {
         id: sectionDelegate
-        Item {
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: units.gu(2)
-            }
-            height: units.gu(3)
-            Label {
-                anchors.fill: parent
-                elide: Text.ElideRight
-                text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
-                verticalAlignment: Text.AlignVCenter
-                fontSize: "small"
-                color: Theme.palette.normal.backgroundTertiaryText
-            }
-            ListItem.ThinDivider {
-                anchors.bottom: parent.bottom
-            }
+        ThreadsSectionDelegate {
         }
     }
 
@@ -225,7 +208,6 @@ Page {
         }
         listModel: threadModel
         clip: true
-        cacheBuffer: Math.max(threadList.height * 2, 0)
         section.property: "eventDate"
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
@@ -251,16 +233,16 @@ Page {
                 right: parent.right
             }
             height: units.gu(8)
-            selectionMode: threadList.isInSelectionMode
+            selectMode: threadList.isInSelectionMode
             selected: {
-                if (selectionMode) {
+                if (selectMode) {
                     return threadList.isSelected(threadDelegate)
                 }
                 return false
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
-            onItemClicked: {
+            onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
@@ -288,7 +270,7 @@ Page {
                     threadList.currentIndex = index
                 }
             }
-            onItemPressAndHold: {
+            onPressAndHold: {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }
@@ -318,9 +300,36 @@ Page {
         id: keyboard
     }
 
-    Scrollbar {
-        flickableItem: threadList
-        align: Qt.AlignTrailing
+    function createQmlObjectAsynchronously(url, parent, properties, callback) {
+        var component = Qt.createComponent(url, Component.Asynchronous);
+        var incubator;
+
+        function componentCreated() {
+            if (component.status == Component.Ready) {
+                incubator = component.incubateObject(parent, properties, Qt.Asynchronous);
+
+                function objectCreated(status) {
+                    if (status == Component.Ready && callback != null) {
+                        callback(incubator.object);
+                    }
+                }
+                incubator.onStatusChanged = objectCreated;
+
+            } else if (component.status == Component.Error) {
+                console.log("Error loading component:", component.errorString());
+            }
+        }
+
+        component.statusChanged.connect(componentCreated);
+    }
+
+    Timer {
+        interval: 1
+        repeat: false
+        running: true
+        onTriggered: createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
+                                                   mainPage,
+                                                   {"flickableItem": threadList})
     }
 
     Loader {

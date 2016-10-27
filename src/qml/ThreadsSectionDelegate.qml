@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -16,34 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
+import "dateUtils.js" as DateUtils
 
-BottomEdge {
-    id: bottomEdge
-
-    height: parent ? parent.height : 0
-    hint.text: i18n.tr("+")
-    contentUrl: Qt.resolvedUrl("Messages.qml")
-    // delay loading bottom edge until after the first frame
-    // is drawn to save on startup time
-    preloadContent: false
-
-    Timer {
-        interval: 1
-        repeat: false
-        running: true
-        onTriggered: bottomEdge.preloadContent = true
+Item {
+    id: threadsSectionDelegate
+    anchors {
+        left: parent.left
+        right: parent.right
+        margins: units.gu(2)
     }
-
-    onCommitCompleted: {
-        layout.addPageToNextColumn(mainPage, bottomEdge.contentUrl)
-        collapse()
+    height: units.gu(3)
+    Label {
+        anchors.fill: parent
+        elide: Text.ElideRight
+        text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
+        verticalAlignment: Text.AlignVCenter
+        fontSize: "small"
+        color: Theme.palette.normal.backgroundTertiaryText
     }
-
-    Binding {
-        target: contentItem
-        property: "height"
-        value: mainView.height
+    ListItem.ThinDivider {
+        anchors.bottom: parent.bottom
     }
 }

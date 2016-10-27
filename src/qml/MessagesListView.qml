@@ -31,24 +31,6 @@ MultipleSelectionListView {
     property var _currentSwipedItem: null
     property string latestEventId: ""
 
-    function updateSwippedItem(item)
-    {
-        if (item.swipping) {
-            return
-        }
-
-        if (item.swipeState !== "Normal") {
-            if (_currentSwipedItem !== item) {
-                if (_currentSwipedItem) {
-                    _currentSwipedItem.resetSwipe()
-                }
-                _currentSwipedItem = item
-            }
-        } else if (item.swipeState !== "Normal" && _currentSwipedItem === item) {
-            _currentSwipedItem = null
-        }
-    }
-
     function shareSelectedMessages()
     {
         var aggregatedText = [];
@@ -97,8 +79,6 @@ MultipleSelectionListView {
     }
     verticalLayoutDirection: ListView.BottomToTop
     highlightFollowsCurrentItem: true
-    // this is to keep the scrolling smooth
-    cacheBuffer: units.gu(10)*20
     currentIndex: 0
     spacing: units.gu(1)
 
@@ -109,23 +89,11 @@ MultipleSelectionListView {
         height: status == Loader.Ready ? item.height : 0
 
         Component.onCompleted: {
-            var properties = {"messageData": model}
+            var properties = {"messageData": model,
+                              "index": Qt.binding(function(){ return index }),
+                              "delegateItem": Qt.binding(function(){ return loader })}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
-        }
-
-        Binding {
-            target: loader.item
-            property: "index"
-            value: index
-            when: (loader.status === Loader.Ready)
-        }
-
-        Binding {
-            target: loader.item
-            property: "delegateItem"
-            value: loader
-            when: (loader.status === Loader.Ready)
         }
     }
 
@@ -149,7 +117,7 @@ MultipleSelectionListView {
         interval: 50
         repeat: false
         onTriggered: positionViewAtBeginning()
-    } 
+    }
 
     onCountChanged: {
         if (count == 0) {

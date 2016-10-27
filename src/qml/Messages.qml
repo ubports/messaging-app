@@ -246,7 +246,8 @@ Page {
             Qt.inputMethod.hide()
             // workaround for bug #1461861
             messages.focus = false
-            PopupUtils.open(noNetworkDialogComponent)
+            PopupUtils.open(Qt.resolvedUrl("Dialogs/NoNetworkDialog.qml"), null, {'multiplePhoneAccounts': multiplePhoneAccounts,
+                                                                          'accountName': messages.account.displayName})
             return false
         }
 
@@ -1113,25 +1114,6 @@ Page {
         }
         running: isSearching
         visible: running
-    }
-
-    Component {
-        id: noNetworkDialogComponent
-        Dialog {
-            id: noNetworkDialog
-            objectName: "noNetworkDialog"
-            title: i18n.tr("No network")
-            text: multiplePhoneAccounts ? i18n.tr("There is currently no network on %1").arg(messages.account.displayName) : i18n.tr("There is currently no network.")
-            Button {
-                objectName: "closeNoNetworkDialog"
-                text: i18n.tr("Close")
-                color: UbuntuColors.orange
-                onClicked: {
-                    PopupUtils.close(noNetworkDialog)
-                    Qt.inputMethod.hide()
-                }
-            }
-        }
     }
 
     Loader {

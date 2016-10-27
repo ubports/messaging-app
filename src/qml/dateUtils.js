@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+.pragma library
+
 function areSameDay(date1, date2) {
     if (!date1 || !date2)
         return false
@@ -35,17 +37,19 @@ function formatLogDate(timestamp) {
     }
 }
 
-function friendlyDay(timestamp) {
+function friendlyDay(timestamp, i18n) {
     var date = new Date(timestamp);
     var today = new Date();
-    var yesterday = new Date();
-    yesterday.setDate(today.getDate()-1);
     if (areSameDay(today, date)) {
         return i18n.tr("Today");
-    } else if (areSameDay(yesterday, date)) {
-        return i18n.tr("Yesterday");
     } else {
-        return Qt.formatDate(date, Qt.DefaultLocaleShortDate);
+        var yesterday = new Date();
+        yesterday.setDate(today.getDate()-1);
+        if (areSameDay(yesterday, date)) {
+            return i18n.tr("Yesterday");
+        } else {
+            return Qt.formatDate(date, Qt.DefaultLocaleShortDate);
+        }
     }
 }
 
@@ -53,24 +57,6 @@ function formatFriendlyDate(timestamp) {
     return Qt.formatTime(timestamp, Qt.DefaultLocaleShortDate) + " - " + friendlyDay(timestamp);
 }
 
-function formatFriendlyCallDuration(duration) {
-    var time = new Date(duration);
-    var text = "";
-
-    var hours = time.getHours();
-    var minutes = time.getMinutes();
-    var seconds = time.getSeconds();
-
-    if (hours > 0) {
-        text = i18n.tr("%1 hour call", "%1 hours call", hours).arg(hours)
-    } else if (minutes > 0) {
-        text = i18n.tr("%1 minute call", "%1 minutes call", minutes).arg(minutes)
-    } else {
-        text = i18n.tr("%1 second call", "%1 seconds call", seconds).arg(seconds)
-    }
-
-    return text;
-}
 
 function formattedTime(time) {
     var d = new Date(0, 0, 0, 0, 0, time)

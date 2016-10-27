@@ -25,7 +25,7 @@ import QtContacts 5.0
 import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
-ListItemWithActions {
+ListItem {
     id: delegate
 
     property var participant: participants ? participants[0] : {}
@@ -109,12 +109,35 @@ ListItemWithActions {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
+    divider.visible: false
+    contentItem.anchors {
+        leftMargin: units.gu(2)
+        rightMargin: units.gu(2)
+        topMargin: units.gu(1)
+        bottomMargin: units.gu(1)
+    }
+    contentItem.clip: false
 
-    leftSideAction: Action {
-        iconName: "delete"
-        text: i18n.tr("Delete")
-        onTriggered: {
-            mainView.removeThreads(model.threads)
+    leadingActions: ListItemActions {
+        actions: [
+            Action {
+                iconName: "delete"
+                text: i18n.tr("Delete")
+                onTriggered: {
+                    mainView.removeThreads(model.threads)
+                }
+            }
+        ]
+        delegate: Rectangle {
+            width: height + units.gu(2)
+            color: UbuntuColors.red
+            Icon {
+                name: action.iconName
+                width: units.gu(3)
+                height: width
+                color: "white"
+                anchors.centerIn: parent
+            }
         }
     }
 
@@ -188,7 +211,7 @@ ListItemWithActions {
             if (!displayedEvent) {
                 Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
             } else {
-                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"))
+                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"), i18n)
             }
         }
         fontSize: "small"
@@ -205,6 +228,7 @@ ListItemWithActions {
         height: units.gu(2)
         width: units.gu(2)
         visible: source !== ""
+        asynchronous: true
         source: {
             if (!telepathyHelper.ready) {
                 return ""

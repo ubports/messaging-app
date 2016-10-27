@@ -18,21 +18,12 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
 
-Item {
-    property alias text: label.text
-
-    height: units.gu(3)
-    Label {
-        id: label
-
-        anchors.fill: parent
-        elide: Text.ElideRight
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        fontSize: "x-small"
-        color: Theme.palette.normal.backgroundSecondaryText
-        font.weight: Font.Normal
-    }
+Label {
+    elide: Text.ElideRight
+    verticalAlignment: Text.AlignVCenter
+    horizontalAlignment: Text.AlignHCenter
+    fontSize: "x-small"
+    color: Theme.palette.normal.backgroundSecondaryText
+    font.weight: Font.Normal
 }
