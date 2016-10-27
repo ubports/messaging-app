@@ -360,7 +360,7 @@ Page {
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
                 eventModel.writeTextInformationEvent(messages.account.accountId,
-                                                     thread.threadId,
+                                                     messages.threadId,
                                                      newParticipantsIds,
                                                      "")
                 break;
@@ -374,14 +374,17 @@ Page {
             // we can't simply send the message as the handler checks for
             // connection state. while this is not fixed, we generate the event here
             // and insert it into the history service
+
+            // FIXME: we need to review this case. In case of account overload, this will be saved in the wrong thread
+            //        also, we probably need to create the thread here
             var event = {}
             var timestamp = new Date()
             var tmpEventId = timestamp.toISOString()
             event["accountId"] = messages.account.accountId
-            event["threadId"] = thread.threadId
+            event["threadId"] = messages.threadId
             event["eventId"] =  tmpEventId
             event["type"] = HistoryEventModel.MessageTypeText
-            event["participants"] = thread.participants
+            event["participants"] = messages.participants
             event["senderId"] = "self"
             event["timestamp"] = timestamp
             event["newEvent"] = false
@@ -396,7 +399,7 @@ Page {
                     var attachment = {}
                     var item = attachments[i]
                     attachment["accountId"] = messages.account.accountId
-                    attachment["threadId"] = thread.threadId
+                    attachment["threadId"] = messages.threadId
                     attachment["eventId"] = tmpEventId
                     attachment["attachmentId"] = item[0]
                     attachment["contentType"] = item[1]
@@ -1412,7 +1415,7 @@ Page {
             selfTypingTimer.restart()
 
         }
-        canSend: chatType == 2 || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        canSend: chatType == ChatEntry.ChatTypeRoom || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
         usingMMS: (participantIds.length > 1 || multiRecipient.recipientCount > 1 ) && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
 
