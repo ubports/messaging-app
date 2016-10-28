@@ -30,6 +30,7 @@ Page {
 
     property variant threads: threadInformation.threads
     property var account: telepathyHelper.accountForId(threads[0].accountId)
+    property bool isPhoneAccount : account.type === AccountEntry.PhoneAccount;
     property var threadInformation: null
     property variant participants: {
         if (chatEntry.active) {
@@ -193,7 +194,7 @@ Page {
             Item {
                 id: groupInfo
                 height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin + units.gu(1) : 0
-                visible: chatRoom
+                visible: chatRoom && !isPhoneAccount
                 enabled: chatEntry.active
 
                 anchors {
@@ -443,14 +444,14 @@ Page {
                 spacing: units.gu(1)
                 Button {
                     id: destroyButton
-                    visible: chatRoom && chatEntry.active && chatEntry.selfContactRoles == 3
+                    visible: chatRoom && !isPhoneAccount && chatEntry.active && chatEntry.selfContactRoles & 2
                     text: i18n.tr("End group")
                     color: Theme.palette.normal.negative
                     onClicked: destroyGroup()
                 }
                 Button {
                     id: leaveButton
-                    visible: chatRoom && chatEntry.active && !(chatEntry.selfContactRoles & 2)
+                    visible: chatRoom && !isPhoneAccount && chatEntry.active && !(chatEntry.selfContactRoles & 2)
                     text: i18n.tr("Leave group")
                     onClicked: {
                         if (chatEntry.leaveChat()) {
