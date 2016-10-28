@@ -420,6 +420,7 @@ Page {
             if (isMmsGroupChat && !isSelfContactKnown) {
                 // TODO: inform the user to enter the phone number of the selected sim card manually
                 // and use it in the telepathy-ofono account as selfContactId.
+                console.warn("The selected SIM card does not have a number set on it, can't create group")
                 return false
             }
             messages.chatEntry.sendMessage(messages.account.accountId, text, attachments, properties)
@@ -447,7 +448,6 @@ Page {
             // Since the dialog will be removed soon we do not expend time refactoring the code to make it visible after the dialog
             swipeItemDemo.enable()
         }
-
         return true
     }
 
