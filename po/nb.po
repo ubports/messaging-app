@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2015-07-16 10:49+0000\n"
+"PO-Revision-Date: 2016-10-30 17:43+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-10-28 05:52+0000\n"
+"X-Launchpad-Export-Date: 2016-10-31 06:25+0000\n"
 "X-Generator: Launchpad (build 18246)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -188,7 +188,7 @@ msgstr "Mislyktes"
 
 #: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Klarte ikke å sende melding"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -208,7 +208,7 @@ msgstr "Filtypen støttes ikke"
 
 #: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
-msgstr ""
+msgstr "Framover"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -250,11 +250,11 @@ msgstr "Info"
 
 #: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Du kan ikke sende meldinger når du bruker flymodus"
 
 #: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Det er ikke mulig å sende meldinga"
 
 #: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
@@ -306,7 +306,7 @@ msgstr "Nei"
 
 #: ../src/qml/Messages.qml:277
 msgid "No SIM card"
-msgstr ""
+msgstr "SIM-kort mangler"
 
 #: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Sett inn SIM-kort og prøv på nytt."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -512,7 +512,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Du må slå av flymodus"
 
 #: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
