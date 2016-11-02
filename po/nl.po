@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2015-03-03 14:15+0000\n"
-"Last-Translator: rob <linuxned@gmail.com>\n"
+"PO-Revision-Date: 2016-11-01 08:59+0000\n"
+"Last-Translator: Hannie Dumoleyn <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-10-28 05:52+0000\n"
+"X-Launchpad-Export-Date: 2016-11-02 06:51+0000\n"
 "X-Generator: Launchpad (build 18246)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -51,7 +51,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "<<< Veeg om te annuleren"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -73,8 +73,8 @@ msgstr "Alle"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bijlage: %1 audiofragment"
+msgstr[1] "Bijlagen: %1 audiofragmenten"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -110,15 +110,15 @@ msgstr "Audiobijlage wordt niet ondersteund"
 
 #: ../src/qml/Messages.qml:832
 msgid "Away"
-msgstr ""
+msgstr "Afwezig"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 #: ../src/qml/Messages.qml:834
 msgid "Busy"
-msgstr ""
+msgstr "Bezig"
 
 #: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
 msgid "Call"
@@ -173,7 +173,7 @@ msgstr "Niet meer vragen"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
-msgstr ""
+msgstr "Niet meer tonen"
 
 #: ../src/qml/MessagingContactViewPage.qml:73
 msgid "Edit"
@@ -189,7 +189,7 @@ msgstr "Mislukt"
 
 #: ../src/qml/Messages.qml:281
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Sturen van bericht mislukt"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -201,7 +201,7 @@ msgstr "Favorieten"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "Bestandsgrootte-waarschuwing"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
@@ -209,7 +209,7 @@ msgstr "Bestandstype wordt niet ondersteund"
 
 #: ../src/qml/MessagesListView.qml:142
 msgid "Forward"
-msgstr ""
+msgstr "Doorsturen"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -234,10 +234,12 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Ga naar <a href=\"system_settings\">Systeeminstellingen</a> als u uw SIM-"
+"kaart en andere mobiele instellingen wilt wijzigen."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr ""
+msgstr "Afbeelding"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -249,11 +251,11 @@ msgstr "Info"
 
 #: ../src/qml/Messages.qml:272
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "U kunt geen berichten sturen in de vliegtuigstand"
 
 #: ../src/qml/Messages.qml:280
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Het bericht kan niet verstuurd worden"
 
 #: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
 msgid "MMS"
@@ -297,7 +299,7 @@ msgstr "Nieuw bericht"
 
 #: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
 msgid "New message"
-msgstr ""
+msgstr "Nieuw bericht"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
@@ -305,7 +307,7 @@ msgstr "Nee"
 
 #: ../src/qml/Messages.qml:277
 msgid "No SIM card"
-msgstr ""
+msgstr "Geen SIM-kaart"
 
 #: ../src/qml/Messages.qml:274
 msgid "No SIM card selected"
@@ -317,11 +319,11 @@ msgstr "Geen netwerk"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr ""
+msgstr "Toegang tot microfoon geweigerd"
 
 #: ../src/qml/Messages.qml:830
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -331,7 +333,7 @@ msgstr "Ok"
 
 #: ../src/qml/Messages.qml:828
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -342,10 +344,13 @@ msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
+"Gelieve toegang te verlenen in <a "
+"href=\"system_settings\">Systeeminstellingen &gt; Beveiliging &amp; "
+"Privacy</a>."
 
 #: ../src/qml/Messages.qml:278
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Plaats een SIM-kaart en probeer het opnieuw."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -457,7 +462,7 @@ msgstr "Type"
 
 #: ../src/qml/Messages.qml:824
 msgid "Typing.."
-msgstr ""
+msgstr "Bezig met typen…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
@@ -469,7 +474,7 @@ msgstr "Onbekend contact"
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
@@ -481,7 +486,7 @@ msgstr "Videobijlage wordt niet ondersteund"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr ""
+msgstr "Welkom bij uw berichtenapp!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
@@ -504,14 +509,16 @@ msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
 msgstr ""
+"U probeert grote bestanden (meer dan 300Kb) te versturen. Sommige operators "
+"kunnen die mogelijk niet versturen."
 
 #: ../src/qml/Messages.qml:271
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "U dient de vliegtuigstand uit te schakelen"
 
 #: ../src/qml/ComposeBar.qml:165
 msgid "You have to press and hold the record icon"
-msgstr ""
+msgstr "U dient het opnamepictogram in te drukken en vast te houden"
 
 #: ../src/qml/Messages.qml:275
 msgid "You need to select a SIM card"
