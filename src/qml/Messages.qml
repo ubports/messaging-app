@@ -33,6 +33,7 @@ Page {
     id: messages
     objectName: "messagesPage"
 
+    property bool multiplePhoneAccounts: mainView.multiplePhoneAccounts
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
