@@ -44,7 +44,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.participants
         } else if (threads.length > 0) {
-            return threadInformation.participants
+            return threadInformation.participantsgback
         }
         return []
     }
@@ -101,6 +101,8 @@ Page {
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
     property bool newMessage: false
     property var lastTypingTimestamp: 0
+
+    property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
 
     signal ready
     signal cancel
@@ -1311,6 +1313,11 @@ Page {
                         accountId = messages.account.accountId
                     }
 
+                    // display a different watermark for broadcast conversations
+                    if (messages.isBroadcast) {
+                        return Qt.resolvedUrl("./assets/broadcast_watermark.png")
+                    }
+
                     if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
                             && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
                         accountId = presenceRequest.accountId
@@ -1378,6 +1385,8 @@ Page {
             left: parent.left
             right: parent.right
         }
+
+        isBroadcast: messages.isBroadcast
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y

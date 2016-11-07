@@ -42,6 +42,7 @@ Item {
     property bool oskEnabled: true
     property alias inputMethodComposing: messageTextArea.inputMethodComposing
     property bool usingMMS: false
+    property bool isBroadcast: false
 
     onRecordingChanged: {
         if (recording) {
@@ -418,7 +419,9 @@ Item {
                 autoSize: true
                 maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: {
-                    if (telepathyHelper.ready) {
+                    if (isBroadcast) {
+                        return i18n.tr("Write a broadcast message...")
+                    } else if (telepathyHelper.ready) {
                         var account = telepathyHelper.accountForId(presenceRequest.accountId)
                         if (account &&
                                 (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&

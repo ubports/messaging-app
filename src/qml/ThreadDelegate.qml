@@ -62,6 +62,8 @@ ListItem {
         return firstRecipient
     }
 
+    property bool isBroadcast: chatType != HistoryThreadModel.ChatTypeRoom && participants.length > 1
+
     function formatDisplayedText(text) {
         return text.replace("\n", " ")
     }
@@ -170,12 +172,25 @@ ListItem {
         width: units.gu(6)
     }
 
+    Image {
+        id: broadcastIcon
+        anchors {
+            top: contactName.top
+            bottom: contactName.bottom
+            left: avatar.right
+            leftMargin: units.gu(1)
+        }
+        width: isBroadcast ? height : 0
+        source: isBroadcast ? Qt.resolvedUrl("assets/broadcast_icon.png") : ""
+        asynchronous: true
+    }
+
     Label {
         id: contactName
         anchors {
             top: avatar.top
             topMargin: units.gu(0.5)
-            left: avatar.right
+            left: broadcastIcon.right
             leftMargin: units.gu(1)
             right: time.left
         }
