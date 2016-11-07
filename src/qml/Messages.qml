@@ -44,7 +44,7 @@ Page {
         if (chatEntry.active) {
             return chatEntry.participants
         } else if (threads.length > 0) {
-            return threadInformation.participantsgback
+            return threadInformation.participants
         }
         return []
     }
