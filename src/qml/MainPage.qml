@@ -206,6 +206,7 @@ Page {
             right: parent.right
             bottom: keyboard.top
         }
+        interactive: bottomEdgeLoader.item.status != BottomEdge.Revealed
         listModel: threadModel
         clip: true
         section.property: "eventDate"
