@@ -175,8 +175,7 @@ ListItem {
     Image {
         id: broadcastIcon
         anchors {
-            top: contactName.top
-            bottom: contactName.bottom
+            verticalCenter: contactName.verticalCenter
             left: avatar.right
             leftMargin: units.gu(1)
         }
