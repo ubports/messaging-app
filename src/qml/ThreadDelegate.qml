@@ -177,9 +177,9 @@ ListItem {
         anchors {
             verticalCenter: contactName.verticalCenter
             left: avatar.right
-            leftMargin: units.gu(1)
+            leftMargin: visible ? units.gu(1) : 0
         }
-        width: isBroadcast ? height : 0
+        visible: source != ""
         source: isBroadcast ? Qt.resolvedUrl("assets/broadcast_icon.png") : ""
         asynchronous: true
     }
