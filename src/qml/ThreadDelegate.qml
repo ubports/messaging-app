@@ -119,6 +119,7 @@ ListItem {
         bottomMargin: units.gu(1)
     }
     contentItem.clip: false
+    highlightColor: "transparent"
 
     leadingActions: ListItemActions {
         actions: [
