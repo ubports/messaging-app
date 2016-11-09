@@ -366,7 +366,8 @@ Page {
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      messages.threadId,
                                                      newParticipantsIds,
-                                                     "")
+                                                     "",
+                                                     HistoryThreadModel.InformationTypeSimChange, "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
                 // in case last ougoing event used the same accountId, just skip
