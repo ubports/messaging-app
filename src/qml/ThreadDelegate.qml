@@ -45,7 +45,7 @@ ListItem {
                 return chatRoomInfo.Title
             } else if (chatRoomInfo.RoomName != "") {
                 return chatRoomInfo.RoomName
-            } 
+            }
         }
         var firstRecipient
         if (unknownContact) {
