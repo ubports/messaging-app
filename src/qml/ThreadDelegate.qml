@@ -41,12 +41,15 @@ ListItem {
     property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
         if (chatType == HistoryThreadModel.ChatTypeRoom) {
-            if (chatRoomInfo.Title != "") {
-                return chatRoomInfo.Title
-            } else if (chatRoomInfo.RoomName != "") {
-                return chatRoomInfo.RoomName
+            var account = telepathyHelper.accountForId(model.accountId)
+            if (account && account.type != AccountEntry.PhoneAccount) {
+                if (chatRoomInfo.Title != "") {
+                    return chatRoomInfo.Title
+                } else if (chatRoomInfo.RoomName != "") {
+                    return chatRoomInfo.RoomName
+                }
+                return i18n.tr("Group")
             }
-            return i18n.tr("Group")
         }
         var firstRecipient
         if (unknownContact) {
