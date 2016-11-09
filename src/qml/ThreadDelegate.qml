@@ -46,7 +46,6 @@ ListItem {
             } else if (chatRoomInfo.RoomName != "") {
                 return chatRoomInfo.RoomName
             }
-            return i18n.tr("Group")
         }
         var firstRecipient
         if (unknownContact) {
