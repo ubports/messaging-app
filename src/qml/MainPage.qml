@@ -207,6 +207,9 @@ Page {
             bottom: keyboard.top
         }
         listModel: threadModel
+        // (rmescandon): Prevent having selected items in the list while BottomEdge is been revealed
+        // but not completely revealed.
+        enabled: bottomEdgeLoader.item.status !== BottomEdge.Revealed
         clip: true
         section.property: "eventDate"
         currentIndex: -1

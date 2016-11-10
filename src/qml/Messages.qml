@@ -102,6 +102,8 @@ Page {
     property bool newMessage: false
     property var lastTypingTimestamp: 0
 
+    property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
+
     signal ready
     signal cancel
 
@@ -364,7 +366,8 @@ Page {
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      messages.threadId,
                                                      newParticipantsIds,
-                                                     "")
+                                                     "",
+                                                     HistoryThreadModel.InformationTypeSimChange, "")
                 break;
             } else if (event.senderId == "self" && event.accountId == messages.account.accountId) {
                 // in case last ougoing event used the same accountId, just skip
@@ -1314,6 +1317,11 @@ Page {
                         accountId = messages.account.accountId
                     }
 
+                    // display a different watermark for broadcast conversations
+                    if (messages.isBroadcast) {
+                        return Qt.resolvedUrl("./assets/broadcast_watermark.png")
+                    }
+
                     if (presenceRequest.type != PresenceRequest.PresenceTypeUnknown
                             && presenceRequest.type != PresenceRequest.PresenceTypeUnset) {
                         accountId = presenceRequest.accountId
@@ -1381,6 +1389,8 @@ Page {
             left: parent.left
             right: parent.right
         }
+
+        isBroadcast: messages.isBroadcast
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
