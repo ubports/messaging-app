@@ -173,14 +173,21 @@ ListItem {
     }
 
     Image {
-        id: broadcastIcon
+        id: chatTypeIcon
         anchors {
             verticalCenter: contactName.verticalCenter
             left: avatar.right
             leftMargin: units.gu(1)
         }
         visible: source != ""
-        source: isBroadcast ? Qt.resolvedUrl("assets/broadcast_icon.png") : ""
+        source: {
+            if (isBroadcast) {
+                return Qt.resolvedUrl("assets/broadcast_icon.png")
+            } else if (groupChat) {
+                return Qt.resolvedUrl("assets/group_icon.png")
+            }
+            return ""
+        }
         asynchronous: true
     }
 
@@ -189,8 +196,8 @@ ListItem {
         anchors {
             top: avatar.top
             topMargin: units.gu(0.5)
-            left: broadcastIcon.right
-            leftMargin: broadcastIcon.visible ? units.gu(0.5) : 0
+            left: chatTypeIcon.right
+            leftMargin: chatTypeIcon.visible ? units.gu(0.5) : 0
             right: time.left
         }
         elide: Text.ElideRight
@@ -301,7 +308,7 @@ ListItem {
         anchors {
             top: contactName.bottom
             topMargin: units.gu(0.5)
-            left: broadcastIcon.left
+            left: chatTypeIcon.left
             right: time.left
             rightMargin: units.gu(3)
             bottom: avatar.bottom
