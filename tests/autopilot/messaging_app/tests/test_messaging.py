@@ -493,10 +493,10 @@ class MessagingTestSettings(MessagingAppTestCase):
 
         super(MessagingTestSettings, self).setUp()
 
-    def test_mms_group_chat_settings(self):
+    def test_mms_enabled_settings(self):
         settingsPage = self.main_view.open_settings_page()
         self.assertThat(settingsPage.visible, Eventually(Equals(True)))
-        option = settingsPage.get_mms_group_chat()
+        option = settingsPage.get_mms_enabled()
 
         proxy = dbus.SystemBus().get_object(
             'org.freedesktop.Accounts',
@@ -508,15 +508,15 @@ class MessagingTestSettings(MessagingAppTestCase):
         # read the current value and make sure the checkbox reflects it
         settingsValue = properties_manager.Get(
             'com.ubuntu.touch.AccountsService.Phone',
-            'MmsGroupChatEnabled')
+            'MmsEnabled')
 
         self.assertThat(option.checked, Eventually(Equals(settingsValue)))
 
         # now toggle it and check that the value changes
         oldValue = settingsValue
-        settingsPage.toggle_mms_group_chat()
+        settingsPage.toggle_mms_enabled()
         time.sleep(2)
-        option = settingsPage.get_mms_group_chat()
+        option = settingsPage.get_mms_enabled()
         self.assertThat(option.checked, Eventually(Not(Equals(oldValue))))
 
         # give it some time
@@ -524,13 +524,13 @@ class MessagingTestSettings(MessagingAppTestCase):
 
         settingsValue = properties_manager.Get(
             'com.ubuntu.touch.AccountsService.Phone',
-            'MmsGroupChatEnabled'
+            'MmsEnabled'
         )
         self.assertThat(option.checked,
                         Eventually(Equals(settingsValue)))
 
         # just reset it to the previous value
-        settingsPage.toggle_mms_group_chat()
+        settingsPage.toggle_mms_enabled()
 
 
 class MessagingTestSwipeToDeleteDemo(MessagingAppTestCase):

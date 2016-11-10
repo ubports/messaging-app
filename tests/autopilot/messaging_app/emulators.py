@@ -426,11 +426,11 @@ class Messages(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 class SettingsPage(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     """Autopilot helper for the settings page"""
 
-    def get_mms_group_chat(self):
-        return self.wait_select_single(objectName="mmsGroupChatEnabled")
+    def get_mms_enabled(self):
+        return self.wait_select_single(objectName="mmsEnabled")
 
-    def toggle_mms_group_chat(self):
-        self.pointing_device.click_object(self.get_mms_group_chat())
+    def toggle_mms_enabled(self):
+        self.pointing_device.click_object(self.get_mms_enabled())
 
 
 class ListItemWithActions(_common.UbuntuUIToolkitCustomProxyObjectBase):

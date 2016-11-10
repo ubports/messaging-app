@@ -415,8 +415,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            // FIXME: we need to change the way of detecting MMS group chat
-            var isMmsGroupChat = newParticipantsIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+            var isMmsGroupChat = messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
@@ -735,11 +734,6 @@ Page {
                         }
 
                         if (!multipleGroupTypes) {
-                            // FIXME: remove that: now that creating an MMS group is an explicit action we don't need to have a settings for that
-                            if (!telepathyHelper.mmsGroupChat) {
-                                application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
-                                return
-                            }
                             mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
                             return
                         }
@@ -909,14 +903,6 @@ Page {
             id: mmsGroupAction
             text: i18n.tr("Create MMS Group...")
             onTriggered: {
-                // FIXME: remove that, there is no need to have a MMS group chat option anymore
-                if (!telepathyHelper.mmsGroupChat) {
-                    var properties = {}
-                    properties["title"] = i18n.tr("MMS group chat is disabled")
-                    properties["text"] = i18n.tr("You need to enable MMS group chat in the app settings")
-                    PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
-                    return
-                }
                 mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
             }
         }
@@ -1405,7 +1391,7 @@ Page {
         }
         canSend: chatType == ChatEntry.ChatTypeRoom || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
-        usingMMS: (participantIds.length > 1 || multiRecipient.recipientCount > 1 ) && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+        usingMMS: messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
 
         Component.onCompleted: {
             // if page is active, it means this is not a bottom edge page
