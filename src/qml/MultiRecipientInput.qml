@@ -58,7 +58,7 @@ StyledItem {
     signal forceFocus()
 
     MouseArea {
-        anchors.fill: parent
+        anchors.fill: scrollableArea
         enabled: parent.focus === false
         onClicked: forceFocus()
         z: 1
@@ -100,7 +100,12 @@ StyledItem {
 
     Flickable {
         id: scrollableArea
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: addIcon.left
+            top: parent.top
+            bottom: parent.bottom
+        }
         contentWidth: contactFlow.width
         // force content to scroll as the user types the number
         onContentWidthChanged: {
@@ -268,6 +273,24 @@ StyledItem {
                         when: (index && status == Loader.Ready)
                     }
                 }
+            }
+        }
+    }
+
+    Icon {
+        id: addIcon
+        name: "add"
+        height: units.gu(2)
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(2)
+            verticalCenter: parent.verticalCenter
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                Qt.inputMethod.hide()
+                mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
             }
         }
     }
