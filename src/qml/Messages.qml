@@ -654,6 +654,7 @@ Page {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
+                    var finalParticipants = participants.length
                     if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         if (chatEntry.title !== "") {
                             return chatEntry.title
@@ -663,12 +664,14 @@ Page {
                             return roomInfo.Title
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
-                        } else {
-                            return i18n.tr("Group")
                         }
-                    } else {
-                        return i18n.tr("Group (%1)").arg(participants.length)
+                        // include the "Me" participant to be consistent with 
+                        // group info page
+                        if (roomInfo.Joined) {
+                            finalParticipants++
+                        }
                     }
+                    return i18n.tr("Group (%1)").arg(finalParticipants)
                 }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
