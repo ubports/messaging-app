@@ -40,11 +40,15 @@ ListItem {
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
     property string groupChatLabel: {
+        var finalParticipants = participants.length
         if (chatType == HistoryThreadModel.ChatTypeRoom) {
             if (chatRoomInfo.Title != "") {
                 return chatRoomInfo.Title
             } else if (chatRoomInfo.RoomName != "") {
                 return chatRoomInfo.RoomName
+            }
+            if (chatRoomInfo.Joined) {
+                finalParticipants++
             }
         }
         var firstRecipient
@@ -56,7 +60,7 @@ ListItem {
 
         if (participants.length > 1) {
             // TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-            return i18n.tr("%1 + %2").arg(firstRecipient).arg(String(participants.length-1))
+            return i18n.tr("%1 + %2").arg(firstRecipient).arg(String(finalParticipants-1))
         }
         return firstRecipient
     }
