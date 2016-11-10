@@ -767,24 +767,6 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
-
-                Icon {
-                    name: "add"
-                    height: units.gu(2)
-                    anchors {
-                        right: parent.right
-                        rightMargin: units.gu(2)
-                        verticalCenter: parent.verticalCenter
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            Qt.inputMethod.hide()
-                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
-                        }
-                        z: 2
-                    }
-                }
             }
 
             PropertyChanges {
