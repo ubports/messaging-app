@@ -177,7 +177,7 @@ ListItem {
         anchors {
             verticalCenter: contactName.verticalCenter
             left: avatar.right
-            leftMargin: visible ? units.gu(1) : 0
+            leftMargin: units.gu(1)
         }
         visible: source != ""
         source: isBroadcast ? Qt.resolvedUrl("assets/broadcast_icon.png") : ""
@@ -190,7 +190,7 @@ ListItem {
             top: avatar.top
             topMargin: units.gu(0.5)
             left: broadcastIcon.right
-            leftMargin: units.gu(1)
+            leftMargin: broadcastIcon.visible ? units.gu(0.5) : 0
             right: time.left
         }
         elide: Text.ElideRight
@@ -301,7 +301,7 @@ ListItem {
         anchors {
             top: contactName.bottom
             topMargin: units.gu(0.5)
-            left: contactName.left
+            left: broadcastIcon.left
             right: time.left
             rightMargin: units.gu(3)
             bottom: avatar.bottom
