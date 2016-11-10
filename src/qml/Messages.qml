@@ -774,6 +774,13 @@ Page {
                         }
 
                         if (!multipleGroupTypes) {
+                            if (!telepathyHelper.mmsEnabled) {
+                                var properties = {}
+                                properties["title"] = i18n.tr("MMS messages disabled")
+                                properties["text"] = i18n.tr("You need to enable MMS messages in the application settings")
+                                PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+                                return
+                            }
                             mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
                             return
                         }
