@@ -67,6 +67,10 @@ Item {
             return null
         }
 
+        function accountOverload(account) {
+            return []
+        }
+
         property alias textAccounts: textAccountsItem
         property alias phoneAccounts: phoneAccountsItem
 
@@ -153,8 +157,8 @@ Item {
 
             tryCompare(mainViewLoader.item, 'applicationActive', true)
 
-            mainViewLoader.item.startNewMessage()
             waitForRendering(mainViewLoader.item)
+            mainViewLoader.item.startNewMessage()
 
             var messagesView = findChild(mainViewLoader, "messagesPage")
             waitForRendering(messagesView)
