@@ -300,6 +300,42 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
+    function sendMessageSanityCheck(text, participantIds, attachments, properties) {
+        // if MMS is enabled, we don't have to check for anything here
+        if (telepathyHelper.mmsEnabled ) {
+            return true
+        }
+
+        // if the account is not a phone one, we can also send the message
+        if (messages.account.type != AccountEntry.PhoneAccount) {
+            return true
+        }
+
+        // we need to check if there will be an overload for sending the message
+        var accounts = telepathyHelper.accountOverload(messages.account)
+        for (var i in accounts) {
+            var account = accounts[i]
+            if (account.active) {
+                return true
+            }
+        }
+
+        // now we are here with a phone account that doesn't support MMS
+        // we check if MMS is required or not
+        // for now it is only required in two cases: attachments and MMS groups
+        // so if chatType is not Room and the attachment list is empty, we can send
+        if (messages.chatType != ChatEntry.ChatTypeRoom && attachments.length == 0) {
+            return true
+        }
+
+        // last but not least, show a warning to the user saying he needs to enable MMS to send the message
+        var props = {}
+        props["title"] = i18n.tr("MMS support required")
+        props["text"] = i18n.tr("MMS support is required to send this message.\nPlease enable it in Settings->Enable MMS messages")
+        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, props)
+        return false
+    }
+
     function sendMessage(text, participantIds, attachments, properties) {
         if (typeof(properties) === 'undefined') {
             properties = {}
@@ -326,6 +362,10 @@ Page {
                 properties["title"] = i18n.tr("Failed to send the message")
             }
             PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+            return false
+        }
+
+        if (!sendMessageSanityCheck(text, participantIds, attachments, properties)) {
             return false
         }
 
@@ -418,8 +458,7 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            // FIXME: we need to change the way of detecting MMS group chat
-            var isMmsGroupChat = newParticipantsIds.length > 1 && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+            var isMmsGroupChat = messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
@@ -741,9 +780,11 @@ Page {
                         }
 
                         if (!multipleGroupTypes) {
-                            // FIXME: remove that: now that creating an MMS group is an explicit action we don't need to have a settings for that
-                            if (!telepathyHelper.mmsGroupChat) {
-                                application.showNotificationMessage(i18n.tr("You need to enable MMS group chat in the app settings"), "contact-group")
+                            if (!telepathyHelper.mmsEnabled) {
+                                var properties = {}
+                                properties["title"] = i18n.tr("MMS messages disabled")
+                                properties["text"] = i18n.tr("You need to enable MMS messages in the application settings")
+                                PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
                                 return
                             }
                             mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
@@ -897,11 +938,10 @@ Page {
             id: mmsGroupAction
             text: i18n.tr("Create MMS Group...")
             onTriggered: {
-                // FIXME: remove that, there is no need to have a MMS group chat option anymore
-                if (!telepathyHelper.mmsGroupChat) {
+                if (!telepathyHelper.mmsEnabled) {
                     var properties = {}
-                    properties["title"] = i18n.tr("MMS group chat is disabled")
-                    properties["text"] = i18n.tr("You need to enable MMS group chat in the app settings")
+                    properties["title"] = i18n.tr("MMS messages disabled")
+                    properties["text"] = i18n.tr("You need to enable MMS messages in the application settings")
                     PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
                     return
                 }
@@ -1400,7 +1440,7 @@ Page {
         }
         canSend: chatType == ChatEntry.ChatTypeRoom || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
-        usingMMS: (participantIds.length > 1 || multiRecipient.recipientCount > 1 ) && telepathyHelper.mmsGroupChat && messages.account.type == AccountEntry.PhoneAccount
+        usingMMS: messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
 
         Component.onCompleted: {
             // if page is active, it means this is not a bottom edge page
