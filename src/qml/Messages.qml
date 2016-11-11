@@ -304,18 +304,18 @@ Page {
             return true
         }
 
-        // in case it is not enabled, we need to check if there will be an overload for sending the message
+        // if the account is not a phone one, we can also send the message
+        if (messages.account.type != AccountEntry.PhoneAccount) {
+            return true
+        }
+
+        // we need to check if there will be an overload for sending the message
         var accounts = telepathyHelper.accountOverload(messages.account)
         for (var i in accounts) {
             var account = accounts[i]
             if (account.active) {
                 return true
             }
-        }
-
-        // if the account is not a phone one, we can also send the message
-        if (messages.account.type != AccountEntry.PhoneAccount) {
-            return true
         }
 
         // now we are here with a phone account that doesn't support MMS
