@@ -105,7 +105,6 @@ Item {
 
         function setChatState(state) {}
         function sendMessage(accountId, text, attachments, properties) {
-            console.log("BLABLA called")
             chatEntryObject.messageSent(accountId, text, attachments, properties)
         }
     }
