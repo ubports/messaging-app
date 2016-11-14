@@ -166,7 +166,7 @@ ListItem {
             }
         }
         fallbackDisplayName: delegateHelper.alias
-        showAvatarPicture: groupChat || (delegateHelper.avatar !== "") || (initials.length === 0)
+        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
             left: parent.left
             top: parent.top
