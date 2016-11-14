@@ -165,7 +165,7 @@ ListItem {
                 return "image://theme/contact"
             }
         }
-        fallbackDisplayName: delegateHelper.alias
+        fallbackDisplayName: contactName.text
         showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
             left: parent.left
