@@ -21,6 +21,7 @@ import QtTest 1.0
 import Ubuntu.Test 0.1
 import Ubuntu.Telephony 0.1
 import Ubuntu.History 0.1
+import "../../src/qml"
 
 Item {
     id: root
@@ -49,10 +50,14 @@ Item {
         property string networkName: "Network name"
         property bool simLocked: false
         property var addressableVCardFields: ["tel"]
+        property var protocolInfo: Item {
+            property bool showOnSelector: true
+        }
     }
 
     Item {
         id: telepathyHelper
+        property bool flightMode: false
         property var activeAccounts: [testAccount]
         property alias accounts: telepathyHelper.activeAccounts
         property QtObject defaultMessagingAccount: null
@@ -104,11 +109,16 @@ Item {
         }
     }
 
-    Loader {
-        id: mainViewLoader
-        active: false
-        property string i18nDirectory: ""
-        source: '../../src/qml/messaging-app.qml'
+    Item {
+        id: mainView
+        property var account: testAccount
+        property bool applicationActive: true
+        function updateNewMessageStatus() {}
+    }
+
+    Messages {
+        id: messagesView
+        active: true
     }
 
     SignalSpy {
@@ -152,15 +162,6 @@ Item {
         }
 
         function test_messageSentViaOnlySim() {
-            mainViewLoader.active = false
-            mainViewLoader.active = true
-
-            tryCompare(mainViewLoader.item, 'applicationActive', true)
-
-            waitForRendering(mainViewLoader.item)
-            mainViewLoader.item.startNewMessage()
-
-            var messagesView = findChild(mainViewLoader, "messagesPage")
             waitForRendering(messagesView)
 
             var textArea = findChild(messagesView, "messageTextArea")
