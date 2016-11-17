@@ -38,7 +38,7 @@ inline bool isRunningInstalled() {
 
 inline QString messagingAppDirectory() {
     if (qEnvironmentVariableIsSet(SNAP_PATH)) {
-        return QString("%1/@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/").arg(qgetenv(SNAP_PATH));
+        return QString("%1/@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/").arg(QString(qgetenv(SNAP_PATH)));
     } else if (isRunningInstalled()) {
         return QString("@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/");
     } else {
