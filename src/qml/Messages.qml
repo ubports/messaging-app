@@ -917,6 +917,72 @@ Page {
         processPendingEvents()
     }
 
+    Item {
+        id: mmsBroadcastChecker
+
+        property var props: null
+
+        function isMMSBroadcast(text, participantIds, attachments, properties) {
+            var account = messages.account
+            // if we don't have the account or if it is not a phone one, it is
+            // not an MMS broadcast
+            if (!account || account.type != AccountEntry.PhoneAccount) {
+                return false
+            }
+
+            // if chatType is Room, this is not a broadcast
+            if (chatType == ChatEntry.ChatTypeRoom) {
+                return false
+            }
+
+            // if there is only one participant, it is also not a broadcast
+            if (participantIds.length == 1) {
+                return false
+            }
+
+            // if there is no attachments, that's not going via MMS
+            if (attachments.length == 0) {
+                return false
+            }
+
+            // if there is an account overload, assume it is going to be used
+            // and thus this won't be an MMS broadcast
+            if (telepathyHelper.accountOverload(account).length > 0) {
+                return false
+            }
+
+            // if none of the cases above match, this is an MMS broadcast
+            return true
+        }
+
+        function checkForBroadcastAndSend(text, participantIds, attachments, properties) {
+            props = {"text" : text,
+                     "participantIds" : participantIds,
+                     "attachments" : attachments,
+                     "properties" : properties
+                    }
+
+            if (isMMSBroadcast(text, participantIds, attachments, properties)) {
+                var popup = PopupUtils.open(Qt.resolvedUrl("MMSBroadcastDialog.qml"), mmsBroadcastChecker, {})
+                popup.accepted.connect(onPopupAccepted)
+                return false
+            }
+
+            // if this is not an MMS broadcast, just send the message
+            messages.sendMessage(text, participantIds, attachments, properties)
+            return true
+        }
+
+
+        function onPopupAccepted() {
+            messages.sendMessage(props["text"],
+                                 props["participantIds"],
+                                 props["attachments"],
+                                 props["properties"])
+        }
+
+    }
+
     // These fake items are used to track if there are instances loaded
     // on the second column because we have no access to the page stack
     Item {
@@ -1503,7 +1569,7 @@ Page {
 
             // if sendMessage succeeds it means the message was either sent or
             // injected into the history service so the user can retry later
-            if (sendMessage(text, recipients, newAttachments, properties)) {
+            if (mmsBroadcastChecker.checkForBroadcastAndSend(text, recipients, newAttachments, properties)) {
                 composeBar.reset()
             }
             if (eventModel.filter == null) {
