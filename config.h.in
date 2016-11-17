@@ -47,7 +47,7 @@ inline QString messagingAppDirectory() {
 }
 
 inline QString ubuntuPhonePluginPath() {
-    if (isRunningInstalled()) {
+    if (isRunningInstalled() || qEnvironmentVariableIsSet(SNAP_PATH)) {
         return QString::null;
     } else {
         return QString("@CMAKE_SOURCE_DIR@/");
