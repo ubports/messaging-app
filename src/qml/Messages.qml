@@ -1040,15 +1040,13 @@ Page {
 
         onMessageSent: {
             // create the new thread and update the threadId list
-            if (messages.threads.length === 0 ||
-                !checkThreadInFilters(accountId, messages.threadId)) {
+            if (!checkThreadInFilters(accountId, messages.threadId)) {
                 addNewThreadToFilter(accountId, properties)
             }
         }
         onMessageSendingFailed: {
             // create the new thread and update the threadId list
-            if (messages.threads.length === 0 ||
-                !checkThreadInFilters(accountId, messages.threadId)) {
+            if (!checkThreadInFilters(accountId, messages.threadId)) {
                 addNewThreadToFilter(accountId, properties)
             }
         }
