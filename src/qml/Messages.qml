@@ -975,10 +975,12 @@ Page {
 
 
         function onPopupAccepted() {
-            messages.sendMessage(props["text"],
-                                 props["participantIds"],
-                                 props["attachments"],
-                                 props["properties"])
+            if (messages.sendMessage(props["text"],
+                                     props["participantIds"],
+                                     props["attachments"],
+                                     props["properties"])) {
+                composeBar.reset()
+            }
         }
 
     }
