@@ -945,10 +945,13 @@ Page {
                 return false
             }
 
-            // if there is an account overload, assume it is going to be used
+            // if there is an active account overload, assume it is going to be used
             // and thus this won't be an MMS broadcast
-            if (telepathyHelper.accountOverload(account).length > 0) {
-                return false
+            var accounts = telepathyHelper.accountOverload(account).length
+            for (var i in accounts) {
+                if (accounts[i].active) {
+                    return false
+                }
             }
 
             // if none of the cases above match, this is an MMS broadcast
