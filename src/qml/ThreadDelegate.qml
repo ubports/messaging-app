@@ -39,17 +39,25 @@ ListItem {
     property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : timestamp
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
-    property string groupChatLabel: {
-        var finalParticipants = participants.length
+    property string groupTitle: {
         if (chatType == HistoryThreadModel.ChatTypeRoom) {
             if (chatRoomInfo.Title != "") {
                 return chatRoomInfo.Title
             } else if (chatRoomInfo.RoomName != "") {
                 return chatRoomInfo.RoomName
             }
-            if (chatRoomInfo.Joined) {
-                finalParticipants++
-            }
+        }
+        return ""
+    }
+
+    property string groupChatLabel: {
+        if (groupTitle != "") {
+            return groupTitle
+        }
+
+        var finalParticipants = participants.length
+        if (chatType == HistoryThreadModel.ChatTypeRoom && chatRoomInfo.Joined) {
+            finalParticipants++
         }
         var firstRecipient
         if (unknownContact) {
@@ -157,16 +165,14 @@ ListItem {
         id: avatar
 
         fallbackAvatarUrl: {
-            if (groupChat) {
-                return "image://theme/contact-group"
-            } else if (delegateHelper.avatar !== "") {
+            if (delegateHelper.avatar !== "") {
                 return delegateHelper.avatar
             } else {
                 return "image://theme/contact"
             }
         }
-        fallbackDisplayName: delegateHelper.alias
-        showAvatarPicture: groupChat || (delegateHelper.avatar !== "") || (initials.length === 0)
+        fallbackDisplayName: (isBroadcast || groupTitle == "") ? delegateHelper.alias : contactName.text
+        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
             left: parent.left
             top: parent.top
