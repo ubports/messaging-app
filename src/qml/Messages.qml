@@ -342,6 +342,16 @@ Page {
                 }
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
+                var thread = eventModel.threadForProperties(messages.account.accountId,
+                                                            HistoryEventModel.EventTypeText,
+                                                            properties,
+                                                            messages.account.usePhoneNumbers ? HistoryEventModel.MatchPhoneNumber : HistoryEventModel.MatchCaseSensitive,
+                                                            true);
+                if (!checkThreadInFilters(thread.accountId, thread.threadId)) {
+                    addNewThreadToFilter(thread.accountId, thread)
+                }
+
+                messages.threadId = thread.threadId
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      messages.threadId,
                                                      newParticipantsIds,
@@ -360,7 +370,18 @@ Page {
             // and insert it into the history service
 
             // FIXME: we need to review this case. In case of account overload, this will be saved in the wrong thread
-            //        also, we probably need to create the thread here
+
+            // create the thread
+            var thread = eventModel.threadForProperties(messages.account.accountId,
+                                                        HistoryEventModel.EventTypeText,
+                                                        properties,
+                                                        messages.account.usePhoneNumbers ? HistoryEventModel.MatchPhoneNumber : HistoryEventModel.MatchCaseSensitive,
+                                                        true);
+            if (!checkThreadInFilters(thread.accountId, thread.threadId)) {
+                addNewThreadToFilter(thread.accountId, thread)
+            }
+            messages.threadId = thread.threadId
+
             var event = {}
             var timestamp = new Date()
             var tmpEventId = timestamp.toISOString()
