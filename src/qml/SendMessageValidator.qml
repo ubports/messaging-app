@@ -167,11 +167,9 @@ Item {
             return true
         }
 
-        // last but not least, show a warning to the user saying he needs to enable MMS to send the message
-        var props = {}
-        props["title"] = i18n.tr("MMS support required")
-        props["text"] = i18n.tr("MMS support is required to send this message.\nPlease enable it in Settings->Enable MMS messages")
-        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, props)
+        // last but not least, show a dialog asking if the user wants to enable MMS
+        var popup = PopupUtils.open(Qt.resolvedUrl("Dialogs/MMSEnableDialog.qml"), messages, {"message" : message})
+        popup.accepted.connect(validator.nextStep)
         return false
     }
 
