@@ -106,7 +106,6 @@ ListItem {
         }
 
         messages.validator.validateMessageAndSend(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true}, [messageDelegate.deleteMessage])
-        //deleteMessage();
     }
 
     color: "transparent"
