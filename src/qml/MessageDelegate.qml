@@ -104,8 +104,9 @@ ListItem {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.validator.validateMessageAndSend(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})
-        deleteMessage();
+
+        messages.validator.validateMessageAndSend(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true}, [messageDelegate.deleteMessage])
+        //deleteMessage();
     }
 
     color: "transparent"

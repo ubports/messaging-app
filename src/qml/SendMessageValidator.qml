@@ -26,7 +26,7 @@ Item {
 
     signal messageSent()
 
-    function validateMessageAndSend(text, participantIds, attachments, properties) {
+    function validateMessageAndSend(text, participantIds, attachments, properties, postSendActions) {
         var message = { "text" : text,
                         "participantIds" : participantIds,
                         "attachments" : attachments,
@@ -41,6 +41,10 @@ Item {
         ]
 
         message["validators"] = validators
+
+        if (postSendActions) {
+            message["postSendActions"] = postSendActions
+        }
 
         // just to simplify, store the active accounts that might be used as overload for this message
         var possibleAccounts = telepathyHelper.accountOverload(messages.account)
@@ -66,6 +70,15 @@ Item {
                                      message["attachments"],
                                      message["properties"])) {
                 validator.messageSent()
+
+                // check if the message has postSendActions
+                var postSendActions = message["postSendActions"]
+                if (postSendActions) {
+                    for (var i in postSendActions) {
+                        var postAction = postSendActions[i]
+                        postAction(message)
+                    }
+                }
             }
             return
         }
