@@ -300,42 +300,6 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessageSanityCheck(text, participantIds, attachments, properties) {
-        // if MMS is enabled, we don't have to check for anything here
-        if (telepathyHelper.mmsEnabled ) {
-            return true
-        }
-
-        // if the account is not a phone one, we can also send the message
-        if (messages.account.type != AccountEntry.PhoneAccount) {
-            return true
-        }
-
-        // we need to check if there will be an overload for sending the message
-        var accounts = telepathyHelper.accountOverload(messages.account)
-        for (var i in accounts) {
-            var account = accounts[i]
-            if (account.active) {
-                return true
-            }
-        }
-
-        // now we are here with a phone account that doesn't support MMS
-        // we check if MMS is required or not
-        // for now it is only required in two cases: attachments and MMS groups
-        // so if chatType is not Room and the attachment list is empty, we can send
-        if (messages.chatType != ChatEntry.ChatTypeRoom && attachments.length == 0) {
-            return true
-        }
-
-        // last but not least, show a warning to the user saying he needs to enable MMS to send the message
-        var props = {}
-        props["title"] = i18n.tr("MMS support required")
-        props["text"] = i18n.tr("MMS support is required to send this message.\nPlease enable it in Settings->Enable MMS messages")
-        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, props)
-        return false
-    }
-
     function sendMessage(text, participantIds, attachments, properties) {
         if (typeof(properties) === 'undefined') {
             properties = {}
@@ -1529,7 +1493,6 @@ Page {
             }
 
             var newAttachments = []
-            var videoSize = 0;
             for (var i = 0; i < attachments.count; i++) {
                 var attachment = []
                 var item = attachments.get(i)
@@ -1537,32 +1500,10 @@ Page {
                 if (item.contentType.toLowerCase() === "application/smil") {
                     continue
                 }
-                if (startsWith(item.contentType.toLowerCase(),"video/")) {
-                    videoSize += FileOperations.size(item.filePath)
-                }
                 attachment.push(item.name)
                 attachment.push(item.contentType)
                 attachment.push(item.filePath)
                 newAttachments.push(attachment)
-            }
-            if (videoSize > 307200 && !settings.messagesDontShowFileSizeWarning) {
-                // FIXME we are guessing here if the handler will try to send it over an overloaded account
-                // FIXME: this should be revisited when changing the MMS group implementation
-                var isPhone = (account && account.type == AccountEntry.PhoneAccount)
-                if (isPhone) {
-                    // check if an account overload might be used
-                    var accounts = telepathyHelper.accountOverload(account)
-                    for (var i in accounts) {
-                        var tmpAccount = accounts[i]
-                        if (tmpAccount.active) {
-                            isPhone = false
-                        }
-                    }
-                }
- 
-                if (isPhone) {
-                    PopupUtils.open(Qt.createComponent("Dialogs/FileSizeWarningDialog.qml").createObject(messages))
-                }
             }
 
             var recipients = participantIds.length > 0 ? participantIds :
@@ -1572,15 +1513,18 @@ Page {
                 properties["x-canonical-tmp-files"] = true
             }
 
-            // if sendMessage succeeds it means the message was either sent or
-            // injected into the history service so the user can retry later
-            if (mmsBroadcastChecker.checkForBroadcastAndSend(text, recipients, newAttachments, properties)) {
-                composeBar.reset()
-            }
+            sendMessageValidator.validateMessageAndSend(text, recipients, newAttachments, properties)
+
             if (eventModel.filter == null) {
                 reloadFilters = !reloadFilters
             }
         }
+    }
+
+    SendMessageValidator {
+        id: sendMessageValidator
+
+        onMessageSent: composeBar.reset()
     }
 
     KeyboardRectangle {
