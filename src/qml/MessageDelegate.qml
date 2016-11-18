@@ -104,7 +104,7 @@ ListItem {
             attachment.push(item.filePath)
             newAttachments.push(attachment)
         }
-        messages.sendMessage(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})
+        messages.validator.validateMessageAndSend(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true})
         deleteMessage();
     }
 

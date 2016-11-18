@@ -23,7 +23,9 @@ import Ubuntu.Components.Popups 1.3
 Dialog {
     id: mmsDialog
 
-    signal accepted()
+    signal accepted(var message)
+
+    property var message: null
 
     title: i18n.tr("Multiple MMS Messages")
     text: i18n.tr("The content you are sending requires one MMS message per recipient, so you might get charged for multiple messages.\n\Do you want to continue?")
@@ -39,7 +41,7 @@ Dialog {
         text: i18n.tr("Yes")
         color: UbuntuColors.orange
         onClicked: {
-            mmsDialog.accepted()
+            mmsDialog.accepted(message)
             PopupUtils.close(mmsDialog)
         }
     }

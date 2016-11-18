@@ -36,6 +36,8 @@ Item {
         var validators = [
             validator.checkVideoSize,
             validator.checkMMSEnabled,
+            validator.checkMMSBroadcast,
+            validator.checkValidAccount
         ]
 
         message["validators"] = validators
@@ -78,16 +80,49 @@ Item {
         }
     }
 
+    function _isMMSBroadcast(message) {
+        var account = messages.account
+        // if we don't have the account or if it is not a phone one, it is
+        // not an MMS broadcast
+        if (!account || account.type != AccountEntry.PhoneAccount) {
+            return false
+        }
+
+        // if chatType is Room, this is not a broadcast
+        if (messages.chatType == ChatEntry.ChatTypeRoom) {
+            return false
+        }
+
+        // if there is only one participant, it is also not a broadcast
+        if (message["participantIds"].length == 1) {
+            return false
+        }
+
+        // if there is no attachments, that's not going via MMS
+        if (message["attachments"].length == 0) {
+            return false
+        }
+
+        // if there is an active account overload, assume it is going to be used
+        // and thus this won't be an MMS broadcast
+        if (message["overloadedAccounts"].length > 0) {
+            return false
+        }
+
+        // if none of the cases above match, this is an MMS broadcast
+        return true
+    }
+
     // **************** starting here we have all the validation functions ***************************************
 
     function checkVideoSize(message) {
-        console.log("BLABLA checkVideoSize called")
         var attachments = message["attachments"]
         var videoSize = 0
+
         for (var i in attachments) {
             var item = attachments[i]
-            if (startsWith(item.contentType.toLowerCase(),"video/")) {
-                videoSize += FileOperations.size(item.filePath)
+            if (startsWith(item[1].toLowerCase(),"video/")) {
+                videoSize += FileOperations.size(item[2])
             }
         }
 
@@ -108,7 +143,6 @@ Item {
     }
 
     function checkMMSEnabled(message) {
-        console.log("BLABLA checkMMS called")
         // if MMS is enabled, we don't have to check for anything here
         if (telepathyHelper.mmsEnabled ) {
             return true
@@ -141,4 +175,41 @@ Item {
         return false
     }
 
+    function checkMMSBroadcast(message) {
+        if (_isMMSBroadcast(message)) {
+            var popup = PopupUtils.open(Qt.resolvedUrl("Dialogs/MMSBroadcastDialog.qml"), messages, {"message" : message})
+            popup.accepted.connect(validator.nextStep)
+            return false
+        }
+
+        // if this is not an MMS broadcast, we can proceed normally
+        return true
+    }
+
+    function checkValidAccount(message) {
+        // check if at least one account is selected
+        if (!messages.account) {
+            Qt.inputMethod.hide()
+            // workaround for bug #1461861
+            messages.focus = false
+            var properties = {}
+
+            if (telepathyHelper.flightMode) {
+                properties["title"] = i18n.tr("You have to disable flight mode")
+                properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
+            } else if (multiplePhoneAccounts) {
+                properties["title"] = i18n.tr("No SIM card selected")
+                properties["text"] = i18n.tr("You need to select a SIM card")
+            } else if (telepathyHelper.phoneAccounts.all.length > 0 && telepathyHelper.phoneAccounts.active.length == 0) {
+                properties["title"] = i18n.tr("No SIM card")
+                properties["text"] = i18n.tr("Please insert a SIM card and try again.")
+            } else {
+                properties["text"] = i18n.tr("It is not possible to send the message")
+                properties["title"] = i18n.tr("Failed to send the message")
+            }
+            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+            return false
+        }
+        return true
+    }
 }

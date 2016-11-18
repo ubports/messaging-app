@@ -104,6 +104,8 @@ Page {
 
     property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
 
+    property alias validator: sendMessageValidator
+
     signal ready
     signal cancel
 
@@ -138,7 +140,7 @@ Page {
 
     function getSelectedIndex() {
         if (newMessage) {
-            // if this is a new message, just pre select the the 
+            // if this is a new message, just pre select the the
             // default phone account for messages if available
             if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
                 for (var i in messages.accountsModel) {
@@ -216,7 +218,7 @@ Page {
                                            true)
         if (thread.length == 0) {
             return thread
-        } 
+        }
         var threadId = thread.threadId
 
         // dont change the participants list
@@ -304,34 +306,6 @@ Page {
     function sendMessage(text, participantIds, attachments, properties) {
         if (typeof(properties) === 'undefined') {
             properties = {}
-        }
-
-        // check if at least one account is selected
-        if (!messages.account) {
-            Qt.inputMethod.hide()
-            // workaround for bug #1461861
-            messages.focus = false
-            var properties = {}
-
-            if (telepathyHelper.flightMode) {
-                properties["title"] = i18n.tr("You have to disable flight mode")
-                properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
-            } else if (multiplePhoneAccounts) {
-                properties["title"] = i18n.tr("No SIM card selected")
-                properties["text"] = i18n.tr("You need to select a SIM card")
-            } else if (telepathyHelper.phoneAccounts.all.length > 0 && telepathyHelper.phoneAccounts.active.length == 0) {
-                properties["title"] = i18n.tr("No SIM card")
-                properties["text"] = i18n.tr("Please insert a SIM card and try again.")
-            } else {
-                properties["text"] = i18n.tr("It is not possible to send the message")
-                properties["title"] = i18n.tr("Failed to send the message")
-            }
-            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
-            return false
-        }
-
-        if (!sendMessageSanityCheck(text, participantIds, attachments, properties)) {
-            return false
         }
 
         if (messages.threads.length > 0) {
@@ -669,7 +643,7 @@ Page {
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
                         }
-                        // include the "Me" participant to be consistent with 
+                        // include the "Me" participant to be consistent with
                         // group info page
                         if (roomInfo.Joined) {
                             finalParticipants++
@@ -880,77 +854,6 @@ Page {
             messages.ready()
         }
         processPendingEvents()
-    }
-
-    Item {
-        id: mmsBroadcastChecker
-
-        property var props: null
-
-        function isMMSBroadcast(text, participantIds, attachments, properties) {
-            var account = messages.account
-            // if we don't have the account or if it is not a phone one, it is
-            // not an MMS broadcast
-            if (!account || account.type != AccountEntry.PhoneAccount) {
-                return false
-            }
-
-            // if chatType is Room, this is not a broadcast
-            if (chatType == ChatEntry.ChatTypeRoom) {
-                return false
-            }
-
-            // if there is only one participant, it is also not a broadcast
-            if (participantIds.length == 1) {
-                return false
-            }
-
-            // if there is no attachments, that's not going via MMS
-            if (attachments.length == 0) {
-                return false
-            }
-
-            // if there is an active account overload, assume it is going to be used
-            // and thus this won't be an MMS broadcast
-            var accounts = telepathyHelper.accountOverload(account).length
-            for (var i in accounts) {
-                if (accounts[i].active) {
-                    return false
-                }
-            }
-
-            // if none of the cases above match, this is an MMS broadcast
-            return true
-        }
-
-        function checkForBroadcastAndSend(text, participantIds, attachments, properties) {
-            props = {"text" : text,
-                     "participantIds" : participantIds,
-                     "attachments" : attachments,
-                     "properties" : properties
-                    }
-
-            if (isMMSBroadcast(text, participantIds, attachments, properties)) {
-                var popup = PopupUtils.open(Qt.resolvedUrl("MMSBroadcastDialog.qml"), mmsBroadcastChecker, {})
-                popup.accepted.connect(onPopupAccepted)
-                return false
-            }
-
-            // if this is not an MMS broadcast, just send the message
-            messages.sendMessage(text, participantIds, attachments, properties)
-            return true
-        }
-
-
-        function onPopupAccepted() {
-            if (messages.sendMessage(props["text"],
-                                     props["participantIds"],
-                                     props["attachments"],
-                                     props["properties"])) {
-                composeBar.reset()
-            }
-        }
-
     }
 
     // These fake items are used to track if there are instances loaded
@@ -1257,7 +1160,7 @@ Page {
 
     HistoryUnionFilter {
         id: filters
-        HistoryIntersectionFilter { 
+        HistoryIntersectionFilter {
             HistoryFilter { filterProperty: "accountId"; filterValue: messages.accountId }
             HistoryFilter { filterProperty: "threadId"; filterValue: messages.threadId }
         }
