@@ -192,6 +192,15 @@ Page {
         }
     }
 
+    function checkThreadInFilters(newAccountId, threadId) {
+        for (var i in messages.threads) {
+            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == newAccountId) {
+                return true
+            }
+        }
+        return false
+    }
+
     function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
@@ -220,15 +229,7 @@ Page {
             messages.participantIds = ids;
         }
 
-        var found = false;
-        for (var i in messages.threads) {
-            if (messages.threads[i].threadId == threadId && messages.threads[i].accountId == newAccountId) {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
+        if (!checkThreadInFilters(newAccountId, threadId)) {
             messages.threads.push(thread)
             reloadFilters = !reloadFilters
         }
@@ -1074,15 +1075,13 @@ Page {
 
         onMessageSent: {
             // create the new thread and update the threadId list
-            if (accountId != messages.account.accountId ||
-                messages.threads.length === 0) {
+            if (!checkThreadInFilters(accountId, messages.threadId)) {
                 addNewThreadToFilter(accountId, properties)
             }
         }
         onMessageSendingFailed: {
             // create the new thread and update the threadId list
-            if (accountId != messages.account.accountId ||
-                messages.threads.length === 0) {
+            if (!checkThreadInFilters(accountId, messages.threadId)) {
                 addNewThreadToFilter(accountId, properties)
             }
         }

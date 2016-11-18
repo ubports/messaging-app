@@ -288,10 +288,12 @@ StyledItem {
         }
         MouseArea {
             anchors.fill: parent
+            anchors.margins: units.gu(-3)
             onClicked: {
                 Qt.inputMethod.hide()
                 mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
             }
         }
+        z: 2
     }
 }

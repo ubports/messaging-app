@@ -26,7 +26,7 @@ Dialog {
     signal accepted()
 
     title: i18n.tr("Multiple MMS Messages")
-    text: i18n.tr("The content you are sending requires one MMS message per recipient.\n\Do you want to continue?")
+    text: i18n.tr("The content you are sending requires one MMS message per recipient, so you might get charged for multiple messages.\n\Do you want to continue?")
 
     Button {
         id: noButton
