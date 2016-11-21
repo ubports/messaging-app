@@ -104,6 +104,8 @@ Page {
 
     property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
 
+    property alias validator: sendMessageValidator
+
     signal ready
     signal cancel
 
@@ -138,7 +140,7 @@ Page {
 
     function getSelectedIndex() {
         if (newMessage) {
-            // if this is a new message, just pre select the the 
+            // if this is a new message, just pre select the the
             // default phone account for messages if available
             if (multiplePhoneAccounts && telepathyHelper.defaultMessagingAccount) {
                 for (var i in messages.accountsModel) {
@@ -216,7 +218,7 @@ Page {
                                            true)
         if (thread.length == 0) {
             return thread
-        } 
+        }
         var threadId = thread.threadId
 
         // dont change the participants list
@@ -301,73 +303,9 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
-    function sendMessageSanityCheck(text, participantIds, attachments, properties) {
-        // if MMS is enabled, we don't have to check for anything here
-        if (telepathyHelper.mmsEnabled ) {
-            return true
-        }
-
-        // if the account is not a phone one, we can also send the message
-        if (messages.account.type != AccountEntry.PhoneAccount) {
-            return true
-        }
-
-        // we need to check if there will be an overload for sending the message
-        var accounts = telepathyHelper.accountOverload(messages.account)
-        for (var i in accounts) {
-            var account = accounts[i]
-            if (account.active) {
-                return true
-            }
-        }
-
-        // now we are here with a phone account that doesn't support MMS
-        // we check if MMS is required or not
-        // for now it is only required in two cases: attachments and MMS groups
-        // so if chatType is not Room and the attachment list is empty, we can send
-        if (messages.chatType != ChatEntry.ChatTypeRoom && attachments.length == 0) {
-            return true
-        }
-
-        // last but not least, show a warning to the user saying he needs to enable MMS to send the message
-        var props = {}
-        props["title"] = i18n.tr("MMS support required")
-        props["text"] = i18n.tr("MMS support is required to send this message.\nPlease enable it in Settings->Enable MMS messages")
-        PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, props)
-        return false
-    }
-
     function sendMessage(text, participantIds, attachments, properties) {
         if (typeof(properties) === 'undefined') {
             properties = {}
-        }
-
-        // check if at least one account is selected
-        if (!messages.account) {
-            Qt.inputMethod.hide()
-            // workaround for bug #1461861
-            messages.focus = false
-            var properties = {}
-
-            if (telepathyHelper.flightMode) {
-                properties["title"] = i18n.tr("You have to disable flight mode")
-                properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
-            } else if (multiplePhoneAccounts) {
-                properties["title"] = i18n.tr("No SIM card selected")
-                properties["text"] = i18n.tr("You need to select a SIM card")
-            } else if (telepathyHelper.phoneAccounts.all.length > 0 && telepathyHelper.phoneAccounts.active.length == 0) {
-                properties["title"] = i18n.tr("No SIM card")
-                properties["text"] = i18n.tr("Please insert a SIM card and try again.")
-            } else {
-                properties["text"] = i18n.tr("It is not possible to send the message")
-                properties["title"] = i18n.tr("Failed to send the message")
-            }
-            PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
-            return false
-        }
-
-        if (!sendMessageSanityCheck(text, participantIds, attachments, properties)) {
-            return false
         }
 
         if (messages.threads.length > 0) {
@@ -404,6 +342,16 @@ Page {
                 }
                 // if the last outgoing message used a different accountId, add an
                 // information event and quit the loop
+                var thread = eventModel.threadForProperties(messages.account.accountId,
+                                                            HistoryEventModel.EventTypeText,
+                                                            properties,
+                                                            messages.account.usePhoneNumbers ? HistoryEventModel.MatchPhoneNumber : HistoryEventModel.MatchCaseSensitive,
+                                                            true);
+                if (!checkThreadInFilters(thread.accountId, thread.threadId)) {
+                    addNewThreadToFilter(thread.accountId, thread)
+                }
+
+                messages.threadId = thread.threadId
                 eventModel.writeTextInformationEvent(messages.account.accountId,
                                                      messages.threadId,
                                                      newParticipantsIds,
@@ -422,7 +370,18 @@ Page {
             // and insert it into the history service
 
             // FIXME: we need to review this case. In case of account overload, this will be saved in the wrong thread
-            //        also, we probably need to create the thread here
+
+            // create the thread
+            var thread = eventModel.threadForProperties(messages.account.accountId,
+                                                        HistoryEventModel.EventTypeText,
+                                                        properties,
+                                                        messages.account.usePhoneNumbers ? HistoryEventModel.MatchPhoneNumber : HistoryEventModel.MatchCaseSensitive,
+                                                        true);
+            if (!checkThreadInFilters(thread.accountId, thread.threadId)) {
+                addNewThreadToFilter(thread.accountId, thread)
+            }
+            messages.threadId = thread.threadId
+
             var event = {}
             var timestamp = new Date()
             var tmpEventId = timestamp.toISOString()
@@ -705,7 +664,7 @@ Page {
                         } else if (roomInfo.RoomName != "") {
                             return roomInfo.RoomName
                         }
-                        // include the "Me" participant to be consistent with 
+                        // include the "Me" participant to be consistent with
                         // group info page
                         if (roomInfo.Joined) {
                             finalParticipants++
@@ -916,77 +875,6 @@ Page {
             messages.ready()
         }
         processPendingEvents()
-    }
-
-    Item {
-        id: mmsBroadcastChecker
-
-        property var props: null
-
-        function isMMSBroadcast(text, participantIds, attachments, properties) {
-            var account = messages.account
-            // if we don't have the account or if it is not a phone one, it is
-            // not an MMS broadcast
-            if (!account || account.type != AccountEntry.PhoneAccount) {
-                return false
-            }
-
-            // if chatType is Room, this is not a broadcast
-            if (chatType == ChatEntry.ChatTypeRoom) {
-                return false
-            }
-
-            // if there is only one participant, it is also not a broadcast
-            if (participantIds.length == 1) {
-                return false
-            }
-
-            // if there is no attachments, that's not going via MMS
-            if (attachments.length == 0) {
-                return false
-            }
-
-            // if there is an active account overload, assume it is going to be used
-            // and thus this won't be an MMS broadcast
-            var accounts = telepathyHelper.accountOverload(account).length
-            for (var i in accounts) {
-                if (accounts[i].active) {
-                    return false
-                }
-            }
-
-            // if none of the cases above match, this is an MMS broadcast
-            return true
-        }
-
-        function checkForBroadcastAndSend(text, participantIds, attachments, properties) {
-            props = {"text" : text,
-                     "participantIds" : participantIds,
-                     "attachments" : attachments,
-                     "properties" : properties
-                    }
-
-            if (isMMSBroadcast(text, participantIds, attachments, properties)) {
-                var popup = PopupUtils.open(Qt.resolvedUrl("MMSBroadcastDialog.qml"), mmsBroadcastChecker, {})
-                popup.accepted.connect(onPopupAccepted)
-                return false
-            }
-
-            // if this is not an MMS broadcast, just send the message
-            messages.sendMessage(text, participantIds, attachments, properties)
-            return true
-        }
-
-
-        function onPopupAccepted() {
-            if (messages.sendMessage(props["text"],
-                                     props["participantIds"],
-                                     props["attachments"],
-                                     props["properties"])) {
-                composeBar.reset()
-            }
-        }
-
     }
 
     // These fake items are used to track if there are instances loaded
@@ -1293,7 +1181,7 @@ Page {
 
     HistoryUnionFilter {
         id: filters
-        HistoryIntersectionFilter { 
+        HistoryIntersectionFilter {
             HistoryFilter { filterProperty: "accountId"; filterValue: messages.accountId }
             HistoryFilter { filterProperty: "threadId"; filterValue: messages.threadId }
         }
@@ -1528,7 +1416,6 @@ Page {
             }
 
             var newAttachments = []
-            var videoSize = 0;
             for (var i = 0; i < attachments.count; i++) {
                 var attachment = []
                 var item = attachments.get(i)
@@ -1536,32 +1423,10 @@ Page {
                 if (item.contentType.toLowerCase() === "application/smil") {
                     continue
                 }
-                if (startsWith(item.contentType.toLowerCase(),"video/")) {
-                    videoSize += FileOperations.size(item.filePath)
-                }
                 attachment.push(item.name)
                 attachment.push(item.contentType)
                 attachment.push(item.filePath)
                 newAttachments.push(attachment)
-            }
-            if (videoSize > 307200 && !settings.messagesDontShowFileSizeWarning) {
-                // FIXME we are guessing here if the handler will try to send it over an overloaded account
-                // FIXME: this should be revisited when changing the MMS group implementation
-                var isPhone = (account && account.type == AccountEntry.PhoneAccount)
-                if (isPhone) {
-                    // check if an account overload might be used
-                    var accounts = telepathyHelper.accountOverload(account)
-                    for (var i in accounts) {
-                        var tmpAccount = accounts[i]
-                        if (tmpAccount.active) {
-                            isPhone = false
-                        }
-                    }
-                }
- 
-                if (isPhone) {
-                    PopupUtils.open(Qt.createComponent("Dialogs/FileSizeWarningDialog.qml").createObject(messages))
-                }
             }
 
             var recipients = participantIds.length > 0 ? participantIds :
@@ -1571,15 +1436,18 @@ Page {
                 properties["x-canonical-tmp-files"] = true
             }
 
-            // if sendMessage succeeds it means the message was either sent or
-            // injected into the history service so the user can retry later
-            if (mmsBroadcastChecker.checkForBroadcastAndSend(text, recipients, newAttachments, properties)) {
-                composeBar.reset()
-            }
+            sendMessageValidator.validateMessageAndSend(text, recipients, newAttachments, properties)
+
             if (eventModel.filter == null) {
                 reloadFilters = !reloadFilters
             }
         }
+    }
+
+    SendMessageValidator {
+        id: sendMessageValidator
+
+        onMessageSent: composeBar.reset()
     }
 
     KeyboardRectangle {
