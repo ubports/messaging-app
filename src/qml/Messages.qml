@@ -902,7 +902,8 @@ Page {
             }
 
             function showNewGroupPage(message) {
-                mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})            }
+                mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
+            }
         }
 
         Component {
