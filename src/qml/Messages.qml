@@ -740,14 +740,8 @@ Page {
                         }
 
                         if (!multipleGroupTypes) {
-                            if (!telepathyHelper.mmsEnabled) {
-                                var properties = {}
-                                properties["title"] = i18n.tr("MMS messages disabled")
-                                properties["text"] = i18n.tr("You need to enable MMS messages in the application settings")
-                                PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
-                                return
-                            }
-                            mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
+                            // invoke the MMS group action directly
+                            mmsGroupAction.trigger()
                             return
                         }
                         contextMenu.caller = header;
@@ -900,13 +894,15 @@ Page {
             onTriggered: {
                 if (!telepathyHelper.mmsEnabled) {
                     var properties = {}
-                    properties["title"] = i18n.tr("MMS messages disabled")
-                    properties["text"] = i18n.tr("You need to enable MMS messages in the application settings")
-                    PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/MMSEnableDialog.qml"), messages, {})
+                    dialog.accepted.connect(mmsGroupAction.showNewGroupPage)
                     return
                 }
-                mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})
+                showNewGroupPage(messages)
             }
+
+            function showNewGroupPage(message) {
+                mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"participants": multiRecipient.participants, "account": messages.account})            }
         }
 
         Component {
