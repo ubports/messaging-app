@@ -8,7 +8,7 @@ grade: devel
 apps:
     messaging-app:
         command: desktop-launch $SNAP/usr/bin/messaging-app --desktop_file_hint=unity8 "$@"
-        plugs: [unity7, opengl, platform]
+        plugs: [unity7, opengl, platform, gsettings]
 
 plugs:
     platform:
@@ -41,6 +41,7 @@ parts:
             - qtdeclarative5-ubuntu-telephony0.1
             - qtdeclarative5-ubuntu-addressbook0.1
             - qtdeclarative5-ubuntu-keyboard-extensions0.1
+            - qtdeclarative5-gsettings1.0
 
         snap:
             - -usr/lib/python3
