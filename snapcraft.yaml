@@ -35,13 +35,10 @@ parts:
             - qtpim5-dev
 
         stage-packages:
-            - qml-module-ofono
-            - qtdeclarative5-ubuntu-telephony-phonenumber0.1
-            - qtdeclarative5-ubuntu-history0.1
-            - qtdeclarative5-ubuntu-telephony0.1
             - qtdeclarative5-ubuntu-addressbook0.1
-            - qtdeclarative5-ubuntu-keyboard-extensions0.1
-            - qtdeclarative5-gsettings1.0
+            - qtdeclarative5-ubuntu-history0.1
+            - qtdeclarative5-ubuntu-telephony-phonenumber0.1
+            - qtdeclarative5-ubuntu-telephony0.1
 
         snap:
             - -usr/lib/python3
