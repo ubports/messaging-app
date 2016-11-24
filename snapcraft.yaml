@@ -80,8 +80,6 @@ parts:
             #Telephony
             - usr/lib/*/qt5/qml/Ubuntu/Telephony/
             - usr/share/doc/qtdeclarative5-ubuntu-telephony0.1/copyright
-            - usr/lib/*/libtelepathy-qt5.so.*
-            - usr/lib/*/libQt5Feedback.so.*
 
         after: [desktop-ubuntu-app-platform]
 
