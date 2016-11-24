@@ -41,9 +41,47 @@ parts:
             - qtdeclarative5-ubuntu-telephony0.1
 
         snap:
-            - -usr/lib/python3
-            - -usr/share/doc
-            - -usr/include         
+            # Messaging ap
+            - usr/share/applications/messaging-app*.desktop
+            - usr/share/url-dispatcher/urls
+            - usr/share/content-hub/peers/messaging-app
+            - usr/share/locale/*/LC_MESSAGES/messaging-app.mo
+            - usr/share/messaging-app/*.qml
+            - usr/share/messaging-app/*.js
+            - usr/share/messaging-app/assets
+            - usr/share/messaging-app/3rd_party
+            - usr/share/messaging-app/MMS/*.qml
+            - usr/share/messaging-app/Dialogs/*.qml
+            - usr/share/messaging-app/Stickers/*.qml
+            - usr/bin/*messaging-app*
+
+            # Addressbook
+            - usr/lib/*/qt5/qml/Ubuntu/Contacts.0.1/
+            - usr/share/doc/qtdeclarative5-ubuntu-contacts0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/
+            - usr/share/doc/qtdeclarative5-ubuntu-addressbook0.1/copyright
+
+            # History
+            - usr/share/doc/qtdeclarative5-ubuntu-history0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/History/libhistory-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/History/qmldir
+            - usr/lib/*/libhistoryservice.so.*
+            - usr/lib/*/libtelepathy-qt5.so.*
+
+            #PhoneNumber
+            - usr/share/doc/qtdeclarative5-ubuntu-telephony-phonenumber0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberField.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/libtelephonyservice-phonenumber-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumber.js
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberInput.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/qmldir
+            - usr/lib/*/libphonenumber.so.7*
+
+            #Telephony
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/
+            - usr/share/doc/qtdeclarative5-ubuntu-telephony0.1/copyright
+            - usr/lib/*/libtelepathy-qt5.so.*
+            - usr/lib/*/libQt5Feedback.so.*
 
         after: [desktop-ubuntu-app-platform]
 
