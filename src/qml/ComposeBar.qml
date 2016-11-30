@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -23,6 +23,7 @@ import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Content 1.3
 import Ubuntu.Telephony 0.1
+import Ubuntu.History 0.1
 import messagingapp.private 0.1
 import "Stickers"
 
@@ -39,7 +40,9 @@ Item {
     property alias audioRecordedDuration: audioRecordingBar.duration
     property alias recording: audioRecordingBar.recording
     property bool oskEnabled: true
+    property alias inputMethodComposing: messageTextArea.inputMethodComposing
     property bool usingMMS: false
+    property bool isBroadcast: false
 
     onRecordingChanged: {
         if (recording) {
@@ -108,10 +111,6 @@ Item {
     height: showContents ? Math.min(_defaultHeight, maxHeight) : 0
     visible: showContents
     clip: true
-
-    Behavior on height {
-        UbuntuNumberAnimation { }
-    }
 
     MouseArea {
         enabled: !composeBar.audioAttached
@@ -208,8 +207,7 @@ Item {
         TransparentButton {
             id: attachButton
             objectName: "attachButton"
-            iconName: "add"
-            iconRotation: attachmentPanel.expanded ? 45 : 0
+            iconName: attachmentPanel.expanded ? "close" : "attachment"
             onClicked: {
                 attachmentPanel.expanded = !attachmentPanel.expanded
                 if (attachmentPanel.expanded) {
@@ -421,7 +419,9 @@ Item {
                 autoSize: true
                 maximumLineCount: attachments.count == 0 ? 8 : 4
                 placeholderText: {
-                    if (telepathyHelper.ready) {
+                    if (isBroadcast) {
+                        return i18n.tr("Write a broadcast message...")
+                    } else if (telepathyHelper.ready) {
                         var account = telepathyHelper.accountForId(presenceRequest.accountId)
                         if (account &&
                                 (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&
@@ -466,9 +466,7 @@ Item {
                 //visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
                 visible: false
             }
-
         }
-
     }
     
     AttachmentPanel {

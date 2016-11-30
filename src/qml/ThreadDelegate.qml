@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -25,21 +25,40 @@ import QtContacts 5.0
 import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
-ListItemWithActions {
+ListItem {
     id: delegate
 
     property var participant: participants ? participants[0] : {}
-    property bool groupChat: participants.length > 1
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
     property string phoneNumber: delegateHelper.phoneNumber
     property bool unknownContact: delegateHelper.isUnknown
     property string threadId: model.threadId
     property var displayedEvent: null
     property var displayedEventTextAttachments: displayedEvent ? displayedEvent.textMessageAttachments : eventTextAttachments
-    property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : eventTimestamp
+    property var displayedEventTimestamp: displayedEvent ? displayedEvent.timestamp : timestamp
     property var displayedEventTextMessage: displayedEvent ? displayedEvent.textMessage : eventTextMessage
     property QtObject presenceItem: delegateHelper.presenceItem
+    property string groupTitle: {
+        if (chatType == HistoryThreadModel.ChatTypeRoom) {
+            if (chatRoomInfo.Title != "") {
+                return chatRoomInfo.Title
+            } else if (chatRoomInfo.RoomName != "") {
+                return chatRoomInfo.RoomName
+            }
+        }
+        return ""
+    }
+
     property string groupChatLabel: {
+        if (groupTitle != "") {
+            return groupTitle
+        }
+
+        var finalParticipants = participants.length
+        if (chatType == HistoryThreadModel.ChatTypeRoom && chatRoomInfo.Joined) {
+            finalParticipants++
+        }
         var firstRecipient
         if (unknownContact) {
             firstRecipient = delegateHelper.phoneNumber
@@ -49,10 +68,12 @@ ListItemWithActions {
 
         if (participants.length > 1) {
             // TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-            return i18n.tr("%1 + %2").arg(firstRecipient).arg(String(participants.length-1))
+            return i18n.tr("%1 + %2").arg(firstRecipient).arg(String(finalParticipants-1))
         }
         return firstRecipient
     }
+
+    property bool isBroadcast: chatType != HistoryThreadModel.ChatTypeRoom && participants.length > 1
 
     function formatDisplayedText(text) {
         return text.replace("\n", " ")
@@ -101,12 +122,36 @@ ListItemWithActions {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(10)
+    divider.visible: false
+    contentItem.anchors {
+        leftMargin: units.gu(2)
+        rightMargin: units.gu(2)
+        topMargin: units.gu(1)
+        bottomMargin: units.gu(1)
+    }
+    contentItem.clip: false
+    highlightColor: "transparent"
 
-    leftSideAction: Action {
-        iconName: "delete"
-        text: i18n.tr("Delete")
-        onTriggered: {
-            mainView.removeThreads(model.threads)
+    leadingActions: ListItemActions {
+        actions: [
+            Action {
+                iconName: "delete"
+                text: i18n.tr("Delete")
+                onTriggered: {
+                    mainView.removeThreads(model.threads)
+                }
+            }
+        ]
+        delegate: Rectangle {
+            width: height + units.gu(2)
+            color: UbuntuColors.red
+            Icon {
+                name: action.iconName
+                width: units.gu(3)
+                height: width
+                color: "white"
+                anchors.centerIn: parent
+            }
         }
     }
 
@@ -120,16 +165,14 @@ ListItemWithActions {
         id: avatar
 
         fallbackAvatarUrl: {
-            if (groupChat) {
-                return "image://theme/contact-group"
-            } else if (delegateHelper.avatar !== "") {
+            if (delegateHelper.avatar !== "") {
                 return delegateHelper.avatar
             } else {
                 return "image://theme/contact"
             }
         }
-        fallbackDisplayName: delegateHelper.alias
-        showAvatarPicture: groupChat || (delegateHelper.avatar !== "") || (initials.length === 0)
+        fallbackDisplayName: (isBroadcast || groupTitle == "") ? delegateHelper.alias : contactName.text
+        showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
             left: parent.left
             top: parent.top
@@ -139,13 +182,32 @@ ListItemWithActions {
         width: units.gu(6)
     }
 
+    Image {
+        id: chatTypeIcon
+        anchors {
+            verticalCenter: contactName.verticalCenter
+            left: avatar.right
+            leftMargin: units.gu(1)
+        }
+        visible: source != ""
+        source: {
+            if (isBroadcast) {
+                return Qt.resolvedUrl("assets/broadcast_icon.png")
+            } else if (groupChat) {
+                return Qt.resolvedUrl("assets/group_icon.png")
+            }
+            return ""
+        }
+        asynchronous: true
+    }
+
     Label {
         id: contactName
         anchors {
             top: avatar.top
             topMargin: units.gu(0.5)
-            left: avatar.right
-            leftMargin: units.gu(1)
+            left: chatTypeIcon.right
+            leftMargin: chatTypeIcon.visible ? units.gu(0.5) : 0
             right: time.left
         }
         elide: Text.ElideRight
@@ -180,7 +242,7 @@ ListItemWithActions {
             if (!displayedEvent) {
                 Qt.formatTime(displayedEventTimestamp, Qt.DefaultLocaleShortDate)
             } else {
-                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"))
+                DateUtils.friendlyDay(Qt.formatDate(displayedEventTimestamp, "yyyy/MM/dd"), i18n)
             }
         }
         fontSize: "small"
@@ -197,7 +259,16 @@ ListItemWithActions {
         height: units.gu(2)
         width: units.gu(2)
         visible: source !== ""
+        asynchronous: true
         source: {
+            if (!telepathyHelper.ready) {
+                return ""
+            }
+ 
+            // for any chat room, or generic account, show the icon
+            if (chatType == HistoryThreadModel.ChatTypeRoom || telepathyHelper.accountForId(model.accountId).type == AccountEntry.GenericAccount) {
+                return telepathyHelper.accountForId(model.accountId).protocolInfo.icon
+            }
             if (delegateHelper.presenceType != PresenceRequest.PresenceTypeUnknown
                     && delegateHelper.presenceType != PresenceRequest.PresenceTypeUnset) {
                 return telepathyHelper.accountForId(delegateHelper.presenceAccountId).protocolInfo.icon
@@ -247,7 +318,7 @@ ListItemWithActions {
         anchors {
             top: contactName.bottom
             topMargin: units.gu(0.5)
-            left: contactName.left
+            left: chatTypeIcon.left
             right: time.left
             rightMargin: units.gu(3)
             bottom: avatar.bottom
@@ -367,9 +438,10 @@ ListItemWithActions {
                     return ""
                 }
                 if (account.type == AccountEntry.PhoneAccount) {
-                    for (var i in telepathyHelper.accounts) {
-                        var tmpAccount = telepathyHelper.accounts[i]
-                        if (tmpAccount.type == AccountEntry.MultimediaAccount) {
+                    var accounts = telepathyHelper.accountOverload(account)
+                    for (var i in accounts) {
+                        var tmpAccount = accounts[i]
+                        if (tmpAccount.active) {
                             return tmpAccount.accountId
                         }
                     }

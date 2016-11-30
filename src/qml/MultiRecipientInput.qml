@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -27,23 +27,44 @@ StyledItem {
     property int recipientCount: recipientModel.count-1
     property int selectedIndex: -1
     property variant recipients: []
+    readonly property var participants: getParticipants()
     property string searchString: ""
+    property var repeater: null
     signal clearSearch()
     styleName: "TextFieldStyle"
     clip: true
     height: contactFlow.height
     focus: activeFocus
+    property string defaultHint: i18n.tr("To:")
+    onRecipientsChanged: getParticipants()
+    function getParticipants() {
+        var participants = []
+        var repeater = multiRecipientWidget.repeater
+        if (!repeater) {
+            return participants
+        }
+
+        for (var i=0; i< repeater.count-1; i++) {
+            var delegate = repeater.itemAt(i).item
+            var participant = {}
+            participant["identifier"] = delegate.identifier
+            participant["alias"] = delegate.contactName
+            participant["avatar"] = delegate.avatar
+            participants.push(participant)
+        }
+        return participants
+    }
 
     signal forceFocus()
 
     MouseArea {
-        anchors.fill: parent
+        anchors.fill: scrollableArea
         enabled: parent.focus === false
         onClicked: forceFocus()
         z: 1
     }
 
-    function addRecipient(identifier) {
+    function addRecipient(identifier, contact) {
         for (var i = 0; i<recipientModel.count; i++) {
             // FIXME: replace by a phone number comparison method
             if (recipientModel.get(i).identifier === identifier) {
@@ -54,7 +75,6 @@ StyledItem {
 
         recipientModel.insert(recipientCount, { "identifier": identifier })
         scrollableArea.contentX = contactFlow.width
-
     }
 
     Behavior on height {
@@ -80,7 +100,12 @@ StyledItem {
 
     Flickable {
         id: scrollableArea
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: addIcon.left
+            top: parent.top
+            bottom: parent.bottom
+        }
         contentWidth: contactFlow.width
         // force content to scroll as the user types the number
         onContentWidthChanged: {
@@ -120,6 +145,7 @@ StyledItem {
                         return contactWatcher.alias
                     }
                     property alias identifier: contactWatcher.identifier
+                    property alias avatar: contactWatcher.avatar
                     property int index
                     property bool selected: selectedIndex == index
                     property string separator: index == recipientCount-1 ? "" : ","
@@ -146,7 +172,7 @@ StyledItem {
                     Label {
                         id: hintLabel 
                         visible: false
-                        text: i18n.tr("To:")
+                        text: multiRecipientWidget.defaultHint
                     }
                     Label {
                         id: textLabel
@@ -156,7 +182,7 @@ StyledItem {
 
                     objectName: "contactSearchInput"
                     focus: true
-                    style: MultiRecipientFieldStyle {}
+                    style: TransparentTextFieldStype {}
                     height: units.gu(4)
                     width: text != "" ? textLabel.paintedWidth + units.gu(3) : hintLabel.paintedWidth + units.gu(3)
                     hasClearButton: false
@@ -226,6 +252,7 @@ StyledItem {
             Repeater {
                 id: rpt
                 model: recipientModel
+                Component.onCompleted: multiRecipientWidget.repeater = rpt
                 delegate: Loader {
                     sourceComponent: {
                         if (searchItem)
@@ -248,5 +275,25 @@ StyledItem {
                 }
             }
         }
+    }
+
+    Icon {
+        id: addIcon
+        name: "add"
+        height: units.gu(2)
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(2)
+            verticalCenter: parent.verticalCenter
+        }
+        MouseArea {
+            anchors.fill: parent
+            anchors.margins: units.gu(-3)
+            onClicked: {
+                Qt.inputMethod.hide()
+                mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
+            }
+        }
+        z: 2
     }
 }

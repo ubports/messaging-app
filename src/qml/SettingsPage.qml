@@ -25,13 +25,13 @@ Page {
     title: i18n.tr("Settings")
 
     property var setMethods: {
-        "mmsGroupChatEnabled": function(value) { telepathyHelper.mmsGroupChat = value }/*,
+        "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value }/*,
         "characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }*/
     }
     property var settingsModel: [
-        { "name": "mmsGroupChatEnabled",
-          "description": i18n.tr("Enable MMS group chat"),
-          "property": telepathyHelper.mmsGroupChat
+        { "name": "mmsEnabled",
+          "description": i18n.tr("Enable MMS messages"),
+          "property": telepathyHelper.mmsEnabled
         }/*,
         { "name": "characterCountEnabled",
           "description": i18n.tr("Show character count"),

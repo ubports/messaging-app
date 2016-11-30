@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, 2013, 2014 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -17,12 +17,14 @@
  */
 
 import QtQuick 2.2
+import Ubuntu.Components 1.3
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
-Column {
-    height: childrenRect.height
+Item {
+    id: regularDelegate
+    height: messageDelegate.height + (headerLoader.active ? headerLoader.height : 0)
     property var messageData: null
     property Item delegateItem
     property var timestamp: messageData.timestamp
@@ -37,62 +39,61 @@ Column {
 
     // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
     // bellow the item
-    MessageDateSection {
-        text: visible ? DateUtils.friendlyDay(timestamp) : ""
+    Loader {
+        id: headerLoader
         anchors {
             left: parent.left
             right: parent.right
             leftMargin: units.gu(2)
             rightMargin: units.gu(2)
         }
-        visible: (index === root.count) || !DateUtils.areSameDay(eventModel.get(index+1).timestamp, timestamp)
+        height: units.gu(3)
+        // FIXME: for some reason eventModel.get() is pretty slow: around 4ms on krillin
+        property var nextEventModel: eventModel.get(index+1)
+        active: (index === root.count) || !DateUtils.areSameDay(nextEventModel.timestamp, timestamp)
+        Component.onCompleted: setSource(Qt.resolvedUrl("MessageDateSection.qml"),
+                                         {"text": Qt.binding(function () {return DateUtils.friendlyDay(timestamp, i18n)})})
     }
 
-    MessageDelegateFactory {
+    MessageDelegate {
+        id: messageDelegate
         objectName: "message%1".arg(index)
+        anchors {
+            top: headerLoader.active ? headerLoader.bottom : parent.top
+            left: parent.left
+            right: parent.right
+        }
+
+        messageData: regularDelegate.messageData
 
         incoming: senderId != "self"
         // TODO: we have several items inside
         selected: root.isSelected(delegateItem)
-        selectionMode: root.isInSelectionMode
+        selectMode: root.isInSelectionMode
         accountLabel: {
             var account = telepathyHelper.accountForId(accountId)
-            if (account && (account.type == AccountEntry.PhoneAccount || account.type == AccountEntry.MultimediaAccount)) {
+            // we only show those labels when using phone + fallback and when having multiple phone accounts
+            if (account && (account.type == AccountEntry.PhoneAccount || account.protocolInfo.fallbackProtocol == "ofono")) {
                 if (multiplePhoneAccounts) {
                     return account.displayName
                 }
             }
             return ""
         }
-        rightSideActions: {
-            var actions = []
-            if (textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) {
-                actions.push(reloadAction)
-            }
-            var hasTextAttachments = false
-            for (var i=0; i < textMessageAttachments.length; i++) {
-                if (startsWith(textMessageAttachments[i].contentType, "text/plain")) {
-                    hasTextAttachments = true
-                    break
-                }
-            }
-            if (messageData.textMessage !== "" || hasTextAttachments) {
-                actions.push(copyAction)
-            }
-            actions.push(forwardAction)
-            actions.push(infoAction)
-            return actions
+        isMultimedia: {
+            var account = telepathyHelper.accountForId(accountId)
+            return account && account.type != AccountEntry.PhoneAccount
         }
 
         // TODO: need select only the item
-        onItemClicked: {
+        onClicked: {
             if (root.isInSelectionMode) {
                 if (!root.selectItem(delegateItem)) {
                     root.deselectItem(delegateItem)
                 }
             }
         }
-        onItemPressAndHold: {
+        onPressAndHold: {
             root.startSelection()
             root.selectItem(delegateItem)
         }

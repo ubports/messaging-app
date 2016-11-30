@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -29,15 +29,7 @@ import "Stickers"
 MainView {
     id: mainView
 
-    property bool multiplePhoneAccounts: {
-        var numAccounts = 0
-        for (var i in telepathyHelper.activeAccounts) {
-            if (telepathyHelper.activeAccounts[i].type == AccountEntry.PhoneAccount) {
-                numAccounts++
-            }
-        }
-        return numAccounts > 1
-    }
+    property bool multiplePhoneAccounts: telepathyHelper.phoneAccounts.active.length > 1
     property QtObject account: defaultPhoneAccount()
     property bool applicationActive: Qt.application.active
     property alias mainStack: layout
@@ -54,13 +46,8 @@ MainView {
         // than one account, otherwise we use always the first one
         if (multiplePhoneAccounts) {
             return telepathyHelper.defaultMessagingAccount
-        } else {
-            for (var i in telepathyHelper.activeAccounts) {
-                var tmpAccount = telepathyHelper.activeAccounts[i]
-                if (tmpAccount.type == AccountEntry.PhoneAccount) {
-                    return tmpAccount
-                }
-            }
+        } else if (telepathyHelper.phoneAccounts.active.length > 0){
+            return telepathyHelper.phoneAccounts.active[0]
         }
         return null
     }
@@ -125,7 +112,8 @@ MainView {
                 participants.push(thread.participants[j].identifier)
             }
             // and acknowledge all messages for the threads to be removed
-            chatManager.acknowledgeAllMessages(participants, thread.accountId)
+            var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
+            chatManager.acknowledgeAllMessages(properties)
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
@@ -139,17 +127,30 @@ MainView {
     }
 
     Connections {
-        target: telepathyHelper
-        // restore default bindings if any system settings changed
-        onActiveAccountsChanged: {
-            for (var i in telepathyHelper.activeAccounts) {
-                if (telepathyHelper.activeAccounts[i] == account) {
+        target: telepathyHelper.textAccounts
+        onActiveChanged: {
+            for (var i in telepathyHelper.textAccounts.active) {
+                if (telepathyHelper.textAccounts.active[i] == account) {
                     return;
                 }
             }
             account = Qt.binding(defaultPhoneAccount)
         }
-        onDefaultMessagingAccountChanged: account = Qt.binding(defaultPhoneAccount)
+    }
+
+    Connections {
+        target: telepathyHelper
+        // restore default bindings if any system settings changed
+        onDefaultMessagingAccountChanged: {
+            account = Qt.binding(defaultPhoneAccount)
+        }
+
+        onSetupReady: {
+            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
+                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
+                PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
+            }
+        }
     }
 
     automaticOrientation: true
@@ -165,16 +166,6 @@ MainView {
         // when running in windowed mode, do not allow resizing
         view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
         view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
-    }
-
-    Connections {
-        target: telepathyHelper
-        onSetupReady: {
-            if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
-                PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
-            }
-        }
     }
 
     HistoryGroupedThreadsModel {
@@ -247,7 +238,7 @@ MainView {
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
-            layout.addPageToNextColumn(mainPage, emptyStatePageComponent)
+            layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("EmptyStatePage.qml"))
         }
     }
 
@@ -262,30 +253,87 @@ MainView {
         layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
 
-    function startChat(identifiers, text, accountId) {
-        var properties = {}
-        var participantIds = identifiers.split(";")
+    function getThreadsForProperties(properties) {
+        var threads = []
+        var account = null
+        var accountId = properties["accountId"]
 
-        if (participantIds.length === 0) {
-            return;
+        // dont do anything while telepathy isnt ready
+        if (!telepathyHelper.ready) {
+            return threads
         }
 
-        if (mainView.account) {
-            var thread = threadModel.threadForParticipants(mainView.account.accountId,
-                                                           HistoryThreadModel.EventTypeText,
-                                                           participantIds,
-                                                           mainView.account.type == AccountEntry.PhoneAccount ? HistoryThreadModel.MatchPhoneNumber
-                                                                                                              : HistoryThreadModel.MatchCaseSensitive,
-                                                           false)
-            if (thread.hasOwnProperty("participants")) {
-                properties["participants"] = thread.participants
+        if (accountId == "") {
+            // no accountId means fallback to phone or multimedia
+            if (mainView.account) {
+                account = mainView.account
+            } else {
+                return threads
+            }
+        } else {
+            // if the account is passed but not found, just return
+            account = telepathyHelper.accountForId(accountId)
+            if (!account) {
+                return threads
             }
         }
 
+        // we need to get the threads also for account overload and fallback
+        var accounts = [account]
+        accounts.concat(telepathyHelper.accountOverload(account))
+        accounts.concat(telepathyHelper.accountFallback(account))
+
+        // if any of the accounts in the list is a phone account, we need to get for all available SIMs
+        // FIXME: there has to be a better way for doing this.
+        var accountIds = [""]
+        for (var i in accounts) {
+            if (accounts[i].type == AccountEntry.PhoneAccount) {
+                accountIds.push(accounts[i].accountId)
+            }
+        }
+        if (accountIds.length > 0) {
+            for (var i in telepathyHelper.phoneAccounts.all) {
+                var phoneAccount = telepathyHelper.phoneAccounts.all[i]
+                if (accountIds.indexOf(phoneAccount.accountId) < 0) {
+                    accounts.push(phoneAccount)
+                }
+            }
+        }
+
+        // and finally, get the threads for all accounts
+        for (var i in accounts) {
+            var thisAccount = accounts[i]
+            var thread = threadModel.threadForProperties(thisAccount.accountId,
+                                                         HistoryThreadModel.EventTypeText,
+                                                         properties,
+                                                         thisAccount.usePhoneNumbers ? HistoryThreadModel.MatchPhoneNumber :
+                                                                                       HistoryThreadModel.MatchCaseSensitive,
+                                                         false)
+            // check if dict is not empty
+            if (Object.keys(thread).length != 0) {
+               threads.push(thread)
+            }
+        }
+        return threads
+    }
+
+    function startChat(properties) {
+        var participantIds = []
+        var accountId = ""
+        var match = HistoryThreadModel.MatchCaseSensitive
+
+        properties["threads"] = getThreadsForProperties(properties)
+
+        if (properties.hasOwnProperty("participantIds")) {
+            participantIds = properties["participantIds"]
+        }
+
+        // generate the list of participants manually if not provided
         if (!properties.hasOwnProperty("participants")) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}
+                participant["accountId"] = accountId
                 participant["identifier"] = participantIds[i]
                 participant["contactId"] = ""
                 participant["alias"] = ""
@@ -293,13 +341,9 @@ MainView {
                 participant["detailProperties"] = {}
                 participants.push(participant)
             }
-            properties["participants"] = participants;
-        }
-
-        properties["participantIds"] = participantIds
-        properties["text"] = text
-        if (typeof(accountId)!=='undefined') {
-            properties["accountId"] = accountId
+            if (participants.length != 0) {
+                properties["participants"] = participants;
+            }
         }
 
         showMessagesView(properties)
@@ -312,20 +356,6 @@ MainView {
                application.parseArgument(uris[i])
            }
        }
-    }
-
-    Component {
-        id: emptyStatePageComponent
-        Page {
-            id: emptyStatePage
-            objectName: "emptyStatePage"
-
-            EmptyState {
-                labelVisible: false
-            }
-
-            header: PageHeader { }
-        }
     }
 
     AdaptivePageLayout {

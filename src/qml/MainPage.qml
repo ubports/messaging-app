@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 Canonical Ltd.
+ * Copyright 2012-2016 Canonical Ltd.
  *
  * This file is part of messaging-app.
  *
@@ -19,8 +19,10 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
 Page {
@@ -36,6 +38,8 @@ Page {
     function startSelection() {
         threadList.startSelection()
     }
+
+    signal newThreadCreated(var newThread)
 
     TextField {
         id: searchField
@@ -86,6 +90,7 @@ Page {
                 Action {
                     objectName: "searchAction"
                     iconName: "search"
+                    text: i18n.tr("Search")
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -105,7 +110,6 @@ Page {
                     iconName: "add"
                     onTriggered: mainView.startNewMessage()
                 }
-
             ]
 
             PropertyChanges {
@@ -187,24 +191,7 @@ Page {
 
     Component {
         id: sectionDelegate
-        Item {
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: units.gu(2)
-            }
-            height: units.gu(3)
-            Label {
-                anchors.fill: parent
-                elide: Text.ElideRight
-                text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"));
-                verticalAlignment: Text.AlignVCenter
-                fontSize: "small"
-                color: Theme.palette.normal.backgroundTertiaryText
-            }
-            ListItem.ThinDivider {
-                anchors.bottom: parent.bottom
-            }
+        ThreadsSectionDelegate {
         }
     }
 
@@ -220,8 +207,10 @@ Page {
             bottom: keyboard.top
         }
         listModel: threadModel
+        // (rmescandon): Prevent having selected items in the list while BottomEdge is been revealed
+        // but not completely revealed.
+        enabled: bottomEdgeLoader.item.status !== BottomEdge.Revealed
         clip: true
-        cacheBuffer: threadList.height * 2
         section.property: "eventDate"
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
@@ -240,28 +229,30 @@ Page {
             id: threadDelegate
             // FIXME: find a better unique name
             objectName: "thread%1".arg(participants[0].identifier)
+            Component.onCompleted: mainPage.newThreadCreated(model)
 
             anchors {
                 left: parent.left
                 right: parent.right
             }
             height: units.gu(8)
-            selectionMode: threadList.isInSelectionMode
+            selectMode: threadList.isInSelectionMode
             selected: {
-                if (selectionMode) {
+                if (selectMode) {
                     return threadList.isSelected(threadDelegate)
                 }
                 return false
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
-            onItemClicked: {
+            onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
                 } else {
                     var properties = model.properties
+                    
                     properties["keyboardFocus"] = false
                     properties["threads"] = model.threads
                     var participantIds = [];
@@ -269,18 +260,20 @@ Page {
                         participantIds.push(model.participants[i].identifier)
                     }
                     properties["participantIds"] = participantIds
-                    properties["participants"] = model.participants
                     properties["presenceRequest"] = threadDelegate.presenceItem
                     if (displayedEvent != null) {
                         properties["scrollToEventId"] = displayedEvent.eventId
                     }
+                    delete properties["participants"]
+                    delete properties["localPendingParticipants"]
+                    delete properties["remotePendingParticipants"]
                     mainView.showMessagesView(properties)
 
                     // mark this item as current
                     threadList.currentIndex = index
                 }
             }
-            onItemPressAndHold: {
+            onPressAndHold: {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }
@@ -310,9 +303,36 @@ Page {
         id: keyboard
     }
 
-    Scrollbar {
-        flickableItem: threadList
-        align: Qt.AlignTrailing
+    function createQmlObjectAsynchronously(url, parent, properties, callback) {
+        var component = Qt.createComponent(url, Component.Asynchronous);
+        var incubator;
+
+        function componentCreated() {
+            if (component.status == Component.Ready) {
+                incubator = component.incubateObject(parent, properties, Qt.Asynchronous);
+
+                function objectCreated(status) {
+                    if (status == Component.Ready && callback != null) {
+                        callback(incubator.object);
+                    }
+                }
+                incubator.onStatusChanged = objectCreated;
+
+            } else if (component.status == Component.Error) {
+                console.log("Error loading component:", component.errorString());
+            }
+        }
+
+        component.statusChanged.connect(componentCreated);
+    }
+
+    Timer {
+        interval: 1
+        repeat: false
+        running: true
+        onTriggered: createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
+                                                   mainPage,
+                                                   {"flickableItem": threadList})
     }
 
     Loader {
