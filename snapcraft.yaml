@@ -1,5 +1,5 @@
 name: messaging-app
-version: 0.1+17.04.20161124.2-0ubuntu1
+version: 0.1+17.04.20161130-0ubuntu1
 summary: Messaging application for Ubuntu
 description: Messaging application for Ubuntu
 confinement: devmode  # use "strict" to enforce system access only via declared interfaces
