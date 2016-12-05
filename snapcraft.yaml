@@ -8,7 +8,14 @@ grade: devel
 apps:
     messaging-app:
         command: desktop-launch $SNAP/usr/bin/messaging-app --desktop_file_hint=unity8 "$@"
-        plugs: [unity7, opengl]
+        plugs: [unity7, opengl, platform, gsettings]
+
+plugs:
+    platform:
+        interface: content
+        content: ubuntu-app-platform1
+        target: ubuntu-app-platform
+        default-provider: ubuntu-app-platform
 
 parts:
     messaging-app:
@@ -28,28 +35,54 @@ parts:
             - qtpim5-dev
 
         stage-packages:
-            - libqt5multimedia5
-            - qml-module-qt-labs-folderlistmodel
-            - qml-module-qt-labs-settings
-            - qml-module-ubuntu-components
-            - qml-module-qtmultimedia
-            - qml-module-ofono
-            - qtdeclarative5-ubuntu-telephony-phonenumber0.1
-            - qtdeclarative5-ubuntu-history0.1
-            - qtdeclarative5-ubuntu-telephony0.1
-            - qtdeclarative5-qtcontacts-plugin
-            - ttf-ancient-fonts-symbola
-            - qtdeclarative5-gsettings1.0
             - qtdeclarative5-ubuntu-addressbook0.1
-            - qtdeclarative5-ubuntu-content1
-            - qtdeclarative5-ubuntu-keyboard-extensions0.1
-            - qtubuntu-desktop
-            - suru-icon-theme
-            - mir-graphics-drivers-desktop
+            - qtdeclarative5-ubuntu-history0.1
+            - qtdeclarative5-ubuntu-telephony-phonenumber0.1
+            - qtdeclarative5-ubuntu-telephony0.1
 
         snap:
-            - -usr/lib/python3
-            - -usr/share/doc
-            - -usr/include         
+            # Messaging ap
+            - usr/share/applications/messaging-app*.desktop
+            - usr/share/url-dispatcher/urls
+            - usr/share/content-hub/peers/messaging-app
+            - usr/share/locale/*/LC_MESSAGES/messaging-app.mo
+            - usr/share/messaging-app/*.qml
+            - usr/share/messaging-app/*.js
+            - usr/share/messaging-app/assets
+            - usr/share/messaging-app/3rd_party
+            - usr/share/messaging-app/MMS/*.qml
+            - usr/share/messaging-app/Dialogs/*.qml
+            - usr/share/messaging-app/Stickers/*.qml
+            - usr/bin/*messaging-app*
 
-        after: [desktop-qt5]
+            # Addressbook
+            - usr/lib/*/qt5/qml/Ubuntu/Contacts.0.1/
+            - usr/share/doc/qtdeclarative5-ubuntu-contacts0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/
+            - usr/share/doc/qtdeclarative5-ubuntu-addressbook0.1/copyright
+
+            # History
+            - usr/share/doc/qtdeclarative5-ubuntu-history0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/History/libhistory-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/History/qmldir
+            - usr/lib/*/libhistoryservice.so.*
+            - usr/lib/*/libtelepathy-qt5.so.*
+
+            #PhoneNumber
+            - usr/share/doc/qtdeclarative5-ubuntu-telephony-phonenumber0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberField.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/libtelephonyservice-phonenumber-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumber.js
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberInput.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/qmldir
+            - usr/lib/*/libphonenumber.so.7*
+
+            #Telephony
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/
+            - usr/share/doc/qtdeclarative5-ubuntu-telephony0.1/copyright
+
+        after: [desktop-ubuntu-app-platform]
+
+    environment:
+        source: snap/
+        plugin: dump
