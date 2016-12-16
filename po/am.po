@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-09-03 06:53+0000\n"
-"X-Generator: Launchpad (build 18179)\n"
+"X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
+"X-Generator: Launchpad (build 18293)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:52
+#: ../src/qml/ThreadDelegate.qml:71
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -57,76 +57,77 @@ msgstr "<<< ይጥረጉ ለ መሰረዝ"
 msgid "Accepted"
 msgstr "ተቀብያለሁ"
 
-#: ../src/qml/Messages.qml:597
+#: ../src/qml/Messages.qml:700
 msgid "Add"
 msgstr "መጨመሪያ"
 
-#: ../src/qml/NewRecipientPage.qml:55
+#: ../src/qml/NewRecipientPage.qml:59
 msgid "Add recipient"
 msgstr "ተቀባይ መጨመሪያ"
 
-#: ../src/qml/NewRecipientPage.qml:77
+#: ../src/qml/NewRecipientPage.qml:81
 msgid "All"
 msgstr "ሁሉንም"
 
-#: ../src/qml/ThreadDelegate.qml:94
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "ማያያዣ: %1 ድምፅ"
 msgstr[1] "ማያያዣዎች: %1 ድምፆች"
 
-#: ../src/qml/ThreadDelegate.qml:91
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "ማያያዣ: %1 ግንኙነት"
 msgstr[1] "ማያያዣዎች: %1 ግንኙነቶች"
 
-#: ../src/qml/ThreadDelegate.qml:97
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "ማያያዣ: %1 ፋይል"
 msgstr[1] "ማያያዣዎች: %1 ፋይሎች"
 
-#: ../src/qml/ThreadDelegate.qml:85
+#: ../src/qml/ThreadDelegate.qml:106
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "ማያያዣ: %1 ምስል"
 msgstr[1] "ማያያዣዎች: %1 ምስሎች"
 
-#: ../src/qml/ThreadDelegate.qml:88
+#: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "ማያያዣ: %1 ቪዲዮ"
 msgstr[1] "ማያያዣዎች: %1 ቪዲዮዎች"
 
-#: ../src/qml/MMS/MMSDefault.qml:28
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
 msgstr "ድምፅ ማያያዝ አይቻልም"
 
-#: ../src/qml/Messages.qml:832
+#: ../src/qml/Messages.qml:1061
 msgid "Away"
 msgstr "የሉም"
 
-#: ../src/qml/NewRecipientPage.qml:64
+#: ../src/qml/NewRecipientPage.qml:68
 msgid "Back"
 msgstr "ተመልሰዋል"
 
-#: ../src/qml/Messages.qml:834
+#: ../src/qml/Messages.qml:1063
 msgid "Busy"
 msgstr "በ ስራ ላይ"
 
-#: ../src/qml/Messages.qml:586 ../src/qml/Messages.qml:659
+#: ../src/qml/Messages.qml:689 ../src/qml/Messages.qml:783
 msgid "Call"
 msgstr "ጥሪ"
 
-#: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:127
+#: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/GroupChatInfoPage.qml:323 ../src/qml/MainPage.qml:131
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:131
+#: ../src/qml/NewRecipientPage.qml:135
 msgid "Cancel"
 msgstr "መሰረዣ"
 
@@ -138,7 +139,8 @@ msgstr "ሁሉንም የተዛመዱ መልእክቶች መቀየሪያ ወደ %
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
-#: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:927
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:32
+#: ../src/qml/MessageInfoDialog.qml:133
 msgid "Close"
 msgstr "መዝጊያ"
 
@@ -146,15 +148,16 @@ msgstr "መዝጊያ"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:670
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:794
 msgid "Contact"
 msgstr "ግንኙነት"
 
-#: ../src/qml/MessagesListView.qml:135 ../src/qml/SwipeItemDemo.qml:185
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:149
 msgid "Copy"
 msgstr "ኮፒ"
 
-#: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/MessageDelegate.qml:118 ../src/qml/NewGroupPage.qml:276
+#: ../src/qml/ThreadDelegate.qml:139
 msgid "Delete"
 msgstr "ማጥፊያ"
 
@@ -182,19 +185,19 @@ msgstr "ማረሚያ"
 msgid "Enable MMS group chat"
 msgstr "በርካታ መገናኛ የ ቡድን ውይይት ማስቻያ"
 
-#: ../src/qml/MessageInfoDialog.qml:58
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:280
 msgid "Failed"
 msgstr "ወድቋል"
 
-#: ../src/qml/Messages.qml:281
+#: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
 msgstr "መልእክት መላክ አልተሳካም"
 
-#: ../src/qml/MessageDelegateFactory.qml:148
+#: ../src/qml/MessageStatusIcon.qml:75
 msgid "Failed!"
 msgstr "ወድቋል!"
 
-#: ../src/qml/NewRecipientPage.qml:77
+#: ../src/qml/NewRecipientPage.qml:81
 msgid "Favorites"
 msgstr "የምወዳቸው"
 
@@ -202,11 +205,11 @@ msgstr "የምወዳቸው"
 msgid "File size warning"
 msgstr "የ ፋይል መጠን ማስጠንቀቂያ"
 
-#: ../src/qml/MMS/MMSDefault.qml:33
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
 msgid "File type not supported"
 msgstr "ይህ አይነት ፋይል የተደገፈ አይደለም"
 
-#: ../src/qml/MessagesListView.qml:142
+#: ../src/qml/MessageDelegate.qml:157
 msgid "Forward"
 msgstr "ወደ ፊት"
 
@@ -214,7 +217,7 @@ msgstr "ወደ ፊት"
 msgid "From"
 msgstr "ከ"
 
-#: ../src/qml/SwipeItemDemo.qml:78
+#: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
 msgstr "አገኘሁት"
 
@@ -222,8 +225,7 @@ msgstr "አገኘሁት"
 msgid "Group"
 msgstr "ቡድን"
 
-#. TRANSLATORS: %1 refers to the number of participants in a group chat
-#: ../src/qml/Messages.qml:571
+#: ../src/qml/Messages.qml:673
 #, qt-format
 msgid "Group (%1)"
 msgstr "ቡድን (%1)"
@@ -240,23 +242,24 @@ msgstr ""
 msgid "Image"
 msgstr "ምስል"
 
-#: ../src/qml/MMS/PreviewerImage.qml:37
+#: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
 msgid "Image Preview"
 msgstr "የ ምስል ቅድመ እይታ"
 
-#: ../src/qml/MessagesListView.qml:110 ../src/qml/SwipeItemDemo.qml:177
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:164
+#: ../src/qml/ParticipantInfoPage.qml:34
 msgid "Info"
 msgstr "መረጃ"
 
-#: ../src/qml/Messages.qml:272
+#: ../src/qml/Messages.qml:272 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
 msgstr "በ በረራ ዘዴ ውስጥ እያሉ መልእክት መላክ አይቻልም"
 
-#: ../src/qml/Messages.qml:280
+#: ../src/qml/SendMessageValidator.qml:218
 msgid "It is not possible to send the message"
 msgstr "መልእክት መላክ አይቻልም"
 
-#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessagesListView.qml:113
+#: ../src/qml/ComposeBar.qml:457 ../src/qml/MessageDelegate.qml:166
 msgid "MMS"
 msgstr "ኤም ኤም ኤስ"
 
@@ -264,7 +267,7 @@ msgstr "ኤም ኤም ኤስ"
 msgid "Message info"
 msgstr "የ መልእክት መረጃ"
 
-#: ../src/qml/MainPage.qml:68
+#: ../src/qml/MainPage.qml:72
 msgid "Messages"
 msgstr "መልእክቶች"
 
@@ -296,23 +299,26 @@ msgstr "እኔ ራሴ"
 msgid "New Message"
 msgstr "አዲስ መልእክት"
 
-#: ../src/qml/MainPage.qml:104 ../src/qml/MainPage.qml:233
+#: ../src/qml/MainPage.qml:109 ../src/qml/MainPage.qml:222
 msgid "New message"
 msgstr "አዲስ መልእክት"
 
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
 msgstr "አይ"
 
-#: ../src/qml/Messages.qml:277
+#: ../src/qml/Messages.qml:277 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
 msgstr "ምንም የ ሲም ካርድ አልተገኘም"
 
-#: ../src/qml/Messages.qml:274
+#: ../src/qml/Messages.qml:274 ../src/qml/SendMessageValidator.qml:212
 msgid "No SIM card selected"
 msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
 
-#: ../src/qml/Messages.qml:923
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
 msgstr "ኔትዎርክ አልተገኘም"
 
@@ -320,7 +326,7 @@ msgstr "ኔትዎርክ አልተገኘም"
 msgid "No permission to access microphone"
 msgstr "ማይክሮፎን ጋር ለ መድረስ ፍቃድ የለም"
 
-#: ../src/qml/Messages.qml:830
+#: ../src/qml/Messages.qml:1059
 msgid "Offline"
 msgstr "ከ መስመር ውጪ"
 
@@ -330,11 +336,11 @@ msgstr "ከ መስመር ውጪ"
 msgid "Ok"
 msgstr "እሺ"
 
-#: ../src/qml/Messages.qml:828
+#: ../src/qml/Messages.qml:1057
 msgid "Online"
 msgstr "በ መስመር ላይ"
 
-#: ../src/qml/MessageInfoDialog.qml:66
+#: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
 msgstr "ያልተወሰነ"
 
@@ -346,7 +352,7 @@ msgstr ""
 "እባክዎን ፍቃድ ይስጡ <a href=\"system_settings\">System Settings &gt; Security "
 "&amp; Privacy</a>."
 
-#: ../src/qml/Messages.qml:278
+#: ../src/qml/Messages.qml:278 ../src/qml/SendMessageValidator.qml:216
 msgid "Please insert a SIM card and try again."
 msgstr "እባክዎን የ ሲም ካርድ ያስገቡ እና እንደገና ይሞክሩ"
 
@@ -368,11 +374,12 @@ msgstr "ያንብቡ"
 msgid "Received"
 msgstr "ተቀብለዋል"
 
-#: ../src/qml/ComposeBar.qml:141
+#: ../src/qml/ComposeBar.qml:140 ../src/qml/GroupChatInfoPage.qml:373
+#: ../src/qml/GroupChatInfoPage.qml:377
 msgid "Remove"
 msgstr "ማስወገጃ"
 
-#: ../src/qml/MessagesListView.qml:128 ../src/qml/SwipeItemDemo.qml:181
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:141
 msgid "Retry"
 msgstr "እንደገና ይሞክሩ"
 
@@ -380,21 +387,21 @@ msgstr "እንደገና ይሞክሩ"
 msgid "SIM Card is locked"
 msgstr "ሲም ካርድ አሁን ተቆልፏል"
 
-#: ../src/qml/MessagesListView.qml:113
+#: ../src/qml/MessageDelegate.qml:166
 msgid "SMS"
 msgstr "ኤስ ኤም ኤስ"
 
-#: ../src/qml/MMS/Previewer.qml:86
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:90
+#: ../src/qml/AttachmentDelegates/Previewer.qml:86
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:48
 msgid "Save"
 msgstr "ማስቀመጫ"
 
-#: ../src/qml/NewRecipientPage.qml:104
+#: ../src/qml/MainPage.qml:93 ../src/qml/NewRecipientPage.qml:108
 msgid "Search"
 msgstr "መፈለጊያ"
 
-#: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
+#: ../src/qml/MainPage.qml:56 ../src/qml/NewRecipientPage.qml:97
 msgid "Search..."
 msgstr "መፈለጊያ..."
 
@@ -402,12 +409,12 @@ msgstr "መፈለጊያ..."
 msgid "Sent"
 msgstr "ተልኳል"
 
-#: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
+#: ../src/qml/MainPage.qml:101 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
 msgstr "ማሰናጃዎች"
 
-#: ../src/qml/MMS/Previewer.qml:93
-#: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
+#: ../src/qml/AttachmentDelegates/Previewer.qml:93
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:62
 msgid "Share"
 msgstr "ማካፈያ"
@@ -416,11 +423,11 @@ msgstr "ማካፈያ"
 msgid "Status"
 msgstr "ሁኔታው"
 
-#: ../src/qml/SwipeItemDemo.qml:256
+#: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
 msgstr "ለማጥፋት ይጥረጉ"
 
-#: ../src/qml/SwipeItemDemo.qml:206
+#: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
 msgstr "ተግባሮቹን ለማየት ይጥረጉ"
 
@@ -428,16 +435,16 @@ msgstr "ተግባሮቹን ለማየት ይጥረጉ"
 msgid "Temporarily Failed"
 msgstr "ለጊዜው ወድቋል"
 
-#: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:55
+#: ../src/qml/MessageDelegate.qml:84
 msgid "Text message copied to clipboard"
 msgstr "የ ጽሁፍ መልእክት ወደ ቁራጭ ሰሌዳ ኮፒ ተደርጓል"
 
-#: ../src/qml/Messages.qml:924
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
 msgid "There is currently no network on %1"
 msgstr "አሁን ምንም ኔትዎርክ አልተገኘም በ %1"
 
-#: ../src/qml/Messages.qml:924
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
 msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 
@@ -445,7 +452,7 @@ msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 msgid "To"
 msgstr "ለ"
 
-#: ../src/qml/MultiRecipientInput.qml:149
+#: ../src/qml/MultiRecipientInput.qml:38
 msgid "To:"
 msgstr "ለ:"
 
@@ -457,7 +464,7 @@ msgstr "ዛሬ"
 msgid "Type"
 msgstr "አይነት"
 
-#: ../src/qml/Messages.qml:824
+#: ../src/qml/Messages.qml:1048
 msgid "Typing.."
 msgstr "በመጻፍ ላይ.."
 
@@ -465,7 +472,8 @@ msgstr "በመጻፍ ላይ.."
 msgid "Unknown"
 msgstr "ያልታወቀ"
 
-#: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
+#: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
+#: ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
 msgstr "ያልታወቀ ግንኙነት"
 
@@ -473,11 +481,11 @@ msgstr "ያልታወቀ ግንኙነት"
 msgid "Video"
 msgstr "ቪዲዮ"
 
-#: ../src/qml/MMS/PreviewerVideo.qml:32
+#: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
 msgid "Video Preview"
 msgstr "የ ቪዲዮ ቅድመ እይታ"
 
-#: ../src/qml/MMS/MMSDefault.qml:31
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
 msgid "Video attachment not supported"
 msgstr "ቪዲዮ ማያያዝ አይቻልም"
 
@@ -485,7 +493,7 @@ msgstr "ቪዲዮ ማያያዝ አይቻልም"
 msgid "Welcome to your Messaging app!"
 msgstr "እንኳን ደህና መጡ ወደ መልእክት መተግበሪያ!"
 
-#: ../src/qml/SwipeItemDemo.qml:161
+#: ../src/qml/ListItemDemo.qml:133
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "እንኳን ደህና መጡ ወደ እርስዎ የ ኡቡንቱ መልእክት መተግበሪያ"
 
@@ -493,11 +501,14 @@ msgstr "እንኳን ደህና መጡ ወደ እርስዎ የ ኡቡንቱ መ�
 msgid "Write a message..."
 msgstr "መልእክት መጻፊያ..."
 
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
 msgstr "አዎ"
 
-#: ../src/qml/dateUtils.js:46
+#: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
 msgstr "ትናንትና"
 
@@ -507,20 +518,19 @@ msgid ""
 "able to send it."
 msgstr "እርስዎ ትልቅ ፋይል ለ መላክ እየሞከሩ ነው (ከ 300ኪባ በላይ). አንዳንድ አንቀሳቃሾች ላይልኩት ይችላሉ"
 
-#: ../src/qml/Messages.qml:271
+#: ../src/qml/Messages.qml:271 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
 msgstr "የ በረራ ዘዴ ማሰናከል አለብዎት"
 
-#: ../src/qml/ComposeBar.qml:165
+#: ../src/qml/ComposeBar.qml:164
 msgid "You have to press and hold the record icon"
 msgstr "እርስዎ ተጭነው መያዝ አለብዎት የ መቅረጫ ምልክት"
 
-#: ../src/qml/Messages.qml:275
+#: ../src/qml/Messages.qml:275 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
 msgstr "የ ሲም ካርድ መምረጥ አለብዎት"
 
-#. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
-#: ../src/qml/AccountSectionDelegate.qml:77
+#: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
 msgid "You switched to %1 @ %2"
 msgstr "ቀይረዋል ወደ %1 @ %2"

@@ -1,3 +1,24 @@
+messaging-app (0.1+17.04.20161130-0ubuntu1) zesty; urgency=medium
+
+  [ Gustavo Pichorim Boiko ]
+  * Add support for group chats.
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 30 Nov 2016 15:14:55 +0000
+
+messaging-app (0.1+17.04.20161124.2-0ubuntu1) zesty; urgency=medium
+
+  * Append "SNAP" path into the base application path, when that var is
+    set. (LP: #1629009)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 24 Nov 2016 18:55:09 +0000
+
+messaging-app (0.1+17.04.20161020-0ubuntu1) zesty; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Snap package.
+
+ -- Gustavo Pichorim Boiko <gustavo.boiko@canonical.com>  Thu, 20 Oct 2016 15:15:59 +0000
+
 messaging-app (0.1+16.10.20160831-0ubuntu1) yakkety; urgency=medium
 
   [ Pat McGowan ]
