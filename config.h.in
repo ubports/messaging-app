@@ -28,6 +28,7 @@
 
 #define I18N_DIRECTORY "@CMAKE_INSTALL_PREFIX@/share/locale"
 #define UNITY8_QML_PATH "@UNITY8_QML_PATH@"
+#define SNAP_PATH       "SNAP"
 
 inline bool isRunningInstalled() {
     static bool installed = (QCoreApplication::applicationDirPath() ==
@@ -36,7 +37,9 @@ inline bool isRunningInstalled() {
 }
 
 inline QString messagingAppDirectory() {
-    if (isRunningInstalled()) {
+    if (qEnvironmentVariableIsSet(SNAP_PATH)) {
+        return QString("%1/@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/").arg(QString(qgetenv(SNAP_PATH)));
+    } else if (isRunningInstalled()) {
         return QString("@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/");
     } else {
         return QString("@CMAKE_SOURCE_DIR@/src/qml/");
@@ -44,7 +47,7 @@ inline QString messagingAppDirectory() {
 }
 
 inline QString ubuntuPhonePluginPath() {
-    if (isRunningInstalled()) {
+    if (isRunningInstalled() || qEnvironmentVariableIsSet(SNAP_PATH)) {
         return QString::null;
     } else {
         return QString("@CMAKE_SOURCE_DIR@/");
