@@ -258,6 +258,8 @@ void MessagingApplication::parseArgument(const QString &arg)
             QStringList participantIds = value.split(";");
             properties["participantIds"] = participantIds;
         }
+    } else {
+        properties["participantIds"] = QStringList() << value;
     }
     QUrlQuery query(url);
     Q_FOREACH(const Pair &item, query.queryItems(QUrl::FullyDecoded)) {
