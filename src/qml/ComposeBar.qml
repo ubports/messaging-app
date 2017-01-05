@@ -417,7 +417,10 @@ Item {
                 Keys.onReturnPressed: {
                     if (composeBar.returnToSend) {
                         sendButton.processSend()
+                        event.accepted = true
+                        return
                     }
+                    event.accepted = false
                 }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
