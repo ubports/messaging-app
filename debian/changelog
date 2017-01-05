@@ -1,9 +1,3 @@
-messaging-app (0.1+15.04.20161130-0ubuntu2) vivid; urgency=medium
-
-  * Changelog fix for vivid releases
-
- -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Wed, 04 Jan 2017 16:58:13 -0200
-
 messaging-app (0.1+17.04.20161130-0ubuntu1) zesty; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
