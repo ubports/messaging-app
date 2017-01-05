@@ -1377,6 +1377,7 @@ Page {
         }
 
         isBroadcast: messages.isBroadcast
+        returnToSend: messages.account.protocolInfo.returnToSend
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y

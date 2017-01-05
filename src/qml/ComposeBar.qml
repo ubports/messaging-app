@@ -43,6 +43,7 @@ Item {
     property alias inputMethodComposing: messageTextArea.inputMethodComposing
     property bool usingMMS: false
     property bool isBroadcast: false
+    property bool returnToSend: false
 
     onRecordingChanged: {
         if (recording) {
@@ -413,6 +414,9 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
+                Keys.onReturnPressed: {
+                    sendButton.processSend()
+                }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
                 style: LocalTextAreaStyle {}
@@ -578,15 +582,7 @@ Item {
         anchors.rightMargin: units.gu(2)
         iconSource: Qt.resolvedUrl("./assets/send.svg")
         enabled: !recordButton.enabled
-        onEnabledChanged: {
-            if (enabled) {
-                enableSendButton.start()
-            }
-        }
-        opacity: 0
-        visible: enabled
-
-        onClicked: {
+        function processSend() {
             // make sure we flush everything we have prepared in the OSK preedit
             Qt.inputMethod.commit();
             if ((textEntry.text == "" && attachments.count == 0) || !canSend) {
@@ -598,6 +594,17 @@ Item {
             }
 
             composeBar.sendRequested(textEntry.text, attachments)
+        }
+        onEnabledChanged: {
+            if (enabled) {
+                enableSendButton.start()
+            }
+        }
+        opacity: 0
+        visible: enabled
+
+        onClicked: {
+            processSend()
         }
     }
 
