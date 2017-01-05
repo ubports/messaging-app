@@ -415,7 +415,9 @@ Item {
                     right: parent.right
                 }
                 Keys.onReturnPressed: {
-                    sendButton.processSend()
+                    if (composeBar.returnToSend) {
+                        sendButton.processSend()
+                    }
                 }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
