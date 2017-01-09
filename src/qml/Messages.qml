@@ -135,6 +135,9 @@ Page {
         for (var i in messages.accountsModel) {
             accountNames.push(messages.accountsModel[i].displayName)
         }
+        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
+            return accountNames
+        }
         return accountNames.length > 1 ? accountNames : []
     }
 
@@ -534,6 +537,12 @@ Page {
 
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
+        property bool showSections: {
+            if (headerSections.model.length > 1) {
+                return true
+            }
+            return (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount)
+        }
 
         title: {
             if (landscape) {
@@ -556,7 +565,7 @@ Page {
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
-            visible: headerSections.model.length > 1
+            visible: pageHeader.showSections
             enabled: visible
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
@@ -569,7 +578,7 @@ Page {
             Component.onCompleted: model = getSectionsModel()
         }
 
-        extension: headerSections.model.length > 1 ? headerSections : null
+        extension: pageHeader.showSections ? headerSections : null
 
         leadingActionBar {
             id: leadingBar
@@ -1368,6 +1377,7 @@ Page {
         }
 
         isBroadcast: messages.isBroadcast
+        returnToSend: messages.account.protocolInfo.returnToSend
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y

@@ -84,6 +84,9 @@ Page {
                         if (newGroupPage.creationInProgress) {
                             return false
                         }
+                        if (account.protocolInfo.joinExistingChannels && groupTitleField.text != "") {
+                            return true
+                        }
                         if (participantsModel.count == 0) {
                             return false
                         }
@@ -96,6 +99,9 @@ Page {
                     onTriggered: {
                         Qt.inputMethod.commit()
                         newGroupPage.creationInProgress = true
+                        if (account.protocolInfo.joinExistingChannels) {
+                           chatEntry.chatId = groupTitleField.text
+                        }
                         chatEntry.startChat()
                     }
                 }
@@ -249,6 +255,7 @@ Page {
             ContactSearchWidget {
                 id: searchItem
                 parentPage: newGroupPage
+                visible: !account.protocolInfo.joinExistingChannels
                 searchResultsHeight: flick.emptySpaceHeight
                 onContactPicked: addRecipientFromSearch(identifier, alias, avatar)
                 anchors {
@@ -259,6 +266,7 @@ Page {
             }
             Rectangle {
                id: separator2
+               visible: !account.protocolInfo.joinExistingChannels
                anchors {
                    left: parent.left
                    right: parent.right
@@ -285,6 +293,7 @@ Page {
                 anchors.top: searchItem.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
+                visible: !account.protocolInfo.joinExistingChannels
                 Repeater {
                     id: participantsRepeater
                     model: participantsModel

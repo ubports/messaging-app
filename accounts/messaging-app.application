@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="messaging-app">
+  <description>Messaging</description>
+  <desktop-entry>messaging-app.desktop</desktop-entry>
+  <translations>messaging</translations>
+
+  <services>
+    <service id="messaging-app-im-irc">
+      <description>Integrate your IRC accounts</description>
+    </service>
+  </services>
+</application>
