@@ -188,11 +188,14 @@ ListItem {
     }
     highlightColor: "transparent"
 
-    onClicked: {
-        if (!selectMode) {
-            // we only have actions for attachment items, so forward the click
-            if (attachmentsLoader.item) {
-                attachmentsLoader.item.clicked(mouse)
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            if (!selectMode) {
+                // we only have actions for attachment items, so forward the click
+                if (attachmentsLoader.item) {
+                    attachmentsLoader.item.clicked(mouse)
+                }
             }
         }
     }
