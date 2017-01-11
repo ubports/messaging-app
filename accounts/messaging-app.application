@@ -5,7 +5,7 @@
   <translations>messaging</translations>
 
   <services>
-    <service id="messaging-app-im-irc">
+    <service id="telephony-irc-im">
       <description>Integrate your IRC accounts</description>
     </service>
   </services>
