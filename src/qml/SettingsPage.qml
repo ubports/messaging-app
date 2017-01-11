@@ -94,10 +94,10 @@ Page {
             top: pageHeader.bottom
             left: parent.left
             right: parent.right
-            bottom: parent.bottom
         }
+        height: childrenRect.height
 
-        ListView {
+        Repeater {
             anchors {
                 left: parent.left
                 right: parent.right
@@ -116,26 +116,8 @@ Page {
 
             text: i18n.tr("Add an online account")
             progression: true
-            onClicked: onlineAccountsHelper.setupExec()
-
-            Setup {
-                id: onlineAccountSetup
-
-                property bool running: false
-
-                function setupExec()
-                {
-                    if (!onlineAccountSetup.running) {
-                        onlineAccountSetup.running = true
-                        onlineAccountSetup.exec()
-                    }
-                }
-
-                applicationId: "messaging-app"
-                onFinished: {
-                    onlineAccountSetup.running = false
-                }
-            }
+            onClicked: onlineAccountHelper.item.run()
+            enabled: onlineAccountHelper.status == Loader.Ready
         }
     }
 
@@ -154,4 +136,13 @@ Page {
             hint.height: 0
         }
     }
+
+    Loader {
+        id: onlineAccountHelper
+
+        anchors.fill: parent
+        asynchronous: true
+        source: Qt.resolvedUrl("OnlineAccountsHelper.qml")
+    }
+
 }
