@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.OnlineAccounts.Client 0.1
 
 Page {
     id: settingsPage
@@ -88,15 +89,54 @@ Page {
         }
     }
 
-    ListView {
+    Column {
         anchors {
             top: pageHeader.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
-        model: settingsModel
-        delegate: settingDelegate
+
+        ListView {
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            model: settingsModel
+            delegate: settingDelegate
+        }
+
+        ListItem.Standard {
+            id: addAccount
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
+            text: i18n.tr("Add an online account")
+            progression: true
+            onClicked: onlineAccountsHelper.setupExec()
+
+            Setup {
+                id: onlineAccountSetup
+
+                property bool running: false
+
+                function setupExec()
+                {
+                    if (!onlineAccountSetup.running) {
+                        onlineAccountSetup.running = true
+                        onlineAccountSetup.exec()
+                    }
+                }
+
+                applicationId: "messaging-app"
+                onFinished: {
+                    onlineAccountSetup.running = false
+                }
+            }
+        }
     }
 
     Loader {
