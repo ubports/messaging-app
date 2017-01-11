@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.OnlineAccounts.Client 0.1
 
 Page {
     id: settingsPage
@@ -85,18 +86,46 @@ Page {
                     }
                 }
             }
+            ListItem.ThinDivider {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+            }
         }
     }
 
-    ListView {
+    Column {
         anchors {
             top: pageHeader.bottom
             left: parent.left
             right: parent.right
-            bottom: parent.bottom
         }
-        model: settingsModel
-        delegate: settingDelegate
+        height: childrenRect.height
+
+        Repeater {
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            model: settingsModel
+            delegate: settingDelegate
+        }
+
+        ListItem.Standard {
+            id: addAccount
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
+            text: i18n.tr("Add an online account")
+            progression: true
+            onClicked: onlineAccountHelper.item.run()
+            enabled: onlineAccountHelper.status == Loader.Ready
+        }
     }
 
     Loader {
@@ -114,4 +143,13 @@ Page {
             hint.height: 0
         }
     }
+
+    Loader {
+        id: onlineAccountHelper
+
+        anchors.fill: parent
+        asynchronous: true
+        source: Qt.resolvedUrl("OnlineAccountsHelper.qml")
+    }
+
 }
