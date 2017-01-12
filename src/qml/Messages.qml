@@ -659,7 +659,7 @@ Page {
                 Action {
                     id: rejoinGroupChatAction
                     objectName: "rejoinGroupChatAction"
-                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin
+                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin && messages.account.connected
                     visible: enabled
                     iconName: "view-refresh"
                     onTriggered: messages.chatEntry.startChat()
