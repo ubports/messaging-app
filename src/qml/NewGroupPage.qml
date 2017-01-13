@@ -57,6 +57,9 @@ Page {
             if (mmsGroup) {
                 return i18n.tr("New MMS Group")
             } else {
+                if (account && account.protocolInfo.name == "irc") {
+                    return i18n.tr("Join IRC channel:")
+                }
                 var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                 if (protocolDisplayName === "") {
                    protocolDisplayName = account.protocolInfo.serviceName;
@@ -215,7 +218,12 @@ Page {
                     verticalAlignment: Text.AlignVCenter
                     anchors.verticalCenter: groupTitleField.verticalCenter
                     anchors.left: parent.left
-                    text: i18n.tr("Group name:")
+                    text: {
+                        if (account && account.protocolInfo.name == "irc") {
+                            return i18n.tr("Channel name:")
+                        }
+                        return i18n.tr("Group name:")
+                    }
                 }
                 TextField {
                     id: groupTitleField
