@@ -91,6 +91,7 @@ Page {
                     objectName: "searchAction"
                     iconName: "search"
                     text: i18n.tr("Search")
+                    shortcut: "Ctrl+F"
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -108,6 +109,7 @@ Page {
                     objectName: "newMessageAction"
                     text: i18n.tr("New message")
                     iconName: "add"
+                    shortcut: "Ctrl+N"
                     onTriggered: mainView.startNewMessage()
                 }
             ]
@@ -129,6 +131,7 @@ Page {
                     visible: mainPage.searching
                     iconName: "back"
                     text: i18n.tr("Cancel")
+                    shortcut: "Esc"
                     onTriggered: {
                         searchField.text = ""
                         mainPage.searching = false
@@ -152,6 +155,7 @@ Page {
                 Action {
                     objectName: "selectionModeCancelAction"
                     iconName: "back"
+                    shortcut: "Esc"
                     onTriggered: threadList.cancelSelection()
                 }
             ]
