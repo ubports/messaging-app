@@ -43,6 +43,8 @@ Item {
     property alias inputMethodComposing: messageTextArea.inputMethodComposing
     property bool usingMMS: false
     property bool isBroadcast: false
+    property bool returnToSend: false
+    property bool enableAttachments: true
 
     onRecordingChanged: {
         if (recording) {
@@ -192,14 +194,14 @@ Item {
         }
 
         Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
+        visible: opacity > 0 && composeBar.enableAttachments
 
-        width: childrenRect.width
-        height: childrenRect.height
+        width: visible ? childrenRect.width : 0
+        height: visible ? childrenRect.height : 0
 
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
+            leftMargin: visible ? units.gu(2) : 0
             verticalCenter: sendButton.verticalCenter
         }
         spacing: units.gu(2)
@@ -413,6 +415,14 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
+                Keys.onReturnPressed: {
+                    if (composeBar.returnToSend) {
+                        sendButton.processSend()
+                        event.accepted = true
+                        return
+                    }
+                    event.accepted = false
+                }
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
                 style: LocalTextAreaStyle {}
@@ -578,15 +588,7 @@ Item {
         anchors.rightMargin: units.gu(2)
         iconSource: Qt.resolvedUrl("./assets/send.svg")
         enabled: !recordButton.enabled
-        onEnabledChanged: {
-            if (enabled) {
-                enableSendButton.start()
-            }
-        }
-        opacity: 0
-        visible: enabled
-
-        onClicked: {
+        function processSend() {
             // make sure we flush everything we have prepared in the OSK preedit
             Qt.inputMethod.commit();
             if ((textEntry.text == "" && attachments.count == 0) || !canSend) {
@@ -598,6 +600,17 @@ Item {
             }
 
             composeBar.sendRequested(textEntry.text, attachments)
+        }
+        onEnabledChanged: {
+            if (enabled) {
+                enableSendButton.start()
+            }
+        }
+        opacity: composeBar.enableAttachments ? 0 : 1
+        visible: enabled
+
+        onClicked: {
+            processSend()
         }
     }
 
@@ -611,7 +624,7 @@ Item {
             rightMargin: units.gu(2)
         }
 
-        enabled: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? false : true
+        enabled: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 || !composeBar.enableAttachments ? false : true
         onEnabledChanged: {
             if (enabled) {
                 enableRecordButton.start()
