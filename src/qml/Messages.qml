@@ -948,7 +948,9 @@ Page {
             }
             actionList.actions = []
 
-            actionList.addAction(mmsGroupAction)
+            if (telepathyHelper.phoneAccounts.active.length > 0) {
+                actionList.addAction(mmsGroupAction)
+            }
             if (!account || account.type == AccountEntry.PhoneAccount) {
                 return
             }
