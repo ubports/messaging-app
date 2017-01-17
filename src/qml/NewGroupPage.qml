@@ -235,7 +235,12 @@ Page {
                         top: parent.top
                     }
                     height: units.gu(4)
-                    placeholderText: i18n.tr("Type a name...")
+                    placeholderText: {
+                        if (account && account.protocolInfo.name == "irc") {
+                            return i18n.tr("#channelName")
+                        }
+                        return i18n.tr("Type a name...")
+                    }
                     inputMethodHints: Qt.ImhNoPredictiveText
                     Timer {
                         interval: 1

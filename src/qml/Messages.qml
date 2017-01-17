@@ -931,6 +931,9 @@ Page {
                 property var participants: null
                 property var account: null
                 text: {
+                    if (account.protocolInfo.name == "irc") {
+                        return i18n.tr("Join IRC Channel...")
+                    }
                     var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
                        protocolDisplayName = account.protocolInfo.serviceName;
