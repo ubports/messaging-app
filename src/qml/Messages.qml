@@ -594,6 +594,7 @@ Page {
             anchors {
                 bottom: parent.bottom
                 right: parent.right
+                bottomMargin: -headerSections.height
             }
         }
     }
@@ -763,7 +764,7 @@ Page {
                             mmsGroupAction.trigger()
                             return
                         }
-                        contextMenu.caller = header;
+                        contextMenu.caller = trailingActionArea;
                         contextMenu.updateGroupTypes();
                         contextMenu.show();
                     }
