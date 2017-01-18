@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 Item {
@@ -45,10 +45,14 @@ Item {
     signal pressed()
     signal released()
 
+    Keys.onEnterPressed: clicked()
+    Keys.onReturnPressed: clicked()
+
     Item {
         id: iconShape
         height: iconSize
         width: iconSize
+        //visible: false
         anchors {
             left: parent.left
             right: sideBySide ? undefined : parent.right
@@ -102,5 +106,18 @@ Item {
         verticalAlignment: sideBySide ? Text.AlignVCenter : Text.AlignBottom
         font.family: "Ubuntu"
         font.pixelSize: FontUtils.sizeToPixels("small")
+    }
+
+    // draw focus border
+    activeFocusOnTab: true
+    Rectangle {
+        anchors {
+            fill: parent
+            margins: units.gu(-1)
+        }
+        border.color: Theme.palette.selected.focus
+        color: "transparent"
+        visible: parent.activeFocus
+        radius: 10
     }
 }
