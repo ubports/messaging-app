@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.Telephony 0.1
@@ -277,22 +277,19 @@ StyledItem {
         }
     }
 
-    Icon {
+    TransparentButton {
         id: addIcon
-        name: "add"
-        height: units.gu(2)
+
+        iconName: "add"
+        height: units.gu(1.5)
         anchors {
             right: parent.right
             rightMargin: units.gu(2)
             verticalCenter: parent.verticalCenter
         }
-        MouseArea {
-            anchors.fill: parent
-            anchors.margins: units.gu(-3)
-            onClicked: {
+        onClicked: {
                 Qt.inputMethod.hide()
                 mainStack.addPageToCurrentColumn(messages,  Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": multiRecipient})
-            }
         }
         z: 2
     }

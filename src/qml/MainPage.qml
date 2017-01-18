@@ -107,15 +107,10 @@ Page {
                 },
                 Action {
                     objectName: "newMessageAction"
-                    text: mainView.composingNewMessage ? i18n.tr("Discard") : i18n.tr("New message")
-                    iconName: mainView.composingNewMessage ? "cancel" : "add"
-                    shortcut: mainView.composingNewMessage ? "Esc" : "Ctrl+N"
-                    onTriggered: {
-                        if (mainView.composingNewMessage)
-                            mainView.showEmptyState()
-                        else
-                            mainView.startNewMessage()
-                    }
+                    text: i18n.tr("New message")
+                    iconName: "add"
+                    shortcut: "Ctrl+N"
+                    onTriggered: mainView.startNewMessage()
                 }
             ]
 

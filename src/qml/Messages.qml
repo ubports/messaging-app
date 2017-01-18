@@ -532,6 +532,7 @@ Page {
         }
     }
 
+
     header: PageHeader {
         id: pageHeader
 
@@ -607,6 +608,7 @@ Page {
                 Action {
                     objectName: "selectionModeCancelAction"
                     iconName: "back"
+                    shortcut: "Esc"
                     onTriggered: messageList.cancelSelection()
                 }
             ]
@@ -736,6 +738,15 @@ Page {
             name: "newMessage"
             when: messages.newMessage
 
+            property list<QtObject> leadingActions: [
+                Action {
+                    objectName: "newMessageCancelAction"
+                    iconName: "back"
+                    shortcut: "Esc"
+                    onTriggered: mainView.showEmptyState()
+                }
+            ]
+
             property list<QtObject> trailingActions: [
                 Action {
                     id: groupSelectionAction
@@ -785,6 +796,7 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
+                leadingActions: newMessageState.leadingActions
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
             }
