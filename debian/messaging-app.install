@@ -1,3 +1,4 @@
+usr/share/accounts/applications/*
 usr/share/applications/messaging-app*.desktop
 usr/share/url-dispatcher/urls
 usr/share/content-hub/peers/messaging-app

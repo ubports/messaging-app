@@ -135,6 +135,9 @@ Page {
         for (var i in messages.accountsModel) {
             accountNames.push(messages.accountsModel[i].displayName)
         }
+        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
+            return accountNames
+        }
         return accountNames.length > 1 ? accountNames : []
     }
 
@@ -189,9 +192,10 @@ Page {
                 }
             }
             return null
-        } else {
-            return mainView.account
+        } else if (!(telepathyHelper.phoneAccounts.active.length > 0) && messages.accountsModel.length > 0) {
+            return messages.accountsModel[0]
         }
+        return mainView.account
     }
 
     function checkThreadInFilters(newAccountId, threadId) {
@@ -534,6 +538,12 @@ Page {
 
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
+        property bool showSections: {
+            if (headerSections.model.length > 1) {
+                return true
+            }
+            return (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount)
+        }
 
         title: {
             if (landscape) {
@@ -556,7 +566,7 @@ Page {
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
-            visible: headerSections.model.length > 1
+            visible: pageHeader.showSections
             enabled: visible
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
@@ -569,7 +579,7 @@ Page {
             Component.onCompleted: model = getSectionsModel()
         }
 
-        extension: headerSections.model.length > 1 ? headerSections : null
+        extension: pageHeader.showSections ? headerSections : null
 
         leadingActionBar {
             id: leadingBar
@@ -584,6 +594,7 @@ Page {
             anchors {
                 bottom: parent.bottom
                 right: parent.right
+                bottomMargin: -headerSections.height
             }
         }
     }
@@ -646,7 +657,16 @@ Page {
                     objectName: "groupChatAction"
                     iconName: "contact-group"
                     onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                },
+                Action {
+                    id: rejoinGroupChatAction
+                    objectName: "rejoinGroupChatAction"
+                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin && messages.account.connected
+                    visible: enabled
+                    iconName: "view-refresh"
+                    onTriggered: messages.chatEntry.startChat()
                 }
+
             ]
 
             PropertyChanges {
@@ -744,7 +764,7 @@ Page {
                             mmsGroupAction.trigger()
                             return
                         }
-                        contextMenu.caller = header;
+                        contextMenu.caller = trailingActionArea;
                         contextMenu.updateGroupTypes();
                         contextMenu.show();
                     }
@@ -912,6 +932,9 @@ Page {
                 property var participants: null
                 property var account: null
                 text: {
+                    if (account.protocolInfo.name == "irc") {
+                        return i18n.tr("Join IRC Channel...")
+                    }
                     var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
                        protocolDisplayName = account.protocolInfo.serviceName;
@@ -930,16 +953,23 @@ Page {
             }
             actionList.actions = []
 
-            actionList.addAction(mmsGroupAction)
-
-            for (var i in telepathyHelper.textAccounts.active) {
+            if (telepathyHelper.phoneAccounts.active.length > 0) {
+                actionList.addAction(mmsGroupAction)
+            }
+            if (!account || account.type == AccountEntry.PhoneAccount) {
+                return
+            }
+            var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
+            actionList.addAction(action)
+ 
+            /*for (var i in telepathyHelper.textAccounts.active) {
                 var account = telepathyHelper.textAccounts.active[i]
                 if (account.type == AccountEntry.PhoneAccount) {
                     continue
                 }
                 var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
                 actionList.addAction(action)
-            }
+            }*/
         }
     }
 
@@ -988,7 +1018,7 @@ Page {
         participantIds: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
-        autoRequest: !newMessage
+        autoRequest: !newMessage && !messages.account.protocolInfo.enableRejoin
 
         onChatTypeChanged: {
             messages.chatType = chatEntryObject.chatType
@@ -1346,6 +1376,9 @@ Page {
                 return false
             }
             if (threads.length > 0) {
+                if (!chatEntry.active && messages.account.protocolInfo.enableRejoin) {
+                    return true
+                }
                 return !threadInformation.chatRoomInfo.Joined
             }
             return false
@@ -1368,6 +1401,8 @@ Page {
         }
 
         isBroadcast: messages.isBroadcast
+        returnToSend: messages.account.protocolInfo.returnToSend
+        enableAttachments: messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y

@@ -57,6 +57,9 @@ Page {
             if (mmsGroup) {
                 return i18n.tr("New MMS Group")
             } else {
+                if (account && account.protocolInfo.name == "irc") {
+                    return i18n.tr("Join IRC channel:")
+                }
                 var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                 if (protocolDisplayName === "") {
                    protocolDisplayName = account.protocolInfo.serviceName;
@@ -84,6 +87,9 @@ Page {
                         if (newGroupPage.creationInProgress) {
                             return false
                         }
+                        if (account.protocolInfo.joinExistingChannels && groupTitleField.text != "") {
+                            return true
+                        }
                         if (participantsModel.count == 0) {
                             return false
                         }
@@ -96,6 +102,9 @@ Page {
                     onTriggered: {
                         Qt.inputMethod.commit()
                         newGroupPage.creationInProgress = true
+                        if (account.protocolInfo.joinExistingChannels) {
+                           chatEntry.chatId = groupTitleField.text
+                        }
                         chatEntry.startChat()
                     }
                 }
@@ -209,7 +218,12 @@ Page {
                     verticalAlignment: Text.AlignVCenter
                     anchors.verticalCenter: groupTitleField.verticalCenter
                     anchors.left: parent.left
-                    text: i18n.tr("Group name:")
+                    text: {
+                        if (account && account.protocolInfo.name == "irc") {
+                            return i18n.tr("Channel name:")
+                        }
+                        return i18n.tr("Group name:")
+                    }
                 }
                 TextField {
                     id: groupTitleField
@@ -221,7 +235,12 @@ Page {
                         top: parent.top
                     }
                     height: units.gu(4)
-                    placeholderText: i18n.tr("Type a name...")
+                    placeholderText: {
+                        if (account && account.protocolInfo.name == "irc") {
+                            return i18n.tr("#channelName")
+                        }
+                        return i18n.tr("Type a name...")
+                    }
                     inputMethodHints: Qt.ImhNoPredictiveText
                     Timer {
                         interval: 1
@@ -249,6 +268,7 @@ Page {
             ContactSearchWidget {
                 id: searchItem
                 parentPage: newGroupPage
+                visible: !account.protocolInfo.joinExistingChannels
                 searchResultsHeight: flick.emptySpaceHeight
                 onContactPicked: addRecipientFromSearch(identifier, alias, avatar)
                 anchors {
@@ -259,6 +279,7 @@ Page {
             }
             Rectangle {
                id: separator2
+               visible: !account.protocolInfo.joinExistingChannels
                anchors {
                    left: parent.left
                    right: parent.right
@@ -285,6 +306,7 @@ Page {
                 anchors.top: searchItem.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
+                visible: !account.protocolInfo.joinExistingChannels
                 Repeater {
                     id: participantsRepeater
                     model: participantsModel

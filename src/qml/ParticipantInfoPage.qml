@@ -154,6 +154,15 @@ Page {
                 }
 
                 Button {
+                    id: sendMessageButton
+                    text: i18n.tr("Send private message")
+                    onClicked: {
+                        mainView.startChat({accountId: chatEntry.accountId, participantIds: [participant.identifier]})
+                        pageStack.removePages(participantInfoPage)
+                    }
+                }
+
+                Button {
                     id: leaveButton
                     visible: delegate.canRemove()
                     text: i18n.tr("Remove from group")
