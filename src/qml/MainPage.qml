@@ -214,6 +214,7 @@ Page {
             right: parent.right
             bottom: keyboard.top
         }
+        focus: false
         listModel: threadModel
         // (rmescandon): Prevent having selected items in the list while BottomEdge is been revealed
         // but not completely revealed.
@@ -354,6 +355,14 @@ Page {
             parent: mainPage
             enabled: !mainView.dualPanel
             hint.visible: enabled
+        }
+    }
+
+    onActiveChanged: {
+        if (active) {
+            if (threadList.currentIndex === -1)
+                threadList.currentIndex = 0
+            threadList.forceActiveFocus()
         }
     }
 }

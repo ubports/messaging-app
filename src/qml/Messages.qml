@@ -901,6 +901,7 @@ Page {
             messages.ready()
         }
         processPendingEvents()
+        composeBar.forceFocus()
     }
 
     // These fake items are used to track if there are instances loaded
