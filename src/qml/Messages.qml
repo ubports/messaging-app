@@ -610,6 +610,7 @@ Page {
                     iconName: "back"
                     shortcut: "Esc"
                     onTriggered: messageList.cancelSelection()
+                    enabled: messages.state == "selection"
                 }
             ]
 
@@ -744,6 +745,7 @@ Page {
                     iconName: "back"
                     shortcut: "Esc"
                     onTriggered: mainView.showEmptyState()
+                    enabled: messages.state == "newMessage"
                 }
             ]
 

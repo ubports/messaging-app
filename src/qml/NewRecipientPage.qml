@@ -135,6 +135,8 @@ Page {
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
+                    enabled: newRecipientPage.state == "searching"
+                    shortcut: "Esc"
                     onTriggered: {
                         newRecipientPage.forceActiveFocus()
                         newRecipientPage.state = "default"

@@ -92,6 +92,7 @@ Page {
                     iconName: "search"
                     text: i18n.tr("Search")
                     shortcut: "Ctrl+F"
+                    enabled: mainPage.state == "default"
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -110,6 +111,7 @@ Page {
                     text: i18n.tr("New message")
                     iconName: "add"
                     shortcut: "Ctrl+N"
+                    enabled: mainPage.state == "default"
                     onTriggered: mainView.startNewMessage()
                 }
             ]
@@ -132,6 +134,7 @@ Page {
                     iconName: "back"
                     text: i18n.tr("Cancel")
                     shortcut: "Esc"
+                    enabled: mainPage.state == "search"
                     onTriggered: {
                         searchField.text = ""
                         mainPage.searching = false
@@ -157,6 +160,7 @@ Page {
                     iconName: "back"
                     shortcut: "Esc"
                     onTriggered: threadList.cancelSelection()
+                    enabled: mainPage.state == "selection"
                 }
             ]
 
