@@ -744,7 +744,7 @@ Page {
                     objectName: "newMessageCancelAction"
                     iconName: "back"
                     shortcut: "Esc"
-                    onTriggered: mainView.showEmptyState()
+                    onTriggered: mainView.emptyStack(true)
                     enabled: messages.state == "newMessage"
                 }
             ]

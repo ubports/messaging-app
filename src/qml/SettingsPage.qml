@@ -60,9 +60,14 @@ Page {
     header: PageHeader {
         id: pageHeader
         title: settingsPage.title
-        leadingActionBar {
-            id: leadingBar
-        }
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: "Esc"
+               onTriggered: mainView.emptyStack(true)
+            }
+        ]
         flickable: settingsList
     }
 
@@ -147,4 +152,6 @@ Page {
         asynchronous: true
         source: Qt.resolvedUrl("OnlineAccountsHelper.qml")
     }
+
+
 }
