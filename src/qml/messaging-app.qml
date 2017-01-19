@@ -233,7 +233,7 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-        mainPage.displayedThreadIndex = -1
+         mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {

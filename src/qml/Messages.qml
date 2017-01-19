@@ -536,7 +536,6 @@ Page {
     header: PageHeader {
         id: pageHeader
 
-        property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
         property bool showSections: {
             if (headerSections.model.length > 1) {
@@ -581,9 +580,20 @@ Page {
 
         extension: pageHeader.showSections ? headerSections : null
 
-        leadingActionBar {
-            id: leadingBar
-        }
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: "Esc"
+               onTriggered: {
+                   if (messages.state == "selection") {
+                        messageList.cancelSelection()
+                   } else {
+                        mainView.emptyStack(true)
+                   }
+               }
+            }
+        ]
 
         trailingActionBar {
             id: trailingBar
@@ -603,16 +613,6 @@ Page {
             id: selectionState
             name: "selection"
             when: selectionMode
-
-            property list<QtObject> leadingActions: [
-                Action {
-                    objectName: "selectionModeCancelAction"
-                    iconName: "back"
-                    shortcut: "Esc"
-                    onTriggered: messageList.cancelSelection()
-                    enabled: messages.state == "selection"
-                }
-            ]
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -643,7 +643,6 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
-                leadingActions: selectionState.leadingActions
                 trailingActions: selectionState.trailingActions
             }
         },
@@ -739,16 +738,6 @@ Page {
             name: "newMessage"
             when: messages.newMessage
 
-            property list<QtObject> leadingActions: [
-                Action {
-                    objectName: "newMessageCancelAction"
-                    iconName: "back"
-                    shortcut: "Esc"
-                    onTriggered: mainView.emptyStack(true)
-                    enabled: messages.state == "newMessage"
-                }
-            ]
-
             property list<QtObject> trailingActions: [
                 Action {
                     id: groupSelectionAction
@@ -798,7 +787,6 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
-                leadingActions: newMessageState.leadingActions
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
             }
@@ -807,6 +795,7 @@ Page {
             id: knownContactState
             name: "knownContact"
             when: participants.length == 1 && !contactWatcher.isUnknown
+
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"

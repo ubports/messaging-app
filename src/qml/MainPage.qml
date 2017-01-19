@@ -214,7 +214,6 @@ Page {
             right: parent.right
             bottom: keyboard.top
         }
-        focus: false
         listModel: threadModel
         // (rmescandon): Prevent having selected items in the list while BottomEdge is been revealed
         // but not completely revealed.
@@ -339,9 +338,15 @@ Page {
         interval: 1
         repeat: false
         running: true
-        onTriggered: createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
-                                                   mainPage,
-                                                   {"flickableItem": threadList})
+        onTriggered: {
+            createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
+                                          mainPage,
+                                          {"flickableItem": threadList})
+            if (threadList.currentIndex === -1)
+                threadList.currentIndex = 0
+
+            threadList.currentItem.forceActiveFocus()
+        }
     }
 
     Loader {
@@ -358,11 +363,9 @@ Page {
         }
     }
 
-    onActiveChanged: {
-        if (active) {
-            if (threadList.currentIndex === -1)
-                threadList.currentIndex = 0
-            threadList.forceActiveFocus()
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            threadList.currentItem.forceActiveFocus()
         }
     }
 }
