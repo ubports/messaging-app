@@ -782,6 +782,12 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
+                onActiveFocusChanged: {
+                    if (!activeFocus && (searchListLoader.status != Loader.Ready || !searchListLoader.item.activeFocus))
+                        commit()
+                }
+
+                Keys.onDownPressed: searchListLoader.item.forceActiveFocus()
             }
 
             PropertyChanges {
@@ -799,7 +805,7 @@ Page {
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1
+                    visible: participants.length === 1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -1131,7 +1137,7 @@ Page {
 
         property int resultCount: (status === Loader.Ready) ? item.count : 0
 
-        source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
+        source: (multiRecipient.searchString !== "") ?
                 Qt.resolvedUrl("ContactSearchList.qml") : ""
         clip: true
         visible: source != ""
@@ -1158,6 +1164,18 @@ Page {
             property: "filterTerm"
             value: multiRecipient.searchString
             when: (searchListLoader.status === Loader.Ready)
+        }
+
+        Connections {
+            target: searchListLoader.item
+            onActiveFocusChanged: {
+                console.debug("LOST FOCUSSSS:" + searchListLoader.item.activeFocus)
+                if (!searchListLoader.item.activeFocus && !multiRecipient.activeFocus)
+                    multiRecipient.commit()
+            }
+            onFocusUp: {
+                multiRecipient.forceActiveFocus()
+            }
         }
 
         Timer {
