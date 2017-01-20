@@ -312,5 +312,10 @@ Page {
        id: keyboard
     }
 
-    Component.onCompleted: forceActiveFocus()
+    onActiveChanged: {
+        if (active)
+            searchItem.forceActiveFocus()
+    }
+
+    Component.onCompleted: searchItem.forceActiveFocus()
 }
