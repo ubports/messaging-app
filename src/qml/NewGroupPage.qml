@@ -69,6 +69,7 @@ Page {
                 Action {
                     objectName: "cancelAction"
                     iconName: "close"
+                    shortcut: "Esc"
                     onTriggered: {
                         Qt.inputMethod.commit()
                         mainStack.removePages(newGroupPage)
