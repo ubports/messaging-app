@@ -1169,7 +1169,6 @@ Page {
         Connections {
             target: searchListLoader.item
             onActiveFocusChanged: {
-                console.debug("LOST FOCUSSSS:" + searchListLoader.item.activeFocus)
                 if (!searchListLoader.item.activeFocus && !multiRecipient.activeFocus)
                     multiRecipient.commit()
             }
@@ -1318,6 +1317,13 @@ Page {
         objectName: "messageList"
         visible: !isSearching
         listModel: messages.newMessage ? null : eventModel
+        activeFocusOnTab: false
+        focus: false
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                composeBar.forceFocus()
+            }
+        }
 
         Rectangle {
             color: Theme.palette.normal.background
