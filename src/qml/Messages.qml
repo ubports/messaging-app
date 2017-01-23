@@ -1428,6 +1428,7 @@ Page {
             right: parent.right
         }
 
+        participants: messages.participants
         isBroadcast: messages.isBroadcast
         returnToSend: messages.account.protocolInfo.returnToSend
         enableAttachments: messages.account.protocolInfo.enableAttachments

@@ -45,6 +45,7 @@ Item {
     property bool isBroadcast: false
     property bool returnToSend: false
     property bool enableAttachments: true
+    property alias participants: participantPopover.participants
 
     onRecordingChanged: {
         if (recording) {
@@ -448,6 +449,15 @@ Item {
                 font.family: "Ubuntu"
                 font.pixelSize: FontUtils.sizeToPixels("medium")
                 color: Theme.palette.normal.backgroundText
+                Keys.onTabPressed: {
+                    if (text.length > 0) {
+                        var lastSpace = text.lastIndexOf(" ")
+                        var prefix = text.slice(lastSpace != -1 ? lastSpace : 0, text.length)
+                        participantPopover.showParticpantsStartWith(composeBar, prefix.trim())
+                    } else {
+                        event.accepted = false
+                    }
+                }
             }
 
             // show the counts if option is enabled, and more than one line
@@ -666,6 +676,24 @@ Item {
         drag.axis: Drag.XAxis
         drag.minimumX: (leftSideActions.x + leftSideActions.width)
         drag.maximumX: recordButton.x
+    }
 
+    ParticipantsPopover {
+        id: participantPopover
+
+        height: parent.parent.height
+        width: parent.width
+
+        onSelected: {
+            if (participant) {
+                var lastSpace = messageTextArea.text.lastIndexOf(" ")
+                if (lastSpace === -1)
+                    messageTextArea.text = participant.identifier + ", "
+                else
+                    messageTextArea.text = messageTextArea.text.slice(0, lastSpace  + 1) + participant.identifier + ", "
+            }
+            forceFocus()
+            messageTextArea.cursorPosition = messageTextArea.text.length
+        }
     }
 }
