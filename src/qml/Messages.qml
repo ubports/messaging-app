@@ -192,9 +192,10 @@ Page {
                 }
             }
             return null
-        } else {
-            return mainView.account
+        } else if (!(telepathyHelper.phoneAccounts.active.length > 0) && messages.accountsModel.length > 0) {
+            return messages.accountsModel[0]
         }
+        return mainView.account
     }
 
     function checkThreadInFilters(newAccountId, threadId) {
@@ -604,6 +605,7 @@ Page {
             anchors {
                 bottom: parent.bottom
                 right: parent.right
+                bottomMargin: -headerSections.height
             }
         }
     }
@@ -764,7 +766,7 @@ Page {
                             mmsGroupAction.trigger()
                             return
                         }
-                        contextMenu.caller = header;
+                        contextMenu.caller = trailingActionArea;
                         contextMenu.updateGroupTypes();
                         contextMenu.show();
                     }
@@ -940,6 +942,9 @@ Page {
                 property var participants: null
                 property var account: null
                 text: {
+                    if (account.protocolInfo.name == "irc") {
+                        return i18n.tr("Join IRC Channel...")
+                    }
                     var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
                        protocolDisplayName = account.protocolInfo.serviceName;
@@ -958,16 +963,23 @@ Page {
             }
             actionList.actions = []
 
-            actionList.addAction(mmsGroupAction)
-
-            for (var i in telepathyHelper.textAccounts.active) {
+            if (telepathyHelper.phoneAccounts.active.length > 0) {
+                actionList.addAction(mmsGroupAction)
+            }
+            if (!account || account.type == AccountEntry.PhoneAccount) {
+                return
+            }
+            var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
+            actionList.addAction(action)
+ 
+            /*for (var i in telepathyHelper.textAccounts.active) {
                 var account = telepathyHelper.textAccounts.active[i]
                 if (account.type == AccountEntry.PhoneAccount) {
                     continue
                 }
                 var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
                 actionList.addAction(action)
-            }
+            }*/
         }
     }
 
