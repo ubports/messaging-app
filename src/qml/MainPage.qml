@@ -33,8 +33,6 @@ Page {
     property alias threadCount: threadList.count
     property alias displayedThreadIndex: threadList.currentIndex
 
-    property var _messagesPage: null
-
     function startSelection() {
         threadList.startSelection()
     }
@@ -233,8 +231,36 @@ Page {
             selected: true
         }
 
-        listDelegate: ThreadDelegate {
+        onCurrentItemChanged: {
+            currentItem.show()
+            // Keep focus on current page
+            threadList.forceActiveFocus()
+        }
+
+        listDelegate: ThreadDelegate {            
             id: threadDelegate
+
+            function show()
+            {
+                var properties = model.properties
+                properties["keyboardFocus"] = false
+                properties["threads"] = model.threads
+                var participantIds = [];
+                for (var i in model.participants) {
+                    participantIds.push(model.participants[i].identifier)
+                }
+                properties["participantIds"] = participantIds
+                properties["presenceRequest"] = threadDelegate.presenceItem
+                if (displayedEvent != null) {
+                    properties["scrollToEventId"] = displayedEvent.eventId
+                }
+                delete properties["participants"]
+                delete properties["localPendingParticipants"]
+                delete properties["remotePendingParticipants"]
+                mainView.showMessagesView(properties)
+            }
+
+
             // FIXME: find a better unique name
             objectName: "thread%1".arg(participants[0].identifier)
             Component.onCompleted: mainPage.newThreadCreated(model)
@@ -253,31 +279,13 @@ Page {
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
+
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
                 } else {
-                    var properties = model.properties
-                    
-                    properties["keyboardFocus"] = false
-                    properties["threads"] = model.threads
-                    var participantIds = [];
-                    for (var i in model.participants) {
-                        participantIds.push(model.participants[i].identifier)
-                    }
-                    properties["participantIds"] = participantIds
-                    properties["presenceRequest"] = threadDelegate.presenceItem
-                    if (displayedEvent != null) {
-                        properties["scrollToEventId"] = displayedEvent.eventId
-                    }
-                    delete properties["participants"]
-                    delete properties["localPendingParticipants"]
-                    delete properties["remotePendingParticipants"]
-                    mainView.showMessagesView(properties)
-
-                    // mark this item as current
                     threadList.currentIndex = index
                 }
             }
@@ -368,4 +376,13 @@ Page {
             threadList.currentItem.forceActiveFocus()
         }
     }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: mainPage
+        when: pageStack.columns === 1
+    }
+
+    KeyNavigation.right: pageStack.activePage
 }

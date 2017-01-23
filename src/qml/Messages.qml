@@ -1537,4 +1537,15 @@ Page {
         flickableItem: messageList
         align: Qt.AlignTrailing
     }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: messages
+        when: messages.active
+    }
+    onActiveFocusChanged: {
+        if (activeFocus)
+            composeBar.forceFocus()
+    }
 }
