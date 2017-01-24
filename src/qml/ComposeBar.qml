@@ -66,7 +66,8 @@ Item {
     }
 
     function forceFocus() {
-        messageTextArea.forceActiveFocus()
+        if (showContents)
+            messageTextArea.forceActiveFocus()
     }
 
     function reset() {

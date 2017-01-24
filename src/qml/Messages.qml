@@ -898,7 +898,8 @@ Page {
             messages.ready()
         }
         processPendingEvents()
-        composeBar.forceFocus()
+        if (!newMessage)
+            composeBar.forceFocus()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -1537,5 +1538,18 @@ Page {
     Scrollbar {
         flickableItem: messageList
         align: Qt.AlignTrailing
+    }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: messages
+        when: messages.active
+    }
+
+    onActiveFocusChanged: {
+        if (activeFocus && !newMessage) {
+            composeBar.forceFocus()
+        }
     }
 }

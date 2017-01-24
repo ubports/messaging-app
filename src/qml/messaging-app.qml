@@ -369,6 +369,9 @@ MainView {
 
     AdaptivePageLayout {
         id: layout
+
+        property var activePage: null
+
         anchors.fill: parent
         layouts: PageColumnsLayout {
             when: mainStack.width >= units.gu(90)
