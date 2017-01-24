@@ -30,6 +30,7 @@ MultipleSelectionListView {
 
     property var _currentSwipedItem: null
     property string latestEventId: ""
+    property var participants: []
 
     function shareSelectedMessages()
     {
@@ -94,6 +95,13 @@ MultipleSelectionListView {
                               "delegateItem": Qt.binding(function(){ return loader })}
             var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
             loader.setSource(sourceFile, properties)
+        }
+
+        Binding {
+            target: loader.item
+            property: "participants"
+            value: root.participants
+            when: (textMessageType !== HistoryThreadModel.MessageTypeInformation && Loader.Ready)
         }
     }
 

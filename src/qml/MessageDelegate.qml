@@ -46,6 +46,8 @@ ListItem {
     property string accountLabel: ""
     property bool isMultimedia: false
     property var _lastItem: textBubble.visible ? textBubble : attachmentsLoader.item.lastItem
+    property alias participants: textBubble.participants
+
     swipeEnabled: !(attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
 
     function deleteMessage()
@@ -248,6 +250,7 @@ ListItem {
 
     MessageBubble {
         id: textBubble
+
         isMultimedia: messageDelegate.isMultimedia
         anchors {
             bottom: parent.bottom

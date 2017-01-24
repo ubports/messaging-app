@@ -36,6 +36,7 @@ Item {
     property var textMessage: messageData.textMessage
     property string accountId: messageData.accountId
     property int index: -1
+    property alias participants: messageDelegate.participants
 
     // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
     // bellow the item
