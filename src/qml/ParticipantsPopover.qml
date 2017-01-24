@@ -29,9 +29,11 @@ Item {
     id: root
 
     property variant participants: []
-    property variant _popover: null
+    readonly property bool active: (_popover != null)
+    readonly property bool popupVisible: active && _popover.isPopup
 
-    signal selected(var participant)
+    property variant _popover: null
+    property var _sortedParticipants: []
 
     function compareParticipants(p0, p1)
     {
@@ -45,9 +47,20 @@ Item {
           return 0
     }
 
-    function showParticpantsStartWith(parent, prefix)
+    function close()
     {
-        var result = []
+        if (_popover) {
+            if (_popover.isPopup)
+                PopupUtils.close(_popover)
+            else
+                root._popover.destroy()
+            root._popover = null
+        }
+    }
+
+    function showParticpantsStartWith(parent, prefix, showPopup)
+    {
+        var filter = []
         for(var i = 0; i < participants.length; i++) {
             var valid = true
             if (prefix.length !== 0) {
@@ -55,32 +68,57 @@ Item {
             }
 
             if (valid) {
-                result.push(participants[i])
+                filter.push(participants[i])
             }
         }
 
-        if (result.length === 0)
+        root._sortedParticipants = filter
+        if (filter.length === 0 && popupVisible)
         {
-            return
+            return ""
         }
 
-        if (result.length === 1)
+        if ((filter.length === 1) && popupVisible)
         {
-            selected(result[0])
-            return
+            return filter[0].identifier
         }
 
         if (_popover === null) {
-            _popover = PopupUtils.open(componentParticipantsPopover, parent)
+            if (showPopup)
+                _popover = PopupUtils.open(componentParticipantsPopover, parent)
+            else
+                _popover = nonVisualPopover.createObject(root, {"currentIndex": 0})
+
         }
-        result.sort(compareParticipants)
-        _popover.model = result
+
+        _popover.model = _sortedParticipants
+        return (filter.length > 0 ? filter[0].identifier : "")
     }
 
-    onSelected: {
-        if (_popover) {
-            PopupUtils.close(_popover)
-            root._popover = null
+    function nextItem()
+    {
+        if (_popover === null)
+            return ""
+
+        var newIndex = -1
+        if (_popover.currentIndex < (_sortedParticipants.length - 1))
+            newIndex = _popover.currentIndex + 1
+        else
+            newIndex =  0
+
+        _popover.currentIndex = newIndex
+        return (_sortedParticipants[newIndex].identifier)
+    }
+
+    Component {
+        id: nonVisualPopover
+
+        QtObject {
+            property var model: view.model
+            property int currentIndex: -1
+            readonly property bool isPopup: false
+
+            Component.onDestruction: root._popover = null
         }
     }
 
@@ -91,11 +129,13 @@ Item {
             id: participantsPopover
 
             property alias model: view.model
+            property alias currentIndex: view.currentIndex
+            readonly property bool isPopup: true
 
             UbuntuListView {
                 id: view
 
-                width: root.width / 2
+                width: root.width
                 height: Math.min(contentHeight, root.height / 2)
                 model: []
 
@@ -110,10 +150,6 @@ Item {
                         id: layout
                         title.text: modelData.identifier
                     }
-                }
-                onActiveFocusChanged: {
-                    if (!activeFocus && root._popover)
-                        root.selected(null)
                 }
                 Keys.onEscapePressed: root.selected(null)
             }
