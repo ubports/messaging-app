@@ -789,7 +789,7 @@ Page {
                         commit()
                 }
 
-                Keys.onDownPressed: searchListLoader.item.forceActiveFocus()
+                KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
             }
 
             PropertyChanges {
@@ -1505,6 +1505,8 @@ Page {
                 reloadFilters = !reloadFilters
             }
         }
+
+        KeyNavigation.up: messages.header.contents
     }
 
     SendMessageValidator {

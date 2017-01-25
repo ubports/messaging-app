@@ -46,6 +46,7 @@ Item {
     property bool returnToSend: false
     property bool enableAttachments: true
     property alias participants: participantPopover.participants
+    readonly property alias textArea: messageTextArea
 
     onRecordingChanged: {
         if (recording) {
