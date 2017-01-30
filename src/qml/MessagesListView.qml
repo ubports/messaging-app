@@ -30,7 +30,7 @@ MultipleSelectionListView {
 
     property var _currentSwipedItem: null
     property string latestEventId: ""
-    property var participants: []
+    property var account: null
 
     function shareSelectedMessages()
     {
@@ -99,8 +99,8 @@ MultipleSelectionListView {
 
         Binding {
             target: loader.item
-            property: "participants"
-            value: root.participants
+            property: "account"
+            value: root.account
             when: (textMessageType !== HistoryThreadModel.MessageTypeInformation && Loader.Ready)
         }
     }

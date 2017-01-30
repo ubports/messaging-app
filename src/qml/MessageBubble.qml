@@ -35,9 +35,9 @@ BorderImage {
     property var messageTimeStamp
     property int maxDelegateWidth: units.gu(27)
     property string accountName
+    property var account
+    property var _accountRegex: account ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
     property bool isMultimedia: false
-    property var participants: []
-    property var _participatnsRegex: []
     // FIXME for now we just display the delivery status if it's greater than Accepted
     property bool showDeliveryStatus: false
     property bool deliveryStatusAvailable: showDeliveryStatus && (statusDelivered || statusRead)
@@ -47,17 +47,6 @@ BorderImage {
                                      messageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed) && !messageIncoming
     readonly property bool statusDelivered: (messageStatus === HistoryThreadModel.MessageStatusDelivered)
     readonly property bool statusRead: (messageStatus === HistoryThreadModel.MessageStatusRead)
-
-    onParticipantsChanged: {
-        var list = []
-        for (var i = 0; i < participants.length; i++) {
-            var p = participants[i]
-            list.push({"regexp": new RegExp('\\b' + p.identifier + '\\b', "g"),
-                       "identifier": "<b>" + p.identifier + "</b>"})
-        }
-
-        _participatnsRegex = list
-    }
 
     // XXXX: should be hoisted
     function getCountryCode() {
@@ -92,10 +81,8 @@ BorderImage {
         }
 
         // hightlight participants names
-        for (var p = 0; p < _participatnsRegex.length; p++) {
-            var r = _participatnsRegex[p]
-            text = text.replace(r.regexp, r.identifier)
-        }
+        if (_accountRegex)
+            text = text.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
 
         return text
     }

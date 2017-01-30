@@ -1330,7 +1330,7 @@ Page {
         objectName: "messageList"
         visible: !isSearching
         listModel: messages.newMessage ? null : eventModel
-        participants: messages.participants
+        account: messages.account
         activeFocusOnTab: false
         focus: false
         onActiveFocusChanged: {

@@ -46,7 +46,7 @@ ListItem {
     property string accountLabel: ""
     property bool isMultimedia: false
     property var _lastItem: textBubble.visible ? textBubble : attachmentsLoader.item.lastItem
-    property alias participants: textBubble.participants
+    property alias account: textBubble.account
 
     swipeEnabled: !(attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
 
