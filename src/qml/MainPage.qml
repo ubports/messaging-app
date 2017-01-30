@@ -205,8 +205,6 @@ Page {
         id: threadList
         objectName: "threadList"
 
-        property bool _keepFocus: true
-
         anchors {
             top: parent.top
             topMargin: mainView.dualPanel ? pageHeader.height : 0
@@ -236,13 +234,8 @@ Page {
         onCurrentItemChanged: {
             if (pageStack.columns > 1) {
                 currentItem.show()
-                if (_keepFocus) {
-                    // Keep focus on current page
-                    threadList.forceActiveFocus()
-                } else {
-                    pageStack.activePage.forceActiveFocus()
-                    _keepFocus = true
-                }
+                // Keep focus on current page
+                threadList.forceActiveFocus()
             }
         }
 
@@ -294,14 +287,11 @@ Page {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
-                } else if (pageStack.columns <= 1) {
-                    threadList.currentIndex = index
+                }
+                threadList.currentIndex = index
+
+                if (pageStack.columns <= 1) {
                     show()
-                } else if (threadList.currentIndex != index) {
-                    threadList._keepFocus = false
-                    threadList.currentIndex = index
-                } else {
-                    threadList.forceActiveFocus()
                 }
             }
             onPressAndHold: {
