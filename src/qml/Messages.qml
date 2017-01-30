@@ -1550,7 +1550,7 @@ Page {
 
     onActiveFocusChanged: {
         if (activeFocus && !newMessage) {
-            composeBar.forceFocus()
+            composeBar.textArea.forceActiveFocus()
         }
     }
 }
