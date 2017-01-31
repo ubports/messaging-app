@@ -232,9 +232,11 @@ Page {
         }
 
         onCurrentItemChanged: {
-            currentItem.show()
-            // Keep focus on current page
-            threadList.forceActiveFocus()
+            if (pageStack.columns > 1) {
+                currentItem.show()
+                // Keep focus on current page
+                threadList.forceActiveFocus()
+            }
         }
 
         listDelegate: ThreadDelegate {            
@@ -285,8 +287,11 @@ Page {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
-                } else {
-                    threadList.currentIndex = index
+                }
+                threadList.currentIndex = index
+
+                if (pageStack.columns <= 1) {
+                    show()
                 }
             }
             onPressAndHold: {
@@ -350,10 +355,7 @@ Page {
             createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
                                           mainPage,
                                           {"flickableItem": threadList})
-            if (threadList.currentIndex === -1)
-                threadList.currentIndex = 0
-
-            threadList.currentItem.forceActiveFocus()
+            threadList.forceActiveFocus()
         }
     }
 
