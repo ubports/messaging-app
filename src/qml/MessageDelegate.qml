@@ -289,14 +289,7 @@ ListItem {
         messageTimeStamp: messageData.timestamp
         accountName: messageDelegate.accountLabel
         messageStatus: messageData.textMessageStatus
-        sender: {
-            if (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) {
-                if (messageData.sender.alias && messageData.sender.alias !== "")
-                    return messageData.sender.alias
-                else if (messageData.senderId)
-                    return messageData.senderId
-            }
-        }
+        sender: (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) ? messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId : ""
 
         showDeliveryStatus: true
     }
