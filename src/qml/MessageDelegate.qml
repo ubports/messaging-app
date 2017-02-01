@@ -291,7 +291,7 @@ ListItem {
         messageStatus: messageData.textMessageStatus
         sender: {
             if (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) {
-                if (messageData.sender) {
+                if (messageData.sender && messageIncoming) {
                     if (messageData.sender.alias !== undefined && messageData.sender.alias !== "") {
                         return messageData.sender.alias
                     } else if (messageData.sender.identifier !== undefined && messageData.sender.identifier !== "") {
