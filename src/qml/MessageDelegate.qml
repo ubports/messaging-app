@@ -289,8 +289,20 @@ ListItem {
         messageTimeStamp: messageData.timestamp
         accountName: messageDelegate.accountLabel
         messageStatus: messageData.textMessageStatus
-        sender: (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) ? messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId : ""
-
+        sender: {
+            if (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) {
+                if (messageData.sender) {
+                    if (messageData.sender.alias !== undefined && messageData.sender.alias !== "") {
+                        return messageData.sender.alias
+                    } else if (messageData.sender.identifier !== undefined && messageData.sender.identifier !== "") {
+                        return messageData.sender.identifier
+                    } else if (messageData.senderId !== "") {
+                        return messageData.senderId
+                    }
+                }
+            }
+            return ""
+        }
         showDeliveryStatus: true
     }
 
