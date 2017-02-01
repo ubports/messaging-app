@@ -138,6 +138,15 @@ MainView {
         }
     }
 
+    Component.onDestruction: {
+        for (var i in telepathyHelper.textAccounts.active) {
+            var account = telepathyHelper.textAccounts.active[i]
+            if (account.protocolInfo.leaveRoomsOnClose) {
+                chatManager.leaveRooms(account.accountId, "")
+            }
+        }
+    }
+
     Connections {
         target: telepathyHelper
         // restore default bindings if any system settings changed
@@ -233,7 +242,7 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-        mainPage.displayedThreadIndex = -1
+         mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {
@@ -360,6 +369,9 @@ MainView {
 
     AdaptivePageLayout {
         id: layout
+
+        property var activePage: null
+
         anchors.fill: parent
         layouts: PageColumnsLayout {
             when: mainStack.width >= units.gu(90)
