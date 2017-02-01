@@ -1344,6 +1344,7 @@ Page {
             anchors.fill: parent
             Image {
                 width: units.gu(20)
+                opacity: 0.1
                 fillMode: Image.PreserveAspectFit
                 anchors.centerIn: parent
                 visible: source !== ""

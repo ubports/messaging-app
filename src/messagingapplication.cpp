@@ -370,3 +370,21 @@ QObject *MessagingApplication::findMessagingChild(const QString &objectName, con
 {
     return findRecursiveChild(m_view->rootObject(), objectName, property, value);
 }
+
+// Check if a delegate file exists with protocol name as suffix
+// If true use the specialized delegate
+// If false use the default delegate
+QUrl MessagingApplication::delegateFromProtocol(const QUrl &delegate, const QString &protocol)
+{
+    if (protocol.isEmpty())
+        return delegate;
+
+    QString localFile = delegate.toLocalFile();
+    QString fileNameWithProtocol = QString("%1_%2.qml")
+            .arg(localFile.mid(0, localFile.lastIndexOf(".")))
+            .arg(protocol.toLower());
+
+    if (QFile::exists(fileNameWithProtocol))
+        return fileNameWithProtocol;
+    return delegate;
+}
