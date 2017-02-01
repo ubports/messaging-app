@@ -127,7 +127,7 @@ ListItem {
             .arg(incoming ? "green" : "blue")
             .arg(sender)
             .arg(messageDelegate.messageText)
-        font.bold: !iconming && _accountRegex && text.match(_accountRegex)
+        font.bold: messageDelegate.incoming && _accountRegex && text.match(_accountRegex)
         wrapMode: Text.WordWrap
     }
 
