@@ -110,7 +110,10 @@ Page {
                     iconName: "add"
                     shortcut: "Ctrl+N"
                     enabled: mainPage.state == "default"
-                    onTriggered: mainView.startNewMessage()
+                    onTriggered: {
+                        threadList.currentIndex = -1
+                        mainView.startNewMessage()
+                    }
                 }
             ]
 
