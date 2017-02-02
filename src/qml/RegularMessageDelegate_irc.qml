@@ -122,12 +122,15 @@ ListItem {
         anchors {
             left: parent.left
             right: parent.right
+            margins: units.gu(1)
         }
         text: "<font color=\"%1\">[%2]</font>\t%3"
             .arg(incoming ? "green" : "blue")
             .arg(sender)
             .arg(messageDelegate.messageText)
-        font.bold: messageDelegate.incoming && _accountRegex && text.match(_accountRegex)
+        font.bold: (messages.chatType === HistoryThreadModel.ChatTypeRoom) &&
+                   messageDelegate.incoming &&
+                   (_accountRegex && text.match(_accountRegex))
         wrapMode: Text.WordWrap
     }
 
