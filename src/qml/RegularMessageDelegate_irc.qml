@@ -21,6 +21,8 @@ import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
+import "3rd_party/ba-linkify.js" as BaLinkify
+
 ListItem {
     id: messageDelegate
     objectName: "messageDelegate"
@@ -103,13 +105,34 @@ ListItem {
     Label {
         id: label
 
-        function formatText(msg) {
+        function parseText(text) {
+            if (!text) {
+                return text;
+            }
+
+            // remove html tags
+            text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
+            // wrap text in a div to keep whitespaces and new lines from collapsing
+            text = '<div style="white-space: pre-wrap;">' + text + '</div>';
+            // check for links
+            var htmlText = BaLinkify.linkify(text);
+            if (htmlText !== text) {
+                return htmlText
+            }
+
+            // linkify phone numbers if no web links were found
+            var phoneNumbers = PhoneNumber.PhoneUtils.matchInText(text, getCountryCode())
+            for (var i = 0; i < phoneNumbers.length; ++i) {
+                var currentNumber = phoneNumbers[i]
+                text = text.replace(currentNumber, formatTelSchemeWith(currentNumber))
+            }
+
             if ((messages.chatType !== HistoryThreadModel.ChatTypeRoom) ||
                 !messageDelegate.incoming ||
                 !_accountRegex)
-                return msg
+                return text
 
-            return msg.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
+            return text.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
         }
 
         property string sender: {
@@ -137,9 +160,11 @@ ListItem {
             .arg(Qt.formatTime(messageData.timestamp, Qt.DefaultLocaleShortDate))
             .arg(incoming ? "green" : "blue")
             .arg(sender)
-            .arg(formatText(messageDelegate.messageText))
+            .arg(parseText(messageDelegate.messageText))
 
         wrapMode: Text.WordWrap
+
+        onLinkActivated: Qt.openUrlExternally(link)
     }
 
     leadingActions: ListItemActions {
