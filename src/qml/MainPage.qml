@@ -32,9 +32,16 @@ Page {
     property bool isEmpty: threadCount == 0 && !threadModel.canFetchMore
     property alias threadCount: threadList.count
     property alias displayedThreadIndex: threadList.currentIndex
+    property bool _keepFocus: true
 
     function startSelection() {
         threadList.startSelection()
+    }
+
+    function selectMessage(index) {
+        if (index !== -1)
+            _keepFocus = false
+        threadList.currentIndex = index
     }
 
     signal newThreadCreated(var newThread)
@@ -237,8 +244,12 @@ Page {
         onCurrentItemChanged: {
             if (pageStack.columns > 1) {
                 currentItem.show()
-                // Keep focus on current page
-                threadList.forceActiveFocus()
+                if (mainPage._keepFocus)
+                    // Keep focus on current page
+                    threadList.forceActiveFocus()
+                else if (pageStack.activePage)
+                    pageStack.activePage.forceActiveFocus()
+                mainPage._keepFocus = true
             }
         }
 

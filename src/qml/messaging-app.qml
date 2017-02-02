@@ -179,6 +179,15 @@ MainView {
 
     HistoryGroupedThreadsModel {
         id: threadModel
+
+        function indexOf(threadId) {
+            for (var i=0; i < count; i++) {
+                if (get(i).threadId === threadId)
+                    return i
+            }
+            return -1
+        }
+
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
             sortField: "lastEventTimestamp"
@@ -354,8 +363,7 @@ MainView {
                 properties["participants"] = participants;
             }
         }
-
-        showMessagesView(properties)
+        mainPage.selectMessage(threadModel.indexOf(properties.thredId))
     }
 
     Connections {
