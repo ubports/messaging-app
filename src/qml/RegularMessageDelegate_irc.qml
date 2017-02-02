@@ -103,6 +103,15 @@ ListItem {
     Label {
         id: label
 
+        function formatText(msg) {
+            if ((messages.chatType !== HistoryThreadModel.ChatTypeRoom) ||
+                !messageDelegate.incoming ||
+                !_accountRegex)
+                return msg
+
+            return msg.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
+        }
+
         property string sender: {
             if (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) {
                 if (messageData.sender && incoming) {
@@ -127,14 +136,10 @@ ListItem {
         text: "<font color=\"%1\">[%2]</font>\t%3"
             .arg(incoming ? "green" : "blue")
             .arg(sender)
-            .arg(messageDelegate.messageText)
-        font.bold: (messages.chatType === HistoryThreadModel.ChatTypeRoom) &&
-                   messageDelegate.incoming &&
-                   (_accountRegex && text.match(_accountRegex))
+            .arg(formatText(messageDelegate.messageText))
+
         wrapMode: Text.WordWrap
     }
-
-    //highlightColor: "transparent"
 
     leadingActions: ListItemActions {
         actions: [
@@ -144,17 +149,6 @@ ListItem {
                 onTriggered: deleteMessage()
             }
         ]
-        delegate: Rectangle {
-            width: height + units.gu(4.5)
-            color: UbuntuColors.red
-            Icon {
-                name: action.iconName
-                width: units.gu(3)
-                height: width
-                color: "white"
-                anchors.centerIn: parent
-            }
-        }
     }
 
     trailingActions: ListItemActions {
