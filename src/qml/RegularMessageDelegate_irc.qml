@@ -201,4 +201,10 @@ ListItem {
             }
         ]
     }
+
+    Component.onCompleted: {
+        if (messageData.newEvent) {
+            messages.markMessageAsRead(messageData.accountId, threadId, eventId, type);
+        }
+    }
 }
