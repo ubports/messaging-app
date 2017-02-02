@@ -133,7 +133,8 @@ ListItem {
             right: parent.right
             margins: units.gu(1)
         }
-        text: "<font color=\"%1\">[%2]</font>\t%3"
+        text: "<font color=\"%2\">%1 [%3]</font>\t%4"
+            .arg(Qt.formatTime(messageData.timestamp, Qt.DefaultLocaleShortDate))
             .arg(incoming ? "green" : "blue")
             .arg(sender)
             .arg(formatText(messageDelegate.messageText))
