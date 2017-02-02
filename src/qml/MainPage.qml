@@ -33,8 +33,6 @@ Page {
     property alias threadCount: threadList.count
     property alias displayedThreadIndex: threadList.currentIndex
 
-    property var _messagesPage: null
-
     function startSelection() {
         threadList.startSelection()
     }
@@ -91,6 +89,8 @@ Page {
                     objectName: "searchAction"
                     iconName: "search"
                     text: i18n.tr("Search")
+                    shortcut: "Ctrl+F"
+                    enabled: mainPage.state == "default"
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -108,6 +108,8 @@ Page {
                     objectName: "newMessageAction"
                     text: i18n.tr("New message")
                     iconName: "add"
+                    shortcut: "Ctrl+N"
+                    enabled: mainPage.state == "default"
                     onTriggered: mainView.startNewMessage()
                 }
             ]
@@ -129,6 +131,8 @@ Page {
                     visible: mainPage.searching
                     iconName: "back"
                     text: i18n.tr("Cancel")
+                    shortcut: "Esc"
+                    enabled: mainPage.state == "search"
                     onTriggered: {
                         searchField.text = ""
                         mainPage.searching = false
@@ -152,7 +156,9 @@ Page {
                 Action {
                     objectName: "selectionModeCancelAction"
                     iconName: "back"
+                    shortcut: "Esc"
                     onTriggered: threadList.cancelSelection()
+                    enabled: mainPage.state == "selection"
                 }
             ]
 
@@ -225,8 +231,38 @@ Page {
             selected: true
         }
 
-        listDelegate: ThreadDelegate {
+        onCurrentItemChanged: {
+            if (pageStack.columns > 1) {
+                currentItem.show()
+                // Keep focus on current page
+                threadList.forceActiveFocus()
+            }
+        }
+
+        listDelegate: ThreadDelegate {            
             id: threadDelegate
+
+            function show()
+            {
+                var properties = model.properties
+                properties["keyboardFocus"] = false
+                properties["threads"] = model.threads
+                var participantIds = [];
+                for (var i in model.participants) {
+                    participantIds.push(model.participants[i].identifier)
+                }
+                properties["participantIds"] = participantIds
+                properties["presenceRequest"] = threadDelegate.presenceItem
+                if (displayedEvent != null) {
+                    properties["scrollToEventId"] = displayedEvent.eventId
+                }
+                delete properties["participants"]
+                delete properties["localPendingParticipants"]
+                delete properties["remotePendingParticipants"]
+                mainView.showMessagesView(properties)
+            }
+
+
             // FIXME: find a better unique name
             objectName: "thread%1".arg(participants[0].identifier)
             Component.onCompleted: mainPage.newThreadCreated(model)
@@ -245,32 +281,17 @@ Page {
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
+
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
-                } else {
-                    var properties = model.properties
-                    
-                    properties["keyboardFocus"] = false
-                    properties["threads"] = model.threads
-                    var participantIds = [];
-                    for (var i in model.participants) {
-                        participantIds.push(model.participants[i].identifier)
-                    }
-                    properties["participantIds"] = participantIds
-                    properties["presenceRequest"] = threadDelegate.presenceItem
-                    if (displayedEvent != null) {
-                        properties["scrollToEventId"] = displayedEvent.eventId
-                    }
-                    delete properties["participants"]
-                    delete properties["localPendingParticipants"]
-                    delete properties["remotePendingParticipants"]
-                    mainView.showMessagesView(properties)
+                }
+                threadList.currentIndex = index
 
-                    // mark this item as current
-                    threadList.currentIndex = index
+                if (pageStack.columns <= 1) {
+                    show()
                 }
             }
             onPressAndHold: {
@@ -330,9 +351,12 @@ Page {
         interval: 1
         repeat: false
         running: true
-        onTriggered: createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
-                                                   mainPage,
-                                                   {"flickableItem": threadList})
+        onTriggered: {
+            createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
+                                          mainPage,
+                                          {"flickableItem": threadList})
+            threadList.forceActiveFocus()
+        }
     }
 
     Loader {
@@ -348,4 +372,19 @@ Page {
             hint.visible: enabled
         }
     }
+
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            threadList.currentItem.forceActiveFocus()
+        }
+    }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: mainPage
+        when: pageStack.columns === 1
+    }
+
+    KeyNavigation.right: pageStack.activePage
 }

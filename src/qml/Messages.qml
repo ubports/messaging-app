@@ -89,7 +89,7 @@ Page {
     property bool userTyping: false
     property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
-    property variant firstParticipant: participants.length > 0 ? participants[0] : null
+    property variant firstParticipant: (participants && participants.length > 0) ? participants[0] : null
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
@@ -134,6 +134,9 @@ Page {
         // suru divider must be empty if there is only one account
         for (var i in messages.accountsModel) {
             accountNames.push(messages.accountsModel[i].displayName)
+        }
+        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
+            return accountNames
         }
         return accountNames.length > 1 ? accountNames : []
     }
@@ -189,9 +192,10 @@ Page {
                 }
             }
             return null
-        } else {
-            return mainView.account
+        } else if (!(telepathyHelper.phoneAccounts.active.length > 0) && messages.accountsModel.length > 0) {
+            return messages.accountsModel[0]
         }
+        return mainView.account
     }
 
     function checkThreadInFilters(newAccountId, threadId) {
@@ -529,18 +533,24 @@ Page {
         }
     }
 
+
     header: PageHeader {
         id: pageHeader
 
-        property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
+        property bool showSections: {
+            if (headerSections.model.length > 1) {
+                return true
+            }
+            return (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount)
+        }
 
         title: {
             if (landscape) {
                 return ""
             }
 
-            if (participants.length == 1) {
+            if (participants && participants.length === 1) {
                 return firstRecipientAlias
             }
 
@@ -556,7 +566,7 @@ Page {
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
-            visible: headerSections.model.length > 1
+            visible: pageHeader.showSections
             enabled: visible
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
@@ -569,11 +579,22 @@ Page {
             Component.onCompleted: model = getSectionsModel()
         }
 
-        extension: headerSections.model.length > 1 ? headerSections : null
+        extension: pageHeader.showSections ? headerSections : null
 
-        leadingActionBar {
-            id: leadingBar
-        }
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: "Esc"
+               onTriggered: {
+                   if (messages.state == "selection") {
+                        messageList.cancelSelection()
+                   } else {
+                        mainView.emptyStack(true)
+                   }
+               }
+            }
+        ]
 
         trailingActionBar {
             id: trailingBar
@@ -584,6 +605,7 @@ Page {
             anchors {
                 bottom: parent.bottom
                 right: parent.right
+                bottomMargin: -headerSections.height
             }
         }
     }
@@ -593,14 +615,6 @@ Page {
             id: selectionState
             name: "selection"
             when: selectionMode
-
-            property list<QtObject> leadingActions: [
-                Action {
-                    objectName: "selectionModeCancelAction"
-                    iconName: "back"
-                    onTriggered: messageList.cancelSelection()
-                }
-            ]
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -631,7 +645,6 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
-                leadingActions: selectionState.leadingActions
                 trailingActions: selectionState.trailingActions
             }
         },
@@ -646,14 +659,23 @@ Page {
                     objectName: "groupChatAction"
                     iconName: "contact-group"
                     onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                },
+                Action {
+                    id: rejoinGroupChatAction
+                    objectName: "rejoinGroupChatAction"
+                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin && messages.account.connected
+                    visible: enabled
+                    iconName: "view-refresh"
+                    onTriggered: messages.chatEntry.startChat()
                 }
+
             ]
 
             PropertyChanges {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    var finalParticipants = participants.length
+                    var finalParticipants = (participants ? participants.length : 0)
                     if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         if (chatEntry.title !== "") {
                             return chatEntry.title
@@ -684,7 +706,7 @@ Page {
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1 && contactWatcher.interactive
+                    visible: participants && participants.length === 1 && contactWatcher.interactive
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -695,7 +717,7 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
+                    visible: contactWatcher.isUnknown && participants && participants.length === 1 && contactWatcher.interactive
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
@@ -744,7 +766,7 @@ Page {
                             mmsGroupAction.trigger()
                             return
                         }
-                        contextMenu.caller = header;
+                        contextMenu.caller = trailingActionArea;
                         contextMenu.updateGroupTypes();
                         contextMenu.show();
                     }
@@ -762,6 +784,12 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
+                onActiveFocusChanged: {
+                    if (!activeFocus && (searchListLoader.status != Loader.Ready || !searchListLoader.item.activeFocus))
+                        commit()
+                }
+
+                KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
             }
 
             PropertyChanges {
@@ -775,10 +803,11 @@ Page {
             id: knownContactState
             name: "knownContact"
             when: participants.length == 1 && !contactWatcher.isUnknown
+
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1
+                    visible: participants && participants.length === 1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -856,7 +885,7 @@ Page {
 
     onReady: {
         isReady = true
-        if (participants.length === 0 && keyboardFocus)
+        if (participants && participants.length === 0 && keyboardFocus)
             multiRecipient.forceFocus()
     }
 
@@ -869,6 +898,8 @@ Page {
             messages.ready()
         }
         processPendingEvents()
+        if (!newMessage)
+            composeBar.forceFocus()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -912,6 +943,9 @@ Page {
                 property var participants: null
                 property var account: null
                 text: {
+                    if (account.protocolInfo.name == "irc") {
+                        return i18n.tr("Join IRC Channel...")
+                    }
                     var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
                        protocolDisplayName = account.protocolInfo.serviceName;
@@ -930,16 +964,23 @@ Page {
             }
             actionList.actions = []
 
-            actionList.addAction(mmsGroupAction)
-
-            for (var i in telepathyHelper.textAccounts.active) {
+            if (telepathyHelper.phoneAccounts.active.length > 0) {
+                actionList.addAction(mmsGroupAction)
+            }
+            if (!account || account.type == AccountEntry.PhoneAccount) {
+                return
+            }
+            var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
+            actionList.addAction(action)
+ 
+            /*for (var i in telepathyHelper.textAccounts.active) {
                 var account = telepathyHelper.textAccounts.active[i]
                 if (account.type == AccountEntry.PhoneAccount) {
                     continue
                 }
                 var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
                 actionList.addAction(action)
-            }
+            }*/
         }
     }
 
@@ -988,7 +1029,7 @@ Page {
         participantIds: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
-        autoRequest: !newMessage
+        autoRequest: !newMessage && !messages.account.protocolInfo.enableRejoin
 
         onChatTypeChanged: {
             messages.chatType = chatEntryObject.chatType
@@ -1091,7 +1132,7 @@ Page {
             return account.accountId
         }
         // we just request presence on 1-1 chats
-        identifier: participants.length == 1 ? participants[0].identifier : ""
+        identifier: participants && participants.length === 1 ? participants[0].identifier : ""
     }
 
     ActivityIndicator {
@@ -1109,7 +1150,7 @@ Page {
 
         property int resultCount: (status === Loader.Ready) ? item.count : 0
 
-        source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
+        source: (multiRecipient.searchString !== "") ?
                 Qt.resolvedUrl("ContactSearchList.qml") : ""
         clip: true
         visible: source != ""
@@ -1136,6 +1177,17 @@ Page {
             property: "filterTerm"
             value: multiRecipient.searchString
             when: (searchListLoader.status === Loader.Ready)
+        }
+
+        Connections {
+            target: searchListLoader.item
+            onActiveFocusChanged: {
+                if (!searchListLoader.item.activeFocus && !multiRecipient.activeFocus)
+                    multiRecipient.commit()
+            }
+            onFocusUp: {
+                multiRecipient.forceActiveFocus()
+            }
         }
 
         Timer {
@@ -1278,12 +1330,21 @@ Page {
         objectName: "messageList"
         visible: !isSearching
         listModel: messages.newMessage ? null : eventModel
+        account: messages.account
+        activeFocusOnTab: false
+        focus: false
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                composeBar.forceFocus()
+            }
+        }
 
         Rectangle {
             color: Theme.palette.normal.background
             anchors.fill: parent
             Image {
                 width: units.gu(20)
+                opacity: 0.1
                 fillMode: Image.PreserveAspectFit
                 anchors.centerIn: parent
                 visible: source !== ""
@@ -1346,6 +1407,9 @@ Page {
                 return false
             }
             if (threads.length > 0) {
+                if (!chatEntry.active && messages.account.protocolInfo.enableRejoin) {
+                    return true
+                }
                 return !threadInformation.chatRoomInfo.Joined
             }
             return false
@@ -1367,7 +1431,10 @@ Page {
             right: parent.right
         }
 
+        participants: messages.participants
         isBroadcast: messages.isBroadcast
+        returnToSend: messages.account.protocolInfo.returnToSend
+        enableAttachments: messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
@@ -1439,6 +1506,8 @@ Page {
                 reloadFilters = !reloadFilters
             }
         }
+
+        KeyNavigation.up: messages.header.contents
     }
 
     SendMessageValidator {
@@ -1473,5 +1542,18 @@ Page {
     Scrollbar {
         flickableItem: messageList
         align: Qt.AlignTrailing
+    }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: messages
+        when: messages.active
+    }
+
+    onActiveFocusChanged: {
+        if (activeFocus && !newMessage) {
+            composeBar.textArea.forceActiveFocus()
+        }
     }
 }

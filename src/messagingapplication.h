@@ -46,6 +46,7 @@ public Q_SLOTS:
     void showNotificationMessage(const QString &message, const QString &icon = QString());
     QObject *findMessagingChild(const QString &objectName);
     QObject *findMessagingChild(const QString &objectName, const QString &property, const QVariant &value);
+    QUrl delegateFromProtocol(const QUrl &delegate, const QString &protocol);
 
 private Q_SLOTS:
     void setFullscreen(bool fullscreen);

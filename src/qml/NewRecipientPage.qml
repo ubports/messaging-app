@@ -74,6 +74,8 @@ Page {
                 }
             ]
         }
+
+
     }
 
     Sections {
@@ -133,6 +135,8 @@ Page {
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
+                    enabled: newRecipientPage.state == "searching"
+                    shortcut: "Esc"
                     onTriggered: {
                         newRecipientPage.forceActiveFocus()
                         newRecipientPage.state = "default"
@@ -171,6 +175,10 @@ Page {
             bottom: keyboard.top
         }
 
+        focus: true
+        currentIndex: -1
+        highlightSelected: true
+        activeFocusOnTab: true
         showAddNewButton: true
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
         // this will be used to callback the app, after create account
@@ -211,6 +219,10 @@ Page {
     onActiveChanged: {
         if (active && (state === "searching")) {
             searchField.forceActiveFocus()
+        } else {
+            if (contactList.currentIndex === -1)
+                contactList.currentIndex = 0
+            contactList.forceActiveFocus()
         }
     }
 
@@ -240,6 +252,21 @@ Page {
             if (newRecipientPage.contactIndex) {
                 contactList.positionViewAtContact(newRecipientPage.contactIndex)
                 newRecipientPage.contactIndex = null
+            }
+        }
+    }
+
+    // WORKAROUND: Wee need this button to register the "Esc" shortcut,
+    // adding it into the trailingActionBar cause the app to crash due a bug on SDK
+    Button {
+        visible: false
+        action: Action {
+            text: i18n.tr("Back")
+            enabled: newRecipientPage.active
+            shortcut: "Esc"
+            onTriggered: {
+                mainStack.removePages(newRecipientPage)
+                newRecipientPage.destroy()
             }
         }
     }

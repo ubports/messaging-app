@@ -75,6 +75,12 @@ Item {
 
     Item {
         id: application
+
+        function delegateFromProtocol(delegate, protocol)
+        {
+            return delegate
+        }
+
         function findMessagingChild(name)
         {
             return null

@@ -20,7 +20,7 @@ import QtQuick 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
 
-Item {
+FocusScope {
     id: searchItem
     property alias text: contactSearch.text
     property alias hasFocus: contactSearch.focus
@@ -28,6 +28,7 @@ Item {
     property int searchResultsHeight: 0
 
     signal contactPicked(string identifier, string alias, string avatar)
+
     anchors {
         left: parent.left
         right: parent.right
@@ -42,8 +43,20 @@ Item {
         anchors.verticalCenter: contactSearch.verticalCenter
         text: i18n.tr("Members:")
     }
+
+    onContactPicked: contactSearch.forceActiveFocus()
+
     TextField {
         id: contactSearch
+
+        function commit()
+        {
+            if (text == "")
+                return
+            searchItem.contactPicked(text, "","")
+            text = ""
+        }
+
         anchors.top: parent.top
         anchors.left: membersLabel.right
         anchors.leftMargin: units.gu(1)
@@ -53,16 +66,13 @@ Item {
         hasClearButton: false
         placeholderText: i18n.tr("Number or contact name")
         inputMethodHints: Qt.ImhNoPredictiveText
-        Keys.onReturnPressed: {
-            if (text == "")
-                return
-            searchItem.contactPicked(text, "","")
-            text = ""
-        }
+        focus: true
+        Keys.onReturnPressed: commit()
+        Keys.onEnterPressed: commit()
+        Keys.onDownPressed: searchListLoader.item.forceActiveFocus()
 
         Icon {
             name: "add"
-            color: Theme.palette.normal.backgroundText
             height: units.gu(2)
             anchors {
                 right: parent.right
@@ -75,8 +85,8 @@ Item {
                     Qt.inputMethod.hide()
                     mainStack.addPageToCurrentColumn(searchItem.parentPage, Qt.resolvedUrl("NewRecipientPage.qml"), {"itemCallback": searchItem.parentPage})
                 }
-                z: 2
             }
+            z: 2
         }
     }
     Loader {
@@ -109,6 +119,13 @@ Item {
         onStatusChanged: {
             if (status === Loader.Ready) {
                 item.contactPicked.connect(searchItem.contactPicked)
+            }
+        }
+
+        Connections {
+            target: searchListLoader.item
+            onFocusUp: {
+                contactSearch.forceActiveFocus()
             }
         }
     }
