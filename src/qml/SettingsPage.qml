@@ -24,20 +24,28 @@ Page {
     id: settingsPage
     title: i18n.tr("Settings")
 
+    function createAccount()
+    {
+        if (onlineAccountHelper.item)
+            onlineAccountHelper.item.run()
+    }
+
     property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value }/*,
         "characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }*/
     }
     property var settingsModel: [
-        { "name": "mmsEnabled",
-          "description": i18n.tr("Enable MMS messages"),
-          "property": telepathyHelper.mmsEnabled,
-          "activatedFuncion": null
+        { "type": "boolean",
+          "data": {"description": i18n.tr("Enable MMS messages"),
+                   "property": telepathyHelper.mmsEnabled,
+                   "activatedFuncion": null,
+                   "setMethod": "mmsEnabled",
+                   "name": "mmsEnabled"}
         },
-        { "name": "addAccount",
-          "description": i18n.tr("Add an online account"),
-          "onActivated": "createAccount",
-          "property": null
+        { "type": "action",
+          "data": { "description": i18n.tr("Add an online account"),
+                    "onActivated": "createAccount",
+                    "name": "addAccount"}
         }
         /*,
         { "name": "characterCountEnabled",
@@ -81,33 +89,67 @@ Page {
     Component {
         id: settingDelegate
         ListItem {
-            onClicked: {
-                if (checkbox.visible) {
-                    checkbox.checked = !checkbox.checked
-                } else {
-                    settingsPage[modelData.onActivated]()
-                }
-            }
+            onClicked: layoutDelegate.item.active()
             ListItemLayout {
-                title.text: modelData.description
+                title.text: modelData.data.description
 
-                CheckBox {
-                    id: checkbox
-                    objectName: modelData.name
+                Loader {
+                    id: layoutDelegate
 
-                    visible: modelData.property !== null
-                    SlotsLayout.position: SlotsLayout.trailing
-                    checked: modelData.property
-                    onCheckedChanged: {
-                        if (checked != modelData.property) {
-                            settingsPage.setMethods[modelData.name](checked)
+                    sourceComponent: {
+                        switch(modelData.type) {
+                        case "boolean":
+                            return booleanDelegate
+                        case "action":
+                            return actionDelegate
                         }
                     }
-                }
 
-                ProgressionSlot {
-                    visible: modelData.property === null
+                    Binding {
+                        target: layoutDelegate.item
+                        property: "modelData"
+                        value: modelData.data
+                        when: layoutDelegate.status === Loader.Ready
+                    }
                 }
+            }
+        }
+    }
+
+    Component {
+        id: booleanDelegate
+
+        CheckBox {
+            id: checkbox
+            objectName: modelData.name
+
+            property var modelData: null
+            function active()
+            {
+                checkbox.checked = !checkbox.checked
+            }
+
+            SlotsLayout.position: SlotsLayout.Trailing
+            checked: modelData.property
+            onCheckedChanged: {
+                if (checked != modelData.property) {
+                    settingsPage.setMethods[modelData.setMethod](checked)
+                }
+            }
+        }
+    }
+
+    Component {
+        id: actionDelegate
+
+        ProgressionSlot {
+            id: progression
+            objectName: modelData.name
+
+            property var modelData: null
+            function active()
+            {
+                settingsPage[modelData.onActivated]()
             }
         }
     }
@@ -139,12 +181,6 @@ Page {
         }
     }
 
-    function createAccount()
-    {
-        if (onlineAccountHelper.item)
-            onlineAccountHelper.item.run()
-    }
-
     Loader {
         id: onlineAccountHelper
 
@@ -152,6 +188,4 @@ Page {
         asynchronous: true
         source: Qt.resolvedUrl("OnlineAccountsHelper.qml")
     }
-
-
 }
