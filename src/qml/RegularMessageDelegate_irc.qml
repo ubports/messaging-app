@@ -20,6 +20,7 @@ import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 
 import "3rd_party/ba-linkify.js" as BaLinkify
 
@@ -36,6 +37,11 @@ ListItem {
     property string accountLabel: ""
     property var account: null
     property var _accountRegex: account && (account.selfContactId != "") ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
+
+    function getCountryCode() {
+        var localeName = Qt.locale().name
+        return localeName.substr(localeName.length - 2, 2)
+    }
 
     function deleteMessage()
     {
