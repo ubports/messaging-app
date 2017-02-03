@@ -586,6 +586,7 @@ Page {
                iconName: "back"
                text: i18n.tr("Back")
                shortcut: "Esc"
+               visible: pageStack.columns === 1
                onTriggered: {
                    if (messages.state == "selection") {
                         messageList.cancelSelection()
