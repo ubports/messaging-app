@@ -251,12 +251,13 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-         mainPage.forceActiveFocus()
+        mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
             layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("EmptyStatePage.qml"))
+            mainPage.displayedThreadIndex = -1
         }
     }
 
