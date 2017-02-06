@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
 import Ubuntu.History 0.1
@@ -29,6 +29,21 @@ Page {
     property bool creationInProgress: false
     property var participants: []
     property var account: null
+    readonly property bool allowCreateGroup: {
+        if (newGroupPage.creationInProgress) {
+            return false
+        }
+        if (account.protocolInfo.joinExistingChannels && groupTitleField.text != "") {
+            return true
+        }
+        if (participantsModel.count == 0) {
+            return false
+        }
+        if (!mmsGroup) {
+            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 1)
+        }
+        return participantsModel.count > 1
+    }
 
     function addRecipient(identifier, contact) {
         var alias = contact.displayLabel.label
@@ -49,6 +64,17 @@ Page {
         participantsModel.append({"identifier": identifier, "alias": alias, "avatar": avatar })
     }
 
+    function commit() {
+        if (allowCreateGroup) {
+            Qt.inputMethod.commit()
+            newGroupPage.creationInProgress = true
+            if (account.protocolInfo.joinExistingChannels) {
+               chatEntry.chatId = groupTitleField.text
+            }
+            chatEntry.startChat()
+        }
+    }
+
     header: PageHeader {
         title: {
             if (creationInProgress) {
@@ -57,6 +83,9 @@ Page {
             if (mmsGroup) {
                 return i18n.tr("New MMS Group")
             } else {
+                if (account && account.protocolInfo.name == "irc") {
+                    return i18n.tr("Join IRC channel:")
+                }
                 var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                 if (protocolDisplayName === "") {
                    protocolDisplayName = account.protocolInfo.serviceName;
@@ -69,6 +98,7 @@ Page {
                 Action {
                     objectName: "cancelAction"
                     iconName: "close"
+                    shortcut: "Esc"
                     onTriggered: {
                         Qt.inputMethod.commit()
                         mainStack.removePages(newGroupPage)
@@ -79,25 +109,11 @@ Page {
         trailingActionBar {
             actions: [
                 Action {
+                    id: createAction
                     objectName: "createAction"
-                    enabled: {
-                        if (newGroupPage.creationInProgress) {
-                            return false
-                        }
-                        if (participantsModel.count == 0) {
-                            return false
-                        }
-                        if (!mmsGroup) {
-                            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 1)
-                        }
-                        return participantsModel.count > 1
-                    }
+                    enabled: newGroupPage.allowCreateGroup
                     iconName: "ok"
-                    onTriggered: {
-                        Qt.inputMethod.commit()
-                        newGroupPage.creationInProgress = true
-                        chatEntry.startChat()
-                    }
+                    onTriggered: newGroupPage.commit()
                 }
             ]
         }
@@ -209,7 +225,12 @@ Page {
                     verticalAlignment: Text.AlignVCenter
                     anchors.verticalCenter: groupTitleField.verticalCenter
                     anchors.left: parent.left
-                    text: i18n.tr("Group name:")
+                    text: {
+                        if (account && account.protocolInfo.name == "irc") {
+                            return i18n.tr("Channel name:")
+                        }
+                        return i18n.tr("Group name:")
+                    }
                 }
                 TextField {
                     id: groupTitleField
@@ -221,8 +242,15 @@ Page {
                         top: parent.top
                     }
                     height: units.gu(4)
-                    placeholderText: i18n.tr("Type a name...")
+                    placeholderText: {
+                        if (account && account.protocolInfo.name == "irc") {
+                            return i18n.tr("#channelName")
+                        }
+                        return i18n.tr("Type a name...")
+                    }
                     inputMethodHints: Qt.ImhNoPredictiveText
+                    Keys.onReturnPressed: newGroupPage.commit()
+                    Keys.onEnterPressed: newGroupPage.commit()
                     Timer {
                         interval: 1
                         onTriggered: {
@@ -249,6 +277,7 @@ Page {
             ContactSearchWidget {
                 id: searchItem
                 parentPage: newGroupPage
+                visible: !account.protocolInfo.joinExistingChannels
                 searchResultsHeight: flick.emptySpaceHeight
                 onContactPicked: addRecipientFromSearch(identifier, alias, avatar)
                 anchors {
@@ -259,6 +288,7 @@ Page {
             }
             Rectangle {
                id: separator2
+               visible: !account.protocolInfo.joinExistingChannels
                anchors {
                    left: parent.left
                    right: parent.right
@@ -285,6 +315,7 @@ Page {
                 anchors.top: searchItem.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
+                visible: !account.protocolInfo.joinExistingChannels
                 Repeater {
                     id: participantsRepeater
                     model: participantsModel
@@ -302,4 +333,11 @@ Page {
     KeyboardRectangle {
        id: keyboard
     }
+
+    onActiveChanged: {
+        if (active)
+            searchItem.forceActiveFocus()
+    }
+
+    Component.onCompleted: searchItem.forceActiveFocus()
 }

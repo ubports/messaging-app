@@ -95,6 +95,34 @@ Page {
     property bool chatRoom: chatType == HistoryThreadModel.ChatTypeRoom
     property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
 
+    property var leaveString: {
+        if (account && account.protocolInfo.name == "irc") {
+            return i18n.tr("Leave channel")
+        }
+        return i18n.tr("Leave group")
+    }
+
+    property var headerString: {
+        if (account && account.protocolInfo.name == "irc") {
+            return i18n.tr("Channel Info")
+        }
+        return i18n.tr("Group Info")
+    }
+
+    property var leaveSuccessString: {
+        if (account && account.protocolInfo.name == "irc") {
+            return i18n.tr("Successfully left channel")
+        }
+        return i18n.tr("Successfully left group")
+    }
+
+    property var leaveFailedString: {
+        if (account && account.protocolInfo.name == "irc") {
+            return i18n.tr("Failed to leave channel")
+        }
+        return i18n.tr("Failed to leave group")
+    }
+
     // self contact isn't provided by history or chatEntry, so we manually add it here
     Item {
         id: selfContactWatcher
@@ -127,7 +155,7 @@ Page {
 
     header: PageHeader {
         id: pageHeader
-        title: i18n.tr("Group Info")
+        title: groupChatInfoPage.headerString
         // FIXME: uncomment once the header supports subtitle
         //subtitle: i18n.tr("%1 member", "%1 members", allParticipants.length)
         flickable: contentsFlickable
@@ -318,6 +346,10 @@ Page {
                         if (!chatRoom || !chatEntry.active) {
                             return false
                         }
+                        // temporary workaround
+                        if (account && account.protocolInfo.name == "irc") {
+                            return false
+                        }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanAdd)
                     }
                     text: !searchItem.enabled ? i18n.tr("Add...") : i18n.tr("Cancel")
@@ -404,6 +436,10 @@ Page {
                                 || modelData.state === 2 /*remote pending*/) {
                             return false
                         }
+                        // temporary workaround
+                        if (account && account.protocolInfo.name == "irc") {
+                            return false
+                        }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
                     }
                     function removeFromGroup() {
@@ -452,13 +488,13 @@ Page {
                 Button {
                     id: leaveButton
                     visible: chatRoom && !isPhoneAccount && chatEntry.active && !(chatEntry.selfContactRoles & 2)
-                    text: i18n.tr("Leave group")
+                    text: groupChatInfoPage.leaveString
                     onClicked: {
                         if (chatEntry.leaveChat()) {
-                            application.showNotificationMessage(i18n.tr("Successfully left group"), "tick")
+                            application.showNotificationMessage(groupChatInfoPage.leaveSuccessString, "tick")
                             mainView.emptyStack()
                         } else {
-                            application.showNotificationMessage(i18n.tr("Failed to leave group"), "dialog-error-symbolic")
+                            application.showNotificationMessage(groupChatInfoPage.leaveFailedString, "dialog-error-symbolic")
                         }
                     }
                 }

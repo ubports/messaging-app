@@ -16,53 +16,145 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.Telephony 0.1
 
 import "dateUtils.js" as DateUtils
 
-Popover {
-    id: participantsPopover
+
+Item {
+    id: root
 
     property variant participants: []
+    readonly property bool active: (_popover != null)
+    readonly property bool popupVisible: active && _popover.isPopup
 
-    anchorToKeyboard: false
-    Column {
-        id: containerLayout
-        anchors {
-            left: parent.left
-            top: parent.top
-            right: parent.right
+    property variant _popover: null
+    property var _sortedParticipants: []
+
+    function compareParticipants(p0, p1)
+    {
+        var i0 = String(p0.identifier).toLocaleLowerCase()
+        var i1 = String(p1.identifier).toLocaleLowerCase()
+
+        if (i0 < i1)
+            return -1
+        if (i0 > i1)
+            return 1
+          return 0
+    }
+
+    function close()
+    {
+        if (_popover) {
+            if (_popover.isPopup)
+                PopupUtils.close(_popover)
+            else
+                root._popover.destroy()
+            root._popover = null
         }
-        Repeater {
-            model: participants
-            Item {
-                height: childrenRect.height
-                width: participantsPopover.width
-                ListItem.Standard {
-                    id: participant
+    }
+
+    function showParticpantsStartWith(parent, prefix, showPopup)
+    {
+        var filter = []
+        for(var i = 0; i < participants.length; i++) {
+            var valid = true
+            if (prefix.length !== 0) {
+                valid = String(participants[i].identifier).indexOf(prefix) === 0
+            }
+
+            if (valid) {
+                filter.push(participants[i])
+            }
+        }
+
+        root._sortedParticipants = filter
+        if (filter.length === 0 && popupVisible)
+        {
+            return ""
+        }
+
+        if ((filter.length === 1) && popupVisible)
+        {
+            return filter[0].identifier
+        }
+
+        if (_popover === null) {
+            if (showPopup)
+                _popover = PopupUtils.open(componentParticipantsPopover, parent)
+            else
+                _popover = nonVisualPopover.createObject(root, {"currentIndex": 0})
+
+        }
+
+        _popover.model = _sortedParticipants
+        return (filter.length > 0 ? filter[0].identifier : "")
+    }
+
+    function nextItem()
+    {
+        if (_popover === null)
+            return ""
+
+        var newIndex = -1
+        if (_popover.currentIndex < (_sortedParticipants.length - 1))
+            newIndex = _popover.currentIndex + 1
+        else
+            newIndex =  0
+
+        _popover.currentIndex = newIndex
+        return (_sortedParticipants[newIndex].identifier)
+    }
+
+    Component {
+        id: nonVisualPopover
+
+        QtObject {
+            property var model: view.model
+            property int currentIndex: -1
+            readonly property bool isPopup: false
+
+            Component.onDestruction: root._popover = null
+        }
+    }
+
+    Component {
+        id: componentParticipantsPopover
+
+        Popover {
+            id: participantsPopover
+
+            property alias model: view.model
+            property alias currentIndex: view.currentIndex
+            readonly property bool isPopup: true
+
+            UbuntuListView {
+                id: view
+
+                width: root.width
+                height: Math.min(contentHeight, root.height / 2)
+                model: []
+
+                delegate: ListItem {
                     objectName: "participant%1".arg(index)
-                    text: contactWatcher.isUnknown ? contactWatcher.identifier : contactWatcher.alias
-                    onClicked: {
-                        PopupUtils.close(participantsPopover)
-                        mainView.startChat(contactWatcher.identifier)
+
+                    width: view.width
+                    height: layout.height
+                    onClicked: root.selected(modelData)
+
+                    ListItemLayout {
+                        id: layout
+                        title.text: modelData.identifier
                     }
                 }
-                ContactWatcher {
-                    id: contactWatcher
-                    identifier: modelData.identifier
-                    contactId: modelData.contactId
-                    alias: modelData.alias
-                    avatar: modelData.avatar
-                    detailProperties: modelData.detailProperties
-                    
-                    addressableFields: messages.account.addressableVCardFields
-                }
+                Keys.onEscapePressed: root.selected(null)
             }
+
+            Component.onDestruction: root._popover = null
         }
     }
 }

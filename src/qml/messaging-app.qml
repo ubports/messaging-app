@@ -114,6 +114,7 @@ MainView {
             // and acknowledge all messages for the threads to be removed
             var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
             chatManager.acknowledgeAllMessages(properties)
+            chatManager.leaveRoom(properties, "")
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
@@ -135,6 +136,15 @@ MainView {
                 }
             }
             account = Qt.binding(defaultPhoneAccount)
+        }
+    }
+
+    Component.onDestruction: {
+        for (var i in telepathyHelper.textAccounts.active) {
+            var account = telepathyHelper.textAccounts.active[i]
+            if (account.protocolInfo.leaveRoomsOnClose) {
+                chatManager.leaveRooms(account.accountId, "")
+            }
         }
     }
 
@@ -233,7 +243,7 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-        mainPage.displayedThreadIndex = -1
+         mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {
@@ -360,6 +370,9 @@ MainView {
 
     AdaptivePageLayout {
         id: layout
+
+        property var activePage: null
+
         anchors.fill: parent
         layouts: PageColumnsLayout {
             when: mainStack.width >= units.gu(90)
