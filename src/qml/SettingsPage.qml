@@ -19,10 +19,16 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.OnlineAccounts.Client 0.1
+import Qt.labs.settings 1.0
 
 Page {
     id: settingsPage
     title: i18n.tr("Settings")
+
+    property string sortTrheadsBy: "timestamp"
+    Settings {
+         property alias sortTrheadsBy: settingsPage.sortTrheadsBy
+    }
 
     function createAccount()
     {
@@ -30,22 +36,37 @@ Page {
             onlineAccountHelper.item.run()
     }
 
-    property var setMethods: {
-        "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value }/*,
-        "characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }*/
+    readonly property var setMethods: {
+        "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
+        "threadSort": function(value) { settingsPage.sortTrheadsBy = value }
+        //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
-    property var settingsModel: [
+
+    property var sortByModel: {
+        "timestamp": i18n.tr("Sort by timestamp"),
+        "name": i18n.tr("Sort by name")
+    }
+
+    readonly property var settingsModel: [
         { "type": "boolean",
-          "data": {"description": i18n.tr("Enable MMS messages"),
+          "data": {"name": "mmsEnabled",
+                   "description": i18n.tr("Enable MMS messages"),
                    "property": telepathyHelper.mmsEnabled,
                    "activatedFuncion": null,
-                   "setMethod": "mmsEnabled",
-                   "name": "mmsEnabled"}
+                   "setMethod": "mmsEnabled"}
         },
         { "type": "action",
-          "data": { "description": i18n.tr("Add an online account"),
-                    "onActivated": "createAccount",
-                    "name": "addAccount"}
+          "data": { "name": "addAccount",
+                    "description": i18n.tr("Add an online account"),
+                    "onActivated": "createAccount" }
+        },
+        { "type": "options",
+          "data": { "name": "threadSort",
+                    "description": i18n.tr("Sort threads"),
+                    "currentValue": settingsPage.sortTrheadsBy,
+                    "subtitle": settingsPage.sortByModel[settingsPage.sortTrheadsBy],
+                    "options": sortByModel,
+                    "setMethod": "threadSort"}
         }
         /*,
         { "name": "characterCountEnabled",
@@ -89,19 +110,27 @@ Page {
     Component {
         id: settingDelegate
         ListItem {
-            onClicked: layoutDelegate.item.active()
+            onClicked: {
+                layoutDelegate.item.activate()
+                view.currentIndex = index
+                settingsList.currentIndex = index
+
+            }
             ListItemLayout {
                 title.text: modelData.data.description
+                subtitle.text: modelData.data.subtitle ? modelData.data.subtitle : ""
 
                 Loader {
                     id: layoutDelegate
 
                     sourceComponent: {
                         switch(modelData.type) {
-                        case "boolean":
-                            return booleanDelegate
                         case "action":
                             return actionDelegate
+                        case "boolean":
+                            return booleanDelegate
+                        case "options":
+                            return optionsDelegate
                         }
                     }
 
@@ -124,7 +153,7 @@ Page {
             objectName: modelData.name
 
             property var modelData: null
-            function active()
+            function activate()
             {
                 checkbox.checked = !checkbox.checked
             }
@@ -147,10 +176,86 @@ Page {
             objectName: modelData.name
 
             property var modelData: null
-            function active()
+            function activate()
             {
                 settingsPage[modelData.onActivated]()
             }
+        }
+    }
+
+    Component {
+        id: optionsDelegate
+
+        ProgressionSlot {
+            id: progression
+            objectName: modelData.name
+
+            property var modelData: null
+            function activate()
+            {
+                pageStack.addPageToNextColumn(settingsPage, optionsDelegatePage,
+                                              {"title": modelData.description,
+                                               "model": modelData.options,
+                                               "currentIndex": modelData.currentValue,
+                                               "setMethod": modelData.setMethod})
+            }
+        }
+    }
+
+    Component {
+        id: optionsDelegatePage
+
+        Page {
+            id: optionsPage
+
+            property alias title: pageHeader.title
+            property var model
+            property string currentIndex
+            property string setMethod
+
+            signal selected(string key)
+
+            function indexOf(key) {
+                return Object.keys(optionsPage.model).indexOf(key)
+            }
+
+            onSelected: {
+                if (key !== "") {
+                    settingsPage.setMethods[optionsPage.setMethod](key)
+                }
+                settingsList.currentIndex = 2
+                pageStack.removePages(optionsPage)
+            }
+
+            header: PageHeader {
+                id: pageHeader
+
+                leadingActionBar.actions: [
+                    Action {
+                       iconName: "back"
+                       text: i18n.tr("Back")
+                       shortcut: "Esc"
+                       onTriggered: optionsPage.selected("")
+                    }
+                ]
+                flickable: pageView
+            }
+
+            UbuntuListView {
+                id: pageView
+
+                model: Object.keys(optionsPage.model)
+                anchors.fill: parent
+                currentIndex: optionsPage.indexOf(optionsPage.currentIndex)
+                delegate: ListItem {
+                    ListItemLayout {
+                        title.text: optionsPage.model[modelData]
+                    }
+                    onClicked: optionsPage.selected(modelData)
+                }
+            }
+
+            onActiveChanged: this.forceActiveFocus()
         }
     }
 
