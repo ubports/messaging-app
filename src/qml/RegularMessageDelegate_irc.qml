@@ -54,19 +54,6 @@ ListItem {
         var items = [{"text": textMessage, "url":""}]
         emptyStack()
         var transfer = {}
-
-        for (var i = 0; i < dataAttachments.length; i++) {
-            var attachment = dataAttachments[i].data
-            var item = {"text":"", "url":""}
-            var contentType = application.fileMimeType(String(attachment.filePath))
-            // we dont include smil files. they will be auto generated
-            if (startsWith(contentType.toLowerCase(), "application/smil")) {
-                continue
-            }
-            item["url"] = "file://" + attachment.filePath
-            items.push(item)
-        }
-
         transfer["items"] = items
         properties["sharedAttachmentsTransfer"] = transfer
 
@@ -81,26 +68,7 @@ ListItem {
 
     function resendMessage()
     {
-        var newAttachments = []
-        for (var i = 0; i < attachments.length; i++) {
-            var attachment = []
-            var item = attachments[i]
-            // we dont include smil files. they will be auto generated
-            if (item.contentType.toLowerCase() === "application/smil") {
-                continue
-            }
-            // text messages will be sent as textMessage. skip it
-            // to avoid duplication
-            if (item.contentType.toLowerCase() === "text/plain") {
-                continue
-            }
-            attachment.push(item.attachmentId)
-            attachment.push(item.contentType)
-            attachment.push(item.filePath)
-            newAttachments.push(attachment)
-        }
-
-        messages.validator.validateMessageAndSend(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true}, [messageDelegate.deleteMessage])
+       messages.validator.validateMessageAndSend(textMessage, messages.participantIds, [], {"x-canonical-tmp-files": true}, [messageDelegate.deleteMessage])
     }
 
     width: messageList.width
@@ -214,7 +182,7 @@ ListItem {
                 iconName: "info"
                 text: i18n.tr("Info")
                 onTriggered: {
-                    var messageType = attachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
+                    var messageType = i18n.tr("SMS")
                     var messageInfo = {"type": messageType,
                                        "senderId": messageData.senderId,
                                        "sender": messageData.sender,
