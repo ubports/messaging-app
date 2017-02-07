@@ -103,25 +103,28 @@ ListItem {
 
             if ((messages.chatType !== HistoryThreadModel.ChatTypeRoom) ||
                 !messageDelegate.incoming ||
-                !_accountRegex)
-                return text
+                !_accountRegex) {
+            }
 
             return text.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
         }
 
         property string sender: {
-            if (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) {
-                if (messageData.sender && incoming) {
-                    if (messageData.sender.alias !== undefined && messageData.sender.alias !== "") {
-                        return messageData.sender.alias
-                    } else if (messageData.sender.identifier !== undefined && messageData.sender.identifier !== "") {
-                        return messageData.sender.identifier
-                    } else if (messageData.senderId !== "") {
-                        return messageData.senderId
-                    }
+            if (messageData.sender && incoming) {
+                if (messageData.sender.alias !== undefined && messageData.sender.alias !== "") {
+                    return messageData.sender.alias
+                } else if (messageData.sender.identifier !== undefined && messageData.sender.identifier !== "") {
+                    return messageData.sender.identifier
+                } else if (messageData.senderId !== "") {
+                    return messageData.senderId
                 }
+            } else if (account.selfContactId == "") {
+                // Return first part of display name if account id is empty
+                var displayName = account.displayName.substring(0, account.displayName.indexOf('@'))
+                return displayName
+            } else {
+                return account.selfContactId
             }
-            return account.selfContactId
         }
 
 
@@ -182,7 +185,7 @@ ListItem {
                 iconName: "info"
                 text: i18n.tr("Info")
                 onTriggered: {
-                    var messageType = i18n.tr("SMS")
+                    var messageType = i18n.tr("IRC")
                     var messageInfo = {"type": messageType,
                                        "senderId": messageData.senderId,
                                        "sender": messageData.sender,

@@ -78,25 +78,28 @@ Item {
 
             function getTargetName(message)
             {
+                if (!message)
+                    return ""
+
                 if (message.senderId !== "self") {
                     return i18n.tr("Myself")
                 } else if (message.participants.length > 1) {
                     return i18n.tr("Group")
                 } else {
-                    return PhoneUtils.PhoneUtils.format(message.participants[0].identifier)
+                    return message.participants[0].identifier
                 }
             }
 
             title: i18n.tr("Message info")
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type)
+                text: root.activeMessage ? "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type) : ""
             }
 
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("From"))
-                .arg(root.activeMessage.senderId !== "self" ?
-                     PhoneUtils.PhoneUtils.format(root.activeMessage.senderId) : i18n.tr("Myself"))
+                .arg(root.activeMessage && root.activeMessage.senderId !== "self" ?
+                     root.activeMessage && root.activeMessage.senderId : i18n.tr("Myself"))
             }
 
             Label {
@@ -104,29 +107,35 @@ Item {
                                      .arg(getTargetName(root.activeMessage))
             }
             Repeater {
-                model: root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
+                model: root.activeMessage && root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
                 Label {
                     text: PhoneUtils.PhoneUtils.format(modelData.identifier)
                 }
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Sent")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate))
-                visible: (root.activeMessage.senderId === "self")
+                text: root.activeMessage ?
+                          "<b>%1:</b> %2".arg(i18n.tr("Sent")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate)) :
+                          ""
+                visible: root.activeMessage && (root.activeMessage.senderId === "self")
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Received")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate))
-                visible: (root.activeMessage.senderId !== "self")
+                text: root.activeMessage ?
+                          "<b>%1:</b> %2".arg(i18n.tr("Received")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate)) :
+                          ""
+                visible: (root.activeMessage && root.activeMessage.senderId !== "self")
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Read")).arg(Qt.formatDateTime(root.activeMessage.textReadTimestamp, Qt.DefaultLocaleShortDate))
-                visible: (root.activeMessage.senderId !== "self") && (root.activeMessage.textReadTimestamp > 0)
+                text: root.activeMessage ?
+                          "<b>%1:</b> %2".arg(i18n.tr("Read")).arg(Qt.formatDateTime(root.activeMessage.textReadTimestamp, Qt.DefaultLocaleShortDate)) :
+                          ""
+                visible: root.activeMessage && (root.activeMessage.senderId !== "self") && (root.activeMessage.textReadTimestamp > 0)
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Status")).arg(statusToString(root.activeMessage.status))
+                text: root.activeMessage ? "<b>%1:</b> %2".arg(i18n.tr("Status")).arg(statusToString(root.activeMessage.status)) : ""
             }
 
             Button {
