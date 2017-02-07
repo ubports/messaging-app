@@ -182,8 +182,16 @@ MainView {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
+            sortField: {
+                switch(globalSettings.sortTrheadsBy) {
+                case "title":
+                    //FIXME: ThreadId works for IRC, not sure if that will work for other protocols
+                    return "threadId"
+                case "timestamp":
+                default:
+                    return "lastEventTimestamp"
+                }
+            }
         }
         groupingProperty: "participants"
         filter: HistoryFilter {}
@@ -202,6 +210,12 @@ MainView {
         id: msgSettings
         category: "SMS"
         property bool showCharacterCount: false
+    }
+
+    Settings {
+        id: globalSettings
+
+        property string sortTrheadsBy: "timestamp"
     }
 
     StickerPacksModel {

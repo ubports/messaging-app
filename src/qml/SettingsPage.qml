@@ -44,7 +44,7 @@ Page {
 
     property var sortByModel: {
         "timestamp": i18n.tr("Sort by timestamp"),
-        "name": i18n.tr("Sort by name")
+        "title": i18n.tr("Sort by title")
     }
 
     readonly property var settingsModel: [
