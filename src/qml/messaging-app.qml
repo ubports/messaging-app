@@ -195,7 +195,15 @@ MainView {
                     return "lastEventTimestamp"
                 }
             }
-            sortOrder: HistorySort.AscendingOrder
+            sortOrder: {
+                switch(mainView.sortTrheadsBy) {
+                case "title":
+                    return HistorySort.AscendingOrder
+                case "timestamp":
+                default:
+                    return HistorySort.DescendingOrder
+                }
+            }
         }
         groupingProperty: "participants"
         filter: HistoryFilter {}
