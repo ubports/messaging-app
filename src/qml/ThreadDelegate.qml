@@ -28,6 +28,7 @@ import "dateUtils.js" as DateUtils
 ListItem {
     id: delegate
 
+    property alias showAvatar: avatar.visible
     property var participant: participants ? participants[0] : {}
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
@@ -178,8 +179,8 @@ ListItem {
             top: parent.top
             bottom: parent.bottom
         }
-        height: units.gu(6)
-        width: units.gu(6)
+        height: visible ? units.gu(6) : 0
+        width: visible ? units.gu(6) : 0
     }
 
     Image {

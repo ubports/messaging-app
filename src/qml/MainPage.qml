@@ -280,6 +280,7 @@ Page {
                 right: parent.right
             }
             height: units.gu(8)
+            showAvatar: mainView.showConversationIcon
             selectMode: threadList.isInSelectionMode
             selected: {
                 if (selectMode) {

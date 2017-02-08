@@ -33,7 +33,8 @@ Page {
 
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
-        "threadSort": function(value) { mainView.sortTrheadsBy = value }
+        "threadSort": function(value) { mainView.sortTrheadsBy = value },
+        "showConversationIcon": function(value) { mainView.showConversationIcon = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -50,11 +51,18 @@ Page {
                    "activatedFuncion": null,
                    "setMethod": "mmsEnabled"}
         },
+        { "type": "boolean",
+          "data": {"name": "showConversationIcon",
+                   "description": i18n.tr("Show Icon for conversations"),
+                   "property": mainView.showConversationIcon,
+                   "activatedFuncion": null,
+                   "setMethod": "showConversationIcon"}
+        },
         { "type": "action",
           "data": { "name": "addAccount",
                     "description": i18n.tr("Add an online account"),
                     "onActivated": "createAccount" }
-        },
+        },       
         { "type": "options",
           "data": { "name": "threadSort",
                     "description": i18n.tr("Sort threads"),
