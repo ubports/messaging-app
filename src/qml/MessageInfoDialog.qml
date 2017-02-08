@@ -108,12 +108,35 @@ Item {
                 text: "<b>%1:</b> %2".arg(i18n.tr("To"))
                                      .arg(getTargetName(root.activeMessage))
             }
-            Repeater {
+
+            /*
+            // Disable list of contacts for now, this is not reliable on a IRC channel for example
+            // the current participants can not the same at the moment when the message was sent
+            ListView {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                height: units.gu(10) //Math.min(count * units.gu(3), units.gu(3))
                 model: root.activeMessage && root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
-                Label {
-                    text: PhoneUtils.PhoneUtils.format(modelData.identifier)
+                delegate: ListItem {
+                    height: itemLayout.height + (divider.visible ? divider.height : 0)
+
+                    ListItemLayout {
+                        id: itemLayout
+
+                        title.text: {
+                            var formatted = PhoneUtils.PhoneUtils.format(modelData.identifier)
+                            if (formatted.length > 0)
+                                return formatted
+                            else
+                                return modelData.identifier
+                        }
+                    }
                 }
             }
+            */
 
             Label {
                 text: root.activeMessage ?
