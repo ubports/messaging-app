@@ -143,6 +143,12 @@ Page {
                         value: modelData.data
                         when: layoutDelegate.status === Loader.Ready
                     }
+                    Binding {
+                        target: layoutDelegate.item
+                        property: "index"
+                        value: index
+                        when: layoutDelegate.status === Loader.Ready
+                    }
                 }
             }
         }
@@ -156,6 +162,8 @@ Page {
             objectName: modelData.name
 
             property var modelData: null
+            property int index: -1
+
             function activate()
             {
                 checkbox.checked = !checkbox.checked
@@ -179,6 +187,7 @@ Page {
             objectName: modelData.name
 
             property var modelData: null
+            property int index: -1
             function activate()
             {
                 settingsPage[modelData.onActivated]()
@@ -194,11 +203,13 @@ Page {
             objectName: modelData.name
 
             property var modelData: null
+            property int index: -1
             function activate()
             {
                 pageStack.addPageToNextColumn(settingsPage, optionsDelegatePage,
                                               {"title": modelData.description,
                                                "model": modelData.options,
+                                               "index": index,
                                                "currentIndex": modelData.currentValue,
                                                "setMethod": modelData.setMethod})
             }
@@ -215,6 +226,7 @@ Page {
             property var model
             property string currentIndex
             property string setMethod
+            property int index: -1
 
             signal selected(string key)
 
@@ -226,7 +238,9 @@ Page {
                 if (key !== "") {
                     settingsPage.setMethods[optionsPage.setMethod](key)
                 }
-                settingsList.currentIndex = 2
+                //WORKAROUND: re-set index of settings page because the list is
+                // rebuild after a value change and that cause the index to reset to 0
+                settingsList.currentIndex = index
                 pageStack.removePages(optionsPage)
             }
 
