@@ -35,6 +35,7 @@ ContactEditorPage {
 
         text: i18n.tr("Cancel")
         iconName: "back"
+        shortcut: "Esc"
         onTriggered: {
             root.cancel()
             root.active = false
@@ -47,10 +48,16 @@ ContactEditorPage {
 
             text: i18n.tr("Save")
             iconName: "ok"
+            shortcut: "Ctrl+S"
             enabled: root.isContactValid
             onTriggered: root.save()
         }
     ]
+
+    onActiveChanged: {
+        if (active)
+            forceActiveFocus()
+    }
 
     onContactSaved: {
         if (root.contactListPage) {

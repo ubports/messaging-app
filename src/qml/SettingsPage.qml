@@ -18,21 +18,60 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.OnlineAccounts.Client 0.1
+import Qt.labs.settings 1.0
 
 Page {
     id: settingsPage
     title: i18n.tr("Settings")
 
-    property var setMethods: {
-        "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value }/*,
-        "characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }*/
+    function createAccount()
+    {
+        if (onlineAccountHelper.item)
+            onlineAccountHelper.item.run()
     }
-    property var settingsModel: [
-        { "name": "mmsEnabled",
-          "description": i18n.tr("Enable MMS messages"),
-          "property": telepathyHelper.mmsEnabled
-        }/*,
+
+    readonly property var setMethods: {
+        "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
+        "threadSort": function(value) { mainView.sortTrheadsBy = value },
+        "compactView": function(value) { mainView.compactView = value }
+        //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
+    }
+
+    property var sortByModel: {
+        "timestamp": i18n.tr("Sort by timestamp"),
+        "title": i18n.tr("Sort by title")
+    }
+
+    readonly property var settingsModel: [
+        { "type": "boolean",
+          "data": {"name": "mmsEnabled",
+                   "description": i18n.tr("Enable MMS messages"),
+                   "property": telepathyHelper.mmsEnabled,
+                   "activatedFuncion": null,
+                   "setMethod": "mmsEnabled"}
+        },
+        { "type": "boolean",
+          "data": {"name": "compactView",
+                   "description": i18n.tr("Simplified conversation view"),
+                   "property": mainView.compactView,
+                   "activatedFuncion": null,
+                   "setMethod": "compactView"}
+        },
+        { "type": "action",
+          "data": { "name": "addAccount",
+                    "description": i18n.tr("Add an online account"),
+                    "onActivated": "createAccount" }
+        },       
+        { "type": "options",
+          "data": { "name": "threadSort",
+                    "description": i18n.tr("Sort threads"),
+                    "currentValue": mainView.sortTrheadsBy,
+                    "subtitle": settingsPage.sortByModel[mainView.sortTrheadsBy],
+                    "options": sortByModel,
+                    "setMethod": "threadSort"}
+        }
+        /*,
         { "name": "characterCountEnabled",
           "description": i18n.tr("Show character count"),
           "property": msgSettings.showCharacterCount
@@ -53,47 +92,196 @@ Page {
     header: PageHeader {
         id: pageHeader
         title: settingsPage.title
-        leadingActionBar {
-            id: leadingBar
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: "Esc"
+               onTriggered: mainView.emptyStack(true)
+            }
+        ]
+        flickable: settingsList
+    }
+
+    onActiveChanged: {
+        if (active) {
+            settingsList.forceActiveFocus()
         }
     }
 
+
     Component {
         id: settingDelegate
-        Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: units.gu(6)
-            Label {
-                id: descriptionLabel
-                text: modelData.description
-                anchors.left: parent.left
-                anchors.right: checkbox.left
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.leftMargin: units.gu(2)
+        ListItem {
+            onClicked: {
+                layoutDelegate.item.activate()
+                view.currentIndex = index
+                settingsList.currentIndex = index
+
             }
-            Switch {
-                id: checkbox
-                objectName: modelData.name
-                anchors.right: parent.right
-                anchors.rightMargin: units.gu(2)
-                anchors.verticalCenter: parent.verticalCenter
-                checked: modelData.property
-                onCheckedChanged: {
-                    if (checked != modelData.property) {
-                        settingsPage.setMethods[modelData.name](checked)
+            ListItemLayout {
+                title.text: modelData.data.description
+                subtitle.text: modelData.data.subtitle ? modelData.data.subtitle : ""
+
+                Loader {
+                    id: layoutDelegate
+
+                    sourceComponent: {
+                        switch(modelData.type) {
+                        case "action":
+                            return actionDelegate
+                        case "boolean":
+                            return booleanDelegate
+                        case "options":
+                            return optionsDelegate
+                        }
+                    }
+
+                    Binding {
+                        target: layoutDelegate.item
+                        property: "modelData"
+                        value: modelData.data
+                        when: layoutDelegate.status === Loader.Ready
+                    }
+                    Binding {
+                        target: layoutDelegate.item
+                        property: "index"
+                        value: index
+                        when: layoutDelegate.status === Loader.Ready
                     }
                 }
             }
         }
     }
 
-    ListView {
+    Component {
+        id: booleanDelegate
+
+        CheckBox {
+            id: checkbox
+            objectName: modelData.name
+
+            property var modelData: null
+            property int index: -1
+
+            function activate()
+            {
+                checkbox.checked = !checkbox.checked
+            }
+
+            SlotsLayout.position: SlotsLayout.Trailing
+            checked: modelData.property
+            onCheckedChanged: {
+                if (checked != modelData.property) {
+                    settingsPage.setMethods[modelData.setMethod](checked)
+                }
+            }
+        }
+    }
+
+    Component {
+        id: actionDelegate
+
+        ProgressionSlot {
+            id: progression
+            objectName: modelData.name
+
+            property var modelData: null
+            property int index: -1
+            function activate()
+            {
+                settingsPage[modelData.onActivated]()
+            }
+        }
+    }
+
+    Component {
+        id: optionsDelegate
+
+        ProgressionSlot {
+            id: progression
+            objectName: modelData.name
+
+            property var modelData: null
+            property int index: -1
+            function activate()
+            {
+                pageStack.addPageToNextColumn(settingsPage, optionsDelegatePage,
+                                              {"title": modelData.description,
+                                               "model": modelData.options,
+                                               "index": index,
+                                               "currentIndex": modelData.currentValue,
+                                               "setMethod": modelData.setMethod})
+            }
+        }
+    }
+
+    Component {
+        id: optionsDelegatePage
+
+        Page {
+            id: optionsPage
+
+            property alias title: pageHeader.title
+            property var model
+            property string currentIndex
+            property string setMethod
+            property int index: -1
+
+            signal selected(string key)
+
+            function indexOf(key) {
+                return Object.keys(optionsPage.model).indexOf(key)
+            }
+
+            onSelected: {
+                if (key !== "") {
+                    settingsPage.setMethods[optionsPage.setMethod](key)
+                }
+                //WORKAROUND: re-set index of settings page because the list is
+                // rebuild after a value change and that cause the index to reset to 0
+                settingsList.currentIndex = index
+                pageStack.removePages(optionsPage)
+            }
+
+            header: PageHeader {
+                id: pageHeader
+
+                leadingActionBar.actions: [
+                    Action {
+                       iconName: "back"
+                       text: i18n.tr("Back")
+                       shortcut: "Esc"
+                       onTriggered: optionsPage.selected("")
+                    }
+                ]
+                flickable: pageView
+            }
+
+            UbuntuListView {
+                id: pageView
+
+                model: Object.keys(optionsPage.model)
+                anchors.fill: parent
+                currentIndex: optionsPage.indexOf(optionsPage.currentIndex)
+                delegate: ListItem {
+                    ListItemLayout {
+                        title.text: optionsPage.model[modelData]
+                    }
+                    onClicked: optionsPage.selected(modelData)
+                }
+            }
+
+            onActiveChanged: this.forceActiveFocus()
+        }
+    }
+
+    UbuntuListView {
+        id: settingsList
+
         anchors {
-            top: pageHeader.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
+            //topMargin: mainPage.header.flickable ? 0 : mainPage.header.height
+            fill: parent
         }
         model: settingsModel
         delegate: settingDelegate
@@ -102,7 +290,7 @@ Page {
     Loader {
         id: messagesBottomEdgeLoader
         active: mainView.dualPanel
-        asynchronous: true
+        //asynchronous: true
         /* FIXME: would be even more efficient to use setSource() to
            delay the compilation step but a bug in Qt prevents us.
            Ref.: https://bugreports.qt.io/browse/QTBUG-54657
@@ -113,5 +301,13 @@ Page {
             hint.text: ""
             hint.height: 0
         }
+    }
+
+    Loader {
+        id: onlineAccountHelper
+
+        anchors.fill: parent
+        asynchronous: true
+        source: Qt.resolvedUrl("OnlineAccountsHelper.qml")
     }
 }

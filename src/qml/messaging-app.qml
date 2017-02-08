@@ -36,6 +36,9 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    // settings
+    property alias sortTrheadsBy: globalSettings.sortTrheadsBy
+    property alias compactView: globalSettings.compactView
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -114,6 +117,7 @@ MainView {
             // and acknowledge all messages for the threads to be removed
             var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
             chatManager.acknowledgeAllMessages(properties)
+            chatManager.leaveRoom(properties, "")
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
@@ -135,6 +139,15 @@ MainView {
                 }
             }
             account = Qt.binding(defaultPhoneAccount)
+        }
+    }
+
+    Component.onDestruction: {
+        for (var i in telepathyHelper.textAccounts.active) {
+            var account = telepathyHelper.textAccounts.active[i]
+            if (account.protocolInfo.leaveRoomsOnClose) {
+                chatManager.leaveRooms(account.accountId, "")
+            }
         }
     }
 
@@ -172,8 +185,25 @@ MainView {
         id: threadModel
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
+            sortField: {
+                switch(mainView.sortTrheadsBy) {
+                case "title":
+                    //FIXME: ThreadId works for IRC, not sure if that will work for other protocols
+                    return "accountId, threadId"
+                case "timestamp":
+                default:
+                    return "lastEventTimestamp"
+                }
+            }
+            sortOrder: {
+                switch(mainView.sortTrheadsBy) {
+                case "title":
+                    return HistorySort.AscendingOrder
+                case "timestamp":
+                default:
+                    return HistorySort.DescendingOrder
+                }
+            }
         }
         groupingProperty: "participants"
         filter: HistoryFilter {}
@@ -192,6 +222,12 @@ MainView {
         id: msgSettings
         category: "SMS"
         property bool showCharacterCount: false
+    }
+
+    Settings {
+        id: globalSettings
+        property string sortTrheadsBy: "timestamp"
+        property bool compactView: false
     }
 
     StickerPacksModel {
@@ -233,7 +269,7 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-        mainPage.displayedThreadIndex = -1
+         mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {
@@ -360,6 +396,9 @@ MainView {
 
     AdaptivePageLayout {
         id: layout
+
+        property var activePage: null
+
         anchors.fill: parent
         layouts: PageColumnsLayout {
             when: mainStack.width >= units.gu(90)
