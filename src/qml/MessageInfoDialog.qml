@@ -83,10 +83,12 @@ Item {
 
                 if (message.senderId !== "self") {
                     return i18n.tr("Myself")
-                } else if (message.participants.length > 1) {
+                } else if (message.participants && (message.participants.length > 1)) {
                     return i18n.tr("Group")
-                } else {
+                } else if (message.participants.length > 0) {
                     return message.participants[0].identifier
+                } else {
+                    return i18n.tr("Unknown")
                 }
             }
 
@@ -139,9 +141,10 @@ Item {
             }
 
             Button {
-                text: i18n.tr("Close")
-                onClicked: {
-                    PopupUtils.close(root.activeDialog)
+                action: Action {
+                    text: i18n.tr("Close")
+                    shortcut: "esc"
+                    onTriggered: PopupUtils.close(root.activeDialog)
                 }
             }
 

@@ -185,14 +185,13 @@ ListItem {
                 iconName: "info"
                 text: i18n.tr("Info")
                 onTriggered: {
-                    var messageType = i18n.tr("IRC")
-                    var messageInfo = {"type": messageType,
+                   var messageInfo = {"type": i18n.tr("IRC"),
                                        "senderId": messageData.senderId,
                                        "sender": messageData.sender,
                                        "timestamp": messageData.timestamp,
                                        "textReadTimestamp": messageData.textReadTimestamp,
                                        "status": messageData.textMessageStatus,
-                                       "participants": messages.participants}
+                                       "participants": messages.participants }
                     messageInfoDialog.showMessageInfo(messageInfo)
                 }
             }
