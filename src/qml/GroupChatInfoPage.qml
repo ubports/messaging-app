@@ -56,6 +56,7 @@ Page {
         }
         return []
     }
+
     property variant allParticipants: {
         var participantList = []
 
@@ -84,6 +85,7 @@ Page {
                 participantList.push(participant)
             }
         }
+        participantList.sort(function(a,b) {return (a.identifier.toLowerCase() > b.identifier.toLowerCase()) ? 1 : ((b.identifier.toLowerCase() > a.identifier.toLowerCase()) ? -1 : 0);} ); 
         return participantList
     }
 
@@ -158,7 +160,35 @@ Page {
         title: groupChatInfoPage.headerString
         // FIXME: uncomment once the header supports subtitle
         //subtitle: i18n.tr("%1 member", "%1 members", allParticipants.length)
-        flickable: contentsFlickable
+        //flickable: contentsFlickable
+
+        trailingActionBar {
+            id: trailingBar
+            actions: [
+                Action {
+                    iconName: "close"
+                    text: i18n.tr("End group")
+                    onTriggered: destroyGroup()
+                    enabled: chatRoom && !isPhoneAccount && chatEntry.active && chatEntry.selfContactRoles & 2
+                    visible: enabled
+                },
+                Action {
+                    iconName: "system-log-out"
+                    text: groupChatInfoPage.leaveString
+                    visible: enabled
+                    onTriggered: {
+                        if (chatEntry.leaveChat()) {
+                            application.showNotificationMessage(groupChatInfoPage.leaveSuccessString, "tick")
+                            mainView.emptyStack()
+                        } else {
+                            application.showNotificationMessage(groupChatInfoPage.leaveFailedString, "dialog-error-symbolic")
+                        }
+
+                    }
+                    enabled: chatRoom && !isPhoneAccount && chatEntry.active && !(chatEntry.selfContactRoles & 2)
+                }
+            ]
+        }
     }
 
     function addRecipientFromSearch(identifier, alias, avatar) {
@@ -195,30 +225,22 @@ Page {
         }
     }
 
-    Flickable {
+    ListView {
         id: contentsFlickable
-        property var emptySpaceHeight: height - contentsColumn.topItemsHeight+contentsFlickable.contentY
         anchors {
-            top: parent.top
+            top:  groupChatInfoPage.header.top
+            topMargin: groupChatInfoPage.header.height
             left: parent.left
             right: parent.right
             bottom: keyboard.top
         }
-        contentHeight: contentsColumn.height
-        clip: true
 
-        Column {
-            id: contentsColumn
-            property var topItemsHeight: groupInfo.height+participantsHeader.height+searchItem.height+units.gu(1)
-
+        header: Item {
             anchors {
-                top: parent.top
                 left: parent.left
                 right: parent.right
             }
-
             height: childrenRect.height
-
             Item {
                 id: groupInfo
                 height: visible ? groupAvatar.height + groupAvatar.anchors.topMargin + units.gu(1) : 0
@@ -226,6 +248,7 @@ Page {
                 enabled: chatEntry.active
 
                 anchors {
+                    top: parent.top
                     left: parent.left
                     right: parent.right
                 }
@@ -306,18 +329,11 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                visible: groupInfo.visible
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-            }
-
             Item {
                 id: participantsHeader
                 enabled: chatEntry.active
                 anchors {
+                    top: groupInfo.bottom
                     left: parent.left
                     right: parent.right
                 }
@@ -360,22 +376,16 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-            }
-
             ContactSearchWidget {
                 id: searchItem
                 enabled: false
                 height: enabled ? units.gu(6) : 0
                 clip: true
                 parentPage: groupChatInfoPage
-                searchResultsHeight: contentsFlickable.emptySpaceHeight
+                searchResultsHeight: keyboard.y-y-height
                 onContactPicked: addRecipientFromSearch(identifier, alias, avatar)
                 anchors {
+                    top: participantsHeader.bottom
                     left: parent.left
                     right: parent.right
                 }
@@ -383,123 +393,80 @@ Page {
                     UbuntuNumberAnimation {}
                 }
             }
+        }
 
-            ListItems.ThinDivider {
-                visible: searchItem.enabled
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+        ListItemActions {
+            id: participantLeadingActions
+            delegate: Label {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: contentHeight
+                width: contentWidth+units.gu(2)
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                text: i18n.tr("Remove")
             }
-
-
-            ListItemActions {
-                id: participantLeadingActions
-                delegate: Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: contentHeight
-                    width: contentWidth+units.gu(2)
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
+            actions: [
+                Action {
                     text: i18n.tr("Remove")
-                }
-                actions: [
-                    Action {
-                        text: i18n.tr("Remove")
-                        onTriggered: {
-                            // in case account is not a phone one, alert that if the group is going to have no active participants
-                            // it can be dissolved by the server
-                            if (chatEntry.chatType == ChatEntry.ChatTypeRoom && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
-                                var properties = {}
-                                properties["groupName"] = groupName.text
-                                PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)
-                            } else {
-                                var delegate = participantsRepeater.itemAt(value)
-                                delegate.removeFromGroup();
-                            }
-                        }
-                    }
-                ]
-            }
-
-            Repeater {
-                id: participantsRepeater
-                model: allParticipants
-
-                ParticipantDelegate {
-                    id: participantDelegate
-                    function canRemove() {
-                        if (!groupChatInfoPage.chatRoom /*not a group*/
-                                || !chatEntry.active /*not active*/
-                                || modelData.roles & 2 /*not admin*/
-                                || modelData.state === 2 /*remote pending*/) {
-                            return false
-                        }
-                        // temporary workaround
-                        if (account && account.protocolInfo.name == "irc") {
-                            return false
-                        }
-                        return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
-                    }
-                    function removeFromGroup() {
-                        var participant = participantDelegate.participant
-                        chatEntry.removeParticipants([participant.identifier], "")
-                        participantDelegate.height = 0
-                    }
-                    participant: modelData
-                    leadingActions: canRemove() ? participantLeadingActions : undefined
-                    onClicked: {
-                        if (openProfileButton.visible) {
-                            mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
-                        }
-                    }
-                    Icon {
-                       id: openProfileButton
-                       anchors.right: parent.right
-                       anchors.rightMargin: units.gu(1)
-                       anchors.verticalCenter: parent.verticalCenter
-                       height: units.gu(2)
-                       name: "go-next"
-                    }
-                }
-            }
-            Item {
-               id: padding
-               height: units.gu(3)
-               anchors.left: parent.left
-               anchors.right: parent.right
-            }
-            Row {
-                enabled: chatEntry.active
-                anchors {
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
-                layoutDirection: Qt.RightToLeft
-                spacing: units.gu(1)
-                Button {
-                    id: destroyButton
-                    visible: chatRoom && !isPhoneAccount && chatEntry.active && chatEntry.selfContactRoles & 2
-                    text: i18n.tr("End group")
-                    color: Theme.palette.normal.negative
-                    onClicked: destroyGroup()
-                }
-                Button {
-                    id: leaveButton
-                    visible: chatRoom && !isPhoneAccount && chatEntry.active && !(chatEntry.selfContactRoles & 2)
-                    text: groupChatInfoPage.leaveString
-                    onClicked: {
-                        if (chatEntry.leaveChat()) {
-                            application.showNotificationMessage(groupChatInfoPage.leaveSuccessString, "tick")
-                            mainView.emptyStack()
+                    onTriggered: {
+                        // in case account is not a phone one, alert that if the group is going to have no active participants
+                        // it can be dissolved by the server
+                        if (chatEntry.chatType == ChatEntry.ChatTypeRoom && chatEntry.participants.length === 1 /*the active participant to remove now*/) {
+                            var properties = {}
+                            properties["groupName"] = groupName.text
+                            PopupUtils.open(Qt.createComponent("Dialogs/EmptyGroupWarningDialog.qml").createObject(groupChatInfoPage), groupChatInfoPage, properties)
                         } else {
-                            application.showNotificationMessage(groupChatInfoPage.leaveFailedString, "dialog-error-symbolic")
+                            var delegate = contentsFlickable.itemAt(value)
+                            delegate.removeFromGroup();
                         }
                     }
                 }
+            ]
+        }
+
+        model: allParticipants
+
+        delegate: ParticipantDelegate {
+            id: participantDelegate
+            function canRemove() {
+                if (!groupChatInfoPage.chatRoom /*not a group*/
+                        || !chatEntry.active /*not active*/
+                        || modelData.roles & 2 /*not admin*/
+                        || modelData.state === 2 /*remote pending*/) {
+                    return false
+                }
+                // temporary workaround
+                if (account && account.protocolInfo.name == "irc") {
+                    return false
+                }
+                return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanRemove)
+            }
+            function removeFromGroup() {
+                var participant = participantDelegate.participant
+                chatEntry.removeParticipants([participant.identifier], "")
+                participantDelegate.height = 0
+            }
+            participant: modelData
+            leadingActions: canRemove() ? participantLeadingActions : undefined
+            onClicked: {
+                if (openProfileButton.visible) {
+                    mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
+                }
+            }
+            Icon {
+               id: openProfileButton
+               anchors.right: parent.right
+               anchors.rightMargin: units.gu(1)
+               anchors.verticalCenter: parent.verticalCenter
+               height: units.gu(2)
+               name: "go-next"
             }
         }
+    }
+    Scrollbar {
+        flickableItem: contentsFlickable
+        align: Qt.AlignTrailing
     }
     KeyboardRectangle {
         id: keyboard
