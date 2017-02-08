@@ -34,7 +34,7 @@ Page {
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
         "threadSort": function(value) { mainView.sortTrheadsBy = value },
-        "showConversationIcon": function(value) { mainView.showConversationIcon = value }
+        "compactView": function(value) { mainView.compactView = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -52,11 +52,11 @@ Page {
                    "setMethod": "mmsEnabled"}
         },
         { "type": "boolean",
-          "data": {"name": "showConversationIcon",
-                   "description": i18n.tr("Show Icon for conversations"),
-                   "property": mainView.showConversationIcon,
+          "data": {"name": "compactView",
+                   "description": i18n.tr("Simplified conversation view"),
+                   "property": mainView.compactView,
                    "activatedFuncion": null,
-                   "setMethod": "showConversationIcon"}
+                   "setMethod": "compactView"}
         },
         { "type": "action",
           "data": { "name": "addAccount",

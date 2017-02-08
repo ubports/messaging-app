@@ -38,7 +38,7 @@ MainView {
     property QtObject activeMessagesView: null
     // settings
     property alias sortTrheadsBy: globalSettings.sortTrheadsBy
-    property alias showConversationIcon: globalSettings.showConversationIcon
+    property alias compactView: globalSettings.compactView
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -227,7 +227,7 @@ MainView {
     Settings {
         id: globalSettings
         property string sortTrheadsBy: "timestamp"
-        property bool showConversationIcon: true
+        property bool compactView: false
     }
 
     StickerPacksModel {
