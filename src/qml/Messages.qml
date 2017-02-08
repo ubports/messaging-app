@@ -517,9 +517,11 @@ Page {
     function markThreadAsRead() {
         if (!mainView.applicationActive || !messages.active) {
            pendingThreadsToMarkAsRead = true
-           return false
+           return
         }
-        return threadsModel.markThreadsAsRead(messages.threads);
+        threadsModel.markThreadsAsRead(messages.threads);
+        var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
+        chatManager.acknowledgeAllMessages(properties)
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
