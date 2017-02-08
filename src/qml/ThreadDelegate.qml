@@ -133,7 +133,7 @@ ListItem {
             }
             PropertyChanges {
                 target: delegate
-                height: units.gu(5)
+                height: units.gu(4)
             }
             PropertyChanges {
                 target: latestMessage
@@ -141,6 +141,10 @@ ListItem {
             }
             PropertyChanges {
                 target: protocolIcon
+                visible: false
+            }
+            PropertyChanges {
+                target: unreadCountIndicator
                 visible: false
             }
         }
