@@ -198,6 +198,14 @@ Page {
     Component {
         id: sectionDelegate
         ThreadsSectionDelegate {
+            function formatSectionTitle(title) {
+                if (mainView.sortTrheadsBy === "timestamp")
+                    return DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
+                else if (telepathyHelper.ready)
+                    return telepathyHelper.accountForId(title).displayName
+                else
+                    return title
+            }
         }
     }
 
@@ -217,9 +225,9 @@ Page {
         // but not completely revealed.
         enabled: bottomEdgeLoader.item.status !== BottomEdge.Revealed
         clip: true
-        section.property: "eventDate"
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
+        section.property: mainView.sortTrheadsBy === "title" ? "accountId" : "eventDate"
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
             // FIXME: update

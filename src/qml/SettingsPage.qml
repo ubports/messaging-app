@@ -25,11 +25,6 @@ Page {
     id: settingsPage
     title: i18n.tr("Settings")
 
-    property string sortTrheadsBy: "timestamp"
-    Settings {
-         property alias sortTrheadsBy: settingsPage.sortTrheadsBy
-    }
-
     function createAccount()
     {
         if (onlineAccountHelper.item)
@@ -38,7 +33,7 @@ Page {
 
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
-        "threadSort": function(value) { settingsPage.sortTrheadsBy = value }
+        "threadSort": function(value) { mainView.sortTrheadsBy = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -63,8 +58,8 @@ Page {
         { "type": "options",
           "data": { "name": "threadSort",
                     "description": i18n.tr("Sort threads"),
-                    "currentValue": settingsPage.sortTrheadsBy,
-                    "subtitle": settingsPage.sortByModel[settingsPage.sortTrheadsBy],
+                    "currentValue": mainView.sortTrheadsBy,
+                    "subtitle": settingsPage.sortByModel[mainView.sortTrheadsBy],
                     "options": sortByModel,
                     "setMethod": "threadSort"}
         }

@@ -36,6 +36,7 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    property alias sortTrheadsBy: globalSettings.sortTrheadsBy
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -183,15 +184,16 @@ MainView {
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
             sortField: {
-                switch(globalSettings.sortTrheadsBy) {
+                switch(mainView.sortTrheadsBy) {
                 case "title":
                     //FIXME: ThreadId works for IRC, not sure if that will work for other protocols
-                    return "threadId"
+                    return "accountId, threadId"
                 case "timestamp":
                 default:
                     return "lastEventTimestamp"
                 }
             }
+            sortOrder: HistorySort.AscendingOrder
         }
         groupingProperty: "participants"
         filter: HistoryFilter {}
@@ -214,7 +216,6 @@ MainView {
 
     Settings {
         id: globalSettings
-
         property string sortTrheadsBy: "timestamp"
     }
 

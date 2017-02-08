@@ -1237,7 +1237,7 @@ Page {
     }
 
     HistoryGroupedThreadsModel {
-        id: threadsModel
+        id: messagesModel
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {}
         groupingProperty: "participants"
@@ -1252,7 +1252,7 @@ Page {
         property var localPendingParticipants: null
         property var remotePendingParticipants: null
         property var threads: null
-        model: threadsModel
+        model: messagesModel
         visible: false
         delegate: Item {
             property var threads: model.threads
