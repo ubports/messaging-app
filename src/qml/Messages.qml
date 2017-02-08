@@ -84,6 +84,7 @@ Page {
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
     property var pendingEventsToMarkAsRead: []
+    property bool pendingThreadsToMarkAsRead: false
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
@@ -513,6 +514,14 @@ Page {
         return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
     }
 
+    function markThreadAsRead() {
+        if (!mainView.applicationActive || !messages.active) {
+           pendingThreadsToMarkAsRead = true
+           return false
+        }
+        return threadsModel.markThreadsAsRead(messages.threads);
+    }
+
     function markMessageAsRead(accountId, threadId, eventId, type) {
         var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
         if (!mainView.applicationActive || !messages.active) {
@@ -525,6 +534,13 @@ Page {
 
     function processPendingEvents() {
         if (mainView.applicationActive && messages.active) {
+            if (pendingThreadsToMarkAsRead) {
+                markThreadAsRead()
+                pendingThreadsToMarkAsRead = false
+                pendingEventsToMarkAsRead = []
+                return;
+            }
+
             for (var i in pendingEventsToMarkAsRead) {
                 var event = pendingEventsToMarkAsRead[i]
                 markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
@@ -1072,7 +1088,7 @@ Page {
     ContactWatcher {
         id: typingContactWatcher
         identifier: messages.userTypingId
-        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        addressableFields: messages.account ? messages.account.addressableVCardFields : []
     }
 
     MessagesHeader {
@@ -1225,7 +1241,7 @@ Page {
         alias: firstParticipant ? firstParticipant.alias : ""
         avatar: firstParticipant ? firstParticipant.avatar : ""
         detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
-        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        addressableFields: messages.account ? messages.account.addressableVCardFields : []
     }
 
     HistoryUnionFilter {
@@ -1242,7 +1258,7 @@ Page {
         sort: HistorySort {}
         groupingProperty: "participants"
         filter: messages.accountId != "" && messages.threadId != "" ? filters : null
-        matchContacts: true
+        matchContacts: messages.account.addressableVCardFields.length > 0
     }
 
     ListView {
@@ -1270,7 +1286,7 @@ Page {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
-        matchContacts: true
+        matchContacts: messages.account.addressableVCardFields.length > 0
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
