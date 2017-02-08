@@ -519,7 +519,7 @@ Page {
            pendingThreadsToMarkAsRead = true
            return false
         }
-        return threadsModel.markThreadsAsRead(messages.threads);
+        return messagesModel.markThreadsAsRead(messages.threads);
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
