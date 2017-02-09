@@ -32,9 +32,16 @@ Page {
     property bool isEmpty: threadCount == 0 && !threadModel.canFetchMore
     property alias threadCount: threadList.count
     property alias displayedThreadIndex: threadList.currentIndex
+    property bool _keepFocus: true
 
     function startSelection() {
         threadList.startSelection()
+    }
+
+    function selectMessage(index) {
+        if (index !== -1)
+            _keepFocus = false
+        threadList.currentIndex = index
     }
 
     signal newThreadCreated(var newThread)
@@ -101,6 +108,7 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
+                        threadList.currentIndex = -1
                         pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
@@ -110,7 +118,10 @@ Page {
                     iconName: "add"
                     shortcut: "Ctrl+N"
                     enabled: mainPage.state == "default"
-                    onTriggered: mainView.startNewMessage()
+                    onTriggered: {
+                        threadList.currentIndex = -1
+                        mainView.startNewMessage()
+                    }
                 }
             ]
 
@@ -234,8 +245,12 @@ Page {
         onCurrentItemChanged: {
             if (pageStack.columns > 1) {
                 currentItem.show()
-                // Keep focus on current page
-                threadList.forceActiveFocus()
+                if (mainPage._keepFocus)
+                    // Keep focus on current page
+                    threadList.forceActiveFocus()
+                else if (pageStack.activePage)
+                    pageStack.activePage.forceActiveFocus()
+                mainPage._keepFocus = true
             }
         }
 
