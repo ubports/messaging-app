@@ -179,6 +179,15 @@ MainView {
 
     HistoryGroupedThreadsModel {
         id: threadModel
+
+        function indexOf(threadId) {
+            for (var i=0; i < count; i++) {
+                if (get(i).threadId === threadId)
+                    return i
+            }
+            return -1
+        }
+
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
             sortField: "lastEventTimestamp"
@@ -242,12 +251,13 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-         mainPage.forceActiveFocus()
+        mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
             layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("EmptyStatePage.qml"))
+            mainPage.displayedThreadIndex = -1
         }
     }
 
@@ -354,8 +364,7 @@ MainView {
                 properties["participants"] = participants;
             }
         }
-
-        showMessagesView(properties)
+        mainPage.selectMessage(threadModel.indexOf(properties.thredId))
     }
 
     Connections {
