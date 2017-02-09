@@ -517,9 +517,11 @@ Page {
     function markThreadAsRead() {
         if (!mainView.applicationActive || !messages.active) {
            pendingThreadsToMarkAsRead = true
-           return false
+           return
         }
-        return messagesModel.markThreadsAsRead(messages.threads);
+        messagesModel.markThreadsAsRead(messages.threads);
+        var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
+        chatManager.acknowledgeAllMessages(properties)
     }
 
     function markMessageAsRead(accountId, threadId, eventId, type) {
@@ -553,6 +555,7 @@ Page {
     header: PageHeader {
         id: pageHeader
 
+        property bool backEnabled: true
         property alias trailingActions: trailingBar.actions
         property bool showSections: {
             if (headerSections.model.length > 1) {
@@ -601,7 +604,8 @@ Page {
             Action {
                iconName: "back"
                text: i18n.tr("Back")
-               shortcut: "Esc"
+               shortcut: visible ? "Esc" : ""
+               visible: pageHeader.backEnabled
                onTriggered: {
                    if (messages.state == "selection") {
                         messageList.cancelSelection()
@@ -662,6 +666,7 @@ Page {
                 target: pageHeader
                 title: " "
                 trailingActions: selectionState.trailingActions
+                backEnabled: true
             }
         },
         State {
@@ -712,6 +717,7 @@ Page {
                 }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         },
         State {
@@ -747,6 +753,7 @@ Page {
                 target: pageHeader
                 contents: headerContents
                 trailingActions: unknownContactState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         },
         State {
@@ -813,6 +820,7 @@ Page {
                 title: " "
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
+                backEnabled: true
             }
         },
         State {
@@ -846,6 +854,7 @@ Page {
                 target: pageHeader
                 contents: headerContents
                 trailingActions: knownContactState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         }
     ]

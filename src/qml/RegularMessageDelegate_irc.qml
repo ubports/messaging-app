@@ -20,6 +20,9 @@ import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
+import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
+
+import "3rd_party/ba-linkify.js" as BaLinkify
 
 ListItem {
     id: messageDelegate
@@ -35,6 +38,11 @@ ListItem {
     property var account: null
     property var _accountRegex: account && (account.selfContactId != "") ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
 
+    function getCountryCode() {
+        var localeName = Qt.locale().name
+        return localeName.substr(localeName.length - 2, 2)
+    }
+
     function deleteMessage()
     {
         eventModel.removeEvents([messageData.properties]);
@@ -46,19 +54,6 @@ ListItem {
         var items = [{"text": textMessage, "url":""}]
         emptyStack()
         var transfer = {}
-
-        for (var i = 0; i < dataAttachments.length; i++) {
-            var attachment = dataAttachments[i].data
-            var item = {"text":"", "url":""}
-            var contentType = application.fileMimeType(String(attachment.filePath))
-            // we dont include smil files. they will be auto generated
-            if (startsWith(contentType.toLowerCase(), "application/smil")) {
-                continue
-            }
-            item["url"] = "file://" + attachment.filePath
-            items.push(item)
-        }
-
         transfer["items"] = items
         properties["sharedAttachmentsTransfer"] = transfer
 
@@ -73,26 +68,7 @@ ListItem {
 
     function resendMessage()
     {
-        var newAttachments = []
-        for (var i = 0; i < attachments.length; i++) {
-            var attachment = []
-            var item = attachments[i]
-            // we dont include smil files. they will be auto generated
-            if (item.contentType.toLowerCase() === "application/smil") {
-                continue
-            }
-            // text messages will be sent as textMessage. skip it
-            // to avoid duplication
-            if (item.contentType.toLowerCase() === "text/plain") {
-                continue
-            }
-            attachment.push(item.attachmentId)
-            attachment.push(item.contentType)
-            attachment.push(item.filePath)
-            newAttachments.push(attachment)
-        }
-
-        messages.validator.validateMessageAndSend(textMessage, messages.participantIds, newAttachments, {"x-canonical-tmp-files": true}, [messageDelegate.deleteMessage])
+       messages.validator.validateMessageAndSend(textMessage, messages.participantIds, [], {"x-canonical-tmp-files": true}, [messageDelegate.deleteMessage])
     }
 
     width: messageList.width
@@ -103,19 +79,52 @@ ListItem {
     Label {
         id: label
 
-        property string sender: {
-            if (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) {
-                if (messageData.sender && incoming) {
-                    if (messageData.sender.alias !== undefined && messageData.sender.alias !== "") {
-                        return messageData.sender.alias
-                    } else if (messageData.sender.identifier !== undefined && messageData.sender.identifier !== "") {
-                        return messageData.sender.identifier
-                    } else if (messageData.senderId !== "") {
-                        return messageData.senderId
-                    }
-                }
+        function parseText(text) {
+            if (!text) {
+                return text;
             }
-            return account.selfContactId
+
+            // remove html tags
+            text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
+            // wrap text in a div to keep whitespaces and new lines from collapsing
+            text = '<div style="white-space: pre-wrap;">' + text + '</div>';
+            // check for links
+            var htmlText = BaLinkify.linkify(text);
+            if (htmlText !== text) {
+                return htmlText
+            }
+
+            // linkify phone numbers if no web links were found
+            var phoneNumbers = PhoneNumber.PhoneUtils.matchInText(text, getCountryCode())
+            for (var i = 0; i < phoneNumbers.length; ++i) {
+                var currentNumber = phoneNumbers[i]
+                text = text.replace(currentNumber, formatTelSchemeWith(currentNumber))
+            }
+
+            if ((messages.chatType !== HistoryThreadModel.ChatTypeRoom) ||
+                !messageDelegate.incoming ||
+                !_accountRegex) {
+            }
+
+            return text.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
+        }
+
+        property string sender: {
+            if (messageData.sender && incoming) {
+                if (messageData.sender.alias !== undefined && messageData.sender.alias !== "") {
+                    return messageData.sender.alias
+                } else if (messageData.sender.identifier !== undefined && messageData.sender.identifier !== "") {
+                    return messageData.sender.identifier
+                } else if (messageData.senderId !== "") {
+                    return messageData.senderId
+                }
+            } else if (account.selfContactId == "") {
+                // Return first part of display name if account id is empty
+                var displayName = account.displayName.substring(0, account.displayName.indexOf('@'))
+                return displayName
+            } else {
+                return account.selfContactId
+            }
         }
 
 
@@ -124,17 +133,16 @@ ListItem {
             right: parent.right
             margins: units.gu(1)
         }
-        text: "<font color=\"%1\">[%2]</font>\t%3"
+        text: "%1 <font color=\"%2\">[%3]</font>\t%4"
+            .arg(Qt.formatTime(messageData.timestamp, Qt.DefaultLocaleShortDate))
             .arg(incoming ? "green" : "blue")
             .arg(sender)
-            .arg(messageDelegate.messageText)
-        font.bold: (messages.chatType === HistoryThreadModel.ChatTypeRoom) &&
-                   messageDelegate.incoming &&
-                   (_accountRegex && text.match(_accountRegex))
-        wrapMode: Text.WordWrap
-    }
+            .arg(parseText(messageDelegate.messageText))
 
-    //highlightColor: "transparent"
+        wrapMode: Text.WordWrap
+
+        onLinkActivated: Qt.openUrlExternally(link)
+    }
 
     leadingActions: ListItemActions {
         actions: [
@@ -144,17 +152,6 @@ ListItem {
                 onTriggered: deleteMessage()
             }
         ]
-        delegate: Rectangle {
-            width: height + units.gu(4.5)
-            color: UbuntuColors.red
-            Icon {
-                name: action.iconName
-                width: units.gu(3)
-                height: width
-                color: "white"
-                anchors.centerIn: parent
-            }
-        }
     }
 
     trailingActions: ListItemActions {
@@ -188,14 +185,13 @@ ListItem {
                 iconName: "info"
                 text: i18n.tr("Info")
                 onTriggered: {
-                    var messageType = attachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                    var messageInfo = {"type": messageType,
+                   var messageInfo = {"type": i18n.tr("IRC"),
                                        "senderId": messageData.senderId,
                                        "sender": messageData.sender,
                                        "timestamp": messageData.timestamp,
                                        "textReadTimestamp": messageData.textReadTimestamp,
                                        "status": messageData.textMessageStatus,
-                                       "participants": messages.participants}
+                                       "participants": messages.participants }
                     messageInfoDialog.showMessageInfo(messageInfo)
                 }
             }
