@@ -1310,6 +1310,14 @@ Page {
                 }
             }
         }
+        onFilterChanged: {
+            if ((messages.chatType == HistoryEventModel.ChatTypeContact) &&
+                (messages.threads.length > 0)) {
+                var index = mainPage.indexOf(messages.threads[0].threadId, messages.threads[0].accountId)
+                if (index != -1)
+                    mainPage.selectMessage(index)
+            }
+        }
     }
 
     Timer {
