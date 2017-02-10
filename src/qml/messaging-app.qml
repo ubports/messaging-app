@@ -36,6 +36,7 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    property var _pendingProperties: null
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -345,7 +346,17 @@ MainView {
         return threads
     }
 
-    function startChat(properties) {
+    function startChatLate(properties) {
+        if (!properties && !_pendingProperties)
+            return
+
+        if (!properties)
+            properties = _pendingProperties
+
+        // make sure that is called only once, disconnect
+        _pendingProperties = null
+        telepathyHelper.onSetupReady.disconnect(startChatLate)
+
         var participantIds = []
         var accountId = ""
         var match = HistoryThreadModel.MatchCaseSensitive
@@ -373,14 +384,38 @@ MainView {
                 properties["participants"] = participants;
             }
         }
-        if (properties.threadId && (properties.threadId !== "")) {
-            var index = threadModel.indexOf(properties.threadId)
-            if (index != -1) {
+
+        // Try to select the corrent thread on thread list
+        accountId = properties.accountId
+        var threadId = properties.threadId
+        if (!threadId && (properties["threads"].length > 0)) {
+            threadId = properties["threads"][0].threadId
+            if (!accountId)
+                accountId = properties["threads"][0].accountId
+        }
+
+        if (threadId) {
+            var index = threadModel.indexOf(properties.threadId, accountId)
+            if (index !== -1) {
                 mainPage.selectMessage(index)
                 return
             }
         }
         showMessagesView(properties)
+    }
+
+    function startChat(properties) {
+        if (!telepathyHelper.ready) {
+            if (_pendingProperties) {
+                _pendingProperties = properties
+            } else {
+                _pendingProperties = properties
+                // wait for telepathy
+                telepathyHelper.onSetupReady.connect(startChatLate)
+            }
+        } else {
+            startChatLate(properties)
+        }
     }
 
     Connections {
