@@ -462,6 +462,7 @@ Page {
     }
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        selectThreadOnIdle.restart()
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
@@ -549,6 +550,25 @@ Page {
             }
             pendingEventsToMarkAsRead = []
         }
+    }
+
+    function selectActiveThread(threads) {
+        if ((messages.chatType == HistoryEventModel.ChatTypeContact) &&
+            (messages.threads.length > 0)) {
+            var index = threadModel.indexOf(messages.threads[0].threadId, messages.threads[0].accountId)
+            if (index != -1) {
+                mainPage.selectMessage(index)
+            }
+        }
+    }
+
+    // Use a timer to make sure that 'threads' are correct set before try to select it
+    Timer {
+        id: selectThreadOnIdle
+        interval: 100
+        repeat: false
+        running: false
+        onTriggered: selectActiveThread(messages.threads)
     }
 
 
@@ -874,7 +894,7 @@ Page {
                 }
             }
         }
-        newMessage = (messages.accountId == "" && messages.participants.length === 0)
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
@@ -1326,14 +1346,6 @@ Page {
                     scrollToEventId = ""
                     messageList.listModel = eventModel
                 }
-            }
-        }
-        onFilterChanged: {
-            if ((messages.chatType == HistoryEventModel.ChatTypeContact) &&
-                (messages.threads.length > 0)) {
-                var index = mainPage.indexOf(messages.threads[0].threadId, messages.threads[0].accountId)
-                if (index != -1)
-                    mainPage.selectMessage(index)
             }
         }
     }
