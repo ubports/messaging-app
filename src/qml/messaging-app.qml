@@ -345,15 +345,17 @@ MainView {
         return threads
     }
 
-    function startChatLate() {
-        if (!_pendingProperties)
+    function startChatLate(properties) {
+        if (!properties && !_pendingProperties)
             return
 
+        if (!properties)
+            properties = _pendingProperties
+
         // make sure that is called only once, disconnect
+        _pendingProperties = null
         telepathyHelper.onSetupReady.disconnect(startChatLate)
 
-        var properties = _pendingProperties
-        _pendingProperties = null
         var participantIds = []
         var accountId = ""
         var match = HistoryThreadModel.MatchCaseSensitive
