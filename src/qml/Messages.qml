@@ -856,7 +856,7 @@ Page {
                 }
             }
         }
-        newMessage = (messages.accountId == "" && messages.participants.length === 0)
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
