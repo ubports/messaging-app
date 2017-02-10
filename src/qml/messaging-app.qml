@@ -36,6 +36,7 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    property var _pendingProperties: null
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -344,7 +345,15 @@ MainView {
         return threads
     }
 
-    function startChatLate(properties) {
+    function startChatLate() {
+        if (!_pendingProperties)
+            return
+
+        // make sure that is called only once, disconnect
+        telepathyHelper.onSetupReady.disconnect(startChatLate)
+
+        var properties = _pendingProperties
+        _pendingProperties = null
         var participantIds = []
         var accountId = ""
         var match = HistoryThreadModel.MatchCaseSensitive
@@ -394,8 +403,13 @@ MainView {
 
     function startChat(properties) {
         if (!telepathyHelper.ready) {
-            // wait for telepathy
-            telepathyHelper.onSetupReady.connect(function() { startChatLate(properties) })
+            if (_pendingProperties) {
+                _pendingProperties = properties
+            } else {
+                _pendingProperties = properties
+                // wait for telepathy
+                telepathyHelper.onSetupReady.connect(startChatLate)
+            }
         } else {
             startChatLate(properties)
         }
