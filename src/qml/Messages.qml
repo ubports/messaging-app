@@ -1095,8 +1095,8 @@ Page {
     }
 
     Repeater {
-        model: messages.chatEntry.chatStates
-        Item {
+        model: account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null
+        delegate: Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
@@ -1485,6 +1485,9 @@ Page {
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
         onTextChanged: {
+            if (!account.protocolInfo.enableChatStates) {
+                return
+            }
             if (text == "" && !composeBar.inputMethodComposing) {
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
                 selfTypingTimer.stop()
