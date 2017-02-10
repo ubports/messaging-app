@@ -344,7 +344,7 @@ MainView {
         return threads
     }
 
-    function startChat(properties) {
+    function startChatLate(properties) {
         var participantIds = []
         var accountId = ""
         var match = HistoryThreadModel.MatchCaseSensitive
@@ -372,14 +372,33 @@ MainView {
                 properties["participants"] = participants;
             }
         }
-        if (properties.threadId && (properties.threadId !== "")) {
-            var index = threadModel.indexOf(properties.threadId)
-            if (index != -1) {
+
+        // Try to select the corrent thread on thread list
+        accountId = properties.accountId
+        var threadId = properties.threadId
+        if (!threadId && (properties["threads"].length > 0)) {
+            threadId = properties["threads"][0].threadId
+            if (!accountId)
+                accountId = properties["threads"][0].accountId
+        }
+
+        if (threadId) {
+            var index = threadModel.indexOf(properties.threadId, accountId)
+            if (index !== -1) {
                 mainPage.selectMessage(index)
                 return
             }
         }
         showMessagesView(properties)
+    }
+
+    function startChat(properties) {
+        if (!telepathyHelper.ready) {
+            // wait for telepathy
+            telepathyHelper.onSetupReady.connect(function() { startChatLate(properties) })
+        } else {
+            startChatLate(properties)
+        }
     }
 
     Connections {
