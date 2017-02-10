@@ -243,7 +243,7 @@ ListItem {
         }
         elide: Text.ElideRight
         color: Theme.palette.normal.backgroundText
-        font.bold: unreadCountIndicator.visible
+        font.bold: unreadCount > 0
         text: {
             if (groupChat) {
                 return groupChatLabel
