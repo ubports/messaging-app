@@ -180,13 +180,17 @@ MainView {
     HistoryGroupedThreadsModel {
         id: threadModel
 
-        function indexOf(threadId) {
+        function indexOf(threadId, accountId) {
             for (var i=0; i < count; i++) {
                 var threads = get(i)
                 for (var t=0; t < threads.length; t++) {
                     var thread = threads[t]
-                    if (thread.threadId === threadId)
-                        return i
+                    if (thread.threadId === threadId) {
+                        if (accountId && (thread.accountId == accountId))
+                            return i
+                        else if (!accountId)
+                            return i
+                    }
                 }
             }
             return -1
