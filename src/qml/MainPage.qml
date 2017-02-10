@@ -44,19 +44,6 @@ Page {
         threadList.currentIndex = index
     }
 
-    function indexOf(threadId, accountId) {
-        for(var i=0; i < threadModel.count; i++) {
-            var threads = threadModel.get(i)
-            for (var t=0; t < threads.length; t++) {
-                if ((threads[i].threadId === threadId) &&
-                    (threads[i].accountId === accountId)) {
-                    return i;
-                }
-            }
-        }
-        return -1
-    }
-
     signal newThreadCreated(var newThread)
 
     TextField {
