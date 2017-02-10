@@ -181,10 +181,18 @@ MainView {
     HistoryGroupedThreadsModel {
         id: threadModel
 
-        function indexOf(threadId) {
+        function indexOf(threadId, accountId) {
             for (var i=0; i < count; i++) {
-                if (get(i).threadId === threadId)
-                    return i
+                var threads = get(i)
+                for (var t=0; t < threads.length; t++) {
+                    var thread = threads[t]
+                    if (thread.threadId === threadId) {
+                        if (accountId && (thread.accountId == accountId))
+                            return i
+                        else if (!accountId)
+                            return i
+                    }
+                }
             }
             return -1
         }
@@ -365,7 +373,14 @@ MainView {
                 properties["participants"] = participants;
             }
         }
-        mainPage.selectMessage(threadModel.indexOf(properties.thredId))
+        if (properties.threadId && (properties.threadId !== "")) {
+            var index = threadModel.indexOf(properties.threadId)
+            if (index != -1) {
+                mainPage.selectMessage(index)
+                return
+            }
+        }
+        showMessagesView(properties)
     }
 
     Connections {
