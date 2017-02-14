@@ -39,6 +39,7 @@ MainView {
     // settings
     property alias sortTrheadsBy: globalSettings.sortTrheadsBy
     property alias compactView: globalSettings.compactView
+    property alias disconnectOnQuit: globalSettings.disconnectOnQuit
     // private
     property var _pendingProperties: null
 
@@ -99,6 +100,11 @@ MainView {
                                              Qt.resolvedUrl("MessagingContactViewPage.qml"),
                                              initialProperties)
         }
+    }
+
+    function disconnectFromServer()
+    {
+        //TODO: disconnect from server
     }
 
     onApplicationActiveChanged: {
@@ -247,6 +253,10 @@ MainView {
         id: globalSettings
         property string sortTrheadsBy: "timestamp"
         property bool compactView: false
+        property bool disconnectOnQuit: true
+        onDisconnectOnQuitChanged: {
+            console.debug("disconnectOnQuit:" + disconnectOnQuit)
+        }
     }
 
     StickerPacksModel {
@@ -495,6 +505,15 @@ MainView {
                 emptyStack()
             }
             layout.completed = true;
+        }
+    }
+
+    Connections {
+        target: Qt.application
+        onAboutToQuit: {
+            if (globalSettings.disconnectOnQuit) {
+                mainView.disconnectFromServer()
+            }
         }
     }
 }

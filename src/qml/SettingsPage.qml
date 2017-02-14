@@ -34,7 +34,8 @@ Page {
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
         "threadSort": function(value) { mainView.sortTrheadsBy = value },
-        "compactView": function(value) { mainView.compactView = value }
+        "compactView": function(value) { mainView.compactView = value },
+        "disconnectOnQuit": function(value) { mainView.disconnectOnQuit = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -50,6 +51,13 @@ Page {
                    "property": telepathyHelper.mmsEnabled,
                    "activatedFuncion": null,
                    "setMethod": "mmsEnabled"}
+        },
+        { "type": "boolean",
+          "data": {"name": "disconnectOnQuit",
+                   "description": i18n.tr("Discconect from server on quit"),
+                   "property": mainView.disconnectOnQuit,
+                   "activatedFuncion": null,
+                   "setMethod": "disconnectOnQuit"}
         },
         { "type": "boolean",
           "data": {"name": "compactView",
