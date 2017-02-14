@@ -106,6 +106,19 @@ Page {
     property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
 
     property alias validator: sendMessageValidator
+    property string chatTitle: {
+        if (chatEntry.title !== "") {
+            return chatEntry.title
+        }
+        var roomInfo = threadInformation.chatRoomInfo
+        if (roomInfo.Title != "") {
+            return roomInfo.Title
+        } else if (roomInfo.RoomName != "") {
+            return roomInfo.RoomName
+        }
+        return ""
+    }
+
 
     signal ready
     signal cancel
@@ -708,6 +721,17 @@ Page {
                     visible: enabled
                     iconName: "view-refresh"
                     onTriggered: messages.chatEntry.startChat()
+                },
+                Action {
+                    id: favoriteAction
+                    visible: chatEntry.active && (messages.chatType == HistoryThreadModel.ChatTypeRoom)
+                    iconName: mainView.isFavorite(messages.chatTitle) ? "starred" : "non-starred"
+                    onTriggered: {
+                        if (mainView.isFavorite(messages.chatTitle))
+                            mainView.removeFavorite(messages.chatTitle)
+                        else
+                            mainView.addFavorite(messages.chatTitle)
+                    }
                 }
 
             ]
@@ -718,15 +742,10 @@ Page {
                 title: {
                     var finalParticipants = (participants ? participants.length : 0)
                     if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
-                        if (chatEntry.title !== "") {
-                            return chatEntry.title
+                        if (messages.chatTitle != "") {
+                            return messages.chatTitle
                         }
-                        var roomInfo = threadInformation.chatRoomInfo
-                        if (roomInfo.Title != "") {
-                            return roomInfo.Title
-                        } else if (roomInfo.RoomName != "") {
-                            return roomInfo.RoomName
-                        }
+
                         // include the "Me" participant to be consistent with
                         // group info page
                         if (roomInfo.Joined) {

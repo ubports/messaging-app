@@ -138,6 +138,36 @@ MainView {
         mainView.showMessagesView(properties)
     }
 
+    // settings related functions
+    function getFavoriteChannels()
+    {
+        return globalSettings.favoriteChannels.split(";")
+    }
+
+    function isFavorite(fav) {
+        return (favoriteIndex(fav) != -1)
+    }
+
+    function favoriteIndex(fav) {
+        var list =  globalSettings.favoriteChannels.split(";")
+        return list.indexOf(fav)
+    }
+
+    function addFavorite(fav) {
+        if (favoriteIndex(fav) == -1) {
+            globalSettings.favoriteChannels += ";" + fav
+        }
+    }
+
+    function removeFavorite(fav) {
+        var index = favoriteIndex(fav)
+        if (index != -1) {
+            var list =  globalSettings.favoriteChannels.split(";")
+            list.splice(index, 1)
+            globalSettings.favoriteChannels = list.join(";")
+        }
+    }
+
     Connections {
         target: telepathyHelper.textAccounts
         onActiveChanged: {
@@ -254,9 +284,7 @@ MainView {
         property string sortTrheadsBy: "timestamp"
         property bool compactView: false
         property bool disconnectOnQuit: true
-        onDisconnectOnQuitChanged: {
-            console.debug("disconnectOnQuit:" + disconnectOnQuit)
-        }
+        property string favoriteChannels: ""
     }
 
     StickerPacksModel {
