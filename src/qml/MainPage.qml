@@ -265,6 +265,8 @@ Page {
         listDelegate: ThreadDelegate {            
             id: threadDelegate
 
+            property var channelActive: chatManager.channelIsActive(model.properties)
+
             function show()
             {
                 var properties = model.properties
@@ -290,7 +292,7 @@ Page {
             objectName: "thread%1".arg(participants[0].identifier)
             Component.onCompleted: mainPage.newThreadCreated(model)
 
-            opacity: chatManager.channelIsActive(model.properties) ? 1.0 : 0.5
+
             anchors {
                 left: parent.left
                 right: parent.right
@@ -322,6 +324,23 @@ Page {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }
+
+//            //WORKAROUND: take some time to channel to become active
+//            Timer {
+//                id: idleCheckActive
+//                repeat: false
+//                interval: 1
+//                onTriggered: {
+//                    channelActive = chatManager.channelIsActive(model.properties)
+//                }
+//            }
+
+//            opacity: !groupChat || channelActive ? 1.0 : 0.5
+//            Connections {
+//                target: chatManager
+//                onTextChannelAvailable: idleCheckActive.restart()
+//                onTextChannelInvalidated: idleCheckActive.restart()
+//            }
         }
         onSelectionDone: {
             var threadsToRemove = []
