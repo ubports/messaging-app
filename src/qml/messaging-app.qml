@@ -40,8 +40,11 @@ MainView {
     property alias sortTrheadsBy: globalSettings.sortTrheadsBy
     property alias compactView: globalSettings.compactView
     property alias disconnectOnQuit: globalSettings.disconnectOnQuit
+    property alias favoriteChannels: favoriteChannelsItem
+
     // private
     property var _pendingProperties: null
+
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -136,36 +139,6 @@ MainView {
         emptyStack()
         properties["sharedAttachmentsTransfer"] = transfer
         mainView.showMessagesView(properties)
-    }
-
-    // settings related functions
-    function getFavoriteChannels()
-    {
-        return globalSettings.favoriteChannels.split(";")
-    }
-
-    function isFavorite(fav) {
-        return (favoriteIndex(fav) != -1)
-    }
-
-    function favoriteIndex(fav) {
-        var list =  globalSettings.favoriteChannels.split(";")
-        return list.indexOf(fav)
-    }
-
-    function addFavorite(fav) {
-        if (favoriteIndex(fav) == -1) {
-            globalSettings.favoriteChannels += ";" + fav
-        }
-    }
-
-    function removeFavorite(fav) {
-        var index = favoriteIndex(fav)
-        if (index != -1) {
-            var list =  globalSettings.favoriteChannels.split(";")
-            list.splice(index, 1)
-            globalSettings.favoriteChannels = list.join(";")
-        }
     }
 
     Connections {
@@ -284,7 +257,6 @@ MainView {
         property string sortTrheadsBy: "timestamp"
         property bool compactView: false
         property bool disconnectOnQuit: true
-        property string favoriteChannels: ""
     }
 
     StickerPacksModel {
@@ -534,6 +506,10 @@ MainView {
             }
             layout.completed = true;
         }
+    }
+
+    FavoriteChannels {
+        id: favoriteChannelsItem
     }
 
     Connections {

@@ -290,6 +290,7 @@ Page {
             objectName: "thread%1".arg(participants[0].identifier)
             Component.onCompleted: mainPage.newThreadCreated(model)
 
+            opacity: chatManager.channelIsActive(model.properties) ? 1.0 : 0.5
             anchors {
                 left: parent.left
                 right: parent.right

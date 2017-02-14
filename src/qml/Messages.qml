@@ -725,12 +725,12 @@ Page {
                 Action {
                     id: favoriteAction
                     visible: chatEntry.active && (messages.chatType == HistoryThreadModel.ChatTypeRoom)
-                    iconName: mainView.isFavorite(messages.chatTitle) ? "starred" : "non-starred"
+                    iconName: mainView.favoriteChannels.isFavorite(messages.accountId, messages.chatTitle) ? "starred" : "non-starred"
                     onTriggered: {
-                        if (mainView.isFavorite(messages.chatTitle))
-                            mainView.removeFavorite(messages.chatTitle)
+                        if (iconName == "starred")
+                            mainView.favoriteChannels.removeFavorite(messages.accountId, messages.chatTitle)
                         else
-                            mainView.addFavorite(messages.chatTitle)
+                            mainView.favoriteChannels.addFavorite(messages.accountId, messages.chatTitle)
                     }
                 }
 
