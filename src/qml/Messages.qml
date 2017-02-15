@@ -96,7 +96,7 @@ Page {
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
-    property QtObject chatEntry: chatEntryObject
+    property QtObject chatEntry
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
@@ -899,6 +899,10 @@ Page {
     ]
 
     Component.onCompleted: {
+        if (!chatEntry) {
+            chatEntry = chatEntryComponent.createObject(this)
+        }
+
         // we only revert back to phone account if this is a 1-1 chat,
         // in which case the handler will fallback to multimedia if needed
         if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
@@ -1087,16 +1091,22 @@ Page {
         }
     }
 
-    ChatEntry {
-        id: chatEntryObject
-        chatType: messages.chatType
-        participantIds: messages.participantIds
-        chatId: messages.threadId
-        accountId: messages.accountId
-        autoRequest: !newMessage && !messages.account.protocolInfo.enableRejoin
+    Component {
+        id: chatEntryComponent
 
+        ChatEntry {
+            id: chatEntryObject
+            chatType: messages.chatType
+            participantIds: messages.participantIds
+            chatId: messages.threadId
+            accountId: messages.accountId
+        }
+    }
+
+    Connections {
+        target: messages.chatEntry
         onChatTypeChanged: {
-            messages.chatType = chatEntryObject.chatType
+            messages.chatType = chatEntry.chatType
         }
 
         onMessageSent: {
@@ -1111,6 +1121,12 @@ Page {
                 addNewThreadToFilter(accountId, properties)
             }
         }
+    }
+
+    Binding {
+        target: messages.chatEntry
+        property: "autoRequest"
+        value: !newMessage && !messages.account.protocolInfo.enableRejoin
     }
 
     Repeater {

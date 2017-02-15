@@ -281,6 +281,7 @@ Page {
                 if (displayedEvent != null) {
                     properties["scrollToEventId"] = displayedEvent.eventId
                 }
+                properties["chatEntry"] = chatEntry
                 delete properties["participants"]
                 delete properties["localPendingParticipants"]
                 delete properties["remotePendingParticipants"]
@@ -325,22 +326,15 @@ Page {
                 threadList.selectItem(threadDelegate)
             }
 
-//            //WORKAROUND: take some time to channel to become active
-//            Timer {
-//                id: idleCheckActive
-//                repeat: false
-//                interval: 1
-//                onTriggered: {
-//                    channelActive = chatManager.channelIsActive(model.properties)
-//                }
-//            }
+            ChatEntry {
+                id: chatEntry
+                chatType: model.properties.chatType
+                participantIds: model.properties.participantIds
+                chatId: model.properties.threadId
+                accountId: model.properties.accountId
+            }
 
-//            opacity: !groupChat || channelActive ? 1.0 : 0.5
-//            Connections {
-//                target: chatManager
-//                onTextChannelAvailable: idleCheckActive.restart()
-//                onTextChannelInvalidated: idleCheckActive.restart()
-//            }
+            opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
         }
         onSelectionDone: {
             var threadsToRemove = []
