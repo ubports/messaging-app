@@ -1126,7 +1126,7 @@ Page {
     Binding {
         target: messages.chatEntry
         property: "autoRequest"
-        value: !newMessage && !messages.account.protocolInfo.enableRejoin
+        value: !messages.newMessage && !messages.account.protocolInfo.enableRejoin
     }
 
     Repeater {

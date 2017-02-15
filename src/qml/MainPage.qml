@@ -332,6 +332,7 @@ Page {
                 participantIds: model.properties.participantIds
                 chatId: model.properties.threadId
                 accountId: model.properties.accountId
+                autoRequest: false
             }
 
             opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
