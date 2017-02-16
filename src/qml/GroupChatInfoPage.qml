@@ -470,7 +470,7 @@ Page {
                 participantDelegate.height = 0
             }
             participant: chatEntry.active ? model : modelData
-            leadingActions: canRemove() ? participantLeadingActions : undefined
+            leadingActions: canRemove() ? participantLeadingActions : null
             onClicked: {
                 if (openProfileButton.visible) {
                     mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
