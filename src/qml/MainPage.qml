@@ -265,8 +265,6 @@ Page {
         listDelegate: ThreadDelegate {            
             id: threadDelegate
 
-            property var channelActive: chatManager.channelIsActive(model.properties)
-
             function show()
             {
                 var properties = model.properties
@@ -288,11 +286,9 @@ Page {
                 mainView.showMessagesView(properties)
             }
 
-
             // FIXME: find a better unique name
             objectName: "thread%1".arg(participants[0].identifier)
             Component.onCompleted: mainPage.newThreadCreated(model)
-
 
             anchors {
                 left: parent.left
