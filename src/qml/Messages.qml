@@ -525,14 +525,13 @@ Page {
         chatManager.acknowledgeAllMessages(properties)
     }
 
-    function markMessageAsRead(accountId, threadId, eventId, type) {
-        var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
+    function markMessageAsRead(message) {
         if (!mainView.applicationActive || !messages.active) {
-           pendingEventsToMarkAsRead.push(pendingEvent)
+           pendingEventsToMarkAsRead.push(message)
            return false
         }
-        chatManager.acknowledgeMessage(pendingEvent)
-        return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+        chatManager.acknowledgeMessage(message)
+        return eventModel.markEventAsRead(message);
     }
 
     function processPendingEvents() {
@@ -546,7 +545,7 @@ Page {
 
             for (var i in pendingEventsToMarkAsRead) {
                 var event = pendingEventsToMarkAsRead[i]
-                markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
+                markMessageAsRead(event)
             }
             pendingEventsToMarkAsRead = []
         }

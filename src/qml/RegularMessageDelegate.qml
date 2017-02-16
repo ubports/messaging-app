@@ -100,7 +100,7 @@ Item {
         }
         Component.onCompleted: {
             if (newEvent) {
-                messages.markMessageAsRead(accountId, threadId, eventId, type);
+                messages.markMessageAsRead(messageData);
             }
         }
     }
