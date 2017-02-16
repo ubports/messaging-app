@@ -287,7 +287,7 @@ Page {
 
 
             // FIXME: find a better unique name
-            objectName: "thread%1".arg(participants[0].identifier)
+            objectName: "thread%1".arg(participants.length > 0 ? participants[0].identifier : "")
             Component.onCompleted: mainPage.newThreadCreated(model)
 
             anchors {
