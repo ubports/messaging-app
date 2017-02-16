@@ -143,9 +143,17 @@ ListItem {
                 target: protocolIcon
                 visible: false
             }
-            PropertyChanges {
+            AnchorChanges {
                 target: unreadCountIndicator
-                visible: false
+                anchors.left: contactName.left
+                anchors.verticalCenter: contactName.verticalCenter
+                anchors.right: undefined
+                anchors.top: undefined
+                anchors.bottom: undefined
+            }
+            AnchorChanges {
+                target: contactName
+                anchors.right: time.left
             }
         }
     ]
@@ -238,8 +246,8 @@ ListItem {
             top: avatar.top
             topMargin: units.gu(0.5)
             left: chatTypeIcon.right
-            leftMargin: chatTypeIcon.visible ? units.gu(0.5) : 0
             right: time.left
+            rightMargin: unreadCountIndicator.width
         }
         elide: Text.ElideRight
         color: Theme.palette.normal.backgroundText
@@ -316,7 +324,7 @@ ListItem {
             top: avatar.top
             topMargin: units.gu(-0.5)
             left: avatar.left
-            leftMargin: units.gu(-0.5)
+            leftMargin: delegate.state == "compactView" ? contactName.paintedWidth + units.gu(0.5) : units.gu(-0.5)
         }
         z: 1
         visible: unreadCount > 0
@@ -365,10 +373,10 @@ ListItem {
 
     Item {
         id: delegateHelper
-        property string phoneNumber: participant.identifier
-        property string alias: participant.alias ? participant.alias : ""
-        property string avatar: participant.avatar ? participant.avatar : ""
-        property string contactId: participant.contactId ? participant.contactId : ""
+        property string phoneNumber: participant ? participant.identifier : ""
+        property string alias: participant && participant.alias ? participant.alias : ""
+        property string avatar: participant && participant.avatar ? participant.avatar : ""
+        property string contactId: participant && participant.contactId ? participant.contactId : ""
         property alias subTypes: phoneDetail.subTypes
         property alias contexts: phoneDetail.contexts
         property bool isUnknown: contactId === ""
@@ -501,8 +509,8 @@ ListItem {
 
         PhoneNumber {
             id: phoneDetail
-            contexts: participant.phoneContexts ? participant.phoneContexts : []
-            subTypes: participant.phoneSubTypes ? participant.phoneSubTypes : []
+            contexts: participant && participant.phoneContexts ? participant.phoneContexts : []
+            subTypes: participant && participant.phoneSubTypes ? participant.phoneSubTypes : []
         }
 
         ContactDetailPhoneNumberTypeModel {

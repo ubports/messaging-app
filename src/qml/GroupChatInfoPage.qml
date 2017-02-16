@@ -57,9 +57,18 @@ Page {
         return []
     }
 
+    ParticipantsModel {
+        id: participantsModel
+        chatEntry: groupChatInfoPage.chatEntry.active ? groupChatInfoPage.chatEntry : null
+    }
+
+    property var participantsSize: participants.length + localPendingParticipants.length + remotePendingParticipants.length
+
     property variant allParticipants: {
         var participantList = []
-
+        if (chatEntry.active) {
+            return participantList
+        }
         for (var i in participants) {
             var participant = participants[i]
             participant["state"] = 0
@@ -196,12 +205,25 @@ Page {
     }
 
     function addRecipient(identifier, contact) {
-        for (var i=0; i < allParticipants; i++) {
-            if (identifier == allParticipants[i].identifier) {
+        for (var i=0; i < participants; i++) {
+            if (identifier == participants[i].identifier) {
                 application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
                 return
             }
         }
+        for (var i=0; i < localPendingParticipants; i++) {
+            if (identifier == localPendingParticipants[i].identifier) {
+                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                return
+            }
+        }
+        for (var i=0; i < remotePendingParticipants; i++) {
+            if (identifier == remotePendingParticipants[i].identifier) {
+                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                return
+            }
+        }
+
         searchItem.text = ""
 
         chatEntry.inviteParticipants([identifier], "")
@@ -346,7 +368,7 @@ Page {
                         leftMargin: units.gu(2)
                         verticalCenter: addParticipantButton.verticalCenter
                     }
-                    text: !searchItem.enabled ? i18n.tr("Participants: %1").arg(allParticipants.length) : i18n.tr("Add participant:")
+                    text: !searchItem.enabled ? i18n.tr("Participants: %1").arg(participantsSize) : i18n.tr("Add participant:")
                 }
 
                 Button {
@@ -425,15 +447,15 @@ Page {
             ]
         }
 
-        model: allParticipants
+        model: chatEntry.active ? participantsModel : allParticipants
 
         delegate: ParticipantDelegate {
             id: participantDelegate
             function canRemove() {
                 if (!groupChatInfoPage.chatRoom /*not a group*/
                         || !chatEntry.active /*not active*/
-                        || modelData.roles & 2 /*not admin*/
-                        || modelData.state === 2 /*remote pending*/) {
+                        || model.roles & 2 /*not admin*/
+                        || model.state === 2 /*remote pending*/) {
                     return false
                 }
                 // temporary workaround
@@ -447,8 +469,8 @@ Page {
                 chatEntry.removeParticipants([participant.identifier], "")
                 participantDelegate.height = 0
             }
-            participant: modelData
-            leadingActions: canRemove() ? participantLeadingActions : undefined
+            participant: chatEntry.active ? model : modelData
+            leadingActions: canRemove() ? participantLeadingActions : null
             onClicked: {
                 if (openProfileButton.visible) {
                     mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})

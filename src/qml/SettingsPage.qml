@@ -123,7 +123,6 @@ Page {
         ListItem {
             onClicked: {
                 layoutDelegate.item.activate()
-                view.currentIndex = index
                 settingsList.currentIndex = index
 
             }
