@@ -110,13 +110,6 @@ MainView {
         //TODO: disconnect from server
     }
 
-    onApplicationActiveChanged: {
-        if (applicationActive) {
-            telepathyHelper.registerChannelObserver()
-        } else {
-            telepathyHelper.unregisterChannelObserver()
-        }
-    }
 
     function removeThreads(threads) {
         for (var i in threads) {
@@ -141,8 +134,37 @@ MainView {
         mainView.showMessagesView(properties)
     }
 
+    function connectToFavoriteChannels(account) {
+        var favs = favoriteChannels.getFavoriteChannels(account.accountId)
+        for (var c in favs) {
+            var favChannel = favs[c]
+            if (favChannel) {
+                console.debug("Start channel:" + account.accountId + "/" + favChannel)
+                var properties = {'chatType': HistoryThreadModel.ChatTypeRoom,
+                                  'accountId': account.accountId,
+                                  'threadId': favChannel}
+                chatManager.startChat(account.accountId, properties)
+            }
+        }
+    }
+
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            telepathyHelper.registerChannelObserver()
+        } else {
+            telepathyHelper.unregisterChannelObserver()
+        }
+    }
+
     Connections {
         target: telepathyHelper.textAccounts
+        onAccountChanged: {
+//            //TODO: server get crazy if connect more than on channel
+//            if (active) {
+//                connectToFavoriteChannels(account)
+//            }
+        }
+
         onActiveChanged: {
             for (var i in telepathyHelper.textAccounts.active) {
                 if (telepathyHelper.textAccounts.active[i] == account) {
@@ -151,6 +173,7 @@ MainView {
             }
             account = Qt.binding(defaultPhoneAccount)
         }
+
     }
 
     Component.onDestruction: {
@@ -174,6 +197,10 @@ MainView {
                 !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
+//            //TODO: server get crazy if connect more than on channel
+//            for (var i in telepathyHelper.textAccounts.active) {
+//                connectToFavoriteChannels(telepathyHelper.textAccounts.active[i])
+//            }
         }
     }
 
