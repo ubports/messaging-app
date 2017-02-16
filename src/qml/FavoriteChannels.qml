@@ -59,14 +59,12 @@ Item {
 
     // private
     function settingsFromAccount(account) {
-        if (account in _favoritesByAccount) {
-            return _favoritesByAccount[account]
+        var account_ = account.replace(/\//g,"#")
+        if (account_ in _favoritesByAccount) {
+            return _favoritesByAccount[account_]
         } else {
-            var settings = favoriteByAccountComponent.createObject(this, {'category': account})
-
-            console.debug("create settings for account" + account)
-            console.debug("create settings for:" + settings)
-            _favoritesByAccount[account] = settings
+            var settings = favoriteByAccountComponent.createObject(this, {'category': account_})
+            _favoritesByAccount[account_] = settings
             return settings
         }
     }

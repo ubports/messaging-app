@@ -90,6 +90,7 @@ MessagingApplication::MessagingApplication(int &argc, char **argv)
     : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
 {
     setApplicationName("MessagingApp");
+    setOrganizationName("com.ubuntu.messaging-app");
 }
 
 bool MessagingApplication::fullscreen() const
