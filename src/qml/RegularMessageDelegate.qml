@@ -98,10 +98,5 @@ Item {
             root.startSelection()
             root.selectItem(delegateItem)
         }
-        Component.onCompleted: {
-            if (newEvent) {
-                messages.markMessageAsRead(messageData);
-            }
-        }
     }
 }
