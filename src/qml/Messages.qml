@@ -83,8 +83,6 @@ Page {
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
-    property var pendingEventsToMarkAsRead: []
-    property bool pendingThreadsToMarkAsRead: false
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
@@ -516,40 +514,13 @@ Page {
     }
 
     function markThreadAsRead() {
-        if (!mainView.applicationActive || !messages.active) {
-           pendingThreadsToMarkAsRead = true
+        if (!mainView.applicationActive || !messages.active || !messages.threads || messages.threads.length == 0) {
            return
         }
-        messagesModel.markThreadsAsRead(messages.threads);
+
+        threadsModel.markThreadsAsRead(messages.threads);
         var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
         chatManager.acknowledgeAllMessages(properties)
-    }
-
-    function markMessageAsRead(accountId, threadId, eventId, type) {
-        var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
-        if (!mainView.applicationActive || !messages.active) {
-           pendingEventsToMarkAsRead.push(pendingEvent)
-           return false
-        }
-        chatManager.acknowledgeMessage(pendingEvent)
-        return eventModel.markEventAsRead(accountId, threadId, eventId, type);
-    }
-
-    function processPendingEvents() {
-        if (mainView.applicationActive && messages.active) {
-            if (pendingThreadsToMarkAsRead) {
-                markThreadAsRead()
-                pendingThreadsToMarkAsRead = false
-                pendingEventsToMarkAsRead = []
-                return;
-            }
-
-            for (var i in pendingEventsToMarkAsRead) {
-                var event = pendingEventsToMarkAsRead[i]
-                markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
-            }
-            pendingEventsToMarkAsRead = []
-        }
     }
 
     function selectActiveThread(threads) {
@@ -902,6 +873,7 @@ Page {
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
         mainView.updateNewMessageStatus()
+        markThreadAsRead()
     }
 
     Component.onDestruction: {
@@ -942,7 +914,7 @@ Page {
         if (!isReady) {
             messages.ready()
         }
-        processPendingEvents()
+        markThreadAsRead()
         if (!newMessage)
             composeBar.forceFocus()
     }
@@ -1056,7 +1028,7 @@ Page {
         }
 
         onApplicationActiveChanged: {
-            processPendingEvents()
+            markThreadAsRead()
         }
     }
 
@@ -1321,6 +1293,7 @@ Page {
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
+            markThreadAsRead()
             if (isSearching) {
                 // if we ask for more items manually listview will stop working,
                 // so we only set again once the item was found
