@@ -159,10 +159,9 @@ MainView {
     Connections {
         target: telepathyHelper.textAccounts
         onAccountChanged: {
-//            //TODO: server get crazy if connect more than on channel
-//            if (active) {
-//                connectToFavoriteChannels(account)
-//            }
+            if (active) {
+                connectToFavoriteChannels(account)
+            }
         }
 
         onActiveChanged: {
@@ -197,10 +196,9 @@ MainView {
                 !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
-//            //TODO: server get crazy if connect more than on channel
-//            for (var i in telepathyHelper.textAccounts.active) {
-//                connectToFavoriteChannels(telepathyHelper.textAccounts.active[i])
-//            }
+            for (var i in telepathyHelper.textAccounts.active) {
+                connectToFavoriteChannels(telepathyHelper.textAccounts.active[i])
+            }
         }
     }
 
