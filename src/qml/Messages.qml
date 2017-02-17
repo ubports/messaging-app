@@ -518,10 +518,6 @@ Page {
            return
         }
 
-        var stack = new Error().stack;
-          console.log("--------");
-          console.log( stack );
-
         threadsModel.markThreadsAsRead(messages.threads);
         var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
         chatManager.acknowledgeAllMessages(properties)
