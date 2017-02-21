@@ -88,7 +88,17 @@ Page {
     property bool userTyping: false
     property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
-    property variant firstParticipant: (participants && participants.length > 0) ? participants[0] : null
+    property variant firstParticipant: {
+        if (!participants || participants.length == 0) {
+            return null
+        }
+        if (messagesModel.matchContacts) {
+            return participants[0]
+        } else {
+            return {identifier: participants[0], alias: participants[0]}
+        }
+    }
+    onFirstParticipantChanged: console.log("onFirstParticipantChanged:" , firstParticipant, firstParticipant.identifier) 
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
@@ -531,7 +541,7 @@ Page {
            return
         }
 
-        threadsModel.markThreadsAsRead(messages.threads);
+        threadModel.markThreadsAsRead(messages.threads);
         var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
         chatManager.acknowledgeAllMessages(properties)
     }
