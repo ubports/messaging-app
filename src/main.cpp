@@ -42,8 +42,7 @@ static QQmlDebuggingEnabler debuggingEnabler(false);
 // as it doesn’t play well with QtFolks.
 int main(int argc, char** argv)
 {
-    QCoreApplication::setOrganizationDomain("com.ubuntu.messaging-app");
-    //QCoreApplication::setOrganizationName("com.ubuntu.messaging-app");
+    QCoreApplication::setOrganizationName("com.ubuntu.messaging-app");
     QCoreApplication::setApplicationName("MessagingApp");
 
     MessagingApplication application(argc, argv);
