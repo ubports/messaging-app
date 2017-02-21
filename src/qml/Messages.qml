@@ -779,12 +779,12 @@ Page {
                 Action {
                     objectName: "addContactAction"
                     visible: contactWatcher.isUnknown && participants && participants.length === 1 && contactWatcher.interactive
+                    enabled: messages.account != null
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact(messages, "", contactWatcher.identifier, null, null)
+                        mainView.addAccountToContact(messages, "", messages.account.protocolInfo.name, contactWatcher.identifier, null, null)
                     }
                 }
             ]
@@ -865,7 +865,7 @@ Page {
         State {
             id: knownContactState
             name: "knownContact"
-            when: participants.length == 1 && !contactWatcher.isUnknown
+            when: participants && participants.length === 1 && !contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {

@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import QtQuick.Window 2.2
 import Qt.labs.settings 1.0
+import QtContacts 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
@@ -81,13 +82,32 @@ MainView {
                                          initialProperties)
     }
 
-    function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
+    function protocolFromString(protocolName)
+    {
+        if (protocolName.indexOf("OnlineAccount.") === 0) {
+            // protocol already converted
+            return protocolName
+        }
+
+        switch(protocolName) {
+        case "irc":
+            return "OnlineAccount.Irc"
+        case "ofono":
+        default:
+            return "OnlineAccount.Unknown"
+        }
+    }
+
+    function addAccountToContact(currentPage, contact, accountProtocol, accountUri, contactListPage, contactsModel)
+    {
+        var accountDetails = {"protocol": protocolFromString(accountProtocol),
+                              "uri": accountUri}
         if (contact === "") {
             mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("NewRecipientPage.qml"),
-                                             { "phoneToAdd": phoneNumber })
+                                             { "accountToAdd": accountDetails })
         } else {
-            var initialProperties = { "addPhoneToContact": phoneNumber }
+            var initialProperties = { "accountToAdd": accountDetails }
             if (contactListPage) {
                 initialProperties["contactListPage"] = contactListPage
             }

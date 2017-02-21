@@ -26,6 +26,7 @@ Page {
     property var delegate
     property var participant: delegate.participant
     property var chatEntry
+    property string protocolName: "ofono"
     property bool chatRoom: false
     property bool knownContact: participant.contactId !== ""
 
@@ -140,7 +141,7 @@ Page {
                         if (knownContact) {
                             mainView.showContactDetails(participantInfoPage, participant.contactId, null, null)
                         } else {
-                            mainView.addPhoneToContact(participantInfoPage, "", participant.identifier, null, null)
+                            mainView.addAccountToContact(participantInfoPage, "", protocolName, participant.identifier, null, null)
                         }
                     }
                 }
