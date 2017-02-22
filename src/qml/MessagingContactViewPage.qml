@@ -33,7 +33,7 @@ ContactViewPage {
     objectName: "contactViewPage"
 
     readonly property string contactEditorPageURL: Qt.resolvedUrl("MessagingContactEditorPage.qml")
-    property string accountToAdd: null
+    property var accountToAdd: null
     property var contactListPage: null
     model: null
 
