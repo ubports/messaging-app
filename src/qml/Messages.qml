@@ -40,6 +40,7 @@ Page {
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
+    onAccountChanged: console.debug("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW:" + account)
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
@@ -98,7 +99,6 @@ Page {
             return {identifier: participants[0], alias: participants[0]}
         }
     }
-    onFirstParticipantChanged: console.log("onFirstParticipantChanged:" , firstParticipant, firstParticipant.identifier) 
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
@@ -554,6 +554,15 @@ Page {
                 mainPage.selectMessage(index)
             }
         }
+    }
+
+    function contactMatchFieldFromProtocol(protocol, fallback) {
+         switch(protocol) {
+         case "irc":
+             return ["X-IRC"];
+         default:
+             return fallback
+         }
     }
 
     // Use a timer to make sure that 'threads' are correct set before try to select it
@@ -1112,7 +1121,7 @@ Page {
     }
 
     Repeater {
-        model: account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null
+        model: account ? (account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null) : null
         delegate: Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
@@ -1134,7 +1143,8 @@ Page {
     ContactWatcher {
         id: typingContactWatcher
         identifier: messages.userTypingId
-        addressableFields: messages.account ? messages.account.addressableVCardFields : []
+        addressableFields: messages.account ?
+                               messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
     MessagesHeader {
@@ -1282,12 +1292,13 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: firstParticipant ? firstParticipant.identifier : ""
-        contactId: firstParticipant ? firstParticipant.contactId : ""
-        alias: firstParticipant ? firstParticipant.alias : ""
-        avatar: firstParticipant ? firstParticipant.avatar : ""
-        detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
-        addressableFields: messages.account ? messages.account.addressableVCardFields : []
+        identifier: firstParticipant && firstParticipant.identifier ? firstParticipant.identifier : ""
+        contactId: firstParticipant && firstParticipant.contactId ? firstParticipant.contactId : ""
+        alias: firstParticipant && firstParticipant.alias ? firstParticipant.alias : ""
+        avatar: firstParticipant && firstParticipant.avatar ? firstParticipant.avatar : ""
+        detailProperties: firstParticipant && firstParticipant.detailProperties ? firstParticipant.detailProperties : {}
+        addressableFields:  messages.account && messages.account.protocolInfo ?
+                               messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
     HistoryUnionFilter {
@@ -1304,7 +1315,7 @@ Page {
         sort: HistorySort {}
         groupingProperty: "participants"
         filter: messages.accountId != "" && messages.threadId != "" ? filters : null
-        matchContacts: messages.account.addressableVCardFields.length > 0
+        matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
     }
 
     ListView {
@@ -1332,7 +1343,7 @@ Page {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
-        matchContacts: messages.account.addressableVCardFields.length > 0
+        matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
