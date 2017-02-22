@@ -161,6 +161,12 @@ Item {
         function updateNewMessageStatus() { }
     }
 
+    Item {
+        id: threadModel
+        function markThreadsAsRead(threads) {
+        }
+    }
+
     Messages {
         id: messagesView
         active: true
