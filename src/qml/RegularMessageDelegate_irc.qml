@@ -197,10 +197,4 @@ ListItem {
             }
         ]
     }
-
-    Component.onCompleted: {
-        if (messageData.newEvent) {
-            messages.markThreadAsRead();
-        }
-    }
 }
