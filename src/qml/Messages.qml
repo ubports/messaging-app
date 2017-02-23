@@ -40,7 +40,6 @@ Page {
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
-    onAccountChanged: console.debug("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW:" + account)
     property variant participants: {
         if (chatEntry.active) {
             return chatEntry.participants
