@@ -92,12 +92,14 @@ Page {
         if (!participants || participants.length == 0) {
             return null
         }
-        if (messagesModel.matchContacts) {
-            return participants[0]
+        var participant = participants[0]
+        if (typeof participant === "string") {
+            return {identifier: participant, alias: participant}
         } else {
-            return {identifier: participants[0], alias: participants[0]}
+            return participant
         }
     }
+
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
@@ -118,14 +120,15 @@ Page {
             return chatEntry.title
         }
         var roomInfo = threadInformation.chatRoomInfo
-        if (roomInfo.Title != "") {
-            return roomInfo.Title
-        } else if (roomInfo.RoomName != "") {
-            return roomInfo.RoomName
+        if (roomInfo) {
+            if (roomInfo.Title != "") {
+                return roomInfo.Title
+            } else if (roomInfo.RoomName != "") {
+                return roomInfo.RoomName
+            }
         }
         return ""
     }
-
 
     signal ready
     signal cancel
@@ -751,7 +754,7 @@ Page {
         State {
             id: unknownContactState
             name: "unknownContact"
-            when: participants.length == 1 && contactWatcher.isUnknown
+            when: messages.newMessage && (participants.length === 1) && contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -854,7 +857,7 @@ Page {
         State {
             id: knownContactState
             name: "knownContact"
-            when: participants && participants.length === 1 && !contactWatcher.isUnknown
+            when: !messages.newMessage && participants && participants.length === 1 && !contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -888,6 +891,14 @@ Page {
     ]
 
     Component.onCompleted: {
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
+        // if it is a new message we need to add participants into the multiRecipient list
+        if (newMessage) {
+            for (var i in participantIds) {
+                multiRecipient.addRecipient(participantIds[i])
+            }
+        }
+
         if (!chatEntry) {
             chatEntry = chatEntryComponent.createObject(this)
         }
@@ -906,7 +917,6 @@ Page {
                 }
             }
         }
-        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
