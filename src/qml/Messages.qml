@@ -558,6 +558,19 @@ Page {
         }
     }
 
+    function participantIdentifierByProtocol(account, baseIdentifier) {
+        if (account && account.protocolInfo) {
+            switch(account.protocolInfo.name) {
+            case "irc":
+                if (account.parameters.server != "")
+                    return "%1@%2".arg(baseIdentifier).arg(account.parameters.server)
+                return baseIdentifier
+            default:
+                return baseIdentifier
+            }
+        }
+    }
+
     function contactMatchFieldFromProtocol(protocol, fallback) {
          switch(protocol) {
          case "irc":
@@ -754,7 +767,7 @@ Page {
         State {
             id: unknownContactState
             name: "unknownContact"
-            when: messages.newMessage && (participants.length === 1) && contactWatcher.isUnknown
+            when: !messages.newMessage && (participants.length === 1) && contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -776,7 +789,11 @@ Page {
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        mainView.addAccountToContact(messages, "", messages.account.protocolInfo.name, contactWatcher.identifier, null, null)
+                        mainView.addAccountToContact(messages,
+                                                     "",
+                                                     messages.account.protocolInfo.name,
+                                                     contactWatcher.identifier,
+                                                     null, null)
                     }
                 }
             ]
@@ -891,14 +908,6 @@ Page {
     ]
 
     Component.onCompleted: {
-        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
-        // if it is a new message we need to add participants into the multiRecipient list
-        if (newMessage) {
-            for (var i in participantIds) {
-                multiRecipient.addRecipient(participantIds[i])
-            }
-        }
-
         if (!chatEntry) {
             chatEntry = chatEntryComponent.createObject(this)
         }
@@ -920,6 +929,13 @@ Page {
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
+        }
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
+        // if it is a new message we need to add participants into the multiRecipient list
+        if (newMessage) {
+            for (var i in participantIds) {
+                multiRecipient.addRecipient(participantIds[i])
+            }
         }
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
@@ -1151,7 +1167,7 @@ Page {
 
     ContactWatcher {
         id: typingContactWatcher
-        identifier: messages.userTypingId
+        identifier: messages.participantIdentifierByProtocol(messages.account, userTypingId)
         addressableFields: messages.account ?
                                messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
@@ -1301,7 +1317,7 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: firstParticipant && firstParticipant.identifier ? firstParticipant.identifier : ""
+        identifier: firstParticipant && firstParticipant.identifier ? messages.participantIdentifierByProtocol(messages.account, firstParticipant.identifier) : ""
         contactId: firstParticipant && firstParticipant.contactId ? firstParticipant.contactId : ""
         alias: firstParticipant && firstParticipant.alias ? firstParticipant.alias : ""
         avatar: firstParticipant && firstParticipant.avatar ? firstParticipant.avatar : ""
