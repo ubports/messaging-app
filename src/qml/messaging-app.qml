@@ -180,7 +180,7 @@ MainView {
         target: telepathyHelper.textAccounts
         onAccountChanged: {
             if (active) {
-                connectToFavoriteChannels(account)
+                connectToFavoriteChannels(entry)
             }
         }
 
