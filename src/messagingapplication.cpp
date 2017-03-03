@@ -99,6 +99,7 @@ bool MessagingApplication::fullscreen() const
 
 bool MessagingApplication::setup()
 {
+    QDBusConnection::sessionBus().registerService("com.canonical.MessagingApp");
     installIconPath();
     static QList<QString> validSchemes;
     bool fullScreen = false;
