@@ -74,8 +74,8 @@ Page {
         { "type": "options",
           "data": { "name": "threadSort",
                     "description": i18n.tr("Sort threads"),
-                    "currentValue": mainView.sortTrheadsBy,
-                    "subtitle": settingsPage.sortByModel[mainView.sortTrheadsBy],
+                    "currentValue": mainView.sortThreadsBy,
+                    "subtitle": settingsPage.sortByModel[mainView.sortThreadsBy],
                     "options": sortByModel,
                     "setMethod": "threadSort"}
         }
