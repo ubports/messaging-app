@@ -210,7 +210,7 @@ Page {
         id: sectionDelegate
         ThreadsSectionDelegate {
             function formatSectionTitle(title) {
-                if (mainView.sortTrheadsBy === "timestamp")
+                if (mainView.sortThreadsBy === "timestamp")
                     return DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
                 else if (telepathyHelper.ready)
                     return telepathyHelper.accountForId(title).displayName
@@ -238,7 +238,7 @@ Page {
         clip: true
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
-        section.property: mainView.sortTrheadsBy === "title" ? "accountId" : "eventDate"
+        section.property: mainView.sortThreadsBy === "title" ? "accountId" : "eventDate"
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
             // FIXME: update
