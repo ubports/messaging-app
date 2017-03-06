@@ -33,8 +33,8 @@ Page {
 
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
-        "threadSort": function(value) { mainView.sortTrheadsBy = value },
-        "compactView": function(value) { mainView.compactView = value },
+        "threadSort": function(value) { mainView.sortThreadsBy = value },
+        "compactView": function(value) { mainView.compactView = value }
         "disconnectOnQuit": function(value) { mainView.disconnectOnQuit = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
