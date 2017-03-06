@@ -212,8 +212,14 @@ Page {
             function formatSectionTitle(title) {
                 if (mainView.sortTrheadsBy === "timestamp")
                     return DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
-                else if (telepathyHelper.ready)
-                    return telepathyHelper.accountForId(title).displayName
+                else if (telepathyHelper.ready) {
+                    var account = telepathyHelper.accountForId(title)
+                    if (account.connectionStatus == AccountEntry.ConnectionStatusConnecting) {
+                        return i18n.tr("%1 - Connecting...").arg(account.displayName)
+                    } else {
+                        return account.displayName
+                    }
+                }
                 else
                     return title
             }
