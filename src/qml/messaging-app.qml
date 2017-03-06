@@ -37,7 +37,7 @@ MainView {
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
     // settings
-    property alias sortTrheadsBy: globalSettings.sortTrheadsBy
+    property alias sortThreadsBy: globalSettings.sortThreadsBy
     property alias compactView: globalSettings.compactView
     // private
     property var _pendingProperties: null
@@ -205,7 +205,7 @@ MainView {
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
             sortField: {
-                switch(mainView.sortTrheadsBy) {
+                switch(mainView.sortThreadsBy) {
                 case "title":
                     //FIXME: ThreadId works for IRC, not sure if that will work for other protocols
                     return "accountId, threadId"
@@ -215,7 +215,7 @@ MainView {
                 }
             }
             sortOrder: {
-                switch(mainView.sortTrheadsBy) {
+                switch(mainView.sortThreadsBy) {
                 case "title":
                     return HistorySort.AscendingOrder
                 case "timestamp":
@@ -245,7 +245,7 @@ MainView {
 
     Settings {
         id: globalSettings
-        property string sortTrheadsBy: "timestamp"
+        property string sortThreadsBy: "timestamp"
         property bool compactView: false
     }
 
