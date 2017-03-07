@@ -772,7 +772,7 @@ Page {
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants && participants.length === 1 && contactWatcher.interactive
+                    visible: participants && participants.length === 1 && contactWatcher.interactive && messages.account.addressableVCardFields.lastIndexOf("tel") != -1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
