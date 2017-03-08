@@ -3,6 +3,7 @@
   <description>Messaging</description>
   <desktop-entry>messaging-app.desktop</desktop-entry>
   <translations>messaging</translations>
+  <profile>messaging-app</profile>
 
   <services>
     <service id="telephony-irc-im">
