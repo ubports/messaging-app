@@ -276,11 +276,6 @@ Page {
                 var properties = model.properties
                 properties["keyboardFocus"] = false
                 properties["threads"] = model.threads
-                var participantIds = [];
-                for (var i in model.participants) {
-                    participantIds.push(model.participants[i].identifier)
-                }
-                properties["participantIds"] = participantIds
                 properties["presenceRequest"] = threadDelegate.presenceItem
                 if (displayedEvent != null) {
                     properties["scrollToEventId"] = displayedEvent.eventId
