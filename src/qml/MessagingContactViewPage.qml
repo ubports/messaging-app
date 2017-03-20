@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
@@ -33,28 +33,64 @@ ContactViewPage {
     objectName: "contactViewPage"
 
     readonly property string contactEditorPageURL: Qt.resolvedUrl("MessagingContactEditorPage.qml")
-    property string addPhoneToContact: ""
+    property var accountToAdd: null
     property var contactListPage: null
     model: null
 
-    function addPhoneToContactImpl(contact, phoneNumber)
+    function createContact(contact, detailName, newDetailSrc)
     {
-        var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + phoneNumber.trim() + "\" }"
-        var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
+        var newDetail = Qt.createQmlObject(newDetailSrc, contact)
         if (newDetail) {
             contact.addDetail(newDetail)
             mainStack.addPageToCurrentColumn(root,
                                              root.contactEditorPageURL,
                                              { model: root.model,
                                                contact: contact,
-                                               initialFocusSection: "phones",
+                                               initialFocusSection: detailName,
                                                newDetails: [newDetail],
                                                contactListPage: root.contactListPage })
-            root.addPhoneToContact = ""
         } else {
-            console.warn("Fail to create phone number detail")
+            console.warn("Fail to create contact with new detail")
+        }
+
+    }
+
+    function addPhoneToContactImpl(contact, phoneNumber)
+    {
+        var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + phoneNumber.trim() + "\" }"
+        createContact(contact, "phones", detailSourceTemplate)
+    }
+
+    function addAccountToContactImpl(contact, account)
+    {
+        var detailSourceTemplate = "import QtContacts 5.0; OnlineAccount { protocol: " + account.protocol.trim() + "; accountUri: \"" + account.uri + "\"  }"
+        createContact(contact, "ims", detailSourceTemplate)
+    }
+
+    function commit()
+    {
+        if (root.accountToAdd) {
+            if (root.accountToAdd.protocol === "OnlineAccount.Unknown") {
+                root.addPhoneToContactImpl(contact, root.accountToAdd.uri)
+            } else {
+                root.addAccountToContactImpl(contact, root.accountToAdd)
+                root.accountToAdd = null
+            }
         }
     }
+
+
+    leadingActions: [
+        Action {
+            objectName: "cancel"
+
+            text: i18n.tr("Cancel")
+            iconName: "back"
+            shortcut: "Esc"
+            onTriggered: pageStack.removePages(root)
+        }
+
+    ]
 
     headerActions: [
         Action {
@@ -73,6 +109,7 @@ ContactViewPage {
             text: i18n.tr("Edit")
             iconName: "edit"
             visible: root.editable
+            shortcut: "Ctrl+E"
             onTriggered: {
                 pageStack.addPageToCurrentColumn(root, contactEditorPageURL,
                                { model: root.model,
@@ -130,17 +167,13 @@ ContactViewPage {
     onContactRemoved: pageStack.removePages(root)
     onContactFetched: {
         root.contact = contact
-        if (root.active && root.addPhoneToContact != "") {
-            root.addPhoneToContactImpl(contact, root.addPhoneToContact)
-            root.addPhoneToContact = ""
-        }
+        if (root.active)
+            root.commit()
     }
 
     onActiveChanged: {
-        if (active && root.contact && root.addPhoneToContact != "") {
-            root.addPhoneToContactImpl(contact, root.addPhoneToContact)
-            root.addPhoneToContact = ""
-        }
+        if (active)
+            root.commit()
     }
 
     Component.onCompleted: {

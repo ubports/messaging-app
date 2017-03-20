@@ -83,19 +83,29 @@ Page {
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
-    property var pendingEventsToMarkAsRead: []
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
     property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
-    property variant firstParticipant: participants.length > 0 ? participants[0] : null
+    property variant firstParticipant: {
+        if (!participants || participants.length == 0) {
+            return null
+        }
+        var participant = participants[0]
+        if (typeof participant === "string") {
+            return {identifier: participant, alias: participant}
+        } else {
+            return participant
+        }
+    }
+
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
-    property QtObject chatEntry: chatEntryObject
+    property QtObject chatEntry
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
@@ -105,6 +115,20 @@ Page {
     property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
 
     property alias validator: sendMessageValidator
+    property string chatTitle: {
+        if (chatEntry.title !== "") {
+            return chatEntry.title
+        }
+        var roomInfo = threadInformation.chatRoomInfo
+        if (roomInfo) {
+            if (roomInfo.Title != "") {
+                return roomInfo.Title
+            } else if (roomInfo.RoomName != "") {
+                return roomInfo.RoomName
+            }
+        }
+        return ""
+    }
 
     signal ready
     signal cancel
@@ -134,6 +158,9 @@ Page {
         // suru divider must be empty if there is only one account
         for (var i in messages.accountsModel) {
             accountNames.push(messages.accountsModel[i].displayName)
+        }
+        if (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount) {
+            return accountNames
         }
         return accountNames.length > 1 ? accountNames : []
     }
@@ -189,9 +216,10 @@ Page {
                 }
             }
             return null
-        } else {
-            return mainView.account
+        } else if (!(telepathyHelper.phoneAccounts.active.length > 0) && messages.accountsModel.length > 0) {
+            return messages.accountsModel[0]
         }
+        return mainView.account
     }
 
     function checkThreadInFilters(newAccountId, threadId) {
@@ -457,6 +485,7 @@ Page {
     }
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        selectThreadOnIdle.restart()
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
@@ -509,38 +538,76 @@ Page {
         return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
     }
 
-    function markMessageAsRead(accountId, threadId, eventId, type) {
-        var pendingEvent = {"accountId": accountId, "threadId": threadId, "messageId": eventId, "type": type, "chatType": messages.chatType, 'participantIds': messages.participantIds}
-        if (!mainView.applicationActive || !messages.active) {
-           pendingEventsToMarkAsRead.push(pendingEvent)
-           return false
+    function markThreadAsRead() {
+        if (!mainView.applicationActive || !messages.active || !messages.threads || messages.threads.length == 0) {
+           return
         }
-        chatManager.acknowledgeMessage(pendingEvent)
-        return eventModel.markEventAsRead(accountId, threadId, eventId, type);
+
+        threadModel.markThreadsAsRead(messages.threads);
+        var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
+        chatManager.acknowledgeAllMessages(properties)
     }
 
-    function processPendingEvents() {
-        if (mainView.applicationActive && messages.active) {
-            for (var i in pendingEventsToMarkAsRead) {
-                var event = pendingEventsToMarkAsRead[i]
-                markMessageAsRead(event.accountId, event.threadId, event.messageId, event.type)
+    function selectActiveThread(threads) {
+        if ((messages.chatType == HistoryEventModel.ChatTypeContact) &&
+            (messages.threads.length > 0)) {
+            var index = threadModel.indexOf(messages.threads[0].threadId, messages.threads[0].accountId)
+            if (index != -1) {
+                mainPage.selectMessage(index)
             }
-            pendingEventsToMarkAsRead = []
         }
     }
+
+    function participantIdentifierByProtocol(account, baseIdentifier) {
+        if (account && account.protocolInfo) {
+            switch(account.protocolInfo.name) {
+            case "irc":
+                if (account.parameters.server != "")
+                    return "%1@%2".arg(baseIdentifier).arg(account.parameters.server)
+                return baseIdentifier
+            default:
+                return baseIdentifier
+            }
+        }
+    }
+
+    function contactMatchFieldFromProtocol(protocol, fallback) {
+         switch(protocol) {
+         case "irc":
+             return ["X-IRC"];
+         default:
+             return fallback
+         }
+    }
+
+    // Use a timer to make sure that 'threads' are correct set before try to select it
+    Timer {
+        id: selectThreadOnIdle
+        interval: 100
+        repeat: false
+        running: false
+        onTriggered: selectActiveThread(messages.threads)
+    }
+
 
     header: PageHeader {
         id: pageHeader
 
-        property alias leadingActions: leadingBar.actions
+        property bool backEnabled: true
         property alias trailingActions: trailingBar.actions
+        property bool showSections: {
+            if (headerSections.model.length > 1) {
+                return true
+            }
+            return (messages.accountsModel.length == 1 && messages.accountsModel[0].type == AccountEntry.GenericAccount)
+        }
 
         title: {
             if (landscape) {
                 return ""
             }
 
-            if (participants.length == 1) {
+            if (participants && participants.length === 1) {
                 return firstRecipientAlias
             }
 
@@ -556,7 +623,7 @@ Page {
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
-            visible: headerSections.model.length > 1
+            visible: pageHeader.showSections
             enabled: visible
             model: getSectionsModel()
             selectedIndex: getSelectedIndex()
@@ -569,11 +636,23 @@ Page {
             Component.onCompleted: model = getSectionsModel()
         }
 
-        extension: headerSections.model.length > 1 ? headerSections : null
+        extension: pageHeader.showSections ? headerSections : null
 
-        leadingActionBar {
-            id: leadingBar
-        }
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: visible ? "Esc" : ""
+               visible: pageHeader.backEnabled
+               onTriggered: {
+                   if (messages.state == "selection") {
+                        messageList.cancelSelection()
+                   } else {
+                        mainView.emptyStack(true)
+                   }
+               }
+            }
+        ]
 
         trailingActionBar {
             id: trailingBar
@@ -584,6 +663,7 @@ Page {
             anchors {
                 bottom: parent.bottom
                 right: parent.right
+                bottomMargin: -headerSections.height
             }
         }
     }
@@ -593,14 +673,6 @@ Page {
             id: selectionState
             name: "selection"
             when: selectionMode
-
-            property list<QtObject> leadingActions: [
-                Action {
-                    objectName: "selectionModeCancelAction"
-                    iconName: "back"
-                    onTriggered: messageList.cancelSelection()
-                }
-            ]
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -631,8 +703,8 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
-                leadingActions: selectionState.leadingActions
                 trailingActions: selectionState.trailingActions
+                backEnabled: true
             }
         },
         State {
@@ -645,25 +717,44 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                    onTriggered: {
+                        // at this point we are interested in the thread participants no matter what the channel type is
+                        messagesModel.requestThreadParticipants(messages.threads)
+                        mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                    }
+                },
+                Action {
+                    id: rejoinGroupChatAction
+                    objectName: "rejoinGroupChatAction"
+                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin && messages.account.connected
+                    visible: enabled
+                    iconName: "view-refresh"
+                    onTriggered: messages.chatEntry.startChat()
+                },
+                Action {
+                    id: favoriteAction
+                    visible: chatEntry.active && (messages.chatType == HistoryThreadModel.ChatTypeRoom)
+                    iconName: mainView.favoriteChannels.isFavorite(messages.accountId, messages.chatTitle) ? "starred" : "non-starred"
+                    onTriggered: {
+                        if (iconName == "starred")
+                            mainView.favoriteChannels.removeFavorite(messages.accountId, messages.chatTitle)
+                        else
+                            mainView.favoriteChannels.addFavorite(messages.accountId, messages.chatTitle)
+                    }
                 }
+
             ]
 
             PropertyChanges {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    var finalParticipants = participants.length
+                    var finalParticipants = (participants ? participants.length : 0)
                     if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
-                        if (chatEntry.title !== "") {
-                            return chatEntry.title
+                        if (messages.chatTitle != "") {
+                            return messages.chatTitle
                         }
-                        var roomInfo = threadInformation.chatRoomInfo
-                        if (roomInfo.Title != "") {
-                            return roomInfo.Title
-                        } else if (roomInfo.RoomName != "") {
-                            return roomInfo.RoomName
-                        }
+
                         // include the "Me" participant to be consistent with
                         // group info page
                         if (roomInfo.Joined) {
@@ -674,17 +765,18 @@ Page {
                 }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         },
         State {
             id: unknownContactState
             name: "unknownContact"
-            when: participants.length == 1 && contactWatcher.isUnknown
+            when: !messages.newMessage && (participants.length === 1) && contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1 && contactWatcher.interactive
+                    visible: participants && participants.length === 1 && contactWatcher.interactive && messages.account.addressableVCardFields.lastIndexOf("tel") != -1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -695,13 +787,17 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
+                    visible: contactWatcher.isUnknown && participants && participants.length === 1 && contactWatcher.interactive
+                    enabled: messages.account != null
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact(messages, "", contactWatcher.identifier, null, null)
+                        mainView.addAccountToContact(messages,
+                                                     "",
+                                                     messages.account.protocolInfo.name,
+                                                     contactWatcher.identifier,
+                                                     null, null)
                     }
                 }
             ]
@@ -709,6 +805,7 @@ Page {
                 target: pageHeader
                 contents: headerContents
                 trailingActions: unknownContactState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         },
         State {
@@ -744,7 +841,7 @@ Page {
                             mmsGroupAction.trigger()
                             return
                         }
-                        contextMenu.caller = header;
+                        contextMenu.caller = trailingActionArea;
                         contextMenu.updateGroupTypes();
                         contextMenu.show();
                     }
@@ -762,6 +859,12 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
+                onActiveFocusChanged: {
+                    if (!activeFocus && (searchListLoader.status != Loader.Ready || !searchListLoader.item.activeFocus))
+                        commit()
+                }
+
+                KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
             }
 
             PropertyChanges {
@@ -769,16 +872,18 @@ Page {
                 title: " "
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
+                backEnabled: true
             }
         },
         State {
             id: knownContactState
             name: "knownContact"
-            when: participants.length == 1 && !contactWatcher.isUnknown
+            when: !messages.newMessage && participants && participants.length === 1 && !contactWatcher.isUnknown
+
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1
+                    visible: participants && participants.length === 1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -801,11 +906,16 @@ Page {
                 target: pageHeader
                 contents: headerContents
                 trailingActions: knownContactState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         }
     ]
 
     Component.onCompleted: {
+        if (!chatEntry) {
+            chatEntry = chatEntryComponent.createObject(this)
+        }
+
         // we only revert back to phone account if this is a 1-1 chat,
         // in which case the handler will fallback to multimedia if needed
         if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
@@ -820,14 +930,21 @@ Page {
                 }
             }
         }
-        newMessage = (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
         }
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
+        // if it is a new message we need to add participants into the multiRecipient list
+        if (newMessage) {
+            for (var i in participantIds) {
+                multiRecipient.addRecipient(participantIds[i])
+            }
+        }
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
         mainView.updateNewMessageStatus()
+        markThreadAsRead()
     }
 
     Component.onDestruction: {
@@ -856,7 +973,7 @@ Page {
 
     onReady: {
         isReady = true
-        if (participants.length === 0 && keyboardFocus)
+        if (participants && participants.length === 0 && keyboardFocus)
             multiRecipient.forceFocus()
     }
 
@@ -868,7 +985,9 @@ Page {
         if (!isReady) {
             messages.ready()
         }
-        processPendingEvents()
+        markThreadAsRead()
+        if (!newMessage)
+            composeBar.forceFocus()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -912,6 +1031,9 @@ Page {
                 property var participants: null
                 property var account: null
                 text: {
+                    if (account.protocolInfo.name == "irc") {
+                        return i18n.tr("Join IRC Channel...")
+                    }
                     var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
                        protocolDisplayName = account.protocolInfo.serviceName;
@@ -930,16 +1052,23 @@ Page {
             }
             actionList.actions = []
 
-            actionList.addAction(mmsGroupAction)
-
-            for (var i in telepathyHelper.textAccounts.active) {
+            if (telepathyHelper.phoneAccounts.active.length > 0) {
+                actionList.addAction(mmsGroupAction)
+            }
+            if (!account || account.type == AccountEntry.PhoneAccount) {
+                return
+            }
+            var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
+            actionList.addAction(action)
+ 
+            /*for (var i in telepathyHelper.textAccounts.active) {
                 var account = telepathyHelper.textAccounts.active[i]
                 if (account.type == AccountEntry.PhoneAccount) {
                     continue
                 }
                 var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
                 actionList.addAction(action)
-            }
+            }*/
         }
     }
 
@@ -970,7 +1099,7 @@ Page {
         }
 
         onApplicationActiveChanged: {
-            processPendingEvents()
+            markThreadAsRead()
         }
     }
 
@@ -982,16 +1111,22 @@ Page {
         }
     }
 
-    ChatEntry {
-        id: chatEntryObject
-        chatType: messages.chatType
-        participantIds: messages.participantIds
-        chatId: messages.threadId
-        accountId: messages.accountId
-        autoRequest: !newMessage
+    Component {
+        id: chatEntryComponent
 
+        ChatEntry {
+            id: chatEntryObject
+            chatType: messages.chatType
+            participantIds: messages.participantIds
+            chatId: messages.threadId
+            accountId: messages.accountId
+        }
+    }
+
+    Connections {
+        target: messages.chatEntry
         onChatTypeChanged: {
-            messages.chatType = chatEntryObject.chatType
+            messages.chatType = chatEntry.chatType
         }
 
         onMessageSent: {
@@ -1008,9 +1143,15 @@ Page {
         }
     }
 
+    Binding {
+        target: messages.chatEntry
+        property: "autoRequest"
+        value: !messages.newMessage && !messages.account.protocolInfo.enableRejoin
+    }
+
     Repeater {
-        model: messages.chatEntry.chatStates
-        Item {
+        model: account ? (account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null) : null
+        delegate: Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
@@ -1030,8 +1171,9 @@ Page {
 
     ContactWatcher {
         id: typingContactWatcher
-        identifier: messages.userTypingId
-        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        identifier: messages.participantIdentifierByProtocol(messages.account, userTypingId)
+        addressableFields: messages.account ?
+                               messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
     MessagesHeader {
@@ -1091,7 +1233,7 @@ Page {
             return account.accountId
         }
         // we just request presence on 1-1 chats
-        identifier: participants.length == 1 ? participants[0].identifier : ""
+        identifier: participants && participants.length === 1 ? participants[0].identifier : ""
     }
 
     ActivityIndicator {
@@ -1109,7 +1251,7 @@ Page {
 
         property int resultCount: (status === Loader.Ready) ? item.count : 0
 
-        source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
+        source: (multiRecipient.searchString !== "") ?
                 Qt.resolvedUrl("ContactSearchList.qml") : ""
         clip: true
         visible: source != ""
@@ -1136,6 +1278,17 @@ Page {
             property: "filterTerm"
             value: multiRecipient.searchString
             when: (searchListLoader.status === Loader.Ready)
+        }
+
+        Connections {
+            target: searchListLoader.item
+            onActiveFocusChanged: {
+                if (!searchListLoader.item.activeFocus && !multiRecipient.activeFocus)
+                    multiRecipient.commit()
+            }
+            onFocusUp: {
+                multiRecipient.forceActiveFocus()
+            }
         }
 
         Timer {
@@ -1168,12 +1321,13 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: firstParticipant ? firstParticipant.identifier : ""
-        contactId: firstParticipant ? firstParticipant.contactId : ""
-        alias: firstParticipant ? firstParticipant.alias : ""
-        avatar: firstParticipant ? firstParticipant.avatar : ""
-        detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
-        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        identifier: firstParticipant && firstParticipant.identifier ? messages.participantIdentifierByProtocol(messages.account, firstParticipant.identifier) : ""
+        contactId: firstParticipant && firstParticipant.contactId ? firstParticipant.contactId : ""
+        alias: firstParticipant && firstParticipant.alias ? firstParticipant.alias : ""
+        avatar: firstParticipant && firstParticipant.avatar ? firstParticipant.avatar : ""
+        detailProperties: firstParticipant && firstParticipant.detailProperties ? firstParticipant.detailProperties : {}
+        addressableFields:  messages.account && messages.account.protocolInfo ?
+                               messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
     HistoryUnionFilter {
@@ -1185,7 +1339,7 @@ Page {
     }
 
     HistoryGroupedThreadsModel {
-        id: threadsModel
+        id: messagesModel
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {}
         groupingProperty: "participants"
@@ -1200,7 +1354,7 @@ Page {
         property var localPendingParticipants: null
         property var remotePendingParticipants: null
         property var threads: null
-        model: threadsModel
+        model: messagesModel
         visible: false
         delegate: Item {
             property var threads: model.threads
@@ -1218,12 +1372,13 @@ Page {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
-        matchContacts: true
+        matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
+            markThreadAsRead()
             if (isSearching) {
                 // if we ask for more items manually listview will stop working,
                 // so we only set again once the item was found
@@ -1278,12 +1433,21 @@ Page {
         objectName: "messageList"
         visible: !isSearching
         listModel: messages.newMessage ? null : eventModel
+        account: messages.account
+        activeFocusOnTab: false
+        focus: false
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                composeBar.forceFocus()
+            }
+        }
 
         Rectangle {
             color: Theme.palette.normal.background
             anchors.fill: parent
             Image {
                 width: units.gu(20)
+                opacity: 0.1
                 fillMode: Image.PreserveAspectFit
                 anchors.centerIn: parent
                 visible: source !== ""
@@ -1346,6 +1510,9 @@ Page {
                 return false
             }
             if (threads.length > 0) {
+                if (!chatEntry.active && messages.account.protocolInfo.enableRejoin) {
+                    return true
+                }
                 return !threadInformation.chatRoomInfo.Joined
             }
             return false
@@ -1367,12 +1534,18 @@ Page {
             right: parent.right
         }
 
+        participants: messages.participants
         isBroadcast: messages.isBroadcast
+        returnToSend: messages.account.protocolInfo.returnToSend
+        enableAttachments: messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
         onTextChanged: {
+            if (!account.protocolInfo.enableChatStates) {
+                return
+            }
             if (text == "" && !composeBar.inputMethodComposing) {
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
                 selfTypingTimer.stop()
@@ -1439,6 +1612,8 @@ Page {
                 reloadFilters = !reloadFilters
             }
         }
+
+        KeyNavigation.up: messages.header.contents
     }
 
     SendMessageValidator {
@@ -1473,5 +1648,18 @@ Page {
     Scrollbar {
         flickableItem: messageList
         align: Qt.AlignTrailing
+    }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: messages
+        when: messages.active
+    }
+
+    onActiveFocusChanged: {
+        if (activeFocus && !newMessage) {
+            composeBar.textArea.forceActiveFocus()
+        }
     }
 }

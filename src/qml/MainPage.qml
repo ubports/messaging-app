@@ -32,11 +32,16 @@ Page {
     property bool isEmpty: threadCount == 0 && !threadModel.canFetchMore
     property alias threadCount: threadList.count
     property alias displayedThreadIndex: threadList.currentIndex
-
-    property var _messagesPage: null
+    property bool _keepFocus: true
 
     function startSelection() {
         threadList.startSelection()
+    }
+
+    function selectMessage(index) {
+        if (index !== -1)
+            _keepFocus = false
+        threadList.currentIndex = index
     }
 
     signal newThreadCreated(var newThread)
@@ -91,6 +96,8 @@ Page {
                     objectName: "searchAction"
                     iconName: "search"
                     text: i18n.tr("Search")
+                    shortcut: "Ctrl+F"
+                    enabled: mainPage.state == "default"
                     onTriggered: {
                         mainPage.searching = true
                         searchField.forceActiveFocus()
@@ -101,6 +108,7 @@ Page {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
+                        threadList.currentIndex = -1
                         pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
                     }
                 },
@@ -108,7 +116,12 @@ Page {
                     objectName: "newMessageAction"
                     text: i18n.tr("New message")
                     iconName: "add"
-                    onTriggered: mainView.startNewMessage()
+                    shortcut: "Ctrl+N"
+                    enabled: mainPage.state == "default"
+                    onTriggered: {
+                        threadList.currentIndex = -1
+                        mainView.startNewMessage()
+                    }
                 }
             ]
 
@@ -129,6 +142,8 @@ Page {
                     visible: mainPage.searching
                     iconName: "back"
                     text: i18n.tr("Cancel")
+                    shortcut: "Esc"
+                    enabled: mainPage.state == "search"
                     onTriggered: {
                         searchField.text = ""
                         mainPage.searching = false
@@ -152,7 +167,9 @@ Page {
                 Action {
                     objectName: "selectionModeCancelAction"
                     iconName: "back"
+                    shortcut: "Esc"
                     onTriggered: threadList.cancelSelection()
+                    enabled: mainPage.state == "selection"
                 }
             ]
 
@@ -192,6 +209,20 @@ Page {
     Component {
         id: sectionDelegate
         ThreadsSectionDelegate {
+            function formatSectionTitle(title) {
+                if (mainView.sortThreadsBy === "timestamp")
+                    return DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
+                else if (telepathyHelper.ready) {
+                    var account = telepathyHelper.accountForId(title)
+                    if (account.connectionStatus == AccountEntry.ConnectionStatusConnecting) {
+                        return i18n.tr("%1 - Connecting...").arg(account.displayName)
+                    } else {
+                        return account.displayName
+                    }
+                }
+                else
+                    return title
+            }
         }
     }
 
@@ -211,9 +242,9 @@ Page {
         // but not completely revealed.
         enabled: bottomEdgeLoader.item.status !== BottomEdge.Revealed
         clip: true
-        section.property: "eventDate"
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
+        section.property: mainView.sortThreadsBy === "title" ? "accountId" : "eventDate"
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
             // FIXME: update
@@ -225,17 +256,46 @@ Page {
             selected: true
         }
 
-        listDelegate: ThreadDelegate {
+        onCurrentItemChanged: {
+            if (pageStack.columns > 1) {
+                currentItem.show()
+                if (mainPage._keepFocus)
+                    // Keep focus on current page
+                    threadList.forceActiveFocus()
+                else if (pageStack.activePage)
+                    pageStack.activePage.forceActiveFocus()
+                mainPage._keepFocus = true
+            }
+        }
+
+        listDelegate: ThreadDelegate {            
             id: threadDelegate
+
+            function show()
+            {
+                var properties = model.properties
+                properties["keyboardFocus"] = false
+                properties["threads"] = model.threads
+                properties["presenceRequest"] = threadDelegate.presenceItem
+                if (displayedEvent != null) {
+                    properties["scrollToEventId"] = displayedEvent.eventId
+                }
+                properties["chatEntry"] = chatEntry
+                delete properties["participants"]
+                delete properties["localPendingParticipants"]
+                delete properties["remotePendingParticipants"]
+                mainView.showMessagesView(properties)
+            }
+
             // FIXME: find a better unique name
-            objectName: "thread%1".arg(participants[0].identifier)
+            objectName: "thread%1".arg(participants.length > 0 ? participants[0].identifier : "")
             Component.onCompleted: mainPage.newThreadCreated(model)
 
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            height: units.gu(8)
+            compactView: mainView.compactView
             selectMode: threadList.isInSelectionMode
             selected: {
                 if (selectMode) {
@@ -245,38 +305,34 @@ Page {
             }
 
             searchTerm: mainPage.searching ? searchField.text : ""
+
             onClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
-                } else {
-                    var properties = model.properties
-                    
-                    properties["keyboardFocus"] = false
-                    properties["threads"] = model.threads
-                    var participantIds = [];
-                    for (var i in model.participants) {
-                        participantIds.push(model.participants[i].identifier)
-                    }
-                    properties["participantIds"] = participantIds
-                    properties["presenceRequest"] = threadDelegate.presenceItem
-                    if (displayedEvent != null) {
-                        properties["scrollToEventId"] = displayedEvent.eventId
-                    }
-                    delete properties["participants"]
-                    delete properties["localPendingParticipants"]
-                    delete properties["remotePendingParticipants"]
-                    mainView.showMessagesView(properties)
+                }
+                threadList.currentIndex = index
 
-                    // mark this item as current
-                    threadList.currentIndex = index
+                if (pageStack.columns <= 1) {
+                    show()
                 }
             }
             onPressAndHold: {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }
+
+            ChatEntry {
+                id: chatEntry
+                chatType: model.properties.chatType
+                participantIds: model.properties.participantIds ? model.properties.participantIds : []
+                chatId: model.properties.threadId
+                accountId: model.properties.accountId
+                autoRequest: false
+            }
+
+            opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
         }
         onSelectionDone: {
             var threadsToRemove = []
@@ -330,9 +386,12 @@ Page {
         interval: 1
         repeat: false
         running: true
-        onTriggered: createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
-                                                   mainPage,
-                                                   {"flickableItem": threadList})
+        onTriggered: {
+            createQmlObjectAsynchronously(Qt.resolvedUrl("Scrollbar.qml"),
+                                          mainPage,
+                                          {"flickableItem": threadList})
+            threadList.forceActiveFocus()
+        }
     }
 
     Loader {
@@ -348,4 +407,19 @@ Page {
             hint.visible: enabled
         }
     }
+
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            threadList.currentItem.forceActiveFocus()
+        }
+    }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: mainPage
+        when: pageStack.columns === 1
+    }
+
+    KeyNavigation.right: pageStack.activePage
 }

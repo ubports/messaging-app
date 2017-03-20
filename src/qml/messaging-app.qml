@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import QtQuick.Window 2.2
 import Qt.labs.settings 1.0
+import QtContacts 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
@@ -36,6 +37,15 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    // settings
+    property alias sortThreadsBy: globalSettings.sortThreadsBy
+    property alias compactView: globalSettings.compactView
+    property alias disconnectOnQuit: globalSettings.disconnectOnQuit
+    property alias favoriteChannels: favoriteChannelsItem
+
+    // private
+    property var _pendingProperties: null
+
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -72,13 +82,32 @@ MainView {
                                          initialProperties)
     }
 
-    function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
+    function protocolFromString(protocolName)
+    {
+        if (protocolName.indexOf("OnlineAccount.") === 0) {
+            // protocol already converted
+            return protocolName
+        }
+
+        switch(protocolName) {
+        case "irc":
+            return "OnlineAccount.Irc"
+        case "ofono":
+        default:
+            return "OnlineAccount.Unknown"
+        }
+    }
+
+    function addAccountToContact(currentPage, contact, accountProtocol, accountUri, contactListPage, contactsModel)
+    {
+        var accountDetails = {"protocol": protocolFromString(accountProtocol),
+                              "uri": accountUri}
         if (contact === "") {
             mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("NewRecipientPage.qml"),
-                                             { "phoneToAdd": phoneNumber })
+                                             { "accountToAdd": accountDetails })
         } else {
-            var initialProperties = { "addPhoneToContact": phoneNumber }
+            var initialProperties = { "accountToAdd": accountDetails }
             if (contactListPage) {
                 initialProperties["contactListPage"] = contactListPage
             }
@@ -96,13 +125,11 @@ MainView {
         }
     }
 
-    onApplicationActiveChanged: {
-        if (applicationActive) {
-            telepathyHelper.registerChannelObserver()
-        } else {
-            telepathyHelper.unregisterChannelObserver()
-        }
+    function disconnectFromServer()
+    {
+        //TODO: disconnect from server
     }
+
 
     function removeThreads(threads) {
         for (var i in threads) {
@@ -114,6 +141,7 @@ MainView {
             // and acknowledge all messages for the threads to be removed
             var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
             chatManager.acknowledgeAllMessages(properties)
+            chatManager.leaveRoom(properties, "")
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
@@ -126,8 +154,36 @@ MainView {
         mainView.showMessagesView(properties)
     }
 
+    function connectToFavoriteChannels(account) {
+        var favs = favoriteChannels.getFavoriteChannels(account.accountId)
+        for (var c in favs) {
+            var favChannel = favs[c]
+            if (favChannel) {
+                console.debug("Start channel:" + account.accountId + "/" + favChannel)
+                var properties = {'chatType': HistoryThreadModel.ChatTypeRoom,
+                                  'accountId': account.accountId,
+                                  'threadId': favChannel}
+                chatManager.startChat(account.accountId, properties)
+            }
+        }
+    }
+
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            telepathyHelper.registerChannelObserver()
+        } else {
+            telepathyHelper.unregisterChannelObserver()
+        }
+    }
+
     Connections {
         target: telepathyHelper.textAccounts
+        onAccountChanged: {
+            if (active) {
+                connectToFavoriteChannels(entry)
+            }
+        }
+
         onActiveChanged: {
             for (var i in telepathyHelper.textAccounts.active) {
                 if (telepathyHelper.textAccounts.active[i] == account) {
@@ -136,6 +192,7 @@ MainView {
             }
             account = Qt.binding(defaultPhoneAccount)
         }
+
     }
 
     Connections {
@@ -149,6 +206,9 @@ MainView {
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
                 !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
+            }
+            for (var i in telepathyHelper.textAccounts.active) {
+                connectToFavoriteChannels(telepathyHelper.textAccounts.active[i])
             }
         }
     }
@@ -170,10 +230,44 @@ MainView {
 
     HistoryGroupedThreadsModel {
         id: threadModel
+
+        function indexOf(threadId, accountId) {
+            for (var i=0; i < count; i++) {
+                var threads = get(i)
+                for (var t=0; t < threads.length; t++) {
+                    var thread = threads[t]
+                    if (thread.threadId === threadId) {
+                        if (accountId && (thread.accountId == accountId))
+                            return i
+                        else if (!accountId)
+                            return i
+                    }
+                }
+            }
+            return -1
+        }
+
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
+            sortField: {
+                switch(mainView.sortThreadsBy) {
+                case "title":
+                    //FIXME: ThreadId works for IRC, not sure if that will work for other protocols
+                    return "accountId, threadId"
+                case "timestamp":
+                default:
+                    return "lastEventTimestamp"
+                }
+            }
+            sortOrder: {
+                switch(mainView.sortThreadsBy) {
+                case "title":
+                    return HistorySort.AscendingOrder
+                case "timestamp":
+                default:
+                    return HistorySort.DescendingOrder
+                }
+            }
         }
         groupingProperty: "participants"
         filter: HistoryFilter {}
@@ -192,6 +286,13 @@ MainView {
         id: msgSettings
         category: "SMS"
         property bool showCharacterCount: false
+    }
+
+    Settings {
+        id: globalSettings
+        property string sortThreadsBy: "timestamp"
+        property bool compactView: false
+        property bool disconnectOnQuit: true
     }
 
     StickerPacksModel {
@@ -233,12 +334,13 @@ MainView {
         if (showEmpty) {
             showEmptyState()
         }
-        mainPage.displayedThreadIndex = -1
+        mainPage.forceActiveFocus()
     }
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
             layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("EmptyStatePage.qml"))
+            mainPage.displayedThreadIndex = -1
         }
     }
 
@@ -317,7 +419,17 @@ MainView {
         return threads
     }
 
-    function startChat(properties) {
+    function startChatLate(properties) {
+        if (!properties && !_pendingProperties)
+            return
+
+        if (!properties)
+            properties = _pendingProperties
+
+        // make sure that is called only once, disconnect
+        _pendingProperties = null
+        telepathyHelper.onSetupReady.disconnect(startChatLate)
+
         var participantIds = []
         var accountId = ""
         var match = HistoryThreadModel.MatchCaseSensitive
@@ -346,7 +458,37 @@ MainView {
             }
         }
 
+        // Try to select the corrent thread on thread list
+        accountId = properties.accountId
+        var threadId = properties.threadId
+        if (!threadId && (properties["threads"].length > 0)) {
+            threadId = properties["threads"][0].threadId
+            if (!accountId)
+                accountId = properties["threads"][0].accountId
+        }
+
+        if (threadId) {
+            var index = threadModel.indexOf(properties.threadId, accountId)
+            if (index !== -1) {
+                mainPage.selectMessage(index)
+                return
+            }
+        }
         showMessagesView(properties)
+    }
+
+    function startChat(properties) {
+        if (!telepathyHelper.ready) {
+            if (_pendingProperties) {
+                _pendingProperties = properties
+            } else {
+                _pendingProperties = properties
+                // wait for telepathy
+                telepathyHelper.onSetupReady.connect(startChatLate)
+            }
+        } else {
+            startChatLate(properties)
+        }
     }
 
     Connections {
@@ -360,6 +502,9 @@ MainView {
 
     AdaptivePageLayout {
         id: layout
+
+        property var activePage: null
+
         anchors.fill: parent
         layouts: PageColumnsLayout {
             when: mainStack.width >= units.gu(90)
@@ -396,6 +541,19 @@ MainView {
                 emptyStack()
             }
             layout.completed = true;
+        }
+    }
+
+    FavoriteChannels {
+        id: favoriteChannelsItem
+    }
+
+    Connections {
+        target: Qt.application
+        onAboutToQuit: {
+            if (globalSettings.disconnectOnQuit) {
+                mainView.disconnectFromServer()
+            }
         }
     }
 }

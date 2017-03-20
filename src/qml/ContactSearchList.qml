@@ -20,20 +20,25 @@ import QtQuick 2.2
 import QtContacts 5.0
 
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Contacts 0.1
 
-ListView {
+UbuntuListView {
     id: root
 
     // FIXME: change the Ubuntu.Contacts model to search for more fields
     property alias filterTerm: contactModel.filterTerm
-    onFilterTermChanged: console.debug("FILTER :" + filterTerm)
 
     signal contactPicked(string identifier, string label, string avatar)
+    signal focusUp()
 
-    model: ContactListModel {
+    ContactDetailPhoneNumberTypeModel {
+        id: phoneTypeModel
+    }
+
+    ContactListModel {
         id: contactModel
+
+        property var proxyModel: []
 
         manager: "galera"
         view: root
@@ -61,84 +66,61 @@ ListView {
             detailTypesHint: [ ContactDetail.DisplayLabel,
                                ContactDetail.PhoneNumber ]
         }
+
+        onContactsChanged: {
+            var proxy = []
+            for (var i=0; i < contacts.length; i++) {
+                for (var p=0; p < contacts[i].phoneNumbers.length; p++) {
+                    proxy.push({"contact": contacts[i], "phoneIndex": p})
+                }
+            }
+            contactModel.proxyModel = proxy
+        }
     }
 
-    ContactDetailPhoneNumberTypeModel {
-        id: phoneTypeModel
-    }
-
-    delegate: Item {
+    model: contactModel.proxyModel
+    delegate: ListItem {
         anchors {
             left: parent.left
             right: parent.right
         }
-        height: phoneRepeater.count * units.gu(6)
-        Column {
-            anchors.fill: parent
+        height: itemLayout.height
 
-            Repeater {
-                id: phoneRepeater
+        onClicked: root.contactPicked(modelData.contact.phoneNumbers[modelData.phoneIndex].number,
+                                      modelData.contact.displayLabel.label, modelData.contact.avatar.url)
 
-                model: contact.phoneNumbers.length
+        ListItemLayout {
+            id: itemLayout
 
-                delegate: MouseArea {
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                    height: units.gu(6)
-
-                    onClicked: root.contactPicked(contact.phoneNumbers[index].number, contact.displayLabel.label, contact.avatar.url)
-
-                    Column {
-                        anchors.right: parent.right
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                        height: childrenRect.height
-                        spacing: units.gu(.5)
-
-                        Label {
-                            anchors {
-                                left: parent.left
-                                leftMargin: units.gu(2)
-                                right: parent.right
-                            }
-                            height: units.gu(2)
-                            text: {
-                                // this is necessary to keep the string in the original format
-                                var originalText = contact.displayLabel.label
-                                var lowerSearchText =  filterTerm.toLowerCase()
-                                var lowerText = originalText.toLowerCase()
-                                var searchIndex = lowerText.indexOf(lowerSearchText)
-                                if (searchIndex !== -1) {
-                                    var piece = originalText.substr(searchIndex, lowerSearchText.length)
-                                    return originalText.replace(piece, "<b>" + piece + "</b>")
-                                } else {
-                                    return originalText
-                                }
-                            }
-                            fontSize: "medium"
-                            color: Theme.palette.normal.backgroundText
-                        }
-                        Label {
-                            anchors {
-                                left: parent.left
-                                leftMargin: units.gu(2)
-                                right: parent.right
-                            }
-                            height: units.gu(2)
-                            text: {
-                                var phoneDetail = contact.phoneNumbers[index]
-                                return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
-                                                .arg(phoneDetail.number)
-                            }
-                            color: Theme.palette.normal.backgroundSecondaryText
-                        }
-
-                        ListItem.ThinDivider {}
-                    }
+            title.text: {
+                // this is necessary to keep the string in the original format
+                var originalText = modelData.contact.displayLabel.label
+                var lowerSearchText =  filterTerm.toLowerCase()
+                var lowerText = originalText.toLowerCase()
+                var searchIndex = lowerText.indexOf(lowerSearchText)
+                if (searchIndex !== -1) {
+                   var piece = originalText.substr(searchIndex, lowerSearchText.length)
+                   return originalText.replace(piece, "<b>" + piece + "</b>")
+                } else {
+                   return originalText
                 }
             }
+            title.fontSize: "medium"
+            title.color: Theme.palette.normal.backgroundText
+
+            subtitle.text: {
+                var phoneDetail = modelData.contact.phoneNumbers[modelData.phoneIndex]
+                return ("%1 %2").arg(phoneTypeModel.get(phoneTypeModel.getTypeIndex(phoneDetail)).label)
+                                .arg(phoneDetail.number)
+            }
+            subtitle.color: Theme.palette.normal.backgroundSecondaryText
         }
+    }
+
+    Keys.onUpPressed: {
+        if (currentIndex == 0)
+            focusUp()
+
+        event.accepted  = false
     }
 }

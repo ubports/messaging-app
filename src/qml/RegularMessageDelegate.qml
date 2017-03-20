@@ -36,6 +36,7 @@ Item {
     property var textMessage: messageData.textMessage
     property string accountId: messageData.accountId
     property int index: -1
+    property alias account: messageDelegate.account
 
     // WORKAROUND: we can not use sections because the verticalLayoutDirection is ListView.BottomToTop the sections will appear
     // bellow the item
@@ -96,11 +97,6 @@ Item {
         onPressAndHold: {
             root.startSelection()
             root.selectItem(delegateItem)
-        }
-        Component.onCompleted: {
-            if (newEvent) {
-                messages.markMessageAsRead(accountId, threadId, eventId, type);
-            }
         }
     }
 }

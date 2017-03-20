@@ -51,9 +51,10 @@ ListItem {
             id: avatar
             enabled: true
             fallbackAvatarUrl: {
-                if (participant.avatar !== "") {
+                if (participant && participant.avatar && participant.avatar !== "") {
+                    console.log(participant.avatar)
                     return participant.avatar
-                } else if (participant.alias === "") {
+                } else if (participant && participant.alias === "") {
                     return "image://theme/contact"
                 }
                 return ""

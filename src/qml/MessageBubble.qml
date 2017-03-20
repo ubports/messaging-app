@@ -35,6 +35,8 @@ BorderImage {
     property var messageTimeStamp
     property int maxDelegateWidth: units.gu(27)
     property string accountName
+    property var account
+    property var _accountRegex: account && (account.selfContactId != "") ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
     property bool isMultimedia: false
     // FIXME for now we just display the delivery status if it's greater than Accepted
     property bool showDeliveryStatus: false
@@ -77,6 +79,11 @@ BorderImage {
             var currentNumber = phoneNumbers[i]
             text = text.replace(currentNumber, formatTelSchemeWith(currentNumber))
         }
+
+        // hightlight participants names
+        if (_accountRegex)
+            text = text.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
+
         return text
     }
 

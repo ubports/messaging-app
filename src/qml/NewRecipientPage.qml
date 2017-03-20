@@ -26,7 +26,7 @@ Page {
     objectName: "newRecipientPage"
 
     property var itemCallback: null
-    property string phoneToAdd: ""
+    property var accountToAdd: null
     property QtObject contactIndex: null
 
     function moveListToContact(contact)
@@ -48,6 +48,30 @@ Page {
             }
         }
         mainStack.removePages(newRecipientPage)
+    }
+
+    function createEmptyContactWithAccount(account, parent)
+    {
+        var details = [ {detail: "EmailAddress", field: "emailAddress", value: ""},
+                        {detail: "Name", field: "firstName", value: ""}
+                      ]
+
+        var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", parent)
+        var detailSourceTemplate = "import QtContacts 5.0; %1{ %2: \"%3\" }"
+        for (var i=0; i < details.length; i++) {
+            var detailMetaData = details[i]
+            var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail)
+                                            .arg(detailMetaData.field)
+                                            .arg(detailMetaData.value), parent)
+            newContact.addDetail(newDetail)
+        }
+
+        var accountSourceTemplate = "import QtContacts 5.0; OnlineAccount{ accountUri: \"%1\"; protocol: %2 }"
+        var newDetail = Qt.createQmlObject(accountSourceTemplate
+                                           .arg(account.uri)
+                                           .arg(account.protocol), parent)
+        newContact.addDetail(newDetail)
+        return newContact
     }
 
     header: PageHeader {
@@ -74,6 +98,8 @@ Page {
                 }
             ]
         }
+
+
     }
 
     Sections {
@@ -133,6 +159,8 @@ Page {
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
+                    enabled: newRecipientPage.state == "searching"
+                    shortcut: "Esc"
                     onTriggered: {
                         newRecipientPage.forceActiveFocus()
                         newRecipientPage.state = "default"
@@ -171,6 +199,10 @@ Page {
             bottom: keyboard.top
         }
 
+        focus: true
+        currentIndex: -1
+        highlightSelected: true
+        activeFocusOnTab: true
         showAddNewButton: true
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
         // this will be used to callback the app, after create account
@@ -178,12 +210,13 @@ Page {
 
         filterTerm: searchField.text
         onContactClicked: {
-            if (newRecipientPage.phoneToAdd != "") {
-                mainView.addPhoneToContact(newRecipientPage,
-                                           contact,
-                                           newRecipientPage.phoneToAdd,
-                                           newRecipientPage,
-                                           contactList.listModel)
+            if (newRecipientPage.accountToAdd) {
+                mainView.addAccountToContact(newRecipientPage,
+                                             contact,
+                                             accountToAdd.protocol,
+                                             accountToAdd.uri,
+                                             newRecipientPage,
+                                             contactList.listModel)
             } else {
                 mainView.showContactDetails(newRecipientPage,
                                             contact,
@@ -193,12 +226,24 @@ Page {
         }
 
         onAddNewContactClicked: {
-            var newContact = ContactsJS.createEmptyContact(newRecipientPage.phoneToAdd, newRecipientPage)
+            var newContact = newRecipientPage.createEmptyContactWithAccount(newRecipientPage.accountToAdd, newRecipientPage)
+            var focusField = "name"
+            if (newRecipientPage.accountToAdd) {
+                switch (newRecipientPage.accountToAdd.protocol) {
+                case "ofono":
+                    focusField = "phones"
+                    break
+                default:
+                    focusField = "ims"
+                    break
+                }
+            }
+
             mainStack.addPageToCurrentColumn(newRecipientPage,
                                              Qt.resolvedUrl("MessagingContactEditorPage.qml"),
                                              { model: contactList.listModel,
                                                contact: newContact,
-                                               initialFocusSection: (newRecipientPage.phoneToAdd != "" ? "phones" : "name"),
+                                               initialFocusSection: focusField,
                                                contactListPage: newRecipientPage })
         }
     }
@@ -211,6 +256,10 @@ Page {
     onActiveChanged: {
         if (active && (state === "searching")) {
             searchField.forceActiveFocus()
+        } else {
+            if (contactList.currentIndex === -1)
+                contactList.currentIndex = 0
+            contactList.forceActiveFocus()
         }
     }
 
@@ -240,6 +289,21 @@ Page {
             if (newRecipientPage.contactIndex) {
                 contactList.positionViewAtContact(newRecipientPage.contactIndex)
                 newRecipientPage.contactIndex = null
+            }
+        }
+    }
+
+    // WORKAROUND: Wee need this button to register the "Esc" shortcut,
+    // adding it into the trailingActionBar cause the app to crash due a bug on SDK
+    Button {
+        visible: false
+        action: Action {
+            text: i18n.tr("Back")
+            enabled: newRecipientPage.active
+            shortcut: "Esc"
+            onTriggered: {
+                mainStack.removePages(newRecipientPage)
+                newRecipientPage.destroy()
             }
         }
     }
