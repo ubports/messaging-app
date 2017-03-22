@@ -44,6 +44,7 @@ Item {
     property bool usingMMS: false
     property bool isBroadcast: false
     property bool returnToSend: false
+    property bool enableAttachments: true
 
     onRecordingChanged: {
         if (recording) {
@@ -193,14 +194,14 @@ Item {
         }
 
         Behavior on opacity { UbuntuNumberAnimation {} }
-        visible: opacity > 0
+        visible: opacity > 0 && composeBar.enableAttachments
 
-        width: childrenRect.width
-        height: childrenRect.height
+        width: visible ? childrenRect.width : 0
+        height: visible ? childrenRect.height : 0
 
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
+            leftMargin: visible ? units.gu(2) : 0
             verticalCenter: sendButton.verticalCenter
         }
         spacing: units.gu(2)
@@ -606,7 +607,7 @@ Item {
                 enableSendButton.start()
             }
         }
-        opacity: 0
+        opacity: composeBar.enableAttachments ? 0 : 1
         visible: enabled
 
         onClicked: {
@@ -624,7 +625,7 @@ Item {
             rightMargin: units.gu(2)
         }
 
-        enabled: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 ? false : true
+        enabled: textEntry.text != "" || textEntry.inputMethodComposing || attachments.count > 0 || !composeBar.enableAttachments ? false : true
         onEnabledChanged: {
             if (enabled) {
                 enableRecordButton.start()

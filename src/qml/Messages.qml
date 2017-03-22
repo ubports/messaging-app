@@ -1378,6 +1378,7 @@ Page {
 
         isBroadcast: messages.isBroadcast
         returnToSend: messages.account.protocolInfo.returnToSend
+        enableAttachments: messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
