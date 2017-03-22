@@ -960,15 +960,6 @@ Page {
             }
             var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
             actionList.addAction(action)
- 
-            /*for (var i in telepathyHelper.textAccounts.active) {
-                var account = telepathyHelper.textAccounts.active[i]
-                if (account.type == AccountEntry.PhoneAccount) {
-                    continue
-                }
-                var action = customGroupChatActionComponent.createObject(actionList, {"account": account, "participants": multiRecipient.participants})
-                actionList.addAction(action)
-            }*/
         }
     }
 
