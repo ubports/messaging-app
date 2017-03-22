@@ -232,7 +232,7 @@ ListItem {
             if (isBroadcast) {
                 return Qt.resolvedUrl("assets/broadcast_icon.png")
             } else if (groupChat) {
-                return "image://theme/contact-group" //Qt.resolvedUrl("assets/group_icon.png")
+                return "image://theme/contact-group"
             }
             return "image://theme/contact"
         }
