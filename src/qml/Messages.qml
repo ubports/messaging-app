@@ -192,9 +192,10 @@ Page {
                 }
             }
             return null
-        } else {
-            return mainView.account
+        } else if (!(telepathyHelper.phoneAccounts.active.length > 0) && messages.accountsModel.length > 0) {
+            return messages.accountsModel[0]
         }
+        return mainView.account
     }
 
     function checkThreadInFilters(newAccountId, threadId) {
