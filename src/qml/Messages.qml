@@ -655,7 +655,16 @@ Page {
                     objectName: "groupChatAction"
                     iconName: "contact-group"
                     onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                },
+                Action {
+                    id: rejoinGroupChatAction
+                    objectName: "rejoinGroupChatAction"
+                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin && messages.account.connected
+                    visible: enabled
+                    iconName: "view-refresh"
+                    onTriggered: messages.chatEntry.startChat()
                 }
+
             ]
 
             PropertyChanges {
@@ -997,7 +1006,7 @@ Page {
         participantIds: messages.participantIds
         chatId: messages.threadId
         accountId: messages.accountId
-        autoRequest: !newMessage
+        autoRequest: !newMessage && !messages.account.protocolInfo.enableRejoin
 
         onChatTypeChanged: {
             messages.chatType = chatEntryObject.chatType
@@ -1355,6 +1364,9 @@ Page {
                 return false
             }
             if (threads.length > 0) {
+                if (!chatEntry.active && messages.account.protocolInfo.enableRejoin) {
+                    return true
+                }
                 return !threadInformation.chatRoomInfo.Joined
             }
             return false
