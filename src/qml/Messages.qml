@@ -88,7 +88,18 @@ Page {
     property bool userTyping: false
     property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
-    property variant firstParticipant: (participants && participants.length > 0) ? participants[0] : null
+    property variant firstParticipant: {
+        if (!participants || participants.length == 0) {
+            return null
+        }
+        var participant = participants[0]
+        if (typeof participant === "string") {
+            return {identifier: participant, alias: participant}
+        } else {
+            return participant
+        }
+    }
+
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
@@ -109,14 +120,15 @@ Page {
             return chatEntry.title
         }
         var roomInfo = threadInformation.chatRoomInfo
-        if (roomInfo.Title != "") {
-            return roomInfo.Title
-        } else if (roomInfo.RoomName != "") {
-            return roomInfo.RoomName
+        if (roomInfo) {
+            if (roomInfo.Title != "") {
+                return roomInfo.Title
+            } else if (roomInfo.RoomName != "") {
+                return roomInfo.RoomName
+            }
         }
         return ""
     }
-
 
     signal ready
     signal cancel
@@ -531,7 +543,7 @@ Page {
            return
         }
 
-        threadsModel.markThreadsAsRead(messages.threads);
+        threadModel.markThreadsAsRead(messages.threads);
         var properties = {'accountId': threads[0].accountId, 'threadId': threads[0].threadId, 'chatType': threads[0].chatType}
         chatManager.acknowledgeAllMessages(properties)
     }
@@ -544,6 +556,28 @@ Page {
                 mainPage.selectMessage(index)
             }
         }
+    }
+
+    function participantIdentifierByProtocol(account, baseIdentifier) {
+        if (account && account.protocolInfo) {
+            switch(account.protocolInfo.name) {
+            case "irc":
+                if (account.parameters.server != "")
+                    return "%1@%2".arg(baseIdentifier).arg(account.parameters.server)
+                return baseIdentifier
+            default:
+                return baseIdentifier
+            }
+        }
+    }
+
+    function contactMatchFieldFromProtocol(protocol, fallback) {
+         switch(protocol) {
+         case "irc":
+             return ["X-IRC"];
+         default:
+             return fallback
+         }
     }
 
     // Use a timer to make sure that 'threads' are correct set before try to select it
@@ -733,12 +767,12 @@ Page {
         State {
             id: unknownContactState
             name: "unknownContact"
-            when: participants.length == 1 && contactWatcher.isUnknown
+            when: !messages.newMessage && (participants.length === 1) && contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants && participants.length === 1 && contactWatcher.interactive
+                    visible: participants && participants.length === 1 && contactWatcher.interactive && messages.account.addressableVCardFields.lastIndexOf("tel") != -1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -750,12 +784,16 @@ Page {
                 Action {
                     objectName: "addContactAction"
                     visible: contactWatcher.isUnknown && participants && participants.length === 1 && contactWatcher.interactive
+                    enabled: messages.account != null
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
                         Qt.inputMethod.hide()
-                        // FIXME: support other things than just phone numbers
-                        mainView.addPhoneToContact(messages, "", contactWatcher.identifier, null, null)
+                        mainView.addAccountToContact(messages,
+                                                     "",
+                                                     messages.account.protocolInfo.name,
+                                                     contactWatcher.identifier,
+                                                     null, null)
                     }
                 }
             ]
@@ -836,7 +874,7 @@ Page {
         State {
             id: knownContactState
             name: "knownContact"
-            when: participants.length == 1 && !contactWatcher.isUnknown
+            when: !messages.newMessage && participants && participants.length === 1 && !contactWatcher.isUnknown
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -888,10 +926,16 @@ Page {
                 }
             }
         }
-        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
+        }
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
+        // if it is a new message we need to add participants into the multiRecipient list
+        if (newMessage) {
+            for (var i in participantIds) {
+                multiRecipient.addRecipient(participantIds[i])
+            }
         }
         // if we add multiple attachments at the same time, it break the Repeater + Loaders
         fillAttachmentsTimer.start()
@@ -1094,7 +1138,7 @@ Page {
     }
 
     Repeater {
-        model: account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null
+        model: account ? (account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null) : null
         delegate: Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
@@ -1115,8 +1159,9 @@ Page {
 
     ContactWatcher {
         id: typingContactWatcher
-        identifier: messages.userTypingId
-        addressableFields: messages.account ? messages.account.addressableVCardFields : []
+        identifier: messages.participantIdentifierByProtocol(messages.account, userTypingId)
+        addressableFields: messages.account ?
+                               messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
     MessagesHeader {
@@ -1264,12 +1309,13 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: firstParticipant ? firstParticipant.identifier : ""
-        contactId: firstParticipant ? firstParticipant.contactId : ""
-        alias: firstParticipant ? firstParticipant.alias : ""
-        avatar: firstParticipant ? firstParticipant.avatar : ""
-        detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
-        addressableFields: messages.account ? messages.account.addressableVCardFields : []
+        identifier: firstParticipant && firstParticipant.identifier ? messages.participantIdentifierByProtocol(messages.account, firstParticipant.identifier) : ""
+        contactId: firstParticipant && firstParticipant.contactId ? firstParticipant.contactId : ""
+        alias: firstParticipant && firstParticipant.alias ? firstParticipant.alias : ""
+        avatar: firstParticipant && firstParticipant.avatar ? firstParticipant.avatar : ""
+        detailProperties: firstParticipant && firstParticipant.detailProperties ? firstParticipant.detailProperties : {}
+        addressableFields:  messages.account && messages.account.protocolInfo ?
+                               messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
     HistoryUnionFilter {
@@ -1286,7 +1332,7 @@ Page {
         sort: HistorySort {}
         groupingProperty: "participants"
         filter: messages.accountId != "" && messages.threadId != "" ? filters : null
-        matchContacts: messages.account.addressableVCardFields.length > 0
+        matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
     }
 
     ListView {
@@ -1314,7 +1360,7 @@ Page {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
-        matchContacts: messages.account.addressableVCardFields.length > 0
+        matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder

@@ -476,7 +476,12 @@ Page {
             leadingActions: canRemove() ? participantLeadingActions : null
             onClicked: {
                 if (openProfileButton.visible) {
-                    mainStack.addPageToCurrentColumn(groupChatInfoPage, Qt.resolvedUrl("ParticipantInfoPage.qml"), {"delegate": participantDelegate, "chatEntry": chatEntry, "chatRoom": chatRoom})
+                    mainStack.addPageToCurrentColumn(groupChatInfoPage,
+                                                     Qt.resolvedUrl("ParticipantInfoPage.qml"),
+                                                     {"delegate": participantDelegate,
+                                                      "chatEntry": chatEntry,
+                                                       "chatRoom": chatRoom,
+                                                       "protocolName": account.protocolInfo.name })
                 }
             }
             Icon {

@@ -61,11 +61,11 @@ ContactEditorPage {
 
     onContactSaved: {
         if (root.contactListPage) {
-            if (root.contactListPage.phoneToAdd !== "") {
+            if (root.contactListPage.accountToAdd !== "") {
                 mainStack.removePages(root.contactListPage)
             } else {
                 root.contactListPage.moveListToContact(contact)
-                root.contactListPage.phoneToAdd = ""
+                root.contactListPage.accountToAdd = null
             }
         }
     }

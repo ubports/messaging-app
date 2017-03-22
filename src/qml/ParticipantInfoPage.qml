@@ -26,8 +26,9 @@ Page {
     property var delegate
     property var participant: delegate.participant
     property var chatEntry
+    property string protocolName: "ofono"
     property bool chatRoom: false
-    property bool knownContact: participant.contactId !== ""
+    property bool knownContact: participant.contactId && (participant.contactId !== "")
 
     header: PageHeader {
         id: pageHeader
@@ -37,7 +38,13 @@ Page {
 
     Flickable {
         id: contentsFlickable
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            bottom: buttons.top
+            left: parent.left
+            right: parent.right
+        }
+
         contentHeight: contentsColumn.height
         clip: true
 
@@ -105,73 +112,77 @@ Page {
                     }
                 }
             }
+        }
+    }
 
-            Item {
-               id: padding
-               height: units.gu(1)
-               anchors.left: parent.left
-               anchors.right: parent.right
+    Column {
+        id: buttons
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            margins: units.gu(2)
+        }
+        spacing: units.gu(0.5)
+
+        Button {
+            id: showInContactsButton
+
+            anchors {
+                left: parent.left
+                right: parent.right
             }
-
-            ListItems.ThinDivider {
-                anchors {
-                    left: parent.left
-                    right: parent.right
+            text: knownContact ? i18n.tr("See in contacts") : i18n.tr("Add to contacts")
+            onClicked: {
+                console.debug("Know contact:" + participant.contactId)
+                if (knownContact) {
+                    mainView.showContactDetails(participantInfoPage, participant.contactId, null, null)
+                } else {
+                    mainView.addAccountToContact(participantInfoPage, "", protocolName, participant.identifier, null, null)
                 }
             }
+        }
 
-            Item {
-               id: padding3
-               height: units.gu(2)
-               anchors.left: parent.left
-               anchors.right: parent.right
+        Button {
+            id: setAsAdminButton
+
+            anchors {
+                left: parent.left
+                right: parent.right
             }
+            text: i18n.tr("Set as admin")
+            visible: false
+            // disabled until backends support this feature
+            //visible: chatRoom && chatEntry.active && chatEntry.selfContactRoles == 3
+        }
 
-            Column {
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(2)
-                }
-                spacing: units.gu(2)
-                Button {
-                    id: showInContactsButton
-                    text: knownContact ? i18n.tr("See in contacts") : i18n.tr("Add to contacts")
-                    onClicked: { 
-                        if (knownContact) {
-                            mainView.showContactDetails(participantInfoPage, participant.contactId, null, null)
-                        } else {
-                            mainView.addPhoneToContact(participantInfoPage, "", participant.identifier, null, null)
-                        }
-                    }
-                }
+        Button {
+            id: sendMessageButton
 
-                Button {
-                    id: setAsAdminButton
-                    text: i18n.tr("Set as admin")
-                    visible: false
-                    // disabled until backends support this feature
-                    //visible: chatRoom && chatEntry.active && chatEntry.selfContactRoles == 3
-                }
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            text: i18n.tr("Send private message")
+            onClicked: {
+                mainView.startChat({accountId: chatEntry.accountId, participantIds: [participant.identifier]})
+                pageStack.removePages(participantInfoPage)
+            }
+        }
 
-                Button {
-                    id: sendMessageButton
-                    text: i18n.tr("Send private message")
-                    onClicked: {
-                        mainView.startChat({accountId: chatEntry.accountId, participantIds: [participant.identifier]})
-                        pageStack.removePages(participantInfoPage)
-                    }
-                }
+        Button {
+            id: leaveButton
 
-                Button {
-                    id: leaveButton
-                    visible: delegate.canRemove()
-                    text: i18n.tr("Remove from group")
-                    color: Theme.palette.normal.negative
-                    onClicked: {
-                        delegate.removeFromGroup()
-                        pageStack.removePages(participantInfoPage)
-                    }
-                }
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            visible: delegate.canRemove()
+            text: i18n.tr("Remove from group")
+            color: Theme.palette.normal.negative
+            onClicked: {
+                delegate.removeFromGroup()
+                pageStack.removePages(participantInfoPage)
             }
         }
     }

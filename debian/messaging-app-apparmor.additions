@@ -12,6 +12,10 @@
        bus=session
        peer=(name=com.canonical.TelephonyServiceIndicator,label=unconfined),
 
+  dbus bind
+       bus=session
+       name=com.canonical.MessagingApp,
+
   # make it possible for apps to register a telepathy observer
   dbus bind
        bus=session

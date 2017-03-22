@@ -19,6 +19,7 @@
 import QtQuick 2.2
 import QtQuick.Window 2.2
 import Qt.labs.settings 1.0
+import QtContacts 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
@@ -80,13 +81,32 @@ MainView {
                                          initialProperties)
     }
 
-    function addPhoneToContact(currentPage, contact, phoneNumber, contactListPage, contactsModel) {
+    function protocolFromString(protocolName)
+    {
+        if (protocolName.indexOf("OnlineAccount.") === 0) {
+            // protocol already converted
+            return protocolName
+        }
+
+        switch(protocolName) {
+        case "irc":
+            return "OnlineAccount.Irc"
+        case "ofono":
+        default:
+            return "OnlineAccount.Unknown"
+        }
+    }
+
+    function addAccountToContact(currentPage, contact, accountProtocol, accountUri, contactListPage, contactsModel)
+    {
+        var accountDetails = {"protocol": protocolFromString(accountProtocol),
+                              "uri": accountUri}
         if (contact === "") {
             mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("NewRecipientPage.qml"),
-                                             { "phoneToAdd": phoneNumber })
+                                             { "accountToAdd": accountDetails })
         } else {
-            var initialProperties = { "addPhoneToContact": phoneNumber }
+            var initialProperties = { "accountToAdd": accountDetails }
             if (contactListPage) {
                 initialProperties["contactListPage"] = contactListPage
             }
@@ -101,14 +121,6 @@ MainView {
             mainStack.addPageToCurrentColumn(currentPage,
                                              Qt.resolvedUrl("MessagingContactViewPage.qml"),
                                              initialProperties)
-        }
-    }
-
-    onApplicationActiveChanged: {
-        if (applicationActive) {
-            telepathyHelper.registerChannelObserver()
-        } else {
-            telepathyHelper.unregisterChannelObserver()
         }
     }
 
@@ -135,8 +147,36 @@ MainView {
         mainView.showMessagesView(properties)
     }
 
+    function connectToFavoriteChannels(account) {
+        var favs = favoriteChannels.getFavoriteChannels(account.accountId)
+        for (var c in favs) {
+            var favChannel = favs[c]
+            if (favChannel) {
+                console.debug("Start channel:" + account.accountId + "/" + favChannel)
+                var properties = {'chatType': HistoryThreadModel.ChatTypeRoom,
+                                  'accountId': account.accountId,
+                                  'threadId': favChannel}
+                chatManager.startChat(account.accountId, properties)
+            }
+        }
+    }
+
+    onApplicationActiveChanged: {
+        if (applicationActive) {
+            telepathyHelper.registerChannelObserver()
+        } else {
+            telepathyHelper.unregisterChannelObserver()
+        }
+    }
+
     Connections {
         target: telepathyHelper.textAccounts
+        onAccountChanged: {
+            if (active) {
+                connectToFavoriteChannels(entry)
+            }
+        }
+
         onActiveChanged: {
             for (var i in telepathyHelper.textAccounts.active) {
                 if (telepathyHelper.textAccounts.active[i] == account) {
@@ -145,15 +185,7 @@ MainView {
             }
             account = Qt.binding(defaultPhoneAccount)
         }
-    }
 
-    Component.onDestruction: {
-        for (var i in telepathyHelper.textAccounts.active) {
-            var account = telepathyHelper.textAccounts.active[i]
-            if (account.protocolInfo.leaveRoomsOnClose) {
-                chatManager.leaveRooms(account.accountId, "")
-            }
-        }
     }
 
     Connections {
@@ -167,6 +199,9 @@ MainView {
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
                 !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
+            }
+            for (var i in telepathyHelper.textAccounts.active) {
+                connectToFavoriteChannels(telepathyHelper.textAccounts.active[i])
             }
         }
     }
