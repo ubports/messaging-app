@@ -970,6 +970,7 @@ Page {
                 property var participants: null
                 property var account: null
                 text: {
+                    // FIXME: temporary workaround
                     if (account.protocolInfo.name == "irc") {
                         return i18n.tr("Join IRC Channel...")
                     }
@@ -1362,6 +1363,7 @@ Page {
             anchors.fill: parent
             Image {
                 width: units.gu(20)
+                opacity: 0.1
                 fillMode: Image.PreserveAspectFit
                 anchors.centerIn: parent
                 visible: source !== ""

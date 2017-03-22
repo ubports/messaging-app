@@ -93,7 +93,8 @@ MultipleSelectionListView {
             var properties = {"messageData": model,
                               "index": Qt.binding(function(){ return index }),
                               "delegateItem": Qt.binding(function(){ return loader })}
-            var sourceFile = textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
+            var sourceFile =textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
+            sourceFile = application.delegateFromProtocol(Qt.resolvedUrl(sourceFile), account ? account.protocolInfo.name : "")
             loader.setSource(sourceFile, properties)
         }
 

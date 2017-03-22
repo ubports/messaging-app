@@ -78,61 +78,96 @@ Item {
 
             function getTargetName(message)
             {
+                if (!message)
+                    return ""
+
                 if (message.senderId !== "self") {
                     return i18n.tr("Myself")
-                } else if (message.participants.length > 1) {
+                } else if (message.participants && (message.participants.length > 1)) {
                     return i18n.tr("Group")
+                } else if (message.participants.length > 0) {
+                    return message.participants[0].identifier
                 } else {
-                    return PhoneUtils.PhoneUtils.format(message.participants[0].identifier)
+                    return i18n.tr("Unknown")
                 }
             }
 
             title: i18n.tr("Message info")
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type)
+                text: root.activeMessage ? "<b>%1:</b> %2".arg(i18n.tr("Type")).arg(root.activeMessage.type) : ""
             }
 
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("From"))
-                .arg(root.activeMessage.senderId !== "self" ?
-                     PhoneUtils.PhoneUtils.format(root.activeMessage.senderId) : i18n.tr("Myself"))
+                .arg(root.activeMessage && root.activeMessage.senderId !== "self" ?
+                     root.activeMessage && root.activeMessage.senderId : i18n.tr("Myself"))
             }
 
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("To"))
                                      .arg(getTargetName(root.activeMessage))
             }
-            Repeater {
-                model: root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
-                Label {
-                    text: PhoneUtils.PhoneUtils.format(modelData.identifier)
+
+            /*
+            // Disable list of contacts for now, this is not reliable on a IRC channel for example
+            // the current participants can not the same at the moment when the message was sent
+            ListView {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                height: units.gu(10) //Math.min(count * units.gu(3), units.gu(3))
+                model: root.activeMessage && root.activeMessage.senderId === "self" && root.activeMessage.participants.length > 1 ? root.activeMessage.participants : []
+                delegate: ListItem {
+                    height: itemLayout.height + (divider.visible ? divider.height : 0)
+
+                    ListItemLayout {
+                        id: itemLayout
+
+                        title.text: {
+                            var formatted = PhoneUtils.PhoneUtils.format(modelData.identifier)
+                            if (formatted.length > 0)
+                                return formatted
+                            else
+                                return modelData.identifier
+                        }
+                    }
                 }
             }
+            */
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Sent")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate))
-                visible: (root.activeMessage.senderId === "self")
+                text: root.activeMessage ?
+                          "<b>%1:</b> %2".arg(i18n.tr("Sent")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate)) :
+                          ""
+                visible: root.activeMessage && (root.activeMessage.senderId === "self")
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Received")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate))
-                visible: (root.activeMessage.senderId !== "self")
+                text: root.activeMessage ?
+                          "<b>%1:</b> %2".arg(i18n.tr("Received")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate)) :
+                          ""
+                visible: (root.activeMessage && root.activeMessage.senderId !== "self")
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Read")).arg(Qt.formatDateTime(root.activeMessage.textReadTimestamp, Qt.DefaultLocaleShortDate))
-                visible: (root.activeMessage.senderId !== "self") && (root.activeMessage.textReadTimestamp > 0)
+                text: root.activeMessage ?
+                          "<b>%1:</b> %2".arg(i18n.tr("Read")).arg(Qt.formatDateTime(root.activeMessage.textReadTimestamp, Qt.DefaultLocaleShortDate)) :
+                          ""
+                visible: root.activeMessage && (root.activeMessage.senderId !== "self") && (root.activeMessage.textReadTimestamp > 0)
             }
 
             Label {
-                text: "<b>%1:</b> %2".arg(i18n.tr("Status")).arg(statusToString(root.activeMessage.status))
+                text: root.activeMessage ? "<b>%1:</b> %2".arg(i18n.tr("Status")).arg(statusToString(root.activeMessage.status)) : ""
             }
 
             Button {
-                text: i18n.tr("Close")
-                onClicked: {
-                    PopupUtils.close(root.activeDialog)
+                action: Action {
+                    text: i18n.tr("Close")
+                    shortcut: "esc"
+                    onTriggered: PopupUtils.close(root.activeDialog)
                 }
             }
 
