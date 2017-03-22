@@ -409,19 +409,20 @@ Item {
             TextArea {
                 id: messageTextArea
                 objectName: "messageTextArea"
+                function returnPressed() {
+                    if (composeBar.returnToSend) {
+                        sendButton.processSend()
+                        return true
+                    }
+                    return false
+                }
                 anchors {
                     top: parent.top
                     left: parent.left
                     right: parent.right
                 }
-                Keys.onReturnPressed: {
-                    if (composeBar.returnToSend) {
-                        sendButton.processSend()
-                        event.accepted = true
-                        return
-                    }
-                    event.accepted = false
-                }
+                Keys.onReturnPressed: event.accepted = returnPressed()
+                Keys.onEnterPressed: event.accepted = returnPressed()
                 // this value is to avoid letter being cut off
                 height: units.gu(4.3)
                 style: LocalTextAreaStyle {}
