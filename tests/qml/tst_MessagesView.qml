@@ -138,15 +138,20 @@ Item {
     Item {
         id: chatManager
         signal messageAcknowledged
+        signal allMessagesAcknowledged(var properties)
         function acknowledgeMessage(recipients, messageId, accountId) {
             chatManager.messageAcknowledged(recipients, messageId, accountId)
+        }
+
+        function acknowledgeAllMessages(properties) {
+            chatManager.allMessagesAcknowledged(properties)
         }
     }
 
     SignalSpy {
        id: messageAcknowledgeSpy
        target: chatManager
-       signalName: "messageAcknowledged"
+       signalName: "allMessagesAcknowledged"
     }
 
     Item {
@@ -198,6 +203,7 @@ Item {
         function test_messagesViewAcknowledgeMessage() {
             var senderId = "1234567"
             messagesView.participantIds = [senderId]
+            messagesView.threads = [ {threadId: "theThreadId"} ]
             var messageList
             while (true) {
                 messageList = findChild(messagesView, "messageList")
@@ -211,7 +217,7 @@ Item {
             tryCompare(messageList, 'count', 2)
             compare(messageAcknowledgeSpy.count, 0)
             mainView.applicationActive = true
-            tryCompare(messageAcknowledgeSpy, 'count', 2)
+            tryCompare(messageAcknowledgeSpy, 'count', 1)
         }
     }
 }
