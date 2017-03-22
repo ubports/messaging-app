@@ -39,7 +39,6 @@ MainView {
     // settings
     property alias sortThreadsBy: globalSettings.sortThreadsBy
     property alias compactView: globalSettings.compactView
-    property alias disconnectOnQuit: globalSettings.disconnectOnQuit
     property alias favoriteChannels: favoriteChannelsItem
 
     // private
@@ -256,7 +255,6 @@ MainView {
         id: globalSettings
         property string sortThreadsBy: "timestamp"
         property bool compactView: false
-        property bool disconnectOnQuit: true
     }
 
     StickerPacksModel {
@@ -510,14 +508,5 @@ MainView {
 
     FavoriteChannels {
         id: favoriteChannelsItem
-    }
-
-    Connections {
-        target: Qt.application
-        onAboutToQuit: {
-            if (globalSettings.disconnectOnQuit) {
-                mainView.disconnectFromServer()
-            }
-        }
     }
 }
