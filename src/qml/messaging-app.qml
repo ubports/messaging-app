@@ -104,11 +104,6 @@ MainView {
         }
     }
 
-    function disconnectFromServer()
-    {
-        //TODO: disconnect from server
-    }
-
     onApplicationActiveChanged: {
         if (applicationActive) {
             telepathyHelper.registerChannelObserver()
