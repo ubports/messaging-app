@@ -115,6 +115,7 @@ MainView {
             // and acknowledge all messages for the threads to be removed
             var properties = {'accountId': thread.accountId, 'threadId': thread.threadId,'participantIds': participants, 'chatType': thread.chatType}
             chatManager.acknowledgeAllMessages(properties)
+            chatManager.leaveRoom(properties, "")
         }
         // at last remove the threads
         threadModel.removeThreads(threads);
