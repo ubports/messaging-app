@@ -42,9 +42,6 @@ static QQmlDebuggingEnabler debuggingEnabler(false);
 // as it doesn’t play well with QtFolks.
 int main(int argc, char** argv)
 {
-    QGuiApplication::setApplicationName("Messaging App");
-    QGuiApplication::setOrganizationName("com.ubuntu.messaging-app");
-
     MessagingApplication application(argc, argv);
 
     if (!application.setup()) {

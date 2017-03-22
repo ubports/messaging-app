@@ -39,8 +39,11 @@ MainView {
     // settings
     property alias sortThreadsBy: globalSettings.sortThreadsBy
     property alias compactView: globalSettings.compactView
+    property alias favoriteChannels: favoriteChannelsItem
+
     // private
     property var _pendingProperties: null
+
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -496,5 +499,9 @@ MainView {
             }
             layout.completed = true;
         }
+    }
+
+    FavoriteChannels {
+        id: favoriteChannelsItem
     }
 }

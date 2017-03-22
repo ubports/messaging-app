@@ -34,7 +34,7 @@ Page {
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
         "threadSort": function(value) { mainView.sortThreadsBy = value },
-        "compactView": function(value) { mainView.compactView = value }
+        "compactView": function(value) { mainView.compactView = value },        
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -66,8 +66,8 @@ Page {
         { "type": "options",
           "data": { "name": "threadSort",
                     "description": i18n.tr("Sort threads"),
-                    "currentValue": mainView.sortTrheadsBy,
-                    "subtitle": settingsPage.sortByModel[mainView.sortTrheadsBy],
+                    "currentValue": mainView.sortThreadsBy,
+                    "subtitle": settingsPage.sortByModel[mainView.sortThreadsBy],
                     "options": sortByModel,
                     "setMethod": "threadSort"}
         }

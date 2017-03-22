@@ -210,7 +210,7 @@ Page {
         id: sectionDelegate
         ThreadsSectionDelegate {
             function formatSectionTitle(title) {
-                if (mainView.sortTrheadsBy === "timestamp")
+                if (mainView.sortThreadsBy === "timestamp")
                     return DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
                 else if (telepathyHelper.ready)
                     return telepathyHelper.accountForId(title).displayName
@@ -238,7 +238,7 @@ Page {
         clip: true
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0
-        section.property: mainView.sortTrheadsBy === "title" ? "accountId" : "eventDate"
+        section.property: mainView.sortThreadsBy === "title" ? "accountId" : "eventDate"
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
         header: ListItem.Standard {
             // FIXME: update
@@ -279,15 +279,15 @@ Page {
                 if (displayedEvent != null) {
                     properties["scrollToEventId"] = displayedEvent.eventId
                 }
+                properties["chatEntry"] = chatEntry
                 delete properties["participants"]
                 delete properties["localPendingParticipants"]
                 delete properties["remotePendingParticipants"]
                 mainView.showMessagesView(properties)
             }
 
-
             // FIXME: find a better unique name
-            objectName: "thread%1".arg(participants[0].identifier)
+            objectName: "thread%1".arg(participants.length > 0 ? participants[0].identifier : "")
             Component.onCompleted: mainPage.newThreadCreated(model)
 
             anchors {
@@ -321,6 +321,17 @@ Page {
                 threadList.startSelection()
                 threadList.selectItem(threadDelegate)
             }
+
+            ChatEntry {
+                id: chatEntry
+                chatType: model.properties.chatType
+                participantIds: model.properties.participantIds
+                chatId: model.properties.threadId
+                accountId: model.properties.accountId
+                autoRequest: false
+            }
+
+            opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
         }
         onSelectionDone: {
             var threadsToRemove = []

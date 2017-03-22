@@ -94,7 +94,7 @@ Page {
     property var accountsModel: getAccountsModel()
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
-    property QtObject chatEntry: chatEntryObject
+    property QtObject chatEntry
     property string firstRecipientAlias: ((contactWatcher.isUnknown &&
                                            contactWatcher.isInteractive) ||
                                           contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
@@ -104,6 +104,19 @@ Page {
     property bool isBroadcast: chatType != ChatEntry.ChatTypeRoom && (participantIds.length  > 1 || multiRecipient.recipientCount > 1)
 
     property alias validator: sendMessageValidator
+    property string chatTitle: {
+        if (chatEntry.title !== "") {
+            return chatEntry.title
+        }
+        var roomInfo = threadInformation.chatRoomInfo
+        if (roomInfo.Title != "") {
+            return roomInfo.Title
+        } else if (roomInfo.RoomName != "") {
+            return roomInfo.RoomName
+        }
+        return ""
+    }
+
 
     signal ready
     signal cancel
@@ -679,6 +692,17 @@ Page {
                     visible: enabled
                     iconName: "view-refresh"
                     onTriggered: messages.chatEntry.startChat()
+                },
+                Action {
+                    id: favoriteAction
+                    visible: chatEntry.active && (messages.chatType == HistoryThreadModel.ChatTypeRoom)
+                    iconName: mainView.favoriteChannels.isFavorite(messages.accountId, messages.chatTitle) ? "starred" : "non-starred"
+                    onTriggered: {
+                        if (iconName == "starred")
+                            mainView.favoriteChannels.removeFavorite(messages.accountId, messages.chatTitle)
+                        else
+                            mainView.favoriteChannels.addFavorite(messages.accountId, messages.chatTitle)
+                    }
                 }
 
             ]
@@ -689,15 +713,10 @@ Page {
                 title: {
                     var finalParticipants = (participants ? participants.length : 0)
                     if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
-                        if (chatEntry.title !== "") {
-                            return chatEntry.title
+                        if (messages.chatTitle != "") {
+                            return messages.chatTitle
                         }
-                        var roomInfo = threadInformation.chatRoomInfo
-                        if (roomInfo.Title != "") {
-                            return roomInfo.Title
-                        } else if (roomInfo.RoomName != "") {
-                            return roomInfo.RoomName
-                        }
+
                         // include the "Me" participant to be consistent with
                         // group info page
                         if (roomInfo.Joined) {
@@ -851,6 +870,10 @@ Page {
     ]
 
     Component.onCompleted: {
+        if (!chatEntry) {
+            chatEntry = chatEntryComponent.createObject(this)
+        }
+
         // we only revert back to phone account if this is a 1-1 chat,
         // in which case the handler will fallback to multimedia if needed
         if (messages.accountId !== "" && chatType !== HistoryThreadModel.ChatTypeRoom) {
@@ -1032,16 +1055,22 @@ Page {
         }
     }
 
-    ChatEntry {
-        id: chatEntryObject
-        chatType: messages.chatType
-        participantIds: messages.participantIds
-        chatId: messages.threadId
-        accountId: messages.accountId
-        autoRequest: !newMessage && !messages.account.protocolInfo.enableRejoin
+    Component {
+        id: chatEntryComponent
 
+        ChatEntry {
+            id: chatEntryObject
+            chatType: messages.chatType
+            participantIds: messages.participantIds
+            chatId: messages.threadId
+            accountId: messages.accountId
+        }
+    }
+
+    Connections {
+        target: messages.chatEntry
         onChatTypeChanged: {
-            messages.chatType = chatEntryObject.chatType
+            messages.chatType = chatEntry.chatType
         }
 
         onMessageSent: {
@@ -1058,9 +1087,15 @@ Page {
         }
     }
 
+    Binding {
+        target: messages.chatEntry
+        property: "autoRequest"
+        value: !messages.newMessage && !messages.account.protocolInfo.enableRejoin
+    }
+
     Repeater {
-        model: messages.chatEntry.chatStates
-        Item {
+        model: account.protocolInfo.enableChatStates ? messages.chatEntry.chatStates : null
+        delegate: Item {
             function processChatState() {
                 if (modelData.state == ChatEntry.ChannelChatStateComposing) {
                     messages.userTyping = true
@@ -1450,6 +1485,9 @@ Page {
         maxHeight: messages.height - keyboard.height - screenTop.y
         text: messages.text
         onTextChanged: {
+            if (!account.protocolInfo.enableChatStates) {
+                return
+            }
             if (text == "" && !composeBar.inputMethodComposing) {
                 messages.chatEntry.setChatState(ChatEntry.ChannelChatStateActive)
                 selfTypingTimer.stop()
