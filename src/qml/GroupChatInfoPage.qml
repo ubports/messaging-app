@@ -169,7 +169,6 @@ Page {
         title: groupChatInfoPage.headerString
         // FIXME: uncomment once the header supports subtitle
         //subtitle: i18n.tr("%1 member", "%1 members", allParticipants.length)
-        //flickable: contentsFlickable
 
         trailingActionBar {
             id: trailingBar
