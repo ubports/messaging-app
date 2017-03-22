@@ -83,6 +83,7 @@ Page {
             if (mmsGroup) {
                 return i18n.tr("New MMS Group")
             } else {
+                // FIXME: temporary workaround
                 if (account && account.protocolInfo.name == "irc") {
                     return i18n.tr("Join IRC channel:")
                 }
@@ -226,6 +227,7 @@ Page {
                     anchors.verticalCenter: groupTitleField.verticalCenter
                     anchors.left: parent.left
                     text: {
+                        // FIXME: temporary workaround
                         if (account && account.protocolInfo.name == "irc") {
                             return i18n.tr("Channel name:")
                         }
@@ -243,6 +245,7 @@ Page {
                     }
                     height: units.gu(4)
                     placeholderText: {
+                        // FIXME: temporary workaround
                         if (account && account.protocolInfo.name == "irc") {
                             return i18n.tr("#channelName")
                         }

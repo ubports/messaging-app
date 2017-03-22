@@ -96,6 +96,7 @@ Page {
     property var chatRoomInfo: threads.length > 0 ? threads[0].chatRoomInfo : []
 
     property var leaveString: {
+        // FIXME: temporary workaround
         if (account && account.protocolInfo.name == "irc") {
             return i18n.tr("Leave channel")
         }
@@ -103,6 +104,7 @@ Page {
     }
 
     property var headerString: {
+        // FIXME: temporary workaround
         if (account && account.protocolInfo.name == "irc") {
             return i18n.tr("Channel Info")
         }
@@ -110,6 +112,7 @@ Page {
     }
 
     property var leaveSuccessString: {
+        // FIXME: temporary workaround
         if (account && account.protocolInfo.name == "irc") {
             return i18n.tr("Successfully left channel")
         }
@@ -117,6 +120,7 @@ Page {
     }
 
     property var leaveFailedString: {
+        // FIXME: temporary workaround
         if (account && account.protocolInfo.name == "irc") {
             return i18n.tr("Failed to leave channel")
         }
@@ -346,7 +350,7 @@ Page {
                         if (!chatRoom || !chatEntry.active) {
                             return false
                         }
-                        // temporary workaround
+                        // FIXME: temporary workaround
                         if (account && account.protocolInfo.name == "irc") {
                             return false
                         }
@@ -436,7 +440,7 @@ Page {
                                 || modelData.state === 2 /*remote pending*/) {
                             return false
                         }
-                        // temporary workaround
+                        // FIXME: temporary workaround
                         if (account && account.protocolInfo.name == "irc") {
                             return false
                         }
