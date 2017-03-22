@@ -89,7 +89,7 @@ Page {
     property bool userTyping: false
     property string userTypingId: ""
     property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
-    property variant firstParticipant: participants.length > 0 ? participants[0] : null
+    property variant firstParticipant: (participants && participants.length > 0) ? participants[0] : null
     property var threads: []
     property QtObject presenceRequest: presenceItem
     property var accountsModel: getAccountsModel()
@@ -571,7 +571,7 @@ Page {
                 return ""
             }
 
-            if (participants.length == 1) {
+            if (participants && participants.length === 1) {
                 return firstRecipientAlias
             }
 
@@ -698,7 +698,7 @@ Page {
                 target: pageHeader
                 // TRANSLATORS: %1 refers to the number of participants in a group chat
                 title: {
-                    var finalParticipants = participants.length
+                    var finalParticipants = (participants ? participants.length : 0)
                     if (messages.chatType == HistoryThreadModel.ChatTypeRoom) {
                         if (chatEntry.title !== "") {
                             return chatEntry.title
@@ -730,7 +730,7 @@ Page {
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallAction"
-                    visible: participants.length == 1 && contactWatcher.interactive
+                    visible: participants && participants.length === 1 && contactWatcher.interactive
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -741,7 +741,7 @@ Page {
                 },
                 Action {
                     objectName: "addContactAction"
-                    visible: contactWatcher.isUnknown && participants.length == 1 && contactWatcher.interactive
+                    visible: contactWatcher.isUnknown && participants && participants.length === 1 && contactWatcher.interactive
                     iconName: "contact-new"
                     text: i18n.tr("Add")
                     onTriggered: {
@@ -833,7 +833,7 @@ Page {
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length === 1
+                    visible: participants && participants.length === 1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -912,7 +912,7 @@ Page {
 
     onReady: {
         isReady = true
-        if (participants.length === 0 && keyboardFocus)
+        if (participants && participants.length === 0 && keyboardFocus)
             multiRecipient.forceFocus()
     }
 
@@ -1150,7 +1150,7 @@ Page {
             return account.accountId
         }
         // we just request presence on 1-1 chats
-        identifier: participants.length == 1 ? participants[0].identifier : ""
+        identifier: participants && participants.length === 1 ? participants[0].identifier : ""
     }
 
     ActivityIndicator {
@@ -1348,6 +1348,7 @@ Page {
         objectName: "messageList"
         visible: !isSearching
         listModel: messages.newMessage ? null : eventModel
+        account: messages.account
         activeFocusOnTab: false
         focus: false
         onActiveFocusChanged: {
@@ -1447,6 +1448,7 @@ Page {
             right: parent.right
         }
 
+        participants: messages.participants
         isBroadcast: messages.isBroadcast
         returnToSend: messages.account.protocolInfo.returnToSend
         enableAttachments: messages.account.protocolInfo.enableAttachments

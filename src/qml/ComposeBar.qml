@@ -45,6 +45,7 @@ Item {
     property bool isBroadcast: false
     property bool returnToSend: false
     property bool enableAttachments: true
+    property alias participants: participantPopover.participants
     readonly property alias textArea: messageTextArea
 
     onRecordingChanged: {
@@ -412,6 +413,79 @@ Item {
             TextArea {
                 id: messageTextArea
                 objectName: "messageTextArea"
+
+                property bool autoCompleteLock: false
+
+                property int autoCompleteStartIndex: -1
+
+                function updateAutoComplete(startIndex, input)
+                {
+                    var showPopup = false
+                    if (input.charAt(startIndex) === "@") {
+                        showPopup = true
+                        startIndex += 1
+                    }
+
+                    var autoCompletePrefix = input.slice(startIndex, input.length)
+
+                    return participantPopover.showParticpantsStartWith(composeBar, autoCompletePrefix, showPopup)
+                }
+
+                function autoComplete()
+                {
+                    autoCompleteLock = true
+                    var suggestion = ""
+                    var lastSpace = -1
+
+                    var autoCompleteText = text
+                    if (participantPopover.active) {
+                        if (participantPopover.popupVisible) {
+                            suggestion = updateAutoComplete(autoCompleteStartIndex, autoCompleteText)
+                        } else {
+                            suggestion = participantPopover.nextItem()
+                        }
+                    } else if (autoCompleteText.length > 0) {
+                        autoCompleteStartIndex = autoCompleteText.lastIndexOf(" ")  + 1
+                        suggestion = updateAutoComplete(autoCompleteStartIndex, autoCompleteText)
+                        forceFocus()
+                    } else {
+                        autoCompleteLock = false
+                        return false
+                    }
+
+                    if (suggestion.length > 0) {
+                        var sliceEnd = autoCompleteText.charAt(autoCompleteStartIndex) === "@" ? autoCompleteStartIndex + 1 : autoCompleteStartIndex
+                        messageTextArea.text = text.slice(0, sliceEnd) + suggestion + ", "
+                        if (participantPopover.popupVisible) {
+                            messageTextArea.select(autoCompleteText.length, text.length)
+                        } else {
+                            messageTextArea.cursorPosition = messageTextArea.text.length
+                        }
+
+                    } else {
+                        participantPopover.close()
+                        autoCompleteStartIndex = -1
+                    }
+
+                    autoCompleteLock = false
+                    return true
+                }
+
+                onTextChanged: {
+                    if (autoCompleteLock)
+                        return
+
+                    // non-visual popover does not care about text change
+                    if (!participantPopover.popupVisible) {
+                        participantPopover.close()
+                        autoCompleteStartIndex = -1
+                        return
+                    }
+
+                    if (autoCompleteStartIndex != -1)
+                        autoComplete()
+                }
+
                 function returnPressed() {
                     if (composeBar.returnToSend) {
                         sendButton.processSend()
@@ -451,6 +525,21 @@ Item {
                 font.family: "Ubuntu"
                 font.pixelSize: FontUtils.sizeToPixels("medium")
                 color: Theme.palette.normal.backgroundText
+                Keys.onPressed: {
+                    if (event.key === Qt.Key_Tab) {
+                        event.accepted = autoComplete()
+                    } else if (participantPopover.popupVisible) {
+                        // cancel non-visual autocomplete if any other key is pressed
+                        participantPopover.close()
+                        autoCompleteStartIndex = -1
+                    }
+                }
+
+                Keys.onReleased: {
+                    if (event.key === Qt.Key_At) {
+                        event.accepted = autoComplete()
+                    }
+                }
             }
 
             // show the counts if option is enabled, and more than one line
@@ -669,6 +758,12 @@ Item {
         drag.axis: Drag.XAxis
         drag.minimumX: (leftSideActions.x + leftSideActions.width)
         drag.maximumX: recordButton.x
+    }
 
+    ParticipantsPopover {
+        id: participantPopover
+
+        height: parent.parent.height
+        width: parent.width
     }
 }

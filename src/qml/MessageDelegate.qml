@@ -46,6 +46,8 @@ ListItem {
     property string accountLabel: ""
     property bool isMultimedia: false
     property var _lastItem: textBubble.visible ? textBubble : attachmentsLoader.item.lastItem
+    property alias account: textBubble.account
+
     swipeEnabled: !(attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
 
     function deleteMessage()
@@ -248,6 +250,7 @@ ListItem {
 
     MessageBubble {
         id: textBubble
+
         isMultimedia: messageDelegate.isMultimedia
         anchors {
             bottom: parent.bottom
@@ -287,6 +290,7 @@ ListItem {
         accountName: messageDelegate.accountLabel
         messageStatus: messageData.textMessageStatus
         sender: (messages.chatType == HistoryThreadModel.ChatTypeRoom || messageData.participants.length > 1) ? messageData.sender.alias !== "" ? messageData.sender.alias : messageData.senderId : ""
+
         showDeliveryStatus: true
     }
 
