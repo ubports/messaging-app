@@ -1091,7 +1091,7 @@ Page {
     ContactWatcher {
         id: typingContactWatcher
         identifier: messages.userTypingId
-        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        addressableFields: messages.account ? messages.account.addressableVCardFields : []
     }
 
     MessagesHeader {
@@ -1244,7 +1244,7 @@ Page {
         alias: firstParticipant ? firstParticipant.alias : ""
         avatar: firstParticipant ? firstParticipant.avatar : ""
         detailProperties: firstParticipant ? firstParticipant.detailProperties : {}
-        addressableFields: messages.account ? messages.account.addressableVCardFields : ["tel"] // just to have a fallback there
+        addressableFields: messages.account ? messages.account.addressableVCardFields : []
     }
 
     HistoryUnionFilter {
@@ -1261,7 +1261,7 @@ Page {
         sort: HistorySort {}
         groupingProperty: "participants"
         filter: messages.accountId != "" && messages.threadId != "" ? filters : null
-        matchContacts: true
+        matchContacts: messages.account.addressableVCardFields.length > 0
     }
 
     ListView {
@@ -1289,7 +1289,7 @@ Page {
         id: eventModel
         type: HistoryThreadModel.EventTypeText
         filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
-        matchContacts: true
+        matchContacts: messages.account.addressableVCardFields.length > 0
         sort: HistorySort {
            sortField: "timestamp"
            sortOrder: HistorySort.DescendingOrder
