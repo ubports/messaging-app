@@ -461,7 +461,7 @@ Page {
                         || model.state === 2 /*remote pending*/) {
                     return false
                 }
-                // temporary workaround
+                // FIXME: temporary workaround
                 if (account && account.protocolInfo.name == "irc") {
                     return false
                 }

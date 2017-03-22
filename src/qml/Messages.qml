@@ -717,7 +717,11 @@ Page {
                     id: groupChatAction
                     objectName: "groupChatAction"
                     iconName: "contact-group"
-                    onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                    onTriggered: {
+                        // at this point we are interested in the thread participants no matter what the channel type is
+                        messagesModel.requestThreadParticipants(messages.threads)
+                        mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
+                    }
                 },
                 Action {
                     id: rejoinGroupChatAction
@@ -1332,7 +1336,7 @@ Page {
         sort: HistorySort {}
         groupingProperty: "participants"
         filter: messages.accountId != "" && messages.threadId != "" ? filters : null
-        matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
+        matchContacts: true
     }
 
     ListView {

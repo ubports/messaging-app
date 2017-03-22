@@ -276,11 +276,6 @@ Page {
                 var properties = model.properties
                 properties["keyboardFocus"] = false
                 properties["threads"] = model.threads
-                var participantIds = [];
-                for (var i in model.participants) {
-                    participantIds.push(model.participants[i].identifier)
-                }
-                properties["participantIds"] = participantIds
                 properties["presenceRequest"] = threadDelegate.presenceItem
                 if (displayedEvent != null) {
                     properties["scrollToEventId"] = displayedEvent.eventId
@@ -331,7 +326,7 @@ Page {
             ChatEntry {
                 id: chatEntry
                 chatType: model.properties.chatType
-                participantIds: model.properties.participantIds
+                participantIds: model.properties.participantIds ? model.properties.participantIds : []
                 chatId: model.properties.threadId
                 accountId: model.properties.accountId
                 autoRequest: false
