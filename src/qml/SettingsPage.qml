@@ -18,7 +18,6 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.OnlineAccounts.Client 0.1
 
 Page {
@@ -32,8 +31,15 @@ Page {
     property var settingsModel: [
         { "name": "mmsEnabled",
           "description": i18n.tr("Enable MMS messages"),
-          "property": telepathyHelper.mmsEnabled
-        }/*,
+          "property": telepathyHelper.mmsEnabled,
+          "activatedFuncion": null
+        },
+        { "name": "addAccount",
+          "description": i18n.tr("Add an online account"),
+          "onActivated": "createAccount",
+          "property": null
+        }
+        /*,
         { "name": "characterCountEnabled",
           "description": i18n.tr("Show character count"),
           "property": msgSettings.showCharacterCount
@@ -54,84 +60,71 @@ Page {
     header: PageHeader {
         id: pageHeader
         title: settingsPage.title
-        leadingActionBar {
-            id: leadingBar
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: "Esc"
+               onTriggered: mainView.emptyStack(true)
+            }
+        ]
+        flickable: settingsList
+    }
+
+    onActiveChanged: {
+        if (active) {
+            settingsList.forceActiveFocus()
         }
     }
+
 
     Component {
         id: settingDelegate
-        Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: units.gu(6)
-            Label {
-                id: descriptionLabel
-                text: modelData.description
-                anchors.left: parent.left
-                anchors.right: checkbox.left
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.leftMargin: units.gu(2)
-            }
-            Switch {
-                id: checkbox
-                objectName: modelData.name
-                anchors.right: parent.right
-                anchors.rightMargin: units.gu(2)
-                anchors.verticalCenter: parent.verticalCenter
-                checked: modelData.property
-                onCheckedChanged: {
-                    if (checked != modelData.property) {
-                        settingsPage.setMethods[modelData.name](checked)
-                    }
+        ListItem {
+            onClicked: {
+                if (checkbox.visible) {
+                    checkbox.checked = !checkbox.checked
+                } else {
+                    settingsPage[modelData.onActivated]()
                 }
             }
-            ListItem.ThinDivider {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    bottom: parent.bottom
+            ListItemLayout {
+                title.text: modelData.description
+
+                CheckBox {
+                    id: checkbox
+                    objectName: modelData.name
+
+                    visible: modelData.property !== null
+                    SlotsLayout.position: SlotsLayout.trailing
+                    checked: modelData.property
+                    onCheckedChanged: {
+                        if (checked != modelData.property) {
+                            settingsPage.setMethods[modelData.name](checked)
+                        }
+                    }
+                }
+
+                ProgressionSlot {
+                    visible: modelData.property === null
                 }
             }
         }
     }
 
-    Column {
+    UbuntuListView {
+        id: settingsList
+
         anchors {
-            top: pageHeader.bottom
-            left: parent.left
-            right: parent.right
+            fill: parent
         }
-        height: childrenRect.height
-
-        Repeater {
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            model: settingsModel
-            delegate: settingDelegate
-        }
-
-        ListItem.Standard {
-            id: addAccount
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-
-            text: i18n.tr("Add an online account")
-            progression: true
-            onClicked: onlineAccountHelper.item.run()
-            enabled: onlineAccountHelper.status == Loader.Ready
-        }
+        model: settingsModel
+        delegate: settingDelegate
     }
 
     Loader {
         id: messagesBottomEdgeLoader
         active: mainView.dualPanel
-        asynchronous: true
         /* FIXME: would be even more efficient to use setSource() to
            delay the compilation step but a bug in Qt prevents us.
            Ref.: https://bugreports.qt.io/browse/QTBUG-54657
@@ -144,6 +137,12 @@ Page {
         }
     }
 
+    function createAccount()
+    {
+        if (onlineAccountHelper.item)
+            onlineAccountHelper.item.run()
+    }
+
     Loader {
         id: onlineAccountHelper
 
@@ -151,5 +150,6 @@ Page {
         asynchronous: true
         source: Qt.resolvedUrl("OnlineAccountsHelper.qml")
     }
+
 
 }

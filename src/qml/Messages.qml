@@ -461,6 +461,7 @@ Page {
     }
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
+        selectThreadOnIdle.restart()
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
@@ -533,10 +534,30 @@ Page {
         }
     }
 
+    function selectActiveThread(threads) {
+        if ((messages.chatType == HistoryEventModel.ChatTypeContact) &&
+            (messages.threads.length > 0)) {
+            var index = threadModel.indexOf(messages.threads[0].threadId, messages.threads[0].accountId)
+            if (index != -1) {
+                mainPage.selectMessage(index)
+            }
+        }
+    }
+
+    // Use a timer to make sure that 'threads' are correct set before try to select it
+    Timer {
+        id: selectThreadOnIdle
+        interval: 100
+        repeat: false
+        running: false
+        onTriggered: selectActiveThread(messages.threads)
+    }
+
+
     header: PageHeader {
         id: pageHeader
 
-        property alias leadingActions: leadingBar.actions
+        property bool backEnabled: true
         property alias trailingActions: trailingBar.actions
         property bool showSections: {
             if (headerSections.model.length > 1) {
@@ -581,9 +602,21 @@ Page {
 
         extension: pageHeader.showSections ? headerSections : null
 
-        leadingActionBar {
-            id: leadingBar
-        }
+        leadingActionBar.actions: [
+            Action {
+               iconName: "back"
+               text: i18n.tr("Back")
+               shortcut: visible ? "Esc" : ""
+               visible: pageHeader.backEnabled
+               onTriggered: {
+                   if (messages.state == "selection") {
+                        messageList.cancelSelection()
+                   } else {
+                        mainView.emptyStack(true)
+                   }
+               }
+            }
+        ]
 
         trailingActionBar {
             id: trailingBar
@@ -604,14 +637,6 @@ Page {
             id: selectionState
             name: "selection"
             when: selectionMode
-
-            property list<QtObject> leadingActions: [
-                Action {
-                    objectName: "selectionModeCancelAction"
-                    iconName: "back"
-                    onTriggered: messageList.cancelSelection()
-                }
-            ]
 
             property list<QtObject> trailingActions: [
                 Action {
@@ -642,8 +667,8 @@ Page {
             PropertyChanges {
                 target: pageHeader
                 title: " "
-                leadingActions: selectionState.leadingActions
                 trailingActions: selectionState.trailingActions
+                backEnabled: true
             }
         },
         State {
@@ -694,6 +719,7 @@ Page {
                 }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         },
         State {
@@ -729,6 +755,7 @@ Page {
                 target: pageHeader
                 contents: headerContents
                 trailingActions: unknownContactState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         },
         State {
@@ -782,6 +809,12 @@ Page {
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
+                onActiveFocusChanged: {
+                    if (!activeFocus && (searchListLoader.status != Loader.Ready || !searchListLoader.item.activeFocus))
+                        commit()
+                }
+
+                KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
             }
 
             PropertyChanges {
@@ -789,16 +822,18 @@ Page {
                 title: " "
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
+                backEnabled: true
             }
         },
         State {
             id: knownContactState
             name: "knownContact"
             when: participants.length == 1 && !contactWatcher.isUnknown
+
             property list<QtObject> trailingActions: [
                 Action {
                     objectName: "contactCallKnownAction"
-                    visible: participants.length == 1
+                    visible: participants.length === 1
                     iconName: "call-start"
                     text: i18n.tr("Call")
                     onTriggered: {
@@ -821,6 +856,7 @@ Page {
                 target: pageHeader
                 contents: headerContents
                 trailingActions: knownContactState.trailingActions
+                backEnabled: pageStack.columns === 1
             }
         }
     ]
@@ -840,7 +876,7 @@ Page {
                 }
             }
         }
-        newMessage = (messages.accountId == "" && messages.participants.length === 0)
+        newMessage = (messages.threadId == "") || (messages.accountId == "" && messages.participants.length === 0)
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})
@@ -889,6 +925,8 @@ Page {
             messages.ready()
         }
         processPendingEvents()
+        if (!newMessage)
+            composeBar.forceFocus()
     }
 
     // These fake items are used to track if there are instances loaded
@@ -1130,7 +1168,7 @@ Page {
 
         property int resultCount: (status === Loader.Ready) ? item.count : 0
 
-        source: (multiRecipient.searchString !== "") && multiRecipient.focus ?
+        source: (multiRecipient.searchString !== "") ?
                 Qt.resolvedUrl("ContactSearchList.qml") : ""
         clip: true
         visible: source != ""
@@ -1157,6 +1195,17 @@ Page {
             property: "filterTerm"
             value: multiRecipient.searchString
             when: (searchListLoader.status === Loader.Ready)
+        }
+
+        Connections {
+            target: searchListLoader.item
+            onActiveFocusChanged: {
+                if (!searchListLoader.item.activeFocus && !multiRecipient.activeFocus)
+                    multiRecipient.commit()
+            }
+            onFocusUp: {
+                multiRecipient.forceActiveFocus()
+            }
         }
 
         Timer {
@@ -1299,6 +1348,13 @@ Page {
         objectName: "messageList"
         visible: !isSearching
         listModel: messages.newMessage ? null : eventModel
+        activeFocusOnTab: false
+        focus: false
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                composeBar.forceFocus()
+            }
+        }
 
         Rectangle {
             color: Theme.palette.normal.background
@@ -1465,6 +1521,8 @@ Page {
                 reloadFilters = !reloadFilters
             }
         }
+
+        KeyNavigation.up: messages.header.contents
     }
 
     SendMessageValidator {
@@ -1499,5 +1557,18 @@ Page {
     Scrollbar {
         flickableItem: messageList
         align: Qt.AlignTrailing
+    }
+
+    Binding {
+        target: pageStack
+        property: "activePage"
+        value: messages
+        when: messages.active
+    }
+
+    onActiveFocusChanged: {
+        if (activeFocus && !newMessage) {
+            composeBar.textArea.forceActiveFocus()
+        }
     }
 }

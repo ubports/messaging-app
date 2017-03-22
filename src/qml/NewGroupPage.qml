@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
 import Ubuntu.History 0.1
@@ -29,6 +29,21 @@ Page {
     property bool creationInProgress: false
     property var participants: []
     property var account: null
+    readonly property bool allowCreateGroup: {
+        if (newGroupPage.creationInProgress) {
+            return false
+        }
+        if (account.protocolInfo.joinExistingChannels && groupTitleField.text != "") {
+            return true
+        }
+        if (participantsModel.count == 0) {
+            return false
+        }
+        if (!mmsGroup) {
+            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 1)
+        }
+        return participantsModel.count > 1
+    }
 
     function addRecipient(identifier, contact) {
         var alias = contact.displayLabel.label
@@ -47,6 +62,17 @@ Page {
         }
         searchItem.text = ""
         participantsModel.append({"identifier": identifier, "alias": alias, "avatar": avatar })
+    }
+
+    function commit() {
+        if (allowCreateGroup) {
+            Qt.inputMethod.commit()
+            newGroupPage.creationInProgress = true
+            if (account.protocolInfo.joinExistingChannels) {
+               chatEntry.chatId = groupTitleField.text
+            }
+            chatEntry.startChat()
+        }
     }
 
     header: PageHeader {
@@ -72,6 +98,7 @@ Page {
                 Action {
                     objectName: "cancelAction"
                     iconName: "close"
+                    shortcut: "Esc"
                     onTriggered: {
                         Qt.inputMethod.commit()
                         mainStack.removePages(newGroupPage)
@@ -82,31 +109,11 @@ Page {
         trailingActionBar {
             actions: [
                 Action {
+                    id: createAction
                     objectName: "createAction"
-                    enabled: {
-                        if (newGroupPage.creationInProgress) {
-                            return false
-                        }
-                        if (account.protocolInfo.joinExistingChannels && groupTitleField.text != "") {
-                            return true
-                        }
-                        if (participantsModel.count == 0) {
-                            return false
-                        }
-                        if (!mmsGroup) {
-                            return ((groupTitleField.text != "" || groupTitleField.inputMethodComposing) && participantsModel.count > 1)
-                        }
-                        return participantsModel.count > 1
-                    }
+                    enabled: newGroupPage.allowCreateGroup
                     iconName: "ok"
-                    onTriggered: {
-                        Qt.inputMethod.commit()
-                        newGroupPage.creationInProgress = true
-                        if (account.protocolInfo.joinExistingChannels) {
-                           chatEntry.chatId = groupTitleField.text
-                        }
-                        chatEntry.startChat()
-                    }
+                    onTriggered: newGroupPage.commit()
                 }
             ]
         }
@@ -242,6 +249,8 @@ Page {
                         return i18n.tr("Type a name...")
                     }
                     inputMethodHints: Qt.ImhNoPredictiveText
+                    Keys.onReturnPressed: newGroupPage.commit()
+                    Keys.onEnterPressed: newGroupPage.commit()
                     Timer {
                         interval: 1
                         onTriggered: {
@@ -324,4 +333,11 @@ Page {
     KeyboardRectangle {
        id: keyboard
     }
+
+    onActiveChanged: {
+        if (active)
+            searchItem.forceActiveFocus()
+    }
+
+    Component.onCompleted: searchItem.forceActiveFocus()
 }

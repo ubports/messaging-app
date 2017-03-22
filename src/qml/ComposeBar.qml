@@ -45,6 +45,7 @@ Item {
     property bool isBroadcast: false
     property bool returnToSend: false
     property bool enableAttachments: true
+    readonly property alias textArea: messageTextArea
 
     onRecordingChanged: {
         if (recording) {
@@ -65,7 +66,8 @@ Item {
     }
 
     function forceFocus() {
-        messageTextArea.forceActiveFocus()
+        if (showContents)
+            messageTextArea.forceActiveFocus()
     }
 
     function reset() {
