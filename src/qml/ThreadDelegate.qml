@@ -28,6 +28,7 @@ import "dateUtils.js" as DateUtils
 ListItem {
     id: delegate
 
+    property bool compactView: false
     property var participant: participants ? participants[0] : {}
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
@@ -119,9 +120,46 @@ ListItem {
         }
         return formatDisplayedText(displayedEventTextMessage)
     }
+
+    state: compactView ? "compactView" : ""
+    states: [
+        State {
+            name: "compactView"
+            PropertyChanges {
+                target: avatar
+                visible: false
+                height:  0
+                width: 0
+            }
+            PropertyChanges {
+                target: delegate
+                height: units.gu(4)
+            }
+            PropertyChanges {
+                target: latestMessage
+                visible: false
+            }
+            PropertyChanges {
+                target: protocolIcon
+                visible: false
+            }
+            AnchorChanges {
+                target: unreadCountIndicator
+                anchors.left: contactName.left
+                anchors.verticalCenter: contactName.verticalCenter
+                anchors.right: undefined
+                anchors.top: undefined
+                anchors.bottom: undefined
+            }
+            AnchorChanges {
+                target: contactName
+                anchors.right: time.left
+            }
+        }
+    ]
     anchors.left: parent.left
     anchors.right: parent.right
-    height: units.gu(10)
+    height: units.gu(8)
     divider.visible: false
     contentItem.anchors {
         leftMargin: units.gu(2)
@@ -194,11 +232,12 @@ ListItem {
             if (isBroadcast) {
                 return Qt.resolvedUrl("assets/broadcast_icon.png")
             } else if (groupChat) {
-                return Qt.resolvedUrl("assets/group_icon.png")
+                return "image://theme/contact-group"
             }
-            return ""
+            return "image://theme/contact"
         }
         asynchronous: true
+        sourceSize.height: units.gu(2)
     }
 
     Label {
@@ -207,12 +246,12 @@ ListItem {
             top: avatar.top
             topMargin: units.gu(0.5)
             left: chatTypeIcon.right
-            leftMargin: chatTypeIcon.visible ? units.gu(0.5) : 0
             right: time.left
+            rightMargin: unreadCountIndicator.width
         }
         elide: Text.ElideRight
         color: Theme.palette.normal.backgroundText
-        font.bold: unreadCountIndicator.visible
+        font.bold: unreadCount > 0
         text: {
             if (groupChat) {
                 return groupChatLabel
@@ -285,7 +324,7 @@ ListItem {
             top: avatar.top
             topMargin: units.gu(-0.5)
             left: avatar.left
-            leftMargin: units.gu(-0.5)
+            leftMargin: delegate.state == "compactView" ? contactName.paintedWidth + units.gu(0.5) : units.gu(-0.5)
         }
         z: 1
         visible: unreadCount > 0

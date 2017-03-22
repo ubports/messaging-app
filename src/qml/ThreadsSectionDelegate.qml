@@ -23,6 +23,12 @@ import "dateUtils.js" as DateUtils
 
 Item {
     id: threadsSectionDelegate
+
+    function formatSectionTitle(title)
+    {
+        return title
+    }
+
     anchors {
         left: parent.left
         right: parent.right
@@ -32,7 +38,7 @@ Item {
     Label {
         anchors.fill: parent
         elide: Text.ElideRight
-        text: DateUtils.friendlyDay(Qt.formatDate(section, "yyyy/MM/dd"), i18n);
+        text: formatSectionTitle(section)
         verticalAlignment: Text.AlignVCenter
         fontSize: "small"
         color: Theme.palette.normal.backgroundTertiaryText

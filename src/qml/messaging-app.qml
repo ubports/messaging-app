@@ -36,6 +36,10 @@ MainView {
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage
     property QtObject activeMessagesView: null
+    // settings
+    property alias sortThreadsBy: globalSettings.sortThreadsBy
+    property alias compactView: globalSettings.compactView
+    // private
     property var _pendingProperties: null
 
     function updateNewMessageStatus() {
@@ -200,8 +204,25 @@ MainView {
 
         type: HistoryThreadModel.EventTypeText
         sort: HistorySort {
-            sortField: "lastEventTimestamp"
-            sortOrder: HistorySort.DescendingOrder
+            sortField: {
+                switch(mainView.sortThreadsBy) {
+                case "title":
+                    //FIXME: ThreadId works for IRC, not sure if that will work for other protocols
+                    return "accountId, threadId"
+                case "timestamp":
+                default:
+                    return "lastEventTimestamp"
+                }
+            }
+            sortOrder: {
+                switch(mainView.sortThreadsBy) {
+                case "title":
+                    return HistorySort.AscendingOrder
+                case "timestamp":
+                default:
+                    return HistorySort.DescendingOrder
+                }
+            }
         }
         groupingProperty: "participants"
         filter: HistoryFilter {}
@@ -220,6 +241,12 @@ MainView {
         id: msgSettings
         category: "SMS"
         property bool showCharacterCount: false
+    }
+
+    Settings {
+        id: globalSettings
+        property string sortThreadsBy: "timestamp"
+        property bool compactView: false
     }
 
     StickerPacksModel {
