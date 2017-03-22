@@ -116,7 +116,6 @@ Page {
         id: settingsList
 
         anchors {
-            //topMargin: mainPage.header.flickable ? 0 : mainPage.header.height
             fill: parent
         }
         model: settingsModel
@@ -126,7 +125,6 @@ Page {
     Loader {
         id: messagesBottomEdgeLoader
         active: mainView.dualPanel
-        //asynchronous: true
         /* FIXME: would be even more efficient to use setSource() to
            delay the compilation step but a bug in Qt prevents us.
            Ref.: https://bugreports.qt.io/browse/QTBUG-54657

@@ -52,7 +52,6 @@ Item {
         id: iconShape
         height: iconSize
         width: iconSize
-        //visible: false
         anchors {
             left: parent.left
             right: sideBySide ? undefined : parent.right
