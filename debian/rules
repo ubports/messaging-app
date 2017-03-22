@@ -26,7 +26,12 @@ apparmor:
 	sed 's,Apps/@{APP_PKGNAME},Apps/messaging-app,g' | \
 	sed '/lttng-ust-/c\  \/{,var\/}run\/shm\/lttng-ust-* r,'  | \
 	sed '/dconf.user rw/c\  \/run\/user\/\[0-9\]*\/dconf\/user rw,' | \
-	sed 's,deny owner .*dconf/user r,owner @\{HOME\}/.config/dconf/user r,g' \
+	sed 's,deny owner .*dconf/user r,owner @\{HOME\}/.config/dconf/user r,g' | \
+	egrep -v 'deny /run/udev/data/\*\* r,' | \
+	sed 's#^}$$#\n  /sys/class/ r,\n  /sys/class/input/ r,\n  /run/udev/data/** r,\n}#g' | \
+	egrep -v '^\s*deny /dev/ r,\s*$$' | \
+	sed 's#^\(\s*\)deny\(\s\+/{run,dev}/shm/pulse-shm\*\s\+w,\).*$$#\1owner\2#g' | \
+	sed 's#^}$$#\n  /dev/dri/ r,\n  /sys/devices/pci[0-9]*/**/config r,\n}#g' \
 	> ./debian/usr.bin.messaging-app
 	(head -n -2 ./debian/usr.bin.messaging-app; cat ./debian/messaging-app-apparmor.additions; \
 	echo } ) > ./debian/usr.bin.messaging-app2
