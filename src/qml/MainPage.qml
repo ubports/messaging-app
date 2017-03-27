@@ -368,7 +368,7 @@ Page {
                 incubator = component.incubateObject(parent, properties, Qt.Asynchronous);
 
                 function objectCreated(status) {
-                    if (status == Component.Ready && callback != null) {
+                    if (status == Component.Ready && callback != undefined && callback != null) {
                         callback(incubator.object);
                     }
                 }
