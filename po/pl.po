@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-02 18:31+0000\n"
-"Last-Translator: Paweł Cieniek <cieniek@wp.pl>\n"
+"PO-Revision-Date: 2017-10-05 18:15+0000\n"
+"Last-Translator: Jonasz Potoniec <joni311099@gmail.com>\n"
 "Language-Team: Polish <https://translate.ubports.com/projects/ubports"
 "/messaging-app/pl/>\n"
 "Language: pl\n"
@@ -360,7 +360,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr "Włóż kartę SIM i sprubój ponownie"
+msgstr "Włóż kartę SIM i spróbuj ponownie."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
