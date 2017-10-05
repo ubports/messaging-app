@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-05 08:43+0000\n"
+"PO-Revision-Date: 2017-10-05 08:45+0000\n"
 "Last-Translator: RedXXIII <adered7@gmail.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports"
 "/messaging-app/fr/>\n"
@@ -53,7 +53,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr "<<< Faites glisser pour annuler"
+msgstr "<<< Glisser pour annuler"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
