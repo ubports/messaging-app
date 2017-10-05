@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-01 07:50+0000\n"
-"Last-Translator: Florian Leeber <flori@bin.org.in>\n"
+"PO-Revision-Date: 2017-10-05 07:00+0000\n"
+"Last-Translator: Twinkybot <me@twinkybot.org>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports"
 "/messaging-app/de/>\n"
 "Language: de\n"
@@ -53,7 +53,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr "<<< Wischen zum Abbrechen"
+msgstr "<<< Wischen um abzubrechen"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -380,7 +380,7 @@ msgstr "Entfernen"
 
 #: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
-msgstr "Erneut versuchen"
+msgstr "Wiederholen"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
@@ -402,7 +402,7 @@ msgstr "Suchen"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
-msgstr "Suchen …"
+msgstr "Suchen..."
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
@@ -466,7 +466,7 @@ msgstr "Typ"
 
 #: ../src/qml/Messages.qml:882
 msgid "Typing.."
-msgstr "Tippt gerade …"
+msgstr "Tippt gerade.."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
@@ -522,7 +522,7 @@ msgstr "Sie müssen den Flugzeugmodus ausschalten"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
-msgstr "Du musst das Aufnahmesymbol berühren und gedrückt halten"
+msgstr "Sie müssen den Aufnahmeknopf drücken und halten"
 
 #: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
