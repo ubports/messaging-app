@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-14 07:13+0000\n"
+"PO-Revision-Date: 2017-10-21 05:30+0000\n"
 "Last-Translator: Mutse Young <yyhoo2.young@gmail.com>\n"
 "Language-Team: Chinese (Simplified) "
 "<https://translate.ubports.com/projects/ubports/messaging-app/zh_Hans/>\n"
@@ -487,7 +487,7 @@ msgstr "编写新信息..."
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr "是"
+msgstr "同意"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
