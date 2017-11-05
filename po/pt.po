@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-18 12:17+0000\n"
+"PO-Revision-Date: 2017-11-03 13:52+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports"
 "/messaging-app/pt/>\n"
@@ -254,7 +254,7 @@ msgstr "Informação"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr "É impossível enviar mensagens no modo avião."
+msgstr "É impossível enviar mensagens no modo avião"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
@@ -491,7 +491,7 @@ msgstr "Bem-vindo à app de Mensagens!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Bem-vindo à app de mensagens do Ubuntu"
+msgstr "Bem-vindo à aplicação de mensagens do Ubuntu Touch."
 
 #: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
@@ -515,7 +515,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr "Precisa de desligar o modo avião."
+msgstr "Precisa de desligar o modo avião"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
