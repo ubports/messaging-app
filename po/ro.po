@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-11-06 20:40+0000\n"
+"PO-Revision-Date: 2017-11-06 20:41+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/ro/>\n"
@@ -368,10 +368,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"Deblocați cardul SIM pentru a efectua un apel saupentru a trimite un mesaj. "
-"Puteți debloca cardul SIM din indicatorul de rețea din partea de sus a "
-"ecranului sau vizitând <a href=\"system_settings\">Configurări sistem &gt; "
-"Securitate &amp; Confidențialitate</a>."
+"Deblocați cardul SIM pentru a efectua un apel sau a trimite mesaj. Puteți "
+"debloca cardul SIM din indicatorul de rețea din partea de sus a ecranului "
+"sau vizitând <a href=\"system_settings\">Configurări sistem &gt; Securitate "
+"&amp; Confidențialitate</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
@@ -500,7 +500,7 @@ msgstr "Bine ai venit la aplicația ta de mesagerie!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Bine ați venit în aplicația dumneavoastră de mesagerie Ubuntu"
+msgstr "Bine ați venit în aplicația ta Ubuntu pentru mesagerie."
 
 #: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
