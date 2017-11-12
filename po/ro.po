@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-30 21:46+0000\n"
+"PO-Revision-Date: 2017-11-06 20:41+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/ro/>\n"
@@ -79,8 +79,9 @@ msgstr "Tot"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Atașament: %1 fișier audio"
+msgstr[1] "Atașamente: %1 fișiere audio"
+msgstr[2] "Atașamente: %1 de fișiere audio"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -120,7 +121,7 @@ msgstr "Atașament audio nesuportat"
 
 #: ../src/qml/Messages.qml:890
 msgid "Away"
-msgstr ""
+msgstr "Nu sunt aici"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
@@ -128,7 +129,7 @@ msgstr "Înapoi"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
-msgstr ""
+msgstr "Ocupat"
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
@@ -183,7 +184,7 @@ msgstr "Nu întreba din nou"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
-msgstr ""
+msgstr "Nu arăta din nou"
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
@@ -199,7 +200,7 @@ msgstr "Eșec"
 
 #: ../src/qml/Messages.qml:286
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Trimiterea mesajului a eșuat"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -211,7 +212,7 @@ msgstr "Favorite"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "Avertizment dimensiune fișier"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
@@ -244,10 +245,12 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Dacă dorești să modifici SIM-ul sau alte preferințe legate de rețelele "
+"mobile, mergi la <a href=\"system_settings\">Configurări de sistem</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr ""
+msgstr "Imagine"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -259,11 +262,11 @@ msgstr "Informații"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Nu este posibil să trimiți mesaje în modul avion"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Nu este posibil să trimiți mesajul"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -307,7 +310,7 @@ msgstr "Mesaj nou"
 
 #: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
 msgid "New message"
-msgstr ""
+msgstr "Mesaj nou"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
@@ -315,7 +318,7 @@ msgstr "Nu"
 
 #: ../src/qml/Messages.qml:282
 msgid "No SIM card"
-msgstr ""
+msgstr "Nici o cartelă SIM"
 
 #: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
@@ -327,11 +330,11 @@ msgstr "Fără rețea"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr ""
+msgstr "Nu există permisiuni pentru accesul la microfon"
 
 #: ../src/qml/Messages.qml:888
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -341,7 +344,7 @@ msgstr "Ok"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -352,10 +355,12 @@ msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
+"Permite folosind<a href=\"system_settings\">Cofingurări de sistem &gt; "
+"Securitate &amp; Intimitate</a>."
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Introduceți o cartelă SIM  și încercați din nou."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -363,10 +368,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"Deblocați cardul SIM pentru a efectua un apel saupentru a trimite un mesaj. "
-"Puteți debloca cardul SIM din indicatorul de rețea din partea de sus a "
-"ecranului sau vizitând <a href=\"system_settings\">Configurări sistem &gt; "
-"Securitate &amp; Confidențialitate</a>."
+"Deblocați cardul SIM pentru a efectua un apel sau a trimite mesaj. Puteți "
+"debloca cardul SIM din indicatorul de rețea din partea de sus a ecranului "
+"sau vizitând <a href=\"system_settings\">Configurări sistem &gt; Securitate "
+"&amp; Confidențialitate</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
@@ -467,7 +472,7 @@ msgstr "Tip"
 
 #: ../src/qml/Messages.qml:882
 msgid "Typing.."
-msgstr ""
+msgstr "Tastează..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
@@ -491,11 +496,11 @@ msgstr "Atașament video nesuportat"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr ""
+msgstr "Bine ai venit la aplicația ta de mesagerie!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Bine ați venit în aplicația dumneavoastră de mesagerie Ubuntu"
+msgstr "Bine ați venit în aplicația ta Ubuntu pentru mesagerie."
 
 #: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
@@ -514,10 +519,12 @@ msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
 msgstr ""
+"Încerci să trimiți fișiere mari (peste 300kb). UniI operatori s-ar putea să "
+"nu poată să îl trimită."
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Trebuie să dezactivezi modul avion"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
