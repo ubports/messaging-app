@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-11-03 13:52+0000\n"
+"PO-Revision-Date: 2017-11-20 12:27+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports"
 "/messaging-app/pt/>\n"
@@ -65,7 +65,7 @@ msgstr "Adicionar"
 
 #: ../src/qml/NewRecipientPage.qml:55
 msgid "Add recipient"
-msgstr "Adicionar destinatário"
+msgstr "Adicionar o destinatário"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
@@ -282,11 +282,11 @@ msgstr "Mensagens"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr "App de mensagens"
+msgstr "Aplicação de mensagens"
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "App de mensagens"
+msgstr "Aplicação de mensagens"
 
 #: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
