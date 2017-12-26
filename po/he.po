@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-12-21 16:43+0000\n"
+"PO-Revision-Date: 2017-12-26 17:14+0000\n"
 "Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/messaging-app/he/>\n"
@@ -49,15 +49,15 @@ msgstr[1] "שיחה של %1 שניות"
 
 #: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "החליקו על מנת לבטל >>>"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "התקבל"
 
 #: ../src/qml/Messages.qml:652
 msgid "Add"
