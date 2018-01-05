@@ -168,7 +168,6 @@ bool MessagingApplication::setup()
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("i18nDirectory", I18N_DIRECTORY);
     m_view->rootContext()->setContextProperty("view", m_view);
-    m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
     m_view->engine()->addImportPath(UNITY8_QML_PATH);
 
     // check if there is a contacts backend override
@@ -195,7 +194,8 @@ bool MessagingApplication::setup()
         m_view->engine()->addImportPath(pluginPath);
     }
 
-    m_view->setSource(QUrl::fromLocalFile("messaging-app.qml"));
+    m_view->engine()->setBaseUrl(QUrl::fromLocalFile(messagingAppDirectory()));
+    m_view->setSource(QUrl::fromLocalFile(QString("%1/messaging-app.qml").arg(messagingAppDirectory())));
     if (fullScreen) {
         m_view->showFullScreen();
     } else {
