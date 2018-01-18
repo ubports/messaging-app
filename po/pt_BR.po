@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-01-18 21:45+0000\n"
+"PO-Revision-Date: 2018-01-18 21:46+0000\n"
 "Last-Translator: Noock <nklowns@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) "
 "<https://translate.ubports.com/projects/ubports/messaging-app/pt_BR/>\n"
@@ -492,7 +492,7 @@ msgstr "Bem-vindo ao seu aplicativo de mensagens!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Bem-vindo ao seu aplicativo de mensagens do Ubuntu"
+msgstr "Bem-vindo ao seu aplicativo de mensagens do Ubuntu."
 
 #: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
