@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-12-26 17:14+0000\n"
+"PO-Revision-Date: 2018-02-09 09:10+0000\n"
 "Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/messaging-app/he/>\n"
@@ -116,7 +116,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr ""
+msgstr "אחורה"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
@@ -179,7 +179,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
-msgstr ""
+msgstr "עריכה"
 
 #: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
@@ -303,7 +303,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: ../src/qml/Messages.qml:282
 msgid "No SIM card"
@@ -329,7 +329,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "אישור"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
@@ -400,7 +400,7 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
-msgstr ""
+msgstr "הגדרות"
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
@@ -491,7 +491,7 @@ msgstr "כתיבת הודעה…"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: ../src/qml/dateUtils.js:46
 msgid "Yesterday"
