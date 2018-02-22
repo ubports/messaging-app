@@ -1,4 +1,4 @@
-messaging-app (0.1+17.04.20161130-0ubuntu1) zesty; urgency=medium
+messaging-app (0.1.1+ubports1) xenial; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
   * Add support for group chats.
