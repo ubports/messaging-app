@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-11-26 19:45+0000\n"
-"Last-Translator: Arda Canbolat <oardacn@gmail.com>\n"
+"PO-Revision-Date: 2018-02-26 16:21+0000\n"
+"Last-Translator: Hüseyin Soylu <hsoyluu34@gmail.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports"
 "/messaging-app/tr/>\n"
 "Language: tr\n"
@@ -108,7 +108,7 @@ msgstr[1] "Ek: %1 video"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr "Ses eklentisi desteklenmemektedir."
+msgstr "Ses dosyası desteklenmemektedir"
 
 #: ../src/qml/Messages.qml:890
 msgid "Away"
@@ -207,7 +207,7 @@ msgstr "Dosya boyutu uyarısı"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr "Dosya tipi desteklenmemektedir."
+msgstr "Dosya tipi desteklenmemektedir"
 
 #: ../src/qml/MessagesListView.qml:143
 msgid "Forward"
@@ -434,7 +434,7 @@ msgstr "Geçici olarak başarısız"
 
 #: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
-msgstr "Metin Mesajı panoya kopyalandı."
+msgstr "Metin mesajı panoya kopyalandı"
 
 #: ../src/qml/Messages.qml:982
 #, qt-format
@@ -483,7 +483,7 @@ msgstr "Video Önizlemesi"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr "Video eklentisi desteklenmemektedir."
+msgstr "Video dosyası desteklenmemektedir."
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
