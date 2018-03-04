@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-02-23 04:30+0000\n"
+"PO-Revision-Date: 2018-03-02 08:40+0000\n"
 "Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Traditional) "
 "<https://translate.ubports.com/projects/ubports/messaging-app/zh_Hant/>\n"
@@ -112,7 +112,7 @@ msgstr "返回"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
-msgstr "正忙"
+msgstr "忙碌中"
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
@@ -183,7 +183,7 @@ msgstr "失敗"
 
 #: ../src/qml/Messages.qml:286
 msgid "Failed to send the message"
-msgstr ""
+msgstr "傳送訊息失敗"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -245,11 +245,11 @@ msgstr "資訊"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "於飛航模式下無法傳送訊息"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "無法傳送訊息"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -265,7 +265,7 @@ msgstr "訊息"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr "Messages;SMS;MMS;Text Messages;Text"
+msgstr "Messages;SMS;MMS;Text Messages;Text;訊息;簡訊"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
@@ -327,7 +327,7 @@ msgstr "確定"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
-msgstr "在線"
+msgstr "上線"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -343,7 +343,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "請插入一張 SIM 卡並重試。"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -394,7 +394,7 @@ msgstr "搜尋..."
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
-msgstr "送出"
+msgstr "已送出"
 
 #: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
@@ -412,11 +412,11 @@ msgstr "狀態"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr "右滑刪除"
+msgstr "向此滑動來刪除"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr "左滑顯示功能"
+msgstr "向此滑動來顯示功能"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -503,7 +503,7 @@ msgstr "您試圖傳送大型檔案（超過 300Kb）。有些服務商可能無
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "你需要關閉飛航模式"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
@@ -511,7 +511,7 @@ msgstr "您必須按住錄音圖示"
 
 #: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
-msgstr "要選取 SIM 卡"
+msgstr "需要選取 SIM 卡"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:77
