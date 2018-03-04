@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-03-02 09:21+0000\n"
+"PO-Revision-Date: 2018-03-04 21:17+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/messaging-app/he/>\n"
@@ -108,11 +108,11 @@ msgstr[1] ""
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "אין תמיכה בצירוף שמע"
 
 #: ../src/qml/Messages.qml:890
 msgid "Away"
-msgstr ""
+msgstr "מרוחק"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
@@ -120,11 +120,11 @@ msgstr "אחורה"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
-msgstr ""
+msgstr "עסוק"
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
-msgstr "להתקשר"
+msgstr "התקשרות"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
@@ -137,7 +137,7 @@ msgstr "ביטול"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "החלפת כל שיוכי ההודעות ל־%1?"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -147,7 +147,7 @@ msgstr "סגירה"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "ניתן לכתוב הודעה חדשה על ידי משיכה כלפי מעלה מתחתית המסך."
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
@@ -163,19 +163,19 @@ msgstr "מחיקה"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "נמחקה"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr ""
+msgstr "נשלחה"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "לא לשאול שוב"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
-msgstr ""
+msgstr "לא להציג שוב"
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
@@ -183,7 +183,7 @@ msgstr "עריכה"
 
 #: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "הפעלת שיחת MMS קבוצתית"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -191,55 +191,57 @@ msgstr "נכשלה"
 
 #: ../src/qml/Messages.qml:286
 msgid "Failed to send the message"
-msgstr ""
+msgstr "שליחת ההודעה נכשלה"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
-msgstr ""
+msgstr "נכשלה!"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "Favorites"
-msgstr ""
+msgstr "מועדפים"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "אזהרת גודל קובץ"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "סוג הקובץ אינו נתמך"
 
 #: ../src/qml/MessagesListView.qml:143
 msgid "Forward"
-msgstr ""
+msgstr "העברה"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
-msgstr ""
+msgstr "מ־"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
-msgstr ""
+msgstr "קיבלתי"
 
 #: ../src/qml/MessageInfoDialog.qml:84
 msgid "Group"
-msgstr ""
+msgstr "קבוצה"
 
 #. TRANSLATORS: %1 refers to the number of participants in a group chat
 #: ../src/qml/Messages.qml:626
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "קבוצה (%1)"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
+"כדי לערוך את העדפות ה־SIM והסלולר, נא לבקר ב<a href=\"system_settings\">"
+"הגדרות המערכת</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr ""
+msgstr "תמונה"
 
 #: ../src/qml/MMS/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -247,27 +249,28 @@ msgstr "תצוגה מקדימה של תמונה"
 
 #: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
-msgstr ""
+msgstr "מידע"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "אי אפשר לשלוח הודעות במצב טיסה"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "אי אפשר לשלוח את ההודעה"
 
 #: ../src/qml/MessagesListView.qml:114
+#, fuzzy
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
-msgstr ""
+msgstr "פרטי הודעה"
 
 #: ../src/qml/MainPage.qml:68
 msgid "Messages"
-msgstr ""
+msgstr "הודעות"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
@@ -275,23 +278,23 @@ msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr ""
+msgstr "הודעות מיידיות"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "יישומון הודעות מיידיות"
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "יישומון הודעות מיידיות"
 
 #: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
-msgstr ""
+msgstr "נתוני הודעה חסרים"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
-msgstr ""
+msgstr "עצמי"
 
 #: ../src/qml/Messages.qml:497
 msgid "New Message"
@@ -299,7 +302,7 @@ msgstr "הודעה חדשה"
 
 #: ../src/qml/MainPage.qml:105 ../src/qml/MainPage.qml:236
 msgid "New message"
-msgstr ""
+msgstr "הודעה חדשה"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
@@ -307,23 +310,23 @@ msgstr "לא"
 
 #: ../src/qml/Messages.qml:282
 msgid "No SIM card"
-msgstr ""
+msgstr "אין כרטיס SIM"
 
 #: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
-msgstr ""
+msgstr "לא נבחר כרטיס SIM"
 
 #: ../src/qml/Messages.qml:981
 msgid "No network"
-msgstr ""
+msgstr "אין רשת"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr ""
+msgstr "אין הרשאה לגשת למיקרופון"
 
 #: ../src/qml/Messages.qml:888
 msgid "Offline"
-msgstr ""
+msgstr "לא מקוון"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -333,21 +336,23 @@ msgstr "אישור"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
-msgstr ""
+msgstr "מקוון"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
-msgstr ""
+msgstr "בהמתנה"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
+"נא להעניק גישה דרך <a href=\"system_settings\">הגדרות המערכת &lt; אבטחה "
+"ופרטיות</a>."
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "נא להכניס כרטיס SIM ולנסות שוב."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -374,7 +379,7 @@ msgstr "ניסיון מחדש"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "כרטיס ה־SIM נעול"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
@@ -392,7 +397,7 @@ msgstr "חיפוש"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
-msgstr ""
+msgstr "חיפוש…"
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
@@ -414,36 +419,36 @@ msgstr ""
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "יש להחליק כדי למחוק"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "יש להחליק כדי לחשוף את הפעולות"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "נכשל באופן זמני"
 
 #: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "הודעת הטקסט הועתקה ללוח הגזירים"
 
 #: ../src/qml/Messages.qml:982
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "נכון לעכשיו, אין רשת עם %1"
 
 #: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
-msgstr ""
+msgstr "אין רשת נכון לעכשיו."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
-msgstr ""
+msgstr "אל"
 
 #: ../src/qml/MultiRecipientInput.qml:149
 msgid "To:"
-msgstr ""
+msgstr "אל:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -451,23 +456,23 @@ msgstr "היום"
 
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 #: ../src/qml/Messages.qml:882
 msgid "Typing.."
-msgstr ""
+msgstr "הקלדה…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: ../src/qml/MMS/MMSContact.qml:48 ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
-msgstr ""
+msgstr "איש קשר לא ידוע"
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr ""
+msgstr "סרטון"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
@@ -475,15 +480,15 @@ msgstr "תצוגה מקדימה של סרטון"
 
 #: ../src/qml/MMS/MMSDefault.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "אין תמיכה בצירוף סרטונים"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr ""
+msgstr "ברוך בואך לתכנית המסרים המידיים שלך!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "ברוך בואך ליישומון ההודעות המיידיות באובונטו."
 
 #: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
@@ -502,24 +507,26 @@ msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
 msgstr ""
+"ניסית לשלוח קבצים גדולים (מעל 300 ק״ב). חלק מהספקיות לא תוכלנה להעביר כזאת "
+"כמות של נתונים."
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "עליך להשבית את מצב הטיסה"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
-msgstr ""
+msgstr "עליך ללחוץ ולהחזיק את סמל ההקלטה"
 
 #: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "עליך לבחור כרטיס SIM"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:77
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr ""
+msgstr "עברת אל %1 ב־%2"
 
 #~ msgid "+ Create New"
 #~ msgstr "+ Create New"
