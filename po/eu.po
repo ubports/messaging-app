@@ -261,7 +261,7 @@ msgstr "Ezinezkoa da mezua bidaltzea"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
-msgstr "MMSa"
+msgstr "MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:90
 msgid "Message info"
