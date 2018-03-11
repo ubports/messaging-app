@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-10-29 17:12+0000\n"
+"PO-Revision-Date: 2018-03-11 18:45+0000\n"
 "Last-Translator: Aitzol Berasategi <aitzol76@gmail.com>\n"
 "Language-Team: Basque <https://translate.ubports.com/projects/ubports"
 "/messaging-app/eu/>\n"
@@ -116,7 +116,7 @@ msgstr "Kanpoan"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr "Itzuli"
+msgstr "Atzera"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
@@ -191,7 +191,7 @@ msgstr "Huts egin du"
 
 #: ../src/qml/Messages.qml:286
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Mezua bidaltzeak huts egin du"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -253,11 +253,11 @@ msgstr "Informazioa"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Ezinezkoa da mezuak hegaldi moduan bidaltzea"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Ezinezkoa da mezua bidaltzea"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -309,7 +309,7 @@ msgstr "Ez"
 
 #: ../src/qml/Messages.qml:282
 msgid "No SIM card"
-msgstr ""
+msgstr "SIM txartelik ez"
 
 #: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
@@ -351,7 +351,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Mesedez sartu SIM txartela eta saiatu berriro."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -374,11 +374,11 @@ msgstr "Jasota"
 
 #: ../src/qml/ComposeBar.qml:137
 msgid "Remove"
-msgstr "Kendu"
+msgstr "Ezabatu"
 
 #: ../src/qml/MessagesListView.qml:129 ../src/qml/SwipeItemDemo.qml:181
 msgid "Retry"
-msgstr "Saiatu berriz"
+msgstr "Berriz saiatu"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
@@ -515,7 +515,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Hegaldi modua desgaitu behar duzu"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
