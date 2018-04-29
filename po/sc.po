@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-04-27 21:28+0000\n"
+"PO-Revision-Date: 2018-04-29 09:03+0000\n"
 "Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/sc/>\n"
@@ -60,7 +60,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:652
 msgid "Add"
-msgstr ""
+msgstr "Agiunghe"
 
 #: ../src/qml/NewRecipientPage.qml:55
 msgid "Add recipient"
