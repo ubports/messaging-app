@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-05-09 04:37+0000\n"
+"PO-Revision-Date: 2018-05-09 08:34+0000\n"
 "Last-Translator: Dito Kurnia P <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/id/>\n"
@@ -104,7 +104,7 @@ msgstr "Lampiran audio tidak di dukung"
 
 #: ../src/qml/Messages.qml:890
 msgid "Away"
-msgstr "Pergi"
+msgstr "Jauh"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
@@ -323,7 +323,7 @@ msgstr "Luring"
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Ok"
+msgstr "Oke"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
