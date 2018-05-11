@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-03-06 10:49+0000\n"
+"PO-Revision-Date: 2018-05-11 07:28+0000\n"
 "Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Traditional) "
 "<https://translate.ubports.com/projects/ubports/messaging-app/zh_Hant/>\n"
@@ -50,7 +50,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr "<<< 滑動來取消"
+msgstr "<<< 滑動以取消"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -507,7 +507,7 @@ msgstr "你需要關閉飛航模式"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
-msgstr "您必須按住錄音圖示"
+msgstr "您需要按住錄音圖示不放"
 
 #: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
