@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-09-30 19:14+0000\n"
-"Last-Translator: Stefano Melchior <stefano.melchior@me.com>\n"
+"PO-Revision-Date: 2018-05-13 18:44+0000\n"
+"Last-Translator: Walter Garcia-Fontes <walter.garcia@upf.edu>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports"
 "/messaging-app/ca/>\n"
 "Language: ca\n"
@@ -69,7 +69,7 @@ msgstr "Afegeix el destinatari"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr "Tots"
+msgstr "Tot"
 
 #: ../src/qml/ThreadDelegate.qml:94
 #, qt-format
