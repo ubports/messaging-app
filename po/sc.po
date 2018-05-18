@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-05-09 21:08+0000\n"
+"PO-Revision-Date: 2018-05-18 13:58+0000\n"
 "Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/sc/>\n"
@@ -68,7 +68,7 @@ msgstr "Agiunghe destinatàriu"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr "Totus"
+msgstr "Totu"
 
 #: ../src/qml/ThreadDelegate.qml:94
 #, qt-format
