@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-05-12 19:52+0000\n"
+"PO-Revision-Date: 2018-05-21 11:14+0000\n"
 "Last-Translator: Joachim Lazaroms <joachim.pc@gmail.com>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports"
 "/messaging-app/nl/>\n"
@@ -332,7 +332,7 @@ msgstr "Offline"
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Oké"
+msgstr "Ok"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
