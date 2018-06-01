@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-11-26 10:20+0000\n"
+"PO-Revision-Date: 2018-05-11 10:35+0000\n"
 "Last-Translator: advocatux <advocatux@airpost.net>\n"
 "Language-Team: Spanish <https://translate.ubports.com/projects/ubports"
 "/messaging-app/es/>\n"
@@ -69,7 +69,7 @@ msgstr "Añadir destinatario"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr "Todos"
+msgstr "Todo"
 
 #: ../src/qml/ThreadDelegate.qml:94
 #, qt-format

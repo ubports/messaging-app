@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-03-04 21:17+0000\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"PO-Revision-Date: 2018-04-30 22:25+0000\n"
+"Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/messaging-app/he/>\n"
 "Language: he\n"
@@ -401,7 +401,7 @@ msgstr "חיפוש…"
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
-msgstr ""
+msgstr "נשלחו"
 
 #: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
@@ -415,7 +415,7 @@ msgstr "שיתוף"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
-msgstr ""
+msgstr "מצב"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"

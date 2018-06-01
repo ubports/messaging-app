@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-01-07 08:13+0000\n"
-"Last-Translator: Mutse Young <yyhoo2.young@gmail.com>\n"
+"PO-Revision-Date: 2018-05-01 18:10+0000\n"
+"Last-Translator: Hugh Y <hugh_yan@live.com>\n"
 "Language-Team: Chinese (Simplified) "
 "<https://translate.ubports.com/projects/ubports/messaging-app/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -116,7 +116,7 @@ msgstr "忙碌"
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
-msgstr "拨号"
+msgstr "呼叫"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
@@ -139,7 +139,7 @@ msgstr "关闭"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "从屏幕底部向上滑动来撰写一条新信息"
+msgstr "从屏幕底部向上滑动来撰写一条新信息。"
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
@@ -183,7 +183,7 @@ msgstr "失败"
 
 #: ../src/qml/Messages.qml:286
 msgid "Failed to send the message"
-msgstr ""
+msgstr "信息发送失败"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -203,7 +203,7 @@ msgstr "文件格式不支持"
 
 #: ../src/qml/MessagesListView.qml:143
 msgid "Forward"
-msgstr ""
+msgstr "转发"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -245,7 +245,7 @@ msgstr "详情"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "飞行模式下不可发送信息"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
@@ -260,6 +260,7 @@ msgid "Message info"
 msgstr "短信详情"
 
 #: ../src/qml/MainPage.qml:68
+#, fuzzy
 msgid "Messages"
 msgstr "短信"
 
@@ -301,7 +302,7 @@ msgstr "否"
 
 #: ../src/qml/Messages.qml:282
 msgid "No SIM card"
-msgstr ""
+msgstr "无SIM卡"
 
 #: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
@@ -341,7 +342,7 @@ msgstr "请在<a href=\"system_settings\">系统设置 &gt; 安全与隐私</a>�
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "请插入SIM卡之后重试。"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -431,7 +432,7 @@ msgstr "%1 目前无网络"
 
 #: ../src/qml/Messages.qml:982
 msgid "There is currently no network."
-msgstr "目前无网络"
+msgstr "当前无网络。"
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
@@ -451,7 +452,7 @@ msgstr "类型"
 
 #: ../src/qml/Messages.qml:882
 msgid "Typing.."
-msgstr "输入中…"
+msgstr "输入中..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
@@ -501,7 +502,7 @@ msgstr "你在试图发送（超过300kb的）大文件。某些运营商可能�
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "您必须关闭飞行模式"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
