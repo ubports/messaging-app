@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-09-29 07:40+0000\n"
+"PO-Revision-Date: 2018-06-03 07:48+0000\n"
 "Last-Translator: Jeff <jeffi27@live.at>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/sq/>\n"
@@ -30,22 +30,22 @@ msgstr "%1 + %2"
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kohzgjatja e thirrjes % 1 or"
+msgstr[1] "Kohzgjatja e thirrjes % 1 orë"
 
 #: ../src/qml/dateUtils.js:67
 #, qt-format
 msgid "%1 minute call"
 msgid_plural "%1 minutes call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Koha e thirrjes % 1 minutë"
+msgstr[1] "Koha e thirrjes % 1 minuta"
 
 #: ../src/qml/dateUtils.js:69
 #, qt-format
 msgid "%1 second call"
 msgid_plural "%1 seconds call"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kohëzgjatja e thirrjes % 1 sekondë"
+msgstr[1] "Kohëzgjatja e thirrjes % 1 sekonda"
 
 #: ../src/qml/MessagingBottomEdge.qml:38
 msgid "+"
@@ -65,7 +65,7 @@ msgstr "Shto"
 
 #: ../src/qml/NewRecipientPage.qml:55
 msgid "Add recipient"
-msgstr ""
+msgstr "Shto marrësin"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
@@ -75,44 +75,44 @@ msgstr "Të Gjitha"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Shtojcë: % 1 skedar audio"
+msgstr[1] "Shtojcë: % 1 skedare audio"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Shtojcë: % 1 kontakt"
+msgstr[1] "Shtojcë: % 1 kontakte"
 
 #: ../src/qml/ThreadDelegate.qml:97
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Shtojcë: % 1 skedar"
+msgstr[1] "Shtojcë: % 1 skedare"
 
 #: ../src/qml/ThreadDelegate.qml:85
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Shtojcë: % 1 imazh"
+msgstr[1] "Shtojcë: % 1 imazhe"
 
 #: ../src/qml/ThreadDelegate.qml:88
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Shtojcë: % 1 video"
+msgstr[1] "Shtojcë: % 1 videos"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Shtojca audio nuk mbështetet"
 
 #: ../src/qml/Messages.qml:890
 msgid "Away"
-msgstr ""
+msgstr "Në mungesë"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
@@ -137,7 +137,7 @@ msgstr "Anulo"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr ""
+msgstr "Ndryshoni të gjitha shoqatat e Mesazhimit në % 1?"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -148,6 +148,8 @@ msgstr "Mbyll"
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
+"Rrëshqitni lart nga pjesa e poshtme e ekranit për të krijuar një mesazh të "
+"ri."
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
@@ -159,7 +161,7 @@ msgstr "Kopjo"
 
 #: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
-msgstr "Fshije"
+msgstr "Fshijë"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -183,7 +185,7 @@ msgstr "Ndrysho"
 
 #: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
-msgstr ""
+msgstr "Aktivizo chat grupin MMS"
 
 #: ../src/qml/MessageInfoDialog.qml:58
 msgid "Failed"
@@ -191,7 +193,7 @@ msgstr "Dështoi"
 
 #: ../src/qml/Messages.qml:286
 msgid "Failed to send the message"
-msgstr ""
+msgstr "Dështoi në dërgimin e mesazhit"
 
 #: ../src/qml/MessageDelegateFactory.qml:148
 msgid "Failed!"
@@ -199,15 +201,15 @@ msgstr "Dështoi!"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "Favorites"
-msgstr "Të Parapëlqyerat"
+msgstr "Favoritet"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "Paralajmërimi i madhësisë së skedarit"
 
 #: ../src/qml/MMS/MMSDefault.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Lloji i skedarit nuk mbështetet"
 
 #: ../src/qml/MessagesListView.qml:143
 msgid "Forward"
@@ -236,6 +238,8 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
+"Nëse dëshironi të redaktoni SIM-në dhe preferencat e tjera të celularit, ju "
+"lutemi vizitoni <a href=\"system_settings\">Cilësimet e Sistemit</a> 2."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
@@ -251,11 +255,11 @@ msgstr "Info"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "Nuk është e mundur të dërgoni mesazhe në mënyrën e fluturimit"
 
 #: ../src/qml/Messages.qml:285
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "Nuk është e mundur të dërgoni mesazhin"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "MMS"
@@ -271,7 +275,7 @@ msgstr "Mesazhet"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "Mesazhet;SMS;MMS;Mesazhet;Tekst;Tekst"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
@@ -287,7 +291,7 @@ msgstr "Program për mesazhe"
 
 #: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
-msgstr ""
+msgstr "Mungojnë të dhënat e mesazhit"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
@@ -307,11 +311,11 @@ msgstr "Jo"
 
 #: ../src/qml/Messages.qml:282
 msgid "No SIM card"
-msgstr ""
+msgstr "Asnjë kartë SIM"
 
 #: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
-msgstr "Nuk është zgjedhur një kartë SIM"
+msgstr "Nuk u përzgjodh asnjë kartë SIM"
 
 #: ../src/qml/Messages.qml:981
 msgid "No network"
@@ -319,21 +323,21 @@ msgstr "Nuk ka rrjet"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr ""
+msgstr "Nuk ka leje për qasje në mikrofon"
 
 #: ../src/qml/Messages.qml:888
 msgid "Offline"
-msgstr ""
+msgstr "Shkëputur"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: ../src/qml/Messages.qml:886
 msgid "Online"
-msgstr ""
+msgstr "I lidhur"
 
 #: ../src/qml/MessageInfoDialog.qml:66
 msgid "Pending"
@@ -344,10 +348,12 @@ msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
+"Jepni qasje në <a href=\"system_settings\">Cilësimet e sistemit &gt; Siguria "
+"&amp; Privatësia </a>."
 
 #: ../src/qml/Messages.qml:283
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "Futni një kartë SIM dhe provoni përsëri."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -355,6 +361,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"Luteni të hapni kartën tuaj SIM për të bërë një telefonatë ose për të "
+"dërguar një mesazh. Ju mund ta hiqni kartën tuaj SIM nga paneli i rrjetit në "
+"pjesën e sipërme të ekranit ose duke hapur <a href=\"system_settings\">"
+"Cilësimet e Sistemit  &gt;Siguria &amp;Privatsin</a> Hape."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:124
 msgid "Read"
@@ -374,7 +384,7 @@ msgstr "Riprovo"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr "Skeda SIM është e bllokuar"
+msgstr "SIM Kartela është e bllokuar"
 
 #: ../src/qml/MessagesListView.qml:114
 msgid "SMS"
@@ -400,13 +410,13 @@ msgstr "Dërguar"
 
 #: ../src/qml/MainPage.qml:96 ../src/qml/SettingsPage.qml:25
 msgid "Settings"
-msgstr "Konfigurimi"
+msgstr "Cilsimet"
 
 #: ../src/qml/MMS/Previewer.qml:93
 #: ../src/qml/MMS/PreviewerMultipleContacts.qml:98
 #: ../src/qml/MessagingContactViewPage.qml:61
 msgid "Share"
-msgstr "Shpërndaje"
+msgstr "Shpërndajë"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
@@ -414,19 +424,19 @@ msgstr "Gjendja"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Rrëshqitni për të fshirë"
 
 #: ../src/qml/SwipeItemDemo.qml:206
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Rrëshqitni për të shfaqur veprime"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "Dështoi përkohësisht"
 
 #: ../src/qml/MMSDelegate.qml:85 ../src/qml/SMSDelegate.qml:56
 msgid "Text message copied to clipboard"
-msgstr ""
+msgstr "Mesazhi tekst i kopjuar në kujtesën"
 
 #: ../src/qml/Messages.qml:982
 #, qt-format
@@ -479,11 +489,11 @@ msgstr "Bashkangjitja e videos nuk suportohet"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr ""
+msgstr "Mirë se erdhe në aplikacionin tënd të mesazheve!"
 
 #: ../src/qml/SwipeItemDemo.qml:161
 msgid "Welcome to your Ubuntu messaging app."
-msgstr ""
+msgstr "Mirë se vini në aplikacionin tuaj të mesazheve në Ubuntu."
 
 #: ../src/qml/ComposeBar.qml:424
 msgid "Write a message..."
@@ -502,10 +512,12 @@ msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
 msgstr ""
+"Po përpiqeni të dërgoni skedarë të mëdhenj (mbi 300 Kb). Disa operatorë mund "
+"të mos jenë në gjendje ta dërgojnë atë."
 
 #: ../src/qml/Messages.qml:276
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Duhet të çaktivizoni mënyrën e fluturimit"
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
