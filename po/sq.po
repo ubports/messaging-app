@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-06-03 07:48+0000\n"
+"PO-Revision-Date: 2018-06-03 07:58+0000\n"
 "Last-Translator: Jeff <jeffi27@live.at>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports"
 "/messaging-app/sq/>\n"
@@ -69,7 +69,7 @@ msgstr "Shto marrësin"
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr "Të Gjitha"
+msgstr "Të gjitha"
 
 #: ../src/qml/ThreadDelegate.qml:94
 #, qt-format
