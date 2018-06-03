@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-04-30 22:25+0000\n"
-"Last-Translator: Eran <etherpulse@gmail.com>\n"
+"PO-Revision-Date: 2018-06-03 17:17+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/messaging-app/he/>\n"
 "Language: he\n"
@@ -116,7 +116,7 @@ msgstr "מרוחק"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr "אחורה"
+msgstr "חזרה"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
