@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-07-05 08:15+0000\n"
+"PO-Revision-Date: 2018-07-05 11:28+0000\n"
 "Last-Translator: konrad <kohofer@gmail.com>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/messaging-app/en_GB/>\n"
@@ -116,7 +116,7 @@ msgstr "Away"
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr "Tillbaka"
+msgstr "Back"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
@@ -131,7 +131,7 @@ msgstr "Call"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancel"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -159,7 +159,7 @@ msgstr "Copy"
 
 #: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Delete"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -215,7 +215,7 @@ msgstr "Forward"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
-msgstr "Från"
+msgstr "From"
 
 #: ../src/qml/SwipeItemDemo.qml:78
 msgid "Got it"
@@ -446,7 +446,7 @@ msgstr "There is currently no network."
 
 #: ../src/qml/MessageInfoDialog.qml:103
 msgid "To"
-msgstr "Till"
+msgstr "To"
 
 #: ../src/qml/MultiRecipientInput.qml:149
 msgid "To:"
