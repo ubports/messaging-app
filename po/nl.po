@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-05-21 11:14+0000\n"
+"PO-Revision-Date: 2018-07-22 00:00+0000\n"
 "Last-Translator: Joachim Lazaroms <joachim.pc@gmail.com>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports"
 "/messaging-app/nl/>\n"
@@ -17,21 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.17\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
 #, qt-format
 msgid "%1 + %2"
-msgstr "%1 + %2"
+msgstr "Naar: %1 (%2)"
 
 #: ../src/qml/dateUtils.js:65
 #, qt-format
 msgid "%1 hour call"
 msgid_plural "%1 hours call"
 msgstr[0] "gesprek van %1 uur"
-msgstr[1] "gesprek van %1 uur"
+msgstr[1] "gesprek van %1 uren"
 
 #: ../src/qml/dateUtils.js:67
 #, qt-format
@@ -76,7 +76,7 @@ msgstr "Alles"
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "Bijlage: %1 audiofragment"
-msgstr[1] "Bijlagen: %1 audiofragmenten"
+msgstr[1] "Bijlages: %1 audiofragmenten"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -104,7 +104,7 @@ msgstr[1] "Bijlages: %1 afbeeldingen"
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Bijlage: %1 video"
-msgstr[1] "Bijlages: %1 video´s"
+msgstr[1] "Bijlages: %1 video‘s"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
@@ -137,7 +137,7 @@ msgstr "Annuleren"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "Alle berichtassociaties overzetten naar %1?"
+msgstr "Alle bericht associaties koppelen aan %1?"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -464,7 +464,7 @@ msgstr "Type"
 
 #: ../src/qml/Messages.qml:882
 msgid "Typing.."
-msgstr "Bezig met typen…"
+msgstr "Typen…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 msgid "Unknown"
