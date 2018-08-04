@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-05-12 12:01+0000\n"
-"Last-Translator: Alessandro Vinciguerra <alesvinciguerra@gmail.com>\n"
-"Language-Team: French <https://translate.ubports.com/projects/ubports"
-"/messaging-app/fr/>\n"
+"PO-Revision-Date: 2018-08-05 15:00+0000\n"
+"Last-Translator: Anne Onyme <anneonyme017@openmailbox.org>\n"
+"Language-Team: French <https://translate.ubports.com/projects/ubports/"
+"messaging-app/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -328,7 +328,7 @@ msgstr "Pas d'autorisation pour accéder au microphone"
 
 #: ../src/qml/Messages.qml:888
 msgid "Offline"
-msgstr "Déconnecté(e)"
+msgstr "Déconnecté"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
