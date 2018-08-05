@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-08-05 11:36+0000\n"
+"PO-Revision-Date: 2018-08-05 11:54+0000\n"
 "Last-Translator: Tom Rausner <tomrausner@gmail.com>\n"
 "Language-Team: Danish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/da/>\n"
@@ -138,7 +138,7 @@ msgstr "Annullér"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "Tilknyt alle beskeder til %1"
+msgstr "Tilknyt alle beskeder til %1?"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:29
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -148,7 +148,7 @@ msgstr "Afslut"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "Skriv en ny besked ved at swipe op fra bunden af skærmen"
+msgstr "Skriv en ny besked ved at stryge op fra bunden af skærmen"
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:734
 msgid "Contact"
@@ -163,7 +163,6 @@ msgid "Delete"
 msgstr "Slet"
 
 #: ../src/qml/MessageInfoDialog.qml:64
-#, fuzzy
 msgid "Deleted"
 msgstr "Slettet"
 
@@ -250,7 +249,6 @@ msgid "Image Preview"
 msgstr "Billedforhåndsvisning"
 
 #: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
-#, fuzzy
 msgid "Info"
 msgstr "Info"
 
@@ -288,15 +286,15 @@ msgstr "Beskedprogram"
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "Program til modtagelse af beskeder"
+msgstr "Besked program"
 
 #: ../src/qml/MMSDelegate.qml:249
 msgid "Missing message data"
-msgstr "Mangler besked data"
+msgstr "Manglende besked data"
 
 #: ../src/qml/MessageInfoDialog.qml:82 ../src/qml/MessageInfoDialog.qml:99
 msgid "Myself"
-msgstr "Jeg"
+msgstr "Mig"
 
 #: ../src/qml/Messages.qml:497
 msgid "New Message"
@@ -316,7 +314,7 @@ msgstr "Intet SIM kort"
 
 #: ../src/qml/Messages.qml:279
 msgid "No SIM card selected"
-msgstr "Der er ikke valgt SIM-kort"
+msgstr "Intet SIM kort valgt"
 
 #: ../src/qml/Messages.qml:981
 msgid "No network"
@@ -462,7 +460,7 @@ msgstr "I dag"
 
 #: ../src/qml/MessageInfoDialog.qml:93
 msgid "Type"
-msgstr "Type"
+msgstr "Skriv"
 
 #: ../src/qml/Messages.qml:882
 msgid "Typing.."
