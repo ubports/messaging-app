@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2015-10-05 20:16+0000\n"
-"Last-Translator: XiveZ <kyrsant2008@list.ru>\n"
-"Language-Team: Belarusian <be@li.org>\n"
+"PO-Revision-Date: 2018-07-21 11:28+0000\n"
+"Last-Translator: ierihon <idekovets@mail.ru>\n"
+"Language-Team: Belarusian <https://translate.ubports.com/projects/ubports"
+"/messaging-app/be/>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.17\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -56,7 +57,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "<<< працяніце, каб адмяніць"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -131,7 +132,7 @@ msgstr "Заняты(ая)"
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
-msgstr "Патэлефанаваць"
+msgstr "Пазваніць"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
@@ -150,7 +151,7 @@ msgstr "Звязаць увесь абмен паведамленнямі з %1?
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
-msgstr "Закрыць"
+msgstr "Зачыніць"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -162,7 +163,7 @@ msgstr "Кантакт"
 
 #: ../src/qml/MessagesListView.qml:136 ../src/qml/SwipeItemDemo.qml:185
 msgid "Copy"
-msgstr "Капіяваць"
+msgstr "Капіраваць"
 
 #: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
@@ -218,7 +219,7 @@ msgstr "Падтрымкі гэтага тыпу файлаў не прадуг�
 
 #: ../src/qml/MessagesListView.qml:143
 msgid "Forward"
-msgstr ""
+msgstr "Далей"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
@@ -256,7 +257,7 @@ msgstr "Перадпрагляд выявы"
 
 #: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
-msgstr "Звесткі"
+msgstr "Інфармацыя"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
@@ -480,7 +481,7 @@ msgstr "Невядомы кантакт"
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr ""
+msgstr "Відэа"
 
 #: ../src/qml/MMS/PreviewerVideo.qml:32
 msgid "Video Preview"
@@ -522,7 +523,7 @@ msgstr ""
 
 #: ../src/qml/ComposeBar.qml:161
 msgid "You have to press and hold the record icon"
-msgstr ""
+msgstr "Вы павінны націснуць і ўтрымліваць значок запісу"
 
 #: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"

@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2017-09-28 20:32+0000\n"
-"Last-Translator: Henrik Holm <hbir@post10.tele.dk>\n"
-"Language-Team: Danish <https://translate.ubports.com/projects/ubports"
-"/messaging-app/da/>\n"
+"PO-Revision-Date: 2018-08-03 17:09+0000\n"
+"Last-Translator: Tom Rausner <tomrausner@gmail.com>\n"
+"Language-Team: Danish <https://translate.ubports.com/projects/ubports/"
+"messaging-app/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.19.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -54,7 +54,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "<<< Stryg for at afbryde"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -76,8 +76,8 @@ msgstr "Alle"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vedhæftet: %1 lydklip"
+msgstr[1] "Vedhæftet: %1 lydklip"
 
 #: ../src/qml/ThreadDelegate.qml:91
 #, qt-format
@@ -125,7 +125,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
 msgid "Call"
-msgstr "Opkald"
+msgstr "Ringer"
 
 #: ../src/qml/MMS/Previewer.qml:62 ../src/qml/MainPage.qml:128
 #: ../src/qml/Messages.qml:464 ../src/qml/Messages.qml:478
@@ -144,7 +144,7 @@ msgstr "Tilknyt alle beskeder til %1"
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
-msgstr "Luk"
+msgstr "Afslut"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -163,6 +163,7 @@ msgid "Delete"
 msgstr "Slet"
 
 #: ../src/qml/MessageInfoDialog.qml:64
+#, fuzzy
 msgid "Deleted"
 msgstr "Slettet"
 
@@ -247,6 +248,7 @@ msgid "Image Preview"
 msgstr "Billedforhåndsvisning"
 
 #: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
+#, fuzzy
 msgid "Info"
 msgstr "Info"
 
@@ -518,7 +520,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:280
 msgid "You need to select a SIM card"
-msgstr "Du skal vælge et SIM-kort"
+msgstr "Du skal vælge et SIM kort"
 
 #. TRANSLATORS: %1 is the SIM card name and %2 is the timestamp
 #: ../src/qml/AccountSectionDelegate.qml:77
