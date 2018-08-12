@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2015-08-11 14:30+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Thai <th@li.org>\n"
+"PO-Revision-Date: 2018-08-05 15:00+0000\n"
+"Last-Translator: thanakit srisearmpok <thanakit.ssp@gmail.com>\n"
+"Language-Team: Thai <https://translate.ubports.com/projects/ubports/"
+"messaging-app/th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:52
@@ -68,7 +69,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "All"
-msgstr ""
+msgstr "ทั้งหมด"
 
 #: ../src/qml/ThreadDelegate.qml:94
 #, qt-format
@@ -115,7 +116,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:64
 msgid "Back"
-msgstr ""
+msgstr "กลับ"
 
 #: ../src/qml/Messages.qml:892
 msgid "Busy"
@@ -130,7 +131,7 @@ msgstr ""
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:131 ../src/qml/SettingsPage.qml:56
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -142,7 +143,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/MessageInfoDialog.qml:133 ../src/qml/Messages.qml:985
 msgid "Close"
-msgstr ""
+msgstr "ปิด"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -158,7 +159,7 @@ msgstr ""
 
 #: ../src/qml/MessageDelegateFactory.qml:45 ../src/qml/ThreadDelegate.qml:107
 msgid "Delete"
-msgstr ""
+msgstr "ลบ"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -178,7 +179,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:72
 msgid "Edit"
-msgstr ""
+msgstr "แก้ไข"
 
 #: ../src/qml/SettingsPage.qml:31
 msgid "Enable MMS group chat"
@@ -198,7 +199,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:77
 msgid "Favorites"
-msgstr ""
+msgstr "รายการโปรด"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
