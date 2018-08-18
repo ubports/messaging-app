@@ -93,7 +93,7 @@ BorderImage {
         } else if (sending) {
             return "grey"
         } else if (messageIncoming) {
-            return "white"
+            return msgSettings.enableNightMode ? "black" : "white"
         } else if (isMultimedia) {
             return "blue"
         } else {
