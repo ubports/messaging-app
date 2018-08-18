@@ -424,6 +424,7 @@ ListItem {
             }
 
             delegate.height = found ? units.gu(8) : 0
+            delegate.visible = found ? true : false
         }
 
         // WORKAROUND: history-service can't filter by contact names
@@ -450,9 +451,11 @@ ListItem {
                 onCountChanged: {
                     if (count > 0) {
                         delegate.height = units.gu(8)
+                        delegate.visible = true
                         delegate.displayedEvent = eventModel.get(0)
                     } else if (searchTerm == "") {
                         delegate.height = units.gu(8)
+                        delegate.visible = true
                         delegate.displayedEvent = null
                     } else {
                         delegate.displayedEvent = null
