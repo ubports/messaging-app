@@ -211,6 +211,7 @@ MainView {
     implicitHeight: units.gu(71)
     anchorToKeyboard: false
     activeFocusOnPress: false
+    theme.name: msgSettings.enableDarkMode ? "Ubuntu.Components.Themes.SuruDark" : "Ubuntu.Components.Themes.Ambiance"
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
@@ -279,6 +280,7 @@ MainView {
         id: msgSettings
         category: "SMS"
         property bool showCharacterCount: false
+        property bool enableDarkMode: false
     }
 
     Settings {
