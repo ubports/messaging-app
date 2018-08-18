@@ -35,7 +35,7 @@ Page {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
         "threadSort": function(value) { mainView.sortThreadsBy = value },
         "compactView": function(value) { mainView.compactView = value },   
-        "nightModeEnabled": function(value) { msgSettings.enableNightMode = value }
+        "nightModeEnabled": function(value) { mainView.enableNightMode = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -75,7 +75,7 @@ Page {
         { "type": "boolean",
           "data": {"name": "nightModeEnabled",
                    "description": i18n.tr("Night Mode"),
-                   "property": msgSettings.enableNightMode,
+                   "property": mainView.enableNightMode,
                    "activatedFuncion": null,
                    "setMethod": "nightModeEnabled"}
         }
