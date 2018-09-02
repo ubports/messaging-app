@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-02-05 05:18+0000\n"
-"Last-Translator: ubports_arabic <ubportsarabic@gmail.com>\n"
-"Language-Team: Arabic <https://translate.ubports.com/projects/ubports"
-"/messaging-app/ar/>\n"
+"PO-Revision-Date: 2018-09-02 00:00+0000\n"
+"Last-Translator: Ahmed Suliman <ahmedselaman@gmail.com>\n"
+"Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
+"messaging-app/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -152,7 +152,6 @@ msgid "Busy"
 msgstr ""
 
 #: ../src/qml/Messages.qml:641 ../src/qml/Messages.qml:723
-#, fuzzy
 msgid "Call"
 msgstr "اتصال"
 
