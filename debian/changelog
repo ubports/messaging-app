@@ -1,3 +1,10 @@
+messaging-app (0.1.2~0ubports1) xenial; urgency=medium
+
+  * Fix adding of a new contact
+    (https://github.com/ubports/ubuntu-touch/issues/878)
+
+ -- Alberto Mardegan <mardy@users.sourceforge.net>  Fri, 14 Sep 2018 00:19:06 +0300
+
 messaging-app (0.1.1+ubports1) xenial; urgency=medium
 
   [ Gustavo Pichorim Boiko ]
