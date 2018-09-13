@@ -2,6 +2,8 @@ project(messaging-app)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
+option(ENABLE_TESTS "Build test programs" ON)
+
 # Standard install paths
 include(GNUInstallDirs)
 
@@ -72,6 +74,6 @@ enable_testing()
 add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(accounts)
-if (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "aarch64") AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64el")) AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64le")))
+if (ENABLE_TESTS AND NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "aarch64") AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64el")) AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64le")))
     add_subdirectory(tests)
 endif()

@@ -32,7 +32,7 @@ Build-Depends: apparmor:native,
                qml-module-qt-labs-settings,
                qml-module-qtmultimedia,
                qtpim5-dev,
-               xvfb,
+               xvfb <!nocheck>,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/messaging-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
