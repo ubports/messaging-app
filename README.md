@@ -23,7 +23,7 @@ See [crossbuilder on github](https://github.com/ubports/crossbuilder) for detail
 
 Useful Links
 ============
-Here are some useful links with regards to the Music App development.
+Here are some useful links with regards to the Messaging App development.
 
 * [UBports](https://ubports.com/)
 * [building with crossbuilder](http://docs.ubports.com/en/latest/appdev/system-software.html?highlight=crossbuilder#cross-building-with-crossbuilder)
