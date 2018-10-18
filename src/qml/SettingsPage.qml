@@ -286,6 +286,7 @@ Page {
     UbuntuListView {
         id: settingsList
 
+        currentIndex: -1
         anchors {
             fill: parent
         }
