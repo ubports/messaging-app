@@ -78,8 +78,7 @@ ContactViewPage {
             }
         }
     }
-
-
+    
     leadingActions: [
         Action {
             objectName: "cancel"
