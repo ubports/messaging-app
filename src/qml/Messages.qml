@@ -855,7 +855,6 @@ Page {
                 anchors {
                     left: parent ? parent.left : undefined
                     right: parent ? parent.right : undefined
-                    rightMargin: units.gu(2)
                     top: parent ? parent.top: undefined
                     topMargin: units.gu(1)
                 }
