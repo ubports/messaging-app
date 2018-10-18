@@ -50,7 +50,7 @@ Page {
         mainStack.removePages(newRecipientPage)
     }
 
-    function createEmptyContactWithAccount(account, parent)
+    function createEmptyContact(account, parent)
     {
         var details = [ {detail: "EmailAddress", field: "emailAddress", value: ""},
                         {detail: "Name", field: "firstName", value: ""}
@@ -66,10 +66,15 @@ Page {
             newContact.addDetail(newDetail)
         }
 
-        var accountSourceTemplate = "import QtContacts 5.0; OnlineAccount{ accountUri: \"%1\"; protocol: %2 }"
-        var newDetail = Qt.createQmlObject(accountSourceTemplate
-                                           .arg(account.uri)
-                                           .arg(account.protocol), parent)
+        if (account.protocol === "OnlineAccount.Unknown") {
+            var phoneSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + account.uri + "\" }"
+            var newDetail = Qt.createQmlObject(phoneSourceTemplate, parent)
+        } else {
+            var accountSourceTemplate = "import QtContacts 5.0; OnlineAccount{ accountUri: \"%1\"; protocol: %2 }"
+            var newDetail = Qt.createQmlObject(accountSourceTemplate
+                                               .arg(account.uri)
+                                               .arg(account.protocol), parent)
+        }
         newContact.addDetail(newDetail)
         return newContact
     }
@@ -226,11 +231,11 @@ Page {
         }
 
         onAddNewContactClicked: {
-            var newContact = newRecipientPage.createEmptyContactWithAccount(newRecipientPage.accountToAdd, newRecipientPage)
+            var newContact = newRecipientPage.createEmptyContact(newRecipientPage.accountToAdd, newRecipientPage)
             var focusField = "name"
             if (newRecipientPage.accountToAdd) {
                 switch (newRecipientPage.accountToAdd.protocol) {
-                case "ofono":
+                case "OnlineAccount.Unknown":
                     focusField = "phones"
                     break
                 default:
