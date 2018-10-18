@@ -78,6 +78,19 @@ ContactViewPage {
             }
         }
     }
+    
+    
+    leadingActions: [
+        Action {
+            objectName: "cancel"
+
+            text: i18n.tr("Cancel")
+            iconName: "back"
+            shortcut: "Esc"
+            onTriggered: pageStack.removePages(root)
+        }
+
+    ]
 
     headerActions: [
         Action {
