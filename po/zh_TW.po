@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-10-25 09:43+0000\n"
+"PO-Revision-Date: 2018-10-28 00:00+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hant/>\n"
@@ -61,6 +61,7 @@ msgid "Add"
 msgstr "加入"
 
 #: ../src/qml/NewRecipientPage.qml:55
+#, fuzzy
 msgid "Add recipient"
 msgstr "加入收件人"
 
@@ -96,7 +97,7 @@ msgstr[0] "附件：%1 個圖像"
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] "附件：%1 條影片"
+msgstr[0] "附件：%1 份影片"
 
 #: ../src/qml/MMS/MMSDefault.qml:28
 msgid "Audio attachment not supported"
