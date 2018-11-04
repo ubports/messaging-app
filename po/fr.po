@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-08-05 15:00+0000\n"
-"Last-Translator: Anne Onyme <anneonyme017@openmailbox.org>\n"
+"PO-Revision-Date: 2018-11-04 00:01+0000\n"
+"Last-Translator: Anne Onyme <anneonyme017@tutanota.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.20\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
@@ -421,7 +421,7 @@ msgstr "Partager"
 
 #: ../src/qml/MessageInfoDialog.qml:129
 msgid "Status"
-msgstr "État"
+msgstr "Statut"
 
 #: ../src/qml/SwipeItemDemo.qml:256
 msgid "Swipe to delete"
