@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-11-07 05:57+0000\n"
+"PO-Revision-Date: 2018-11-16 19:11+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -409,7 +409,7 @@ msgstr "Vyhledat"
 
 #: ../src/qml/MainPage.qml:52 ../src/qml/NewRecipientPage.qml:93
 msgid "Search..."
-msgstr "Hledat…"
+msgstr "Vyhledat..."
 
 #: ../src/qml/MessageInfoDialog.qml:114
 msgid "Sent"
