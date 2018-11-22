@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-11-18 21:07+0000\n"
+"PO-Revision-Date: 2018-11-25 00:01+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hant/>\n"
@@ -203,7 +203,7 @@ msgstr "檔案類型不支援"
 
 #: ../src/qml/MessagesListView.qml:143
 msgid "Forward"
-msgstr "轉傳"
+msgstr "轉發"
 
 #: ../src/qml/MessageInfoDialog.qml:97
 msgid "From"
