@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-21 11:02-0300\n"
-"PO-Revision-Date: 2018-11-11 04:59+0000\n"
+"PO-Revision-Date: 2018-12-23 00:00+0000\n"
 "Last-Translator: Sander <sander.k1007@kpnmail.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "messaging-app/nl/>\n"
@@ -250,7 +250,7 @@ msgstr "Afbeeldingsvoorbeeld"
 
 #: ../src/qml/MessagesListView.qml:111 ../src/qml/SwipeItemDemo.qml:177
 msgid "Info"
-msgstr "Info"
+msgstr "Informatie"
 
 #: ../src/qml/Messages.qml:277
 msgid "It is not possible to send messages in flight mode"
