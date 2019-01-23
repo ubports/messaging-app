@@ -1,0 +1,30 @@
+{
+	"policy_version": 16.04,
+		"policy_groups": [
+			"accounts",
+		"audio",
+		"contacts",
+		"content_exchange",
+		"content_exchange_source",
+		"history",
+		"microphone",
+		"video"
+		],
+		"abstractions": [
+			"user-tmp"
+		],
+		"template_variables": {
+			"APP_ID_DBUS": "messaging_2dapp",
+			"APP_PKGNAME_DBUS": "messaging_2dapp",
+			"APP_PKGNAME": "com.ubuntu.messaging-app"
+		},
+		"read_path": [
+			"/usr/share/applications/",
+			"/custom/xdg/data/dconf/",
+			"/usr/share/*/assets/",
+			"@{HOME}/.local/share/evolution/addressbook/*/photos/",
+			"@{HOME}/.cache/messaging-app/HubIncoming/**",
+			"@{HOME}/.config/dconf/user",
+			"/usr/share/messaging-app/"
+		]
+}
