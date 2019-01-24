@@ -1,7 +1,0 @@
-[Desktop Entry]
-_Name=App Title
-Exec=messaging-app %u
-Icon=assets/logo.svg
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true

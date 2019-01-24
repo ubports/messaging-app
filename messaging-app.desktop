@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Messaging+
+Exec=bin/messaging-app %u
+Icon=share/messaging-app/assets/messaging-app.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
