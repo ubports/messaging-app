@@ -42,6 +42,8 @@ inline QString messagingAppDirectory() {
     } else if (isRunningInstalled()) {
         return QString("@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/");
     } else {
+      	//TODO! is any enviroment variable? use it
+        return QString("/opt/click.ubuntu.com/messaging-app.yourname/1.0.0/share/messaging-app/");
         return QString("@CMAKE_SOURCE_DIR@/src/qml/");
     }
 }
