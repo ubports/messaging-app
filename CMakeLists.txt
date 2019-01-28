@@ -2,6 +2,7 @@ project(messaging-app)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
+#TODO! tests turned off, make them work
 option(ENABLE_TESTS "Build test programs" OFF)
 
 # Standard install paths
