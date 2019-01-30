@@ -7,7 +7,7 @@
 @{APP_PKGNAME_DBUS}="messaging_2dapp"
 @{APP_PKGNAME}="com.ubuntu.messaging-app"
 
-profile "messaging-app.yourname_messaging-app_1.0.0" (attach_disconnected) {
+profile "messaging-app.ubports-app_1.0.0" (attach_disconnected) {
   network,
   / rwkl,
   /** rwlkm,

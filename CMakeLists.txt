@@ -80,7 +80,7 @@ execute_process(
 )
 
 set(PROJECT_NAME "messaging-app")
-set(FULL_PROJECT_NAME "messaging-app.yourname")
+set(FULL_PROJECT_NAME "messaging-app.ubports")
 set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
