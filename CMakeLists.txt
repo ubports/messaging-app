@@ -4,6 +4,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 #TODO! tests turned off, make them work
 option(ENABLE_TESTS "Build test programs" OFF)
+option(CLICK_MODE "Build click package" OFF)
+
 # Standard install paths
 include(GNUInstallDirs)
 
@@ -74,7 +76,9 @@ enable_testing()
 add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(accounts)
-add_subdirectory(click)
+if (CLICK_MODE)
+    add_subdirectory(click)
+endif()
 if (ENABLE_TESTS AND NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "aarch64") AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64el")) AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64le")))
     add_subdirectory(tests)
 endif()

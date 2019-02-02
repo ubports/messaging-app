@@ -43,7 +43,7 @@ inline QString messagingAppDirectory() {
     } else if (isRunningInstalled()) {
         return QString("@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/");
     } else if (qEnvironmentVariableIsSet(APP_DIR_PATH)) {
-        return QString("%1/usr/local/share/messaging-app/").arg(QString(qgetenv(APP_DIR_PATH)));
+        return QString("%1/share/messaging-app/").arg(QString(qgetenv(APP_DIR_PATH)));
     } else {
         return QString("@CMAKE_SOURCE_DIR@/src/qml/");
     }
