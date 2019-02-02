@@ -4,7 +4,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 #TODO! tests turned off, make them work
 option(ENABLE_TESTS "Build test programs" OFF)
-
 # Standard install paths
 include(GNUInstallDirs)
 
@@ -72,36 +71,10 @@ include_directories(
 
 enable_testing()
 
-# Components PATH
-execute_process(
-    COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
-    OUTPUT_VARIABLE ARCH_TRIPLET
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-set(PROJECT_NAME "messaging-app")
-set(FULL_PROJECT_NAME "messaging-app.ubports")
-set(CMAKE_INSTALL_PREFIX /)
-set(DATA_DIR /)
-set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
-
-# This command figures out the target architecture for use in the manifest file
-execute_process(
-    COMMAND dpkg-architecture -qDEB_HOST_ARCH
-    OUTPUT_VARIABLE CLICK_ARCH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-
-configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
-install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
-
-install(FILES ${DESKTOP_FILE_NAME} DESTINATION ${DATA_DIR})
-
 add_subdirectory(po)
 add_subdirectory(src)
 add_subdirectory(accounts)
+add_subdirectory(click)
 if (ENABLE_TESTS AND NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "aarch64") AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64el")) AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64le")))
     add_subdirectory(tests)
 endif()
