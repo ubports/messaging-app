@@ -1,4 +1,4 @@
 {
   "template": "cmake",
-  "build_args": "-DCMAKE_INSTALL_PREFIX='' -DCLICK_MODE=ON"
+  "build_args": "-DCMAKE_INSTALL_PREFIX='' -DCLICK_MODE=ON -DENABLE_TESTS=OFF"
 }
