@@ -1,6 +1,6 @@
 {
     "name": "messaging-app.ubports",
-    "description": "Messaging application",
+    "description": "Messaging application for testing purposes",
     "architecture": "@CLICK_ARCH@",
     "title": "Messaging App",
     "hooks": {
@@ -9,8 +9,7 @@
             "desktop":  "messaging-app.desktop"
         }
     },
-    "version": "1.0.0",
+    "version": "0.0.0+testing-click-build",
     "maintainer": "UBports <dev@ubports.com>",
     "framework" : "ubuntu-sdk-16.04"
 }
-
