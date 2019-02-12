@@ -13,9 +13,6 @@ clickable
 
 For faster build speeds, building app tests is disabled in ```clickable.json``` 
 
-_NOTE:_ As for now, building with clickable fails, due to libnotify dependencies missing in clickable/ubuntu-sdk:16.04-armhf docker image.
-Issue will be filled, but in the meantime you can install the ```libnotify-dev:armhf``` by yourself into the image and then use it via the ```--docker-image``` parameter. 
-
 Building with crossbuilder
 ==========================
 The easiest way to build this app is using crossbuilder.
