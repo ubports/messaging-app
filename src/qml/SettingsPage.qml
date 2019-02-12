@@ -283,7 +283,7 @@ Page {
         }
     }
 
-    UbuntuListView {
+    ListView {
         id: settingsList
 
         currentIndex: -1

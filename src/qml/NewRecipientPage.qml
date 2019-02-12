@@ -206,7 +206,7 @@ Page {
 
         focus: true
         currentIndex: -1
-        highlightSelected: true
+        highlightSelected: false
         activeFocusOnTab: true
         showAddNewButton: true
         showImportOptions: (contactList.count === 0) && (filterTerm == "")
