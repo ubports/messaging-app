@@ -35,3 +35,5 @@ debian/*.debhelper
 debian/*.debhelper.log
 debian/*.substvars
 debian/stamp-*
+
+build/

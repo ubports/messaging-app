@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Messaging
+GenericName=Messaging App
+Comment=Messaging application
+Keywords=Messages;SMS;MMS;Text Messages;Text
+Exec=bin/messaging-app %u
+Icon=share/messaging-app/assets/messaging-app.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true

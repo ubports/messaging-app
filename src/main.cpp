@@ -47,7 +47,10 @@ int main(int argc, char** argv)
 
     MessagingApplication application(argc, argv);
 
+    qDebug() << "Starting application from src/main.cpp";
+
     if (!application.setup()) {
+        qDebug() << "application setup failed";
         return 0;
     }
 
