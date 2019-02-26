@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2015 Canonical Ltd.
  *
  * This file is part of messaging-app.
@@ -78,19 +78,6 @@ ContactViewPage {
             }
         }
     }
-    
-    
-    leadingActions: [
-        Action {
-            objectName: "cancel"
-
-            text: i18n.tr("Cancel")
-            iconName: "back"
-            shortcut: "Esc"
-            onTriggered: pageStack.removePages(root)
-        }
-
-    ]
 
     headerActions: [
         Action {
