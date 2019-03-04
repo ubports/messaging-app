@@ -367,7 +367,8 @@ ListItem {
         text: textMessage
         // avoid any kind of formatting in the text message preview
         textFormat: Text.PlainText
-        maximumLineCount: 1
+        maximumLineCount: 2
+        wrapMode: Text.Wrap
         color: Theme.palette.normal.backgroundSecondaryText
     }
 
