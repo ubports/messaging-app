@@ -856,7 +856,7 @@ Page {
                     left: parent ? parent.left : undefined
                     right: parent ? parent.right : undefined
                     top: parent ? parent.top: undefined
-                    topMargin: units.gu(1)
+                    topMargin: parent ? (parent.height - multiRecipient.height)/2 : units.gu(1)
                 }
                 onActiveFocusChanged: {
                     if (!activeFocus && (searchListLoader.status != Loader.Ready || !searchListLoader.item.activeFocus))
