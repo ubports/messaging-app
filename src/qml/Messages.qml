@@ -296,7 +296,7 @@ Page {
             var properties = {}
 
             if (telepathyHelper.flightMode) {
-                properties["title"] = i18n.tr("You have to disable flight mode")
+                properties["title"] = i18n.tr("Turn off flight mode")
                 properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
             } else if (multiplePhoneAccounts) {
                 properties["title"] = i18n.tr("No SIM card selected")
@@ -1009,7 +1009,7 @@ Page {
 
         Action {
             id: mmsGroupAction
-            text: i18n.tr("Create MMS Group...")
+            text: i18n.tr("Create MMS Group…")
             onTriggered: {
                 if (!telepathyHelper.mmsEnabled) {
                     var properties = {}
@@ -1033,13 +1033,13 @@ Page {
                 text: {
                     // FIXME: temporary workaround
                     if (account.protocolInfo.name == "irc") {
-                        return i18n.tr("Join IRC Channel...")
+                        return i18n.tr("Join IRC Channel…")
                     }
                     var protocolDisplayName = account.protocolInfo.serviceDisplayName;
                     if (protocolDisplayName === "") {
                        protocolDisplayName = account.protocolInfo.serviceName;
                     }
-                    return i18n.tr("Create %1 Group...").arg(protocolDisplayName);
+                    return i18n.tr("Create %1 Group…").arg(protocolDisplayName);
                 }
                 onTriggered: mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("NewGroupPage.qml"), {"mmsGroup": false, "participants": participants, "account": account})
             }
@@ -1177,9 +1177,9 @@ Page {
             if (userTyping) {
                 if (groupChat) {
                     var contactAlias = typingContactWatcher.alias != "" ? typingContactWatcher.alias : typingContactWatcher.identifier
-                    return i18n.tr("%1 is typing..").arg(contactAlias)
+                    return i18n.tr("%1 is typing…").arg(contactAlias)
                 } else {
-                    return i18n.tr("Typing..")
+                    return i18n.tr("Typing…")
                 }
             }
             var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
@@ -1514,7 +1514,7 @@ Page {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            text: i18n.tr("You can't send messages to this group because the group is no longer active")
+            text: i18n.tr("You can't send messages to this inactive group")
         }
     }
 
