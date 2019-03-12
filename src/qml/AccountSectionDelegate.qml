@@ -122,20 +122,20 @@ ListItemWithActions {
                 }
             case HistoryThreadModel.InformationTypeAdminGranted:
                 if (messageData.senderId !== "" && messageData.senderId !== "self") {
-                    return i18n.tr("%1 set %2 as Admin").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                    return i18n.tr("%1 set %2 as admin").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
                 } else {
                     return i18n.tr("%1 is admin").arg(messageData.subjectAsAlias)
                 }
             case HistoryThreadModel.InformationTypeSelfAdminGranted:
-                return i18n.tr("You are Admin")
+                return i18n.tr("You are admin")
             case HistoryThreadModel.InformationTypeAdminRemoved:
                 if (messageData.senderId !== "" && messageData.senderId !== "self") {
-                    return i18n.tr("%1 set %2 as not Admin").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
+                    return i18n.tr("%1 removed %2 as admin").arg(messageData.sender.alias).arg(messageData.subjectAsAlias)
                 } else {
                     return i18n.tr("%1 is not admin").arg(messageData.subjectAsAlias)
                 }
             case HistoryThreadModel.InformationTypeSelfAdminRemoved:
-                return i18n.tr("You are not Admin")
+                return i18n.tr("You are not admin")
             case HistoryThreadModel.InformationTypeSelfKicked:
                 return i18n.tr("You were removed from this group")
             case HistoryThreadModel.InformationTypeGroupGone:
