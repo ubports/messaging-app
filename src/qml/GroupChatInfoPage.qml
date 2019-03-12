@@ -125,17 +125,17 @@ Page {
     property var leaveSuccessString: {
         // FIXME: temporary workaround
         if (account && account.protocolInfo.name == "irc") {
-            return i18n.tr("Successfully left channel")
+            return i18n.tr("Parted from channel")
         }
-        return i18n.tr("Successfully left group")
+        return i18n.tr("Parted from group")
     }
 
     property var leaveFailedString: {
         // FIXME: temporary workaround
         if (account && account.protocolInfo.name == "irc") {
-            return i18n.tr("Failed to leave channel")
+            return i18n.tr("Could not leave channel")
         }
-        return i18n.tr("Failed to leave group")
+        return i18n.tr("Could not leave group")
     }
 
     // self contact isn't provided by history or chatEntry, so we manually add it here
@@ -179,7 +179,7 @@ Page {
             actions: [
                 Action {
                     iconName: "close"
-                    text: i18n.tr("End group")
+                    text: i18n.tr("Dissolve group")
                     onTriggered: destroyGroup()
                     enabled: chatRoom && !isPhoneAccount && chatEntry.active && chatEntry.selfContactRoles & 2
                     visible: enabled
@@ -210,19 +210,19 @@ Page {
     function addRecipient(identifier, contact) {
         for (var i=0; i < participants; i++) {
             if (identifier == participants[i].identifier) {
-                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                application.showNotificationMessage(i18n.tr("Recipient already selected"), "dialog-error-symbolic")
                 return
             }
         }
         for (var i=0; i < localPendingParticipants; i++) {
             if (identifier == localPendingParticipants[i].identifier) {
-                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                application.showNotificationMessage(i18n.tr("Recipient already selected"), "dialog-error-symbolic")
                 return
             }
         }
         for (var i=0; i < remotePendingParticipants; i++) {
             if (identifier == remotePendingParticipants[i].identifier) {
-                application.showNotificationMessage(i18n.tr("This recipient was already selected"), "dialog-error-symbolic")
+                application.showNotificationMessage(i18n.tr("Recipient already selected"), "dialog-error-symbolic")
                 return
             }
         }
@@ -235,9 +235,9 @@ Page {
     function destroyGroup() {
         var result = chatEntry.destroyRoom()
         if (!result) {
-            application.showNotificationMessage(i18n.tr("Failed to delete group"), "dialog-error-symbolic")
+            application.showNotificationMessage(i18n.tr("Could not delete group"), "dialog-error-symbolic")
         } else {
-            application.showNotificationMessage(i18n.tr("Group has been dissolved"), "tick")
+            application.showNotificationMessage(i18n.tr("Group dissolved"), "tick")
             mainView.emptyStack()
         }
     }
@@ -245,7 +245,7 @@ Page {
     Connections {
         target: chatEntry
         onSetTitleFailed: {
-            application.showNotificationMessage(i18n.tr("Failed to modify group title"), "dialog-error-symbolic")
+            application.showNotificationMessage(i18n.tr("Could not modify group title"), "dialog-error-symbolic")
             groupName.text = chatEntry.title
         }
     }
@@ -393,7 +393,7 @@ Page {
                         }
                         return (chatEntry.groupFlags & ChatEntry.ChannelGroupFlagCanAdd)
                     }
-                    text: !searchItem.enabled ? i18n.tr("Add...") : i18n.tr("Cancel")
+                    text: !searchItem.enabled ? i18n.tr("Add…") : i18n.tr("Cancel")
                     onClicked: {
                         searchItem.enabled = !searchItem.enabled
                         searchItem.text = ""
