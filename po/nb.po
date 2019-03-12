@@ -8,20 +8,21 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2016-10-30 17:43+0000\n"
-"Last-Translator: Åka Sikrom <Unknown>\n"
-"Language-Team: Norwegian Bokmal <nb@li.org>\n"
+"PO-Revision-Date: 2019-03-12 19:07+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://translate.ubports.com/projects/"
+"ubports/messaging-app/nb/>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#kanalNavn"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -32,27 +33,27 @@ msgstr "%1 og %2 andre"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Kobler til…"
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 la til %2 i denne gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 inviterte %2 til denne gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
-#, qt-format
+#, fuzzy, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 er administrator"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 er ikke administrator"
 
 #: ../src/qml/Messages.qml:1179
 #, fuzzy, qt-format
@@ -62,37 +63,37 @@ msgstr "Skriver …"
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 tok del i gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 forlot gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 fjernet %2 fra denne gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 endret navn på gruppen til: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 gjorde %2 til administrator"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 fjernet %2 som administrator"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 ble invitert til denne gruppen"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -112,7 +113,7 @@ msgstr "Legg til"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "La til en nettbasert konto"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, fuzzy
@@ -130,11 +131,11 @@ msgstr "Ukjent kontakt"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "Legg til…"
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -212,11 +213,11 @@ msgstr "Vil du endre standard SIM-kort for meldinger til %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "Kanalinfo"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "Kanalnavn:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -239,17 +240,19 @@ msgid "Copy"
 msgstr "Kopier"
 
 #: ../src/qml/Messages.qml:1041
-#, qt-format
+#, fuzzy, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "Opprett %1 gruppe…"
 
 #: ../src/qml/Messages.qml:1011
+#, fuzzy
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "Opprett MMS-gruppe…"
 
 #: ../src/qml/NewGroupPage.qml:81
+#, fuzzy
 msgid "Creating Group..."
-msgstr ""
+msgstr "Oppretter gruppe…"
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -284,7 +287,7 @@ msgstr "Slå på MMS-gruppesamtale"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "Opphev gruppe"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
@@ -307,11 +310,11 @@ msgstr "Klarte ikke å sende melding"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "Klarte ikke å forlate gruppen"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "Klarte ikke å endre gruppetittel"
 
 #: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
@@ -363,7 +366,7 @@ msgstr "Gruppe"
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "Grupen har blitt oppløst"
 
 #: ../src/qml/NewGroupPage.qml:234
 #, fuzzy
@@ -372,7 +375,7 @@ msgstr "Gruppe"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -410,20 +413,21 @@ msgid "It is not possible to send the message"
 msgstr "Det er ikke mulig å sende meldinga"
 
 #: ../src/qml/Messages.qml:1035
+#, fuzzy
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "Ta del i IRC-kanal…"
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "Ta del i IRC-kanal:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Forlat kanal"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Forlat gruppe"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
@@ -434,18 +438,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"MMS-støtte kreves for å sende denne meldingen.\n"
+"Ønsker du å skru det på?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "MMS-støtte kreves"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Meg"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "Medlemmer:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -473,7 +479,7 @@ msgstr "Meldingsprogram"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "Flerfoldige MMS-meldinger"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
@@ -482,11 +488,11 @@ msgstr "Meg selv"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "Ny %1-gruppe"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Ny MMS-gruppe"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -494,7 +500,7 @@ msgstr "Ny melding"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "Nattmodus"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -521,11 +527,11 @@ msgstr "Ingen tilgang til mikrofon"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "Ikke tilgjengelig"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "Nummer eller kontaktnavn"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -544,7 +550,7 @@ msgstr "Tilkoblet"
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "Deltagere: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -552,7 +558,7 @@ msgstr "Venter"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Velg en konto å skape."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -592,7 +598,7 @@ msgstr "Fjern"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Fjern fra gruppen"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -600,11 +606,13 @@ msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
 msgstr ""
+"Fjerning av siste medlem vil forårsake at \"%1\" blir oppløst. Ønsker du å "
+"fortsette?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "Navn på gruppe endret til: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -649,7 +657,7 @@ msgstr "Sendt"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "Gjør til administrator"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -663,19 +671,19 @@ msgstr "Del"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "Forenklet samtalevisning"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "Sorter etter tidsstempel"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "Sorter etter tittel"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr ""
+msgstr "Sorter tråder"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
@@ -683,11 +691,11 @@ msgstr "Status"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "Forlot kanal"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "Forlot gruppe"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -711,6 +719,8 @@ msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
+"SIM-kortet ser ikke ut til å tilby eierens telefonnummer, derfor vil "
+"forsendelse av MMS-gruppemeldinger ikke være mulig."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -718,10 +728,13 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"Innholdet du sender krever én MMS-melding per mottager, så du vil bli "
+"belastet for flerfoldige meldinger.\n"
+"Ønsker du å fortsette?"
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "Valgt konto er ikke tilgjengelig for øyeblikket"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -734,8 +747,9 @@ msgstr "Telefonnettet er utilgjengelig."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
+#, fuzzy
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "Mottager allerede valgt"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -754,8 +768,9 @@ msgid "Type"
 msgstr "Type"
 
 #: ../src/qml/NewGroupPage.qml:252
+#, fuzzy
 msgid "Type a name..."
-msgstr ""
+msgstr "Skriv et navn…"
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
@@ -813,11 +828,11 @@ msgstr "I går"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "Du er administrator"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "Du er ikke administrator"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -828,9 +843,11 @@ msgstr ""
 "eller mislykkes med å sende den."
 
 #: ../src/qml/Messages.qml:1516
+#, fuzzy
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
+"Du kan ikke sende meldinger til denne gruppen fordi den ikke lenger er aktiv"
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
@@ -843,15 +860,15 @@ msgstr "Du må trykke og holde på opptaksikonet"
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "Du inviterte %1 til denne gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "Du tok del i gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "Du forlot gruppen"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -860,7 +877,7 @@ msgstr "Du må velge et SIM-kort"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "Du endret navn på gruppen til: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -869,7 +886,7 @@ msgstr "%2 byttet du til %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "Du ble fjernet fra gruppen"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
