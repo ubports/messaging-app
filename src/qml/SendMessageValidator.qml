@@ -206,7 +206,7 @@ Item {
             var properties = {}
 
             if (telepathyHelper.flightMode) {
-                properties["title"] = i18n.tr("You have to disable flight mode")
+                properties["title"] = i18n.tr("Turn off flight mode")
                 properties["text"] = i18n.tr("It is not possible to send messages in flight mode")
             } else if (multiplePhoneAccounts) {
                 properties["title"] = i18n.tr("No SIM card selected")
@@ -216,7 +216,7 @@ Item {
                 properties["text"] = i18n.tr("Please insert a SIM card and try again.")
             } else {
                 properties["text"] = i18n.tr("It is not possible to send the message")
-                properties["title"] = i18n.tr("Failed to send the message")
+                properties["title"] = i18n.tr("Cannot send message")
             }
             PopupUtils.open(Qt.createComponent("Dialogs/InformationDialog.qml").createObject(messages), messages, properties)
             return false
