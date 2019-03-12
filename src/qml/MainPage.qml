@@ -58,7 +58,7 @@ Page {
             rightMargin: units.gu(2)
         }
         inputMethodHints: Qt.ImhNoPredictiveText
-        placeholderText: i18n.tr("Search...")
+        placeholderText: i18n.tr("Search…")
         onActiveFocusChanged: {
             if (!activeFocus) {
                 searchField.text = ""
@@ -215,7 +215,7 @@ Page {
                 else if (telepathyHelper.ready) {
                     var account = telepathyHelper.accountForId(title)
                     if (account.connectionStatus == AccountEntry.ConnectionStatusConnecting) {
-                        return i18n.tr("%1 - Connecting...").arg(account.displayName)
+                        return i18n.tr("%1 - Connecting…").arg(account.displayName)
                     } else {
                         return account.displayName
                     }
@@ -375,7 +375,7 @@ Page {
                 incubator.onStatusChanged = objectCreated;
 
             } else if (component.status == Component.Error) {
-                console.log("Error loading component:", component.errorString());
+                console.log("Could not load component:", component.errorString());
             }
         }
 
