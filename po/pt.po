@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-12 19:57+0000\n"
-"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
+"PO-Revision-Date: 2019-03-14 16:04+0000\n"
+"Last-Translator: Rúben Carneiro <rubencarneiro01@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pt/>\n"
 "Language: pt\n"
@@ -353,7 +353,7 @@ msgstr "Grupo (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
 msgid "Group Info"
-msgstr "Info do grupo"
+msgstr "Informação do grupo"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
