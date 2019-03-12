@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-12 22:02+0000\n"
+"PO-Revision-Date: 2019-03-14 16:04+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -125,7 +125,7 @@ msgstr "Přidat příjemce"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr "Přidat mezi kontakty"
+msgstr "Přidat do kontaktů"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
@@ -720,7 +720,7 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 "Obsah, který odesíláte vyžaduje MMS zprávu pro každěho z příjemců. Je možné, "
-"že Vám bude služba takto  vyúčtováno"
+"že Vám bude služba takto vyúčtována. Chcete pokračovat?"
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
