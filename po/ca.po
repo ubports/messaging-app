@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-12 22:25+0000\n"
+"PO-Revision-Date: 2019-03-14 16:04+0000\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ca/>\n"
@@ -125,7 +125,7 @@ msgstr "Afegeix el destinatari"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr "Afegeix a contactes"
+msgstr "Afegeix als contactes"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
