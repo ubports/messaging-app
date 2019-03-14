@@ -58,12 +58,7 @@ Page {
                    "property": mainView.compactView,
                    "activatedFuncion": null,
                    "setMethod": "compactView"}
-        },
-        { "type": "action",
-          "data": { "name": "addAccount",
-                    "description": i18n.tr("Add an online account"),
-                    "onActivated": "createAccount" }
-        },       
+        },   
         { "type": "options",
           "data": { "name": "threadSort",
                     "description": i18n.tr("Sort threads"),
