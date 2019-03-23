@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2014-10-01 20:54+0000\n"
-"Last-Translator: Yaron <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"PO-Revision-Date: 2019-03-25 06:19+0000\n"
+"Last-Translator: maor26 <maor262@gmail.com>\n"
+"Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
+"messaging-app/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -32,7 +33,7 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "1% - מתחבר..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
@@ -47,47 +48,47 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "1% הוא המנהל"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "1% לא מנהל"
 
 #: ../src/qml/Messages.qml:1179
 #, qt-format
 msgid "%1 is typing.."
-msgstr ""
+msgstr "1% מקליד/ה"
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "1% הצטרף לקבוצה"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "1% עזב/ה את הקבוצה"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "1% הסיר/ה את 2% מהקבוצה"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "1% שינה את שם הקבוצה ל: 2%"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "1% הפך את 2% למנהל"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "1% הסיר ל 2% את הרשאות הניהול"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
@@ -100,11 +101,11 @@ msgstr ""
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "החלק על מנת לבטל >>>"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "התקבל"
 
 #: ../src/qml/Messages.qml:793
 msgid "Add"
@@ -112,7 +113,7 @@ msgstr "הוספה"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "הוסף חשבון מקוון"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, fuzzy
@@ -125,15 +126,15 @@ msgstr "הוספת נמען"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr ""
+msgstr "הוסף לאנשי קשר"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "הוסף..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "מנהל"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -176,21 +177,21 @@ msgstr[1] ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "קובץ אודיו מצורף לא נתמך"
 
 #: ../src/qml/Messages.qml:1194
 msgid "Away"
-msgstr ""
+msgstr "לא פה"
 
 #: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
 #: ../src/qml/SettingsPage.qml:260
 msgid "Back"
-msgstr ""
+msgstr "אחורה"
 
 #: ../src/qml/Messages.qml:1196
 msgid "Busy"
-msgstr ""
+msgstr "עסוק/ה"
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
 msgid "Call"
@@ -211,11 +212,11 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "מידע על הערוץ"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "שם הערוץ:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -226,7 +227,7 @@ msgstr "סגירה"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "חבר הודעה חדשה ע\"י החלקה כלפי מעלה מתחתית המסך"
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
@@ -240,50 +241,49 @@ msgstr "העתקה"
 #: ../src/qml/Messages.qml:1041
 #, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "צור 1% קבוצה..."
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "צור קבוצת MMS..."
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "יוצר קבוצה..."
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
-msgstr ""
+msgstr "מחק"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr ""
+msgstr "מחק"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr ""
+msgstr "התקבל"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "אל תשאל שוב"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
-msgstr ""
+msgstr "אל תראה שוב"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr ""
+msgstr "ערוך"
 
 #: ../src/qml/SettingsPage.qml:50
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "הודעה חדשה"
+msgstr "אפשר הודעות MMS"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "סיים קבוצה"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
@@ -291,82 +291,82 @@ msgstr "נכשלה"
 
 #: ../src/qml/NewGroupPage.qml:170
 msgid "Failed to create group"
-msgstr ""
+msgstr "לא היה ניתן ליצור קבוצה"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
 msgid "Failed to delete group"
-msgstr ""
+msgstr "לא ניתן היה למחוק קבוצה"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
 msgid "Failed to leave channel"
-msgstr ""
+msgstr "לא ניתן היה לעזוב את הערוץ"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "לא ניתן היה לעזוב את הקבוצה"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "לא ניתן היה לשנות את שם הקבוצה"
 
 #: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
-msgstr ""
+msgstr "לא ניתן היה לשלוח את ההודעה"
 
 #: ../src/qml/MessageStatusIcon.qml:75
 msgid "Failed!"
-msgstr ""
+msgstr "נכשל!"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr ""
+msgstr "מועדפים"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "אזהרת גודל קובץ"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "סוג קובץ אינו נתמך"
 
 #: ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr ""
+msgstr "העבר"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr ""
+msgstr "מ"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr ""
+msgstr "הבנתי"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
-msgstr ""
+msgstr "קבוצה"
 
 #: ../src/qml/Messages.qml:764
 #, qt-format
 msgid "Group (%1)"
-msgstr ""
+msgstr "קבוצה (1%)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
 msgid "Group Info"
-msgstr ""
+msgstr "מידע הקבוצה"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "הקבוצה התפרקה"
 
 #: ../src/qml/NewGroupPage.qml:234
 msgid "Group name:"
-msgstr ""
+msgstr "שם הקבוצה:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -376,7 +376,7 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr ""
+msgstr "תמונה"
 
 #: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -386,69 +386,71 @@ msgstr "תצוגה מקדימה של תמונה"
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr ""
+msgstr "מידע"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
-msgstr ""
+msgstr "לא ניתן לשלוח הודעה בזמן זה"
 
 #: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "לא ניתן לשלוח הודעות במצב טיסה"
 
 #: ../src/qml/SendMessageValidator.qml:218
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "לא ניתן לשלוח את ההודעה"
 
 #: ../src/qml/Messages.qml:1035
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "הצטרף לערוץ ה-IRC..."
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "הצטרף לערוץ ה-IRC:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "עזוב את הערוץ"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "עזוב את הקבוצה"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:31
 msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"נדרשת תמיכה ב-MMS על מנת לשלוח הודעה זו.\n"
+"האם ברצונך לאפשר זאת?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "תמיכת MMS נדרשת"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "אני"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "חברים:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
-msgstr ""
+msgstr "מידע ההודעה"
 
 #: ../src/qml/MainPage.qml:77
 msgid "Messages"
-msgstr ""
+msgstr "הודעות"
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr ""
+msgstr "הודעות;SMS;MMS;הודעות טקסט;טקסט"
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
@@ -456,19 +458,19 @@ msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr ""
+msgstr "הודעות"
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr ""
+msgstr "יישום הודעות"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "הודעות MMS מרובות"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
-msgstr ""
+msgstr "עצמי"
 
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
