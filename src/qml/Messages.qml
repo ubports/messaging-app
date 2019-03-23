@@ -41,10 +41,10 @@ Page {
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property variant participants: {
-        if (chatEntry.active) {
-            return chatEntry.participants
-        } else if (threads.length > 0) {
+        if (threads.length > 0) {
             return threadInformation.participants
+        } else if (chatEntry.active) {
+            return chatEntry.participants
         }
         return []
     }
