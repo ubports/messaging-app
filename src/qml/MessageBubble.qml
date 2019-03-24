@@ -33,7 +33,7 @@ BorderImage {
     property alias sender: senderName.text
     property string messageText
     property var messageTimeStamp
-    property int maxDelegateWidth: units.gu(27)
+    readonly property int maxDelegateWidth: units.gu(27)
     property string accountName
     property var account
     property var _accountRegex: account && (account.selfContactId != "") ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
@@ -144,7 +144,7 @@ BorderImage {
             left: parent.left
             leftMargin: units.gu(1)
         }
-        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
+        Component.onCompleted: if (paintedWidth > maxDelegateWidth) width = maxDelegateWidth
         fontSize: "medium"
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)

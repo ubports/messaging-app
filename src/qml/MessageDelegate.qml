@@ -45,7 +45,15 @@ ListItem {
     property bool incoming: (messageData && messageData.senderId !== "self")
     property string accountLabel: ""
     property bool isMultimedia: false
-    property var _lastItem: textBubble.visible ? textBubble : attachmentsLoader.item.lastItem
+    property var _lastItem: {
+        if (textBubble.visible) {
+            return textBubble
+        }
+        else if ( attachmentsLoader && attachmentsLoader.item ) {
+            return attachmentsLoader.item.lastItem
+        }
+        else return null
+    }
     property alias account: textBubble.account
 
     swipeEnabled: !(attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
