@@ -199,8 +199,8 @@ Item {
         Behavior on opacity { UbuntuNumberAnimation {} }
         visible: opacity > 0 && composeBar.enableAttachments
 
-        width: visible ? childrenRect.width : 0
-        height: visible ? childrenRect.height : 0
+        width: opacity > 0 ? childrenRect.width : 0
+        height: opacity > 0 ? childrenRect.height : 0
 
         anchors {
             left: parent.left
@@ -570,7 +570,7 @@ Item {
             }
         }
     }
-    
+
     AttachmentPanel {
         id: attachmentPanel
 

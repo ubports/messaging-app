@@ -268,7 +268,7 @@ Page {
             }
         }
 
-        listDelegate: ThreadDelegate {            
+        listDelegate: ThreadDelegate {
             id: threadDelegate
 
             function show()
@@ -409,7 +409,7 @@ Page {
     }
 
     onActiveFocusChanged: {
-        if (activeFocus) {
+        if (activeFocus && threadList.currentItem !== null && threadList.currentItem >= 0 ) {
             threadList.currentItem.forceActiveFocus()
         }
     }

@@ -71,7 +71,7 @@ Page {
         }
         return ids
     }
-    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
+    property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || (participants !== null && participants.length > 1)
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     // FIXME: MainView should provide if the view is in portait or landscape
@@ -121,9 +121,9 @@ Page {
         }
         var roomInfo = threadInformation.chatRoomInfo
         if (roomInfo) {
-            if (roomInfo.Title != "") {
+            if (typeof roomInfo.Title === "string" && roomInfo.Title != "") {
                 return roomInfo.Title
-            } else if (roomInfo.RoomName != "") {
+            } else if (typeof roomInfo.RoomName === "string" && roomInfo.RoomName != "") {
                 return roomInfo.RoomName
             }
         }
@@ -1557,7 +1557,7 @@ Page {
             selfTypingTimer.restart()
 
         }
-        canSend: chatType == ChatEntry.ChatTypeRoom || participants.length > 0 || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
+        canSend: chatType == ChatEntry.ChatTypeRoom || (participants !== null && participants.length > 0) || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
         usingMMS: messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-12 04:35+0000\n"
+"POT-Creation-Date: 2019-03-24 09:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,10 +109,6 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:64
-msgid "Add an online account"
-msgstr ""
-
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
 msgstr ""
@@ -181,8 +177,8 @@ msgid "Away"
 msgstr ""
 
 #: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
-#: ../src/qml/SettingsPage.qml:260
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:101
+#: ../src/qml/SettingsPage.qml:255
 msgid "Back"
 msgstr ""
 
@@ -230,7 +226,7 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr ""
@@ -248,7 +244,7 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
@@ -326,7 +322,7 @@ msgstr ""
 msgid "File type not supported"
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr ""
@@ -379,7 +375,7 @@ msgstr ""
 msgid "Image Preview"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:166
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -413,7 +409,7 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr ""
 
@@ -480,7 +476,7 @@ msgstr ""
 msgid "New message"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:77
+#: ../src/qml/SettingsPage.qml:72
 msgid "Night Mode"
 msgstr ""
 
@@ -588,7 +584,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr ""
@@ -597,7 +593,7 @@ msgstr ""
 msgid "SIM Card is locked"
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
 msgstr ""
 
@@ -653,7 +649,7 @@ msgstr ""
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:69
+#: ../src/qml/SettingsPage.qml:64
 msgid "Sort threads"
 msgstr ""
 
@@ -681,7 +677,7 @@ msgstr ""
 msgid "Temporarily Failed"
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:86
+#: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
 msgstr ""
