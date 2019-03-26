@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2017-11-30 18:49+0000\n"
-"Last-Translator: Mappack Owner <mappack@null.net>\n"
+"PO-Revision-Date: 2019-03-31 00:00+0000\n"
+"Last-Translator: Tom Dom <thomas@patoel.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "messaging-app/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -346,7 +346,7 @@ msgstr "Van"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr "Begrepen"
+msgstr "Ik begrijp het"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -537,7 +537,7 @@ msgstr "Offline"
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Ok"
+msgstr "Oké"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
@@ -554,7 +554,7 @@ msgstr "In afwachting"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Kies een account om toe te voegen."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -574,10 +574,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"U dient uw simkaart te deblokkeren om te kunnen bellen of een bericht te "
-"sturen. U kunt uw simkaart deblokkeren via het netwerkmenu bovenin in het "
+"Je moet je simkaart deblokkeren om te kunnen bellen of een bericht te "
+"versturen. Je kunt je simkaart deblokkeren via het netwerkmenu bovenin het "
 "scherm of door naar <a href=\"system_settings\">Systeeminstellingen &gt; "
-"Beveiliging &amp; Privacy</a> te gaan."
+"Beveiliging en Privacy</a> te gaan."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
@@ -611,7 +611,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "Opnieuw proberen"
+msgstr "Opnieuw"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
@@ -728,11 +728,11 @@ msgstr ""
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "Er is momenteel geen netwerk op %1"
+msgstr "Je hebt momenteel geen bereik op %1"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "Er is momenteel geen netwerk."
+msgstr "Je hebt momenteel geen bereik."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
