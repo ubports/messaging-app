@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-13 08:23+0000\n"
-"Last-Translator: Christian <christian-pauly@posteo.de>\n"
+"PO-Revision-Date: 2019-03-31 00:00+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "messaging-app/de/>\n"
 "Language: de\n"
@@ -333,7 +333,7 @@ msgstr "Dateityp wird nicht unterstützt"
 #: ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr "Weiterleiten"
+msgstr "Vor"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
@@ -625,7 +625,7 @@ msgstr "Speichern"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr "Suchen"
+msgstr "Suche"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
