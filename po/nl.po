@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-31 00:00+0000\n"
+"PO-Revision-Date: 2019-04-08 07:52+0000\n"
 "Last-Translator: Tom Dom <thomas@patoel.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "messaging-app/nl/>\n"
@@ -33,67 +33,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Verbinden..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 heeft %2 aan deze groep toegevoegd"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 heeft %2 uitgenodigd voor deze groep"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 is Beheerder"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 is geen Beheerder"
 
 #: ../src/qml/Messages.qml:1179
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "Bezig met typen…"
+msgstr "%1 is aan het typen.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
-#, qt-format
+#, fuzzy, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 zit nu in deze groep"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 heeft deze groep verlaten"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 heeft %2 verwijderd uit deze groep"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 heeft de naam van de groep veranderd in: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 heeft %2 Beheerder gemaakt"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 heeft %2 niet-Beheerder gemaakt"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 was uitgenodigd voor deze groep"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -113,29 +113,27 @@ msgstr "Toevoegen"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "Een online account toevoegen"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "Ontvanger toevoegen"
+msgstr "Deelnemer toevoegen:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
 msgstr "Ontvanger toevoegen"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "Onbekend contact"
+msgstr "Aan adresboek toevoegen"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "Toevoegen..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "Beheerder"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -160,25 +158,25 @@ msgstr[1] "Bijlages: %1 contacten"
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Bijlage: %1 bestand"
-msgstr[1] "Bijlages: %1 bestanden"
+msgstr[1] "Bijlagen: %1 bestanden"
 
 #: ../src/qml/ThreadDelegate.qml:107
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Bijlage: %1 afbeelding"
-msgstr[1] "Bijlages: %1 afbeeldingen"
+msgstr[1] "Bijlagen: %1 afbeeldingen"
 
 #: ../src/qml/ThreadDelegate.qml:110
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Bijlage: %1 video"
-msgstr[1] "Bijlages: %1 video´s"
+msgstr[1] "Bijlagen: %1 video's"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
-msgstr "Audiobijlage wordt niet ondersteund"
+msgstr "Audio-bijlage wordt niet ondersteund"
 
 #: ../src/qml/Messages.qml:1194
 msgid "Away"
@@ -213,11 +211,11 @@ msgstr "Alle berichtassociaties overzetten naar %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "Kanaal informatie"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "Kanaalnaam:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -229,7 +227,8 @@ msgstr "Sluiten"
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
-"Start een nieuw bericht door omhoog te vegen vanaf onderaan het scherm."
+"Maak een nieuw bericht door omhoog te vegen vanaf de onderkant van het "
+"scherm."
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
@@ -238,26 +237,27 @@ msgstr "Contact"
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr "Kopiëren"
+msgstr "Kopieer"
 
 #: ../src/qml/Messages.qml:1041
-#, qt-format
+#, fuzzy, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "Maak %1 Groep..."
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "Maak een MMS-Groep..."
 
 #: ../src/qml/NewGroupPage.qml:81
+#, fuzzy
 msgid "Creating Group..."
-msgstr ""
+msgstr "Groep Maken..."
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
-msgstr "Verwijderen"
+msgstr "Verwijder"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -265,7 +265,7 @@ msgstr "Verwijderd"
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr "Afgeleverd"
+msgstr "Verzonden"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
@@ -280,40 +280,37 @@ msgid "Edit"
 msgstr "Bewerken"
 
 #: ../src/qml/SettingsPage.qml:50
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "MMS groeps-chat inschakelen"
+msgstr "MMS-berichten inschakelen"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
+#, fuzzy
 msgid "End group"
-msgstr ""
+msgstr "Groep verwijderen"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
 msgstr "Mislukt"
 
 #: ../src/qml/NewGroupPage.qml:170
-#, fuzzy
 msgid "Failed to create group"
-msgstr "Sturen van bericht mislukt"
+msgstr "Groep aanmaken mislukt"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
-#, fuzzy
 msgid "Failed to delete group"
-msgstr "Veeg om te verwijderen"
+msgstr "Groep verwijderen mislukt"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
-#, fuzzy
 msgid "Failed to leave channel"
-msgstr "Sturen van bericht mislukt"
+msgstr "Kanaal verlaten mislukt"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "Groep verlaten mislukt"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "Groepnaam aanpassen mislukt"
 
 #: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
@@ -358,23 +355,21 @@ msgid "Group (%1)"
 msgstr "Groep (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
-#, fuzzy
 msgid "Group Info"
-msgstr "Groep"
+msgstr "Groepinformatie"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "Groep is opgeheven"
 
 #: ../src/qml/NewGroupPage.qml:234
-#, fuzzy
 msgid "Group name:"
-msgstr "Groep"
+msgstr "Groepnaam:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -390,7 +385,7 @@ msgstr "Afbeelding"
 
 #: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
 msgid "Image Preview"
-msgstr "Afbeeldingsvoorbeeld"
+msgstr "Voorvertoning Afbeelding"
 
 #: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:166
 #: ../src/qml/ParticipantInfoPage.qml:35
@@ -399,9 +394,8 @@ msgid "Info"
 msgstr "Info"
 
 #: ../src/qml/Messages.qml:309
-#, fuzzy
 msgid "It is not possible to send messages at the moment"
-msgstr "U kunt geen berichten sturen in de vliegtuigstand"
+msgstr "Het is niet mogelijk om op dit moment berichten te verzenden"
 
 #: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
