@@ -554,19 +554,24 @@ Item {
                     bottomMargin: visible ? units.gu(.5) : 0
                 }
                 height: visible ? units.gu(2) : 0
+                readonly property int smsLength: length<=160 ? 160 : 153
+                property int length: {
+                    var str = messageTextArea.displayText
+                    var m = encodeURIComponent(str).match(/%[89ABab]/g)
+                    return str.length + (m ? m.length : 0)
+                }
+                property int smsCount: Math.ceil(length/smsLength)
                 text: {
                     if ((attachments.count > 0) || usingMMS) {
-                        i18n.tr("MMS")
+                        return i18n.tr("MMS")
                     } else {
-                        messageTextArea.length + " (" + messageCount + ")"
+                        return "%1/%2 (%3 SMS)".arg(length).arg(smsCount*smsLength).arg(smsCount)
                     }
                 }
-                fontSize: "small"
+                textSize: Label.XSmall
                 font.italic: messageTextArea.inputMethodComposing && (attachments.count == 0) && !usingMMS
                 color: Theme.palette.normal.backgroundTertiaryText
-                // hide this option for now
-                //visible: msgSettings.showCharacterCount && (messageTextArea.lineCount > 1)
-                visible: false
+                visible: messageTextArea.displayText.length > 0
             }
         }
     }
