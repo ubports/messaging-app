@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-04-08 07:52+0000\n"
+"PO-Revision-Date: 2019-04-11 08:47+0000\n"
 "Last-Translator: Tom Dom <thomas@patoel.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "messaging-app/nl/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#kanaalNaam"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -61,7 +61,7 @@ msgid "%1 is typing.."
 msgstr "%1 is aan het typen.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 joined this group"
 msgstr "%1 zit nu in deze groep"
 
@@ -125,7 +125,7 @@ msgstr "Ontvanger toevoegen"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr "Aan adresboek toevoegen"
+msgstr "Toevoegen aan contacten"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
@@ -240,7 +240,7 @@ msgid "Copy"
 msgstr "Kopieer"
 
 #: ../src/qml/Messages.qml:1041
-#, fuzzy, qt-format
+#, qt-format
 msgid "Create %1 Group..."
 msgstr "Maak %1 Groep..."
 
@@ -249,7 +249,6 @@ msgid "Create MMS Group..."
 msgstr "Maak een MMS-Groep..."
 
 #: ../src/qml/NewGroupPage.qml:81
-#, fuzzy
 msgid "Creating Group..."
 msgstr "Groep Maken..."
 
@@ -284,9 +283,8 @@ msgid "Enable MMS messages"
 msgstr "MMS-berichten inschakelen"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
-#, fuzzy
 msgid "End group"
-msgstr "Groep verwijderen"
+msgstr "Groep beëindigen"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
@@ -407,19 +405,19 @@ msgstr "Het bericht kan niet verstuurd worden"
 
 #: ../src/qml/Messages.qml:1035
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "IRC-kanaal binnengaan..."
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "Ga IRC-kanaal binnen:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Verlaat kanaal"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Groep verlaten"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
@@ -430,18 +428,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"Om dit bericht te versturen is MMS-ondersteuning vereist.\n"
+"Wil je dit aanzetten?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "MMS-ondersteuning vereist"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Ik"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "Leden:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -469,7 +469,7 @@ msgstr "Berichtenapplicatie"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "Meerdere MMS-berichten"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
@@ -478,11 +478,11 @@ msgstr "Mezelf"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "Nieuwe %1 Groep"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Nieuwe MMS-groep"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -490,7 +490,7 @@ msgstr "Nieuw bericht"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "Nachtmodus"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -517,11 +517,11 @@ msgstr "Toegang tot microfoon geweigerd"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "Niet beschikbaar"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "Nummer of naam van het contact"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -540,7 +540,7 @@ msgstr "Online"
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "Deelnemers: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -588,7 +588,7 @@ msgstr "Verwijderen"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Uit groep verwijderen"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -596,11 +596,13 @@ msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
 msgstr ""
+"Door het laatste groepslid te verwijderen wordt '%1' opgeheven. Wilt u "
+"doorgaan?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "Groep hernoemd naar: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -630,14 +632,12 @@ msgid "Search..."
 msgstr "Zoeken…"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "See in contacts"
-msgstr "Onbekend contact"
+msgstr "Bekijk in contacten"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
-msgstr "Een bericht schrijven…"
+msgstr "Stuur privé-bericht"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
@@ -645,7 +645,7 @@ msgstr "Verzonden"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "Als beheerder instellen"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -659,19 +659,19 @@ msgstr "Delen"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "Vereenvoudigde gespreksweergave"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "Chronologisch ordenen"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "Alfabetisch ordenen"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr ""
+msgstr "Ordenen op gesprek"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
@@ -679,11 +679,11 @@ msgstr "Status"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "Kanaal succesvol verlaten"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "Groep succesvol verlaten"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -707,6 +707,8 @@ msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
+"Het telefoonnummer van de eigenaar staat niet op de sim-kaart. Hierdoor is "
+"het versturen van MMS-groepsberichten niet mogelijk."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -714,10 +716,13 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"De inhoud die u verzend, vereist één MMS-bericht per ontvanger. Mogelijk "
+"worden u meerdere berichten in rekening gebracht.\n"
+"Wilt u doorgaan?"
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "Het geselecteerde account is nu niet beschikbaar"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -731,7 +736,7 @@ msgstr "Je hebt momenteel geen bereik."
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "Deze ontvanger is reeds geselecteerd"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -751,11 +756,11 @@ msgstr "Type"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "Typ een naam..."
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
-msgstr "Bezig met typen…"
+msgstr "Bezig met typen.."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -788,7 +793,6 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "Welkom bij uw Ubuntu berichten-app."
 
 #: ../src/qml/ComposeBar.qml:510
-#, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Een bericht schrijven…"
 
@@ -809,11 +813,11 @@ msgstr "Gisteren"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "U bent Beheerder"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "U bent geen Beheerder"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -827,6 +831,8 @@ msgstr ""
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
+"U kunt geen berichten versturen naar deze groep, want de groep is niet "
+"langer actief"
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
@@ -839,15 +845,15 @@ msgstr "Houd het opname-icoon ingedrukt"
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "U heeft %1 uitgenodigd voor deze groep"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "U bent toegevoegd aan deze groep"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "U hebt deze groep verlaten"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -856,7 +862,7 @@ msgstr "U moet een simkaart selecteren"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "U heeft de groep hernoemd naar: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -865,7 +871,7 @@ msgstr "U bent gewisseld naar %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "U bent verwijdert uit deze groep"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
