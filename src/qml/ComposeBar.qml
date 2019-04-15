@@ -47,6 +47,8 @@ Item {
     property bool enableAttachments: true
     property alias participants: participantPopover.participants
     readonly property alias textArea: messageTextArea
+    readonly property int maxSMSLength: 160
+    readonly property int maxSMSLengthMultiple: 153
 
     onRecordingChanged: {
         if (recording) {
@@ -554,7 +556,7 @@ Item {
                     bottomMargin: visible ? units.gu(.5) : 0
                 }
                 height: visible ? units.gu(2) : 0
-                readonly property int smsLength: length<=160 ? 160 : 153
+                readonly property int smsLength: length<=maxSMSLength ? maxSMSLength : maxSMSLengthMultiple
                 readonly property int digitsLeft: smsCount*smsLength - length
                 property int length: {
                     var str = messageTextArea.displayText
