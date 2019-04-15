@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-14 16:04+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-04-14 00:00+0000\n"
+"Last-Translator: Erik L. <terilars@protonmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://translate.ubports.com/projects/"
 "ubports/messaging-app/nb/>\n"
 "Language: nb\n"
@@ -46,7 +46,7 @@ msgid "%1 invited %2 to this group"
 msgstr "%1 inviterte %2 til denne gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is Admin"
 msgstr "%1 er administrator"
 
@@ -56,14 +56,14 @@ msgid "%1 is not Admin"
 msgstr "%1 er ikke administrator"
 
 #: ../src/qml/Messages.qml:1179
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "Skriver …"
+msgstr "Skriver.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr "%1 tok del i gruppen"
+msgstr "%1 ble med i gruppen"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
@@ -116,9 +116,8 @@ msgid "Add an online account"
 msgstr "La til en nettbasert konto"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "Legg til mottaker"
+msgstr "Legg til mottaker:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
@@ -239,17 +238,15 @@ msgid "Copy"
 msgstr "Kopier"
 
 #: ../src/qml/Messages.qml:1041
-#, fuzzy, qt-format
+#, qt-format
 msgid "Create %1 Group..."
-msgstr "Opprett %1 gruppe…"
+msgstr "Opprett %1 gruppe.."
 
 #: ../src/qml/Messages.qml:1011
-#, fuzzy
 msgid "Create MMS Group..."
 msgstr "Opprett MMS-gruppe…"
 
 #: ../src/qml/NewGroupPage.qml:81
-#, fuzzy
 msgid "Creating Group..."
 msgstr "Oppretter gruppe…"
 
@@ -338,7 +335,7 @@ msgstr "Filtypen støttes ikke"
 #: ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr "Framover"
+msgstr "Fremover"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
@@ -368,7 +365,7 @@ msgstr "Grupen har blitt oppløst"
 
 #: ../src/qml/NewGroupPage.qml:234
 msgid "Group name:"
-msgstr "Gruppenavn"
+msgstr "Gruppenavn:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
@@ -770,7 +767,7 @@ msgstr "Skriv et navn…"
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
-msgstr "Skriver …"
+msgstr "Skriver…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
