@@ -683,7 +683,7 @@ Item {
         anchors.verticalCenter: textEntry.verticalCenter
         anchors.right: parent.right
         anchors.rightMargin: units.gu(2)
-        iconSource: Qt.resolvedUrl("./assets/send.svg")
+        iconName: "send"
         enabled: !recordButton.enabled
         function processSend() {
             // make sure we flush everything we have prepared in the OSK preedit
