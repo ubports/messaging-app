@@ -555,6 +555,7 @@ Item {
                 }
                 height: visible ? units.gu(2) : 0
                 readonly property int smsLength: length<=160 ? 160 : 153
+                readonly property int digitsLeft: smsCount*smsLength - length
                 property int length: {
                     var str = messageTextArea.displayText
                     var m = encodeURIComponent(str).match(/%[89ABab]/g)
@@ -565,13 +566,13 @@ Item {
                     if ((attachments.count > 0) || usingMMS) {
                         return i18n.tr("MMS")
                     } else {
-                        return "%1/%2 (%3 SMS)".arg(length).arg(smsCount*smsLength).arg(smsCount)
+                        return "%1 / %2".arg(digitsLeft).arg(smsCount)
                     }
                 }
                 textSize: Label.XSmall
                 font.italic: messageTextArea.inputMethodComposing && (attachments.count == 0) && !usingMMS
                 color: Theme.palette.normal.backgroundTertiaryText
-                visible: messageTextArea.displayText.length > 0
+                visible: messageTextArea.displayText.length > 0 && (smsCount > 1 || digitsLeft <= 10)
             }
         }
     }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-05 13:44+0000\n"
+"POT-Creation-Date: 2019-04-15 04:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -409,8 +409,7 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:566 ../src/qml/ComposeBar.qml:568
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:567 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr ""
 
@@ -594,7 +593,7 @@ msgstr ""
 msgid "SIM Card is locked"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:568 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
 msgstr ""
 
