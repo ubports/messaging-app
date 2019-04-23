@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-14 16:04+0000\n"
+"PO-Revision-Date: 2019-04-24 20:43+0000\n"
 "Last-Translator: Anne Onyme <anneonyme017@netcourrier.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.2.2\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -186,7 +186,7 @@ msgstr "Absent(e)"
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
 #: ../src/qml/SettingsPage.qml:260
 msgid "Back"
-msgstr "De retour"
+msgstr "Retour"
 
 #: ../src/qml/Messages.qml:1196
 msgid "Busy"
