@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-04-24 08:27+0000\n"
+"PO-Revision-Date: 2019-04-24 20:43+0000\n"
 "Last-Translator: 不朽正义 <tanyongle0633@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.2.2\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -125,7 +125,7 @@ msgstr "添加收件人"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr "添加到通讯录"
+msgstr "添加到联系人"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
@@ -221,7 +221,7 @@ msgstr "关闭"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "从屏幕底部向上滑动来撰写一条新信息"
+msgstr "从屏幕底部向上滑动来撰写一条新消息"
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
@@ -577,7 +577,7 @@ msgstr "移除"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr "从群组中删除"
+msgstr "从群组中移除"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -744,7 +744,7 @@ msgstr "输入一个名称…"
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
-msgstr "输入中…"
+msgstr "正在输入…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -820,7 +820,7 @@ msgstr "您必须禁用飞行模式"
 
 #: ../src/qml/ComposeBar.qml:169
 msgid "You have to press and hold the record icon"
-msgstr "你必须按住录音图标"
+msgstr "您必须按住录音图标"
 
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
