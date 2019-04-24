@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2017-11-01 05:05+0000\n"
-"Last-Translator: Mutse Young <yyhoo2.young@gmail.com>\n"
+"PO-Revision-Date: 2019-04-24 20:43+0000\n"
+"Last-Translator: 不朽正义 <tanyongle0633@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.2.2\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#channelName"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -33,67 +33,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "％1  - 正在连接…"
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 添加了 %2 到该群组"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 邀请了 %2 到该群组"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 成为了管理员"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 不再是管理员"
 
 #: ../src/qml/Messages.qml:1179
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "输入中…"
+msgstr "%1 正在输入.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 加入了该群组"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 离开了该群组"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 从该群组中删除了 %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 将群组重命名为：%2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 设置了 %2 为管理员"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 取消了 %2 的管理员"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 被邀请加入该群组"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -113,29 +113,27 @@ msgstr "添加"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "添加一个在线账号"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "添加收件人"
+msgstr "添加成员："
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
 msgstr "添加收件人"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "未知联系人"
+msgstr "添加到联系人"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "添加…"
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "管理员"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -208,11 +206,11 @@ msgstr "将所有短信与 %1 关联？"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "频道信息"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "频道名称："
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -223,7 +221,7 @@ msgstr "关闭"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "从屏幕底部向上滑动来撰写一条新信息"
+msgstr "从屏幕底部向上滑动来撰写一条新消息"
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
@@ -237,15 +235,15 @@ msgstr "复制"
 #: ../src/qml/Messages.qml:1041
 #, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "创建 %1 群组…"
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "创建彩信群组…"
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "创建群组…"
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -274,13 +272,12 @@ msgid "Edit"
 msgstr "编辑"
 
 #: ../src/qml/SettingsPage.qml:50
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "启用彩信群组聊天"
+msgstr "启用彩信消息"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "结束群组"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
@@ -288,28 +285,27 @@ msgstr "失败"
 
 #: ../src/qml/NewGroupPage.qml:170
 msgid "Failed to create group"
-msgstr ""
+msgstr "无法创建群组"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
-#, fuzzy
 msgid "Failed to delete group"
-msgstr "滑动删除"
+msgstr "未能删除群组"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
 msgid "Failed to leave channel"
-msgstr ""
+msgstr "未能离开频道"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "未能离开群组"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "未能修改群组组标题"
 
 #: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
-msgstr ""
+msgstr "未能发送消息"
 
 #: ../src/qml/MessageStatusIcon.qml:75
 msgid "Failed!"
@@ -330,11 +326,11 @@ msgstr "文件格式不支持"
 #: ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr ""
+msgstr "转发"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr "来自"
+msgstr "从"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
@@ -350,23 +346,21 @@ msgid "Group (%1)"
 msgstr "群组 (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
-#, fuzzy
 msgid "Group Info"
-msgstr "群组"
+msgstr "群组信息"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "群组已解散"
 
 #: ../src/qml/NewGroupPage.qml:234
-#, fuzzy
 msgid "Group name:"
-msgstr "群组"
+msgstr "群组名称："
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -392,31 +386,31 @@ msgstr "详情"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
-msgstr ""
+msgstr "目前未能发送消息"
 
 #: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
-msgstr ""
+msgstr "无法在飞行模式下发送消息"
 
 #: ../src/qml/SendMessageValidator.qml:218
 msgid "It is not possible to send the message"
-msgstr ""
+msgstr "未能发送消息"
 
 #: ../src/qml/Messages.qml:1035
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "加入 IRC 频道…"
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "加入 IRC 频道："
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "离开频道"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "离开群组"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
@@ -427,18 +421,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"发送此消息需要彩信支持。\n"
+"您是否要启用它？"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "需要彩信支持"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "我"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "成员："
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -466,7 +462,7 @@ msgstr "短信应用程序"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "多条彩信信息"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
@@ -475,11 +471,11 @@ msgstr "我自己"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "新的 %1 群组"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "新的彩信群组"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -487,7 +483,7 @@ msgstr "新信息"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "夜间模式"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -498,7 +494,7 @@ msgstr "否"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
-msgstr ""
+msgstr "没有 SIM 卡"
 
 #: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
 msgid "No SIM card selected"
@@ -514,11 +510,11 @@ msgstr "没有访问麦克风的权限"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "无效"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "电话号码或联系人姓名"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -537,7 +533,7 @@ msgstr "在线"
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "参与者：%1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -545,7 +541,7 @@ msgstr "待处理"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "选择一个帐户来创建。"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -555,7 +551,7 @@ msgstr "请在<a href=\"system_settings\">系统设置 &gt; 安全与隐私</a>�
 
 #: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "请插入 SIM 卡并再次重试。"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -581,19 +577,19 @@ msgstr "移除"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "从群组中移除"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
 msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
-msgstr ""
+msgstr "删除最后一名成员将导致 '%1' 被解散。 你是否要继续？"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "将群组重命名为：%1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -623,14 +619,12 @@ msgid "Search..."
 msgstr "搜索..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "See in contacts"
-msgstr "未知联系人"
+msgstr "查看联系人"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
-msgstr "编写新信息..."
+msgstr "发送私信"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
@@ -638,7 +632,7 @@ msgstr "发送"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "设为管理员"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -652,19 +646,19 @@ msgstr "分享"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "简化对话视图"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "按时间排序"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "按名称排序"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr ""
+msgstr "按使用排序"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
@@ -672,11 +666,11 @@ msgstr "状态"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "成功离开了频道"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "成功离开了群组"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -699,7 +693,7 @@ msgstr "短信已复制到剪切板"
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
-msgstr ""
+msgstr "SIM 卡不提供用户的电话号码。因此，发送彩信群组消息是不可能的。"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -707,10 +701,12 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"您发送的内容需要每个收件人发送一条彩信消息，因此您可能需要为多条消息付费。\n"
+"您是否要继续？"
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "所选帐号目前不可用"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -719,16 +715,16 @@ msgstr "%1 目前无网络"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "目前无网络"
+msgstr "当前无网络。"
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "该收件人已被选中"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr "收件人"
+msgstr "至"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
@@ -744,11 +740,11 @@ msgstr "类型"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "输入一个名称…"
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
-msgstr "输入中…"
+msgstr "正在输入…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -781,9 +777,8 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "欢迎来到您的 Ubuntu 短信应用。"
 
 #: ../src/qml/ComposeBar.qml:510
-#, fuzzy
 msgid "Write a broadcast message..."
-msgstr "编写新信息..."
+msgstr "编写一个广播消息…"
 
 #: ../src/qml/ComposeBar.qml:522
 msgid "Write a message..."
@@ -802,11 +797,11 @@ msgstr "昨天"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "您成为了管理员"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "您不再是管理员"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -817,28 +812,28 @@ msgstr "你在试图发送（超过300kb的）大文件。某些运营商可能�
 #: ../src/qml/Messages.qml:1516
 msgid ""
 "You can't send messages to this group because the group is no longer active"
-msgstr ""
+msgstr "您不能向该群组发送消息，因为该群组已不再活动"
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "您必须禁用飞行模式"
 
 #: ../src/qml/ComposeBar.qml:169
 msgid "You have to press and hold the record icon"
-msgstr "你必须按住录音图标"
+msgstr "您必须按住录音图标"
 
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "您邀请了 %1 到该群组"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "您加入了这个群组"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "你离开了这个群组"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -847,7 +842,7 @@ msgstr "您需要选择SIM卡"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "您将群组重命名为：%1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -856,7 +851,7 @@ msgstr "你在 %2 切换至 %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "您已被该群组移除"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
