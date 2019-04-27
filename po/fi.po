@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2015-06-02 07:54+0000\n"
-"Last-Translator: Jiri Grönroos <Unknown>\n"
-"Language-Team: Finnish <fi@li.org>\n"
+"PO-Revision-Date: 2019-04-29 19:03+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
+"messaging-app/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -32,7 +33,7 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Yhdistetään..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
@@ -47,27 +48,27 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 on ylläpitäjä"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 ei ole ylläpitäjä"
 
 #: ../src/qml/Messages.qml:1179
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "Kirjoittaa..."
+msgstr "%1 kirjoittaa..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 liittyi tähän ryhmään"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 poistui tästä ryhmästä"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
@@ -92,7 +93,7 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 kutsuttiin tähän ryhmään"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -112,7 +113,7 @@ msgstr "Lisää"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "Lisää verkkotili"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, fuzzy
@@ -124,17 +125,16 @@ msgid "Add recipient"
 msgstr "Lisää vastaanottaja"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "Tuntematon yhteystieto"
+msgstr "Lisää yhteystietoihin"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "Lisää..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "Ylläpitäjä"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -212,11 +212,11 @@ msgstr "Muutetaanko kaikki viestintäyhteydet SIM-korttiin/tiliin %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "Kanavan tiedot"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "Kanavan nimi:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -245,11 +245,11 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "Luo MMS-ryhmä..."
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "Luodaan ryhmää..."
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -278,36 +278,32 @@ msgid "Edit"
 msgstr "Muokkaa"
 
 #: ../src/qml/SettingsPage.qml:50
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "Ota käyttöön MMS-viestien ryhmäkeskustelu"
+msgstr "Ota käyttöön MMS-viestit"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "Lopeta ryhmä"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
 msgstr "Epäonnistui"
 
 #: ../src/qml/NewGroupPage.qml:170
-#, fuzzy
 msgid "Failed to create group"
-msgstr "Viestin lähetys epäonnistui"
+msgstr "Ryhmän luominen epäonnistui"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
-#, fuzzy
 msgid "Failed to delete group"
-msgstr "Vedä poistaaksesi"
+msgstr "Ryhmän poistaminen epäonnistui"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
-#, fuzzy
 msgid "Failed to leave channel"
-msgstr "Viestin lähetys epäonnistui"
+msgstr "Kanavalta poistuminen epäonnistui"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "Ryhmästä poistuminen epäonnistui"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
@@ -356,23 +352,21 @@ msgid "Group (%1)"
 msgstr "Ryhmä (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
-#, fuzzy
 msgid "Group Info"
-msgstr "Ryhmä"
+msgstr "Ryhmän tiedot"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "Ryhmä on purettu"
 
 #: ../src/qml/NewGroupPage.qml:234
-#, fuzzy
 msgid "Group name:"
-msgstr "Ryhmä"
+msgstr "Ryhmän nimi:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -397,9 +391,8 @@ msgid "Info"
 msgstr "Tiedot"
 
 #: ../src/qml/Messages.qml:309
-#, fuzzy
 msgid "It is not possible to send messages at the moment"
-msgstr "Viestien lähetys ei ole mahdollista lentotilassa"
+msgstr "Viestien lähetys ei ole mahdollista tällä hetkellä"
 
 #: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
@@ -411,19 +404,19 @@ msgstr "Viestin lähetys ei ole mahdollista"
 
 #: ../src/qml/Messages.qml:1035
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "Liity IRC-kanavalle..."
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "Liity IRC-kanavalle:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Poistu kanavalta"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Poistu ryhmästä"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
@@ -434,18 +427,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"MMS-tuki vaaditaan tämän viestin lähettämiseksi.\n"
+"Otetaanko tuki käyttöön?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "MMS-tuki vaaditaan"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Minä"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "Jäsenet:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -475,7 +470,7 @@ msgstr "Viestisovellus"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "Useita MMS-viestejä"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
@@ -484,11 +479,11 @@ msgstr "Minä"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "Uusi %1-ryhmä"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Uusi MMS-ryhmä"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -496,7 +491,7 @@ msgstr "Uusi viesti"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "Yötila"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -523,11 +518,11 @@ msgstr "Ei käyttöoikeutta mikrofoniinkohdasta"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "Ei saatavilla"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "Numero tai yhteystiedon nimi"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -546,7 +541,7 @@ msgstr "Linjoilla"
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "Osallistujat: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -554,7 +549,7 @@ msgstr "Odottaa"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Valitse luotava tili."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -594,7 +589,7 @@ msgstr "Poista"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Poista ryhmästä"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -602,11 +597,13 @@ msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
 msgstr ""
+"Viimeisen jäsenen poistaminen johtaa ryhmän '%1' purkamiseen. Haluatko "
+"jatkaa?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "Ryhmän uudeksi nimeksi asetettu: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -636,14 +633,12 @@ msgid "Search..."
 msgstr "Etsi…"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "See in contacts"
-msgstr "Tuntematon yhteystieto"
+msgstr "Näytä yhteystiedoissa"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
-msgstr "Kirjoita viesti..."
+msgstr "Lähetä yksityinen viesti"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
@@ -651,7 +646,7 @@ msgstr "Lähetetyt"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "Aseta ylläpitäjäksi"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -665,19 +660,19 @@ msgstr "Jaa"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "Yksinkertaistettu keskustelunäkymä"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "Järjestä aikaleiman mukaan"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "Järjestä otsikon mukaan"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr ""
+msgstr "Järjestä ketjut"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
@@ -685,11 +680,11 @@ msgstr "Tila"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "Kanavalta poistuminen onnistui"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "Ryhmästä poistuminen onnistui"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -713,6 +708,8 @@ msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
+"SIM-kortti ei ilmoita omistajan puhelinnumeroa. Sen vuoksi MMS-ryhmäviestien "
+"lähettäminen ei ole mahdollista."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -720,10 +717,13 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"Lähettämäsi sisältö vaatii yhden MMS-viestin per vastaanottaja, joten sinua "
+"saatetaan laskuttaa useista viesteistä.\n"
+"Haluatko jatkaa?"
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "Valittu tili ei ole käytettävissä tällä hetkellä"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -737,7 +737,7 @@ msgstr "Ei verkkoa juuri nyt."
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "Vastaanottaja oli jo valittu"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -757,7 +757,7 @@ msgstr "Tyyppi"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "Kirjoita nimi..."
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
@@ -794,9 +794,8 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "Tervetuloa Ubuntun viestisovellukseen."
 
 #: ../src/qml/ComposeBar.qml:510
-#, fuzzy
 msgid "Write a broadcast message..."
-msgstr "Kirjoita viesti..."
+msgstr "Kirjoita yleislähetysviesti..."
 
 #: ../src/qml/ComposeBar.qml:522
 msgid "Write a message..."
@@ -815,11 +814,11 @@ msgstr "Eilen"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "Olet ylläpitäjä"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "Et ole ylläpitäjä"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -833,6 +832,7 @@ msgstr ""
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
+"Et voi lähettää tätä viestiä ryhmälle, koska ryhmä ei ole enää aktiivinen"
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
@@ -845,15 +845,15 @@ msgstr "Paina ja pidä pohjassa tallennuskuvaketta"
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "Kutsuit henkilön %1 tähän ryhmään"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "Liityit tähän ryhmään"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "Poistuit tästä ryhmästä"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -862,7 +862,7 @@ msgstr "Valitse SIM-kortti"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "Asetit ryhmän uudeksi nimeksi: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -871,7 +871,7 @@ msgstr "Vaihdoit SIM-korttiin %1 %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "Sinut poistettiin tästä ryhmästä"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
