@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-29 02:11+0000\n"
+"PO-Revision-Date: 2019-05-03 21:03+0000\n"
 "Last-Translator: louies0623 <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hant/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -117,7 +117,7 @@ msgstr "加入在線上的帳戶"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
-msgstr "加入參與人員:"
+msgstr "加入參與人員："
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
@@ -202,7 +202,7 @@ msgstr "取消"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "將所有聯絡人訊息更改為 %1?"
+msgstr "將所有聯絡人訊息更改為 %1？"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
@@ -326,7 +326,7 @@ msgstr "檔案類型不支援"
 #: ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr "轉發"
+msgstr "發送"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
@@ -372,7 +372,7 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr "影像"
+msgstr "圖片"
 
 #: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
 msgid "Image Preview"
@@ -528,7 +528,7 @@ msgstr "確定"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr "在線"
+msgstr "上線"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -610,7 +610,7 @@ msgstr "簡訊"
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr "儲存"
+msgstr "保存"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
@@ -638,7 +638,7 @@ msgstr "設為管理員"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr "設定"
+msgstr "設置"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
@@ -772,11 +772,11 @@ msgstr "不支援視訊附件"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr "歡迎使用傳訊 App！"
+msgstr "歡迎使用訊息應用程式！"
 
 #: ../src/qml/ListItemDemo.qml:133
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "歡迎使用您的 Ubuntu 傳訊 App。"
+msgstr "歡迎使用您的 Ubuntu 訊息應用程式。"
 
 #: ../src/qml/ComposeBar.qml:510
 msgid "Write a broadcast message..."
@@ -809,7 +809,7 @@ msgstr "你不再是管理員"
 msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
-msgstr "您試圖傳送大型檔案（超過 300Kb）。有些服務商可能無法傳送大檔案。"
+msgstr "您試圖傳送大型檔案（超過 300KB）。有些服務商可能無法傳送大檔案。"
 
 #: ../src/qml/Messages.qml:1516
 msgid ""
