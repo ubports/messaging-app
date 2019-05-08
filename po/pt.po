@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-03-14 16:04+0000\n"
-"Last-Translator: Rúben Carneiro <rubencarneiro01@gmail.com>\n"
+"PO-Revision-Date: 2019-05-10 06:02+0000\n"
+"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -186,7 +186,7 @@ msgstr "Ausente"
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
 #: ../src/qml/SettingsPage.qml:260
 msgid "Back"
-msgstr "Anterior"
+msgstr "Voltar"
 
 #: ../src/qml/Messages.qml:1196
 msgid "Busy"
@@ -388,7 +388,7 @@ msgstr "Pré-visualizar imagem"
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr "Informação"
+msgstr "Info"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
