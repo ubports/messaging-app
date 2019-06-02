@@ -58,7 +58,6 @@ TextArea {
         if (draftKey === null || draftKey === "" || coolDownTimer.running) return
         var draftTextAreaObj = _getStore()
         if (draftTextAreaObj[draftKey] === displayText) return
-        console.log("================== SAVED ==================");
         draftTextAreaObj[draftKey] = displayText
         store.draftTextArea = JSON.stringify(draftTextAreaObj)
         coolDownTimer.start()

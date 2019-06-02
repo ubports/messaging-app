@@ -93,7 +93,7 @@ BorderImage {
         } else if (sending) {
             return "grey"
         } else if (messageIncoming) {
-            return mainView.enableNightMode ? "black" : "white"
+            return ""+theme.palette.normal.background == "#ffffff" ? "white" : "black"
         } else if (isMultimedia) {
             return "blue"
         } else {

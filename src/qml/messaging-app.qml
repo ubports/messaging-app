@@ -40,7 +40,7 @@ MainView {
     // settings
     property alias sortThreadsBy: globalSettings.sortThreadsBy
     property alias compactView: globalSettings.compactView
-    property alias enableNightMode: globalSettings.enableNightMode
+    property alias userTheme: globalSettings.userTheme
     property alias favoriteChannels: favoriteChannelsItem
 
     // private
@@ -212,7 +212,7 @@ MainView {
     implicitHeight: units.gu(71)
     anchorToKeyboard: false
     activeFocusOnPress: false
-    theme.name: enableNightMode ? "Ubuntu.Components.Themes.SuruDark" : "Ubuntu.Components.Themes.Ambiance"
+    theme.name: userTheme === "default" ? "" : userTheme
 
     Component.onCompleted: {
         i18n.domain = "messaging-app"
@@ -287,7 +287,7 @@ MainView {
         id: globalSettings
         property string sortThreadsBy: "timestamp"
         property bool compactView: false
-        property bool enableNightMode: false
+        property string userTheme: "default"
     }
 
     StickerPacksModel {
