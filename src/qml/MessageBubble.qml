@@ -36,7 +36,7 @@ BorderImage {
     readonly property int maxDelegateWidth: units.gu(27)
     property string accountName
     property var account
-    property var _accountRegex: account && (account.selfContactId != "" && !account.includes("+")) ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
+    property var _accountRegex: account && (account.selfContactId != "") ? new RegExp('\\b' + account.selfContactId + '\\b', 'g') : null
     property bool isMultimedia: false
     // FIXME for now we just display the delivery status if it's greater than Accepted
     property bool showDeliveryStatus: false
