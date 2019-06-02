@@ -37,7 +37,6 @@ TextArea {
 
     Component.onCompleted: _loadKey(draftKey)
     Component.onDestruction: {
-        console.log("On destruction")
         coolDownTimer.stop()
         _saveKey(draftKey)
     }
