@@ -27,14 +27,21 @@ TextArea {
     // current text as a draft when the view changes.
     property var draftKey: null
     property var _oldDraftKey: null
+    readonly property var coolDown: 2000
 
     onDraftKeyChanged: {
+        coolDownTimer.stop()
         _saveKey(_oldDraftKey)
         _loadKey(draftKey)
     }
 
     Component.onCompleted: _loadKey(draftKey)
-    Component.onDestruction: _saveKey(draftKey)
+    Component.onDestruction: {
+        console.log("On destruction")
+        coolDownTimer.stop()
+        _saveKey(draftKey)
+    }
+    onTextChanged: _saveKey(draftKey)
 
     function _loadKey(draftKey) {
         if (draftKey === null || draftKey === "") return
@@ -49,11 +56,13 @@ TextArea {
     }
 
     function _saveKey(draftKey) {
-        if (draftKey === null || draftKey === "") return
+        if (draftKey === null || draftKey === "" || coolDownTimer.running) return
         var draftTextAreaObj = _getStore()
+        if (draftTextAreaObj[draftKey] === displayText) return
+        console.log("================== SAVED ==================");
         draftTextAreaObj[draftKey] = displayText
-
         store.draftTextArea = JSON.stringify(draftTextAreaObj)
+        coolDownTimer.start()
     }
 
     function _getStore() {
@@ -65,6 +74,12 @@ TextArea {
             store.draftTextArea = "{}"
         }
         return draftTextAreaObj
+    }
+
+    Timer {
+        id: coolDownTimer
+        interval: coolDown
+        onTriggered: _saveKey(draftKey)
     }
 
     Settings {
