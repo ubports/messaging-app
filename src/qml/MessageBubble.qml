@@ -81,7 +81,6 @@ BorderImage {
         }
 
         // hightlight participants names
-        console.log(account.selfContactId)
         if (_accountRegex)
             text = text.replace(_accountRegex, "<b>" + account.selfContactId + "</b>")
 
