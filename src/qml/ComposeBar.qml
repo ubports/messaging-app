@@ -79,7 +79,6 @@ Item {
             FileOperations.remove(attachments.get(0).filePath)
         }
 
-        textEntry.text = ""
         attachments.clear()
     }
 
@@ -412,9 +411,11 @@ Item {
                 left: parent.left
                 right: parent.right
             }
-            TextArea {
+            DraftTextArea {
                 id: messageTextArea
                 objectName: "messageTextArea"
+
+                draftKey: threadId
 
                 property bool autoCompleteLock: false
 
