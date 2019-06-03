@@ -202,7 +202,11 @@ StyledItem {
                     focus: true
                     style: TransparentTextFieldStype {}
                     height: units.gu(4)
-                    width: text != "" ? textLabel.paintedWidth + units.gu(3) : hintLabel.paintedWidth + units.gu(3)
+                    width: {
+                        if (text !== "") return textLabel.paintedWidth + units.gu(3)
+                        else if (recipientCount === 0) return scrollableArea.width
+                        return hintLabel.paintedWidth + units.gu(3)
+                    }
                     hasClearButton: false
                     clip: false
                     placeholderText: multiRecipientWidget.recipientCount <= 0 ? hintLabel.text : ""
