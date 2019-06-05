@@ -65,6 +65,7 @@ Item {
     property int smsLength: 160
 
     Component.onDestruction: {
+        messageTextField.draftKey = ""
         composeBar.reset()
     }
 
@@ -79,6 +80,7 @@ Item {
             FileOperations.remove(attachments.get(0).filePath)
         }
 
+        textEntry.text = ""
         attachments.clear()
     }
 
