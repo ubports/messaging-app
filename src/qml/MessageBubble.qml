@@ -93,7 +93,7 @@ BorderImage {
         } else if (sending) {
             return "grey"
         } else if (messageIncoming) {
-            return ""+theme.palette.normal.background == "#ffffff" ? "white" : "black"
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "black" : "white"
         } else if (isMultimedia) {
             return "blue"
         } else {
