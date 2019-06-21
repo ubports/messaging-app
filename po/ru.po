@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2017-11-22 23:39+0000\n"
-"Last-Translator: Alexey Balmashnov <a.balmashnov@gmail.com>\n"
+"PO-Revision-Date: 2019-06-22 15:04+0000\n"
+"Last-Translator: lxdb <dinia200719@gmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.15\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -57,9 +57,9 @@ msgid "%1 is not Admin"
 msgstr ""
 
 #: ../src/qml/Messages.qml:1179
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "Набирает.."
+msgstr "%s Набирает.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -117,18 +117,16 @@ msgid "Add an online account"
 msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "Добавить получателя"
+msgstr "Добавить получателя:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
 msgstr "Добавить получателя"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "Неизвестный контакт"
+msgstr "Добавить в контакты"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
@@ -285,9 +283,8 @@ msgid "Edit"
 msgstr "Правка"
 
 #: ../src/qml/SettingsPage.qml:50
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "Включить групповой MMS-чат"
+msgstr "Включить MMS-чат"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -298,19 +295,16 @@ msgid "Failed"
 msgstr "Не удалось"
 
 #: ../src/qml/NewGroupPage.qml:170
-#, fuzzy
 msgid "Failed to create group"
-msgstr "Не удалось отправить сообщение"
+msgstr "Не удалось создать группу"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
-#, fuzzy
 msgid "Failed to delete group"
-msgstr "Проведите для удаления"
+msgstr "Не удалось удалить группу"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
-#, fuzzy
 msgid "Failed to leave channel"
-msgstr "Не удалось отправить сообщение"
+msgstr "Не удалось покинуть канал"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
@@ -363,23 +357,21 @@ msgid "Group (%1)"
 msgstr "Группа (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
-#, fuzzy
 msgid "Group Info"
-msgstr "Группа"
+msgstr "Информация о группе"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "Группа была распущена"
 
 #: ../src/qml/NewGroupPage.qml:234
-#, fuzzy
 msgid "Group name:"
-msgstr "Группа"
+msgstr "Название группы:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -404,9 +396,8 @@ msgid "Info"
 msgstr "Информация"
 
 #: ../src/qml/Messages.qml:309
-#, fuzzy
 msgid "It is not possible to send messages at the moment"
-msgstr "Невозможно отправлять сообщения в режиме полёта"
+msgstr "Сейчас невозможно отправлять сообщения"
 
 #: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
@@ -418,19 +409,19 @@ msgstr "Невозможно отослать сообщение"
 
 #: ../src/qml/Messages.qml:1035
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "Присоединится к IRC-каналу"
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "Присоединится к IRC-каналу:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Выйти из канала"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Покинуть группу"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
@@ -441,18 +432,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"Для отправки этого сообщения нужна поддержка MMS.\n"
+"Включить  её ?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "Нужна поддержка MMS"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Я"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "Члены:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -480,7 +473,7 @@ msgstr "Приложение, позволяющее обмениваться с
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "Несколько MMS-сообщений"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
@@ -489,11 +482,11 @@ msgstr "Я"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "Новая группа %1"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Новая группа MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -501,7 +494,7 @@ msgstr "Новое сообщение"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "Ночной режим"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -528,11 +521,11 @@ msgstr "Недостаточно разрешений для доступа к �
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "Не доступно"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "Номер или имя контакта"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -599,7 +592,7 @@ msgstr "Удалить"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Удалить из группы"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -648,7 +641,7 @@ msgstr "Неизвестный контакт"
 #: ../src/qml/ParticipantInfoPage.qml:166
 #, fuzzy
 msgid "Send private message"
-msgstr "Новое сообщение..."
+msgstr "Отправить сообщение"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
@@ -656,7 +649,7 @@ msgstr "Отправлено"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "Сделать администратором"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
