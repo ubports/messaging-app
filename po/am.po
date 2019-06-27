@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-06-23 20:04+0000\n"
+"PO-Revision-Date: 2019-07-05 08:13+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/am/>\n"
@@ -226,7 +226,7 @@ msgstr "መዝጊያ"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
-msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ"
+msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ:"
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
@@ -474,11 +474,11 @@ msgstr "እኔ ራሴ"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "አዲስ %1 ቡድን"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "አዲስ የ MMS ቡድን"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -486,7 +486,7 @@ msgstr "አዲስ መልእክት"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "በ ማታ ዘዴ"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -513,11 +513,11 @@ msgstr "ማይክሮፎን ጋር ለ መድረስ ፍቃድ የለም"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "ዝግጁ አይደለም"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "የ ግንኙነት ስም ወይንም ቁጥር"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -536,7 +536,7 @@ msgstr "በ መስመር ላይ"
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "ተሳታፊዎች: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -544,7 +544,7 @@ msgstr "ያልተወሰነ"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "መግለጫ ለ መፍጠር ይምረጡ:"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -583,7 +583,7 @@ msgstr "ማስወገጃ"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "ከ ቡድን ውስጥ ማስወገጃ"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -595,7 +595,7 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "እንደገና የ ተሰየመ ቡድን ወደ: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -640,7 +640,7 @@ msgstr "ተልኳል"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "እንደ አስተዳዳሪ ማሰናጃ"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -662,7 +662,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "በ አርእስት መለያ"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
@@ -674,11 +674,11 @@ msgstr "ሁኔታው"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "ከ ጣቢያው ውስጥ ወጥተዋል"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "ከ ቡድን ውስጥ ወጥተዋል"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -726,7 +726,7 @@ msgstr "አሁን ምንም ኔትዎርክ አልተገኘም"
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "ይህ ተቀባይ ቀደም ብሎ ተመርጧል"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -746,7 +746,7 @@ msgstr "አይነት"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "ስም ይጻፉ..."
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
@@ -804,11 +804,11 @@ msgstr "ትናንትና"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "እርስዎ አስተዳዳሪ ነዎት"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "እርስዎ አስተዳዳሪ አይደሉም"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -832,15 +832,15 @@ msgstr "እርስዎ ተጭነው መያዝ አለብዎት የ መቅረጫ ም
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "እርስዎ ወደ እዚህ ቡድን %1 ጋብዘዋል"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "እርስዎ ወደ ቡድን ውስጥ ገብተዋል"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "እርስዎ ከ ቡድኑ ውስጥ ወጥተዋል"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -849,16 +849,16 @@ msgstr "የ ሲም ካርድ መምረጥ አለብዎት"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "እርስዎ ቡድን እንደገና ሰይመዋል ወደ: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr "ቀይረዋል ወደ %1 @ %2"
+msgstr "እርስዎ ቀይረዋል ወደ %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "እርስዎ ከዚህ ቡድን ውስጥ ተወግደዋል"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
