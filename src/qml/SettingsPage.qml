@@ -34,14 +34,20 @@ Page {
     readonly property var setMethods: {
         "mmsEnabled": function(value) { telepathyHelper.mmsEnabled = value },
         "threadSort": function(value) { mainView.sortThreadsBy = value },
-        "compactView": function(value) { mainView.compactView = value },   
-        "nightModeEnabled": function(value) { mainView.enableNightMode = value }
+        "compactView": function(value) { mainView.compactView = value },
+        "userTheme": function(value) { mainView.userTheme = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
     property var sortByModel: {
         "timestamp": i18n.tr("Sort by timestamp"),
         "title": i18n.tr("Sort by title")
+    }
+
+    property var themeModel: {
+        "default": i18n.tr("System Theme"),
+        "Ubuntu.Components.Themes.Ambiance": i18n.tr("Light"),
+        "Ubuntu.Components.Themes.SuruDark": i18n.tr("Dark"),
     }
 
     readonly property var settingsModel: [
@@ -58,7 +64,7 @@ Page {
                    "property": mainView.compactView,
                    "activatedFuncion": null,
                    "setMethod": "compactView"}
-        },   
+        },
         { "type": "options",
           "data": { "name": "threadSort",
                     "description": i18n.tr("Sort threads"),
@@ -67,12 +73,14 @@ Page {
                     "options": sortByModel,
                     "setMethod": "threadSort"}
         },
-        { "type": "boolean",
-          "data": {"name": "nightModeEnabled",
-                   "description": i18n.tr("Night Mode"),
-                   "property": mainView.enableNightMode,
-                   "activatedFuncion": null,
-                   "setMethod": "nightModeEnabled"}
+        { "type": "options",
+          "data": {"name": "userTheme",
+                   "description": i18n.tr("Theme"),
+                   "currentValue": mainView.userTheme,
+                   "property": mainView.userTheme,
+                   "subtitle": themeModel[mainView.userTheme],
+                   "options": themeModel,
+                   "setMethod": "userTheme"}
         }
         /*,
         { "name": "characterCountEnabled",

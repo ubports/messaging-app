@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-15 04:48+0000\n"
+"POT-Creation-Date: 2019-06-02 17:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,8 +177,8 @@ msgid "Away"
 msgstr ""
 
 #: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:101
-#: ../src/qml/SettingsPage.qml:255
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr ""
 
@@ -244,6 +244,10 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr ""
+
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
@@ -270,7 +274,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
 msgstr ""
 
@@ -409,7 +413,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:569 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:570 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr ""
 
@@ -474,10 +482,6 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
-msgstr ""
-
-#: ../src/qml/SettingsPage.qml:72
-msgid "Night Mode"
 msgstr ""
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -563,7 +567,7 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:147 ../src/qml/GroupChatInfoPage.qml:432
+#: ../src/qml/ComposeBar.qml:146 ../src/qml/GroupChatInfoPage.qml:432
 #: ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr ""
@@ -637,7 +641,7 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:57
+#: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
 msgstr ""
 
@@ -649,7 +653,7 @@ msgstr ""
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:64
+#: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
 msgstr ""
 
@@ -671,6 +675,10 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:56
@@ -697,6 +705,10 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
@@ -767,11 +779,11 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:512
+#: ../src/qml/ComposeBar.qml:513
 msgid "Write a broadcast message..."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:524
+#: ../src/qml/ComposeBar.qml:525
 msgid "Write a message..."
 msgstr ""
 
@@ -809,7 +821,7 @@ msgstr ""
 msgid "You have to disable flight mode"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:171
+#: ../src/qml/ComposeBar.qml:170
 msgid "You have to press and hold the record icon"
 msgstr ""
 

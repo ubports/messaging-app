@@ -93,7 +93,7 @@ BorderImage {
         } else if (sending) {
             return "grey"
         } else if (messageIncoming) {
-            return mainView.enableNightMode ? "black" : "white"
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "black" : "white"
         } else if (isMultimedia) {
             return "blue"
         } else {
