@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-07-05 08:13+0000\n"
+"PO-Revision-Date: 2019-07-14 20:48+0000\n"
 "Last-Translator: Moshe Lazar <wersewikkov@gmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
@@ -283,7 +283,7 @@ msgstr "Не показывать снова"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr "Правка"
+msgstr "Редактировать"
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Enable MMS messages"
