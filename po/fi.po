@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-04-29 19:03+0000\n"
+"PO-Revision-Date: 2019-07-17 18:48+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fi/>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#kanavannimi"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -38,12 +38,12 @@ msgstr "%1 - Yhdistetään..."
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 lisäsi henkilön %2 tähän ryhmään"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 kutsui henkilön %2 tähän ryhmään"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
@@ -73,12 +73,12 @@ msgstr "%1 poistui tästä ryhmästä"
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 poisti henkilön %2 tästä ryhmästä"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 muutti ryhmän nimeksi: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
