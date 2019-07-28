@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-07-14 20:48+0000\n"
+"PO-Revision-Date: 2019-07-23 21:49+0000\n"
 "Last-Translator: Moshe Lazar <wersewikkov@gmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
@@ -386,7 +386,7 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr "Изображение"
+msgstr "Фото"
 
 #: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
 msgid "Image Preview"
