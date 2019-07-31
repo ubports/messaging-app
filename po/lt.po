@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-08-02 15:49+0000\n"
+"Last-Translator: Moo <moose@mail.ru>\n"
+"Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -201,7 +203,7 @@ msgstr ""
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "Atsisakyti"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -222,7 +224,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr ""
+msgstr "Užverti"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -235,7 +237,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr ""
+msgstr "Kopijuoti"
 
 #: ../src/qml/Messages.qml:1041
 #, qt-format
@@ -258,7 +260,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
-msgstr ""
+msgstr "Ištrinti"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -270,7 +272,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr ""
+msgstr "Daugiau nebeklausti"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
@@ -278,7 +280,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr ""
+msgstr "Taisyti"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -322,7 +324,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr ""
+msgstr "Mėgstami"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -343,7 +345,7 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr ""
+msgstr "Supratau"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -495,7 +497,7 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
@@ -503,7 +505,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
 msgid "No SIM card selected"
-msgstr ""
+msgstr "Nepasirinkta jokia SIM kortelė"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
@@ -529,7 +531,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "Gerai"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
@@ -576,7 +578,7 @@ msgstr ""
 #: ../src/qml/ComposeBar.qml:146 ../src/qml/GroupChatInfoPage.qml:432
 #: ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
-msgstr ""
+msgstr "Šalinti"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
@@ -601,7 +603,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "SIM kortelė yra užrakinta"
 
 #: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
@@ -611,15 +613,15 @@ msgstr ""
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr ""
+msgstr "Įrašyti"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr ""
+msgstr "Ieškoti"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr ""
+msgstr "Ieškoti..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
@@ -639,13 +641,13 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Nustatymai"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr ""
+msgstr "Bendrinti"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
@@ -677,11 +679,11 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr ""
+msgstr "Perbraukite norėdami ištrinti"
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "Perbraukite norėdami atskleisti veiksmus"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
@@ -741,7 +743,7 @@ msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
-msgstr ""
+msgstr "Šiandien"
 
 #: ../src/qml/MessageInfoDialog.qml:98
 msgid "Type"
@@ -798,11 +800,11 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:41
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "Taip"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
-msgstr ""
+msgstr "Vakar"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
@@ -846,7 +848,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "Turite pasirinkti SIM kortelę"
 
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
