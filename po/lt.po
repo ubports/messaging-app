@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-08-02 15:49+0000\n"
+"PO-Revision-Date: 2019-08-11 18:49+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/lt/>\n"
@@ -341,7 +341,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr ""
+msgstr "Nuo"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
@@ -509,7 +509,7 @@ msgstr "Nepasirinkta jokia SIM kortelė"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
-msgstr ""
+msgstr "Nėra tinklo"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
@@ -726,7 +726,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr ""
+msgstr "Šiuo metu nėra tinklo."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
@@ -735,7 +735,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr ""
+msgstr "Iki"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
@@ -747,7 +747,7 @@ msgstr "Šiandien"
 
 #: ../src/qml/MessageInfoDialog.qml:98
 msgid "Type"
-msgstr ""
+msgstr "Tipas"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
