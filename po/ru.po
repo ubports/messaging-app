@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-07-23 21:49+0000\n"
-"Last-Translator: Moshe Lazar <wersewikkov@gmail.com>\n"
+"PO-Revision-Date: 2019-08-05 18:49+0000\n"
+"Last-Translator: vokaliz <vokaliz@protonmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
 "Language: ru\n"
@@ -22,7 +22,6 @@ msgstr ""
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
-#, fuzzy
 msgid "#channelName"
 msgstr "#НазваниеКанала"
 
@@ -38,24 +37,24 @@ msgid "%1 - Connecting..."
 msgstr "%1 - Подключение..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 added %2 to this group"
 msgstr "%1 добавил %2 в эту беседу"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 invited %2 to this group"
 msgstr "%1 пригласил %2 в эту беседу"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 Администратор"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 не является Администратором"
 
 #: ../src/qml/Messages.qml:1179
 #, qt-format
@@ -65,37 +64,37 @@ msgstr "%s Набирает.."
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 присоединился к этой беседе"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 left this group"
 msgstr "%1 покинул эту беседу"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 удалено %2 из этой группы"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 renamed group to: %2"
 msgstr "%1 переименовал беседу в: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "% 1 установить % 2 в качестве администратора"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "% 1 не устанавливать % 2 в качестве администратора"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 был приглашен в эту группу"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -115,7 +114,7 @@ msgstr "Добавить"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "Добавить онлайн аккаунт"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -217,12 +216,10 @@ msgid "Change all Messaging associations to %1?"
 msgstr "Привязать все сообщения к %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
-#, fuzzy
 msgid "Channel Info"
 msgstr "Информация о канале"
 
 #: ../src/qml/NewGroupPage.qml:232
-#, fuzzy
 msgid "Channel name:"
 msgstr "Название канала:"
 
@@ -249,15 +246,15 @@ msgstr "Копировать"
 #: ../src/qml/Messages.qml:1041
 #, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "Создать %1 Группу..."
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "Создать MMS Группу..."
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "Создать Группу..."
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
