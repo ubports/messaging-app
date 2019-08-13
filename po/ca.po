@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-05-03 21:03+0000\n"
+"PO-Revision-Date: 2019-08-14 22:49+0000\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ca/>\n"
@@ -337,7 +337,7 @@ msgstr "Reenvia"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr "Des de"
+msgstr "De"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
