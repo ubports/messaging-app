@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-08-05 18:49+0000\n"
+"PO-Revision-Date: 2019-08-16 18:49+0000\n"
 "Last-Translator: Anne Onyme <anneonyme017@netcourrier.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fr/>\n"
@@ -616,7 +616,7 @@ msgstr "Carte SIM verrouillée"
 
 #: ../src/qml/MessageDelegate.qml:168
 msgid "SMS"
-msgstr "SMS"
+msgstr "Texto"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:86
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
@@ -664,15 +664,15 @@ msgstr "Vue simplifiée des conversations"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr "Trier par date"
+msgstr "Par date"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr "Trier par titre"
+msgstr "Par titre"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr "Trier par fils"
+msgstr "Trier les fils"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
