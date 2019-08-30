@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-07-17 18:48+0000\n"
+"PO-Revision-Date: 2019-08-31 04:50+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fi/>\n"
@@ -116,9 +116,8 @@ msgid "Add an online account"
 msgstr "Lisää verkkotili"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "Lisää vastaanottaja"
+msgstr "Lisää vastaanottaja:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
