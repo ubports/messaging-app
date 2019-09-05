@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-08-11 18:49+0000\n"
+"PO-Revision-Date: 2019-09-06 19:50+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/lt/>\n"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:793
 msgid "Add"
-msgstr ""
+msgstr "Pridėti"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -667,7 +667,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
-msgstr ""
+msgstr "Būsena"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -760,7 +760,7 @@ msgstr ""
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
 msgid "Unknown"
-msgstr ""
+msgstr "Nežinoma"
 
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44
