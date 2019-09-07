@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-09-06 19:50+0000\n"
+"PO-Revision-Date: 2019-09-08 07:48+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/lt/>\n"
@@ -195,8 +195,9 @@ msgid "Busy"
 msgstr ""
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
+#, fuzzy
 msgid "Call"
-msgstr ""
+msgstr "Skambinti"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
@@ -337,7 +338,7 @@ msgstr ""
 #: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr ""
+msgstr "Pirmyn"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
@@ -599,7 +600,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr ""
+msgstr "Bandyti dar kartą"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
