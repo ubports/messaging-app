@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-02 17:43+0000\n"
+"POT-Creation-Date: 2019-09-08 09:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,7 +417,7 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:570 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:572 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr ""
 
@@ -567,7 +567,7 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:146 ../src/qml/GroupChatInfoPage.qml:432
+#: ../src/qml/ComposeBar.qml:148 ../src/qml/GroupChatInfoPage.qml:432
 #: ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr ""
@@ -779,11 +779,11 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:513
+#: ../src/qml/ComposeBar.qml:515
 msgid "Write a broadcast message..."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:525
+#: ../src/qml/ComposeBar.qml:527
 msgid "Write a message..."
 msgstr ""
 
@@ -821,7 +821,7 @@ msgstr ""
 msgid "You have to disable flight mode"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:170
+#: ../src/qml/ComposeBar.qml:172
 msgid "You have to press and hold the record icon"
 msgstr ""
 

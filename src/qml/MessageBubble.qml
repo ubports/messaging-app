@@ -144,7 +144,7 @@ BorderImage {
             left: parent.left
             leftMargin: units.gu(1)
         }
-        Component.onCompleted: if (paintedWidth > maxDelegateWidth) width = maxDelegateWidth
+        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
         fontSize: "medium"
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
