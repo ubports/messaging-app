@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-07-07 09:48+0000\n"
+"PO-Revision-Date: 2019-09-17 15:50+0000\n"
 "Last-Translator: Florian Leeber <flori@bin.org.in>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "messaging-app/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.8\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -333,7 +333,7 @@ msgstr "Dateityp wird nicht unterstützt"
 #: ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr "Vor"
+msgstr "Weiterleiten"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
