@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-07-07 09:48+0000\n"
+"PO-Revision-Date: 2019-09-17 15:50+0000\n"
 "Last-Translator: Daniel Frańczak <danielfranczak5@wp.pl>\n"
 "Language-Team: Polish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.8\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -393,7 +393,7 @@ msgstr "Podgląd obrazu"
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr "Informacje"
+msgstr "Info"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
@@ -539,7 +539,7 @@ msgstr "OK"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr "Połączony"
+msgstr "Online"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
