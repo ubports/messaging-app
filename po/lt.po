@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-09-21 20:50+0000\n"
+"PO-Revision-Date: 2019-09-25 20:51+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/lt/>\n"
@@ -64,12 +64,12 @@ msgstr "%1 rašo..."
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 prisijungė prie šios grupės"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 išėjo iš šios grupės"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
@@ -102,7 +102,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "<<< Perbraukite, norėdami atsisakyti"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
-msgstr ""
+msgstr "Pridėti gavėją"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
@@ -178,7 +178,7 @@ msgstr[2] ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
-msgstr ""
+msgstr "Garso priedas nepalaikomas"
 
 #: ../src/qml/Messages.qml:1194
 msgid "Away"
@@ -233,7 +233,7 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
-msgstr ""
+msgstr "Adresatas"
 
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
@@ -247,7 +247,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "Sukurti MMS grupę..."
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
@@ -293,23 +293,23 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
-msgstr ""
+msgstr "Nepavyko"
 
 #: ../src/qml/NewGroupPage.qml:170
 msgid "Failed to create group"
-msgstr ""
+msgstr "Nepavyko sukurti grupę"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
 msgid "Failed to delete group"
-msgstr ""
+msgstr "Nepavyko ištrinti grupės"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
 msgid "Failed to leave channel"
-msgstr ""
+msgstr "Nepavyko išeiti iš kanalo"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "Nepavyko išeiti iš grupės"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
@@ -333,7 +333,7 @@ msgstr ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
 msgid "File type not supported"
-msgstr ""
+msgstr "Failo tipas nepalaikomas"
 
 #: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
@@ -417,11 +417,11 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Išeiti iš kanalo"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Išeiti iš grupės"
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
@@ -429,7 +429,7 @@ msgstr ""
 
 #: ../src/qml/ComposeBar.qml:570 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
-msgstr ""
+msgstr "MMS"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:31
 msgid ""
@@ -439,11 +439,11 @@ msgstr ""
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "Reikalingas MMS palaikymas"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Aš"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
@@ -488,7 +488,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Nauja MMS grupė"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -584,7 +584,7 @@ msgstr "Šalinti"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Šalinti iš grupės"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -693,7 +693,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr ""
+msgstr "Laikinai nepavyko"
 
 #: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
@@ -742,7 +742,7 @@ msgstr "Iki"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
-msgstr ""
+msgstr "Kam:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
@@ -776,11 +776,11 @@ msgstr ""
 
 #: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
 msgid "Video Preview"
-msgstr ""
+msgstr "Vaizdo įrašo peržiūra"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
 msgid "Video attachment not supported"
-msgstr ""
+msgstr "Vaizdo įrašo priedas nepalaikomas"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
@@ -830,7 +830,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "Turite išjungti skrydžio veikseną"
 
 #: ../src/qml/ComposeBar.qml:170
 msgid "You have to press and hold the record icon"
@@ -843,11 +843,11 @@ msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "Jūs prisijungėte prie šios grupės"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "Jūs išėjote iš šios grupės"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -856,7 +856,7 @@ msgstr "Turite pasirinkti SIM kortelę"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "Jūs pervadinote grupę į: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
