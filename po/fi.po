@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-10-05 16:53+0000\n"
+"PO-Revision-Date: 2019-10-07 12:53+0000\n"
 "Last-Translator: Sami Törmänen <tormanen.sami@gmail.com>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fi/>\n"
@@ -525,7 +525,7 @@ msgstr "Numero tai yhteystiedon nimi"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
-msgstr "Ei linjoilla"
+msgstr "Ei paikalla"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -535,7 +535,7 @@ msgstr "OK"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr "Linjoilla"
+msgstr "Paikalla"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
