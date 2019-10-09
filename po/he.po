@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-09-27 08:51+0000\n"
+"PO-Revision-Date: 2019-10-07 12:53+0000\n"
 "Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
 "messaging-app/he/>\n"
@@ -528,16 +528,16 @@ msgstr ""
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "אישור"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr ""
+msgstr "מקוון"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "משתתפים: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
