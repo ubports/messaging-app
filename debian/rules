@@ -10,7 +10,7 @@ export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
 # Skip tests on the archs they are known to be flaky with current configuration
 # Ref.: https://bugs.launchpad.net/ubuntu/+source/mesa/+bug/1585942
-testskip_architectures := arm64 s390x powerpc
+testskip_architectures := s390x powerpc
 
 ifneq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
 	CONFIGURE_OPTS += -DENABLE_TESTS=OFF
