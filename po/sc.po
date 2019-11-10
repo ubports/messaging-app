@@ -8,34 +8,36 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-08 09:41+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-11-10 13:13+0000\n"
+"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
+"Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#nòmineDeSuCanale"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 + %2"
 
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Connetende..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 at agiuntu %2 a su grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
@@ -106,7 +108,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:793
 msgid "Add"
-msgstr ""
+msgstr "Agiunghe"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -130,7 +132,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr ""
+msgstr "Totus"
 
 #: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
@@ -179,7 +181,7 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
-msgstr ""
+msgstr "In segus"
 
 #: ../src/qml/Messages.qml:1196
 msgid "Busy"
@@ -194,7 +196,7 @@ msgstr ""
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -215,7 +217,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr ""
+msgstr "Serra"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -228,7 +230,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr ""
+msgstr "Còpia"
 
 #: ../src/qml/Messages.qml:1041
 #, qt-format
@@ -251,7 +253,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
-msgstr ""
+msgstr "Cantzella"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -271,7 +273,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr ""
+msgstr "Modìfica"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -315,7 +317,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr ""
+msgstr "Preferidos"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -328,15 +330,15 @@ msgstr ""
 #: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr ""
+msgstr "Torra a imbiare"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr ""
+msgstr "Dae"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr ""
+msgstr "Andat bene"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -382,7 +384,7 @@ msgstr ""
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr ""
+msgstr "Informatziones"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
@@ -432,7 +434,7 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Deo"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
@@ -488,7 +490,7 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "Nono"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
@@ -516,17 +518,17 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
-msgstr ""
+msgstr "Foras de lìnia"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "AB"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr ""
+msgstr "In lìnia"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -604,15 +606,15 @@ msgstr ""
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr ""
+msgstr "Sarva"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr ""
+msgstr "Chirca"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr ""
+msgstr "Chirca..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
@@ -632,13 +634,13 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "Cunfiguratziones"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr ""
+msgstr "Cumpartzi"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
@@ -791,19 +793,19 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:41
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "Eja"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
-msgstr ""
+msgstr "Eris"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "Ses amministradore"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "No ses amministradore"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
