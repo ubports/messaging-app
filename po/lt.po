@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-09-25 20:51+0000\n"
+"PO-Revision-Date: 2019-11-11 22:36+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/lt/>\n"
@@ -255,7 +255,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr ""
+msgstr "Tamsus"
 
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -425,7 +425,7 @@ msgstr "Išeiti iš grupės"
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr ""
+msgstr "Šviesus"
 
 #: ../src/qml/ComposeBar.qml:570 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
@@ -719,7 +719,7 @@ msgstr "Pasirinkta paskyra šiuo metu nėra prieinama"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "Apipavidalinimas"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
