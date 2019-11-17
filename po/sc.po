@@ -7,23 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-11-11 22:36+0000\n"
-"Last-Translator: Moo <moose@mail.ru>\n"
-"Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
-"messaging-app/lt/>\n"
-"Language: lt\n"
+"POT-Creation-Date: 2019-09-08 09:41+0000\n"
+"PO-Revision-Date: 2019-11-10 13:13+0000\n"
+"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
+"Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/sc/>\n"
+"Language: sc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
-"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
-"1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.8\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#nòmineDeSuCanale"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -34,12 +32,12 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr "%1 - Jungiamasi..."
+msgstr "%1 - Connetende..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 at agiuntu %2 a su grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
@@ -49,27 +47,27 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr "%1 yra administratorius"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr "%1 nėra administratorius"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1179
 #, qt-format
 msgid "%1 is typing.."
-msgstr "%1 rašo..."
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr "%1 prisijungė prie šios grupės"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr "%1 išėjo iš šios grupės"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
@@ -79,7 +77,7 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr "%1 pervadino grupę į: %2"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
@@ -98,11 +96,11 @@ msgstr ""
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
-msgstr "+"
+msgstr ""
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr "<<< Perbraukite, norėdami atsisakyti"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -110,7 +108,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:793
 msgid "Add"
-msgstr "Pridėti"
+msgstr "Agiunghe"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -118,23 +116,23 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
-msgstr "Pridėti gavėją"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr "Pridėti į adresatus"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr "Pridėti..."
+msgstr ""
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr "Administratorius"
+msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr ""
+msgstr "Totus"
 
 #: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
@@ -142,7 +140,6 @@ msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
@@ -150,7 +147,6 @@ msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
@@ -158,7 +154,6 @@ msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: ../src/qml/ThreadDelegate.qml:107
 #, qt-format
@@ -166,7 +161,6 @@ msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: ../src/qml/ThreadDelegate.qml:110
 #, qt-format
@@ -174,11 +168,10 @@ msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
-msgstr "Garso priedas nepalaikomas"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1194
 msgid "Away"
@@ -188,23 +181,22 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
-msgstr "Atgal"
+msgstr "In segus"
 
 #: ../src/qml/Messages.qml:1196
 msgid "Busy"
 msgstr ""
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
-#, fuzzy
 msgid "Call"
-msgstr "Skambinti"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "Atsisakyti"
+msgstr "Annulla"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -214,18 +206,18 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr "Kanalo informacija"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr "Kanalo pavadinimas:"
+msgstr ""
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr "Užverti"
+msgstr "Serra"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -233,12 +225,12 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
 msgid "Contact"
-msgstr "Adresatas"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr "Kopijuoti"
+msgstr "Còpia"
 
 #: ../src/qml/Messages.qml:1041
 #, qt-format
@@ -247,7 +239,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr "Sukurti MMS grupę..."
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
@@ -255,33 +247,33 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr "Tamsus"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
-msgstr "Ištrinti"
+msgstr "Cantzella"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr "Ištrinta"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr "Pristatyta"
+msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
 msgid "Don't ask again"
-msgstr "Daugiau nebeklausti"
+msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
 msgid "Don't show again"
-msgstr "Daugiau neberodyti"
+msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr "Taisyti"
+msgstr "Modìfica"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -293,23 +285,23 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
-msgstr "Nepavyko"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:170
 msgid "Failed to create group"
-msgstr "Nepavyko sukurti grupę"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:238
 msgid "Failed to delete group"
-msgstr "Nepavyko ištrinti grupės"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:136
 msgid "Failed to leave channel"
-msgstr "Nepavyko išeiti iš kanalo"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr "Nepavyko išeiti iš grupės"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
@@ -321,11 +313,11 @@ msgstr ""
 
 #: ../src/qml/MessageStatusIcon.qml:75
 msgid "Failed!"
-msgstr "Nepavyko!"
+msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr "Mėgstami"
+msgstr "Preferidos"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -333,34 +325,33 @@ msgstr ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
 msgid "File type not supported"
-msgstr "Failo tipas nepalaikomas"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
-#, fuzzy
 msgid "Forward"
-msgstr "Pirmyn"
+msgstr "Torra a imbiare"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr "Nuo"
+msgstr "Dae"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr "Supratau"
+msgstr "Andat bene"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
-msgstr "Grupė"
+msgstr ""
 
 #: ../src/qml/Messages.qml:764
 #, qt-format
 msgid "Group (%1)"
-msgstr "Grupė (%1)"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:122
 msgid "Group Info"
-msgstr "Grupės informacija"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
@@ -369,7 +360,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:234
 msgid "Group name:"
-msgstr "Grupės pavadinimas:"
+msgstr ""
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
@@ -393,7 +384,7 @@ msgstr ""
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr "Informacija"
+msgstr "Informatziones"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
@@ -417,19 +408,19 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr "Išeiti iš kanalo"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr "Išeiti iš grupės"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr "Šviesus"
+msgstr ""
 
-#: ../src/qml/ComposeBar.qml:570 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:572 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
-msgstr "MMS"
+msgstr ""
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:31
 msgid ""
@@ -439,11 +430,11 @@ msgstr ""
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr "Reikalingas MMS palaikymas"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr "Aš"
+msgstr "Deo"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
@@ -488,7 +479,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr "Nauja MMS grupė"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -499,19 +490,19 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr "Ne"
+msgstr "Nono"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
-msgstr "Nėra SIM kortelės"
+msgstr ""
 
 #: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
 msgid "No SIM card selected"
-msgstr "Nepasirinkta jokia SIM kortelė"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
-msgstr "Nėra tinklo"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
@@ -523,21 +514,21 @@ msgstr ""
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr "Numeris ar adresato vardas"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
-msgstr ""
+msgstr "Foras de lìnia"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Gerai"
+msgstr "AB"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr ""
+msgstr "In lìnia"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -560,7 +551,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
 msgid "Please insert a SIM card and try again."
-msgstr "Įdėkite SIM kortelę ir bandykite dar kartą."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -577,14 +568,14 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:146 ../src/qml/GroupChatInfoPage.qml:432
+#: ../src/qml/ComposeBar.qml:148 ../src/qml/GroupChatInfoPage.qml:432
 #: ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
-msgstr "Šalinti"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr "Šalinti iš grupės"
+msgstr ""
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -601,11 +592,11 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "Bandyti dar kartą"
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr "SIM kortelė yra užrakinta"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
@@ -615,15 +606,15 @@ msgstr ""
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr "Įrašyti"
+msgstr "Sarva"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr "Ieškoti"
+msgstr "Chirca"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr "Ieškoti..."
+msgstr "Chirca..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
@@ -635,7 +626,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
-msgstr "Išsiųsta"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
@@ -643,13 +634,13 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr "Nustatymai"
+msgstr "Cunfiguratziones"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr "Bendrinti"
+msgstr "Cumpartzi"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
@@ -657,19 +648,19 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr "Rikiuoti pagal laiko žymą"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr "Rikiuoti pagal pavadinimą"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
-msgstr "Rikiuoti gijas"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
-msgstr "Būsena"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -681,11 +672,11 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr "Perbraukite norėdami ištrinti"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr "Perbraukite norėdami atskleisti veiksmus"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
@@ -693,7 +684,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr "Laikinai nepavyko"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
@@ -715,11 +706,11 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
-msgstr "Pasirinkta paskyra šiuo metu nėra prieinama"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr "Apipavidalinimas"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -728,7 +719,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "Šiuo metu nėra tinklo."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
@@ -736,21 +727,20 @@ msgid "This recipient was already selected"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:108
-#, fuzzy
 msgid "To"
-msgstr "Iki"
+msgstr ""
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
-msgstr "Kam:"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
-msgstr "Šiandien"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:98
 msgid "Type"
-msgstr "Tipas"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
@@ -763,12 +753,12 @@ msgstr ""
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
 msgid "Unknown"
-msgstr "Nežinoma"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
-msgstr "Nežinomas adresatas"
+msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
@@ -776,11 +766,11 @@ msgstr ""
 
 #: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
 msgid "Video Preview"
-msgstr "Vaizdo įrašo peržiūra"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
 msgid "Video attachment not supported"
-msgstr "Vaizdo įrašo priedas nepalaikomas"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
@@ -790,11 +780,11 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:513
+#: ../src/qml/ComposeBar.qml:515
 msgid "Write a broadcast message..."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:525
+#: ../src/qml/ComposeBar.qml:527
 msgid "Write a message..."
 msgstr ""
 
@@ -803,19 +793,19 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:41
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr "Taip"
+msgstr "Eja"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
-msgstr "Vakar"
+msgstr "Eris"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr "Jūs esate administratorius"
+msgstr "Ses amministradore"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr "Jūs nesate administratorius"
+msgstr "No ses amministradore"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -830,9 +820,9 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
-msgstr "Turite išjungti skrydžio veikseną"
+msgstr ""
 
-#: ../src/qml/ComposeBar.qml:170
+#: ../src/qml/ComposeBar.qml:172
 msgid "You have to press and hold the record icon"
 msgstr ""
 
@@ -843,20 +833,20 @@ msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr "Jūs prisijungėte prie šios grupės"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "Jūs išėjote iš šios grupės"
+msgstr ""
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
-msgstr "Turite pasirinkti SIM kortelę"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr "Jūs pervadinote grupę į: %1"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -865,4 +855,4 @@ msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr "Jūs buvote pašalinti iš šios grupės"
+msgstr ""
