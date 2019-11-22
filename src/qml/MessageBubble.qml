@@ -144,7 +144,7 @@ BorderImage {
             left: parent.left
             leftMargin: units.gu(1)
         }
-        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
+        //width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
         fontSize: "medium"
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
@@ -153,6 +153,13 @@ BorderImage {
         wrapMode: Text.Wrap
         color: root.messageIncoming ? Theme.palette.normal.backgroundText :
                                       Theme.palette.normal.positiveText
+        Component.onCompleted: {
+                if (textLabel.paintedWidth > maxDelegateWidth) {
+                    width = maxDelegateWidth
+                } else {
+                    width = undefined
+                }
+            }
     }
 
     Row {
