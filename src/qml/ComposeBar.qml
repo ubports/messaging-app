@@ -65,7 +65,7 @@ Item {
     property int smsLength: 160
 
     Component.onDestruction: {
-        messageTextField.draftKey = ""
+        messageTextArea.draftKey = ""
         composeBar.reset()
     }
 
