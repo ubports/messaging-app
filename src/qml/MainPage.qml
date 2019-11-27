@@ -273,7 +273,8 @@ Page {
 
             function show()
             {
-                var properties = model.properties
+                var properties = {}
+                properties["accountId"] = model.properties.accountId
                 properties["keyboardFocus"] = false
                 properties["threads"] = model.threads
                 properties["presenceRequest"] = threadDelegate.presenceItem
@@ -281,9 +282,6 @@ Page {
                     properties["scrollToEventId"] = displayedEvent.eventId
                 }
                 properties["chatEntry"] = chatEntry
-                delete properties["participants"]
-                delete properties["localPendingParticipants"]
-                delete properties["remotePendingParticipants"]
                 mainView.showMessagesView(properties)
             }
 
