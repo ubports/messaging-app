@@ -1350,12 +1350,27 @@ Page {
         delegate: Item {
             property var threads: model.threads
             onThreadsChanged: {
+                //workaround for https://github.com/ubports/messaging-app/issues/66, model is loaded twice when sending a new message due to message status change (status = unknow and then active )
+                //make sure there is really a participants list update to avoid unecessary reloading
+                if (threadInformation.participants == null || threadInformation.participantsHasChanged(model.participants)){
+                    threadInformation.participants = model.participants
+                }
                 threadInformation.chatRoomInfo = model.chatRoomInfo
-                threadInformation.participants = model.participants
                 threadInformation.localPendingParticipants = model.localPendingParticipants
                 threadInformation.remotePendingParticipants = model.remotePendingParticipants
                 threadInformation.threads = model.threads
+
             }
+        }
+
+        function participantsHasChanged(newParticipants){
+            var oldParticipantsIds = messages.participantIds
+            if (newParticipants.length !== oldParticipantsIds.length) return true
+
+            for (var i in newParticipants) {
+                if (oldParticipantsIds.indexOf(newParticipants[i].identifier) === -1) return true
+            }
+            return false
         }
     }
 
