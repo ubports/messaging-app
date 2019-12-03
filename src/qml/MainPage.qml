@@ -309,12 +309,15 @@ Page {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
+                }else {
+                    if (pageStack.columns <= 1) {
+                        show()
+                    }
                 }
+
                 threadList.currentIndex = index
 
-                if (pageStack.columns <= 1) {
-                    show()
-                }
+
             }
             onPressAndHold: {
                 threadList.startSelection()
