@@ -19,15 +19,17 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 import Ubuntu.History 0.1
 import "dateUtils.js" as DateUtils
 
-ListItem {
+ListItemWithActions {
     id: delegate
 
+    property QtObject chatEntry: null
     property bool compactView: false
     property var participant: participants ? participants[0] : {}
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
@@ -160,18 +162,8 @@ ListItem {
     anchors.left: parent.left
     anchors.right: parent.right
     height: units.gu(8)
-    divider.visible: false
-    contentItem.anchors {
-        leftMargin: units.gu(2)
-        rightMargin: units.gu(2)
-        topMargin: units.gu(1)
-        bottomMargin: units.gu(1)
-    }
-    contentItem.clip: false
-    highlightColor: "transparent"
 
-    leadingActions: ListItemActions {
-        actions: [
+    leftSideAction:
             Action {
                 iconName: "delete"
                 text: i18n.tr("Delete")
@@ -179,19 +171,6 @@ ListItem {
                     mainView.removeThreads(model.threads)
                 }
             }
-        ]
-        delegate: Rectangle {
-            width: height + units.gu(2)
-            color: UbuntuColors.red
-            Icon {
-                name: action.iconName
-                width: units.gu(3)
-                height: width
-                color: "white"
-                anchors.centerIn: parent
-            }
-        }
-    }
 
     Component.onCompleted: {
         if (searchTerm !== "") {
