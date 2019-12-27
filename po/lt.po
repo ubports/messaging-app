@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-02 17:43+0000\n"
-"PO-Revision-Date: 2019-11-11 22:36+0000\n"
+"PO-Revision-Date: 2020-01-19 19:39+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/lt/>\n"
@@ -148,33 +148,33 @@ msgstr[2] ""
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Priedas: %1 adresatas"
+msgstr[1] "Priedai: %1 adresatai"
+msgstr[2] "Priedai: %1 adresatų"
 
 #: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Priedas: %1 failas"
+msgstr[1] "Priedai: %1 failai"
+msgstr[2] "Priedai: %1 failų"
 
 #: ../src/qml/ThreadDelegate.qml:107
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Priedas: %1 paveikslas"
+msgstr[1] "Priedai: %1 paveikslai"
+msgstr[2] "Priedai: %1 paveikslų"
 
 #: ../src/qml/ThreadDelegate.qml:110
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Priedas: %1 vaizdo įrašas"
+msgstr[1] "Priedai: %1 vaizdo įrašai"
+msgstr[2] "Priedai: %1 vaizdo įrašų"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
