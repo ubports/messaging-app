@@ -74,7 +74,7 @@ Page {
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
 
-        title: i18n.tr("Messages")
+        title: mainPage.selectionMode ? i18n.tr("Select") : i18n.tr("Messages")
         flickable: dualPanel ? null : threadList
         leadingActionBar {
             id: leadingBar
@@ -268,6 +268,27 @@ Page {
             }
         }
 
+        displaced: Transition {
+            UbuntuNumberAnimation {
+                property: "y"
+            }
+        }
+
+
+        remove: Transition {
+            ParallelAnimation {
+                UbuntuNumberAnimation {
+                    property: "height"
+                    to: 0
+                }
+
+                UbuntuNumberAnimation {
+                    properties: "opacity"
+                    to: 0
+                }
+            }
+        }
+
         listDelegate: ThreadDelegate {
             id: threadDelegate
 
@@ -294,9 +315,9 @@ Page {
                 right: parent.right
             }
             compactView: mainView.compactView
-            selectMode: threadList.isInSelectionMode
+            selectionMode: threadList.isInSelectionMode
             selected: {
-                if (selectMode) {
+                if (selectionMode) {
                     return threadList.isSelected(threadDelegate)
                 }
                 return false
@@ -304,31 +325,40 @@ Page {
 
             searchTerm: mainPage.searching ? searchField.text : ""
 
-            onClicked: {
+            onItemClicked: {
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
+                }else {
+                    if (pageStack.columns <= 1) {
+                        show()
+                    }
                 }
+
                 threadList.currentIndex = index
 
-                if (pageStack.columns <= 1) {
-                    show()
-                }
+
             }
-            onPressAndHold: {
-                threadList.startSelection()
-                threadList.selectItem(threadDelegate)
+            onItemPressAndHold: {
+                if (!threadList.isInSelectionMode) {
+                    threadList.startSelection()
+                    threadList.selectItem(threadDelegate)
+                }else{
+                    threadList.cancelSelection()
+                }
+
+
             }
 
-            ChatEntry {
-                id: chatEntry
+            chatEntry : ChatEntry {
                 chatType: model.properties.chatType
                 participantIds: model.properties.participantIds ? model.properties.participantIds : []
                 chatId: model.properties.threadId
                 accountId: model.properties.accountId
                 autoRequest: false
             }
+
 
             opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
         }
