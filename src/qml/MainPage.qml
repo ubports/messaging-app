@@ -74,7 +74,7 @@ Page {
         property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
 
-        title: mainPage.selectionMode ? i18n.tr("Select") : i18n.tr("Messages")
+        title: i18n.tr("Messages")
         flickable: dualPanel ? null : threadList
         leadingActionBar {
             id: leadingBar
@@ -194,7 +194,7 @@ Page {
             ]
             PropertyChanges {
                 target: pageHeader
-                title: " "
+                title: i18n.tr("Select")
                 leadingActions: selectionState.leadingActions
                 trailingActions: selectionState.trailingActions
             }
@@ -269,7 +269,7 @@ Page {
         }
 
         displaced: Transition {
-            UbuntuNumberAnimation {
+            NumberAnimation {
                 property: "y"
             }
         }
@@ -277,12 +277,12 @@ Page {
 
         remove: Transition {
             ParallelAnimation {
-                UbuntuNumberAnimation {
+                NumberAnimation {
                     property: "height"
                     to: 0
                 }
 
-                UbuntuNumberAnimation {
+                NumberAnimation {
                     properties: "opacity"
                     to: 0
                 }
