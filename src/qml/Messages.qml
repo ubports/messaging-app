@@ -79,7 +79,6 @@ Page {
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
-    property string text: ""
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
@@ -132,6 +131,7 @@ Page {
 
     signal ready
     signal cancel
+    signal messageSent
 
     function restoreBindings() {
         messages.account = Qt.binding(getCurrentAccount)
@@ -1541,13 +1541,14 @@ Page {
         }
 
         participants: messages.participants
+        threadId: messages.threadId
+        presenceRequest: messages.presenceRequest
         isBroadcast: messages.isBroadcast
         returnToSend: messages.account.protocolInfo.returnToSend
         enableAttachments: messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
-        text: messages.text
         onTextChanged: {
             if (!account.protocolInfo.enableChatStates) {
                 return
@@ -1625,7 +1626,7 @@ Page {
     SendMessageValidator {
         id: sendMessageValidator
 
-        onMessageSent: composeBar.reset()
+        onMessageSent: messages.messageSent()
     }
 
     KeyboardRectangle {

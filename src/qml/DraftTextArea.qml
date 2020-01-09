@@ -25,81 +25,86 @@ TextArea {
 
     // By setting the draftKey property to a string, this TextArea will save the
     // current text as a draft when the view changes.
-    property bool active: visible && (draftKey !== null && draftKey !== "")
-    property var draftKey: null
-    property var _oldDraftKey: null
-    readonly property int coolDown: 2000
-    property string datastore: "{}"
+    property bool active: visible && draftKey.length > 0 && !textIsEmpty
+    property bool textIsEmpty: displayText.length == 0
+    property bool loaded: false
+    property string draftKey: "" //refers to threadId in Messages.qml
+    property string _oldDraftKey: ""
+    readonly property int storeInterval: 2000
+    property string draftStore: "{}"
 
-    onActiveChanged: {
-        console.log("active:", active, "threadId:", draftKey)
-    }
+    function _loadKey() {
+        if (draftKey.length == 0 || draftKey === _oldDraftKey) return
 
-    onDraftKeyChanged: {
-        if (draftKey !== _oldDraftKey) { //prevent from firing twice ( for some reason threadId is changed twice )
-            //coolDownTimer.stop()
-            //_saveKey(_oldDraftKey)
-            _loadKey(draftKey)
-            //coolDownTimer.start()
-        }
-
-    }
-
-    //onTextChanged: _saveKey(draftKey)
-
-    function _loadKey(draftKey) {
-        if (draftKey === null || draftKey === "") return
-        var draftTextAreaObj = JSON.parse(datastore)
+        var draftTextAreaObj = JSON.parse(draftStore)
         var newText = ""
         if (draftTextAreaObj[draftKey]) {
             newText = draftTextAreaObj[draftKey]
         }
+
         text = newText
         cursorPosition = text.length
         _oldDraftKey = draftKey
+
     }
 
-    function _saveKey(draftKey) {
-        //if (draftKey === null || draftKey === "" || coolDownTimer.running) return
-        console.log("kikou save:", displayText, "for drafFey:", draftKey)
-        var draftTextAreaObj = JSON.parse(datastore)
+    function _saveKey() {
+        if (draftKey.length == 0) return
+
+        var draftTextAreaObj = JSON.parse(draftStore)
         if (draftTextAreaObj[draftKey] !== displayText) {
-            draftTextAreaObj[draftKey] = displayText
-            datastore = JSON.stringify(draftTextAreaObj)
+
+            if (textIsEmpty) {
+                delete draftTextAreaObj[draftKey]
+            } else{
+                draftTextAreaObj[draftKey] = displayText
+            }
+
+
+            draftStore = JSON.stringify(draftTextAreaObj)
+
         }
 
-//        store.draftTextArea = JSON.stringify(draftTextAreaObj)
-//        coolDownTimer.start()
     }
 
-//    function _getStore() {
-//        var draftTextAreaObj = {}
-//        try {
-//            draftTextAreaObj = JSON.parse(store.draftTextArea)
-//        }
-//        catch(e) {
-//            store.draftTextArea = "{}"
-//        }
-//        return draftTextAreaObj
-//    }
+    onDraftKeyChanged: {
+        //prevent from being fired before onCompleted signal
+        if (loaded)  _loadKey()
+    }
+
+    onTextIsEmptyChanged: {
+        //saveIt explicitely since Timer stops when text is empty
+        if (textIsEmpty) _saveKey()
+    }
+
+
+
 
     Timer {
-        id: coolDownTimer
-        interval: coolDown
+        interval: storeInterval
         repeat: true
         running: active
-        onTriggered: _saveKey(draftKey)
+        onTriggered: _saveKey()
     }
 
     Settings {
-        id: store
-        property alias draftTextArea: textAreaRoot.datastore
-        //property string draftTextArea: "{}"
+        property alias draftTextArea: textAreaRoot.draftStore
     }
 
-    //Component.onCompleted: _loadKey(draftKey)
-    Component.onDestruction: {
-        //coolDownTimer.stop()
-        _saveKey(draftKey)
+    Connections {
+        target: messages
+        onMessageSent: {
+            _saveKey()
+            text = ""
+        }
     }
+
+    Component.onCompleted: {
+        loaded = true
+        _loadKey()
+    }
+
+
+    Component.onDestruction:_saveKey()
+
 }
