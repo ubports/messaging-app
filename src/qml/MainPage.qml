@@ -425,9 +425,15 @@ Page {
     Loader {
         id: bottomEdgeLoader
         asynchronous: true
-        active: !mainView.dualPanel
-        source: Qt.resolvedUrl('MessagingBottomEdge.qml')
-        onLoaded: bottomEdgeLoader.item.parent = mainPage
+        /* FIXME: would be even more efficient to use setSource() to
+           delay the compilation step but a bug in Qt prevents us.
+           Ref.: https://bugreports.qt.io/browse/QTBUG-54657
+        */
+        sourceComponent: MessagingBottomEdge {
+            parent: mainPage
+            enabled: !mainView.dualPanel
+            hint.visible: enabled
+        }
     }
 
     onActiveFocusChanged: {

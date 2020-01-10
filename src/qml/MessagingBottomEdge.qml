@@ -24,9 +24,17 @@ BottomEdge {
 
     height: parent ? parent.height : 0
     hint.text: i18n.tr("+")
-    hint.visible: true
     contentUrl: Qt.resolvedUrl("Messages.qml")
-    preloadContent: true
+    // delay loading bottom edge until after the first frame
+    // is drawn to save on startup time
+    preloadContent: false
+
+    Timer {
+        interval: 1
+        repeat: false
+        running: true
+        onTriggered: bottomEdge.preloadContent = true
+    }
 
     onCommitCompleted: {
         layout.addPageToNextColumn(mainPage, bottomEdge.contentUrl)
