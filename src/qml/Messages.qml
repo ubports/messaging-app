@@ -131,7 +131,6 @@ Page {
 
     signal ready
     signal cancel
-    signal messageSent
 
     function restoreBindings() {
         messages.account = Qt.binding(getCurrentAccount)
@@ -1626,7 +1625,7 @@ Page {
     SendMessageValidator {
         id: sendMessageValidator
 
-        onMessageSent: messages.messageSent()
+        onMessageSent: composeBar.reset()
     }
 
     KeyboardRectangle {

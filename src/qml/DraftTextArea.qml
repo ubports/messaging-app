@@ -84,8 +84,6 @@ TextArea {
     }
 
 
-
-
     Timer {
         interval: storeInterval
         repeat: true
@@ -96,14 +94,6 @@ TextArea {
     Settings {
         property alias draftTextArea: textAreaRoot.draftStore
     }
-
-    Connections {
-        target: messages
-        onMessageSent: {
-           text = ""
-        }
-    }
-
 
 
     Component.onCompleted: {

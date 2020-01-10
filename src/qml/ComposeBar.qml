@@ -67,6 +67,7 @@ Item {
     property int smsLength: 160
 
     Component.onDestruction: {
+        messageTextArea.draftKey = ""
         composeBar.reset()
     }
 
@@ -81,6 +82,7 @@ Item {
             FileOperations.remove(attachments.get(0).filePath)
         }
 
+        textEntry.text = ""
         attachments.clear()
     }
 
@@ -770,11 +772,6 @@ Item {
         drag.axis: Drag.XAxis
         drag.minimumX: (leftSideActions.x + leftSideActions.width)
         drag.maximumX: recordButton.x
-    }
-
-    Connections {
-        target: messages
-        onMessageSent: composeBar.reset()
     }
 
     ParticipantsPopover {
