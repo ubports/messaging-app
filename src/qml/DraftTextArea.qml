@@ -25,8 +25,8 @@ TextArea {
 
     // By setting the draftKey property to a string, this TextArea will save the
     // current text as a draft when the view changes.
-    property bool active: visible && draftKey.length > 0 && !textIsEmpty
-    property bool textIsEmpty: displayText.length == 0
+    property bool active: visible && draftKey.length > 0 && !isEmpty
+    property bool isEmpty: displayText.length == 0
     property bool loaded: false
     property string draftKey: "" //refers to threadId in Messages.qml
     property string _oldDraftKey: ""
@@ -52,18 +52,24 @@ TextArea {
         if (draftKey.length == 0) return
 
         var draftTextAreaObj = JSON.parse(draftStore)
-        if (draftTextAreaObj[draftKey] !== displayText) {
-
-            if (textIsEmpty) {
+        var updated = false
+        if (isEmpty) {
+            if (draftKey in draftTextAreaObj){
                 delete draftTextAreaObj[draftKey]
-            } else{
-                draftTextAreaObj[draftKey] = displayText
+                updated = true
             }
-
-
-            draftStore = JSON.stringify(draftTextAreaObj)
-
+        }else{
+            if (draftTextAreaObj[draftKey] !== displayText) {
+                draftTextAreaObj[draftKey] = displayText
+                updated = true
+            }
         }
+
+        if (updated){
+            draftStore = JSON.stringify(draftTextAreaObj)
+        }
+
+
 
     }
 
@@ -72,9 +78,9 @@ TextArea {
         if (loaded)  _loadKey()
     }
 
-    onTextIsEmptyChanged: {
+    onIsEmptyChanged: {
         //saveIt explicitely since Timer stops when text is empty
-        if (textIsEmpty) _saveKey()
+        if (isEmpty) _saveKey()
     }
 
 
@@ -94,10 +100,11 @@ TextArea {
     Connections {
         target: messages
         onMessageSent: {
-            _saveKey()
-            text = ""
+           text = ""
         }
     }
+
+
 
     Component.onCompleted: {
         loaded = true
