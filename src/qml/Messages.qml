@@ -863,6 +863,10 @@ Page {
                         commit()
                 }
 
+                onSelectedRecipients: function(recipientsIds) {
+                     addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
+                }
+
                 KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
             }
 
@@ -1438,7 +1442,7 @@ Page {
         id: messageList
         objectName: "messageList"
         visible: !isSearching
-        listModel: messages.newMessage ? null : eventModel
+        listModel: eventModel
         account: messages.account
         activeFocusOnTab: false
         focus: false
