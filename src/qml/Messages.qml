@@ -864,7 +864,13 @@ Page {
                 }
 
                 onSelectedRecipients: function(recipientsIds) {
-                     addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
+                    if (recipientsIds.length > 0) {
+                        addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
+                    }else{
+                        //reset all
+                        messages.threads = []
+                        reloadFilters = !reloadFilters
+                    }
                 }
 
                 KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
