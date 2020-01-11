@@ -231,6 +231,13 @@ Page {
         return false
     }
 
+    function resetFilters(){
+        messages.participants.length = 0
+        messages.participantIds.length = 0
+        messages.threads.length = 0
+        reloadFilters = !reloadFilters
+    }
+
     function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
@@ -868,8 +875,7 @@ Page {
                         addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
                     }else{
                         //reset all
-                        messages.threads = []
-                        reloadFilters = !reloadFilters
+                        resetFilters()
                     }
                 }
 
