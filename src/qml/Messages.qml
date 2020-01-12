@@ -874,7 +874,7 @@ Page {
                     //cleanup the filter
                     resetFilters()
 
-                    if (recipientsIds.length > 0) {
+                    if (recipientsIds.length === 1) { //only refresh message history for single participant, otherwise it have UI side effect (unable to add more 2 participants )
                         addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
                     }
                 }
