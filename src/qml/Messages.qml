@@ -871,11 +871,11 @@ Page {
                 }
 
                 onSelectedRecipients: function(recipientsIds) {
+                    //cleanup the filter
+                    resetFilters()
+
                     if (recipientsIds.length > 0) {
                         addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
-                    }else{
-                        //reset all
-                        resetFilters()
                     }
                 }
 

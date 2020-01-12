@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-11 17:38+0000\n"
+"POT-Creation-Date: 2020-01-12 14:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "%1 is not Admin"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1197
+#: ../src/qml/Messages.qml:1195
 #, qt-format
 msgid "%1 is typing.."
 msgstr ""
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Accepted"
 msgstr ""
 
-#: ../src/qml/Messages.qml:801
+#: ../src/qml/Messages.qml:800
 msgid "Add"
 msgstr ""
 
@@ -172,21 +172,21 @@ msgstr[1] ""
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1212
+#: ../src/qml/Messages.qml:1210
 msgid "Away"
 msgstr ""
 
-#: ../src/qml/Messages.qml:652 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:651 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1214
+#: ../src/qml/Messages.qml:1212
 msgid "Busy"
 msgstr ""
 
-#: ../src/qml/Messages.qml:789 ../src/qml/Messages.qml:904
+#: ../src/qml/Messages.qml:788 ../src/qml/Messages.qml:903
 msgid "Call"
 msgstr ""
 
@@ -222,7 +222,7 @@ msgstr ""
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:915
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:914
 msgid "Contact"
 msgstr ""
 
@@ -231,12 +231,12 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1059
+#: ../src/qml/Messages.qml:1057
 #, qt-format
 msgid "Create %1 Group..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1029
+#: ../src/qml/Messages.qml:1027
 msgid "Create MMS Group..."
 msgstr ""
 
@@ -343,7 +343,7 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: ../src/qml/Messages.qml:772
+#: ../src/qml/Messages.qml:771
 #, qt-format
 msgid "Group (%1)"
 msgstr ""
@@ -397,7 +397,7 @@ msgstr ""
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1053
+#: ../src/qml/Messages.qml:1051
 msgid "Join IRC Channel..."
 msgstr ""
 
@@ -515,7 +515,7 @@ msgstr ""
 msgid "Number or contact name"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1210
+#: ../src/qml/Messages.qml:1208
 msgid "Offline"
 msgstr ""
 
@@ -525,7 +525,7 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1208
+#: ../src/qml/Messages.qml:1206
 msgid "Online"
 msgstr ""
 
@@ -749,7 +749,7 @@ msgstr ""
 msgid "Type a name..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1199
+#: ../src/qml/Messages.qml:1197
 msgid "Typing.."
 msgstr ""
 
@@ -816,7 +816,7 @@ msgid ""
 "able to send it."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1549
+#: ../src/qml/Messages.qml:1547
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
