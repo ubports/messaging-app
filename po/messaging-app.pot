@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-28 23:01+0000\n"
+"POT-Creation-Date: 2020-01-21 22:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,10 +191,18 @@ msgid "Call"
 msgstr ""
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
+msgstr ""
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
 msgstr ""
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
@@ -262,16 +270,20 @@ msgstr ""
 msgid "Delivered"
 msgstr ""
 
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
 msgstr ""
 
-#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
 msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
+msgstr ""
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
 msgstr ""
 
 #: ../src/qml/SettingsPage.qml:56
@@ -484,13 +496,6 @@ msgstr ""
 msgid "New message"
 msgstr ""
 
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-msgid "No"
-msgstr ""
-
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
 msgstr ""
@@ -567,8 +572,9 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:148 ../src/qml/GroupChatInfoPage.qml:432
-#: ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/ComposeBar.qml:148
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr ""
 
@@ -621,6 +627,10 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
+msgstr ""
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
 msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:166
@@ -789,13 +799,6 @@ msgstr ""
 
 #: ../src/qml/ComposeBar.qml:527
 msgid "Write a message..."
-msgstr ""
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
-msgid "Yes"
 msgstr ""
 
 #: ../src/qml/dateUtils.js:49
