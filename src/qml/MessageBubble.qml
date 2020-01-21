@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
@@ -89,15 +89,15 @@ BorderImage {
 
     property string color: {
         if (error) {
-            return "red"
+            return theme.palette.normal.negative
         } else if (sending) {
-            return "grey"
+            return theme.palette.normal.base
         } else if (messageIncoming) {
-            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "black" : "white"
+            return theme.palette.normal.background
         } else if (isMultimedia) {
-            return "blue"
+            return theme.palette.normal.focus
         } else {
-            return "green"
+            return theme.palette.normal.positive
         }
     }
     property bool completed

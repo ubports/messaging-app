@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
@@ -68,16 +68,16 @@ BaseDelegate {
         anchors.fill: parent
         color: {
             if (error) {
-                return "#fc4949"
+                return theme.palette.normal.negative
             } else if (sending) {
-                return "#b2b2b2"
+                return theme.palette.normal.base
             } else if (incoming) {
-                return "#ffffff"
+                return theme.palette.normal.background
             } else {
-                return "#3fb24f"
+                return theme.palette.normal.positive
             }
         }
-        border.color: incoming ? "#ACACAC" : "transparent"
+        border.color: incoming ? theme.palette.normal.base : "transparent"
         radius: units.gu(1)
 
         ContactAvatar {
@@ -112,7 +112,7 @@ BaseDelegate {
             verticalAlignment: Text.AlignVCenter
             text: vcardDelegate.title
             elide: Text.ElideMiddle
-            color: incoming ? UbuntuColors.darkGrey : "#ffffff"
+            color: incoming ? theme.palette.normal.backgroundText : "#ffffff"
         }
 
         Label {
@@ -124,7 +124,7 @@ BaseDelegate {
             }
             fontSize: "xx-small"
             text: Qt.formatTime(timestamp).toLowerCase()
-            color: incoming ? UbuntuColors.lightGrey : "white"
+            color: incoming ? theme.palette.normal.backgroundSecondaryText : "white"
         }
     }
 
