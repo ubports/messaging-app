@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
@@ -45,7 +45,6 @@ Component {
             Button {
                 objectName: "closeNoSimCardDefaultDialog"
                 text: i18n.tr("Close")
-                color: UbuntuColors.orange
                 onClicked: {
                     settings.mainViewIgnoreFirstTimeDialog = true
                     PopupUtils.close(dialogue)

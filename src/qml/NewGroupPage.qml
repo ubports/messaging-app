@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.4
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItems
 import Ubuntu.History 0.1
@@ -211,7 +211,7 @@ Page {
 
             Item {
                 id: groupNameItem
-                clip: true 
+                clip: true
                 height: mmsGroup ? 0 : units.gu(6)
                 anchors {
                     top: contentColumn.top
@@ -274,7 +274,7 @@ Page {
                    bottom: groupNameItem.bottom
                }
                height: 1
-               color: UbuntuColors.lightGrey
+               color: theme.palette.selected.base
                z: 2
             }
             ContactSearchWidget {
@@ -298,7 +298,7 @@ Page {
                    bottom: searchItem.bottom
                }
                height: 1
-               color: UbuntuColors.lightGrey
+               color: theme.palette.selected.base
                z: 2
             }
             ListItemActions {
