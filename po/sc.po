@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-08 09:41+0000\n"
-"PO-Revision-Date: 2019-11-10 13:13+0000\n"
+"PO-Revision-Date: 2020-01-19 19:39+0000\n"
 "Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sc/>\n"
@@ -42,69 +42,69 @@ msgstr "%1 at agiuntu %2 a su grupu"
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 at cumbidadu a %2 a custu grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 est amministradore"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 no est amministradore"
 
 #: ../src/qml/Messages.qml:1179
 #, qt-format
 msgid "%1 is typing.."
-msgstr ""
+msgstr "%1 est iscriende..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 at aderidu a custu grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 at lassadu custu grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 at bogadu %2 dae custu grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 at mudadu su nòmine de su grupu in %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 at fatu a %2 amministradore"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 at fatu a %2 no amministradore"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 est istadu cumbidadu a su grupu"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "<<< Iscurre pro annullare"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "Atzetadu"
 
 #: ../src/qml/Messages.qml:793
 msgid "Add"
@@ -112,23 +112,23 @@ msgstr "Agiunghe"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
-msgstr ""
+msgstr "Agiunghe partetzipante:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
-msgstr ""
+msgstr "Agiunghe su destinatàriu"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr ""
+msgstr "Agiunghe a is cuntatos"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "Agiunghe..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "Amministradore"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
