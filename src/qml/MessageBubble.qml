@@ -89,15 +89,15 @@ BorderImage {
 
     property string color: {
         if (error) {
-            return theme.palette.normal.negative
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "lightRed" : "red"
         } else if (sending) {
-            return theme.palette.normal.base
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "lightGrey" : "grey"
         } else if (messageIncoming) {
-            return theme.palette.normal.background
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "black" : "white"
         } else if (isMultimedia) {
-            return theme.palette.normal.focus
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "lightBlue" : "blue"
         } else {
-            return theme.palette.normal.positive
+            return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "lightGreen" : "green"
         }
     }
     property bool completed
