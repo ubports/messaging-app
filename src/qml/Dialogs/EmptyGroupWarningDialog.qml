@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
@@ -37,8 +37,7 @@ Component {
                 spacing: units.gu(4)
                 Button {
                     objectName: "emptyGroupWarningDialogCancel"
-                    text: i18n.tr("No")
-                    color: UbuntuColors.orange
+                    text: i18n.tr("Cancel")
                     onClicked: {
                         PopupUtils.close(dialogue)
                         Qt.inputMethod.hide()
@@ -46,8 +45,8 @@ Component {
                 }
                 Button {
                     objectName: "emptyGroupWarningDialogOk"
-                    text: i18n.tr("Yes")
-                    color: UbuntuColors.orange
+                    text: i18n.tr("Remove")
+                    color: theme.palette.normal.negative
                     onClicked: {
                         PopupUtils.close(dialogue)
                         Qt.inputMethod.hide()

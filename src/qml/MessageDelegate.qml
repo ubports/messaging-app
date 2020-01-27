@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
@@ -131,7 +131,7 @@ ListItem {
         ]
         delegate: Rectangle {
             width: height + units.gu(4.5)
-            color: UbuntuColors.red
+            color: theme.palette.normal.negative
             Icon {
                 name: action.iconName
                 width: units.gu(3)

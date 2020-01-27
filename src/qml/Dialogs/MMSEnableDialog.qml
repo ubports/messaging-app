@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
@@ -31,15 +31,9 @@ Dialog {
     text: i18n.tr("MMS support is required to send this message.\nDo you want to enable it?")
 
     Button {
-        id: noButton
-        text: i18n.tr("No")
-        onClicked: PopupUtils.close(mmsDialog)
-    }
-
-    Button {
         id: yesButton
-        text: i18n.tr("Yes")
-        color: UbuntuColors.orange
+        text: i18n.tr("Enable")
+        color: theme.palette.normal.positive
         onClicked: {
             telepathyHelper.mmsEnabled = true
             mmsDialog.accepted(message)
@@ -47,4 +41,9 @@ Dialog {
         }
     }
 
+    Button {
+        id: noButton
+        text: i18n.tr("Cancel")
+        onClicked: PopupUtils.close(mmsDialog)
+    }
 }
