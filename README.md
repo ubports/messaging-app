@@ -3,6 +3,14 @@ ReadMe - Ubuntu Messaging App
 Ubuntu Messaging App is the official SMS app for Ubuntu Touch. We follow an open
 source model where the code is available to anyone to branch and hack on.
 
+Internals
+=========
+
+Messaging app relies on [history-service](https://github.com/ubports/history-service) as the database backend,
+ [telepathy-ofono](https://github.com/ubports/telepathy-ofono) for message relay.
+
+`history-service` database is stored in `/home/phablet/.local/share/history-service/history.sqlite`
+
 Building with clickable
 =======================
 Install [clickable](http://clickable.bhdouglass.com/en/latest/), then app then can be build and deployed by simply running:
