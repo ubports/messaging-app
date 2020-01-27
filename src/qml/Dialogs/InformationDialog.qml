@@ -34,7 +34,6 @@ Component {
                     Qt.inputMethod.hide()
                 }
             }
-            color: UbuntuColors.orange
             Component.onCompleted: forceActiveFocus()
         }
 

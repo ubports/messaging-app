@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
@@ -43,7 +43,6 @@ Component {
                 Button {
                     objectName: "okFileSizeWarningDialog"
                     text: i18n.tr("Ok")
-                    color: UbuntuColors.orange
                     onClicked: {
                         PopupUtils.close(dialogue)
                     }

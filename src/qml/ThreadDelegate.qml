@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
@@ -209,7 +209,7 @@ ListItemWithActions {
         visible: source != ""
         source: {
             if (isBroadcast) {
-                return Qt.resolvedUrl("assets/broadcast_icon.png")
+                return "image://theme/broadcast"
             } else if (groupChat) {
                 return "image://theme/contact-group"
             }
@@ -225,6 +225,7 @@ ListItemWithActions {
             top: avatar.top
             topMargin: units.gu(0.5)
             left: chatTypeIcon.right
+            leftMargin: units.gu(1)
             right: time.left
             rightMargin: unreadCountIndicator.width
         }
@@ -282,7 +283,7 @@ ListItemWithActions {
             if (!telepathyHelper.ready) {
                 return ""
             }
- 
+
             // for any chat room, or generic account, show the icon
             if (chatType == HistoryThreadModel.ChatTypeRoom || telepathyHelper.accountForId(model.accountId).type == AccountEntry.GenericAccount) {
                 return telepathyHelper.accountForId(model.accountId).protocolInfo.icon
@@ -366,9 +367,9 @@ ListItemWithActions {
         property alias presenceItem: presenceRequest
         property string latestFilter: ""
         property var searchHistoryFilter
-        property var searchHistoryFilterString: 'import Ubuntu.History 0.1; 
-            HistoryUnionFilter { 
-                %1 
+        property var searchHistoryFilterString: 'import Ubuntu.History 0.1;
+            HistoryUnionFilter {
+                %1
             }'
         property var searchIntersectionFilter: 'HistoryIntersectionFilter {
             HistoryFilter { filterProperty: "accountId"; filterValue: \'%1\' }
@@ -394,7 +395,7 @@ ListItemWithActions {
                         delegateHelper.searchHistoryFilter = Qt.createQmlObject(finalString, searchEventModelLoader)
                         latestFilter = finalString
                     }
- 
+
                     searchEventModelLoader.active = true
                 }
             } else {
