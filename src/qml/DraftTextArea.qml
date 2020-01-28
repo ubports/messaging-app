@@ -25,12 +25,9 @@ TextArea {
 
     // By setting the draftKey property to a string, this TextArea will save the
     // current text as a draft when the view changes.
-    property bool active: visible && draftKey.length > 0 && !isEmpty
-    property bool isEmpty: displayText.length == 0
     property bool loaded: false
     property string draftKey: "" //refers to threadId in Messages.qml
     property string _oldDraftKey: ""
-    readonly property int storeInterval: 2000
     property string draftStore: "{}"
 
     function _loadKey() {
@@ -53,7 +50,7 @@ TextArea {
 
         var draftTextAreaObj = JSON.parse(draftStore)
         var updated = false
-        if (isEmpty) {
+        if (displayText.length == 0) {
             if (draftKey in draftTextAreaObj){
                 delete draftTextAreaObj[draftKey]
                 updated = true
@@ -69,8 +66,6 @@ TextArea {
             draftStore = JSON.stringify(draftTextAreaObj)
         }
 
-
-
     }
 
     onDraftKeyChanged: {
@@ -78,21 +73,18 @@ TextArea {
         if (loaded)  _loadKey()
     }
 
-    onIsEmptyChanged: {
-        //saveIt explicitely since Timer stops when text is empty
-        if (isEmpty) _saveKey()
-    }
-
-
-    Timer {
-        interval: storeInterval
-        repeat: true
-        running: active
-        onTriggered: _saveKey()
-    }
-
     Settings {
         property alias draftTextArea: textAreaRoot.draftStore
+    }
+
+
+    Connections {
+        target: Qt.application
+        onStateChanged: {
+            if (Qt.application.state !== Qt.ApplicationActive) {
+                _saveKey()
+            }
+        }
     }
 
 
@@ -102,6 +94,10 @@ TextArea {
     }
 
 
-    Component.onDestruction:_saveKey()
+    Component.onDestruction: {
+        _saveKey()
+    }
+
+
 
 }

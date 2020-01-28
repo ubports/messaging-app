@@ -37,7 +37,7 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
-    property var threadId: threads.length > 0 ? threads[0].threadId : ""
+    property var threadId: threads.length > 0 ? threads[0].threadId : "UNKNOWN"
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property variant participants: {

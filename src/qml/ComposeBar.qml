@@ -66,11 +66,6 @@ Item {
     property int messageCount: 0
     property int smsLength: 160
 
-    Component.onDestruction: {
-        messageTextArea.draftKey = ""
-        composeBar.reset()
-    }
-
     function forceFocus() {
         if (showContents)
             messageTextArea.forceActiveFocus()
