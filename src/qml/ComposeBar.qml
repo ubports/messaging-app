@@ -46,6 +46,8 @@ Item {
     property bool returnToSend: false
     property bool enableAttachments: true
     property alias participants: participantPopover.participants
+    property string threadId: ""
+    property QtObject presenceRequest : null
     readonly property alias textArea: messageTextArea
     readonly property int maxSMSLength: 160
     readonly property int maxSMSLengthMultiple: 153
@@ -63,11 +65,6 @@ Item {
     property int _defaultHeight: charCount.height + textEntry.height + attachmentPanel.height + stickersPicker.height + units.gu(2)
     property int messageCount: 0
     property int smsLength: 160
-
-    Component.onDestruction: {
-        messageTextArea.draftKey = ""
-        composeBar.reset()
-    }
 
     function forceFocus() {
         if (showContents)
@@ -417,7 +414,8 @@ Item {
                 id: messageTextArea
                 objectName: "messageTextArea"
 
-                draftKey: threadId
+                draftKey: composeBar.threadId
+
 
                 property bool autoCompleteLock: false
 
@@ -516,8 +514,8 @@ Item {
                     } else if (telepathyHelper.ready) {
                         var account = telepathyHelper.accountForId(presenceRequest.accountId)
                         if (account &&
-                                (presenceRequest.type != PresenceRequest.PresenceTypeUnknown &&
-                                 presenceRequest.type != PresenceRequest.PresenceTypeUnset) &&
+                                (presenceRequest.type !== PresenceRequest.PresenceTypeUnknown &&
+                                 presenceRequest.type !== PresenceRequest.PresenceTypeUnset) &&
                                 account.protocolInfo.serviceName !== "") {
                             console.log(presenceRequest.accountId)
                             console.log(presenceRequest.type)

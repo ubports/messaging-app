@@ -37,7 +37,7 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
-    property var threadId: threads.length > 0 ? threads[0].threadId : ""
+    property var threadId: threads.length > 0 ? threads[0].threadId : "UNKNOWN"
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property variant participants: {
@@ -79,7 +79,6 @@ Page {
     property bool landscape: orientationAngle == 90 || orientationAngle == 270
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
-    property string text: ""
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
     property string latestEventId: ""
@@ -1557,13 +1556,14 @@ Page {
         }
 
         participants: messages.participants
+        threadId: messages.threadId
+        presenceRequest: messages.presenceRequest
         isBroadcast: messages.isBroadcast
         returnToSend: messages.account.protocolInfo.returnToSend
         enableAttachments: messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
-        text: messages.text
         onTextChanged: {
             if (!account.protocolInfo.enableChatStates) {
                 return
