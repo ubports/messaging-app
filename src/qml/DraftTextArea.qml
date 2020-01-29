@@ -25,63 +25,79 @@ TextArea {
 
     // By setting the draftKey property to a string, this TextArea will save the
     // current text as a draft when the view changes.
-    property var draftKey: null
-    property var _oldDraftKey: null
-    readonly property var coolDown: 2000
+    property bool loaded: false
+    property string draftKey: "" //refers to threadId in Messages.qml
+    property string _oldDraftKey: ""
+    property string draftStore: "{}"
 
-    onDraftKeyChanged: {
-        coolDownTimer.stop()
-        _saveKey(_oldDraftKey)
-        _loadKey(draftKey)
-    }
+    function _loadKey() {
+        if (draftKey.length == 0 || draftKey === _oldDraftKey) return
 
-    Component.onCompleted: _loadKey(draftKey)
-    Component.onDestruction: {
-        coolDownTimer.stop()
-        _saveKey(draftKey)
-    }
-    onTextChanged: _saveKey(draftKey)
-
-    function _loadKey(draftKey) {
-        if (draftKey === null || draftKey === "") return
-        var draftTextAreaObj = _getStore()
+        var draftTextAreaObj = JSON.parse(draftStore)
         var newText = ""
         if (draftTextAreaObj[draftKey]) {
             newText = draftTextAreaObj[draftKey]
         }
+
         text = newText
         cursorPosition = text.length
         _oldDraftKey = draftKey
+
     }
 
-    function _saveKey(draftKey) {
-        if (draftKey === null || draftKey === "" || coolDownTimer.running) return
-        var draftTextAreaObj = _getStore()
-        if (draftTextAreaObj[draftKey] === displayText) return
-        draftTextAreaObj[draftKey] = displayText
-        store.draftTextArea = JSON.stringify(draftTextAreaObj)
-        coolDownTimer.start()
-    }
+    function _saveKey() {
+        if (draftKey.length == 0) return
 
-    function _getStore() {
-        var draftTextAreaObj = {}
-        try {
-            draftTextAreaObj = JSON.parse(store.draftTextArea)
+        var draftTextAreaObj = JSON.parse(draftStore)
+        var updated = false
+        if (displayText.length == 0) {
+            if (draftKey in draftTextAreaObj){
+                delete draftTextAreaObj[draftKey]
+                updated = true
+            }
+        }else{
+            if (draftTextAreaObj[draftKey] !== displayText) {
+                draftTextAreaObj[draftKey] = displayText
+                updated = true
+            }
         }
-        catch(e) {
-            store.draftTextArea = "{}"
+
+        if (updated){
+            draftStore = JSON.stringify(draftTextAreaObj)
         }
-        return draftTextAreaObj
+
     }
 
-    Timer {
-        id: coolDownTimer
-        interval: coolDown
-        onTriggered: _saveKey(draftKey)
+    onDraftKeyChanged: {
+        //prevent from being fired before onCompleted signal
+        if (loaded)  _loadKey()
     }
 
     Settings {
-        id: store
-        property string draftTextArea: "{}"
+        property alias draftTextArea: textAreaRoot.draftStore
     }
+
+
+    Connections {
+        target: Qt.application
+        onStateChanged: {
+            if (Qt.application.state !== Qt.ApplicationActive) {
+                _saveKey()
+            }
+        }
+    }
+
+
+    Component.onCompleted: {
+        loaded = true
+        _loadKey()
+    }
+
+
+    Component.onDestruction: {
+        _saveKey()
+    }
+
+
+
 }
