@@ -34,6 +34,7 @@ StyledItem {
 
     signal clearSearch()
     signal forceFocus()
+    signal selectedRecipients(var recipients)
 
     function getParticipants() {
         var participants = []
@@ -109,6 +110,7 @@ StyledItem {
                 tmp.push(recipientModel.get(i).identifier)
             }
             recipients = tmp
+            selectedRecipients(recipients)
         }
         ListElement {
             identifier: ""

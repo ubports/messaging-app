@@ -230,6 +230,13 @@ Page {
         return false
     }
 
+    function resetFilters(){
+        messages.participants.length = 0
+        messages.participantIds.length = 0
+        messages.threads = []
+        reloadFilters = !reloadFilters
+    }
+
     function addNewThreadToFilter(newAccountId, properties) {
         var newAccount = telepathyHelper.accountForId(newAccountId)
         var matchType = HistoryThreadModel.MatchCaseSensitive
@@ -862,6 +869,15 @@ Page {
                         commit()
                 }
 
+                onSelectedRecipients: function(recipientsIds) {
+                    //cleanup the filter
+                    resetFilters()
+
+                    if (recipientsIds.length === 1) { //only refresh message history for single participant, otherwise it have UI side effect (unable to add more 2 participants )
+                        addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
+                    }
+                }
+
                 KeyNavigation.down: searchListLoader.item ? searchListLoader.item : composeBar.textArea
             }
 
@@ -1437,7 +1453,7 @@ Page {
         id: messageList
         objectName: "messageList"
         visible: !isSearching
-        listModel: messages.newMessage ? null : eventModel
+        listModel: eventModel
         account: messages.account
         activeFocusOnTab: false
         focus: false
