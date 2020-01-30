@@ -82,7 +82,7 @@ Item {
                     return ""
 
                 if (message.senderId !== "self") {
-                    return i18n.tr("Myself")
+                    return root.activeMessage.accountLabel
                 } else if (message.participants && (message.participants.length > 1)) {
                     return i18n.tr("Group")
                 } else if (message.participants.length > 0) {
@@ -101,7 +101,7 @@ Item {
             Label {
                 text: "<b>%1:</b> %2".arg(i18n.tr("From"))
                 .arg(root.activeMessage && root.activeMessage.senderId !== "self" ?
-                     root.activeMessage && root.activeMessage.senderId : i18n.tr("Myself"))
+                     root.activeMessage && root.activeMessage.senderId : root.activeMessage.accountLabel)
             }
 
             Label {

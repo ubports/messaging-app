@@ -180,7 +180,8 @@ ListItem {
                                        "timestamp": messageData.timestamp,
                                        "textReadTimestamp": messageData.textReadTimestamp,
                                        "status": messageData.textMessageStatus,
-                                       "participants": messages.participants}
+                                       "participants": messages.participants,
+                                       "accountLabel": accountLabel.length > 0 ? accountLabel: i18n.tr("Myself")}
                     messageInfoDialog.showMessageInfo(messageInfo)
                 }
             }
