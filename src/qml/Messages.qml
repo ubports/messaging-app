@@ -233,7 +233,7 @@ Page {
     function resetFilters(){
         messages.participants.length = 0
         messages.participantIds.length = 0
-        messages.threads.length = 0
+        messages.threads = []
         reloadFilters = !reloadFilters
     }
 
