@@ -42,6 +42,7 @@ MainView {
     property alias compactView: globalSettings.compactView
     property alias userTheme: globalSettings.userTheme
     property alias favoriteChannels: favoriteChannelsItem
+    property alias autoplayAnimatedImage: globalSettings.autoplayAnimatedImage
 
     // private
     property var _pendingProperties: null
@@ -288,6 +289,7 @@ MainView {
         property string sortThreadsBy: "timestamp"
         property bool compactView: false
         property string userTheme: "default"
+        property bool autoplayAnimatedImage: true
     }
 
     StickerPacksModel {

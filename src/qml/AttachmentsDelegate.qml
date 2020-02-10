@@ -74,9 +74,16 @@ Column {
                                       "delegateSource": "AttachmentDelegates/AudioDelegate.qml",
                                     })
             } else if (startsWith(attachment.contentType, "image/")) {
+                var imgDelegate
+                if (attachment.contentType === "image/gif" || attachment.contentType === "image/webp") {
+                    imgDelegate = "AttachmentDelegates/AnimatedImageDelegate.qml"
+                } else {
+                    imgDelegate = "AttachmentDelegates/ImageDelegate.qml"
+                }
+
                 attachmentsView.dataAttachments.push({"type": "image",
                                       "data": attachment,
-                                      "delegateSource": "AttachmentDelegates/ImageDelegate.qml",
+                                      "delegateSource": imgDelegate,
                                     })
             } else if (startsWith(attachment.contentType, "application/smil") ||
                        startsWith(attachment.contentType, "application/x-smil")) {
@@ -111,6 +118,7 @@ Column {
 
         Loader {
             id: attachmentLoader
+            property bool loaded: status === Loader.Ready
 
             states: [
                 State {
@@ -132,22 +140,22 @@ Column {
             ]
             source: modelData.delegateSource
             Binding {
-                target: attachmentLoader.item ? attachmentLoader.item : null
+                target: attachmentLoader.item
                 property: "attachment"
                 value: modelData.data
-                when: attachmentLoader.status === Loader.Ready
+                when: loaded
             }
             Binding {
-                target: attachmentLoader.item ? attachmentLoader.item : null
+                target: attachmentLoader.item
                 property: "lastItem"
                 value: attachmentsView.lastItem === attachmentLoader
-                when: attachmentLoader.status === Loader.Ready
+                when: loaded
             }
             Binding {
-                target: attachmentLoader.item ? attachmentLoader.item : null
+                target: attachmentLoader.item
                 property: "isMultimedia"
                 value: isMultimedia
-                when: attachmentLoader.status === Loader.Ready
+                when: loaded
             }
         }
     }
