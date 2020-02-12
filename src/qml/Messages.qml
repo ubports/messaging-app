@@ -126,6 +126,7 @@ Page {
         }
         return ""
     }
+    property var draft: null
 
     signal ready
     signal cancel
@@ -335,6 +336,83 @@ Page {
         multiRecipient.forceActiveFocus()
     }
 
+    function saveDraft(){
+        var text = composeBar.text
+        var attachments = composeBar.attachmentModel
+
+        //need to remove draft ?
+        if (draft != null && text.length === 0 && attachments.length === 0) {
+            eventModel.removeEvents([draft]);
+            return
+        }
+
+        var toSave = (text.length > 0 || attachments.length > 0)
+        if (draft != null) {
+            //any changes in text or attachments ?
+            var draftAttachments = draft["textMessageAttachments"]
+            toSave = (text !== draft["textMessage"] || attachments.length !== draftAttachments.length)
+            //check if any differences between attachments
+            if (!toSave){
+                for (var i = 0; i < draftAttachments.length; i++) {
+                        if (draftAttachments[i].attachmentId !== attachments[i][0]  ) { //[0] is the name of the attachment
+                            toSave = true
+                        }
+                }
+            }
+        }
+
+
+        if (toSave) {
+            var event = messageToEventModel(text, attachments, HistoryEventModel.MessageStatusDraft)
+            draftModel.writeEvents([event]);
+        }
+
+    }
+
+    function messageToEventModel(text, attachments, messageStatus){
+        var event = {}
+        var timestamp = new Date()
+        var tmpEventId = timestamp.toISOString()
+        if (draft !== null) {
+            tmpEventId = draft["eventId"]
+        }
+
+
+        event["accountId"] = messages.account.accountId
+        event["threadId"] = messages.threadId
+        event["eventId"] =  tmpEventId;
+        event["type"] = HistoryEventModel.MessageTypeText
+        event["participants"] = messages.participants
+        event["senderId"] = "self"
+        event["timestamp"] = timestamp
+        event["newEvent"] = false
+        event["message"] = text
+        event["messageStatus"] = messageStatus
+        event["readTimestamp"] = timestamp;
+        event["subject"] = ""; // we dont support subject yet
+        if (attachments.length > 0) {
+            event["messageType"] = HistoryEventModel.MessageTypeMultiPart
+            var newAttachments = []
+            for (var i = 0; i < attachments.length; i++) {
+                var attachment = {}
+                var item = attachments[i]
+                attachment["accountId"] = messages.account.accountId
+                attachment["threadId"] = messages.threadId
+                attachment["eventId"] = tmpEventId
+                attachment["attachmentId"] = item[0]
+                attachment["contentType"] = item[1]
+                attachment["filePath"] = item[2]
+                attachment["status"] = HistoryEventModel.AttachmentDownloaded
+                newAttachments.push(attachment)
+            }
+            event["attachments"] = newAttachments
+        } else {
+            event["messageType"] = HistoryEventModel.MessageTypeText
+        }
+
+        return event
+    }
+
     function sendMessage(text, participantIds, attachments, properties) {
         if (typeof(properties) === 'undefined') {
             properties = {}
@@ -414,40 +492,7 @@ Page {
             }
             messages.threadId = thread.threadId
 
-            var event = {}
-            var timestamp = new Date()
-            var tmpEventId = timestamp.toISOString()
-            event["accountId"] = messages.account.accountId
-            event["threadId"] = messages.threadId
-            event["eventId"] =  tmpEventId
-            event["type"] = HistoryEventModel.MessageTypeText
-            event["participants"] = messages.participants
-            event["senderId"] = "self"
-            event["timestamp"] = timestamp
-            event["newEvent"] = false
-            event["message"] = text
-            event["messageStatus"] = HistoryEventModel.MessageStatusPermanentlyFailed
-            event["readTimestamp"] = timestamp;
-            event["subject"] = ""; // we dont support subject yet
-            if (attachments.length > 0) {
-                event["messageType"] = HistoryEventModel.MessageTypeMultiPart
-                var newAttachments = []
-                for (var i = 0; i < attachments.length; i++) {
-                    var attachment = {}
-                    var item = attachments[i]
-                    attachment["accountId"] = messages.account.accountId
-                    attachment["threadId"] = messages.threadId
-                    attachment["eventId"] = tmpEventId
-                    attachment["attachmentId"] = item[0]
-                    attachment["contentType"] = item[1]
-                    attachment["filePath"] = item[2]
-                    attachment["status"] = HistoryEventModel.AttachmentDownloaded
-                    newAttachments.push(attachment)
-                }
-                event["attachments"] = newAttachments
-            } else {
-                event["messageType"] = HistoryEventModel.MessageTypeText
-            }
+            var event = messageToEventModel(text, attachments, HistoryEventModel.MessageStatusPermanentlyFailed)
             eventModel.writeEvents([event]);
         } else {
             var isMmsGroupChat = messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
@@ -502,7 +547,9 @@ Page {
             for (var i in threads) {
                 var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(threads[i].accountId)
                 var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(threads[i].threadId)
-                componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
+                var filterExclude = 'HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft; matchFlags: HistoryFilter.MatchNotEquals }'
+
+                componentFilters += 'HistoryIntersectionFilter { %1 %2 %3 } '.arg(filterAccountId).arg(filterThreadId).arg(filterExclude)
             }
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
@@ -652,7 +699,7 @@ Page {
                    if (messages.state == "selection") {
                         messageList.cancelSelection()
                    } else {
-                        mainView.emptyStack(true)
+                       mainView.emptyStack(true)
                    }
                }
             }
@@ -961,6 +1008,7 @@ Page {
     }
 
     Component.onDestruction: {
+        saveDraft()
         newMessage = false
         active = false
         mainView.updateNewMessageStatus()
@@ -1105,6 +1153,9 @@ Page {
 
         onApplicationActiveChanged: {
             markThreadAsRead()
+            if (Qt.application.state !== Qt.ApplicationActive) {
+                saveDraft()
+            }
         }
     }
 
@@ -1138,6 +1189,12 @@ Page {
             // create the new thread and update the threadId list
             if (!checkThreadInFilters(accountId, messages.threadId)) {
                 addNewThreadToFilter(accountId, properties)
+            }
+
+            //delete draft if any
+            if (draft !== null) {
+                eventModel.removeEvents([draft]);
+                draft = null;
             }
         }
         onMessageSendingFailed: {
@@ -1547,6 +1604,23 @@ Page {
         }
     }
 
+    //Draft Management, find draft from this thread
+    HistoryEventModel {
+        id: draftModel
+        type: HistoryThreadModel.EventTypeText
+        filter: HistoryIntersectionFilter {
+            HistoryFilter { filterProperty: "threadId";  filterValue: messages.threadId }
+            HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft  }
+        }
+
+
+        onCountChanged: {
+            messages.draft = draftModel.get(0)
+            composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+        }
+
+    }
+
     ComposeBar {
         id: composeBar
         anchors {
@@ -1607,22 +1681,6 @@ Page {
                 messages.accountId = messages.account.accountId
             }
 
-            var newAttachments = []
-            for (var i = 0; i < attachments.count; i++) {
-                var attachment = []
-                var item = attachments.get(i)
-                // we dont include smil files. they will be auto generated
-                if (item.contentType.toLowerCase() === "application/smil") {
-                    continue
-                }
-                attachment.push(item.name)
-                attachment.push(item.contentType)
-                //backend need filepath without "file://" if any
-                var filePath = String(item.filePath).replace('file://', '')
-                attachment.push(filePath)
-                newAttachments.push(attachment)
-            }
-
             var recipients = participantIds.length > 0 ? participantIds :
                                                          multiRecipient.recipients
             var properties = {}
@@ -1630,7 +1688,7 @@ Page {
                 properties["x-canonical-tmp-files"] = true
             }
 
-            sendMessageValidator.validateMessageAndSend(text, recipients, newAttachments, properties)
+            sendMessageValidator.validateMessageAndSend(text, recipients, attachments, properties)
 
             if (eventModel.filter == null) {
                 reloadFilters = !reloadFilters
