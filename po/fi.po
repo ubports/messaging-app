@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-01-19 19:39+0000\n"
-"Last-Translator: Sami Törmänen <tormanen.sami@gmail.com>\n"
+"PO-Revision-Date: 2020-02-11 14:21+0000\n"
+"Last-Translator: Oi Suomi On! <oisuomion@protonmail.com>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fi/>\n"
 "Language: fi\n"
@@ -83,12 +83,12 @@ msgstr "%1 muutti ryhmän nimeksi: %2"
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 aseta %2 järjestelmänvalvojaksi"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 asetettu %2 ei-järjestelmänvalvojaksi"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
@@ -194,7 +194,7 @@ msgstr "Varattu"
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
 msgid "Call"
-msgstr "Puhelu"
+msgstr "Soita"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
@@ -240,7 +240,7 @@ msgstr "Kopioi"
 #: ../src/qml/Messages.qml:1041
 #, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "Luo %1 ryhmä..."
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
@@ -306,7 +306,7 @@ msgstr "Ryhmästä poistuminen epäonnistui"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "Ryhmän otsikon muokkaaminen epäonnistui"
 
 #: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
