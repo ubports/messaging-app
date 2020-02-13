@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-01-19 19:39+0000\n"
-"Last-Translator: Mike <miguel2000@livecom.it>\n"
+"PO-Revision-Date: 2020-02-07 12:21+0000\n"
+"Last-Translator: Emanuele Sorce <emanuele.sorce@hotmail.com>\n"
 "Language-Team: Italian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/it/>\n"
 "Language: it\n"
@@ -33,7 +33,7 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1-In connessione..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
@@ -139,7 +139,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Tutti"
+msgstr "Tutto"
 
 #: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
@@ -554,7 +554,7 @@ msgstr "In sospeso"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Scegliere un account da creare."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
