@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2017-09-29 22:17+0000\n"
-"Last-Translator: Peter Valachovič <peter.valachovic@gmail.com>\n"
+"PO-Revision-Date: 2020-02-15 09:21+0000\n"
+"Last-Translator: dano6 <dano.kutka@gmail.com>\n"
 "Language-Team: Slovak <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sk/>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.8\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -139,7 +139,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Všetko"
+msgstr "Všetky"
 
 #: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
