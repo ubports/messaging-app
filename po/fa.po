@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-02-11 14:21+0000\n"
+"PO-Revision-Date: 2020-02-15 09:21+0000\n"
 "Last-Translator: HSN80 <hosseinabbasi80@outlook.com>\n"
 "Language-Team: Persian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fa/>\n"
@@ -388,7 +388,7 @@ msgstr "پیش‌نمایش تصویر"
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr "اطلاعات"
+msgstr "جزئیات"
 
 #: ../src/qml/Messages.qml:309
 msgid "It is not possible to send messages at the moment"
@@ -552,8 +552,8 @@ msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
-"لطفاً در a href=\"system_settings\">تنظیمات سامانه > امنیت > محرمانگی</a> "
-"دسترسی بدهید."
+"لطفاً در <a href=\"system_settings\"> تنظیمات سیستم  &gt; امنیت &amp حریم "
+"خصوصی </a> اجازه دسترسی بدهید."
 
 #: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
 msgid "Please insert a SIM card and try again."
