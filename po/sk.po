@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-02-15 09:21+0000\n"
+"PO-Revision-Date: 2020-02-17 11:21+0000\n"
 "Last-Translator: dano6 <dano.kutka@gmail.com>\n"
 "Language-Team: Slovak <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sk/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#NázovKanálu"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -33,67 +33,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Pripájanie..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 pridal %2 do tejto skupiny"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 pozval %2 do tejto skupiny"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 je Správca"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 nie je Správca"
 
 #: ../src/qml/Messages.qml:1179
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "Píše..."
+msgstr "%1 píše..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 sa pridal do tejto skupiny"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 opustil túto skupinu"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 odstránil %2 z tejto skupiny"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 premenoval skupinu na: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 menoval %2 ako Správcu"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 odobral %2 funkciu Správcu"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 bol pozvaný do tejto skupiny"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -113,29 +113,27 @@ msgstr "Pridať"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr ""
+msgstr "Pridať online účet"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "Pridať príjemcu"
+msgstr "Pridať účastníka:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
 msgstr "Pridať príjemcu"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "Neznámy kontakt"
+msgstr "Pridať do kontaktov"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "Pridať..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "Správca"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -218,11 +216,11 @@ msgstr "Zmeniť všetky asociácie správ na %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "Informácie o kanáli"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "Názov kanálu:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -247,15 +245,15 @@ msgstr "Kopírovať"
 #: ../src/qml/Messages.qml:1041
 #, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "Vytvoriť %1 skupinu..."
 
 #: ../src/qml/Messages.qml:1011
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "Vytvoriť MMS skupinu..."
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "Vytváram skupinu..."
 
 #: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -284,40 +282,36 @@ msgid "Edit"
 msgstr "Upraviť"
 
 #: ../src/qml/SettingsPage.qml:50
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "Povoliť skupinové MMS"
+msgstr "Povoliť  MMS správy"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "Ukončiť skupinu"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
 msgstr "Zlyhalo"
 
 #: ../src/qml/NewGroupPage.qml:170
-#, fuzzy
 msgid "Failed to create group"
-msgstr "Odosielanie správy zlyhalo"
+msgstr "Vytvorenie skupiny zlyhalo"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
-#, fuzzy
 msgid "Failed to delete group"
-msgstr "Potiahnuť pre vymazanie"
+msgstr "Zmazanie skupiny zlyhalo"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
-#, fuzzy
 msgid "Failed to leave channel"
-msgstr "Odosielanie správy zlyhalo"
+msgstr "Opustenie kanálu zlyhalo"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "Opustenie skupiny zlyhalo"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "Zmena názvu skupiny zlyhala"
 
 #: ../src/qml/SendMessageValidator.qml:219
 msgid "Failed to send the message"
@@ -362,23 +356,21 @@ msgid "Group (%1)"
 msgstr "Skupina (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
-#, fuzzy
 msgid "Group Info"
-msgstr "Skupina"
+msgstr "Informácie o skupine"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "Skupina bola rozpustená"
 
 #: ../src/qml/NewGroupPage.qml:234
-#, fuzzy
 msgid "Group name:"
-msgstr "Skupina"
+msgstr "Názov skupiny:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -447,7 +439,7 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Ja"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
@@ -541,11 +533,11 @@ msgstr "Odpojený"
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr "Pripojené"
+msgstr "Online"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -558,7 +550,7 @@ msgstr "Čakajúce"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Vyberte účet pre vytvorenie."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
