@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-02-17 11:21+0000\n"
+"PO-Revision-Date: 2020-02-25 19:21+0000\n"
 "Last-Translator: dano6 <dano.kutka@gmail.com>\n"
 "Language-Team: Slovak <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sk/>\n"
@@ -199,7 +199,7 @@ msgstr "Zaneprázdnený"
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
 msgid "Call"
-msgstr "Volanie"
+msgstr "Volať"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
@@ -527,7 +527,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
-msgstr "Odpojený"
+msgstr "Offline"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -677,7 +677,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
-msgstr "Status"
+msgstr "Stav"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
