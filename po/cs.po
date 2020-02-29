@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
 "PO-Revision-Date: 2020-03-01 09:22+0000\n"
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
+"Last-Translator: dano6 <dano.kutka@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
 "Language: cs\n"
@@ -796,6 +796,7 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "Vítejte ve své aplikaci Ubuntu zprávy."
 
 #: ../src/qml/ComposeBar.qml:510
+#, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Napište zpráv, která má být rozeslána..."
 
