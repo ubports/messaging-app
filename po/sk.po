@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-02-25 19:21+0000\n"
+"PO-Revision-Date: 2020-03-01 09:22+0000\n"
 "Last-Translator: dano6 <dano.kutka@gmail.com>\n"
 "Language-Team: Slovak <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sk/>\n"
@@ -395,9 +395,8 @@ msgid "Info"
 msgstr "Informácie"
 
 #: ../src/qml/Messages.qml:309
-#, fuzzy
 msgid "It is not possible to send messages at the moment"
-msgstr "V režime Lietadlo nie je možné odosielať správy"
+msgstr "Momentálne nie je možné posielať správy"
 
 #: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
@@ -409,19 +408,19 @@ msgstr "Nie je možné odoslať správu"
 
 #: ../src/qml/Messages.qml:1035
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "Pripojiť sa na IRC kanál..."
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "Pripojiť sa na IRC kanál:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Opustiť kanál"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Opustiť skupinu"
 
 #: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
 msgid "MMS"
@@ -432,10 +431,12 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"Pre odosielanie tejto správy je nutná podpora MMS.\n"
+"Prajete si ju aktivovať?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "Nutná podpora MMS"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
@@ -443,7 +444,7 @@ msgstr "Ja"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "Členovia:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -471,7 +472,7 @@ msgstr "Aplikácia Správy"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "Viacero MMS správ"
 
 #: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
 msgid "Myself"
@@ -480,11 +481,11 @@ msgstr "Ja"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "Nová %1 skupina"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Nová skupina MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
 msgid "New message"
@@ -492,7 +493,7 @@ msgstr "Nová správa"
 
 #: ../src/qml/SettingsPage.qml:77
 msgid "Night Mode"
-msgstr ""
+msgstr "Nočný režim"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
@@ -519,11 +520,11 @@ msgstr "Žiadne oprávnenia pre prístup k mikrofónu"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
-msgstr ""
+msgstr "Nedostupné"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "Číslo alebo meno kontaktu"
 
 #: ../src/qml/Messages.qml:1192
 msgid "Offline"
@@ -542,7 +543,7 @@ msgstr "Online"
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "Účastníkov: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -590,19 +591,19 @@ msgstr "Odstrániť"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Odstrániť zo skupiny"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
 msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
-msgstr ""
+msgstr "Odstránením posledného člena rozpustíte %1. Chcete pokračovať?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "Skupina premenovaná na: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -632,14 +633,12 @@ msgid "Search..."
 msgstr "Hľadať..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "See in contacts"
-msgstr "Neznámy kontakt"
+msgstr "Zobraziť v kontaktoch"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
-msgstr "Napísať správu..."
+msgstr "Odoslať súkromnú správu"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
@@ -647,7 +646,7 @@ msgstr "Odoslané"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "Nastaviť ako správcu"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -661,19 +660,19 @@ msgstr "Zdieľať"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "Zjednodušené zobrazenie konverzácie"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "Zoradiť podľa času"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "Zoradiť podľa názvu"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr ""
+msgstr "Zoradiť vlákna"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
@@ -681,11 +680,11 @@ msgstr "Stav"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "Kanál úspešne opustený"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "Skupina úspešne opustená"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -709,6 +708,8 @@ msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
+"SIM karta neposkytuje telefónne číslo majiteľa. Vďaka tomu nemožno posielať "
+"MMS správy."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -716,10 +717,12 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"Obsah ktorý odosielate vyžaduje MMS správu pre každého z príjemcov. Je "
+"možné, že Vám bude služba takto účtovaná. Chcete pokračovať?"
 
 #: ../src/qml/Messages.qml:320
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "Vybraný účet momentálne nie je dostupný"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -733,7 +736,7 @@ msgstr "Momentálne žiadna sieť."
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "Tento príjemca už bol vybraný"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -753,7 +756,7 @@ msgstr "Typ"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "Napíšte meno..."
 
 #: ../src/qml/Messages.qml:1181
 msgid "Typing.."
@@ -790,9 +793,8 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "Vitajte vo svojej Ubuntu aplikácií Správy."
 
 #: ../src/qml/ComposeBar.qml:510
-#, fuzzy
 msgid "Write a broadcast message..."
-msgstr "Napísať správu..."
+msgstr "Napísať správu, ktorá má byť rozoslaná..."
 
 #: ../src/qml/ComposeBar.qml:522
 msgid "Write a message..."
@@ -811,11 +813,11 @@ msgstr "Včera"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "Ste správcom"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "Nie ste správcom"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -828,7 +830,7 @@ msgstr ""
 #: ../src/qml/Messages.qml:1516
 msgid ""
 "You can't send messages to this group because the group is no longer active"
-msgstr ""
+msgstr "Tejto skupine nemožno poslať správu, pretože nie je dlhodobo aktívna"
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
@@ -841,15 +843,15 @@ msgstr "Stlačte a podržte ikonu nahrávania"
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "Pozvali ste %1 do tejto skupiny"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "Pripojili ste sa ku skupine"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "Túto skupinu ste opustili"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -858,7 +860,7 @@ msgstr "Potrebujete zvoliť SIM kartu"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "Premenovali ste skupinu na: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -867,7 +869,7 @@ msgstr "Prepli ste na %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "Boli ste odstránený z tejto skupiny"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"

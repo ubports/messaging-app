@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-05-10 06:02+0000\n"
+"PO-Revision-Date: 2020-03-01 09:22+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pt/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.8\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -194,7 +194,7 @@ msgstr "Ocupado(a)"
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
 msgid "Call"
-msgstr "Ligar"
+msgstr "Chamada"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
