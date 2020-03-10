@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:22+0000\n"
+"POT-Creation-Date: 2020-03-10 11:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "%1 is not Admin"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1194
+#: ../src/qml/Messages.qml:1192
 #, qt-format
 msgid "%1 is typing.."
 msgstr ""
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Accepted"
 msgstr ""
 
-#: ../src/qml/Messages.qml:799
+#: ../src/qml/Messages.qml:797
 msgid "Add"
 msgstr ""
 
@@ -172,21 +172,21 @@ msgstr[1] ""
 msgid "Audio attachment not supported"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1209
+#: ../src/qml/Messages.qml:1207
 msgid "Away"
 msgstr ""
 
-#: ../src/qml/Messages.qml:650 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:648 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1211
+#: ../src/qml/Messages.qml:1209
 msgid "Busy"
 msgstr ""
 
-#: ../src/qml/Messages.qml:787 ../src/qml/Messages.qml:902
+#: ../src/qml/Messages.qml:785 ../src/qml/Messages.qml:900
 msgid "Call"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgstr ""
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:913
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:911
 msgid "Contact"
 msgstr ""
 
@@ -239,12 +239,12 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1056
+#: ../src/qml/Messages.qml:1054
 #, qt-format
 msgid "Create %1 Group..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1026
+#: ../src/qml/Messages.qml:1024
 msgid "Create MMS Group..."
 msgstr ""
 
@@ -294,7 +294,7 @@ msgstr ""
 msgid "End group"
 msgstr ""
 
-#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:314
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:312
 msgid "Failed"
 msgstr ""
 
@@ -355,7 +355,7 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: ../src/qml/Messages.qml:770
+#: ../src/qml/Messages.qml:768
 #, qt-format
 msgid "Group (%1)"
 msgstr ""
@@ -397,11 +397,11 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ../src/qml/Messages.qml:315
+#: ../src/qml/Messages.qml:313
 msgid "It is not possible to send messages at the moment"
 msgstr ""
 
-#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:210
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:210
 msgid "It is not possible to send messages in flight mode"
 msgstr ""
 
@@ -409,7 +409,7 @@ msgstr ""
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1050
+#: ../src/qml/Messages.qml:1048
 msgid "Join IRC Channel..."
 msgstr ""
 
@@ -429,7 +429,7 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:570 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:579 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr ""
 
@@ -496,11 +496,11 @@ msgstr ""
 msgid "New message"
 msgstr ""
 
-#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:215
+#: ../src/qml/Messages.qml:309 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
 msgstr ""
 
-#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:212
+#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:212
 msgid "No SIM card selected"
 msgstr ""
 
@@ -512,7 +512,7 @@ msgstr ""
 msgid "No permission to access microphone"
 msgstr ""
 
-#: ../src/qml/Messages.qml:325
+#: ../src/qml/Messages.qml:323
 msgid "Not available"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr ""
 msgid "Number or contact name"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1207
+#: ../src/qml/Messages.qml:1205
 msgid "Offline"
 msgstr ""
 
@@ -530,7 +530,7 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1205
+#: ../src/qml/Messages.qml:1203
 msgid "Online"
 msgstr ""
 
@@ -553,7 +553,7 @@ msgid ""
 "Security &amp; Privacy</a>."
 msgstr ""
 
-#: ../src/qml/Messages.qml:312 ../src/qml/SendMessageValidator.qml:216
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:216
 msgid "Please insert a SIM card and try again."
 msgstr ""
 
@@ -572,7 +572,7 @@ msgstr ""
 msgid "Received"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:145
+#: ../src/qml/ComposeBar.qml:155
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -704,7 +704,7 @@ msgstr ""
 msgid "Text message copied to clipboard"
 msgstr ""
 
-#: ../src/qml/Messages.qml:462
+#: ../src/qml/Messages.qml:460
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -717,7 +717,7 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: ../src/qml/Messages.qml:326
+#: ../src/qml/Messages.qml:324
 msgid "The selected account is not available at the moment"
 msgstr ""
 
@@ -759,7 +759,7 @@ msgstr ""
 msgid "Type a name..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1196
+#: ../src/qml/Messages.qml:1194
 msgid "Typing.."
 msgstr ""
 
@@ -793,11 +793,11 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:513
+#: ../src/qml/ComposeBar.qml:522
 msgid "Write a broadcast message..."
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:525
+#: ../src/qml/ComposeBar.qml:534
 msgid "Write a message..."
 msgstr ""
 
@@ -819,16 +819,16 @@ msgid ""
 "able to send it."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1546
+#: ../src/qml/Messages.qml:1544
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
 
-#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:209
+#: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:169
+#: ../src/qml/ComposeBar.qml:179
 msgid "You have to press and hold the record icon"
 msgstr ""
 
@@ -845,7 +845,7 @@ msgstr ""
 msgid "You left this group"
 msgstr ""
 
-#: ../src/qml/Messages.qml:309 ../src/qml/SendMessageValidator.qml:213
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
 msgstr ""
 

@@ -134,6 +134,16 @@ Item {
 
         Popover {
             id: popover
+
+            function show() {
+                visible = true;
+                __foreground.show();
+                //don't dismiss OSK when on portrait
+                if (messages.landscape) {
+                    __foreground.forceActiveFocus();
+                }
+            }
+
             Column {
                 id: containerLayout
                 anchors {
@@ -383,9 +393,8 @@ Item {
                         target: status == Loader.Ready ? item : null
                         ignoreUnknownSignals: true
                         onPressAndHold: {
-                            Qt.inputMethod.hide()
                             _activeAttachmentIndex = index
-                            PopupUtils.open(attachmentPopover, parent)
+                            PopupUtils.open(attachmentPopover, item)
                         }
                     }
                 }
@@ -605,10 +614,12 @@ Item {
         }
 
         onExpandedChanged: {
-            if (expanded && Qt.inputMethod.visible) {
-                attachmentPanel.forceActiveFocus()
+            //in landscape mode, we don't have enough place to display the attachment, lets dismiss keyboard
+            if (expanded && Qt.inputMethod.visible && (messages.landscape)) {
+                Qt.inputMethod.hide()
             }
         }
+
     }
 
     Loader {

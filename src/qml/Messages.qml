@@ -74,9 +74,7 @@ Page {
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || (participants !== null && participants.length > 1)
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
-    // FIXME: MainView should provide if the view is in portait or landscape
-    property int orientationAngle: Screen.angleBetween(Screen.primaryOrientation, Screen.orientation)
-    property bool landscape: orientationAngle == 90 || orientationAngle == 270
+    property bool landscape: width > height
     property var sharedAttachmentsTransfer: []
     property alias contactWatcher: contactWatcherInternal
     property string scrollToEventId: ""
