@@ -616,10 +616,9 @@ Item {
         onExpandedChanged: {
             //in landscape mode, we don't have enough place to display the attachment, lets dismiss keyboard
             if (expanded && Qt.inputMethod.visible && (messages.landscape)) {
-                Qt.inputMethod.hide()
+                attachmentPanel.forceActiveFocus()
             }
         }
-
     }
 
     Loader {
