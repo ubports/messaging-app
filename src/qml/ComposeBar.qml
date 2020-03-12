@@ -27,7 +27,7 @@ import Ubuntu.History 0.1
 import messagingapp.private 0.1
 import "Stickers"
 
-Item {
+Flickable {
     id: composeBar
 
     property bool showContents: true
@@ -110,10 +110,10 @@ Item {
         }
     }
 
-    anchors.bottom: isSearching ? parent.bottom : keyboard.top
-    anchors.left: parent.left
-    anchors.right: parent.right
     height: showContents ? Math.min(_defaultHeight, maxHeight) : 0
+    contentHeight: textEntry.height
+    contentY: contentHeight * ( 1.0 - visibleArea.heightRatio )
+
     visible: showContents
     clip: true
 
