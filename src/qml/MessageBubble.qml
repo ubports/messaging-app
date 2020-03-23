@@ -153,12 +153,14 @@ BorderImage {
         color: root.messageIncoming ? Theme.palette.normal.backgroundText :
                                       Theme.palette.normal.positiveText
         Component.onCompleted: {
-                if (textLabel.paintedWidth > maxDelegateWidth) {
-                    width = maxDelegateWidth
-                } else {
-                    width = undefined
-                }
+            if (textLabel.paintedWidth > maxDelegateWidth) {
+                width = maxDelegateWidth
+            } else {
+                width = undefined
             }
+        }
+
+        linkColor: theme.palette.normal.activity
     }
 
     Row {
