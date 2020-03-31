@@ -148,17 +148,23 @@ BorderImage {
         height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
-        textFormat: Text.RichText
+
+        // It needs to be Text.StyledText to use linkColor: https://api-docs.ubports.com/sdk/apps/qml/QtQuick/Text.html#sdk-qtquick-text-linkcolor
+        textFormat: Text.StyledText
         wrapMode: Text.Wrap
         color: root.messageIncoming ? Theme.palette.normal.backgroundText :
                                       Theme.palette.normal.positiveText
         Component.onCompleted: {
-                if (textLabel.paintedWidth > maxDelegateWidth) {
-                    width = maxDelegateWidth
-                } else {
-                    width = undefined
-                }
+            if (textLabel.paintedWidth > maxDelegateWidth) {
+                width = maxDelegateWidth
+            } else {
+                width = undefined
             }
+        }
+
+        linkColor: isMultimedia
+            ? theme.palette.normal.activityText
+            : theme.palette.normal.activity
     }
 
     Row {
