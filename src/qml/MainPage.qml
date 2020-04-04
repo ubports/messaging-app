@@ -226,6 +226,16 @@ Page {
         }
     }
 
+     NumberAnimation {
+            id:threadMoveAnim
+            running: threadList.currentIndex == 0
+            target: threadList.currentItem;
+            properties: "opacity";
+            duration: 500
+            easing.type: Easing.InOutQuad;
+            from: 0; to:1
+        }
+
     MultipleSelectionListView {
         id: threadList
         objectName: "threadList"
@@ -268,26 +278,6 @@ Page {
             }
         }
 
-        displaced: Transition {
-            NumberAnimation {
-                property: "y"
-            }
-        }
-
-
-        remove: Transition {
-            ParallelAnimation {
-                NumberAnimation {
-                    property: "height"
-                    to: 0
-                }
-
-                NumberAnimation {
-                    properties: "opacity"
-                    to: 0
-                }
-            }
-        }
 
         listDelegate: ThreadDelegate {
             id: threadDelegate
@@ -361,6 +351,12 @@ Page {
 
 
             opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
+
+            ListView.onRemove: SequentialAnimation {
+                PropertyAction { target: threadDelegate; property: "ListView.delayRemove"; value: true }
+                NumberAnimation { target: threadDelegate; property: "height"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
+                PropertyAction { target: threadDelegate; property: "ListView.delayRemove"; value: false }
+            }
         }
         onSelectionDone: {
             var threadsToRemove = []
