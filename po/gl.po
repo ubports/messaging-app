@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-04-01 12:22+0000\n"
+"PO-Revision-Date: 2020-04-07 16:23+0000\n"
 "Last-Translator: Neutrum N <neutro@tutanota.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "messaging-app/gl/>\n"
@@ -101,7 +101,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:156
 msgid "<<< Swipe to cancel"
-msgstr "<<< Esvarar pra cancelar"
+msgstr "<<< Esvarar para cancelar"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -426,7 +426,7 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
-"Pra enviar esta mensaxe, fai falta soporte MMS.\n"
+"Para enviar esta mensaxe, fai falta soporte MMS.\n"
 "Quere habilitalo?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
@@ -511,7 +511,7 @@ msgstr "Non hai rede"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr "Sen permiso pra acceder ao micrófono"
+msgstr "Sen permiso para acceder ao micrófono"
 
 #: ../src/qml/Messages.qml:319
 msgid "Not available"
@@ -546,7 +546,7 @@ msgstr "Pendente"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Seleccione unha conta pra crear."
+msgstr "Seleccione unha conta para crear."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -566,7 +566,7 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"Desbloquee a tarxeta SIM pra chamar ou enviar unha mensaxe. Pode "
+"Desbloquee a tarxeta SIM para chamar ou enviar unha mensaxe. Pode "
 "desbloqueala desde o indicador de rede na parte superior da pantalla ou "
 "visitando <a href=\"system_settings\">Axustes do sistema &gt; Seguranza &amp;"
 " Privacidade</a>."
@@ -683,11 +683,11 @@ msgstr "Deixouse o grupo con éxito"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr "Esvare o dedo pra eliminar"
+msgstr "Esvare o dedo para eliminar"
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr "Esvare o dedo pra ver accións"
+msgstr "Esvare o dedo para ver accións"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -740,7 +740,7 @@ msgstr "A"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
-msgstr "Pra:"
+msgstr "Para:"
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
