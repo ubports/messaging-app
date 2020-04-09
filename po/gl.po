@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-04-07 16:23+0000\n"
+"PO-Revision-Date: 2020-04-10 09:23+0000\n"
 "Last-Translator: Neutrum N <neutro@tutanota.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "messaging-app/gl/>\n"
@@ -832,7 +832,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
-msgstr "Ten que desactivar o modo avión"
+msgstr "Ten que inhabilitar o modo avión"
 
 #: ../src/qml/ComposeBar.qml:169
 msgid "You have to press and hold the record icon"
