@@ -68,10 +68,9 @@ Item {
             readonly property bool recording: recorderStatus == AudioRecorder.RecordingStatus
 
             onRecorderStatusChanged: {
-                if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
-                    var filePath = actualLocation
-
-                    if (application.fileMimeType(filePath).toLowerCase().indexOf("audio/") <= -1) {
+                if (recorderState == AudioRecorder.StoppedState && outputLocation != "") {
+                    var filePath = Qt.resolvedUrl(outputLocation)
+                    if (application.fileMimeType(filePath).toLowerCase().indexOf("audio") <= -1) {
                         //If the recording process is too quick the generated file is not an audio one and should be ignored
                         return;
                     }
