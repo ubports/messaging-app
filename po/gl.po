@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-04-10 09:23+0000\n"
+"PO-Revision-Date: 2020-04-12 09:23+0000\n"
 "Last-Translator: Neutrum N <neutro@tutanota.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "messaging-app/gl/>\n"
@@ -593,7 +593,7 @@ msgstr "Quitar do grupo"
 msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
-msgstr "Quitar o último membro causará que '%1' sexa disolto. Quere continuar?"
+msgstr "Quitar o último membro causará que «%1» sexa disolto. Quere continuar?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
