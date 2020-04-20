@@ -1615,7 +1615,9 @@ Page {
                 }
                 attachment.push(item.name)
                 attachment.push(item.contentType)
-                attachment.push(item.filePath)
+                //backend need filepath without "file://" if any
+                var filePath = String(item.filePath).replace('file://', '')
+                attachment.push(filePath)
                 newAttachments.push(attachment)
             }
 
