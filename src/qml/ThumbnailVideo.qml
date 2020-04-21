@@ -26,16 +26,15 @@ UbuntuShape {
 
     signal pressAndHold()
 
-    onFilePathChanged: videoImage.source = "image://thumbnailer/" + filePath
-
-    width: childrenRect.width
-    height: childrenRect.height
+    implicitWidth: childrenRect.implicitWidth
+    implicitHeight: childrenRect.implicitHeight
 
     image: Image {
         id: videoImage
 
         width: units.gu(8)
         height: units.gu(8)
+        source: filePath ? "image://thumbnailer/%1".arg(filePath) : ""
         sourceSize.width: width
         sourceSize.height: height
         fillMode: Image.PreserveAspectCrop
