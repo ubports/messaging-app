@@ -55,7 +55,6 @@ Item {
         }
         function stop() {
             item.stop()
-            audioRecorder.active = false
         }
  
         active: false
