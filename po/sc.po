@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-08 09:41+0000\n"
-"PO-Revision-Date: 2020-03-23 15:22+0000\n"
+"PO-Revision-Date: 2020-04-23 15:23+0000\n"
 "Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sc/>\n"
@@ -202,7 +202,7 @@ msgstr "Annulla"
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "Boles mudare totu is collegamentos de messagìstica a %1?"
+msgstr "Boles mudare totu is assòtzios de messagìstica a %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
@@ -567,9 +567,9 @@ msgid ""
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
 "Isbloca s'ischeda SIM pro fàghere mutidas o imbiare messàgios. Podes "
-"isblocare sa SIM tua tràmite s'indicadore de rete situadu in s'ala superiora "
-"de s'ischermu o bisitende <a href=\"system_settings\">Cunfiguratziones de "
-"sistema &gt; Seguresa e riservadesa</a>."
+"isblocare sa SIM tua pro mèdiu de s'indicadore de rete situadu in s'ala "
+"superiora de s'ischermu o bisitende <a href=\"system_settings\">"
+"Cunfiguratziones de sistema &gt; Seguresa e riservadesa</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
