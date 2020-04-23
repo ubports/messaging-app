@@ -74,7 +74,8 @@ Flickable {
     function reset() {
         // avoid removing files coming from forward
         if (composeBar.audioAttached) {
-            FileOperations.remove(attachments.get(0).filePath)
+            var toRemove = String(attachments.get(0).filePath).replace('file://', '')
+            FileOperations.remove(toRemove)
         }
 
         textEntry.text = ""
