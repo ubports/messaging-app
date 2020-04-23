@@ -244,7 +244,7 @@ ListItem {
         source: Qt.resolvedUrl("AttachmentsDelegate.qml")
 
         active: attachments.length > 0
-        height: loaded ? item.height : 0
+        height: item ? item.height : 0
 
         Binding {
             target: attachmentsLoader.item
