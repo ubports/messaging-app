@@ -190,14 +190,13 @@ void AudioRecorder::setCodec(const QString &audioCodec)
         if (audioCodec == "audio/vorbis" ||
             audioCodec == "audio/speex" ||
             audioCodec == "audio/FLAC") {
-
-           // m_audioRecorder->setContainerFormat("ogg");
             m_fileExtension = ".ogg";
         } else if (audioCodec == "audio/PCM") {
-           // m_audioRecorder->setContainerFormat("wav");
             m_fileExtension = ".wav";
         } else {
-           // m_audioRecorder->setContainerFormat("raw");
+            qWarning() << "AudioRecorder error: Unsupported Audio Codec: " << audioCodec;
+            return;
+
         }
 
         m_audioSettings.setCodec(audioCodec);
