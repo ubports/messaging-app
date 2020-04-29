@@ -19,12 +19,14 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
+import Ubuntu.Contacts 0.1
 
 Item {
     id: header
 
     property string title: ""
     property string subtitle: ""
+    property variant participant: null
 
     height: units.gu(8)
 
@@ -36,12 +38,35 @@ Item {
         UbuntuNumberAnimation {}
     }
 
+    ContactAvatar {
+        id: avatar
+
+        fallbackAvatarUrl: {
+            if (participant && participant.avatar !== "") {
+               return participant.avatar
+            } else {
+               return "image://theme/contact"
+            }
+        }
+        fallbackDisplayName:  participant.alias
+        showAvatarPicture: (participant && participant.avatar !== "")
+        visible: participant
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+            leftMargin: units.gu(0.5)
+        }
+        height: parent.height
+        width: height
+    }
+
     Item {
         height: Math.min(titleText.height + (subtitleText.height ? subtitleText.height + subtitleText.anchors.topMargin : 0), header.height)
         width: header.width
         anchors {
             verticalCenter: parent.verticalCenter
-            left: parent.left
+            left: avatar.right
             leftMargin: units.gu(1)
         }
  

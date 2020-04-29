@@ -1185,6 +1185,7 @@ Page {
         width: parent ? parent.width - units.gu(2) : undefined
         height: units.gu(5)
         title: pageHeader.title
+        participant: newMessage ? null: firstParticipant //prevent from having avatar displayed in the composeBar!....
         subtitle: {
             if (userTyping) {
                 if (groupChat) {
