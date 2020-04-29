@@ -21,7 +21,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
 
-ListItem {
+ListItemWithActions {
     id: messageDelegate
     objectName: "messageDelegate"
 
@@ -56,7 +56,7 @@ ListItem {
     }
     property alias account: textBubble.account
 
-    swipeEnabled: !(attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
+    locked: (attachmentsLoader.item && attachmentsLoader.item.swipeLocked)
 
     function deleteMessage()
     {
@@ -121,94 +121,63 @@ ListItem {
     color: "transparent"
 
     width: messageList.width
-    leadingActions: ListItemActions {
-        actions: [
-            Action {
-                iconName: "delete"
-                text: i18n.tr("Delete")
-                onTriggered: deleteMessage()
-            }
-        ]
-        delegate: Rectangle {
-            width: height + units.gu(4.5)
-            color: theme.palette.normal.negative
-            Icon {
-                name: action.iconName
-                width: units.gu(3)
-                height: width
-                color: "white"
-                anchors.centerIn: parent
+    leftSideAction: Action {
+        id: deleteAction
+        iconName: "delete"
+        text: i18n.tr("Delete")
+        onTriggered: deleteMessage()
+        visible: messageData.textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed
+    }
+
+    rightSideActions: [
+        Action {
+            id: retryAction
+            iconName: "reload"
+            text: i18n.tr("Retry")
+            visible: messageData.textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed
+            onTriggered: messageDelegate.resendMessage()
+        },
+        Action {
+            id: copyAction
+
+            iconName: "edit-copy"
+            text: i18n.tr("Copy")
+            visible: messageText !== ""
+            onTriggered: messageDelegate.copyMessage()
+        },
+        Action {
+            id: forwardAction
+
+            iconName: "mail-forward"
+            text: i18n.tr("Forward")
+            onTriggered: messageDelegate.forwardMessage()
+        },
+        Action {
+            id: infoAction
+
+            iconName: "info"
+            text: i18n.tr("Info")
+            onTriggered: {
+                var messageType = attachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
+                var messageInfo = {"type": messageType,
+                    "senderId": messageData.senderId,
+                    "sender": messageData.sender,
+                    "timestamp": messageData.timestamp,
+                    "textReadTimestamp": messageData.textReadTimestamp,
+                    "status": messageData.textMessageStatus,
+                    "participants": messages.participants,
+                    "accountLabel": accountLabel.length > 0 ? accountLabel: i18n.tr("Myself")}
+                messageInfoDialog.showMessageInfo(messageInfo)
             }
         }
-    }
+    ]
 
-    trailingActions: ListItemActions {
-        actions: [
-            Action {
-                id: retryAction
-
-                iconName: "reload"
-                text: i18n.tr("Retry")
-                visible: messageData.textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed
-                onTriggered: messageDelegate.resendMessage()
-            },
-            Action {
-                id: copyAction
-
-                iconName: "edit-copy"
-                text: i18n.tr("Copy")
-                visible: messageText !== ""
-                onTriggered: messageDelegate.copyMessage()
-            },
-            Action {
-                id: forwardAction
-
-                iconName: "mail-forward"
-                text: i18n.tr("Forward")
-                onTriggered: messageDelegate.forwardMessage()
-            },
-            Action {
-                id: infoAction
-
-                iconName: "info"
-                text: i18n.tr("Info")
-                onTriggered: {
-                    var messageType = attachments.length > 0 ? i18n.tr("MMS") : i18n.tr("SMS")
-                    var messageInfo = {"type": messageType,
-                                       "senderId": messageData.senderId,
-                                       "sender": messageData.sender,
-                                       "timestamp": messageData.timestamp,
-                                       "textReadTimestamp": messageData.textReadTimestamp,
-                                       "status": messageData.textMessageStatus,
-                                       "participants": messages.participants,
-                                       "accountLabel": accountLabel.length > 0 ? accountLabel: i18n.tr("Myself")}
-                    messageInfoDialog.showMessageInfo(messageInfo)
-                }
-            }
-        ]
-    }
 
     height: Math.max(attachmentsLoader.height + textBubble.height, contactAvatarLoader.height) + units.gu(1)
-    divider.visible: false
-    contentItem.clip: false
-    contentItem.anchors {
-        leftMargin: units.gu(2)
-        rightMargin: units.gu(2)
+    clip: false
+    anchors {
         topMargin: units.gu(0.5)
         bottomMargin: units.gu(0.5)
-    }
-    highlightColor: "transparent"
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            if (!selectMode) {
-                // we only have actions for attachment items, so forward the click
-                if (attachmentsLoader.item) {
-                    attachmentsLoader.item.clicked(mouse)
-                }
-            }
-        }
     }
 
     Loader {
@@ -255,6 +224,14 @@ ListItem {
             value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : null
             when: (attachmentsLoader.status === Loader.Ready && attachmentsLoader.item)
         }
+
+        MouseArea {
+            anchors.fill: attachmentsLoader
+            enabled: !isInSelectionMode && attachmentsLoader.item
+            propagateComposedEvents: true
+            onClicked: attachmentsLoader.item.clicked(mouse)
+        }
+
     }
 
     MessageBubble {
