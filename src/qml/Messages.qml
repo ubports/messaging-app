@@ -706,7 +706,7 @@ Page {
 
             PropertyChanges {
                 target: pageHeader
-                title: " "
+                title: ""
                 trailingActions: selectionState.trailingActions
                 backEnabled: true
             }
@@ -881,7 +881,7 @@ Page {
 
             PropertyChanges {
                 target: pageHeader
-                title: " "
+                title: ""
                 trailingActions: newMessageState.trailingActions
                 contents: newMessageState.contents
                 backEnabled: true
@@ -1185,7 +1185,7 @@ Page {
         width: parent ? parent.width - units.gu(2) : undefined
         height: units.gu(5)
         title: pageHeader.title
-        participant: newMessage ? null: firstParticipant //prevent from having avatar displayed in the composeBar!....
+        participant: firstParticipant
         subtitle: {
             if (userTyping) {
                 if (groupChat) {

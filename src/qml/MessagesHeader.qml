@@ -50,7 +50,7 @@ Item {
         }
         fallbackDisplayName:  participant.alias
         showAvatarPicture: (participant && participant.avatar !== "")
-        visible: participant
+        visible: participant && title.length > 0
         anchors {
             left: parent.left
             top: parent.top
