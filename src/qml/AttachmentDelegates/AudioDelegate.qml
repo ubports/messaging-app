@@ -75,7 +75,7 @@ BaseDelegate {
         function seek(pos) { item.seek(pos) }
         active: false
         sourceComponent: audioPlayerComponent
-        Component.onDestruction: FileOperations.remove(source)
+        Component.onDestruction: if (source.length > 0) FileOperations.remove(source)
     }
 
     Component {
