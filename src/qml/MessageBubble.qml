@@ -66,7 +66,7 @@ BorderImage {
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // preserve white space and new lines
-        text = text.replace(/' '/g, '&nbsp;').replace(/\n/g, '<br>');
+        text = text.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
         // check for links
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
