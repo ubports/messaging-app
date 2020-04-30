@@ -13,7 +13,7 @@ Messaging app relies on [history-service](https://github.com/ubports/history-ser
 
 Building with clickable
 =======================
-Install [clickable](http://clickable.bhdouglass.com/en/latest/), the run:
+Install [clickable](http://clickable.bhdouglass.com/en/latest/), then run:
 
 ```
 clickable
