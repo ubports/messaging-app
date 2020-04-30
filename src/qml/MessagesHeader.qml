@@ -49,7 +49,7 @@ Item {
             }
         }
         fallbackDisplayName:  participant.alias
-        showAvatarPicture: (participant && participant.avatar !== "")
+        showAvatarPicture: (participant && participant.avatar !== "") || (initials.length === 0)
         visible: participant && title.length > 0
         anchors {
             left: parent.left
