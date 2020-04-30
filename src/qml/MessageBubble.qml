@@ -65,8 +65,8 @@ BorderImage {
 
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
-        // wrap text in a div to keep whitespaces and new lines from collapsing
-        text = '<div style="white-space: pre-wrap;">' + text + '</div>';
+        // preserve white space and new lines
+        text = text.replace(/' '/g, '&nbsp;').replace(/\n/g, '<br>');
         // check for links
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
