@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-04-17 09:23+0000\n"
+"PO-Revision-Date: 2020-05-10 20:23+0000\n"
 "Last-Translator: Federico Turbino <bisio.97@gmail.com>\n"
 "Language-Team: Italian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/it/>\n"
@@ -283,7 +283,7 @@ msgstr "Abilita messaggi MMS"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "Termina gruppo"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
 msgid "Failed"
@@ -594,7 +594,7 @@ msgstr "Rimuovi dal gruppo"
 msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
-msgstr ""
+msgstr "Rimuovere l'ultimo membro cancellerà '%1'. Vuoi continuare?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
@@ -656,11 +656,11 @@ msgstr "Condividi"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "Vista conversazione simplificata"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "Ordina per data"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
@@ -668,7 +668,7 @@ msgstr "Ordina per titolo"
 
 #: ../src/qml/SettingsPage.qml:69
 msgid "Sort threads"
-msgstr ""
+msgstr "Ordina i thread"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
