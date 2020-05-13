@@ -325,11 +325,9 @@ Page {
                         show()
                     }
                 }
-
                 threadList.currentIndex = index
-
-
             }
+
             onItemPressAndHold: {
                 if (!threadList.isInSelectionMode) {
                     threadList.startSelection()
@@ -337,8 +335,6 @@ Page {
                 }else{
                     threadList.cancelSelection()
                 }
-
-
             }
 
             chatEntry : ChatEntry {
@@ -349,15 +345,13 @@ Page {
                 autoRequest: false
             }
 
-
-            opacity: !groupChat || chatEntry.active ? 1.0 : 0.5
-
             ListView.onRemove: SequentialAnimation {
                 PropertyAction { target: threadDelegate; property: "ListView.delayRemove"; value: true }
                 NumberAnimation { target: threadDelegate; property: "height"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
                 PropertyAction { target: threadDelegate; property: "ListView.delayRemove"; value: false }
             }
         }
+
         onSelectionDone: {
             var threadsToRemove = []
             for (var i=0; i < items.count; i++) {
