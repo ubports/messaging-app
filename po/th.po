@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2015-08-11 14:30+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Thai <th@li.org>\n"
+"PO-Revision-Date: 2020-05-25 06:24+0000\n"
+"Last-Translator: Somnuk Limsiroratana <mailsomnuk@yahoo.com>\n"
+"Language-Team: Thai <https://translate.ubports.com/projects/ubports/"
+"messaging-app/th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -136,7 +137,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr ""
+msgstr "ทั้งหมด"
 
 #: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
@@ -185,7 +186,7 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
 #: ../src/qml/SettingsPage.qml:260
 msgid "Back"
-msgstr ""
+msgstr "ย้อนกลับ"
 
 #: ../src/qml/Messages.qml:1196
 msgid "Busy"
@@ -200,7 +201,7 @@ msgstr ""
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -221,7 +222,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr ""
+msgstr "ปิด"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -234,7 +235,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr ""
+msgstr "คัดลอก"
 
 #: ../src/qml/Messages.qml:1041
 #, qt-format
@@ -253,7 +254,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:177
 msgid "Delete"
-msgstr ""
+msgstr "ลบ"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -273,7 +274,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr ""
+msgstr "แก้ไข"
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Enable MMS messages"
@@ -317,7 +318,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr ""
+msgstr "รายการโปรด"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -490,7 +491,7 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 msgid "No"
-msgstr ""
+msgstr "ไม่"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
 msgid "No SIM card"
@@ -606,15 +607,15 @@ msgstr ""
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr ""
+msgstr "ค้นหา"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr ""
+msgstr "ค้นหา..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
@@ -634,13 +635,13 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "ตั้งค่า"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr ""
+msgstr "แชร์"
 
 #: ../src/qml/SettingsPage.qml:57
 msgid "Simplified conversation view"
@@ -785,11 +786,11 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:41
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
 msgid "Yes"
-msgstr ""
+msgstr "ใช่"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
-msgstr ""
+msgstr "เมื่อวาน"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
