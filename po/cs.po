@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-04-01 12:22+0000\n"
+"PO-Revision-Date: 2020-05-21 07:24+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -83,7 +83,7 @@ msgstr "%1 přejmenoval(a) skupinu na: %2"
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr "%1 jmenoval(a) %2 jako Správce"
+msgstr "%1 jmenoval(a) %2 Správcem"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
@@ -151,33 +151,33 @@ msgstr[2] "Přílohy: %1 audio klipů"
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] "Přiložit: %1 kontakt"
-msgstr[1] "Přiložit: %1 kontakty"
-msgstr[2] "Přiložit: %1 kontaktů"
+msgstr[0] "Příloha: %1 kontakt"
+msgstr[1] "Přílohy: %1 kontakty"
+msgstr[2] "Přílohy: %1 kontaktů"
 
 #: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] "Přiložit: %1 soubor"
-msgstr[1] "Přiložit: %1 soubory"
-msgstr[2] "Přiložit: %1 souborů"
+msgstr[0] "Příloha: %1 soubor"
+msgstr[1] "Přílohy: %1 soubory"
+msgstr[2] "Přílohy: %1 souborů"
 
 #: ../src/qml/ThreadDelegate.qml:107
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] "Přiložit: %1 obrázek"
-msgstr[1] "Přiložit: %1 obrázky"
-msgstr[2] "Přiložit: %1 obrázků"
+msgstr[0] "Příloha: %1 obrázek"
+msgstr[1] "Přílohy: %1 obrázky"
+msgstr[2] "Přílohy: %1 obrázků"
 
 #: ../src/qml/ThreadDelegate.qml:110
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] "Přiložit: %1 video"
-msgstr[1] "Přiložit: %1 videa"
-msgstr[2] "Přiložit: %1 videí"
+msgstr[0] "Příloha: %1 video"
+msgstr[1] "Přílohy: %1 videa"
+msgstr[2] "Přílohy: %1 videí"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
@@ -232,7 +232,7 @@ msgstr "Zavřít"
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
-"Pro vytvoření nové textové zprávy vytáhněte nový formulář ze spodní hrany "
+"Pro vytvoření nové textové zprávy vytáhněte nový formulář ze spodního okraje "
 "obrazovky."
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
@@ -346,7 +346,7 @@ msgstr "Od"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr "Hotovo"
+msgstr "Pochopil(a) jsem"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -379,8 +379,8 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
-"Pokud chcete změnit SIM a jiná nastavení, navštivte <a href=\"system_settings"
-"\">Systémová nastavení</a>."
+"Pokud chcete změnit SIM a jiná nastavení, navštivte <a href=\""
+"system_settings\">Nastavení systému</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
@@ -540,7 +540,7 @@ msgstr "OK"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr "Připojen"
+msgstr "Připojen(a)"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
