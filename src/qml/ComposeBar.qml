@@ -27,7 +27,7 @@ import Ubuntu.History 0.1
 import messagingapp.private 0.1
 import "Stickers"
 
-Item {
+Flickable {
     id: composeBar
 
     property bool showContents: true
@@ -110,10 +110,10 @@ Item {
         }
     }
 
-    anchors.bottom: isSearching ? parent.bottom : keyboard.top
-    anchors.left: parent.left
-    anchors.right: parent.right
     height: showContents ? Math.min(_defaultHeight, maxHeight) : 0
+    contentHeight: textEntry.height
+    contentY: contentHeight * ( 1.0 - visibleArea.heightRatio )
+
     visible: showContents
     clip: true
 
@@ -134,6 +134,16 @@ Item {
 
         Popover {
             id: popover
+
+            function show() {
+                visible = true;
+                __foreground.show();
+                //don't dismiss OSK when on portrait
+                if (messages.landscape) {
+                    __foreground.forceActiveFocus();
+                }
+            }
+
             Column {
                 id: containerLayout
                 anchors {
@@ -383,9 +393,8 @@ Item {
                         target: status == Loader.Ready ? item : null
                         ignoreUnknownSignals: true
                         onPressAndHold: {
-                            Qt.inputMethod.hide()
                             _activeAttachmentIndex = index
-                            PopupUtils.open(attachmentPopover, parent)
+                            PopupUtils.open(attachmentPopover, item)
                         }
                     }
                 }
@@ -605,7 +614,8 @@ Item {
         }
 
         onExpandedChanged: {
-            if (expanded && Qt.inputMethod.visible) {
+            //in landscape mode, we don't have enough place to display the attachment, lets dismiss keyboard
+            if (expanded && Qt.inputMethod.visible && (messages.landscape)) {
                 attachmentPanel.forceActiveFocus()
             }
         }

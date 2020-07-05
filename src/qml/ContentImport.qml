@@ -30,6 +30,7 @@ Item {
         if (!root.importDialog) {
             root.importDialog = PopupUtils.open(contentHubDialog, root)
             root.importDialog.contentType = contentType
+            root.importDialog.forceActiveFocus()
         } else {
             console.warn("Import dialog already running")
         }
