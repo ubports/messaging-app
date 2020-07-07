@@ -232,7 +232,6 @@ Page {
         messages.participants.length = 0
         messages.participantIds.length = 0
         messages.threads = []
-        reloadFilters = !reloadFilters
     }
 
     function addNewThreadToFilter(newAccountId, properties) {
@@ -263,9 +262,10 @@ Page {
             messages.participantIds = ids;
         }
 
+        var threads = messages.threads
         if (!checkThreadInFilters(newAccountId, threadId)) {
-            messages.threads.push(thread)
-            reloadFilters = !reloadFilters
+            threads.push(thread)
+            messages.threads = threads
         }
 
         return thread
@@ -871,8 +871,9 @@ Page {
                     //cleanup the filter
                     resetFilters()
 
-                    if (recipientsIds.length === 1) { //only refresh message history for single participant, otherwise it have UI side effect (unable to add more 2 participants )
-                        addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds})
+                    if (recipientsIds.length === 1) {
+                        //only refresh message history for single participant, otherwise it have UI side effects (unable to add more 2 participants )
+                        addNewThreadToFilter(messages.account.accountId, {"participantIds": recipientsIds, "chatType": HistoryThreadModel.ChatTypeContact})
                     }
                 }
 
