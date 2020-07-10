@@ -55,7 +55,6 @@ Item {
         }
         function stop() {
             item.stop()
-            audioRecorder.active = false
         }
  
         active: false
@@ -68,11 +67,10 @@ Item {
             readonly property bool recording: recorderStatus == AudioRecorder.RecordingStatus
 
             onRecorderStatusChanged: {
-                if (recorderState == AudioRecorder.StoppedState && actualLocation != "") {
-                    var filePath = actualLocation
-
-                    if (application.fileMimeType(filePath).toLowerCase().indexOf("audio/") <= -1) {
-                        //If the recording process is too quick the generated file is not an audio one and should be ignored
+                if (recorderState == AudioRecorder.StoppedState && outputLocation != "") {
+                    var filePath = Qt.resolvedUrl(outputLocation)
+                    if (duration < 1000) {
+                        //If the recording process is too quick should be ignored
                         return;
                     }
 

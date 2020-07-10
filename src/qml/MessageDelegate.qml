@@ -231,6 +231,7 @@ ListItem {
 
     Loader {
         id: attachmentsLoader
+        property bool loaded: status === Loader.Ready
 
         anchors {
             bottom: textBubble.top
@@ -239,21 +240,31 @@ ListItem {
             leftMargin: avatarVisible ? units.gu(1) : 0
             right: parent.right
         }
-        Component.onCompleted: {
-            var properties = {"attachments": Qt.binding(function(){ return messageDelegate.attachments }),
-                              "accountLabel": Qt.binding(function(){ return messageDelegate.accountLabel }),
-                              "incoming": Qt.binding(function(){ return messageDelegate.incoming })};
-            attachmentsLoader.setSource(Qt.resolvedUrl("AttachmentsDelegate.qml"), properties);
-        }
+
+        source: Qt.resolvedUrl("AttachmentsDelegate.qml")
 
         active: attachments.length > 0
-        height: status == Loader.Ready ? item.height : 0
+        height: item ? item.height : 0
+
+        Binding {
+            target: attachmentsLoader.item
+            property: "attachments"
+            value: messageDelegate.attachments
+            when: loaded
+        }
+
+        Binding {
+            target: attachmentsLoader.item
+            property: "incoming"
+            value: messageDelegate.incoming
+            when: loaded
+        }
 
         Binding {
             target: messageDelegate
             property: "dataAttachments"
             value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : null
-            when: (attachmentsLoader.status === Loader.Ready && attachmentsLoader.item)
+            when: loaded
         }
     }
 

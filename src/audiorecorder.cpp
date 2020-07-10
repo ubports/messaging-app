@@ -139,7 +139,7 @@ void AudioRecorder::setRecorderState(AudioRecorder::RecorderState state)
     switch (state){
         case AudioRecorder::RecordingState: {
             // Create temporary file to store audio recorded
-            QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+            QDir dataLocation(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
             QTemporaryFile outputFile(dataLocation.absoluteFilePath("audioXXXXXX%1").arg(m_fileExtension));
             outputFile.setAutoRemove(false);
             outputFile.open();
@@ -186,22 +186,17 @@ void AudioRecorder::setChannelCount(int count)
 void AudioRecorder::setCodec(const QString &audioCodec)
 {
     if (codec() != audioCodec) {
-        if (!m_audioRecorder->supportedAudioCodecs().contains(audioCodec)) {
-            qWarning() << "AudioRecorder error: Unsupported Audio Codec: " << audioCodec;
-            return;
-        }
 
         if (audioCodec == "audio/vorbis" ||
             audioCodec == "audio/speex" ||
             audioCodec == "audio/FLAC") {
-
-            m_audioRecorder->setContainerFormat("ogg");
             m_fileExtension = ".ogg";
         } else if (audioCodec == "audio/PCM") {
-            m_audioRecorder->setContainerFormat("wav");
             m_fileExtension = ".wav";
         } else {
-            m_audioRecorder->setContainerFormat("raw");
+            qWarning() << "AudioRecorder error: Unsupported Audio Codec: " << audioCodec;
+            return;
+
         }
 
         m_audioSettings.setCodec(audioCodec);
