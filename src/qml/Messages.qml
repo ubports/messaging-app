@@ -39,6 +39,7 @@ Page {
     property string accountId: ""
     property var threadId: threads.length > 0 ? threads[0].threadId : "UNKNOWN"
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
+    property bool isMmsGroupChat: account.type == AccountEntry.PhoneAccount && chatType == ChatEntry.ChatTypeRoom
     property QtObject account: getCurrentAccount()
     property variant participants: {
         if (threads.length > 0) {
@@ -450,7 +451,6 @@ Page {
             }
             eventModel.writeEvents([event]);
         } else {
-            var isMmsGroupChat = messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
             // mms group chat only works if we know our own phone number
             var isSelfContactKnown = account.selfContactId != ""
             if (isMmsGroupChat && !isSelfContactKnown) {
@@ -1394,7 +1394,7 @@ Page {
         filter: updateFilters(telepathyHelper.textAccounts.all, messages.chatType, messages.participantIds, messages.reloadFilters, messages.threads)
         matchContacts: messages.account ? messages.account.addressableVCardFields.length > 0 : false
         sort: HistorySort {
-           sortField: "timestamp"
+           sortField: isMmsGroupChat ? "timestamp": "rowid"
            sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: {
