@@ -65,8 +65,8 @@ BorderImage {
 
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
-        // wrap text in a div to keep whitespaces and new lines from collapsing
-        text = '<div style="white-space: pre-wrap;">' + text + '</div>';
+        // preserve white space and new lines
+        text = text.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
         // check for links
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
@@ -106,17 +106,18 @@ BorderImage {
     cache: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
-    height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.height + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
-
-    // if possible, put the timestamp and the delivery status in the same line as the text
-    property int oneLineWidth: textLabel.contentWidth + messageFooter.width
-    property bool oneLine: oneLineWidth <= units.gu(27)
-    width:  Math.min(units.gu(27),
-                     Math.max(oneLine ? oneLineWidth : textLabel.contentWidth,
+    height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.implicitHeight + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
+    width:  Math.min(maxDelegateWidth,
+                     Math.max(oneLine ? oneLineWidth : textLabel.implicitWidth,
                               messageFooter.width,
                               senderName.contentWidth,
                               border.right + border.left - units.gu(3)))
             + units.gu(3)
+
+    // if possible, put the timestamp and the delivery status in the same line as the text
+    property int oneLineWidth: textLabel.implicitWidth + messageFooter.width
+    property bool oneLine: oneLineWidth <= maxDelegateWidth
+
 
     Label {
         id: senderName
@@ -143,24 +144,18 @@ BorderImage {
             topMargin: sender == "" ? units.gu(0.5) : units.gu(1)
             left: parent.left
             leftMargin: units.gu(1)
+            rightMargin: units.gu(1)
         }
         fontSize: "medium"
-        height: contentHeight
         onLinkActivated:  Qt.openUrlExternally(link)
         text: root.parseText(messageText)
+        width: root.oneLine ? implicitWidth : maxDelegateWidth
 
         // It needs to be Text.StyledText to use linkColor: https://api-docs.ubports.com/sdk/apps/qml/QtQuick/Text.html#sdk-qtquick-text-linkcolor
         textFormat: Text.StyledText
         wrapMode: Text.Wrap
         color: root.messageIncoming ? Theme.palette.normal.backgroundText :
                                       Theme.palette.normal.positiveText
-        Component.onCompleted: {
-            if (textLabel.paintedWidth > maxDelegateWidth) {
-                width = maxDelegateWidth
-            } else {
-                width = undefined
-            }
-        }
 
         linkColor: isMultimedia
             ? theme.palette.normal.activityText
@@ -173,8 +168,8 @@ BorderImage {
         spacing: units.gu(1)
 
         anchors {
-            top: textLabel.bottom
-            topMargin: oneLine ? -textTimestamp.height : units.gu(0.5)
+            top: oneLine ? textLabel.top : textLabel.bottom
+            topMargin: units.gu(0.5)
             right: parent.right
             rightMargin: units.gu(1)
         }
