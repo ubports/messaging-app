@@ -52,7 +52,7 @@ BaseDelegate {
 
             onStatusChanged:  {
                 if (status === Image.Error) {
-                    source = "image://theme/image-missing"
+                    source = "image://theme/stock_video"
                     width = 128
                     height = 128
                 }
