@@ -66,7 +66,7 @@ BorderImage {
         // remove html tags
         text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
         // preserve white space and new lines
-        text = text.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
+        //text = text.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
         // check for links
         var htmlText = BaLinkify.linkify(text);
         if (htmlText !== text) {
@@ -153,7 +153,7 @@ BorderImage {
 
         // It needs to be Text.StyledText to use linkColor: https://api-docs.ubports.com/sdk/apps/qml/QtQuick/Text.html#sdk-qtquick-text-linkcolor
         textFormat: Text.StyledText
-        wrapMode: Text.Wrap
+        wrapMode: Text.WordWrap
         color: root.messageIncoming ? Theme.palette.normal.backgroundText :
                                       Theme.palette.normal.positiveText
 
