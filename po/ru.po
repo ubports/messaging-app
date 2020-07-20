@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-03-14 18:22+0000\n"
+"PO-Revision-Date: 2020-06-26 16:32+0000\n"
 "Last-Translator: Eugene Markoff <uralhistory@gmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -643,7 +643,6 @@ msgid "See in contacts"
 msgstr "Неизвестный контакт"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
 msgstr "Отправить приватное сообщение"
 
@@ -846,6 +845,8 @@ msgstr ""
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
+"Вы не можете отправить сообщение в эту группу потому, что она больше "
+"неактивна"
 
 #: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
 msgid "You have to disable flight mode"
@@ -858,15 +859,15 @@ msgstr "Необходимо нажать и удерживать значок �
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "Вы пригласили %1 в эту группу"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "Вы вступили в группу"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "Вы вышли из группы"
 
 #: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
 msgid "You need to select a SIM card"
@@ -875,7 +876,7 @@ msgstr "Необходимо выбрать SIM-карту"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "Вы переименовали группу в:%1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format

@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2015-06-08 11:07+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2020-07-03 12:43+0000\n"
+"Last-Translator: Stoian Minaiev <stoyan.minaev@gmail.com>\n"
+"Language-Team: Ukrainian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -543,7 +544,7 @@ msgstr "Поза мережею"
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Гаразд"
+msgstr "Добре"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"

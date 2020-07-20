@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-09-19 17:50+0000\n"
+"PO-Revision-Date: 2020-07-04 19:31+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/am/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -113,7 +113,7 @@ msgstr "መጨመሪያ"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr "የ መስመር ላይ መግለጫ ይጨምሩ"
+msgstr "በ መስመር ላይ መግለጫ መጨመሪያ"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -194,7 +194,7 @@ msgstr "በ ስራ ላይ"
 
 #: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
 msgid "Call"
-msgstr "ጥሪ"
+msgstr "መጥሪያ"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144

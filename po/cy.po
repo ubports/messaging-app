@@ -8,21 +8,22 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2015-07-30 15:34+0000\n"
-"Last-Translator: Owen Llywelyn <owen.llywelyn@gmail.com>\n"
-"Language-Team: Welsh <cy@li.org>\n"
+"PO-Revision-Date: 2020-07-02 20:08+0000\n"
+"Last-Translator: Marie Dubremetz <pyou.pyou@laposte.net>\n"
+"Language-Team: Welsh <https://translate.ubports.com/projects/ubports/"
+"messaging-app/cy/>\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : (n != 8 && n != 11) ? "
-"2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != "
+"11) ? 2 : 3;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#nomDeLaChaine"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:72
@@ -33,57 +34,57 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Connexion..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 a ajouté %2 à ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 a invité %2 à ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 est Administrateur"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 n'est pas Administrateur"
 
 #: ../src/qml/Messages.qml:1179
 #, qt-format
 msgid "%1 is typing.."
-msgstr ""
+msgstr "%1 écrit..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 a rejoint ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 a quitté ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 a retiré %2 de ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 a changé le nom du groupe pour: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 nomme %2 Administrateur"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-02-28 12:21+0000\n"
+"PO-Revision-Date: 2020-07-03 03:23+0000\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ca/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -548,7 +548,7 @@ msgstr "Pendent"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Escolliu un compte per crear."
+msgstr "Trieu un compte per crear."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""

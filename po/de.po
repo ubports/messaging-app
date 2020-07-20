@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-09-17 15:50+0000\n"
-"Last-Translator: Florian Leeber <flori@bin.org.in>\n"
+"PO-Revision-Date: 2020-07-01 03:25+0000\n"
+"Last-Translator: Daniel Frost <one@frostinfo.de>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "messaging-app/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -113,7 +113,7 @@ msgstr "Hinzufügen"
 
 #: ../src/qml/SettingsPage.qml:64
 msgid "Add an online account"
-msgstr "Onlinekonto hinzufügen"
+msgstr "Einen Online-Account hinzufügen"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -548,7 +548,7 @@ msgstr "In Arbeit"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Wählen Sie ein Konto aus, das Sie erstellen möchten."
+msgstr "Zum anlegen wähle ein Konto aus."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
