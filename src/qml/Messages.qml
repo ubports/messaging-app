@@ -558,7 +558,9 @@ Page {
         if (messages.chatType == HistoryThreadModel.ChatTypeRoom && messages.threadId !== "" && messages.accountId !== "") {
             var filterAccountId = 'HistoryFilter { property string value: "%1"; filterProperty: "accountId"; filterValue: value }'.arg(messages.accountId)
             var filterThreadId = 'HistoryFilter { property string value: "%1"; filterProperty: "threadId"; filterValue: value }'.arg(messages.threadId)
-            componentFilters += 'HistoryIntersectionFilter { %1 %2 } '.arg(filterAccountId).arg(filterThreadId)
+            var filterExclude = 'HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft; matchFlags: HistoryFilter.MatchNotEquals }'
+
+            componentFilters += 'HistoryIntersectionFilter { %1 %2 %3 } '.arg(filterAccountId).arg(filterThreadId).arg(filterExclude)
             return Qt.createQmlObject(componentUnion.arg(componentFilters), eventModel)
         }
 
