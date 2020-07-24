@@ -1,7 +1,6 @@
-ReadMe - Ubuntu Messaging App
+ReadMe - Messaging App
 =============================
-Ubuntu Messaging App is the official SMS app for Ubuntu Touch. We follow an open
-source model where the code is available to anyone to branch and hack on.
+Messaging App is the official SMS app for Ubuntu Touch.
 
 Internals
 =========
@@ -9,7 +8,7 @@ Internals
 Messaging app relies on [history-service](https://github.com/ubports/history-service) as the database backend,
  [telepathy-ofono](https://github.com/ubports/telepathy-ofono) for message relay.
 
-`history-service` database is stored in `/home/phablet/.local/share/history-service/history.sqlite`
+`history-service` database path: `/home/phablet/.local/share/history-service/history.sqlite`
 
 Building with clickable
 =======================
