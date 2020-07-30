@@ -51,6 +51,9 @@ Flickable {
     readonly property alias textArea: messageTextArea
     readonly property int maxSMSLength: 160
     readonly property int maxSMSLengthMultiple: 153
+    property variant attachmentModel : {
+        return attachmentsToModel()
+    }
 
     onRecordingChanged: {
         if (recording) {
@@ -71,6 +74,18 @@ Flickable {
             messageTextArea.forceActiveFocus()
     }
 
+
+    function loadDraft(textMessage, attachmentModel) {
+        text = textMessage
+        textArea.cursorPosition = text.length
+
+        if (attachmentModel) {
+             for (var i = 0; i < attachmentModel.length; i++) {
+                 attachments.append(attachmentModel[i])
+             }
+        }
+    }
+
     function reset() {
         // avoid removing files coming from forward
         if (composeBar.audioAttached) {
@@ -80,6 +95,41 @@ Flickable {
 
         textEntry.text = ""
         attachments.clear()
+    }
+
+
+    function attachmentsToModel() {
+        var newAttachments = []
+        for (var i = 0; i < attachments.count; i++) {
+            var attachment = []
+            var item = attachments.get(i)
+            // we dont include smil files. they will be auto generated
+            if (item.contentType.toLowerCase() === "application/smil") {
+                continue
+            }
+            attachment.push(item.name)
+            attachment.push(item.contentType)
+            //backend need filepath without "file://" if any
+            var filePath = String(item.filePath).replace('file://', '')
+            attachment.push(filePath)
+            newAttachments.push(attachment)
+        }
+
+        return newAttachments
+    }
+
+    function processSend() {
+        // make sure we flush everything we have prepared in the OSK preedit
+        Qt.inputMethod.commit();
+        if ((textEntry.text == "" && attachments.count == 0) || !canSend) {
+            return
+        }
+
+        if (audioAttached) {
+            textEntry.text = ""
+        }
+
+        sendRequested(textEntry.text, attachmentsToModel())
     }
 
     function addAttachments(transfer) {
@@ -420,12 +470,9 @@ Flickable {
                 left: parent.left
                 right: parent.right
             }
-            DraftTextArea {
+            TextArea {
                 id: messageTextArea
                 objectName: "messageTextArea"
-
-                draftKey: composeBar.threadId
-
 
                 property bool autoCompleteLock: false
 
@@ -501,7 +548,7 @@ Flickable {
 
                 function returnPressed() {
                     if (composeBar.returnToSend) {
-                        sendButton.processSend()
+                        composeBar.processSend()
                         return true
                     }
                     return false
@@ -669,7 +716,7 @@ Flickable {
                 // we need to append the attachment to a ListModel, so create it dynamically
                 var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
                 attachments.append(attachment)
-                composeBar.sendRequested("", attachments)
+                composeBar.sendRequested("", attachmentsToModel())
                 stickersPicker.expanded = false
             }
         }
@@ -700,19 +747,7 @@ Flickable {
         anchors.rightMargin: units.gu(2)
         iconName: "send"
         enabled: !recordButton.enabled
-        function processSend() {
-            // make sure we flush everything we have prepared in the OSK preedit
-            Qt.inputMethod.commit();
-            if ((textEntry.text == "" && attachments.count == 0) || !canSend) {
-                return
-            }
 
-            if (composeBar.audioAttached) {
-                textEntry.text = ""
-            }
-
-            composeBar.sendRequested(textEntry.text, attachments)
-        }
         onEnabledChanged: {
             if (enabled) {
                 enableSendButton.start()
@@ -722,7 +757,7 @@ Flickable {
         visible: enabled
 
         onClicked: {
-            processSend()
+            composeBar.processSend()
         }
     }
 

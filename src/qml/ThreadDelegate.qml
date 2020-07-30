@@ -159,9 +159,7 @@ ListItemWithActions {
             }
         }
     ]
-    anchors.left: parent.left
-    anchors.right: parent.right
-    height: units.gu(8)
+
 
     leftSideAction:
             Action {
@@ -331,9 +329,7 @@ ListItemWithActions {
         fontSize: "x-small"
     }*/
 
-    Label {
-        id: latestMessage
-
+    Row {
         anchors {
             top: contactName.bottom
             topMargin: units.gu(0.5)
@@ -342,14 +338,29 @@ ListItemWithActions {
             rightMargin: units.gu(3)
             bottom: avatar.bottom
         }
-        elide: Text.ElideRight
-        fontSize: "x-small"
-        text: textMessage
-        // avoid any kind of formatting in the text message preview
-        textFormat: Text.PlainText
-        maximumLineCount: 2
-        wrapMode: Text.Wrap
-        color: Theme.palette.normal.backgroundSecondaryText
+        spacing: units.gu(0.5)
+
+        Label {
+            id: draftPrefix
+            visible: eventTextMessageStatus === HistoryEventModel.MessageStatusDraft
+            text: i18n.tr("Draft:")
+            color: Theme.palette.normal.negative
+            fontSize: "x-small"
+        }
+
+
+        Label {
+            id: latestMessage
+            width: parent.width - draftPrefix.width
+            elide: Text.ElideRight
+            fontSize: "x-small"
+            text: textMessage
+            // avoid any kind of formatting in the text message preview
+            textFormat: Text.PlainText
+            maximumLineCount: 2
+            wrapMode: Text.Wrap
+            color: Theme.palette.normal.backgroundSecondaryText
+        }
     }
 
     Item {

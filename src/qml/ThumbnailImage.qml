@@ -37,6 +37,13 @@ UbuntuShape {
         fillMode: Image.PreserveAspectCrop
         source: filePath
         asynchronous: true
+        onStatusChanged:  {
+            if (status === Image.Error) {
+                source = "image://theme/image-missing"
+                width = 128
+                height = 128
+            }
+        }
     }
     MouseArea {
         anchors.fill: parent

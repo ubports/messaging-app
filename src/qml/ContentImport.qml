@@ -28,6 +28,7 @@ Item {
 
     function requestContent(contentType) {
         if (!root.importDialog) {
+            root.forceActiveFocus()
             root.importDialog = PopupUtils.open(contentHubDialog, root)
             root.importDialog.contentType = contentType
             root.importDialog.forceActiveFocus()
