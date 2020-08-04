@@ -12,5 +12,6 @@ X-Ubuntu-Touch=true
 X-Ubuntu-Default-Department-ID=accessories
 X-Ubuntu-Single-Instance=true
 X-Ubuntu-Splash-Show-Header=false
-X-Screenshot=@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/assets/messaging-app-screenshot.png
+X-Screenshot=@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/assets/messaging-app-screenshot.svg
+X-Ubuntu-Splash-Image=@CMAKE_INSTALL_PREFIX@/@MESSAGING_APP_DIR@/assets/messaging-app-splash.svg
 X-Ubuntu-Splash-Color=#f48b3d
