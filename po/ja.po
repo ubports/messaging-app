@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2020-01-19 19:39+0000\n"
+"PO-Revision-Date: 2020-08-08 15:57+0000\n"
 "Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -523,16 +523,16 @@ msgstr ""
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "OK"
+msgstr "完了"
 
 #: ../src/qml/Messages.qml:1190
 msgid "Online"
-msgstr ""
+msgstr "オンライン"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "参加者: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
