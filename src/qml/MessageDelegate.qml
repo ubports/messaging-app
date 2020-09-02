@@ -232,7 +232,7 @@ ListItemWithActions {
         Binding {
             target: messageDelegate
             property: "dataAttachments"
-            value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : null
+            value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : []
             when: loaded
         }
 

@@ -1623,12 +1623,11 @@ Page {
         filter: messages.threadId.length !== 0 ? draftFilter : null
 
         onCountChanged: {
-            if (count>0) {
-                messages.draft = draftModel.get(0)
+            messages.draft = draftModel.get(0)
                 //do not load draft if there is a pending forward action or any message written
                 if (!messages.sharedAttachmentsTransfer && composeBar.text.length === 0) {
-                    composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
-                }
+            composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+        }
             } else {
                 messages.draft = null
             }
