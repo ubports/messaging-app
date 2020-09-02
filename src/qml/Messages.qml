@@ -37,7 +37,7 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
-    property var threadId: threads.length > 0 ? threads[0].threadId : "UNKNOWN"
+    property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property variant participants: {
@@ -345,6 +345,9 @@ Page {
             eventModel.removeEvents([draft]);
             return
         }
+
+        //don't save a draft if no recipient selected
+        if (messages.participants.length === 0) return
 
         var toSave = (text.length > 0 || attachments.length > 0)
         if (draft != null) {
@@ -1607,14 +1610,16 @@ Page {
     }
 
     //Draft Management, find draft from this thread
+    HistoryIntersectionFilter {
+        id: draftFilter
+        HistoryFilter { filterProperty: "threadId";  filterValue: messages.threadId }
+        HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft  }
+    }
+
     HistoryEventModel {
         id: draftModel
         type: HistoryThreadModel.EventTypeText
-        filter: HistoryIntersectionFilter {
-            HistoryFilter { filterProperty: "threadId";  filterValue: messages.threadId }
-            HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft  }
-        }
-
+        filter: messages.threadId.length === 0 ? null: draftFilter
 
         onCountChanged: {
             if (count>0) {
