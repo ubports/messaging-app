@@ -75,7 +75,7 @@ Page {
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     property bool landscape: width > height
-    property var sharedAttachmentsTransfer: []
+    property var sharedAttachmentsTransfer: null
     property alias contactWatcher: contactWatcherInternal
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
@@ -1619,13 +1619,20 @@ Page {
     HistoryEventModel {
         id: draftModel
         type: HistoryThreadModel.EventTypeText
-        filter: messages.threadId.length === 0 ? null: draftFilter
+        //apply draft flter only when on a thread
+        filter: messages.threadId.length !== 0 ? draftFilter : null
 
         onCountChanged: {
-            messages.draft = draftModel.get(0)
-            composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+            if (count>0) {
+                messages.draft = draftModel.get(0)
+                //do not load draft if there is a pending forward action or any message written
+                if (!messages.sharedAttachmentsTransfer && composeBar.text.length === 0) {
+                    composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+                }
+            } else {
+                messages.draft = null
+            }
         }
-
     }
 
     ComposeBar {
