@@ -37,7 +37,7 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
-    property var threadId: threads.length > 0 ? threads[0].threadId : "UNKNOWN"
+    property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
     property variant participants: {
@@ -75,7 +75,7 @@ Page {
     property bool keyboardFocus: true
     property alias selectionMode: messageList.isInSelectionMode
     property bool landscape: width > height
-    property var sharedAttachmentsTransfer: []
+    property var sharedAttachmentsTransfer: null
     property alias contactWatcher: contactWatcherInternal
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
@@ -345,6 +345,9 @@ Page {
             eventModel.removeEvents([draft]);
             return
         }
+
+        //don't save a draft if no recipient selected
+        if (messages.participants.length === 0) return
 
         var toSave = (text.length > 0 || attachments.length > 0)
         if (draft != null) {
@@ -1607,20 +1610,29 @@ Page {
     }
 
     //Draft Management, find draft from this thread
+    HistoryIntersectionFilter {
+        id: draftFilter
+        HistoryFilter { filterProperty: "threadId";  filterValue: messages.threadId }
+        HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft  }
+    }
+
     HistoryEventModel {
         id: draftModel
         type: HistoryThreadModel.EventTypeText
-        filter: HistoryIntersectionFilter {
-            HistoryFilter { filterProperty: "threadId";  filterValue: messages.threadId }
-            HistoryFilter { filterProperty: "messageStatus"; filterValue: HistoryEventModel.MessageStatusDraft  }
-        }
-
+        //apply draft filter only when on a thread
+        filter: messages.threadId.length !== 0 ? draftFilter : null
 
         onCountChanged: {
-            messages.draft = draftModel.get(0)
-            composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+            if (count>0) {
+                messages.draft = draftModel.get(0)
+                //do not load draft if there is a pending forward action or any message written
+                if (!messages.sharedAttachmentsTransfer && composeBar.text.length === 0) {
+                    composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+                }
+            } else {
+                messages.draft = null
+            }
         }
-
     }
 
     ComposeBar {
