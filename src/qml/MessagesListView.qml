@@ -87,7 +87,6 @@ MultipleSelectionListView {
         id: loader
         anchors.left: parent.left
         anchors.right: parent.right
-        height: status == Loader.Ready ? item.height : 0
 
         Component.onCompleted: {
             var sourceFile = ""
