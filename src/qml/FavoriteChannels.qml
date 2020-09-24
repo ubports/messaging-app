@@ -86,7 +86,7 @@ Item {
     Component {
         id: favoriteByAccountComponent
         Settings {
-            objectName: "settings_" + category
+            //objectName: "settings_" + category
             property string favoriteChannels: ""
         }
     }
