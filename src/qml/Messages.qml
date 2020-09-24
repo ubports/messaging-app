@@ -1158,7 +1158,7 @@ Page {
 
         onApplicationActiveChanged: {
             markThreadAsRead()
-            if (Qt.application.state !== Qt.ApplicationActive) {
+            if (!applicationActive) {
                 saveDraft()
             }
         }
