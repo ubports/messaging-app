@@ -338,7 +338,7 @@ Page {
 
     function saveDraft(){
         var text = composeBar.text
-        var attachments = composeBar.attachmentModel
+        var attachments = composeBar.attachmentsToModel()
 
         //need to remove draft ?
         if (draft != null && text.length === 0 && attachments.length === 0) {
