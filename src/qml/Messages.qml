@@ -1622,8 +1622,10 @@ Page {
         filter: messages.threadId.length === 0 ? null: draftFilter
 
         onCountChanged: {
-            messages.draft = draftModel.get(0)
-            composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+            if (count > 0) {
+                messages.draft = draftModel.get(0)
+                composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+            }
         }
 
     }
