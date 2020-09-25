@@ -78,11 +78,11 @@ Flickable {
     function loadDraft(textMessage, attachmentModel) {
         text = textMessage
         textArea.cursorPosition = text.length
-
         if (attachmentModel) {
-             for (var i = 0; i < attachmentModel.length; i++) {
-                 attachments.append(attachmentModel[i])
-             }
+            attachments.clear()
+            for (var i = 0; i < attachmentModel.length; i++) {
+                attachments.append(attachmentModel[i])
+            }
         }
     }
 

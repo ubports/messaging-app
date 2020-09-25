@@ -1622,7 +1622,7 @@ Page {
         filter: messages.threadId.length === 0 ? null: draftFilter
 
         onCountChanged: {
-            if (count>0) {
+            if (count > 0) {
                 messages.draft = draftModel.get(0)
                 //do not load draft if there is a pending forward action or any message written
                 if (messages.sharedAttachmentsTransfer.length === 0 && composeBar.text.length === 0) {
