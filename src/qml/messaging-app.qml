@@ -360,7 +360,7 @@ MainView {
             return threads
         }
 
-        if (accountId == "") {
+        if (!accountId || accountId === "") {
             // no accountId means fallback to phone or multimedia
             if (mainView.account) {
                 account = mainView.account
