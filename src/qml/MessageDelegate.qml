@@ -198,6 +198,13 @@ ListItemWithActions {
         }
     }
 
+    onItemClicked: {
+        if (!isInSelectionMode && attachmentsLoader.item) {
+            // we only have actions for attachment items, so forward the click
+            attachmentsLoader.item.clicked(mouse)
+        }
+    }
+
     Loader {
         id: attachmentsLoader
         property bool loaded: status === Loader.Ready
@@ -234,13 +241,6 @@ ListItemWithActions {
             property: "dataAttachments"
             value: attachmentsLoader.item ? attachmentsLoader.item.dataAttachments : []
             when: loaded
-        }
-
-        MouseArea {
-            anchors.fill: attachmentsLoader
-            enabled: !isInSelectionMode && attachmentsLoader.item
-            propagateComposedEvents: true
-            onClicked: attachmentsLoader.item.clicked(mouse)
         }
 
     }
