@@ -51,9 +51,6 @@ Flickable {
     readonly property alias textArea: messageTextArea
     readonly property int maxSMSLength: 160
     readonly property int maxSMSLengthMultiple: 153
-    property variant attachmentModel : {
-        return attachmentsToModel()
-    }
 
     onRecordingChanged: {
         if (recording) {
@@ -420,7 +417,6 @@ Flickable {
                     height: units.gu(8)
                     source: {
                         var contentType = getContentType(filePath)
-                        console.log(contentType)
                         switch(contentType) {
                         case ContentType.Contacts:
                             return Qt.resolvedUrl("ThumbnailContact.qml")

@@ -32,7 +32,7 @@ MainView {
 
     property bool multiplePhoneAccounts: telepathyHelper.phoneAccounts.active.length > 1
     property QtObject account: defaultPhoneAccount()
-    property bool applicationActive: Qt.application.active
+    property bool applicationActive: Qt.application.state === Qt.ApplicationActive
     property alias mainStack: layout
     property bool dualPanel: mainStack.columns > 1
     property bool composingNewMessage: activeMessagesView && activeMessagesView.newMessage

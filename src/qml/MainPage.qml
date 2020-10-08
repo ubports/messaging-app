@@ -250,7 +250,7 @@ Page {
         listModel: threadModel
         // (rmescandon): Prevent having selected items in the list while BottomEdge is been revealed
         // but not completely revealed.
-        enabled: bottomEdgeLoader.item.status !== BottomEdge.Revealed
+        enabled: bottomEdgeLoader.item === null || bottomEdgeLoader.item.status !== BottomEdge.Revealed
         clip: true
         currentIndex: -1
         //spacing: searchField.text === "" ? units.gu(-2) : 0

@@ -48,7 +48,7 @@ Item {
                return "image://theme/contact"
             }
         }
-        fallbackDisplayName:  participant.alias
+        fallbackDisplayName:  participant ? participant.alias: ""
         showAvatarPicture: (participant && participant.avatar !== "") || (initials.length === 0)
         visible: participant && title.length > 0
         anchors {
