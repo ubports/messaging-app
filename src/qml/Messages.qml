@@ -1624,10 +1624,14 @@ Page {
         onCountChanged: {
             if (count > 0) {
                 messages.draft = draftModel.get(0)
-                composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+                //do not load draft if there is a pending forward action or any message written
+                if (messages.sharedAttachmentsTransfer.length === 0 && composeBar.text.length === 0) {
+                    composeBar.loadDraft(messages.draft["textMessage"], messages.draft["textMessageAttachments"])
+                }
+            } else {
+                messages.draft = null
             }
         }
-
     }
 
     ComposeBar {
