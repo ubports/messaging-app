@@ -1,17 +1,21 @@
-ReadMe - Messaging App
-=============================
+Messaging App
+=============
 Messaging App is the official SMS app for Ubuntu Touch.
 
 Internals
 =========
 
-Messaging app relies on [history-service](https://github.com/ubports/history-service) as the database backend,
- [telepathy-ofono](https://github.com/ubports/telepathy-ofono) for message relay.
+Messaging app relies on:
+ - [history-service](https://github.com/ubports/history-service) for the database backend through `Ubuntu.History` QML import.
+ - [telephony service](https://github.com/ubports/telephony-service) for message relay through `Ubuntu.Telphony`QML import.
+ - [address-book-app](https://github.com/ubports/address-book-app) for contact features through `Ubuntu.Contacts` QML import.
+ 
 
-`history-service` database path: `/home/phablet/.local/share/history-service/history.sqlite`
+Building with clickable (for local testings)
+============================================
 
-Building with clickable
-=======================
+Note that it will not allow full feature access (url dispatcher, audio playback )
+
 Install [clickable](http://clickable.bhdouglass.com/en/latest/), then run:
 
 ```
@@ -20,8 +24,9 @@ clickable
 
 For faster build speeds, building app tests is disabled in ```clickable.json``` 
 
-Building with crossbuilder
-==========================
+Building with crossbuilder ( build & install as a deb package )
+===============================================================
+
 
 Some dependencies need to be installed by running:
 
@@ -29,7 +34,7 @@ Some dependencies need to be installed by running:
 crossbuilder inst-foreign dh-translations apparmor-easyprof-ubuntu
 ```
 
-The app then can be build by simply running:
+The app then can be build by running:
 
 ```
 crossbuilder
