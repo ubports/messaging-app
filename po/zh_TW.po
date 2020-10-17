@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-12 04:35+0000\n"
-"PO-Revision-Date: 2019-06-06 10:03+0000\n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"PO-Revision-Date: 2020-10-15 10:02+0000\n"
 "Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hant/>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr "#頻道名稱"
+msgstr "#channelName"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "%1 成為了管理員"
 msgid "%1 is not Admin"
 msgstr "%1 不再是管理員"
 
-#: ../src/qml/Messages.qml:1179
+#: ../src/qml/Messages.qml:1253
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 正在打字中.."
@@ -99,7 +99,7 @@ msgstr "%1 被邀請加入這個群組"
 msgid "+"
 msgstr "+"
 
-#: ../src/qml/AudioRecordingBar.qml:156
+#: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
 msgstr "<<< 滑動以取消"
 
@@ -107,13 +107,9 @@ msgstr "<<< 滑動以取消"
 msgid "Accepted"
 msgstr "已接受"
 
-#: ../src/qml/Messages.qml:793
+#: ../src/qml/Messages.qml:846
 msgid "Add"
 msgstr "加入"
-
-#: ../src/qml/SettingsPage.qml:64
-msgid "Add an online account"
-msgstr "加入在線上的帳戶"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -139,31 +135,31 @@ msgstr "管理員"
 msgid "All"
 msgstr "全部"
 
-#: ../src/qml/ThreadDelegate.qml:116
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "附件：%1 份音訊剪輯"
 
-#: ../src/qml/ThreadDelegate.qml:113
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "附件：%1 個聯絡人"
 
-#: ../src/qml/ThreadDelegate.qml:119
+#: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "附件：%1 個檔案"
 
-#: ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "附件：%1 個圖像"
 
-#: ../src/qml/ThreadDelegate.qml:110
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -173,30 +169,38 @@ msgstr[0] "附件：%1 條影片"
 msgid "Audio attachment not supported"
 msgstr "不支援音訊附件"
 
-#: ../src/qml/Messages.qml:1194
+#: ../src/qml/Messages.qml:1268
 msgid "Away"
 msgstr "離開"
 
-#: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
-#: ../src/qml/SettingsPage.qml:260
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "返回"
 
-#: ../src/qml/Messages.qml:1196
+#: ../src/qml/Messages.qml:1270
 msgid "Busy"
 msgstr "正忙"
 
-#: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
-msgstr "通話"
+msgstr "撥號"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
 msgstr "取消"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr "更改"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -223,21 +227,21 @@ msgstr "關閉"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "由下而上掃過螢幕以撰寫新的訊息。"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
 msgid "Contact"
 msgstr "聯絡人"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "複製"
 
-#: ../src/qml/Messages.qml:1041
+#: ../src/qml/Messages.qml:1105
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "建立 %1 群組..."
 
-#: ../src/qml/Messages.qml:1011
+#: ../src/qml/Messages.qml:1075
 msgid "Create MMS Group..."
 msgstr "建立多媒體訊息群組…"
 
@@ -245,9 +249,13 @@ msgstr "建立多媒體訊息群組…"
 msgid "Creating Group..."
 msgstr "建立群組..."
 
-#: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr "深色"
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:177
+#: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
 msgstr "刪除"
 
@@ -259,19 +267,27 @@ msgstr "已刪除"
 msgid "Delivered"
 msgstr "已送出"
 
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
 msgstr "不要再問"
 
-#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
 msgstr "別再顯示"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr "草稿："
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
 msgstr "編輯"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr "啟用"
+
+#: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
 msgstr "啟用多媒體訊息"
 
@@ -279,7 +295,7 @@ msgstr "啟用多媒體訊息"
 msgid "End group"
 msgstr "結束群組"
 
-#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
 msgstr "失敗"
 
@@ -303,7 +319,7 @@ msgstr "無法離開群組"
 msgid "Failed to modify group title"
 msgstr "修改群組名稱失敗"
 
-#: ../src/qml/SendMessageValidator.qml:219
+#: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
 msgstr "無法發送訊息"
 
@@ -323,7 +339,7 @@ msgstr "檔案大小警告"
 msgid "File type not supported"
 msgstr "檔案類型不支援"
 
-#: ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "轉寄"
@@ -340,7 +356,7 @@ msgstr "我瞭解了"
 msgid "Group"
 msgstr "群組"
 
-#: ../src/qml/Messages.qml:764
+#: ../src/qml/Messages.qml:817
 #, qt-format
 msgid "Group (%1)"
 msgstr "群組 (%1)"
@@ -378,25 +394,25 @@ msgstr "圖片"
 msgid "Image Preview"
 msgstr "影像預覽"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:166
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
 msgstr "資訊"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
 msgstr "目前無法發送訊息"
 
-#: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
 msgstr "無法以飛行模式發送訊息"
 
-#: ../src/qml/SendMessageValidator.qml:218
+#: ../src/qml/SendMessageValidator.qml:220
 msgid "It is not possible to send the message"
 msgstr "無法發送訊息"
 
-#: ../src/qml/Messages.qml:1035
+#: ../src/qml/Messages.qml:1099
 msgid "Join IRC Channel..."
 msgstr "加入網際網路中繼聊天頻道…"
 
@@ -412,7 +428,11 @@ msgstr "離開頻道"
 msgid "Leave group"
 msgstr "離開群組"
 
-#: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr "淺色"
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr "多媒體訊息"
 
@@ -464,7 +484,7 @@ msgstr "訊息應用程式"
 msgid "Multiple MMS Messages"
 msgstr "多則多媒體訊息"
 
-#: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
+#: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
 msgstr "本人"
 
@@ -477,38 +497,27 @@ msgstr "新的 %1 群組"
 msgid "New MMS Group"
 msgstr "新的多媒體訊息群組"
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
 msgstr "新訊息"
 
-#: ../src/qml/SettingsPage.qml:77
-msgid "Night Mode"
-msgstr "夜間模式"
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-msgid "No"
-msgstr "否"
-
-#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
 msgstr "沒有 SIM 卡"
 
-#: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
 msgstr "沒有選取 SIM 卡"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
-msgstr "沒有網路"
+msgstr "沒有行動網路"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
 msgstr "未獲得麥克風的存取授權"
 
-#: ../src/qml/Messages.qml:319
+#: ../src/qml/Messages.qml:324
 msgid "Not available"
 msgstr "不可用"
 
@@ -516,7 +525,7 @@ msgstr "不可用"
 msgid "Number or contact name"
 msgstr "號碼或聯絡人名稱"
 
-#: ../src/qml/Messages.qml:1192
+#: ../src/qml/Messages.qml:1266
 msgid "Offline"
 msgstr "離線"
 
@@ -526,7 +535,7 @@ msgstr "離線"
 msgid "Ok"
 msgstr "確定"
 
-#: ../src/qml/Messages.qml:1190
+#: ../src/qml/Messages.qml:1264
 msgid "Online"
 msgstr "上線"
 
@@ -551,7 +560,7 @@ msgstr ""
 "請到 <a href=\"system_settings\">系統設定值 &gt; 安全性與隱私</a> 中提升權"
 "限。"
 
-#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
 msgstr "請插入 SIM 卡，然後再試一次。"
 
@@ -561,8 +570,8 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"請解鎖您的 SIM 卡以撥打電話或傳送訊息。您可以從螢幕頂端的「網路指示器」，或是前往 <a href=\"system_settings\">系統設定 "
-"&gt; 安全與隱私</a> 解鎖 SIM 卡。"
+"請解鎖您的 SIM 卡以撥打電話或傳送訊息。您可以從螢幕頂端的「網路指示器」，或是"
+"前往 <a href=\"system_settings\">系統設定 &gt; 安全與隱私</a> 解鎖 SIM 卡。"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
@@ -572,8 +581,9 @@ msgstr "已讀"
 msgid "Received"
 msgstr "收到"
 
-#: ../src/qml/ComposeBar.qml:145 ../src/qml/GroupChatInfoPage.qml:432
-#: ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr "移除"
 
@@ -593,7 +603,7 @@ msgstr "刪除最後一個成員將導致 \"%1\" 將被解散。您要繼續嗎�
 msgid "Renamed group to: %1"
 msgstr "將組重新命名為：% 1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "重試"
@@ -602,7 +612,7 @@ msgstr "重試"
 msgid "SIM Card is locked"
 msgstr "SIM 卡已鎖定"
 
-#: ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
 msgstr "簡訊"
 
@@ -623,6 +633,14 @@ msgstr "搜尋..."
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
 msgstr "查看聯絡人"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr "選擇"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "傳送"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 msgid "Send private message"
@@ -646,7 +664,7 @@ msgstr "設定"
 msgid "Share"
 msgstr "分享"
 
-#: ../src/qml/SettingsPage.qml:57
+#: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
 msgstr "簡化對話視圖"
 
@@ -658,7 +676,7 @@ msgstr "按時間來排序"
 msgid "Sort by title"
 msgstr "按名稱來排序"
 
-#: ../src/qml/SettingsPage.qml:69
+#: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
 msgstr "對執行來進行排序"
 
@@ -682,16 +700,20 @@ msgstr "滑動來刪除"
 msgid "Swipe to reveal actions"
 msgstr "滑動來顯示功能"
 
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr "系統佈景主題"
+
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "暫時失敗"
 
-#: ../src/qml/MessageDelegate.qml:86
+#: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
 msgstr "文字訊息已複製到剪貼簿"
 
-#: ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:505
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -706,18 +728,22 @@ msgstr ""
 "您發送的內容需要每個收件者一封多媒體訊息，因此您可能會收到多封郵件的費用。\n"
 "您要繼續嗎？"
 
-#: ../src/qml/Messages.qml:320
+#: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
 msgstr "所選帳戶目前不可用"
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
+msgstr "佈景主題"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "%1 目前沒有網路"
+msgstr "%1 目前沒有行動網路"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "目前沒有網路。"
+msgstr "目前沒有行動網路。"
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
@@ -744,7 +770,7 @@ msgstr "類型"
 msgid "Type a name..."
 msgstr "輸入名稱..."
 
-#: ../src/qml/Messages.qml:1181
+#: ../src/qml/Messages.qml:1255
 msgid "Typing.."
 msgstr "打字中.."
 
@@ -778,20 +804,13 @@ msgstr "歡迎使用訊息應用程式！"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "歡迎使用您的 Ubuntu 訊息應用程式。"
 
-#: ../src/qml/ComposeBar.qml:510
+#: ../src/qml/ComposeBar.qml:568
 msgid "Write a broadcast message..."
 msgstr "撰寫一則廣播訊息..."
 
-#: ../src/qml/ComposeBar.qml:522
+#: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
 msgstr "撰寫一則訊息..."
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
-msgid "Yes"
-msgstr "是"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
@@ -811,16 +830,16 @@ msgid ""
 "able to send it."
 msgstr "您試圖傳送大型檔案（超過 300KB）。有些服務商可能無法傳送大檔案。"
 
-#: ../src/qml/Messages.qml:1516
+#: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "您無法向這個群組發送消訊息，因為該群組不再處於活動狀態"
 
-#: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
 msgstr "您必須禁用飛行模式"
 
-#: ../src/qml/ComposeBar.qml:169
+#: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
 msgstr "您需要按住錄音圖示不放"
 
@@ -837,7 +856,7 @@ msgstr "您加入了這個群組"
 msgid "You left this group"
 msgstr "您離開了這個群組"
 
-#: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
 msgstr "您需要選取 SIM 卡"
 
@@ -854,6 +873,18 @@ msgstr "您已切換到 %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "您已被從這個群組中移除"
+
+#~ msgid "Add an online account"
+#~ msgstr "加入在線上的帳戶"
+
+#~ msgid "Night Mode"
+#~ msgstr "夜間模式"
+
+#~ msgid "No"
+#~ msgstr "否"
+
+#~ msgid "Yes"
+#~ msgstr "是"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
@@ -878,9 +909,6 @@ msgstr "您已被從這個群組中移除"
 
 #~ msgid "Later"
 #~ msgstr "稍後"
-
-#~ msgid "Send"
-#~ msgstr "傳送"
 
 #~ msgid ""
 #~ "Select a default SIM for all outgoing messages. You can always alter your "

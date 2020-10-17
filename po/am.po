@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-12 04:35+0000\n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
 "PO-Revision-Date: 2020-07-04 19:31+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#የ ጣቢያ ስም"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "%1 አስተዳዳሪ ነው"
 msgid "%1 is not Admin"
 msgstr "%1 አስተዳዳሪ አይደለም"
 
-#: ../src/qml/Messages.qml:1179
+#: ../src/qml/Messages.qml:1253
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 በ መጻፍ ላይ.."
@@ -99,7 +99,7 @@ msgstr "%1 ወደ እዚህ ቡድን ተጋብዘው ነበር"
 msgid "+"
 msgstr "+"
 
-#: ../src/qml/AudioRecordingBar.qml:156
+#: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
 msgstr "<<< ይጥረጉ ለ መሰረዝ"
 
@@ -107,13 +107,9 @@ msgstr "<<< ይጥረጉ ለ መሰረዝ"
 msgid "Accepted"
 msgstr "ተቀብያለሁ"
 
-#: ../src/qml/Messages.qml:793
+#: ../src/qml/Messages.qml:846
 msgid "Add"
 msgstr "መጨመሪያ"
-
-#: ../src/qml/SettingsPage.qml:64
-msgid "Add an online account"
-msgstr "በ መስመር ላይ መግለጫ መጨመሪያ"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -139,35 +135,35 @@ msgstr "አስተዳዳሪ"
 msgid "All"
 msgstr "ሁሉንም"
 
-#: ../src/qml/ThreadDelegate.qml:116
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "ማያያዣ: %1 ድምፅ"
 msgstr[1] "ማያያዣዎች: %1 ድምፆች"
 
-#: ../src/qml/ThreadDelegate.qml:113
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "ማያያዣ: %1 ግንኙነት"
 msgstr[1] "ማያያዣዎች: %1 ግንኙነቶች"
 
-#: ../src/qml/ThreadDelegate.qml:119
+#: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "ማያያዣ: %1 ፋይል"
 msgstr[1] "ማያያዣዎች: %1 ፋይሎች"
 
-#: ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "ማያያዣ: %1 ምስል"
 msgstr[1] "ማያያዣዎች: %1 ምስሎች"
 
-#: ../src/qml/ThreadDelegate.qml:110
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -178,30 +174,38 @@ msgstr[1] "ማያያዣዎች: %1 ቪዲዮዎች"
 msgid "Audio attachment not supported"
 msgstr "ድምፅ ማያያዝ አይቻልም"
 
-#: ../src/qml/Messages.qml:1194
+#: ../src/qml/Messages.qml:1268
 msgid "Away"
 msgstr "የሉም"
 
-#: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
-#: ../src/qml/SettingsPage.qml:260
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "ወደ ኋላ"
 
-#: ../src/qml/Messages.qml:1196
+#: ../src/qml/Messages.qml:1270
 msgid "Busy"
 msgstr "በ ስራ ላይ"
 
-#: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
 msgstr "መጥሪያ"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
 msgstr "መሰረዣ"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr ""
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -228,21 +232,21 @@ msgstr "መዝጊያ"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "አዲስ መልእክት ማዘጋጃ በ መመልከቻው ከ ታች በኩል በ መጥረግ:"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
 msgid "Contact"
 msgstr "ግንኙነት"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "ኮፒ"
 
-#: ../src/qml/Messages.qml:1041
+#: ../src/qml/Messages.qml:1105
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "ቡድን %1 መፍጠሪያ..."
 
-#: ../src/qml/Messages.qml:1011
+#: ../src/qml/Messages.qml:1075
 msgid "Create MMS Group..."
 msgstr "የ MMS ቡድን መፍጠሪያ..."
 
@@ -250,9 +254,13 @@ msgstr "የ MMS ቡድን መፍጠሪያ..."
 msgid "Creating Group..."
 msgstr "ቡድን በ መፍጠር ላይ..."
 
-#: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr ""
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:177
+#: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
 msgstr "ማጥፊያ"
 
@@ -264,19 +272,27 @@ msgstr "የጠፋ"
 msgid "Delivered"
 msgstr "ተልኳል"
 
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
 msgstr "በድጋሚ አትጠይቀኝ"
 
-#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
 msgstr "በድጋሚ አታሳየኝ"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
 msgstr "ማረሚያ"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
 msgstr "የ MMS መልእክት ማስቻያ"
 
@@ -284,7 +300,7 @@ msgstr "የ MMS መልእክት ማስቻያ"
 msgid "End group"
 msgstr "ቡድን መጨረሻ"
 
-#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
 msgstr "ወድቋል"
 
@@ -308,7 +324,7 @@ msgstr "ከ ቡድኑ መውጣት አልተቻለም"
 msgid "Failed to modify group title"
 msgstr "የ ቡድኑን አርእስት ማሻሻል አልተቻለም"
 
-#: ../src/qml/SendMessageValidator.qml:219
+#: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
 msgstr "መልእክት መላክ አልተሳካም"
 
@@ -328,7 +344,7 @@ msgstr "የ ፋይል መጠን ማስጠንቀቂያ"
 msgid "File type not supported"
 msgstr "ይህ አይነት ፋይል የተደገፈ አይደለም"
 
-#: ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "ወደ ፊት"
@@ -345,7 +361,7 @@ msgstr "አገኘሁት"
 msgid "Group"
 msgstr "ቡድን"
 
-#: ../src/qml/Messages.qml:764
+#: ../src/qml/Messages.qml:817
 #, qt-format
 msgid "Group (%1)"
 msgstr "ቡድን (%1)"
@@ -383,25 +399,25 @@ msgstr "ምስል"
 msgid "Image Preview"
 msgstr "የ ምስል ቅድመ እይታ"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:166
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
 msgstr "መረጃ"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
 msgstr "ለጊዜው መልእክት መላክ አይቻልም"
 
-#: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
 msgstr "በ በረራ ዘዴ ውስጥ እያሉ መልእክት መላክ አይቻልም"
 
-#: ../src/qml/SendMessageValidator.qml:218
+#: ../src/qml/SendMessageValidator.qml:220
 msgid "It is not possible to send the message"
 msgstr "መልእክት መላክ አይቻልም"
 
-#: ../src/qml/Messages.qml:1035
+#: ../src/qml/Messages.qml:1099
 msgid "Join IRC Channel..."
 msgstr ""
 
@@ -417,7 +433,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr "MMS"
 
@@ -467,7 +487,7 @@ msgstr "የ መልእክቶች መተግበሪያ"
 msgid "Multiple MMS Messages"
 msgstr ""
 
-#: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
+#: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
 msgstr "እኔ ራሴ"
 
@@ -480,26 +500,15 @@ msgstr "አዲስ %1 ቡድን"
 msgid "New MMS Group"
 msgstr "አዲስ የ MMS ቡድን"
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
 msgstr "አዲስ መልእክት"
 
-#: ../src/qml/SettingsPage.qml:77
-msgid "Night Mode"
-msgstr "በ ማታ ዘዴ"
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-msgid "No"
-msgstr "አይ"
-
-#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
 msgstr "ምንም የ ሲም ካርድ አልተገኘም"
 
-#: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
 msgstr "ምንም የ ሲም ካርድ አልተመረጠም"
 
@@ -511,7 +520,7 @@ msgstr "ኔትዎርክ አልተገኘም"
 msgid "No permission to access microphone"
 msgstr "ማይክሮፎን ጋር ለ መድረስ ፍቃድ የለም"
 
-#: ../src/qml/Messages.qml:319
+#: ../src/qml/Messages.qml:324
 msgid "Not available"
 msgstr "ዝግጁ አይደለም"
 
@@ -519,7 +528,7 @@ msgstr "ዝግጁ አይደለም"
 msgid "Number or contact name"
 msgstr "የ ግንኙነት ስም ወይንም ቁጥር"
 
-#: ../src/qml/Messages.qml:1192
+#: ../src/qml/Messages.qml:1266
 msgid "Offline"
 msgstr "ከ መስመር ውጪ"
 
@@ -529,7 +538,7 @@ msgstr "ከ መስመር ውጪ"
 msgid "Ok"
 msgstr "እሺ"
 
-#: ../src/qml/Messages.qml:1190
+#: ../src/qml/Messages.qml:1264
 msgid "Online"
 msgstr "በ መስመር ላይ"
 
@@ -554,7 +563,7 @@ msgstr ""
 "እባክዎን ፍቃድ ይስጡ <a href=\"system_settings\">System Settings &gt; Security "
 "&amp; Privacy</a>."
 
-#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
 msgstr "እባክዎን የ ሲም ካርድ ያስገቡ እና እንደገና ይሞክሩ"
 
@@ -576,8 +585,9 @@ msgstr "ያንብቡ"
 msgid "Received"
 msgstr "ተቀብለዋል"
 
-#: ../src/qml/ComposeBar.qml:145 ../src/qml/GroupChatInfoPage.qml:432
-#: ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr "ማስወገጃ"
 
@@ -597,7 +607,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr "እንደገና የ ተሰየመ ቡድን ወደ: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "እንደገና ይሞክሩ"
@@ -606,7 +616,7 @@ msgstr "እንደገና ይሞክሩ"
 msgid "SIM Card is locked"
 msgstr "ሲም ካርድ አሁን ተቆልፏል"
 
-#: ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
 msgstr "ኤስ ኤም ኤስ"
 
@@ -628,6 +638,14 @@ msgstr "መፈለጊያ..."
 #, fuzzy
 msgid "See in contacts"
 msgstr "ያልታወቀ ግንኙነት"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr ""
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "መላኪያ"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 #, fuzzy
@@ -652,7 +670,7 @@ msgstr "ማሰናጃ"
 msgid "Share"
 msgstr "ማካፈያ"
 
-#: ../src/qml/SettingsPage.qml:57
+#: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
 msgstr ""
 
@@ -664,7 +682,7 @@ msgstr ""
 msgid "Sort by title"
 msgstr "በ አርእስት መለያ"
 
-#: ../src/qml/SettingsPage.qml:69
+#: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
 msgstr ""
 
@@ -688,16 +706,20 @@ msgstr "ለማጥፋት ይጥረጉ"
 msgid "Swipe to reveal actions"
 msgstr "ተግባሮቹን ለማየት ይጥረጉ"
 
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "ለጊዜው ወድቋል"
 
-#: ../src/qml/MessageDelegate.qml:86
+#: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
 msgstr "የ ጽሁፍ መልእክት ወደ ቁራጭ ሰሌዳ ኮፒ ተደርጓል"
 
-#: ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:505
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -710,8 +732,12 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: ../src/qml/Messages.qml:320
+#: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
@@ -748,7 +774,7 @@ msgstr "አይነት"
 msgid "Type a name..."
 msgstr "ስም ይጻፉ..."
 
-#: ../src/qml/Messages.qml:1181
+#: ../src/qml/Messages.qml:1255
 msgid "Typing.."
 msgstr "በመጻፍ ላይ.."
 
@@ -782,21 +808,14 @@ msgstr "እንኳን ደህና መጡ ወደ መልእክት መተግበሪያ!
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "እንኳን ደህና መጡ ወደ እርስዎ የ ኡቡንቱ መልእክት መተግበሪያ"
 
-#: ../src/qml/ComposeBar.qml:510
+#: ../src/qml/ComposeBar.qml:568
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "መልእክት መጻፊያ..."
 
-#: ../src/qml/ComposeBar.qml:522
+#: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
 msgstr "መልእክት መጻፊያ..."
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
-msgid "Yes"
-msgstr "አዎ"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
@@ -816,16 +835,16 @@ msgid ""
 "able to send it."
 msgstr "እርስዎ ትልቅ ፋይል ለ መላክ እየሞከሩ ነው (ከ 300ኪባ በላይ). አንዳንድ አንቀሳቃሾች ላይልኩት ይችላሉ"
 
-#: ../src/qml/Messages.qml:1516
+#: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
 
-#: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
 msgstr "የ በረራ ዘዴ ማሰናከል አለብዎት"
 
-#: ../src/qml/ComposeBar.qml:169
+#: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
 msgstr "እርስዎ ተጭነው መያዝ አለብዎት የ መቅረጫ ምልክት"
 
@@ -842,7 +861,7 @@ msgstr "እርስዎ ወደ ቡድን ውስጥ ገብተዋል"
 msgid "You left this group"
 msgstr "እርስዎ ከ ቡድኑ ውስጥ ወጥተዋል"
 
-#: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
 msgstr "የ ሲም ካርድ መምረጥ አለብዎት"
 
@@ -859,6 +878,18 @@ msgstr "እርስዎ ቀይረዋል ወደ %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "እርስዎ ከዚህ ቡድን ውስጥ ተወግደዋል"
+
+#~ msgid "Add an online account"
+#~ msgstr "በ መስመር ላይ መግለጫ መጨመሪያ"
+
+#~ msgid "Night Mode"
+#~ msgstr "በ ማታ ዘዴ"
+
+#~ msgid "No"
+#~ msgstr "አይ"
+
+#~ msgid "Yes"
+#~ msgstr "አዎ"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
@@ -886,9 +917,6 @@ msgstr "እርስዎ ከዚህ ቡድን ውስጥ ተወግደዋል"
 
 #~ msgid "Later"
 #~ msgstr "በኋላ"
-
-#~ msgid "Send"
-#~ msgstr "መላኪያ"
 
 #~ msgid "Switch to default SIM:"
 #~ msgstr "መቀየሪያ ወደ ነባር ሲም:"

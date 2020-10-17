@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-12 04:35+0000\n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
 "PO-Revision-Date: 2020-08-16 08:16+0000\n"
 "Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
 "Language-Team: Greek <https://translate.ubports.com/projects/ubports/"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#όνομαΚαναλιού"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "Ο %1 είναι διαχειριστής"
 msgid "%1 is not Admin"
 msgstr "Ο %1 δεν είναι διαχειριστής"
 
-#: ../src/qml/Messages.qml:1179
+#: ../src/qml/Messages.qml:1253
 #, qt-format
 msgid "%1 is typing.."
 msgstr "Ο %1 πληκτρολογεί.."
@@ -99,7 +99,7 @@ msgstr "Ο %1 έχει προσκληθεί σε αυτή την ομάδα"
 msgid "+"
 msgstr "+"
 
-#: ../src/qml/AudioRecordingBar.qml:156
+#: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
 msgstr "<<< Σύρετε για ακύρωση"
 
@@ -107,13 +107,9 @@ msgstr "<<< Σύρετε για ακύρωση"
 msgid "Accepted"
 msgstr "Αποδέχθη"
 
-#: ../src/qml/Messages.qml:793
+#: ../src/qml/Messages.qml:846
 msgid "Add"
 msgstr "Προσθήκη"
-
-#: ../src/qml/SettingsPage.qml:64
-msgid "Add an online account"
-msgstr "Προσθήκη ενός λογαριασμού online"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -139,35 +135,35 @@ msgstr "Διαχειριστής"
 msgid "All"
 msgstr "Όλα"
 
-#: ../src/qml/ThreadDelegate.qml:116
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "Επισυναπτόμενο: %1 αρχείο ήχου"
 msgstr[1] "Επισυναπτόμενα: %1 αρχεία ήχου"
 
-#: ../src/qml/ThreadDelegate.qml:113
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Συνημμένη: %1 επαφή"
 msgstr[1] "Συνημμένες: %1 επαφές"
 
-#: ../src/qml/ThreadDelegate.qml:119
+#: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Συνημμένο: %1 αρχείο"
 msgstr[1] "Συνημμένα: %1 αρχεία"
 
-#: ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Συνημμένη: %1 εικόνα"
 msgstr[1] "Συνημμένες: %1 εικόνες"
 
-#: ../src/qml/ThreadDelegate.qml:110
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -178,30 +174,38 @@ msgstr[1] "Συνημμένα: %1 βίντεο"
 msgid "Audio attachment not supported"
 msgstr "Το επισυναπτόμενο αρχείο ήχου δεν υποστηρίζεται"
 
-#: ../src/qml/Messages.qml:1194
+#: ../src/qml/Messages.qml:1268
 msgid "Away"
 msgstr "Απουσιάζει"
 
-#: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
-#: ../src/qml/SettingsPage.qml:260
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "Πίσω"
 
-#: ../src/qml/Messages.qml:1196
+#: ../src/qml/Messages.qml:1270
 msgid "Busy"
 msgstr "Απασχολημένος/η"
 
-#: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
 msgstr "Κλήση"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
 msgstr "Ακύρωση"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr ""
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -229,21 +233,21 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Δημιουργία ενός νέου μηνύματος σέρνοντας προς τα πάνω από τη βάση της οθόνης."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
 msgid "Contact"
 msgstr "Επαφή"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#: ../src/qml/Messages.qml:1041
+#: ../src/qml/Messages.qml:1105
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Δημιουργία %1 ομάδας..."
 
-#: ../src/qml/Messages.qml:1011
+#: ../src/qml/Messages.qml:1075
 msgid "Create MMS Group..."
 msgstr "Δημιουργία ομάδας MMS..."
 
@@ -251,9 +255,13 @@ msgstr "Δημιουργία ομάδας MMS..."
 msgid "Creating Group..."
 msgstr "Γίνεται δημιουργία ομάδας..."
 
-#: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr ""
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:177
+#: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -265,19 +273,27 @@ msgstr "Διαγεγραμμένα"
 msgid "Delivered"
 msgstr "Παραδόθηκε"
 
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
 msgstr "Να μην ερωτηθώ ξανά"
 
-#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
 msgstr "Να μην εμφανίζεται ξανά"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
 msgstr "Επεξεργασία"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
 msgstr "Ενεργοποίηση μηνυμάτων ΜΜS"
 
@@ -285,7 +301,7 @@ msgstr "Ενεργοποίηση μηνυμάτων ΜΜS"
 msgid "End group"
 msgstr "Τέλος ομάδας"
 
-#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
 msgstr "Απέτυχε"
 
@@ -309,7 +325,7 @@ msgstr "Αποτυχία αποχώρησης από την ομάδα"
 msgid "Failed to modify group title"
 msgstr "Αποτυχία τροποποίησης τίτλου ομάδας"
 
-#: ../src/qml/SendMessageValidator.qml:219
+#: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
 msgstr "Αποτυχία αποστολής μηνύματος"
 
@@ -329,7 +345,7 @@ msgstr "Προειδοποίηση μεγέθους αρχείου"
 msgid "File type not supported"
 msgstr "Το είδος αρχείου δεν υποστηρίζεται"
 
-#: ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "Μπροστά"
@@ -346,7 +362,7 @@ msgstr "Ελήφθη"
 msgid "Group"
 msgstr "Ομάδα"
 
-#: ../src/qml/Messages.qml:764
+#: ../src/qml/Messages.qml:817
 #, qt-format
 msgid "Group (%1)"
 msgstr "Ομάδα (%1)"
@@ -385,25 +401,25 @@ msgstr "Εικόνα"
 msgid "Image Preview"
 msgstr "Προεπισκόπηση εικόνας"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:166
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
 msgstr "Δεν είναι δυνατή η αποστολή μηνυμάτων αυτήν τη στιγμή"
 
-#: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
 msgstr "Δεν είναι δυνατή η αποστολή μηνυμάτων σε λειτουργία πτήσης"
 
-#: ../src/qml/SendMessageValidator.qml:218
+#: ../src/qml/SendMessageValidator.qml:220
 msgid "It is not possible to send the message"
 msgstr "Δεν είναι δυνατή η αποστολή του μηνύματος"
 
-#: ../src/qml/Messages.qml:1035
+#: ../src/qml/Messages.qml:1099
 msgid "Join IRC Channel..."
 msgstr "Σύνδεση στο κανάλι IRC..."
 
@@ -419,7 +435,11 @@ msgstr "Αποχώρηση από το κανάλι"
 msgid "Leave group"
 msgstr "Αποχώρηση από την ομάδα"
 
-#: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr "MMS"
 
@@ -471,7 +491,7 @@ msgstr "Εφαρμογή μηνυμάτων"
 msgid "Multiple MMS Messages"
 msgstr "Πολλαπλά μηνύματα ΜΜS"
 
-#: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
+#: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
 msgstr "Εγώ"
 
@@ -484,26 +504,15 @@ msgstr "Νέα %1 ομάδα"
 msgid "New MMS Group"
 msgstr "Νέα ομάδα MMS"
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
 msgstr "Νέο μήνυμα"
 
-#: ../src/qml/SettingsPage.qml:77
-msgid "Night Mode"
-msgstr "Νυχτερινή λειτουργία"
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-msgid "No"
-msgstr "Όχι"
-
-#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
 msgstr "Δεν υπάρχει κάρτα SIM"
 
-#: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
 msgstr "Δεν επιλέχτηκε κάρτα SIM"
 
@@ -515,7 +524,7 @@ msgstr "Απουσία δικτύου"
 msgid "No permission to access microphone"
 msgstr "Δεν υπάρχει άδεια πρόσβασης στο μικρόφωνο"
 
-#: ../src/qml/Messages.qml:319
+#: ../src/qml/Messages.qml:324
 msgid "Not available"
 msgstr "Μη διαθέσιμο"
 
@@ -523,7 +532,7 @@ msgstr "Μη διαθέσιμο"
 msgid "Number or contact name"
 msgstr "Αριθμός ή όνομα επαφής"
 
-#: ../src/qml/Messages.qml:1192
+#: ../src/qml/Messages.qml:1266
 msgid "Offline"
 msgstr "Εκτός σύνδεσης"
 
@@ -533,7 +542,7 @@ msgstr "Εκτός σύνδεσης"
 msgid "Ok"
 msgstr "OK"
 
-#: ../src/qml/Messages.qml:1190
+#: ../src/qml/Messages.qml:1264
 msgid "Online"
 msgstr "Σε σύνδεση"
 
@@ -558,7 +567,7 @@ msgstr ""
 "Παρακαλούμε παραχωρήστε πρόσβαση στις <a href=\"system_settings\"> Ρυθμίσεις "
 "συστήματος &gt; Ασφάλεια &amp; Απόρρητο </a>."
 
-#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
 msgstr "Παρακαλούμε εισαγάγετε μια κάρτα SIM και δοκιμάστε ξανά."
 
@@ -570,8 +579,8 @@ msgid ""
 msgstr ""
 "Παρακαλούμε ξεκλείδωστε τη SIM κάρτα σας για να καλέσετε ή να στείλετε "
 "μήνυμα. Μπορείτε να ξεκλείδωσετε τη SIM κάρτα σας από την Ένδειξη δικτύου "
-"στο πάνω μέρος της οθόνης ή με το να μεταβείτε στις <a href=\""
-"system_settings\">Ρυθμίσεις συστήματος &gt; Ασφάλεια &amp; ιδιωτικότητα</a>."
+"στο πάνω μέρος της οθόνης ή με το να μεταβείτε στις <a href=\"system_settings"
+"\">Ρυθμίσεις συστήματος &gt; Ασφάλεια &amp; ιδιωτικότητα</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
@@ -581,8 +590,9 @@ msgstr "Ανεγνώσθη"
 msgid "Received"
 msgstr "Παρελήφθη"
 
-#: ../src/qml/ComposeBar.qml:145 ../src/qml/GroupChatInfoPage.qml:432
-#: ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr "Αφαίρεση"
 
@@ -604,7 +614,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr "Μετονομασία ομάδας σε: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "Επανάληψη"
@@ -613,7 +623,7 @@ msgstr "Επανάληψη"
 msgid "SIM Card is locked"
 msgstr "Η κάρτα SIM είναι κλειδωμένη"
 
-#: ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
 msgstr "SMS"
 
@@ -634,6 +644,14 @@ msgstr "Αναζήτηση..."
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
 msgstr "Δείτε στις επαφές"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr ""
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "Αποστολή"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 msgid "Send private message"
@@ -657,7 +675,7 @@ msgstr "Ρυθμίσεις"
 msgid "Share"
 msgstr "Κοινοποίηση"
 
-#: ../src/qml/SettingsPage.qml:57
+#: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
 msgstr "Απλοποιημένη προβολή συνομιλίας"
 
@@ -669,7 +687,7 @@ msgstr "Ταξινόμηση κατά χρονική σήμανση"
 msgid "Sort by title"
 msgstr "Ταξινόμηση κατά τίτλο"
 
-#: ../src/qml/SettingsPage.qml:69
+#: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
 msgstr "Ταξινόμηση νημάτων"
 
@@ -693,16 +711,20 @@ msgstr "Σύρετε για διαγραφή"
 msgid "Swipe to reveal actions"
 msgstr "Σύρετε για να εμφανίσετε ενέργειες"
 
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "Απέτυχε προσωρινά"
 
-#: ../src/qml/MessageDelegate.qml:86
+#: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
 msgstr "Το μήνυμα κειμένου έχει αντιγραφεί στο πρόχειρο"
 
-#: ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:505
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -720,9 +742,13 @@ msgstr ""
 "ενδέχεται να χρεωθείτε για πολλά μηνύματα.\n"
 "Θέλετε να συνεχίσετε;"
 
-#: ../src/qml/Messages.qml:320
+#: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
 msgstr "Ο επιλεγμένος λογαριασμός δεν είναι προς το παρόν διαθέσιμος"
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -758,7 +784,7 @@ msgstr "Τύπος"
 msgid "Type a name..."
 msgstr "Γράψτε ένα όνομα..."
 
-#: ../src/qml/Messages.qml:1181
+#: ../src/qml/Messages.qml:1255
 msgid "Typing.."
 msgstr "Πληκτρολογεί..."
 
@@ -792,20 +818,13 @@ msgstr "Καλώς ήρθατε στην εφαρμογή μηνυμάτων!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Καλώς ήρθατε στην εφαρμογή συνομιλίας του Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:510
+#: ../src/qml/ComposeBar.qml:568
 msgid "Write a broadcast message..."
 msgstr "Γράψτε ένα μήνυμα μετάδοσης..."
 
-#: ../src/qml/ComposeBar.qml:522
+#: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
 msgstr "Γράψτε ένα μήνυμα..."
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
-msgid "Yes"
-msgstr "Ναι"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
@@ -827,18 +846,18 @@ msgstr ""
 "Προσπαθείτε να στείλετε μεγάλα αρχεία (πάνω από 300 KB). Ορισμένοι πάροχοι "
 "ενδέχεται να μην είναι σε θέση να το στείλουν."
 
-#: ../src/qml/Messages.qml:1516
+#: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
 "Δεν μπορείτε να στείλετε μηνύματα σε αυτήν την ομάδα, επειδή η ομάδα δεν "
 "είναι πλέον ενεργή"
 
-#: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
 msgstr "Πρέπει να απενεργοποιήσετε τη λειτουργία πτήσης"
 
-#: ../src/qml/ComposeBar.qml:169
+#: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
 msgstr "Πρέπει να πατήσετε παρατεταμένα το εικονίδιο εγγραφής"
 
@@ -855,7 +874,7 @@ msgstr "Συμμετέχετε σε αυτή την ομάδα"
 msgid "You left this group"
 msgstr "Αποχωρήσατε από αυτή την ομάδα"
 
-#: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
 msgstr "Πρέπει να επιλέξετε μια κάρτα SIM"
 
@@ -872,6 +891,18 @@ msgstr "Έγινε αλλαγή σε %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "Σας έχουν αφαιρέσει από αυτή την ομάδα"
+
+#~ msgid "Add an online account"
+#~ msgstr "Προσθήκη ενός λογαριασμού online"
+
+#~ msgid "Night Mode"
+#~ msgstr "Νυχτερινή λειτουργία"
+
+#~ msgid "No"
+#~ msgstr "Όχι"
+
+#~ msgid "Yes"
+#~ msgstr "Ναι"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
@@ -899,9 +930,6 @@ msgstr "Σας έχουν αφαιρέσει από αυτή την ομάδα"
 
 #~ msgid "Later"
 #~ msgstr "Αργότερα"
-
-#~ msgid "Send"
-#~ msgstr "Αποστολή"
 
 #~ msgid "Switch to default SIM:"
 #~ msgstr "Αλλαγή στην προεπιλεγμένη SIM:"

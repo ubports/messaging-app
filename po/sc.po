@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-08 09:41+0000\n"
-"PO-Revision-Date: 2020-04-23 15:23+0000\n"
-"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"PO-Revision-Date: 2020-10-01 09:09+0000\n"
+"Last-Translator: Adria <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sc/>\n"
 "Language: sc\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
 msgstr "#nòmineDeSuCanale"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -54,7 +54,7 @@ msgstr "%1 est amministradore"
 msgid "%1 is not Admin"
 msgstr "%1 no est amministradore"
 
-#: ../src/qml/Messages.qml:1179
+#: ../src/qml/Messages.qml:1253
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 est iscriende..."
@@ -98,7 +98,7 @@ msgstr "%1 est istadu cumbidadu a su grupu"
 msgid "+"
 msgstr "+"
 
-#: ../src/qml/AudioRecordingBar.qml:156
+#: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
 msgstr "<<< Iscurre pro annullare"
 
@@ -106,7 +106,7 @@ msgstr "<<< Iscurre pro annullare"
 msgid "Accepted"
 msgstr "Atzetadu"
 
-#: ../src/qml/Messages.qml:793
+#: ../src/qml/Messages.qml:846
 msgid "Add"
 msgstr "Agiunghe"
 
@@ -134,35 +134,35 @@ msgstr "Amministradore"
 msgid "All"
 msgstr "Totus"
 
-#: ../src/qml/ThreadDelegate.qml:116
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "Allegadu: %1 clip de àudio"
 msgstr[1] "Allegados: %1 clips de àudio"
 
-#: ../src/qml/ThreadDelegate.qml:113
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Allegadu: %1 cuntatu"
 msgstr[1] "Allegados: %1 cuntatos"
 
-#: ../src/qml/ThreadDelegate.qml:119
+#: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Allegadu: %1 archìviu"
 msgstr[1] "Allegados: %1 archìvios"
 
-#: ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Allegadu: %1 immàgine"
 msgstr[1] "Allegados: %1 immàgines"
 
-#: ../src/qml/ThreadDelegate.qml:110
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -173,30 +173,38 @@ msgstr[1] "Allegados: %1 vìdeos"
 msgid "Audio attachment not supported"
 msgstr "Allegare àudio no est ancora possìbile"
 
-#: ../src/qml/Messages.qml:1194
+#: ../src/qml/Messages.qml:1268
 msgid "Away"
 msgstr "Ausente"
 
-#: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "In segus"
 
-#: ../src/qml/Messages.qml:1196
+#: ../src/qml/Messages.qml:1270
 msgid "Busy"
 msgstr "No a disponimentu"
 
-#: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
 msgstr "Muti"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
 msgstr "Annulla"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr "Muda"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -224,7 +232,7 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Iscrie unu messàgiu nou iscurrende su didu in artu dae bàsciu de s'ischermu."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
 msgid "Contact"
 msgstr "Cuntatu"
 
@@ -233,12 +241,12 @@ msgstr "Cuntatu"
 msgid "Copy"
 msgstr "Còpia"
 
-#: ../src/qml/Messages.qml:1041
+#: ../src/qml/Messages.qml:1105
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Crea su grupu %1..."
 
-#: ../src/qml/Messages.qml:1011
+#: ../src/qml/Messages.qml:1075
 msgid "Create MMS Group..."
 msgstr "Crea grupu MMS..."
 
@@ -252,7 +260,7 @@ msgstr "Iscuru"
 
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:177
+#: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
 msgstr "Cantzella"
 
@@ -264,17 +272,25 @@ msgstr "Cantzelladu"
 msgid "Delivered"
 msgstr "Imbiadu"
 
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
 msgstr "No ddu torres a domandare"
 
-#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
 msgstr "No ddu ammustres prus"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr "Abbotzu:"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
 msgstr "Modìfica"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr "Ativa"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -284,7 +300,7 @@ msgstr "Ativa messàgios MMS"
 msgid "End group"
 msgstr "Acabba su grupu"
 
-#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
 msgstr "Faddidu"
 
@@ -308,7 +324,7 @@ msgstr "Impossìbile lassare su grupu"
 msgid "Failed to modify group title"
 msgstr "Impossìbile mudare su tìtulu de su grupu"
 
-#: ../src/qml/SendMessageValidator.qml:219
+#: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
 msgstr "Faddina in s'imbiu de su messàgiu"
 
@@ -345,7 +361,7 @@ msgstr "Andat bene"
 msgid "Group"
 msgstr "Grupu"
 
-#: ../src/qml/Messages.qml:764
+#: ../src/qml/Messages.qml:817
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupu (%1)"
@@ -372,8 +388,8 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
-"Si boles modificare sa SIM tua e àteras preferèntzias de su mòbile, bìsita <"
-"a href=\"system_settings\">Cunfiguratziones de sistema</a>."
+"Si boles modificare sa SIM tua e àteras preferèntzias de su mòbile, bìsita "
+"<a href=\"system_settings\">Cunfiguratziones de sistema</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
@@ -389,19 +405,19 @@ msgstr "Pre-visualizatzione immàgine"
 msgid "Info"
 msgstr "Informatziones"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
 msgstr "Impossìbile imbiare messàgios immoe"
 
-#: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
 msgstr "Impossìbile imbiare messàgios in modalidade aèreu"
 
-#: ../src/qml/SendMessageValidator.qml:218
+#: ../src/qml/SendMessageValidator.qml:220
 msgid "It is not possible to send the message"
 msgstr "Impossìbile imbiare su messàgiu"
 
-#: ../src/qml/Messages.qml:1035
+#: ../src/qml/Messages.qml:1099
 msgid "Join IRC Channel..."
 msgstr "Aderi a su canale IRC..."
 
@@ -421,7 +437,7 @@ msgstr "Lassa su grupu"
 msgid "Light"
 msgstr "Craru"
 
-#: ../src/qml/ComposeBar.qml:572 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr "MMS"
 
@@ -473,7 +489,7 @@ msgstr "Aplicatzione de messagìstica"
 msgid "Multiple MMS Messages"
 msgstr "Vàrios messàgios de MMS"
 
-#: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
+#: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
 msgstr "Deo"
 
@@ -486,22 +502,15 @@ msgstr "Grupu nou %1"
 msgid "New MMS Group"
 msgstr "Grupu nou MMS"
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
 msgstr "Messàgiu nou"
 
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-msgid "No"
-msgstr "Nono"
-
-#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
 msgstr "Peruna carta SIM"
 
-#: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
 msgstr "Peruna carta SIM seletzionada"
 
@@ -513,7 +522,7 @@ msgstr "Peruna rete"
 msgid "No permission to access microphone"
 msgstr "Perunu permissu de atzessu a su micròfonu"
 
-#: ../src/qml/Messages.qml:319
+#: ../src/qml/Messages.qml:324
 msgid "Not available"
 msgstr "No est a disponimentu"
 
@@ -521,7 +530,7 @@ msgstr "No est a disponimentu"
 msgid "Number or contact name"
 msgstr "Nùmeru o nòmine de su cuntatu"
 
-#: ../src/qml/Messages.qml:1192
+#: ../src/qml/Messages.qml:1266
 msgid "Offline"
 msgstr "Foras de lìnia"
 
@@ -531,7 +540,7 @@ msgstr "Foras de lìnia"
 msgid "Ok"
 msgstr "AB"
 
-#: ../src/qml/Messages.qml:1190
+#: ../src/qml/Messages.qml:1264
 msgid "Online"
 msgstr "In lìnia"
 
@@ -556,7 +565,7 @@ msgstr ""
 "Permite atzessu a is <a href=\"system_settings\">Cunfiguratziones de sistema "
 "&gt; Seguresa e riservadesa</a>."
 
-#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
 msgstr "Inserta carta SIM e torra·bi a proare."
 
@@ -568,8 +577,8 @@ msgid ""
 msgstr ""
 "Isbloca s'ischeda SIM pro fàghere mutidas o imbiare messàgios. Podes "
 "isblocare sa SIM tua pro mèdiu de s'indicadore de rete situadu in s'ala "
-"superiora de s'ischermu o bisitende <a href=\"system_settings\">"
-"Cunfiguratziones de sistema &gt; Seguresa e riservadesa</a>."
+"superiora de s'ischermu o bisitende <a href=\"system_settings"
+"\">Cunfiguratziones de sistema &gt; Seguresa e riservadesa</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
@@ -579,8 +588,9 @@ msgstr "Lèghidu"
 msgid "Received"
 msgstr "Retzidu"
 
-#: ../src/qml/ComposeBar.qml:148 ../src/qml/GroupChatInfoPage.qml:432
-#: ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr "Boga"
 
@@ -632,6 +642,14 @@ msgstr "Chirca..."
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
 msgstr "Ammustra in is cuntatos"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr "Seletziona"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "Imbia"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 msgid "Send private message"
@@ -704,7 +722,7 @@ msgstr "Faddina temporànea"
 msgid "Text message copied to clipboard"
 msgstr "Messàgiu copiadu in punta de billete"
 
-#: ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:505
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -722,7 +740,7 @@ msgstr ""
 "duncas ti podent fàghere pagare prus de unu messàgiu.\n"
 "Boles sighire?"
 
-#: ../src/qml/Messages.qml:320
+#: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
 msgstr "Su contu seletzionadu no est a disponimentu immoe"
 
@@ -764,7 +782,7 @@ msgstr "Genia"
 msgid "Type a name..."
 msgstr "Iscrie unu nòmine..."
 
-#: ../src/qml/Messages.qml:1181
+#: ../src/qml/Messages.qml:1255
 msgid "Typing.."
 msgstr "Iscriende..."
 
@@ -798,20 +816,13 @@ msgstr "Ti donamus su benebènnidu a s'aplicatzione de messagìstica!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Ti donamus su benebènnidu a s'aplicatzione de messagìstica de Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:515
+#: ../src/qml/ComposeBar.qml:568
 msgid "Write a broadcast message..."
 msgstr "Iscrie unu messàgiu de difusione..."
 
-#: ../src/qml/ComposeBar.qml:527
+#: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
 msgstr "Iscrie unu messàgiu..."
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
-msgid "Yes"
-msgstr "Eja"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
@@ -833,16 +844,17 @@ msgstr ""
 "Ses chirchende de imbiare un'archìviu mannu (de prus de 300Kb). Non totus is "
 "frunidores de servìtziu ddos podent imbiare."
 
-#: ../src/qml/Messages.qml:1516
+#: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
-msgstr "Non podes imbiare messàgios a custu grupu ca su grupu no est prus ativu"
+msgstr ""
+"Non podes imbiare messàgios a custu grupu ca su grupu no est prus ativu"
 
-#: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
 msgstr "Deves disativare sa modalidade aèreu"
 
-#: ../src/qml/ComposeBar.qml:172
+#: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
 msgstr "Toca e mantene s'icona de su micròfonu"
 
@@ -859,7 +871,7 @@ msgstr "As aderidu a custu grupu"
 msgid "You left this group"
 msgstr "As lassadu su grupu"
 
-#: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
 msgstr "Deves seletzionare una carta SIM"
 
@@ -876,3 +888,9 @@ msgstr "Ses coladu dae %1 a %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "T'ant bogadu de custu grupu"
+
+#~ msgid "No"
+#~ msgstr "Nono"
+
+#~ msgid "Yes"
+#~ msgstr "Eja"

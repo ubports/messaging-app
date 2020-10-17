@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-12 04:35+0000\n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
 "PO-Revision-Date: 2015-08-03 10:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr ""
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:72
+#: ../src/qml/ThreadDelegate.qml:74
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "%1 is not Admin"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1179
+#: ../src/qml/Messages.qml:1253
 #, fuzzy, qt-format
 msgid "%1 is typing.."
 msgstr "Pisanje..."
@@ -99,7 +99,7 @@ msgstr ""
 msgid "+"
 msgstr "+"
 
-#: ../src/qml/AudioRecordingBar.qml:156
+#: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
 msgstr "<<< Pomakni za otkazivanje"
 
@@ -107,13 +107,9 @@ msgstr "<<< Pomakni za otkazivanje"
 msgid "Accepted"
 msgstr "Prihvaćeno"
 
-#: ../src/qml/Messages.qml:793
+#: ../src/qml/Messages.qml:846
 msgid "Add"
 msgstr "Dodaj"
-
-#: ../src/qml/SettingsPage.qml:64
-msgid "Add an online account"
-msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, fuzzy
@@ -141,7 +137,7 @@ msgstr ""
 msgid "All"
 msgstr "Svi"
 
-#: ../src/qml/ThreadDelegate.qml:116
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
@@ -149,7 +145,7 @@ msgstr[0] "Privitak: %1 zvučni zapis"
 msgstr[1] "Privitci: %1 zvučna zapisa"
 msgstr[2] "Privitci: %1 zvučnih zapisa"
 
-#: ../src/qml/ThreadDelegate.qml:113
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -157,7 +153,7 @@ msgstr[0] "Privitak: %1 kontakt"
 msgstr[1] "Privitak: %1 kontakta"
 msgstr[2] "Privitak: %1 kontakta"
 
-#: ../src/qml/ThreadDelegate.qml:119
+#: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -165,7 +161,7 @@ msgstr[0] "Privitak: %1 datoteka"
 msgstr[1] "Privitak: %1 datoteke"
 msgstr[2] "Privitak: %1 datoteka"
 
-#: ../src/qml/ThreadDelegate.qml:107
+#: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -173,7 +169,7 @@ msgstr[0] "Privitak: %1 slika"
 msgstr[1] "Privitak: %1 slike"
 msgstr[2] "Privitak: %1 slika"
 
-#: ../src/qml/ThreadDelegate.qml:110
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -185,30 +181,38 @@ msgstr[2] "Privitak: %1 video snimaka"
 msgid "Audio attachment not supported"
 msgstr "Zvučni privitak nije dopušten"
 
-#: ../src/qml/Messages.qml:1194
+#: ../src/qml/Messages.qml:1268
 msgid "Away"
 msgstr "Odsutan"
 
-#: ../src/qml/Messages.qml:644 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:106
-#: ../src/qml/SettingsPage.qml:260
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "Natrag"
 
-#: ../src/qml/Messages.qml:1196
+#: ../src/qml/Messages.qml:1270
 msgid "Busy"
 msgstr "Zauzet"
 
-#: ../src/qml/Messages.qml:781 ../src/qml/Messages.qml:887
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
 msgstr "Poziv"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
 msgstr "Odustani"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr ""
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -235,21 +239,21 @@ msgstr "Zatvori"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Sastavite novu poruku povlačenjem od vrha zaslona."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:898
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: ../src/qml/Messages.qml:1041
+#: ../src/qml/Messages.qml:1105
 #, qt-format
 msgid "Create %1 Group..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1011
+#: ../src/qml/Messages.qml:1075
 msgid "Create MMS Group..."
 msgstr ""
 
@@ -257,9 +261,13 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:120 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr ""
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:177
+#: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
 msgstr "Obriši"
 
@@ -271,19 +279,27 @@ msgstr "Obrisano"
 msgid "Delivered"
 msgstr "Dostavljeno"
 
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:64
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
 msgstr "Ne pitaj više"
 
-#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:60
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
 msgstr "Ne prikazuj ponovno"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
 msgstr "Uredi"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:56
 #, fuzzy
 msgid "Enable MMS messages"
 msgstr "Omogući MMS grupno čavrljanje"
@@ -292,7 +308,7 @@ msgstr "Omogući MMS grupno čavrljanje"
 msgid "End group"
 msgstr ""
 
-#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:308
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
 msgstr "Neuspjelo"
 
@@ -319,7 +335,7 @@ msgstr ""
 msgid "Failed to modify group title"
 msgstr ""
 
-#: ../src/qml/SendMessageValidator.qml:219
+#: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
 msgstr "Neuspjelo slanje poruke"
 
@@ -339,7 +355,7 @@ msgstr "Upozorenje o veličini datoteke"
 msgid "File type not supported"
 msgstr "Vrsta datoteke nije podržana"
 
-#: ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "Proslijedi"
@@ -356,7 +372,7 @@ msgstr "Shvaćam"
 msgid "Group"
 msgstr "Grupa"
 
-#: ../src/qml/Messages.qml:764
+#: ../src/qml/Messages.qml:817
 #, qt-format
 msgid "Group (%1)"
 msgstr "(%1) grupa"
@@ -396,26 +412,26 @@ msgstr "Slika"
 msgid "Image Preview"
 msgstr "Pregled slike"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:166
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
 msgstr "Informacije"
 
-#: ../src/qml/Messages.qml:309
+#: ../src/qml/Messages.qml:314
 #, fuzzy
 msgid "It is not possible to send messages at the moment"
 msgstr "Slanje poruke nije moguće u zrakoplovnom načinu rada"
 
-#: ../src/qml/Messages.qml:300 ../src/qml/SendMessageValidator.qml:210
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
 msgstr "Slanje poruke nije moguće u zrakoplovnom načinu rada"
 
-#: ../src/qml/SendMessageValidator.qml:218
+#: ../src/qml/SendMessageValidator.qml:220
 msgid "It is not possible to send the message"
 msgstr "Nije moguće poslati poruku"
 
-#: ../src/qml/Messages.qml:1035
+#: ../src/qml/Messages.qml:1099
 msgid "Join IRC Channel..."
 msgstr ""
 
@@ -431,7 +447,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:559 ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr ""
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
 msgstr "MMS"
 
@@ -481,7 +501,7 @@ msgstr "Aplikacija za poruke"
 msgid "Multiple MMS Messages"
 msgstr ""
 
-#: ../src/qml/MessageInfoDialog.qml:85 ../src/qml/MessageInfoDialog.qml:104
+#: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
 msgstr "Sebe"
 
@@ -494,26 +514,15 @@ msgstr ""
 msgid "New MMS Group"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:253
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
 msgstr "Nova poruka"
 
-#: ../src/qml/SettingsPage.qml:77
-msgid "Night Mode"
-msgstr ""
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-msgid "No"
-msgstr "Ne"
-
-#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:215
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
 msgstr "Nema SIM kartice"
 
-#: ../src/qml/Messages.qml:302 ../src/qml/SendMessageValidator.qml:212
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
 msgstr "Nema odabrane SIM kartice"
 
@@ -525,7 +534,7 @@ msgstr "Nema mreže"
 msgid "No permission to access microphone"
 msgstr "Nema dozvole za pristup mikrofonu"
 
-#: ../src/qml/Messages.qml:319
+#: ../src/qml/Messages.qml:324
 msgid "Not available"
 msgstr ""
 
@@ -533,7 +542,7 @@ msgstr ""
 msgid "Number or contact name"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1192
+#: ../src/qml/Messages.qml:1266
 msgid "Offline"
 msgstr "Nedostupan"
 
@@ -543,7 +552,7 @@ msgstr "Nedostupan"
 msgid "Ok"
 msgstr "U redu"
 
-#: ../src/qml/Messages.qml:1190
+#: ../src/qml/Messages.qml:1264
 msgid "Online"
 msgstr "Dostupan"
 
@@ -568,7 +577,7 @@ msgstr ""
 "Dopusti pristup na <a href=\"system_settings\">Postavke sustava; Sigurnost; "
 "Privatnost</a>."
 
-#: ../src/qml/Messages.qml:306 ../src/qml/SendMessageValidator.qml:216
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
 msgstr "Umetnite SIM karticu i pokušajte ponovno."
 
@@ -590,8 +599,9 @@ msgstr "Pročitaj"
 msgid "Received"
 msgstr "Primljeno"
 
-#: ../src/qml/ComposeBar.qml:145 ../src/qml/GroupChatInfoPage.qml:432
-#: ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
 msgstr "Ukloni"
 
@@ -611,7 +621,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:143
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "Ponovno pokušaj"
@@ -620,7 +630,7 @@ msgstr "Ponovno pokušaj"
 msgid "SIM Card is locked"
 msgstr "SIM kartica zaključana"
 
-#: ../src/qml/MessageDelegate.qml:168
+#: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
 msgstr "SMS"
 
@@ -642,6 +652,14 @@ msgstr "Pretraga..."
 #, fuzzy
 msgid "See in contacts"
 msgstr "Nepoznat kontakt"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr ""
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 #, fuzzy
@@ -666,7 +684,7 @@ msgstr "Postavke"
 msgid "Share"
 msgstr "Podijeli"
 
-#: ../src/qml/SettingsPage.qml:57
+#: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
 msgstr ""
 
@@ -678,7 +696,7 @@ msgstr ""
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:69
+#: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
 msgstr ""
 
@@ -702,16 +720,20 @@ msgstr "Pomakni za brisanje"
 msgid "Swipe to reveal actions"
 msgstr "Pomakni za ponavljanje radnje"
 
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr ""
+
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
 msgstr "Privremeno nedostupno"
 
-#: ../src/qml/MessageDelegate.qml:86
+#: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
 msgstr "Poruka je kopirana u međuspremnik"
 
-#: ../src/qml/Messages.qml:456
+#: ../src/qml/Messages.qml:505
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -724,8 +746,12 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: ../src/qml/Messages.qml:320
+#: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
@@ -762,7 +788,7 @@ msgstr "Vrsta"
 msgid "Type a name..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1181
+#: ../src/qml/Messages.qml:1255
 msgid "Typing.."
 msgstr "Pisanje..."
 
@@ -796,21 +822,14 @@ msgstr "Dobrodošli u vašu aplikaciju poruka!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Dobrodošli u vašu Ubuntu aplikaciju poruka."
 
-#: ../src/qml/ComposeBar.qml:510
+#: ../src/qml/ComposeBar.qml:568
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Napišite poruku..."
 
-#: ../src/qml/ComposeBar.qml:522
+#: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
 msgstr "Napišite poruku..."
-
-#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:49
-#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:41
-#: ../src/qml/Dialogs/MMSEnableDialog.qml:41
-#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:48
-msgid "Yes"
-msgstr "Da"
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
@@ -832,16 +851,16 @@ msgstr ""
 "Pokušavate poslati veliku datoteku (preko 300Kb). Neki mobilni operateri "
 "nisu u mogućnosti slati tako velike datoteke."
 
-#: ../src/qml/Messages.qml:1516
+#: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
 
-#: ../src/qml/Messages.qml:299 ../src/qml/SendMessageValidator.qml:209
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
 msgstr "Morate onemogućiti zrakoplovni način rada"
 
-#: ../src/qml/ComposeBar.qml:169
+#: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
 msgstr "Morate pritisnuti i držati ikonu snimanja"
 
@@ -858,7 +877,7 @@ msgstr ""
 msgid "You left this group"
 msgstr ""
 
-#: ../src/qml/Messages.qml:303 ../src/qml/SendMessageValidator.qml:213
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
 msgstr "Morate odabrati SIM karticu"
 
@@ -875,6 +894,12 @@ msgstr "Prebacili ste se na %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr ""
+
+#~ msgid "No"
+#~ msgstr "Ne"
+
+#~ msgid "Yes"
+#~ msgstr "Da"
 
 #~ msgid "%1 hour call"
 #~ msgid_plural "%1 hours call"
