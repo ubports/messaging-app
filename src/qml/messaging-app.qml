@@ -435,8 +435,8 @@ MainView {
             participantIds = properties["participantIds"]
         }
 
-        // generate the list of participants manually if not provided
-        if (!properties.hasOwnProperty("participants")) {
+        // generate the list of participants manually if not provided and no thread found
+        if (!properties.hasOwnProperty("participants") && properties["threads"].length === 0) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}
@@ -458,8 +458,10 @@ MainView {
         var threadId = properties.threadId
         if (!threadId && (properties["threads"].length > 0)) {
             threadId = properties["threads"][0].threadId
-            if (!accountId)
+            if (!accountId) {
                 accountId = properties["threads"][0].accountId
+                properties["accountId"] = accountId
+            }
         }
 
         if (threadId) {
