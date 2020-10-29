@@ -24,6 +24,8 @@ import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 import Ubuntu.History 0.1
+import QtGraphicalEffects 1.0
+
 import "dateUtils.js" as DateUtils
 
 ListItemWithActions {
@@ -31,6 +33,9 @@ ListItemWithActions {
 
     property QtObject chatEntry: null
     property bool compactView: false
+    property bool isEmptyMMS: eventTextMessageType === HistoryEventModel.MessageTypeMultiPart && displayedEventTextAttachments.length === 0 && eventTextMessage.length === 0
+    property string defaultMMSErrorMessage: i18n.tr("Oops, there has been an error with the MMS system and this message could not be retrieved.
+                                                     Please ensure Cellular Data is ON and MMS settings are correct, then ask the sender to try again.")
     property var participant: participants ? participants[0] : {}
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
@@ -120,6 +125,10 @@ ListItemWithActions {
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
         }
+        if(isEmptyMMS) {
+            return defaultMMSErrorMessage
+        }
+
         return formatDisplayedText(displayedEventTextMessage)
     }
 
@@ -348,10 +357,23 @@ ListItemWithActions {
             fontSize: "x-small"
         }
 
+        Image {
+            id: mmsErrorImg
+            visible: isEmptyMMS
+            source: "image://theme/mail-mark-important"
+            anchors.verticalCenter: latestMessage.verticalCenter
+            sourceSize.height: units.gu(2)
+            layer {
+                enabled: isEmptyMMS
+                effect: ColorOverlay {
+                    color: "red"
+                }
+            }
+        }
 
         Label {
             id: latestMessage
-            width: parent.width - draftPrefix.width
+            width: parent.width - draftPrefix.width - mmsErrorImg.width
             elide: Text.ElideRight
             fontSize: "x-small"
             text: textMessage
