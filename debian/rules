@@ -6,6 +6,7 @@
 
 export DEB_BUILD_HARDENING=1
 export DPKG_GENSYMBOLS_CHECK_LEVEL=4
+export QT_SELECT=qt5
 
 DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
 # Skip tests on the archs they are known to be flaky with current configuration
@@ -56,10 +57,12 @@ override_dh_auto_configure:
 		$(CONFIGURE_OPTS)
 
 override_dh_auto_test:
-ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
 	python3 -m flake8 tests/autopilot/messaging_app/
-ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
-	cd obj-$(DEB_HOST_GNU_TYPE); ctest -V
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+ifneq (,$(filter $(DEB_HOST_ARCH),$(testskip_architectures)))
+	-dh_auto_test
+else
+	dh_auto_test
 endif
 endif
 

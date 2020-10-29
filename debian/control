@@ -20,7 +20,6 @@ Build-Depends:
  qml-module-qtmultimedia,
  qml-module-qttest,
  qml-module-ubuntu-components,
- qt5-default,
  qtbase5-dev (>= 5.0),
  qtdeclarative5-dev (>= 5.0),
  qtdeclarative5-dev-tools,
