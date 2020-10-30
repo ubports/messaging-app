@@ -163,6 +163,7 @@ ListItemWithActions {
                     "senderId": messageData.senderId,
                     "sender": messageData.sender,
                     "timestamp": messageData.timestamp,
+                    "sentTime": messageData.sentTime,
                     "textReadTimestamp": messageData.textReadTimestamp,
                     "status": messageData.textMessageStatus,
                     "participants": messages.participants,
