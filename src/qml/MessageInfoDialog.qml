@@ -140,9 +140,8 @@ Item {
 
             Label {
                 text: root.activeMessage ?
-                          "<b>%1:</b> %2".arg(i18n.tr("Sent")).arg(Qt.formatDateTime(root.activeMessage.timestamp, Qt.DefaultLocaleShortDate)) :
+                          "<b>%1:</b> %2".arg(i18n.tr("Sent")).arg(Qt.formatDateTime(root.activeMessage.sentTime, Qt.DefaultLocaleShortDate)) :
                           ""
-                visible: root.activeMessage && (root.activeMessage.senderId === "self")
             }
 
             Label {
