@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2017-11-06 20:41+0000\n"
-"Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
+"PO-Revision-Date: 2020-11-04 10:38+0000\n"
+"Last-Translator: Mihai <michael.mozart@protonmail.com>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ro/>\n"
 "Language: ro\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -136,7 +136,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Tot"
+msgstr "Toate"
 
 #: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
@@ -198,7 +198,7 @@ msgstr "Ocupat"
 
 #: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
-msgstr "Apelează"
+msgstr "Apel"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -234,7 +234,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr "Închide"
+msgstr "închide"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -294,7 +294,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr "Editare"
+msgstr "Editați"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
@@ -605,7 +605,7 @@ msgstr "Primit"
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
-msgstr "Șterge"
+msgstr "Elimină"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
