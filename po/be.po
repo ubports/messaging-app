@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2015-10-05 20:16+0000\n"
-"Last-Translator: XiveZ <kyrsant2008@list.ru>\n"
-"Language-Team: Belarusian <be@li.org>\n"
+"PO-Revision-Date: 2020-11-09 15:29+0000\n"
+"Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
+"Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/be/>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -188,7 +189,7 @@ msgstr "Адышоў"
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
-msgstr "Вярнуцца"
+msgstr "Назад"
 
 #: ../src/qml/Messages.qml:1270
 msgid "Busy"
@@ -196,7 +197,7 @@ msgstr "Заняты(ая)"
 
 #: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
-msgstr "Патэлефанаваць"
+msgstr "Выклік"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -342,7 +343,7 @@ msgstr "Няўдача!"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr "Улюбёнае"
+msgstr "Улюбёныя"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -637,11 +638,11 @@ msgstr "Захаваць"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr "Шукаць"
+msgstr "Пошук"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr "Шукаць..."
+msgstr "Пошук..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 #, fuzzy
