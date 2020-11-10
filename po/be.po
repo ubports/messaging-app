@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-09 15:29+0000\n"
+"PO-Revision-Date: 2020-11-10 07:42+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/be/>\n"
@@ -414,7 +414,7 @@ msgstr "Перадпрагляд выявы"
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr "Звесткі"
+msgstr "Інфармацыя"
 
 #: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
