@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-02 08:18+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "#channelName"
 msgstr ""
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:79
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr ""
@@ -133,35 +133,35 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:123
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:120
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:126
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:114
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:117
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -256,10 +256,10 @@ msgstr ""
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:102 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:176
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Don't show again"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:355
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr ""
 
@@ -542,10 +542,9 @@ msgstr ""
 #: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
-"be retrieved."
-msgid_plural ")"
-msgstr[0] ""
-msgstr[1] ""
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format

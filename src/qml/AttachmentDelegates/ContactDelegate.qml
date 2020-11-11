@@ -107,6 +107,7 @@ BaseDelegate {
                 bottom: avatar.bottom
                 right: parent.right
                 rightMargin: units.gu(1)
+
             }
 
             verticalAlignment: Text.AlignVCenter

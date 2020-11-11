@@ -65,8 +65,7 @@ ListItemWithActions{
 
     Label {
         id: errorTxt
-        text: i18n.tr("Oops, there has been an error with the MMS system and this message could not be retrieved.
-                                                           Please ensure Cellular Data is ON and MMS settings are correct, then ask the sender to try again.")
+        text: i18n.tr("Oops, there has been an error with the MMS system and this message could not be retrieved. Please ensure Cellular Data is ON and MMS settings are correct, then ask the sender to try again.")
         fontSize: "medium"
         anchors {
             left: rectangle.right
