@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-15 19:43+0000\n"
+"PO-Revision-Date: 2020-11-15 22:03+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -258,7 +258,7 @@ msgstr "شخص"
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr "نسخ"
+msgstr "ناسخ"
 
 #: ../src/qml/Messages.qml:1105
 #, qt-format
@@ -608,7 +608,7 @@ msgstr "مستلمة"
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
-msgstr "إزالة"
+msgstr "أزل"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
@@ -651,7 +651,7 @@ msgstr "ابحث"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr "بحث..."
+msgstr "ابحث..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 #, fuzzy
@@ -687,7 +687,7 @@ msgstr "الإعدادات"
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr "مشاركة"
+msgstr "شارك"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
