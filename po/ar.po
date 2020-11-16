@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-15 22:03+0000\n"
+"PO-Revision-Date: 2020-11-16 07:08+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -574,7 +574,7 @@ msgstr "قيد الانتظار"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "اختر حساب للإنشاء."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
