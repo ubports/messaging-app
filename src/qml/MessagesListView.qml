@@ -90,11 +90,20 @@ MultipleSelectionListView {
         height: status == Loader.Ready ? item.height : 0
 
         Component.onCompleted: {
+            var sourceFile = ""
+            var isMmsError = model.textMessageType === HistoryEventModel.MessageTypeMultiPart && model.textMessageAttachments.length === 0 && model.textMessage.length === 0
+            if (isMmsError) {
+                sourceFile = "MessageAlertBubble.qml"
+            } else if (textMessageType == HistoryThreadModel.MessageTypeInformation) {
+                sourceFile = "AccountSectionDelegate.qml"
+            } else {
+                sourceFile = "RegularMessageDelegate.qml"
+                sourceFile = application.delegateFromProtocol(Qt.resolvedUrl(sourceFile), account ? account.protocolInfo.name : "")
+            }
+
             var properties = {"messageData": model,
                               "index": Qt.binding(function(){ return index }),
                               "delegateItem": Qt.binding(function(){ return loader })}
-            var sourceFile =textMessageType == HistoryThreadModel.MessageTypeInformation ? "AccountSectionDelegate.qml" : "RegularMessageDelegate.qml"
-            sourceFile = application.delegateFromProtocol(Qt.resolvedUrl(sourceFile), account ? account.protocolInfo.name : "")
             loader.setSource(sourceFile, properties)
         }
 
