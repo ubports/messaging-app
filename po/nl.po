@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-10-27 17:01+0000\n"
+"PO-Revision-Date: 2020-11-23 18:30+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "messaging-app/nl/>\n"
@@ -139,36 +139,36 @@ msgstr "Alle"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] "Bijlage: %1 audiofragment"
-msgstr[1] "Bijlagen: %1 audiofragmenten"
+msgstr[0] "Bijlage: %1 audiobericht"
+msgstr[1] "Bijlagen: %1 audioberichten"
 
 #: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Bijlage: %1 contactpersoon"
-msgstr[1] "Bijlagen: %1 contactpersonen"
+msgstr[1] "Bijlage: %1 contactpersonen"
 
 #: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Bijlage: %1 bestand"
-msgstr[1] "Bijlagen: %1 bestanden"
+msgstr[1] "Bijlage: %1 bestanden"
 
 #: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Bijlage: %1 afbeelding"
-msgstr[1] "Bijlagen: %1 afbeeldingen"
+msgstr[1] "Bijlage: %1 afbeeldingen"
 
 #: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
 msgstr[0] "Bijlage: %1 video"
-msgstr[1] "Bijlagen: %1 video's"
+msgstr[1] "Bijlage: %1 video's"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
