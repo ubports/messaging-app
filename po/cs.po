@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-01 14:25+0000\n"
+"PO-Revision-Date: 2020-11-23 18:30+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -139,9 +139,9 @@ msgstr "Vše"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] "Příloha: %1 audio klip"
-msgstr[1] "Přílohy: %1 audio klipy"
-msgstr[2] "Přílohy: %1 audio klipů"
+msgstr[0] "Příloha: %1 audio soubor"
+msgstr[1] "Přílohy: %1 audio soubory"
+msgstr[2] "Přílohy: %1 audio souborů"
 
 #: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
