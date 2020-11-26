@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-26 11:33+0000\n"
+"PO-Revision-Date: 2020-11-26 15:47+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/be/>\n"
@@ -541,7 +541,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1266
 msgid "Offline"
-msgstr "Адлучана"
+msgstr "Па-за сецівам"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -564,7 +564,7 @@ msgstr "У чаканні"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Абярыце акаўнт, каб стварыць."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -766,7 +766,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr "Атрымальнік"
+msgstr "Да"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
