@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-23 04:33+0000\n"
+"PO-Revision-Date: 2020-11-26 04:41+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/be/>\n"
@@ -748,7 +748,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "Тэма"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
