@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-27 16:30+0000\n"
+"PO-Revision-Date: 2020-11-27 16:56+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/be/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#назваКанала"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:74
@@ -34,12 +34,12 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Падлучэнне..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 дадаў %2 у гэтую групу"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
@@ -564,7 +564,7 @@ msgstr "У чаканні"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Абярыце акаўнт, каб стварыць."
+msgstr "Каб стварыць, абярыце акаўнт."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -584,8 +584,8 @@ msgid ""
 msgstr ""
 "Калі ласка, разблакуйце вашую SIM-картку, каб мець магчымасць тэлефанаваць "
 "ці адпраўляць паведамленні. Разблакаваць картку можна з дапамогай індыкатара "
-"сеткі ў верхняй частцы экрана або з дапамогай старонкі <a href="
-"\"system_settings\">Сістэмныя параметры &gt; Бяспека &amp; Прыватнасць</a>."
+"сеткі ў верхняй частцы экрана або з дапамогай старонкі <a href=\""
+"system_settings\">Налады сістэмы &gt; Бяспека &amp; Прыватнасць</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
@@ -710,11 +710,11 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr "Правядзіце для выдалення"
+msgstr "Правядзіце, каб выдаліць"
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr "Правядзіце, каб убачыць пункты дзеянняў"
+msgstr "Правядзіце, каб убачыць дзеянні"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
@@ -753,11 +753,11 @@ msgstr "Тэма"
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "Зараз на %1 няма доступу да сеткі"
+msgstr "Няма доступу да сеткі %1"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "Зараз няма доступу да сеткі."
+msgstr "Зараз сетка недаступная."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
@@ -873,7 +873,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
-msgstr "Вам варта абраць SIM-картку"
+msgstr "Неабходна абраць SIM-картку"
 
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
