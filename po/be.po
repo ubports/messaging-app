@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-27 11:32+0000\n"
+"PO-Revision-Date: 2020-11-27 16:30+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/be/>\n"
@@ -343,7 +343,7 @@ msgstr "Няўдача!"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr "Улюбёныя"
+msgstr "Улюбёныя кантакты"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -364,7 +364,7 @@ msgstr "Ад"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr "Выканана"
+msgstr "Завершана"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -521,7 +521,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
-msgstr "Не выбраная SIM-картка"
+msgstr "SIM-картка не абраная"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
