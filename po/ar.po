@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-16 14:47+0000\n"
+"PO-Revision-Date: 2020-12-01 07:45+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -110,7 +110,7 @@ msgstr "مقبول"
 
 #: ../src/qml/Messages.qml:846
 msgid "Add"
-msgstr "إضافة"
+msgstr "أضف"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, fuzzy
@@ -757,7 +757,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "السِمة"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
