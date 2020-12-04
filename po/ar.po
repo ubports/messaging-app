@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-01 07:45+0000\n"
+"PO-Revision-Date: 2020-12-04 21:30+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -258,7 +258,7 @@ msgstr "شخص"
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr "ناسخ"
+msgstr "انسخ"
 
 #: ../src/qml/Messages.qml:1105
 #, qt-format
