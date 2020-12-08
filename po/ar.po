@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-08 21:03+0000\n"
+"PO-Revision-Date: 2020-12-09 20:12+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -319,7 +319,7 @@ msgstr "فعّل رسائل MMS"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "أغلق المجموعة"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
@@ -359,7 +359,7 @@ msgstr "المفضلات"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr ""
+msgstr "تحذير بسبب حجم الملف"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
 msgid "File type not supported"
@@ -571,9 +571,8 @@ msgid "Participants: %1"
 msgstr "المنتسبون: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
-#, fuzzy
 msgid "Pending"
-msgstr "ينتظار"
+msgstr "معلق"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
@@ -699,7 +698,7 @@ msgstr "عرض مبسط للمحادثة"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "افرز وفق الختم الزمني"
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
@@ -707,7 +706,7 @@ msgstr "افرز وفق العنوان"
 
 #: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
-msgstr ""
+msgstr "افرز النقاشات"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
@@ -715,11 +714,11 @@ msgstr "الحالة"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "غادرت القناة بنجاح"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "غادرت المجموعة بنجاح"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -747,6 +746,8 @@ msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
+"لا تحتوي شريحة الهاتف على رقم المالك. لذا من غير الممكن ارسال رسائل لمجموعة "
+"MMS."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -754,6 +755,9 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"يتطلب المحتوى الذي تريد ارساله ارسال رسالة MMS لكل شخص منفردا، لذا ستتحمل "
+"تكاليف عدة رسائل.\n"
+"هل تريد المتابعة؟"
 
 #: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
@@ -775,7 +779,7 @@ msgstr "لا توجد شبكة حاليا."
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "اخترت هذا المستلم بالفعل"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -795,11 +799,11 @@ msgstr "النوع"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "اكتب اسمًا…"
 
 #: ../src/qml/Messages.qml:1255
 msgid "Typing.."
-msgstr ""
+msgstr "يكتب.."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -809,11 +813,11 @@ msgstr "مجهول"
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
-msgstr "شخص مجهول"
+msgstr "متراسل مجهول"
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr ""
+msgstr "فيديو"
 
 #: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
 msgid "Video Preview"
@@ -825,16 +829,15 @@ msgstr "إرفاق الفيديو غير مدعوم"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr ""
+msgstr "مرحبا بك في تطبيق المراسلة!"
 
 #: ../src/qml/ListItemDemo.qml:133
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "مرحبا بك في تطبيق أوبونتو للرسائل."
+msgstr "مرحبا بك في تطبيق أوبونتو للمراسلة."
 
 #: ../src/qml/ComposeBar.qml:568
-#, fuzzy
 msgid "Write a broadcast message..."
-msgstr "اكتب رسالة..."
+msgstr "اكتب رسالة بث..."
 
 #: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
@@ -846,61 +849,61 @@ msgstr "أمس"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "أنت مدير"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "لست مديرًا"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
-msgstr ""
+msgstr "أنت تحاول إرسال ملف ضخم (فوق 300 كب). بعض المشغلات لن تتمكن من ارساله."
 
 #: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
-msgstr ""
+msgstr "لن تتمكن من ارسال رسائل لهذه المجموعة لأنها ليست نشطة"
 
 #: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
-msgstr ""
+msgstr "عطَلتَ وضع الطيران"
 
 #: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
-msgstr ""
+msgstr "عليك ضغط أيقونة التسجيل مع التعليق"
 
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "دعوتَ %1 لهذه المجموعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "انضممتَ لهذه المجموعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "غادرتَ هذه المجموعة"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
-msgstr "عليك أن تختار بطاقة SIM"
+msgstr "عليك أن تختار شريحة هاتف"
 
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "غيّرتَ اسم المجموعة الى: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr "لقد قمت بالتحويل إلى %1 في %2"
+msgstr "تحولتَ إلى %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "أُزلتَ من هذه المجموعة"
 
 #~ msgid "No"
 #~ msgstr "لا"
