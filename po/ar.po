@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-08 16:46+0000\n"
+"PO-Revision-Date: 2020-12-08 21:03+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -113,14 +113,12 @@ msgid "Add"
 msgstr "أضف"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "إضافة مستلم"
+msgstr "أضف منتسبًا"
 
 #: ../src/qml/NewRecipientPage.qml:88
-#, fuzzy
 msgid "Add recipient"
-msgstr "إضافة مستلم"
+msgstr "إضافة منتسب"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
@@ -469,18 +467,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"دعم MMS مطلوب لإرسال الرسالة.\n"
+"هل تريد تفعيله؟"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "دعم MMS مطلوب"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "أنا"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "الأعضاء:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -496,44 +496,44 @@ msgstr "الرسائل;رسائل;الرسالة;رسالة;رسالة نصية;
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr "الرسائل"
+msgstr "يراسل"
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr "تطبيق الرسائل"
+msgstr "تطبيق مراسلة"
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "تطبيق الرسائل"
+msgstr "تطبيق مراسلة"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "رسائل MMS متعددة"
 
 #: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
-msgstr ""
+msgstr "نفسي"
 
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "مجموعة %1 جديدة"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "مجموعة MMS جديدة"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
-msgstr ""
+msgstr "رسالة جديدة"
 
 #: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
-msgstr ""
+msgstr "لا توجد شريحة هاتف"
 
 #: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
-msgstr "ما من بطاقة SIM مختارة"
+msgstr "لم تختر شريحة هاتف"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
@@ -541,19 +541,19 @@ msgstr "لا شبكة"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr ""
+msgstr "لا إذن له بالنفاذ الى الميكروفون"
 
 #: ../src/qml/Messages.qml:324
 msgid "Not available"
-msgstr ""
+msgstr "لا تتوفر"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "رقم أو اسم المتراسل"
 
 #: ../src/qml/Messages.qml:1266
 msgid "Offline"
-msgstr ""
+msgstr "غير متصل"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -563,16 +563,17 @@ msgstr "موافق"
 
 #: ../src/qml/Messages.qml:1264
 msgid "Online"
-msgstr ""
+msgstr "متصل"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "المنتسبون: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
+#, fuzzy
 msgid "Pending"
-msgstr "قيد الانتظار"
+msgstr "ينتظار"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
@@ -583,10 +584,12 @@ msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
+"امنح حق النفاذ عبر <a href=\"system_settings\">إعدادات النظام &gt; الأمن "
+"والخصوصية</a>."
 
 #: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
-msgstr ""
+msgstr "رجاء أدخل شريحة الهاتف وحاول مجددًا."
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -594,11 +597,12 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"برجاء فتح قفل بطاقة SIM لتتمكن من الاتصال وإرسال الرسائل النصية. يمكنك فتح "
-"قفل بطاقة SIM من خلال مؤشر الشبكة في أعلى الشاشة أو من خلال الدخول إلى <a "
-"href=\"system_settings\">إعدادات النظام &lt; الأمن والخصوصية</a>."
+"رجاء فك قفل شريحة الهاتف لتتمكن من الاتصال وإرسال الرسائل النصية. يمكنك فك "
+"قفل شريحة الهاتف من خلال مؤشر الشبكة في أعلى الشاشة أو من خلال زيارة <a href="
+"\"system_settings\">إعدادات النظام &lt; الأمن والخصوصية</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+#, fuzzy
 msgid "Read"
 msgstr "مقروء"
 
@@ -614,28 +618,28 @@ msgstr "أزل"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "أزل من المجموعة"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
 msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
-msgstr ""
+msgstr "إزالة آخر عضو ستحل مجموعة '%1'. أتريد المتابعة؟"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "غُيّر اسم المجموعة الى: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "إعادة المحاولة"
+msgstr "حاول مجددًا"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr "بطاقة SIM مقفلة"
+msgstr "شريحة الهاتف مقفلة"
 
 #: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
@@ -656,9 +660,8 @@ msgid "Search..."
 msgstr "ابحث..."
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "See in contacts"
-msgstr "شخص مجهول"
+msgstr "جِده في تطبيق المتراسلين"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
@@ -666,20 +669,19 @@ msgstr "حدد"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
-msgstr ""
+msgstr "أرسل"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
-msgstr "اكتب رسالة..."
+msgstr "أرسل رسالة خاصة"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
-msgstr "مرسلة"
+msgstr "أُرسلت"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "عينه كمدير"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -693,7 +695,7 @@ msgstr "شارك"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "عرض مبسط للمحادثة"
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
@@ -701,7 +703,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr ""
+msgstr "افرز وفق العنوان"
 
 #: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
@@ -729,7 +731,7 @@ msgstr "اسحب لإظهار الإجراءات"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
-msgstr ""
+msgstr "سمة النظام"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -738,7 +740,7 @@ msgstr "فشل مؤقت"
 #: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
-msgstr "تم نسخ الرسالة النصية إلى الحافظة"
+msgstr "نُسخت الرسالة النصية إلى الحافظة"
 
 #: ../src/qml/Messages.qml:505
 msgid ""
@@ -755,7 +757,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "الحساب المختار غير متوفر حاليًا"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
