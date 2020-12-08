@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-04 21:30+0000\n"
+"PO-Revision-Date: 2020-12-08 07:42+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#اسم_القناة"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:74
@@ -34,67 +34,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - يتصل…"
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "أضاف %1 %2 لهذه المجموعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "دعى %1 %2 لهذه المجموعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 مدير"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 ليس مديرًا"
 
 #: ../src/qml/Messages.qml:1253
 #, qt-format
 msgid "%1 is typing.."
-msgstr ""
+msgstr "%1 يكتب.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "انضم %1 لهذه المجموعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "غادر %1 هذه المجحوعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "أزال %1 %2 من هذه المجموعة"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "غيّر %1 اسم المجموعة الى: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "عيّن %1 %2 كمدير"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "أزال %1 %2 من الإدارة"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "دُعي %1 الى هذه المجموعة"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -102,7 +102,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
-msgstr ""
+msgstr "اسحب للإلغاء >>>"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -118,21 +118,21 @@ msgid "Add participant:"
 msgstr "إضافة مستلم"
 
 #: ../src/qml/NewRecipientPage.qml:88
+#, fuzzy
 msgid "Add recipient"
 msgstr "إضافة مستلم"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "شخص مجهول"
+msgstr "أضف الى المتراسلين"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "أضف…"
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "مدير"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
