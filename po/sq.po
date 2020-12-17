@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2017-09-29 07:40+0000\n"
-"Last-Translator: Jeff <jeffi27@live.at>\n"
+"PO-Revision-Date: 2020-12-17 15:11+0000\n"
+"Last-Translator: Enkli Ylli <eylli@yahoo.com>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sq/>\n"
 "Language: sq\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -33,12 +33,12 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Duke u lidhur..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 shtoi %2 në këtë grup"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
@@ -48,7 +48,7 @@ msgstr ""
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 është Admin"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
@@ -56,9 +56,9 @@ msgid "%1 is not Admin"
 msgstr ""
 
 #: ../src/qml/Messages.qml:1253
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing.."
-msgstr "Duke shkruar.."
+msgstr "%1 është duke shkruar.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -202,7 +202,7 @@ msgstr "Thirrje"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "Anulo"
+msgstr "Anullo"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
