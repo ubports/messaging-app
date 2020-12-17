@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-08-16 08:16+0000\n"
+"PO-Revision-Date: 2020-12-17 14:38+0000\n"
 "Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
 "Language-Team: Greek <https://translate.ubports.com/projects/ubports/"
 "messaging-app/el/>\n"
@@ -205,7 +205,7 @@ msgstr "Ακύρωση"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
-msgstr ""
+msgstr "Αλλαγή"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -257,7 +257,7 @@ msgstr "Γίνεται δημιουργία ομάδας..."
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr ""
+msgstr "Σκούρο"
 
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -283,7 +283,7 @@ msgstr "Να μην εμφανίζεται ξανά"
 
 #: ../src/qml/ThreadDelegate.qml:346
 msgid "Draft:"
-msgstr ""
+msgstr "Πρόχειρο:"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
@@ -291,7 +291,7 @@ msgstr "Επεξεργασία"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
-msgstr ""
+msgstr "Ενεργοποίηση"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -437,7 +437,7 @@ msgstr "Αποχώρηση από την ομάδα"
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr ""
+msgstr "Ανοιχτό"
 
 #: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
@@ -647,7 +647,7 @@ msgstr "Δείτε στις επαφές"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "Επιλογή"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
@@ -713,7 +713,7 @@ msgstr "Σύρετε για να εμφανίσετε ενέργειες"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
-msgstr ""
+msgstr "Θέμα συστήματος"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -748,7 +748,7 @@ msgstr "Ο επιλεγμένος λογαριασμός δεν είναι πρ�
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "Θέμα"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
