@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-23 10:26+0000\n"
+"PO-Revision-Date: 2020-12-24 08:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
 "messaging-app/he/>\n"
@@ -262,7 +262,7 @@ msgstr "כהה"
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
-msgstr "מחק"
+msgstr "מחיקה"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
