@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-31 16:31+0000\n"
+"PO-Revision-Date: 2021-01-01 15:18+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -182,7 +182,7 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
-msgstr ""
+msgstr "பின்செல்"
 
 #: ../src/qml/Messages.qml:1270
 msgid "Busy"
@@ -352,7 +352,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr ""
+msgstr "தொடங்கும் நேரம்"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
@@ -402,7 +402,7 @@ msgstr ""
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr ""
+msgstr "தகவல்"
 
 #: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
@@ -552,7 +552,7 @@ msgstr ""
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "உருவாக்க, கணக்கை தேர்வுசெய்க."
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -749,7 +749,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr ""
+msgstr "முடியும் நேரம்"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
