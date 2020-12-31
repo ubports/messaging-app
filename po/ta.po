@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2014-01-18 17:38+0000\n"
-"Last-Translator: solomon sunder <Unknown>\n"
-"Language-Team: Tamil <ta@li.org>\n"
+"PO-Revision-Date: 2020-12-31 06:20+0000\n"
+"Last-Translator: GK <miscgk@pm.me>\n"
+"Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
+"messaging-app/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -238,7 +239,7 @@ msgstr "தொடர்பு"
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr ""
+msgstr "நகலெடு"
 
 #: ../src/qml/Messages.qml:1105
 #, qt-format
@@ -654,7 +655,7 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "அமைவுகள்"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
