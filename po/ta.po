@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-12-31 06:20+0000\n"
+"PO-Revision-Date: 2020-12-31 16:31+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:846
 msgid "Add"
-msgstr ""
+msgstr "சேர்"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -139,36 +139,36 @@ msgstr ""
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "உடனிணைப்பு: %1 குரல் பதிவு"
+msgstr[1] "உடனிணைப்புகள்: %1 குரல் பதிவுகள்"
 
 #: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "உடனிணைப்பு: %1 தொடர்பு"
+msgstr[1] "உடனிணைப்புகள்: %1 தொடர்புகள்"
 
 #: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "உடனிணைப்பு: %1 கோப்பு"
+msgstr[1] "உடனிணைப்புகள்: %1 கோப்புகள்"
 
 #: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "உடனிணைப்பு: %1 படிம்ம"
+msgstr[1] "உடனிணைப்புகள்: %1 படிமங்கள்"
 
 #: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "உடனிணைப்பு: %1 ஒளித்தோற்றம்"
+msgstr[1] "உடனிணைப்புகள்: %1 ஒளித்தோற்றங்கள்"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
@@ -201,7 +201,7 @@ msgstr "அழை"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்துசெய்"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
@@ -262,7 +262,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
-msgstr ""
+msgstr "நீக்கு"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -286,7 +286,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr ""
+msgstr "திருத்து"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
@@ -529,13 +529,13 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1266
 msgid "Offline"
-msgstr ""
+msgstr "அகல்நிலை"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "சரி"
 
 #: ../src/qml/Messages.qml:1264
 msgid "Online"
@@ -612,13 +612,13 @@ msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
-msgstr ""
+msgstr "குறுஞ்செய்தி"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:86
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr ""
+msgstr "சேமி"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
@@ -634,11 +634,11 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "தேர்ந்தெடு"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
-msgstr ""
+msgstr "அனுப்பு"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 #, fuzzy
@@ -661,7 +661,7 @@ msgstr "அமைவுகள்"
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr ""
+msgstr "பகிர்"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
@@ -774,7 +774,7 @@ msgstr ""
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
 msgid "Unknown"
-msgstr ""
+msgstr "தெரியாதவை"
 
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44
