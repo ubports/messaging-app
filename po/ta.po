@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2021-01-01 15:18+0000\n"
+"PO-Revision-Date: 2021-01-02 18:40+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -205,7 +205,7 @@ msgstr "ரத்துசெய்"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
-msgstr ""
+msgstr "மாற்றுக"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -262,7 +262,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
-msgstr "நீக்கு"
+msgstr "நீக்குக"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -583,7 +583,7 @@ msgstr ""
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
-msgstr ""
+msgstr "நீக்குக"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
