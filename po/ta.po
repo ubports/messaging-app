@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2021-01-04 01:02+0000\n"
+"PO-Revision-Date: 2021-01-04 16:39+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
@@ -226,7 +226,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr ""
+msgstr "மூடுக"
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
@@ -274,7 +274,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
-msgstr ""
+msgstr "திரும்பவும் கேட்க வேண்டாம்"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr ""
+msgstr "பிடித்தவைகள்"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
@@ -356,7 +356,7 @@ msgstr "தொடங்கும் நேரம்"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr ""
+msgstr "புரிந்தது"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -509,11 +509,11 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
-msgstr ""
+msgstr "செறிவட்டை எதுவும் தேர்வுசெய்யப்படவில்லை"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
-msgstr ""
+msgstr "இணைப்பு இல்லை"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
@@ -570,6 +570,10 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
+"அழைப்பை மேற்கொள்ளவோ அல்லது குருஞ்செய்தியை அனுப்பவோ உங்கள் செறிவட்டை பூட்டை"
+" நீக்கவும். திரையில் மேலிருக்கும் இணையக் குறியீடிலிருந்தோ அல்லது <a href=\""
+"system_settings\"> சாதன அமைவுகள் &gt; பாதுகாப்பு &amp; தனியுரிமை</a> "
+"பயன்படுத்தியோ உங்கள் செறிவட்டையின் பூட்டை நீக்கலாம்."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
@@ -608,7 +612,7 @@ msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr ""
+msgstr "செறிவட்டை பூட்டப்பட்டுள்ளது"
 
 #: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
@@ -622,11 +626,11 @@ msgstr "சேமி"
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr ""
+msgstr "தெடுக"
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr "தேடு…"
+msgstr "தேடுக…"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
@@ -693,11 +697,11 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr ""
+msgstr "நீக்குவதற்கு தேய்க்கவும்"
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "செயல்களை வெளிப்படுத்த தேய்க்கவும்"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
@@ -736,11 +740,11 @@ msgstr "கருப்பொருள்"
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr ""
+msgstr "இந்த %1 இணைப்புகள் எதுவுமில்லை"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr ""
+msgstr "இணைப்பு எதுவுமில்லை."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
@@ -856,7 +860,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
-msgstr ""
+msgstr "நீங்கள் செறிவட்டையை தேர்வு செய்ய வேண்டும்"
 
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
