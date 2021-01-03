@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2021-01-03 02:00+0000\n"
+"PO-Revision-Date: 2021-01-03 12:32+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -286,7 +286,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr "திருத்து"
+msgstr "திருத்துக"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
@@ -661,7 +661,7 @@ msgstr "அமைவுகள்"
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr "பகிர்"
+msgstr "பகிர்க"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
@@ -731,7 +731,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "கருப்பொருள்"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
