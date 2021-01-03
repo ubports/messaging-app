@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2021-01-03 12:32+0000\n"
+"PO-Revision-Date: 2021-01-04 01:02+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -626,7 +626,7 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr ""
+msgstr "தேடு…"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
