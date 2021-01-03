@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2021-01-04 16:39+0000\n"
+"PO-Revision-Date: 2021-01-05 01:43+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ta/>\n"
@@ -201,7 +201,7 @@ msgstr "அழை"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "ரத்துசெய்"
+msgstr "தவிர்க்க"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
@@ -685,7 +685,7 @@ msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
-msgstr ""
+msgstr "நிலைப்பாடு"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -765,7 +765,7 @@ msgstr "இன்று"
 
 #: ../src/qml/MessageInfoDialog.qml:98
 msgid "Type"
-msgstr ""
+msgstr "வகை"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
@@ -787,11 +787,11 @@ msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr ""
+msgstr "காணொளி"
 
 #: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
 msgid "Video Preview"
-msgstr ""
+msgstr "காணொளி முன்பார்வை"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
 msgid "Video attachment not supported"
