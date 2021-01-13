@@ -20,6 +20,7 @@
 #include "audiorecorder.h"
 #include "fileoperations.h"
 #include "stickers-history-model.h"
+#include "stickers-pack-model.h"
 
 #include <libnotify/notify.h>
 
@@ -182,6 +183,7 @@ bool MessagingApplication::setup()
     dataLocation.mkpath("stickers");
     const char* uri = "messagingapp.private";
     qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
+    qmlRegisterType<StickersPackModel>(uri, 0, 1, "StickersPackModel");
     qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
     qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
 

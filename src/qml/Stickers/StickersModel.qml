@@ -17,11 +17,12 @@
  */
 
 import QtQuick 2.3
-import Qt.labs.folderlistmodel 2.1
+import Qt.labs.folderlistmodel 2.2
 
 FolderListModel {
-    property string packName
-    folder: "%1/stickers/%2".arg(dataLocation).arg(packName)
+    property string packName: ""
+    folder: packName.length > 0 ? "%1/stickers/%2".arg(dataLocation).arg(packName) : ""
     showDirs: false
-    nameFilters: ["*.png", "*.webm", "*.gif"]
+    caseSensitive: false
+    nameFilters: ["*.png", "*.webm", "*.gif", "*.jpg"]
 }

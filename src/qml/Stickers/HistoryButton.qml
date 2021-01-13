@@ -23,8 +23,10 @@ AbstractButton {
     property bool selected
 
     Rectangle {
-        anchors.fill: parent
-        color: selected ? "#f5f5f5" : "transparent"
+        height: units.gu(0.2)
+        width: parent.width
+        anchors.bottom: parent.bottom
+        color: selected ? theme.palette.normal.selectionText  : "transparent"
     }
 
     Icon {
