@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2021-01-15 07:25+0000\n"
+"PO-Revision-Date: 2021-01-15 20:17+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
@@ -262,7 +262,7 @@ msgstr "Создать Группу..."
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr ""
+msgstr "Тёмная"
 
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
@@ -442,7 +442,7 @@ msgstr "Покинуть группу"
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr ""
+msgstr "Светлая"
 
 #: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
@@ -758,7 +758,7 @@ msgstr "Выбранная учетная запись в данный моме�
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
