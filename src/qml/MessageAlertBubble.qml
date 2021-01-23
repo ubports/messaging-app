@@ -37,7 +37,6 @@ ListItemWithActions{
         id: image
         source: "image://theme/mail-mark-important"
         fillMode: Image.PreserveAspectFit
-        anchors.verticalCenter: rectangle.verticalCenter
         sourceSize.height: units.gu(4)
         anchors {
             left: parent.left

@@ -142,33 +142,25 @@ Previewer {
                     width: flickable.width * flickable.sizeScale
                     height: flickable.height * flickable.sizeScale
 
-                    Image {
+                    AnimatedImage {
                         id: image
                         objectName: "thumbnailImage"
                         anchors.fill: parent
                         asynchronous: true
                         cache: false
-                        source: "image://thumbnailer/%1".arg(attachment.filePath.toString())
-                        sourceSize {
-                            width: imageItem.thumbSize.width
-                            height: imageItem.thumbSize.height
-                        }
+                        source: attachment.filePath
                         fillMode: Image.PreserveAspectFit
                         opacity: status == Image.Ready ? 1.0 : 0.0
                         Behavior on opacity { UbuntuNumberAnimation {duration: UbuntuAnimation.FastDuration} }
                     }
 
-                    Image {
+                    AnimatedImage {
                         id: highResolutionImage
                         objectName: "highResolutionImage"
                         anchors.fill: parent
                         asynchronous: true
                         cache: false
                         source: flickable.sizeScale > 1.0 ? attachment.filePath : ""
-                        sourceSize {
-                            width: width
-                            height: height
-                        }
                         fillMode: Image.PreserveAspectFit
                     }
                 }
