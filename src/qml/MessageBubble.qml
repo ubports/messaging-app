@@ -25,7 +25,7 @@ import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
 
-BorderImage {
+UbuntuShape {
     id: root
 
     property int messageStatus: -1
@@ -100,18 +100,16 @@ BorderImage {
             return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "lightGreen" : "green"
         }
     }
+    backgroundColor: color
     property bool completed
     Component.onCompleted: completed = true
-    source: completed ? "assets/" + color + "_bubble.sci" : ""
-    cache: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
     height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.implicitHeight + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
     width:  Math.min(maxDelegateWidth,
                      Math.max(oneLine ? oneLineWidth : textLabel.implicitWidth,
                               messageFooter.width,
-                              senderName.contentWidth,
-                              border.right + border.left - units.gu(3)))
+                              senderName.contentWidth))
             + units.gu(3)
 
     // if possible, put the timestamp and the delivery status in the same line as the text
