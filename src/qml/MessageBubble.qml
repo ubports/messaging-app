@@ -156,9 +156,7 @@ Item {
             color: root.messageIncoming ? Theme.palette.normal.backgroundText :
                                           Theme.palette.normal.positiveText
 
-            linkColor: isMultimedia
-                ? theme.palette.normal.activityText
-                : theme.palette.normal.activity
+            linkColor: root.messageIncoming ? theme.palette.normal.activity : theme.palette.normal.positiveText
         }
 
         Row {
