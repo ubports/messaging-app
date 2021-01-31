@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-01-31 13:25+0000\n"
+"Last-Translator: imrufbd <imrufbd@gmail.com>\n"
+"Language-Team: Bengali (Bangladesh) <https://translate.ubports.com/projects/"
+"ubports/messaging-app/bn_BD/>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -106,7 +108,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:846
 msgid "Add"
-msgstr ""
+msgstr "সংযোগ"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -198,7 +200,7 @@ msgstr ""
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
@@ -236,7 +238,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr ""
+msgstr "কপি"
 
 #: ../src/qml/Messages.qml:1105
 #, qt-format
@@ -259,7 +261,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
-msgstr ""
+msgstr "মুছুন"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -283,7 +285,7 @@ msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr ""
+msgstr "সম্পাদন"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
@@ -398,7 +400,7 @@ msgstr ""
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr ""
+msgstr "তথ্য"
 
 #: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
@@ -531,7 +533,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr ""
+msgstr "ঠিক আছে"
 
 #: ../src/qml/Messages.qml:1264
 msgid "Online"
@@ -630,7 +632,7 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "নির্বাচন"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
@@ -656,7 +658,7 @@ msgstr ""
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr ""
+msgstr "বিনিময়"
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
