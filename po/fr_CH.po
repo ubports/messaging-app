@@ -1,28 +1,27 @@
-# Czech translation for messaging-app
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
-# This file is distributed under the same license as the messaging-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: messaging-app\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-23 18:30+0000\n"
-"Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
-"Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
-"messaging-app/cs/>\n"
-"Language: cs\n"
+"PO-Revision-Date: 2020-12-30 10:26+0000\n"
+"Last-Translator: Daniel Sparti <daniel.sparti@posteo.net>\n"
+"Language-Team: French (Switzerland) <https://translate.ubports.com/projects/"
+"ubports/messaging-app/fr_CH/>\n"
+"Language: fr_CH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.11.3\n"
-"X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr "#názevKanálu"
+msgstr "#nomDuCanal"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:74
@@ -33,67 +32,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr "%1 – Připojování…"
+msgstr "%1 - Connexion..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr "%1 přidal(a) %2 do této skupiny"
+msgstr "%1 a ajouté %2 à ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr "%1 pozval(a) %2 do této skupiny"
+msgstr "%1 a invité %2 à ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr "%1 je Správce"
+msgstr "%1 est administrateur/-trice"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr "%1 není Správce"
+msgstr "%1 n'est pas administrateur/-trice"
 
 #: ../src/qml/Messages.qml:1253
 #, qt-format
 msgid "%1 is typing.."
-msgstr "%1 píše…"
+msgstr "%1 est en train d'écrire..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr "%1 se přidal(a) k této skupině"
+msgstr "%1 a rejoint ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr "%1 opustil(a) tuto skupinu"
+msgstr "%1 a quitté ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr "%1 odstranil(a) %2 z této skupiny"
+msgstr "%1 a supprimé %2 de ce groupe"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr "%1 přejmenoval(a) skupinu na: %2"
+msgstr "%1 a renommé le groupe en : %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr "%1 jmenoval(a) %2 Správcem"
+msgstr "%1 a nommé %2 administrateur/-trice"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr "%1 odebral(a) %2 funkci Správce"
+msgstr "%1 n'a pas nommé %2 comme administrateur/-trice"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr "%1 byl(a) pozván(a) do této skupiny"
+msgstr "%1 a été invité-e dans ce groupe"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -101,101 +100,96 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
-msgstr "<<< Pro zrušení přetáhněte"
+msgstr "<<< Faire glisser pour annuler"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr "Přijaté"
+msgstr "Accepté"
 
 #: ../src/qml/Messages.qml:846
 msgid "Add"
-msgstr "Přidat"
+msgstr "Ajouter"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
-msgstr "Přidat účastníka:"
+msgstr "Ajouter un participant :"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
-msgstr "Přidat příjemce"
+msgstr "Ajouter un-e destinataire"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "Add to contacts"
-msgstr "Přidat do kontaktů"
+msgstr "Ajouter aux contacts"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr "Přidat…"
+msgstr "Ajouter..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr "Správce"
+msgstr "Administrateur/-trice"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Vše"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] "Příloha: %1 audio soubor"
-msgstr[1] "Přílohy: %1 audio soubory"
-msgstr[2] "Přílohy: %1 audio souborů"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
-msgstr[0] "Příloha: %1 kontakt"
-msgstr[1] "Přílohy: %1 kontakty"
-msgstr[2] "Přílohy: %1 kontaktů"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
-msgstr[0] "Příloha: %1 soubor"
-msgstr[1] "Přílohy: %1 soubory"
-msgstr[2] "Přílohy: %1 souborů"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/ThreadDelegate.qml:109
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] "Příloha: %1 obrázek"
-msgstr[1] "Přílohy: %1 obrázky"
-msgstr[2] "Přílohy: %1 obrázků"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] "Příloha: %1 video"
-msgstr[1] "Přílohy: %1 videa"
-msgstr[2] "Přílohy: %1 videí"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
-msgstr "Přiložený audio soubor není podporován"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1268
 msgid "Away"
-msgstr "Nepřítomný"
+msgstr ""
 
 #: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
-msgstr "Zpět"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1270
 msgid "Busy"
-msgstr "Zaneprázděn(a)"
+msgstr ""
 
 #: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
 msgid "Call"
-msgstr "Hovor"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -206,375 +200,367 @@ msgstr "Hovor"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
-msgstr "Změnit"
+msgstr ""
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "Změnit všechny sdružené zprávy s %1?"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr "Informace o kanálu"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr "Název kanálu:"
+msgstr ""
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
 #: ../src/qml/MessageInfoDialog.qml:168
 msgid "Close"
-msgstr "Ukončit"
+msgstr ""
 
 #: ../src/qml/EmptyState.qml:50
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
-"Pro vytvoření nové textové zprávy vytáhněte nový formulář ze spodního okraje "
-"obrazovky."
 
 #: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
 msgid "Contact"
-msgstr "Kontakt"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr "Kopírovat"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1105
 #, qt-format
 msgid "Create %1 Group..."
-msgstr "Vytvořit %1 skupinu…"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1075
 msgid "Create MMS Group..."
-msgstr "Vytvořit MMS skupinu…"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr "Vytváření skupiny…"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr "Tmavý"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:167
 msgid "Delete"
-msgstr "Smazat"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
-msgstr "Smazané"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:54
 msgid "Delivered"
-msgstr "Doručeno"
+msgstr ""
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
 msgid "Don't ask again"
-msgstr "Neptat se znovu"
+msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
-msgstr "Znovu nezobrazovat"
+msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:346
 msgid "Draft:"
-msgstr "Koncept:"
+msgstr ""
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
-msgstr "Upravit"
+msgstr ""
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
-msgstr "Povolit"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
-msgstr "Povolit MMS zprávy"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr "Ukončit skupinu"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
-msgstr "Nezdařilo se"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:170
 msgid "Failed to create group"
-msgstr "Vytvoření skupiny se nezdařilo"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:238
 msgid "Failed to delete group"
-msgstr "Smazání skupiny se nezdařilo"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:136
 msgid "Failed to leave channel"
-msgstr "Opuštění kanálu se nezdařilo"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr "Opuštění skupiny se nezdařilo"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr "Změna názvu skupiny se nezdařila"
+msgstr ""
 
 #: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
-msgstr "Odeslání zprávy se nezdařilo"
+msgstr ""
 
 #: ../src/qml/MessageStatusIcon.qml:75
 msgid "Failed!"
-msgstr "Nezdařilo se!"
+msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr "Oblíbené"
+msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"
-msgstr "Varování ohledně velikosti souboru"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
 msgid "File type not supported"
-msgstr "Typ souboru není podporován"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:167
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr "Přeposlat"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
-msgstr "Od"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr "Pochopil(a) jsem"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
-msgstr "Skupina"
+msgstr ""
 
 #: ../src/qml/Messages.qml:817
 #, qt-format
 msgid "Group (%1)"
-msgstr "Skupina (%1)"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:122
 msgid "Group Info"
-msgstr "Informace o skupině"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr "Skupina byla rozpuštěna"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:234
 msgid "Group name:"
-msgstr "Název skupiny:"
+msgstr ""
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr "IRC"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
-"Pokud chcete změnit SIM a jiná nastavení, navštivte <a href=\"system_settings"
-"\">Nastavení systému</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
-msgstr "Obrázek"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
 msgid "Image Preview"
-msgstr "Náhled obrázku"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
-msgstr "Informace"
+msgstr ""
 
 #: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
-msgstr "V tomto okamžiku nelze odesílat zprávy"
+msgstr ""
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
-msgstr "V režimu Letadlo nelze odesílat zprávy"
+msgstr ""
 
 #: ../src/qml/SendMessageValidator.qml:220
 msgid "It is not possible to send the message"
-msgstr "Není možné odeslat zprávu"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1099
 msgid "Join IRC Channel..."
-msgstr "Připojit se k IRC kanálu…"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr "Připojit se k IRC kanálu:"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr "Opustit kanál"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr "Opustit skupinu"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr "Světlý"
+msgstr ""
 
 #: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
 msgid "MMS"
-msgstr "MMS"
+msgstr ""
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:31
 msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
-"Pro odeslání této zprávy je nutná podpora MMS.\n"
-"Přejete si ji aktivovat?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr "Nutná podpora MMS"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr "Já"
+msgstr ""
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr "Členové:"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
-msgstr "Informace o zprávě"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:77
 msgid "Messages"
-msgstr "Zprávy"
+msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:4
 msgid "Messages;SMS;MMS;Text Messages;Text"
-msgstr "Zprávy;SMS;MMS;Textové Zprávy;Text"
+msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:1
 msgid "Messaging"
-msgstr "Zprávy"
+msgstr ""
 
 #: ../src/messaging-app.desktop.in.in.h:2
 msgid "Messaging App"
-msgstr "Aplikace pro zprávy"
+msgstr ""
 
 #: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
-msgstr "Aplikace pro posílání a příjem zpráv"
+msgstr ""
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr "Vícero MMS zpráv"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:184
 msgid "Myself"
-msgstr "Já"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr "Nová %1 skupina"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr "Nová MMS skupina"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
-msgstr "Nová zpráva"
+msgstr ""
 
 #: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
 msgid "No SIM card"
-msgstr "Žádná SIM karta"
+msgstr ""
 
 #: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
 msgid "No SIM card selected"
-msgstr "Nebyla zvolena SIM karta"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
-msgstr "Žádná síť"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
-msgstr "Nebyl povolen přístup k mikrofonu"
+msgstr ""
 
 #: ../src/qml/Messages.qml:324
 msgid "Not available"
-msgstr "Nedostupné"
+msgstr ""
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr "Číslo nebo jméno kontaktu"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1266
 msgid "Offline"
-msgstr "Nepřipojeno"
+msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "Přijmout"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1264
 msgid "Online"
-msgstr "Připojen(a)"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr "Účastníků: %1"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
-msgstr "Čekající"
+msgstr ""
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Vyberte účet, který chcete vytvořit."
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
 "Please grant access on <a href=\"system_settings\">System Settings &gt; "
 "Security &amp; Privacy</a>."
 msgstr ""
-"Prosím povolte přístup v <a href=\"system_settings\">Systémová nastavení "
-"&gt; Zabezpečení a soukromí</a>."
 
 #: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
-msgstr "Prosím vložte SIM kartu a zkuste to znovu."
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
 msgid ""
@@ -582,27 +568,24 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"Pro volání či zasílání zpráv odemkněte prosím vaši SIM kartu pomocí aplikace "
-"Network Indicator, nacházející se na horní ploše displeje, nebo navštivte <a "
-"href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
 msgid "Read"
-msgstr "Přečtené"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
 msgid "Received"
-msgstr "Doručené"
+msgstr ""
 
 #: ../src/qml/ComposeBar.qml:204
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
-msgstr "Odstranit"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr "Odstranit ze skupiny"
+msgstr ""
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -610,131 +593,127 @@ msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
 msgstr ""
-"Pokud odstraníte i posledního člena, bude to mít za následek rozpuštění "
-"„%1“. Chcete pokračovat?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr "Skupina přejmenována na: %1"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "Zkusit znovu"
+msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
-msgstr "SIM karta je uzamčena"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:176
 msgid "SMS"
-msgstr "SMS"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:86
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
 #: ../src/qml/MessagingContactEditorPage.qml:49
 msgid "Save"
-msgstr "Uložit"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
 msgid "Search"
-msgstr "Hledat"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
 msgid "Search..."
-msgstr "Hledat…"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:135
 msgid "See in contacts"
-msgstr "Podívat se v kontaktech"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr "Vybrat"
+msgstr ""
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
-msgstr "Odeslat"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 msgid "Send private message"
-msgstr "Odeslat soukromou zprávu"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
-msgstr "Odeslané"
+msgstr ""
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr "Nastavit jako správce"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr "Nastavení"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr "Sdílet"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:63
 msgid "Simplified conversation view"
-msgstr "Zjednodušené zobrazení konverzace"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:43
 msgid "Sort by timestamp"
-msgstr "Seřadit dle data a hodiny"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:44
 msgid "Sort by title"
-msgstr "Seřadit dle názvu"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:70
 msgid "Sort threads"
-msgstr "Seřadit vlákna"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
-msgstr "Stav"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr "Kanál úspěšně opuštěn"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr "Skupina úspěšně opuštěna"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr "Smažete přejetím prstem"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr "Možné akce zobrazíte přejetím prstem"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
-msgstr "Styl systému"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
-msgstr "Dočasný nezdar"
+msgstr ""
 
 #: ../src/qml/MessageDelegate.qml:94
 #: ../src/qml/RegularMessageDelegate_irc.qml:66
 msgid "Text message copied to clipboard"
-msgstr "Textová zpráva zkopírována do schránky"
+msgstr ""
 
 #: ../src/qml/Messages.qml:505
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
-"SIM karta neposkytuje číslo telefonu majitele. Kvůli tomu nelze zasílat "
-"skupinové MMS zprávy."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -742,207 +721,149 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
-"Obsah, který odesíláte vyžaduje MMS zprávu pro každěho z příjemců. Je možné, "
-"že Vám bude služba takto vyúčtována. Chcete pokračovat?"
 
 #: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
-msgstr "Vybraný účet není právě dostupný"
+msgstr ""
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr "Styl"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
 msgid "There is currently no network on %1"
-msgstr "Na %1 v tuto chvíli není dostupná síť"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "V tuto chvíli není dostupná síť."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr "Tento příjemce už byl vybrán"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr "Pro"
+msgstr ""
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
-msgstr "Komu:"
+msgstr ""
 
 #: ../src/qml/dateUtils.js:44
 msgid "Today"
-msgstr "Dnes"
+msgstr ""
 
-# Nejsem si jistý, jestli jde o slovo „psát“ nebo „druh“.
 #: ../src/qml/MessageInfoDialog.qml:98
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr "Napište název…"
+msgstr ""
 
 #: ../src/qml/Messages.qml:1255
 msgid "Typing.."
-msgstr "Píše…"
+msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
 msgid "Unknown"
-msgstr "Neznámé"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44
 msgid "Unknown contact"
-msgstr "Neznámý kontakt"
+msgstr ""
 
 #: ../src/qml/AttachmentPanel.qml:117
 msgid "Video"
-msgstr "Video"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
 msgid "Video Preview"
-msgstr "Náhled videa"
+msgstr ""
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
 msgid "Video attachment not supported"
-msgstr "Přiložení videa není podporováno"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
 msgid "Welcome to your Messaging app!"
-msgstr "Vítejte v aplikaci Zprávy!"
+msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:133
 msgid "Welcome to your Ubuntu messaging app."
-msgstr "Vítejte aplikaci zprávy."
+msgstr ""
 
 #: ../src/qml/ComposeBar.qml:568
 msgid "Write a broadcast message..."
-msgstr "Napište zprávu, která má být rozeslána…"
+msgstr ""
 
 #: ../src/qml/ComposeBar.qml:580
 msgid "Write a message..."
-msgstr "Napsat zprávu..."
+msgstr ""
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
-msgstr "Včera"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr "Jste Správce"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr "Nejste správce"
+msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
 "You are trying to send big files (over 300Kb). Some operators might not be "
 "able to send it."
 msgstr ""
-"Snažíte se odeslat velké soubory (přes 300Kb). Někteří operátoři to nemusí "
-"být schopni odeslat."
 
 #: ../src/qml/Messages.qml:1605
 msgid ""
 "You can't send messages to this group because the group is no longer active"
-msgstr "Této skupině nelze odeslat zprávu, protože není dlouhodobě aktivní"
+msgstr ""
 
 #: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
-msgstr "Je třeba vypnout režim Letadlo"
+msgstr ""
 
 #: ../src/qml/ComposeBar.qml:228
 msgid "You have to press and hold the record icon"
-msgstr "Klepněte na a podržte ikonu nahrávání"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr "Pozvali jste %1 do této skupiny"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr "Připojili jste se ke skupině"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "Tuto skupinu jste opustili"
+msgstr ""
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
-msgstr "Je třeba vybrat SIM kartu"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr "Přejmenovali jste skupinu na: %1"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
 msgid "You switched to %1 @ %2"
-msgstr "Přepnuli jste %1 @ %2"
+msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr "Byl jste odstraněni z této skupiny"
-
-#~ msgid "Add an online account"
-#~ msgstr "Přidat on-line účet"
-
-#~ msgid "Night Mode"
-#~ msgstr "Noční režim"
-
-#~ msgid "No"
-#~ msgstr "Ne"
-
-#~ msgid "Yes"
-#~ msgstr "Ano"
-
-#~ msgid "%1 hour call"
-#~ msgid_plural "%1 hours call"
-#~ msgstr[0] "%1 hodina volání"
-#~ msgstr[1] "%1 hodiny volání"
-#~ msgstr[2] "%1 hodin volání"
-
-#~ msgid "%1 minute call"
-#~ msgid_plural "%1 minutes call"
-#~ msgstr[0] "%1 minuta volání"
-#~ msgstr[1] "%1 minuty volání"
-#~ msgstr[2] "%1 minut volání"
-
-#~ msgid "%1 second call"
-#~ msgid_plural "%1 seconds call"
-#~ msgstr[0] "%1 sekunda volání"
-#~ msgstr[1] "%1 sekundy volání"
-#~ msgstr[2] "%1 sekund volání"
-
-#~ msgid "Missing message data"
-#~ msgstr "Chybí data zpráv"
-
-#~ msgid "New Message"
-#~ msgstr "Nová zpráva"
-
-#~ msgid "Later"
-#~ msgstr "Později"
-
-#~ msgid "Switch to default SIM:"
-#~ msgstr "Přepnout na výchozí SIM:"
-
-#~ msgid ""
-#~ "Select a default SIM for all outgoing messages. You can always alter your "
-#~ "choice in <a href=\"system_settings\">System Settings</a>."
-#~ msgstr ""
-#~ "Zvolte výchozí SIM kartu pro všechny odchozí textové zprávy. Své "
-#~ "rozhodnuté vždy můžete změnit v <a href=\"system_settings\">Nastavení "
-#~ "systému</a>."
-
-#~ msgid "+ Create New"
-#~ msgstr "+ Nový kontakt"
+msgstr ""
