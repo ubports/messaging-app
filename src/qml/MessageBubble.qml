@@ -25,7 +25,7 @@ import Ubuntu.Telephony.PhoneNumber 0.1 as PhoneNumber
 import "dateUtils.js" as DateUtils
 import "3rd_party/ba-linkify.js" as BaLinkify
 
-BorderImage {
+Item {
     id: root
 
     property int messageStatus: -1
@@ -100,112 +100,110 @@ BorderImage {
             return theme.name === "Ubuntu.Components.Themes.SuruDark" ? "lightGreen" : "green"
         }
     }
-    property bool completed
-    Component.onCompleted: completed = true
-    source: completed ? "assets/" + color + "_bubble.sci" : ""
-    cache: true
 
     // FIXME: maybe we should put everything inside a container to make width and height calculation easier
     height: messageText != "" ? senderName.height + senderName.anchors.topMargin + textLabel.implicitHeight + textLabel.anchors.topMargin + units.gu(0.5) + (oneLine ? 0 : messageFooter.height + messageFooter.anchors.topMargin) : 0
     width:  Math.min(maxDelegateWidth,
                      Math.max(oneLine ? oneLineWidth : textLabel.implicitWidth,
                               messageFooter.width,
-                              senderName.contentWidth,
-                              border.right + border.left - units.gu(3)))
+                              senderName.contentWidth))
             + units.gu(3)
 
     // if possible, put the timestamp and the delivery status in the same line as the text
     property int oneLineWidth: textLabel.implicitWidth + messageFooter.width
     property bool oneLine: oneLineWidth <= maxDelegateWidth
 
+    UbuntuShape {
 
-    Label {
-        id: senderName
-        clip: true
-        elide: Text.ElideRight
+        anchors.fill: root
+        backgroundColor: root.color
 
-        anchors {
-            top: parent.top
-            topMargin: height != 0 ? units.gu(0.5) : 0
-            left: parent.left
-            leftMargin: units.gu(1)
-        }
-        height: text === "" ? 0 : paintedHeight
-        width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
-        fontSize: "small"
-    }
+        Label {
+            id: senderName
+            clip: true
+            elide: Text.ElideRight
 
-    Label {
-        id: textLabel
-        objectName: "messageText"
-
-        anchors {
-            top: sender == "" ? parent.top : senderName.bottom
-            topMargin: sender == "" ? units.gu(0.5) : units.gu(1)
-            left: parent.left
-            leftMargin: units.gu(1)
-            rightMargin: units.gu(1)
-        }
-        fontSize: "medium"
-        onLinkActivated:  Qt.openUrlExternally(link)
-        text: root.parseText(messageText)
-        width: root.oneLine ? implicitWidth : maxDelegateWidth
-
-        // It needs to be Text.StyledText to use linkColor: https://api-docs.ubports.com/sdk/apps/qml/QtQuick/Text.html#sdk-qtquick-text-linkcolor
-        textFormat: Text.StyledText
-        wrapMode: Text.Wrap
-        color: root.messageIncoming ? Theme.palette.normal.backgroundText :
-                                      Theme.palette.normal.positiveText
-
-        linkColor: isMultimedia
-            ? theme.palette.normal.activityText
-            : theme.palette.normal.activity
-    }
-
-    Row {
-        id: messageFooter
-        width: childrenRect.width
-        spacing: units.gu(1)
-
-        anchors {
-            top: oneLine ? textLabel.top : textLabel.bottom
-            topMargin: units.gu(0.5)
-            right: parent.right
-            rightMargin: units.gu(1)
+            anchors {
+                top: parent.top
+                topMargin: height != 0 ? units.gu(0.5) : 0
+                left: parent.left
+                leftMargin: units.gu(1)
+            }
+            height: text === "" ? 0 : paintedHeight
+            width: paintedWidth > root.maxDelegateWidth ? root.maxDelegateWidth : undefined
+            fontSize: "small"
         }
 
         Label {
-            id: textTimestamp
-            objectName: "messageDate"
+            id: textLabel
+            objectName: "messageText"
 
-            anchors.bottom: parent.bottom
-            visible: !root.sending
-            height: units.gu(2)
-            width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
-            fontSize: "x-small"
-            color: root.messageIncoming ? Theme.palette.normal.backgroundSecondaryText :
-                                          Theme.palette.normal.positiveText
-            opacity: root.messageIncoming ? 1.0 : 0.8
-            elide: Text.ElideRight
-            verticalAlignment: Text.AlignVCenter
-            text: {
-                if (messageTimeStamp === "")
-                    return ""
-
-                var str = Qt.formatTime(messageTimeStamp, Qt.DefaultLocaleShortDate)
-                if (root.accountName.length === 0 || !root.messageIncoming) {
-                    return str
-                }
-                str += " @ %1".arg(root.accountName)
-                return str
+            anchors {
+                top: sender == "" ? parent.top : senderName.bottom
+                topMargin: sender == "" ? units.gu(0.5) : units.gu(1)
+                left: parent.left
+                leftMargin: units.gu(1)
+                rightMargin: units.gu(1)
             }
+            fontSize: "medium"
+            onLinkActivated:  Qt.openUrlExternally(link)
+            text: root.parseText(messageText)
+            width: root.oneLine ? implicitWidth : maxDelegateWidth
+
+            // It needs to be Text.StyledText to use linkColor: https://api-docs.ubports.com/sdk/apps/qml/QtQuick/Text.html#sdk-qtquick-text-linkcolor
+            textFormat: Text.StyledText
+            wrapMode: Text.Wrap
+            color: root.messageIncoming ? Theme.palette.normal.backgroundText :
+                                          Theme.palette.normal.positiveText
+
+            linkColor: root.messageIncoming ? theme.palette.normal.activity : theme.palette.normal.positiveText
         }
 
-        DeliveryStatus {
-            id: deliveryStatus
-            messageStatus: root.messageStatus
-            enabled: root.deliveryStatusAvailable
-            anchors.verticalCenter: textTimestamp.verticalCenter
+        Row {
+            id: messageFooter
+            width: childrenRect.width
+            spacing: units.gu(1)
+
+            anchors {
+                top: oneLine ? textLabel.top : textLabel.bottom
+                topMargin: units.gu(0.5)
+                right: parent.right
+                rightMargin: units.gu(1)
+            }
+
+            Label {
+                id: textTimestamp
+                objectName: "messageDate"
+
+                anchors.bottom: parent.bottom
+                visible: !root.sending
+                height: units.gu(2)
+                width: paintedWidth > maxDelegateWidth ? maxDelegateWidth : undefined
+                fontSize: "x-small"
+                color: root.messageIncoming ? Theme.palette.normal.backgroundSecondaryText :
+                                              Theme.palette.normal.positiveText
+                opacity: root.messageIncoming ? 1.0 : 0.8
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
+                text: {
+                    if (root.messageTimeStamp === "")
+                        return ""
+
+                    var str = Qt.formatTime(root.messageTimeStamp, Qt.DefaultLocaleShortDate)
+                    if (root.accountName.length === 0 || !root.messageIncoming) {
+                        return str
+                    }
+                    str += " @ %1".arg(root.accountName)
+                    return str
+                }
+            }
+
+            DeliveryStatus {
+                id: deliveryStatus
+                messageStatus: root.messageStatus
+                enabled: root.deliveryStatusAvailable
+                anchors.verticalCenter: textTimestamp.verticalCenter
+            }
         }
     }
 }

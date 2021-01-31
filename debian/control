@@ -2,78 +2,78 @@ Source: messaging-app
 Section: x11
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Build-Depends: apparmor:native,
-               apparmor-easyprof,
-               apparmor-easyprof-ubuntu (>= 1.3.13),
-               cmake,
-               debhelper (>= 9),
-               dh-apparmor,
-               dh-translations,
-               libnotify-dev,
-               python3-flake8 (>= 2.2.2-1ubuntu4) | python3-flake8:native,
-               pkg-config,
-               python3:any,
-               qml-module-qttest,
-               qt5-default,
-               qtbase5-dev (>= 5.0),
-               qtdeclarative5-dev (>= 5.0),
-               qtdeclarative5-dev-tools,
-               qtdeclarative5-gsettings1.0,
-               qtdeclarative5-ubuntu-ui-toolkit-plugin,
-               qtdeclarative5-ubuntu-history0.1,
-               qtdeclarative5-ubuntu-telephony-phonenumber0.1,
-               qtdeclarative5-ubuntu-telephony0.1 <!cross>  | qtdeclarative5-ubuntu-telephony-plugin <!cross>,
-               qtdeclarative5-ubuntu-content1,
-               qtdeclarative5-ubuntu-addressbook0.1,
-               qtdeclarative5-ubuntu-thumbnailer0.1,
-               qtdeclarative5-qtcontacts-plugin,
-               qtdeclarative5-folderlistmodel-plugin,
-               qtmultimedia5-dev,
-               qml-module-qt-labs-settings,
-               qml-module-qtmultimedia,
-               qtpim5-dev,
-               xvfb <!nocheck>,
+Build-Depends:
+ apparmor-easyprof,
+ apparmor-easyprof-ubuntu (>= 1.3.13),
+ apparmor:native,
+ cmake,
+ debhelper (>= 9),
+ dh-apparmor,
+ dh-translations,
+ libnotify-dev,
+ pkg-config,
+ python3-flake8 (>= 2.2.2-1ubuntu4) | python3-flake8:native,
+ python3:any,
+ qml-module-qt-labs-folderlistmodel,
+ qml-module-qt-labs-settings,
+ qml-module-qtcontacts,
+ qml-module-qtmultimedia,
+ qml-module-qttest,
+ qml-module-ubuntu-components,
+ qtbase5-dev (>= 5.0),
+ qtdeclarative5-dev (>= 5.0),
+ qtdeclarative5-dev-tools,
+ qtdeclarative5-gsettings1.0,
+ qtdeclarative5-ubuntu-addressbook0.1,
+ qtdeclarative5-ubuntu-content1,
+ qtdeclarative5-ubuntu-history0.1,
+ qtdeclarative5-ubuntu-telephony-phonenumber0.1,
+ qtdeclarative5-ubuntu-telephony0.1 <!cross> | qtdeclarative5-ubuntu-telephony-plugin <!cross>,
+ qtdeclarative5-ubuntu-thumbnailer0.1,
+ qtmultimedia5-dev,
+ qtpim5-dev,
+ xvfb <!nocheck>,
 Standards-Version: 3.9.4
-Homepage: https://launchpad.net/messaging-app
-# If you aren't a member of ~phablet-team but need to upload packaging changes,
-# just go ahead. ~phablet-team will notice and sync up the code again.
-Vcs-Bzr: https://code.launchpad.net/~phablet-team/messaging-app/trunk
-Vcs-Browser: https://bazaar.launchpad.net/~phablet-team/messaging-app/trunk/files
+Homepage: https://github.com/ubports/messaging-app
+Vcs-Git: https://github.com/ubports/messaging-app
 X-Ubuntu-Use-Langpack: yes
 
 Package: messaging-app
 Architecture: any
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-         libqt5multimedia5,
-         qtdeclarative5-ubuntu-addressbook0.1,
-         qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
-         qtdeclarative5-ubuntu-telephony-phonenumber0.1,
-         qtdeclarative5-ubuntu-history0.1 | qtdeclarative5-ubuntu-history-plugin,
-         qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
-         qtdeclarative5-ubuntu-keyboard-extensions0.1,
-         qtdeclarative5-qtcontacts-plugin,
-         qtdeclarative5-gsettings1.0,
-         qml-module-qt-labs-settings,
-         ttf-ancient-fonts-symbola,
-Recommends: unity8 (>= 7.81.0~),
+Depends:
+ libqt5multimedia5,
+ qml-module-qt-labs-settings,
+ qml-module-qtcontacts,
+ qml-module-ubuntu-components,
+ qtdeclarative5-gsettings1.0,
+ qtdeclarative5-ubuntu-addressbook0.1,
+ qtdeclarative5-ubuntu-history0.1 | qtdeclarative5-ubuntu-history-plugin,
+ qtdeclarative5-ubuntu-keyboard-extensions0.1,
+ qtdeclarative5-ubuntu-telephony-phonenumber0.1,
+ qtdeclarative5-ubuntu-telephony0.1 | qtdeclarative5-ubuntu-telephony-plugin,
+ ttf-ancient-fonts-symbola,
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ unity8 (>= 7.81.0~),
 Description: messaging application for Ubuntu
  An application to send and receive messages.
 
 Package: messaging-app-autopilot
 Architecture: all
 Section: debug
-Depends: ${misc:Depends},
-         address-book-app-autopilot,
-         autopilot-qt5,
-         libqt5test5,
-         libqt5widgets5,
-         messaging-app (>= ${binary:Version}),
-         python3-autopilot,
-         python3-dbusmock,
-         ubuntu-ui-toolkit-autopilot,
-         ofono-phonesim-autostart,
-         ubuntu-keyboard-autopilot
+Depends:
+ address-book-app-autopilot,
+ autopilot-qt5,
+ libqt5test5,
+ libqt5widgets5,
+ messaging-app (>= ${binary:Version}),
+ ofono-phonesim-autostart,
+ python3-autopilot,
+ python3-dbusmock,
+ ubuntu-keyboard-autopilot,
+ ubuntu-ui-toolkit-autopilot,
+ ${misc:Depends},
 Description: autopilot tests for messaging-app
  This package contains the autopilot tests for messaging-app
  .

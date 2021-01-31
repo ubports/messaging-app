@@ -42,6 +42,7 @@ MainView {
     property alias compactView: globalSettings.compactView
     property alias userTheme: globalSettings.userTheme
     property alias favoriteChannels: favoriteChannelsItem
+    property alias autoplayAnimatedImage: globalSettings.autoplayAnimatedImage
 
     // private
     property var _pendingProperties: null
@@ -288,6 +289,7 @@ MainView {
         property string sortThreadsBy: "timestamp"
         property bool compactView: false
         property string userTheme: "default"
+        property bool autoplayAnimatedImage: true
     }
 
     StickerPacksModel {
@@ -435,8 +437,8 @@ MainView {
             participantIds = properties["participantIds"]
         }
 
-        // generate the list of participants manually if not provided
-        if (!properties.hasOwnProperty("participants")) {
+        // generate the list of participants manually if not provided and no thread found
+        if (!properties.hasOwnProperty("participants") && properties["threads"].length === 0) {
             var participants = []
             for (var i in participantIds) {
                 var participant = {}
@@ -458,8 +460,10 @@ MainView {
         var threadId = properties.threadId
         if (!threadId && (properties["threads"].length > 0)) {
             threadId = properties["threads"][0].threadId
-            if (!accountId)
+            if (!accountId) {
                 accountId = properties["threads"][0].accountId
+                properties["accountId"] = accountId
+            }
         }
 
         if (threadId) {

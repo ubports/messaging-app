@@ -1253,9 +1253,9 @@ Page {
             if (userTyping) {
                 if (groupChat) {
                     var contactAlias = typingContactWatcher.alias != "" ? typingContactWatcher.alias : typingContactWatcher.identifier
-                    return i18n.tr("%1 is typing..").arg(contactAlias)
+                    return i18n.tr("%1 is typing...").arg(contactAlias)
                 } else {
-                    return i18n.tr("Typing..")
+                    return i18n.tr("Typing...")
                 }
             }
             var presenceAccount = telepathyHelper.accountForId(presenceRequest.accountId)
