@@ -9,7 +9,6 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-21 12:22+0000\n"
 "PO-Revision-Date: 2020-12-09 20:12+0000\n"
->>>>>>> 61b7ac9e7d5a644b1fd5f0265511769dd6afec39
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
