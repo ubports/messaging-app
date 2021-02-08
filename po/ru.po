@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
 "PO-Revision-Date: 2021-01-22 03:53+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
@@ -26,7 +26,7 @@ msgid "#channelName"
 msgstr "#НазваниеКанала"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -56,7 +56,7 @@ msgstr "%1 Администратор"
 msgid "%1 is not Admin"
 msgstr "%1 не является Администратором"
 
-#: ../src/qml/Messages.qml:1253
+#: ../src/qml/Messages.qml:1256
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%s Набирает.."
@@ -108,7 +108,7 @@ msgstr "<<< Проведите для отмены"
 msgid "Accepted"
 msgstr "Принято"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "Добавить"
 
@@ -136,7 +136,7 @@ msgstr "Администратор"
 msgid "All"
 msgstr "Все"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
@@ -144,7 +144,7 @@ msgstr[0] "Вложение: %1 звуковой фрагмент"
 msgstr[1] "Вложения: %1 звуковых фрагментов"
 msgstr[2] "Вложения: %1 звуковых фрагментов"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -152,7 +152,7 @@ msgstr[0] "Приложение: %1 контакт"
 msgstr[1] "Приложение: %1 контакта"
 msgstr[2] "Приложение: %1 контактов"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -160,7 +160,7 @@ msgstr[0] "Приложение: %1 файл"
 msgstr[1] "Приложение: %1 файла"
 msgstr[2] "Приложение: %1 файлов"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -168,7 +168,7 @@ msgstr[0] "Приложение: %1 изображение"
 msgstr[1] "Приложение: %1 изображения"
 msgstr[2] "Приложение: %1 изображений"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -180,21 +180,21 @@ msgstr[2] "Приложение: %1 видео"
 msgid "Audio attachment not supported"
 msgstr "Вложенный аудиофайл не поддерживается"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Отошёл"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "Занят"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "Вызов"
 
@@ -238,21 +238,21 @@ msgstr "Закрыть"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "Чтобы написать новое сообщение, смахните вверх от нижнего края экрана."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "Контакт"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "Копировать"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Создать %1 Группу..."
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "Создать MMS Группу..."
 
@@ -264,9 +264,10 @@ msgstr "Создать Группу..."
 msgid "Dark"
 msgstr "Тёмная"
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "Удалить"
 
@@ -286,7 +287,7 @@ msgstr "Больше не спрашивать"
 msgid "Don't show again"
 msgstr "Не показывать снова"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr ""
 
@@ -351,7 +352,7 @@ msgstr "Предупреждение о размере файла"
 msgid "File type not supported"
 msgstr "Неподдерживаемый тип файла"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "Переслать"
@@ -368,7 +369,7 @@ msgstr "Готово"
 msgid "Group"
 msgstr "Группа"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "Группа (%1)"
@@ -406,7 +407,7 @@ msgstr "Фото"
 msgid "Image Preview"
 msgstr "Предпросмотр изображения"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -424,7 +425,7 @@ msgstr "Невозможно отправлять сообщения в режи
 msgid "It is not possible to send the message"
 msgstr "Невозможно отослать сообщение"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "Присоединится к IRC-каналу"
 
@@ -444,7 +445,7 @@ msgstr "Покинуть группу"
 msgid "Light"
 msgstr "Светлая"
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -496,7 +497,7 @@ msgstr "Приложение, позволяющее обмениваться с
 msgid "Multiple MMS Messages"
 msgstr "Несколько MMS-сообщений"
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "Я"
 
@@ -537,7 +538,7 @@ msgstr "Не доступно"
 msgid "Number or contact name"
 msgstr "Номер или имя контакта"
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "Не в сети"
 
@@ -547,9 +548,16 @@ msgstr "Не в сети"
 msgid "Ok"
 msgstr "ОК"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "В сети"
+
+#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -595,7 +603,7 @@ msgstr "Прочитать"
 msgid "Received"
 msgstr "Получено"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -619,7 +627,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr "Беседа переименована в: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "Повторить"
@@ -628,7 +636,7 @@ msgstr "Повторить"
 msgid "SIM Card is locked"
 msgstr "SIM-карта заблокирована"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "СМС"
 
@@ -733,7 +741,7 @@ msgstr "Временно не удаётся"
 msgid "Text message copied to clipboard"
 msgstr "Сообщение скопировано в буфер обмена"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -796,7 +804,7 @@ msgstr "Тип"
 msgid "Type a name..."
 msgstr "Напишите название..."
 
-#: ../src/qml/Messages.qml:1255
+#: ../src/qml/Messages.qml:1258
 msgid "Typing.."
 msgstr "Набирает.."
 
@@ -830,12 +838,12 @@ msgstr "Добро пожаловать в приложение Сообщени
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Ваше приложение для обмена сообщениями в Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:566
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Новое сообщение..."
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:578
 msgid "Write a message..."
 msgstr "Новое сообщение..."
 
@@ -859,7 +867,7 @@ msgstr ""
 "Вы пытаетесь отправить крупные файлы (размером более 300 КБ). Некоторые "
 "операторы не поддерживают такие передачи."
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
@@ -870,7 +878,7 @@ msgstr ""
 msgid "You have to disable flight mode"
 msgstr "Отключите режим полёта"
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "Необходимо нажать и удерживать значок записи"
 

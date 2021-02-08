@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
 "PO-Revision-Date: 2020-10-15 10:02+0000\n"
 "Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#channelName"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "%1 成為了管理員"
 msgid "%1 is not Admin"
 msgstr "%1 不再是管理員"
 
-#: ../src/qml/Messages.qml:1253
+#: ../src/qml/Messages.qml:1256
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 正在打字中.."
@@ -107,7 +107,7 @@ msgstr "<<< 滑動以取消"
 msgid "Accepted"
 msgstr "已接受"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "加入"
 
@@ -135,31 +135,31 @@ msgstr "管理員"
 msgid "All"
 msgstr "全部"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "附件：%1 份音訊剪輯"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "附件：%1 個聯絡人"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "附件：%1 個檔案"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "附件：%1 個圖像"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -169,21 +169,21 @@ msgstr[0] "附件：%1 條影片"
 msgid "Audio attachment not supported"
 msgstr "不支援音訊附件"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "離開"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "返回"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "正忙"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "撥號"
 
@@ -227,21 +227,21 @@ msgstr "關閉"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "由下而上掃過螢幕以撰寫新的訊息。"
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "聯絡人"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "複製"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "建立 %1 群組..."
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "建立多媒體訊息群組…"
 
@@ -253,9 +253,10 @@ msgstr "建立群組..."
 msgid "Dark"
 msgstr "深色"
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "刪除"
 
@@ -275,7 +276,7 @@ msgstr "不要再問"
 msgid "Don't show again"
 msgstr "別再顯示"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "草稿："
 
@@ -339,7 +340,7 @@ msgstr "檔案大小警告"
 msgid "File type not supported"
 msgstr "檔案類型不支援"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "轉寄"
@@ -356,7 +357,7 @@ msgstr "我瞭解了"
 msgid "Group"
 msgstr "群組"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "群組 (%1)"
@@ -394,7 +395,7 @@ msgstr "圖片"
 msgid "Image Preview"
 msgstr "影像預覽"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -412,7 +413,7 @@ msgstr "無法以飛行模式發送訊息"
 msgid "It is not possible to send the message"
 msgstr "無法發送訊息"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "加入網際網路中繼聊天頻道…"
 
@@ -432,7 +433,7 @@ msgstr "離開群組"
 msgid "Light"
 msgstr "淺色"
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "多媒體訊息"
 
@@ -484,7 +485,7 @@ msgstr "訊息應用程式"
 msgid "Multiple MMS Messages"
 msgstr "多則多媒體訊息"
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "本人"
 
@@ -525,7 +526,7 @@ msgstr "不可用"
 msgid "Number or contact name"
 msgstr "號碼或聯絡人名稱"
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "離線"
 
@@ -535,9 +536,16 @@ msgstr "離線"
 msgid "Ok"
 msgstr "確定"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "上線"
+
+#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -581,7 +589,7 @@ msgstr "已讀"
 msgid "Received"
 msgstr "收到"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -603,7 +611,7 @@ msgstr "刪除最後一個成員將導致 \"%1\" 將被解散。您要繼續嗎�
 msgid "Renamed group to: %1"
 msgstr "將組重新命名為：% 1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "重試"
@@ -612,7 +620,7 @@ msgstr "重試"
 msgid "SIM Card is locked"
 msgstr "SIM 卡已鎖定"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "簡訊"
 
@@ -713,7 +721,7 @@ msgstr "暫時失敗"
 msgid "Text message copied to clipboard"
 msgstr "文字訊息已複製到剪貼簿"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -770,7 +778,7 @@ msgstr "類型"
 msgid "Type a name..."
 msgstr "輸入名稱..."
 
-#: ../src/qml/Messages.qml:1255
+#: ../src/qml/Messages.qml:1258
 msgid "Typing.."
 msgstr "打字中.."
 
@@ -804,11 +812,11 @@ msgstr "歡迎使用訊息應用程式！"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "歡迎使用您的 Ubuntu 訊息應用程式。"
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:566
 msgid "Write a broadcast message..."
 msgstr "撰寫一則廣播訊息..."
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:578
 msgid "Write a message..."
 msgstr "撰寫一則訊息..."
 
@@ -830,7 +838,7 @@ msgid ""
 "able to send it."
 msgstr "您試圖傳送大型檔案（超過 300KB）。有些服務商可能無法傳送大檔案。"
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "您無法向這個群組發送消訊息，因為該群組不再處於活動狀態"
@@ -839,7 +847,7 @@ msgstr "您無法向這個群組發送消訊息，因為該群組不再處於活
 msgid "You have to disable flight mode"
 msgstr "您必須禁用飛行模式"
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "您需要按住錄音圖示不放"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
 "PO-Revision-Date: 2020-12-24 08:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#channelName"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "1% הוא המנהל"
 msgid "%1 is not Admin"
 msgstr "1% לא מנהל"
 
-#: ../src/qml/Messages.qml:1253
+#: ../src/qml/Messages.qml:1256
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 מקליד/ה"
@@ -107,7 +107,7 @@ msgstr "החלק על מנת לבטל >>>"
 msgid "Accepted"
 msgstr "התקבל"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "הוספה"
 
@@ -135,35 +135,35 @@ msgstr "מנהל"
 msgid "All"
 msgstr "הכול"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "מצורף: מקטע שמע אחד"
 msgstr[1] "מצורפים: %1 מקטעי שמע"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "מצורף: איש קשר אחד"
 msgstr[1] "מצורפים: %1 אנשי קשר"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "מצורף: קובץ אחד"
 msgstr[1] "מצורפים: %1 קבצים"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "מצורפת: תמונה אחת"
 msgstr[1] "מצורפות: %1 תמונות"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -174,21 +174,21 @@ msgstr[1] "מצורפים: %1 סרטונים"
 msgid "Audio attachment not supported"
 msgstr "קובץ אודיו מצורף לא נתמך"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "לא פה"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "אחורה"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "עסוק/ה"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "להתקשר"
 
@@ -232,21 +232,21 @@ msgstr "סגור"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "חבר הודעה חדשה על ידי החלקה מעלה מתחתית המסך."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "איש קשר"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "העתקה"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "צור 1% קבוצה..."
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "צור קבוצת MMS..."
 
@@ -258,9 +258,10 @@ msgstr "יוצר קבוצה..."
 msgid "Dark"
 msgstr "כהה"
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "מחיקה"
 
@@ -280,7 +281,7 @@ msgstr "אל תשאל שוב"
 msgid "Don't show again"
 msgstr "אל תראה שוב"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "טיוטה:"
 
@@ -344,7 +345,7 @@ msgstr "אזהרת גודל קובץ"
 msgid "File type not supported"
 msgstr "סוג קובץ אינו נתמך"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "העבר"
@@ -361,7 +362,7 @@ msgstr "הבנתי"
 msgid "Group"
 msgstr "קבוצה"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "קבוצה (1%)"
@@ -399,7 +400,7 @@ msgstr "תמונה"
 msgid "Image Preview"
 msgstr "תצוגה מקדימה של תמונה"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -417,7 +418,7 @@ msgstr "לא ניתן לשלוח הודעות במצב טיסה"
 msgid "It is not possible to send the message"
 msgstr "לא ניתן לשלוח את ההודעה"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "הצטרף לערוץ ה-IRC..."
 
@@ -437,7 +438,7 @@ msgstr "עזוב את הקבוצה"
 msgid "Light"
 msgstr "בהיר"
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -489,7 +490,7 @@ msgstr "יישום הודעות"
 msgid "Multiple MMS Messages"
 msgstr "הודעות MMS מרובות"
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "עצמי"
 
@@ -530,7 +531,7 @@ msgstr "לא זמין"
 msgid "Number or contact name"
 msgstr "מספר או שם איש קשר"
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "לא מקוון"
 
@@ -540,9 +541,16 @@ msgstr "לא מקוון"
 msgid "Ok"
 msgstr "אישור"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "מקוון"
+
+#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -587,7 +595,7 @@ msgstr "לקרוא"
 msgid "Received"
 msgstr "קיבלו"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -609,7 +617,7 @@ msgstr "הסרת החבר האחרון תביא לפירוק '%1'. תרצה לה
 msgid "Renamed group to: %1"
 msgstr "שם הקבוצה שונה ל: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "ניסיון מחדש"
@@ -618,7 +626,7 @@ msgstr "ניסיון מחדש"
 msgid "SIM Card is locked"
 msgstr "כרטיס ה- SIM נעול"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "סמס"
 
@@ -719,7 +727,7 @@ msgstr "נכשל זמנית"
 msgid "Text message copied to clipboard"
 msgstr "הודעת טקסט הועתקה ללוח"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -779,7 +787,7 @@ msgstr "סוג"
 msgid "Type a name..."
 msgstr "הקלד שם ..."
 
-#: ../src/qml/Messages.qml:1255
+#: ../src/qml/Messages.qml:1258
 msgid "Typing.."
 msgstr "מקליד.."
 
@@ -813,11 +821,11 @@ msgstr "ברוך הבא לאפליקציית המסרים שלך!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "ברוך הבא לאפליקציית המסרים של אובונטו."
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:566
 msgid "Write a broadcast message..."
 msgstr "כתוב הודעת שידור ..."
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:578
 msgid "Write a message..."
 msgstr "כתיבת הודעה…"
 
@@ -841,7 +849,7 @@ msgstr ""
 "אתה מנסה לשלוח קבצים גדולים (מעל 300Kb). ייתכן שמפעילים מסוימים לא יוכלו "
 "לשלוח אותו."
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "אינך יכול לשלוח הודעות לקבוצה זו מכיוון שהקבוצה כבר אינה פעילה"
@@ -850,7 +858,7 @@ msgstr "אינך יכול לשלוח הודעות לקבוצה זו מכיוון
 msgid "You have to disable flight mode"
 msgstr "עליך להשבית את מצב הטיסה"
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "עליך ללחוץ והחזיק את סמל ההקלטה"
 

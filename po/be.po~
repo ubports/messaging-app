@@ -1,0 +1,939 @@
+# Belarusian translation for messaging-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"PO-Revision-Date: 2020-11-30 09:55+0000\n"
+"Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
+"Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/be/>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.11.3\n"
+"X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
+
+#: ../src/qml/NewGroupPage.qml:250
+msgid "#channelName"
+msgstr "#назваКанала"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:74
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
+
+#: ../src/qml/MainPage.qml:218
+#, qt-format
+msgid "%1 - Connecting..."
+msgstr "%1 - Падлучэнне..."
+
+#: ../src/qml/AccountSectionDelegate.qml:119
+#, qt-format
+msgid "%1 added %2 to this group"
+msgstr "%1 дадаў %2 у гэтую групу"
+
+#: ../src/qml/AccountSectionDelegate.qml:93
+#, qt-format
+msgid "%1 invited %2 to this group"
+msgstr "%1 запрасіў %2 у гэтую групу"
+
+#: ../src/qml/AccountSectionDelegate.qml:127
+#, qt-format
+msgid "%1 is Admin"
+msgstr "%1 - адміністратар"
+
+#: ../src/qml/AccountSectionDelegate.qml:135
+#, qt-format
+msgid "%1 is not Admin"
+msgstr "%1 не адміністратар"
+
+#: ../src/qml/Messages.qml:1253
+#, qt-format
+msgid "%1 is typing.."
+msgstr "%1 піша.."
+
+#: ../src/qml/AccountSectionDelegate.qml:121
+#, qt-format
+msgid "%1 joined this group"
+msgstr "%1 далучыўся да гэтай групы"
+
+#: ../src/qml/AccountSectionDelegate.qml:113
+#, qt-format
+msgid "%1 left this group"
+msgstr "%1 сышоў з групы"
+
+#: ../src/qml/AccountSectionDelegate.qml:111
+#, qt-format
+msgid "%1 removed %2 from this group"
+msgstr "%1 выдалена %2 з гэтай групы"
+
+#: ../src/qml/AccountSectionDelegate.qml:107
+#, qt-format
+msgid "%1 renamed group to: %2"
+msgstr "%1 змяніў назву групы на %2"
+
+#: ../src/qml/AccountSectionDelegate.qml:125
+#, qt-format
+msgid "%1 set %2 as Admin"
+msgstr "%1 зрабіў %2 адміністратарам"
+
+#: ../src/qml/AccountSectionDelegate.qml:133
+#, qt-format
+msgid "%1 set %2 as not Admin"
+msgstr "%1 адклікаў у %2 правы адміністратара"
+
+#: ../src/qml/AccountSectionDelegate.qml:89
+#, qt-format
+msgid "%1 was invited to this group"
+msgstr "%1 быў запрошаны ў гэтую групу"
+
+#: ../src/qml/MessagingBottomEdge.qml:26
+msgid "+"
+msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:154
+msgid "<<< Swipe to cancel"
+msgstr "<<< Правядзіце, каб скасаваць"
+
+#: ../src/qml/MessageInfoDialog.qml:60
+msgid "Accepted"
+msgstr "Ухвалена"
+
+#: ../src/qml/Messages.qml:846
+msgid "Add"
+msgstr "Дадаць"
+
+#: ../src/qml/GroupChatInfoPage.qml:374
+msgid "Add participant:"
+msgstr "Дадаць атрымальніка:"
+
+#: ../src/qml/NewRecipientPage.qml:88
+msgid "Add recipient"
+msgstr "Дадаць атрымальніка"
+
+#: ../src/qml/ParticipantInfoPage.qml:135
+msgid "Add to contacts"
+msgstr "Дадаць у кантакты"
+
+#: ../src/qml/GroupChatInfoPage.qml:396
+msgid "Add..."
+msgstr "Дадаць…"
+
+#: ../src/qml/ParticipantDelegate.qml:42
+msgid "Admin"
+msgstr "Адміністратар"
+
+#: ../src/qml/NewRecipientPage.qml:112
+msgid "All"
+msgstr "Усе"
+
+#: ../src/qml/ThreadDelegate.qml:118
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "Укладзеныя файлы: %1 гукавы запіс"
+msgstr[1] "Укладзеныя файлы: %1 гукавыя запісы"
+msgstr[2] "Укладзеныя файлы: %1 гукавых запісаў"
+
+#: ../src/qml/ThreadDelegate.qml:115
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Укладзеныя файлы: %1 кантакт"
+msgstr[1] "Укладзеныя файлы: %1 кантакты"
+msgstr[2] "Укладзеныя файлы: %1 кантактаў"
+
+#: ../src/qml/ThreadDelegate.qml:121
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Укладзеныя файлы: %1 файл"
+msgstr[1] "Укладзеныя файлы: %1 файлы"
+msgstr[2] "Укладзеныя файлы: %1 файлаў"
+
+#: ../src/qml/ThreadDelegate.qml:109
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Укладзеныя файлы: %1 выява"
+msgstr[1] "Укладзеныя файлы: %1 выявы"
+msgstr[2] "Укладзеныя файлы: %1 выяў"
+
+#: ../src/qml/ThreadDelegate.qml:112
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Укладзеныя файлы: %1 відэа"
+msgstr[1] "Укладзеныя файлы: %1 відэа"
+msgstr[2] "Укладзеныя файлы: %1 відэа"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
+msgid "Audio attachment not supported"
+msgstr "Укладзеныя гукавыя файлы не падтрымліваюцца"
+
+#: ../src/qml/Messages.qml:1268
+msgid "Away"
+msgstr "Адышоў"
+
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
+msgid "Back"
+msgstr "Назад"
+
+#: ../src/qml/Messages.qml:1270
+msgid "Busy"
+msgstr "Заняты(ая)"
+
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+msgid "Call"
+msgstr "Выклік"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
+#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
+#: ../src/qml/MessagingContactEditorPage.qml:36
+#: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr "Змяніць"
+
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr "Звязаць усе ліставанні з %1?"
+
+#: ../src/qml/GroupChatInfoPage.qml:120
+msgid "Channel Info"
+msgstr "Звесткі пра канал"
+
+#: ../src/qml/NewGroupPage.qml:232
+msgid "Channel name:"
+msgstr "Назва канала:"
+
+#: ../src/qml/Dialogs/InformationDialog.qml:30
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:32
+#: ../src/qml/MessageInfoDialog.qml:168
+msgid "Close"
+msgstr "Закрыць"
+
+#: ../src/qml/EmptyState.qml:50
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr ""
+"Каб напісаць новае паведамленне, правядзіце ўверх ад ніжняй часткі экрана."
+
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+msgid "Contact"
+msgstr "Кантакт"
+
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/RegularMessageDelegate_irc.qml:171
+msgid "Copy"
+msgstr "Скапіяваць"
+
+#: ../src/qml/Messages.qml:1105
+#, qt-format
+msgid "Create %1 Group..."
+msgstr "Стварыць %1 групу..."
+
+#: ../src/qml/Messages.qml:1075
+msgid "Create MMS Group..."
+msgstr "Стварыць групу MMS..."
+
+#: ../src/qml/NewGroupPage.qml:81
+msgid "Creating Group..."
+msgstr "Стварыць групу…"
+
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr "Цёмная"
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/RegularMessageDelegate_irc.qml:151
+#: ../src/qml/ThreadDelegate.qml:167
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../src/qml/MessageInfoDialog.qml:64
+msgid "Deleted"
+msgstr "Выдалена"
+
+#: ../src/qml/MessageInfoDialog.qml:54
+msgid "Delivered"
+msgstr "Дастаўлена"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
+msgid "Don't ask again"
+msgstr "Больш не пытацца"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
+msgid "Don't show again"
+msgstr "Больш не паказваць"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr "Чарнавік:"
+
+#: ../src/qml/MessagingContactViewPage.qml:96
+msgid "Edit"
+msgstr "Рэдагаваць"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr "Уключыць"
+
+#: ../src/qml/SettingsPage.qml:56
+msgid "Enable MMS messages"
+msgstr "Уключыць MMS-ліставанне"
+
+#: ../src/qml/GroupChatInfoPage.qml:182
+msgid "End group"
+msgstr "Закрыць групу"
+
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
+msgid "Failed"
+msgstr "Памылка"
+
+#: ../src/qml/NewGroupPage.qml:170
+msgid "Failed to create group"
+msgstr "Не атрымалася стварыць групу"
+
+#: ../src/qml/GroupChatInfoPage.qml:238
+msgid "Failed to delete group"
+msgstr "Не атрымалася выдаліць групу"
+
+#: ../src/qml/GroupChatInfoPage.qml:136
+msgid "Failed to leave channel"
+msgstr "Не атрымалася сысці з канала"
+
+#: ../src/qml/GroupChatInfoPage.qml:138
+msgid "Failed to leave group"
+msgstr "Не атрымалася сысці з групы"
+
+#: ../src/qml/GroupChatInfoPage.qml:248
+msgid "Failed to modify group title"
+msgstr "Не атрымалася змяніць назву групы"
+
+#: ../src/qml/SendMessageValidator.qml:221
+msgid "Failed to send the message"
+msgstr "Не атрымалася адправіць паведамленне"
+
+#: ../src/qml/MessageStatusIcon.qml:75
+msgid "Failed!"
+msgstr "Няўдача!"
+
+#: ../src/qml/NewRecipientPage.qml:112
+msgid "Favorites"
+msgstr "Улюбёныя кантакты"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "Папярэджанне пра памер файла"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
+msgid "File type not supported"
+msgstr "Файлы гэтага тыпу не падтрымліваюцца"
+
+#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/RegularMessageDelegate_irc.qml:179
+msgid "Forward"
+msgstr "Перанакіраваць"
+
+#: ../src/qml/MessageInfoDialog.qml:102
+msgid "From"
+msgstr "Ад"
+
+#: ../src/qml/ListItemDemo.qml:50
+msgid "Got it"
+msgstr "Зразумела"
+
+#: ../src/qml/MessageInfoDialog.qml:87
+msgid "Group"
+msgstr "Група"
+
+#: ../src/qml/Messages.qml:817
+#, qt-format
+msgid "Group (%1)"
+msgstr "Група (%1)"
+
+#: ../src/qml/GroupChatInfoPage.qml:122
+msgid "Group Info"
+msgstr "Звесткі пра групу"
+
+#: ../src/qml/AccountSectionDelegate.qml:142
+#: ../src/qml/GroupChatInfoPage.qml:240
+msgid "Group has been dissolved"
+msgstr "Група расфармаваная"
+
+#: ../src/qml/NewGroupPage.qml:234
+msgid "Group name:"
+msgstr "Назва групы:"
+
+#: ../src/qml/RegularMessageDelegate_irc.qml:188
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Калі вы хочаце змяніць налады SIM і іншыя налады, калі ласка, адкрыйце <a "
+"href=\"system_settings\">Налады сістэмы</a>."
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "Выява"
+
+#: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
+msgid "Image Preview"
+msgstr "Папярэдні прагляд выявы"
+
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ParticipantInfoPage.qml:35
+#: ../src/qml/RegularMessageDelegate_irc.qml:186
+msgid "Info"
+msgstr "Інфармацыя"
+
+#: ../src/qml/Messages.qml:314
+msgid "It is not possible to send messages at the moment"
+msgstr "Зараз немагчыма адпраўляць паведамленні"
+
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
+msgid "It is not possible to send messages in flight mode"
+msgstr "Немагчыма адпраўляць паведамленні ў рэжыме палёту"
+
+#: ../src/qml/SendMessageValidator.qml:220
+msgid "It is not possible to send the message"
+msgstr "Немагчыма адправіць паведамленне"
+
+#: ../src/qml/Messages.qml:1099
+msgid "Join IRC Channel..."
+msgstr "Далучыцца да IRC-канала…"
+
+#: ../src/qml/NewGroupPage.qml:88
+msgid "Join IRC channel:"
+msgstr "Далучыцца да IRC-канала:"
+
+#: ../src/qml/GroupChatInfoPage.qml:112
+msgid "Leave channel"
+msgstr "Сысці з канала"
+
+#: ../src/qml/GroupChatInfoPage.qml:114
+msgid "Leave group"
+msgstr "Сысці з групы"
+
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr "Светлая"
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+msgid "MMS"
+msgstr "MMS"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:31
+msgid ""
+"MMS support is required to send this message.\n"
+"Do you want to enable it?"
+msgstr ""
+"Каб адправіць гэтае паведамленне, патрабуецца падтрымка MMS.\n"
+"Уключыць яе?"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:30
+msgid "MMS support required"
+msgstr "Патрабуецца падтрымка MMS"
+
+#: ../src/qml/GroupChatInfoPage.qml:149
+msgid "Me"
+msgstr "Я"
+
+#: ../src/qml/ContactSearchWidget.qml:44
+msgid "Members:"
+msgstr "Удзельнікі:"
+
+#: ../src/qml/MessageInfoDialog.qml:95
+msgid "Message info"
+msgstr "Звесткі пра паведамленне"
+
+#: ../src/qml/MainPage.qml:77
+msgid "Messages"
+msgstr "Паведамленні"
+
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr "Паведамленні;SMS;MMS;Тэкставыя паведамленні;Тэкст"
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr "Ліставанне"
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr "Праграма для ліставання"
+
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr "Праграма для абмену паведамленнямі"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
+msgid "Multiple MMS Messages"
+msgstr "Некалькі MMS"
+
+#: ../src/qml/MessageDelegate.qml:184
+msgid "Myself"
+msgstr "Я"
+
+#: ../src/qml/NewGroupPage.qml:94
+#, qt-format
+msgid "New %1 Group"
+msgstr "Новая група %1"
+
+#: ../src/qml/NewGroupPage.qml:84
+msgid "New MMS Group"
+msgstr "Новая група MMS"
+
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
+msgid "New message"
+msgstr "Новае паведамленне"
+
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
+msgid "No SIM card"
+msgstr "Няма SIM-карткі"
+
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
+msgid "No SIM card selected"
+msgstr "SIM-картка не абраная"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:28
+msgid "No network"
+msgstr "Няма сеткі"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "Не стае правоў на доступ да мікрафона"
+
+#: ../src/qml/Messages.qml:324
+msgid "Not available"
+msgstr "Недаступна"
+
+#: ../src/qml/ContactSearchWidget.qml:67
+msgid "Number or contact name"
+msgstr "Нумар альбо імя кантакту"
+
+#: ../src/qml/Messages.qml:1266
+msgid "Offline"
+msgstr "Па-за сецівам"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Добра"
+
+#: ../src/qml/Messages.qml:1264
+msgid "Online"
+msgstr "У сеціве"
+
+#: ../src/qml/GroupChatInfoPage.qml:374
+#, qt-format
+msgid "Participants: %1"
+msgstr "Удзельнікі: %1"
+
+#: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
+msgid "Pending"
+msgstr "Чакае"
+
+#: ../src/qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Каб стварыць, абярыце акаўнт."
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+"Калі ласка, дайце правы на доступ у <a href=\"system_settings\">Налады "
+"сістэмы &gt; Бяспека &amp; Прыватнасць</a>."
+
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
+msgid "Please insert a SIM card and try again."
+msgstr "Устаўце SIM-картку і паўтарыце спробу."
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Калі ласка, разблакуйце вашую SIM-картку, каб мець магчымасць тэлефанаваць "
+"ці адпраўляць паведамленні. Разблакаваць картку можна з дапамогай індыкатара "
+"сеткі ў верхняй частцы экрана або з дапамогай старонкі <a href=\""
+"system_settings\">Налады сістэмы &gt; Бяспека &amp; Прыватнасць</a>."
+
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+msgid "Read"
+msgstr "Прачытанае"
+
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+msgid "Received"
+msgstr "Атрымана"
+
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+msgid "Remove"
+msgstr "Выдаліць"
+
+#: ../src/qml/ParticipantInfoPage.qml:181
+msgid "Remove from group"
+msgstr "Выдаліць з групы"
+
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
+#, qt-format
+msgid ""
+"Removing last member will cause '%1' to be dissolved. Would you like to "
+"continue?"
+msgstr "Калі выдаліць апошняга ўдзельніка \"%1\", то група знікне. Працягнуць?"
+
+#: ../src/qml/AccountSectionDelegate.qml:103
+#, qt-format
+msgid "Renamed group to: %1"
+msgstr "Назва групы змененая на: %1"
+
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/RegularMessageDelegate_irc.qml:163
+msgid "Retry"
+msgstr "Паўтарыць"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "SIM-картка заблакаваная"
+
+#: ../src/qml/MessageDelegate.qml:176
+msgid "SMS"
+msgstr "SMS"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:86
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
+#: ../src/qml/MessagingContactEditorPage.qml:49
+msgid "Save"
+msgstr "Захаваць"
+
+#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
+msgid "Search"
+msgstr "Пошук"
+
+#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
+msgid "Search..."
+msgstr "Пошук..."
+
+#: ../src/qml/ParticipantInfoPage.qml:135
+msgid "See in contacts"
+msgstr "Паглядзець у кантактах"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr "Абраць"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "Адправіць"
+
+#: ../src/qml/ParticipantInfoPage.qml:166
+msgid "Send private message"
+msgstr "Адправіць асабістае паведамленне"
+
+#: ../src/qml/MessageInfoDialog.qml:143
+msgid "Sent"
+msgstr "Адпраўлена"
+
+#: ../src/qml/ParticipantInfoPage.qml:153
+msgid "Set as admin"
+msgstr "Зрабіць адміністратарам"
+
+#: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
+msgid "Settings"
+msgstr "Налады"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:93
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
+#: ../src/qml/MessagingContactViewPage.qml:85
+msgid "Share"
+msgstr "Падзяліцца"
+
+#: ../src/qml/SettingsPage.qml:63
+msgid "Simplified conversation view"
+msgstr "Спрошчаны выгляд гутаркі"
+
+#: ../src/qml/SettingsPage.qml:43
+msgid "Sort by timestamp"
+msgstr "Сартаваць па даце"
+
+#: ../src/qml/SettingsPage.qml:44
+msgid "Sort by title"
+msgstr "Сартаваць па назве"
+
+#: ../src/qml/SettingsPage.qml:70
+msgid "Sort threads"
+msgstr "Сартаваць па тэме"
+
+#: ../src/qml/MessageInfoDialog.qml:163
+msgid "Status"
+msgstr "Статус"
+
+#: ../src/qml/GroupChatInfoPage.qml:128
+msgid "Successfully left channel"
+msgstr "Выхад з канала выкананы"
+
+#: ../src/qml/GroupChatInfoPage.qml:130
+msgid "Successfully left group"
+msgstr "Выхад з групы выкананы"
+
+#: ../src/qml/ListItemDemo.qml:227
+msgid "Swipe to delete"
+msgstr "Правядзіце, каб выдаліць"
+
+#: ../src/qml/ListItemDemo.qml:177
+msgid "Swipe to reveal actions"
+msgstr "Правядзіце, каб убачыць дзеянні"
+
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr "Тэма сістэмы"
+
+#: ../src/qml/MessageInfoDialog.qml:56
+msgid "Temporarily Failed"
+msgstr "Часовая памылка"
+
+#: ../src/qml/MessageDelegate.qml:94
+#: ../src/qml/RegularMessageDelegate_irc.qml:66
+msgid "Text message copied to clipboard"
+msgstr "Тэкставае паведамленне скапіявана ў буфер абмену"
+
+#: ../src/qml/Messages.qml:505
+msgid ""
+"The SIM card does not provide the owner's phone number. Because of that "
+"sending MMS group messages is not possible."
+msgstr ""
+"SIM-картка не можа падаваць нумар тэлефона ўласніка. Таму групавое "
+"адпраўленне MMS немагчымае."
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
+msgid ""
+"The content you are sending requires one MMS message per recipient, so you "
+"might get charged for multiple messages.\n"
+"Do you want to continue?"
+msgstr ""
+"На кожнага атрымальніка патрабуецца асобнае MMS-паведамленне, таму за кожнае "
+"паведамленне будзе спаганяцца аплата.\n"
+"Хочаце працягнуць?"
+
+#: ../src/qml/Messages.qml:325
+msgid "The selected account is not available at the moment"
+msgstr "Абраны акаўнт зараз недаступны"
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
+msgstr "Тэма"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr "Няма доступу да сеткі %1"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
+msgid "There is currently no network."
+msgstr "Зараз сетка недаступная."
+
+#: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
+#: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
+msgid "This recipient was already selected"
+msgstr "Гэты атрымальнік ужо абраны"
+
+#: ../src/qml/MessageInfoDialog.qml:108
+msgid "To"
+msgstr "Да"
+
+#: ../src/qml/MultiRecipientInput.qml:33
+msgid "To:"
+msgstr "Каму:"
+
+#: ../src/qml/dateUtils.js:44
+msgid "Today"
+msgstr "Сёння"
+
+#: ../src/qml/MessageInfoDialog.qml:98
+msgid "Type"
+msgstr "Тып"
+
+#: ../src/qml/NewGroupPage.qml:252
+msgid "Type a name..."
+msgstr "Увядзіце імя…"
+
+#: ../src/qml/Messages.qml:1255
+msgid "Typing.."
+msgstr "Піша..."
+
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
+#: ../src/qml/MessageInfoDialog.qml:91
+msgid "Unknown"
+msgstr "Невядома"
+
+#: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
+#: ../src/qml/ThumbnailContact.qml:44
+msgid "Unknown contact"
+msgstr "Невядомы кантакт"
+
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "Відэа"
+
+#: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
+msgid "Video Preview"
+msgstr "Папярэдні прагляд відэа"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
+msgid "Video attachment not supported"
+msgstr "Укладзеныя відэафайлы не падтрымліваюцца"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "Вітаем у праграме для ліставання!"
+
+#: ../src/qml/ListItemDemo.qml:133
+msgid "Welcome to your Ubuntu messaging app."
+msgstr "Вітаем у праграме для ліставання для Ubuntu."
+
+#: ../src/qml/ComposeBar.qml:568
+msgid "Write a broadcast message..."
+msgstr "Напісаць масавае паведамленне..."
+
+#: ../src/qml/ComposeBar.qml:580
+msgid "Write a message..."
+msgstr "Напісаць паведамленне..."
+
+#: ../src/qml/dateUtils.js:49
+msgid "Yesterday"
+msgstr "Учора"
+
+#: ../src/qml/AccountSectionDelegate.qml:130
+msgid "You are Admin"
+msgstr "Вы адміністратар"
+
+#: ../src/qml/AccountSectionDelegate.qml:138
+msgid "You are not Admin"
+msgstr "Вы не адміністратар"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+"Вы хочаце адправіць вялікія файлы (больш за 300 Кб). Некаторыя аператары не "
+"падтрымліваюць такія аперацыі."
+
+#: ../src/qml/Messages.qml:1605
+msgid ""
+"You can't send messages to this group because the group is no longer active"
+msgstr ""
+"Вы не можаце адправіць паведамленне ў гэтую групу, бо яна больш не дзейнічае"
+
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
+msgid "You have to disable flight mode"
+msgstr "Адключыце рэжым палёту"
+
+#: ../src/qml/ComposeBar.qml:228
+msgid "You have to press and hold the record icon"
+msgstr "Патрэбна націснуць і патрымаць значок запісу"
+
+#: ../src/qml/AccountSectionDelegate.qml:91
+#, qt-format
+msgid "You invited %1 to this group"
+msgstr "Вы запрасілі %1 у гэтую групу"
+
+#: ../src/qml/AccountSectionDelegate.qml:116
+msgid "You joined this group"
+msgstr "Вы далучыліся да групы"
+
+#: ../src/qml/AccountSectionDelegate.qml:100
+msgid "You left this group"
+msgstr "Вы сышлі з групы"
+
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
+msgid "You need to select a SIM card"
+msgstr "Неабходна абраць SIM-картку"
+
+#: ../src/qml/AccountSectionDelegate.qml:105
+#, qt-format
+msgid "You renamed group to: %1"
+msgstr "Вы змянілі назву групы на: %1"
+
+#: ../src/qml/AccountSectionDelegate.qml:96
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Вы пераключыліся на %1 @ %2"
+
+#: ../src/qml/AccountSectionDelegate.qml:140
+msgid "You were removed from this group"
+msgstr "Вас выдалілі з гэтай групы"
+
+#~ msgid "No"
+#~ msgstr "Не"
+
+#~ msgid "Yes"
+#~ msgstr "Так"
+
+#~ msgid "%1 hour call"
+#~ msgid_plural "%1 hours call"
+#~ msgstr[0] "%1 гадзіна размовы"
+#~ msgstr[1] "%1 гадзіны размовы"
+#~ msgstr[2] "%1 гадзінаў размовы"
+
+#~ msgid "%1 minute call"
+#~ msgid_plural "%1 minutes call"
+#~ msgstr[0] "%1 хвіліна размовы"
+#~ msgstr[1] "%1 хвіліны размовы"
+#~ msgstr[2] "%1 хвілінаўразмовы"
+
+#~ msgid "%1 second call"
+#~ msgid_plural "%1 seconds call"
+#~ msgstr[0] "%1 секунда размовы"
+#~ msgstr[1] "%1 секунды размовы"
+#~ msgstr[2] "%1 секундаў размовы"
+
+#~ msgid "Missing message data"
+#~ msgstr "Няма дадзеных паведамлення"
+
+#~ msgid "New Message"
+#~ msgstr "Новае паведамленне"
+
+#~ msgid "Later"
+#~ msgstr "Пазней"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Выберыце тыповую SIM-карту для ўсіх выходных паведамленняў. Ваш выбар "
+#~ "можна ў любы момант змяніць з дапамогай <a href=\"system_settings"
+#~ "\">Сістэмных параметраў </a>."
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Пераключыцца на тыповую SIM-картку:"

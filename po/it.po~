@@ -1,0 +1,941 @@
+# Italian translation for messaging-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"PO-Revision-Date: 2020-09-25 00:47+0000\n"
+"Last-Translator: Mike <miguel2000@livecom.it>\n"
+"Language-Team: Italian <https://translate.ubports.com/projects/ubports/"
+"messaging-app/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
+"X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
+
+#: ../src/qml/NewGroupPage.qml:250
+msgid "#channelName"
+msgstr "#nomeCanale"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:74
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
+
+#: ../src/qml/MainPage.qml:218
+#, qt-format
+msgid "%1 - Connecting..."
+msgstr "%1 - Connessione in corso..."
+
+#: ../src/qml/AccountSectionDelegate.qml:119
+#, qt-format
+msgid "%1 added %2 to this group"
+msgstr "%1 ha aggiunto %2 a questo gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:93
+#, qt-format
+msgid "%1 invited %2 to this group"
+msgstr "%1 ha invitato %2 a questo gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:127
+#, qt-format
+msgid "%1 is Admin"
+msgstr "%1 è Amministratore"
+
+#: ../src/qml/AccountSectionDelegate.qml:135
+#, qt-format
+msgid "%1 is not Admin"
+msgstr "%1 non è Amministratore"
+
+#: ../src/qml/Messages.qml:1253
+#, qt-format
+msgid "%1 is typing.."
+msgstr "%1 Sta scrivendo..."
+
+#: ../src/qml/AccountSectionDelegate.qml:121
+#, qt-format
+msgid "%1 joined this group"
+msgstr "%1 si è unito al gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:113
+#, qt-format
+msgid "%1 left this group"
+msgstr "%1 ha abbandonato il gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:111
+#, qt-format
+msgid "%1 removed %2 from this group"
+msgstr "%1 ha rimosso %2 dal gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:107
+#, qt-format
+msgid "%1 renamed group to: %2"
+msgstr "%1 ha cambiato il nome del gruppo in: %2"
+
+#: ../src/qml/AccountSectionDelegate.qml:125
+#, qt-format
+msgid "%1 set %2 as Admin"
+msgstr "%1 ha nominato %2 amministratore"
+
+#: ../src/qml/AccountSectionDelegate.qml:133
+#, qt-format
+msgid "%1 set %2 as not Admin"
+msgstr "%1 ha rimosso i privilegi di amministratore a %2"
+
+#: ../src/qml/AccountSectionDelegate.qml:89
+#, qt-format
+msgid "%1 was invited to this group"
+msgstr "%1 è stato invitato a questo gruppo"
+
+#: ../src/qml/MessagingBottomEdge.qml:26
+msgid "+"
+msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:154
+msgid "<<< Swipe to cancel"
+msgstr "<<< Scorri per annullare"
+
+#: ../src/qml/MessageInfoDialog.qml:60
+msgid "Accepted"
+msgstr "Accettato"
+
+#: ../src/qml/Messages.qml:846
+msgid "Add"
+msgstr "Aggiungi"
+
+#: ../src/qml/GroupChatInfoPage.qml:374
+msgid "Add participant:"
+msgstr "Aggiungi partecipante:"
+
+#: ../src/qml/NewRecipientPage.qml:88
+msgid "Add recipient"
+msgstr "Aggiungi destinatario"
+
+#: ../src/qml/ParticipantInfoPage.qml:135
+msgid "Add to contacts"
+msgstr "Aggiungi ai contatti"
+
+#: ../src/qml/GroupChatInfoPage.qml:396
+msgid "Add..."
+msgstr "Aggiungi..."
+
+#: ../src/qml/ParticipantDelegate.qml:42
+msgid "Admin"
+msgstr "Amministratore"
+
+#: ../src/qml/NewRecipientPage.qml:112
+msgid "All"
+msgstr "Tutto"
+
+#: ../src/qml/ThreadDelegate.qml:118
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "Allegato: %1 clip audio"
+msgstr[1] "Allegati: %1 clip audio"
+
+#: ../src/qml/ThreadDelegate.qml:115
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Allegato: %1 contatto"
+msgstr[1] "Allegati: %1 contatti"
+
+#: ../src/qml/ThreadDelegate.qml:121
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Allegato: %1 file"
+msgstr[1] "Allegati: %1 file"
+
+#: ../src/qml/ThreadDelegate.qml:109
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Allegata: %1 immagine"
+msgstr[1] "Allegate: %1 immagini"
+
+#: ../src/qml/ThreadDelegate.qml:112
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Allegato: %1 video"
+msgstr[1] "Allegati: %1 video"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
+msgid "Audio attachment not supported"
+msgstr "Allegati audio non supportati"
+
+#: ../src/qml/Messages.qml:1268
+msgid "Away"
+msgstr "Assente"
+
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
+msgid "Back"
+msgstr "Indietro"
+
+#: ../src/qml/Messages.qml:1270
+msgid "Busy"
+msgstr "Non disponibile"
+
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+msgid "Call"
+msgstr "Chiamata"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
+#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
+#: ../src/qml/MessagingContactEditorPage.qml:36
+#: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
+msgid "Cancel"
+msgstr "Annulla"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr "Modifica"
+
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr "Cambiare tutte le associazioni di messaggi a %1?"
+
+#: ../src/qml/GroupChatInfoPage.qml:120
+msgid "Channel Info"
+msgstr "Informazioni sul canale"
+
+#: ../src/qml/NewGroupPage.qml:232
+msgid "Channel name:"
+msgstr "Nome del canale:"
+
+#: ../src/qml/Dialogs/InformationDialog.qml:30
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:32
+#: ../src/qml/MessageInfoDialog.qml:168
+msgid "Close"
+msgstr "Chiudi"
+
+#: ../src/qml/EmptyState.qml:50
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr ""
+"Componi un nuovo messaggio scorrendo dal basso verso l'alto dello schermo."
+
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+msgid "Contact"
+msgstr "Contatto"
+
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/RegularMessageDelegate_irc.qml:171
+msgid "Copy"
+msgstr "Copia"
+
+#: ../src/qml/Messages.qml:1105
+#, qt-format
+msgid "Create %1 Group..."
+msgstr "Crea gruppo %1..."
+
+#: ../src/qml/Messages.qml:1075
+msgid "Create MMS Group..."
+msgstr "Crea gruppo MMS..."
+
+#: ../src/qml/NewGroupPage.qml:81
+msgid "Creating Group..."
+msgstr "Creazione gruppo in corso..."
+
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr "Scuro"
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/RegularMessageDelegate_irc.qml:151
+#: ../src/qml/ThreadDelegate.qml:167
+msgid "Delete"
+msgstr "Elimina"
+
+#: ../src/qml/MessageInfoDialog.qml:64
+msgid "Deleted"
+msgstr "Eliminato"
+
+#: ../src/qml/MessageInfoDialog.qml:54
+msgid "Delivered"
+msgstr "Consegnato"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
+msgid "Don't ask again"
+msgstr "Non chiedere di nuovo"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
+msgid "Don't show again"
+msgstr "Non mostrare più"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr "Bozza:"
+
+#: ../src/qml/MessagingContactViewPage.qml:96
+msgid "Edit"
+msgstr "Modifica"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr "Attiva"
+
+#: ../src/qml/SettingsPage.qml:56
+msgid "Enable MMS messages"
+msgstr "Abilita messaggi MMS"
+
+#: ../src/qml/GroupChatInfoPage.qml:182
+msgid "End group"
+msgstr "Termina gruppo"
+
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
+msgid "Failed"
+msgstr "Non riuscito"
+
+#: ../src/qml/NewGroupPage.qml:170
+msgid "Failed to create group"
+msgstr "Impossibile creare il gruppo"
+
+#: ../src/qml/GroupChatInfoPage.qml:238
+msgid "Failed to delete group"
+msgstr "Impossibile eliminare il gruppo"
+
+#: ../src/qml/GroupChatInfoPage.qml:136
+msgid "Failed to leave channel"
+msgstr "Impossibile abbandonare il canale"
+
+#: ../src/qml/GroupChatInfoPage.qml:138
+msgid "Failed to leave group"
+msgstr "Impossibile abbandonare il gruppo"
+
+#: ../src/qml/GroupChatInfoPage.qml:248
+msgid "Failed to modify group title"
+msgstr "Impossibile modificare il titolo del gruppo"
+
+#: ../src/qml/SendMessageValidator.qml:221
+msgid "Failed to send the message"
+msgstr "Invio del messaggio non riuscito"
+
+#: ../src/qml/MessageStatusIcon.qml:75
+msgid "Failed!"
+msgstr "Non riuscito!"
+
+#: ../src/qml/NewRecipientPage.qml:112
+msgid "Favorites"
+msgstr "Preferiti"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "Avviso dimensione file"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
+msgid "File type not supported"
+msgstr "Tipo di file non supportato"
+
+#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/RegularMessageDelegate_irc.qml:179
+msgid "Forward"
+msgstr "Inoltra"
+
+#: ../src/qml/MessageInfoDialog.qml:102
+msgid "From"
+msgstr "Da"
+
+#: ../src/qml/ListItemDemo.qml:50
+msgid "Got it"
+msgstr "Fatto"
+
+#: ../src/qml/MessageInfoDialog.qml:87
+msgid "Group"
+msgstr "Gruppo"
+
+#: ../src/qml/Messages.qml:817
+#, qt-format
+msgid "Group (%1)"
+msgstr "Gruppo (%1)"
+
+#: ../src/qml/GroupChatInfoPage.qml:122
+msgid "Group Info"
+msgstr "Informazioni sul gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:142
+#: ../src/qml/GroupChatInfoPage.qml:240
+msgid "Group has been dissolved"
+msgstr "Il gruppo è stato sciolto"
+
+#: ../src/qml/NewGroupPage.qml:234
+msgid "Group name:"
+msgstr "Nome del gruppo:"
+
+#: ../src/qml/RegularMessageDelegate_irc.qml:188
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Per modificare i dati della SIM o altre preferenze visitare <a href="
+"\"system_settings\">Impostazioni di sistema</a>."
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "Immagine"
+
+#: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
+msgid "Image Preview"
+msgstr "Anteprima immagine"
+
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ParticipantInfoPage.qml:35
+#: ../src/qml/RegularMessageDelegate_irc.qml:186
+msgid "Info"
+msgstr "Info"
+
+#: ../src/qml/Messages.qml:314
+msgid "It is not possible to send messages at the moment"
+msgstr "Impossibile inviare messaggi al momento"
+
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
+msgid "It is not possible to send messages in flight mode"
+msgstr "Impossibile inviare messaggi in modalità aereo"
+
+#: ../src/qml/SendMessageValidator.qml:220
+msgid "It is not possible to send the message"
+msgstr "Impossibile inviare il messaggio"
+
+#: ../src/qml/Messages.qml:1099
+msgid "Join IRC Channel..."
+msgstr "Unisciti al canale IRC..."
+
+#: ../src/qml/NewGroupPage.qml:88
+msgid "Join IRC channel:"
+msgstr "Unisciti al canale IRC:"
+
+#: ../src/qml/GroupChatInfoPage.qml:112
+msgid "Leave channel"
+msgstr "Abbandona il canale"
+
+#: ../src/qml/GroupChatInfoPage.qml:114
+msgid "Leave group"
+msgstr "Abbandona il gruppo"
+
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr "Chiaro"
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+msgid "MMS"
+msgstr "MMS"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:31
+msgid ""
+"MMS support is required to send this message.\n"
+"Do you want to enable it?"
+msgstr ""
+"È richiesto il supporto agli MMS per inviare questo messaggio.\n"
+"Vuoi attivarlo?"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:30
+msgid "MMS support required"
+msgstr "È richiesto il supporto agli MMS"
+
+#: ../src/qml/GroupChatInfoPage.qml:149
+msgid "Me"
+msgstr "Io"
+
+#: ../src/qml/ContactSearchWidget.qml:44
+msgid "Members:"
+msgstr "Membri:"
+
+#: ../src/qml/MessageInfoDialog.qml:95
+msgid "Message info"
+msgstr "Info sul messaggio"
+
+#: ../src/qml/MainPage.qml:77
+msgid "Messages"
+msgstr "Messaggi"
+
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr "Messaggi;SMS;MMS;Messaggio di testo;Testo"
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr "Messaggi"
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr "App Messaggi"
+
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr "Applicazione per messaggistica"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
+msgid "Multiple MMS Messages"
+msgstr "Messaggi MMS multipli"
+
+#: ../src/qml/MessageDelegate.qml:184
+msgid "Myself"
+msgstr "Me stesso"
+
+#: ../src/qml/NewGroupPage.qml:94
+#, qt-format
+msgid "New %1 Group"
+msgstr "Nuovo gruppo %1"
+
+#: ../src/qml/NewGroupPage.qml:84
+msgid "New MMS Group"
+msgstr "Nuovo gruppo MMS"
+
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
+msgid "New message"
+msgstr "Nuovo messaggio"
+
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
+msgid "No SIM card"
+msgstr "Scheda SIM non presente"
+
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
+msgid "No SIM card selected"
+msgstr "Nessuna SIM selezionata"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:28
+msgid "No network"
+msgstr "Nessuna rete"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "Nessun permesso per accedere al microfono"
+
+#: ../src/qml/Messages.qml:324
+msgid "Not available"
+msgstr "Non disponibile"
+
+#: ../src/qml/ContactSearchWidget.qml:67
+msgid "Number or contact name"
+msgstr "Numero o nome del contatto"
+
+#: ../src/qml/Messages.qml:1266
+msgid "Offline"
+msgstr "Offline"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "OK"
+
+#: ../src/qml/Messages.qml:1264
+msgid "Online"
+msgstr "in linea"
+
+#: ../src/qml/GroupChatInfoPage.qml:374
+#, qt-format
+msgid "Participants: %1"
+msgstr "Partecipanti: %1"
+
+#: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
+msgid "Pending"
+msgstr "In sospeso"
+
+#: ../src/qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Scegliere un account da creare."
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+"Consentire l'accesso da <a href=\"system_settings\">Impostazioni di sistema "
+"&gt; Sicurezza &amp; Privacy</a>."
+
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
+msgid "Please insert a SIM card and try again."
+msgstr "Inserire una scheda SIM e riprovare."
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Sbloccare la scheda SIM per inviare chiamate o messaggi. La SIM può essere "
+"sbloccata attraverso l'indicatore di rete situato nella parte superiore "
+"dello schermo o visitando <a href=\"system_settings\">Impostazioni &gt; "
+"Sicurezza e privacy</a>."
+
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+msgid "Read"
+msgstr "Leggi"
+
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+msgid "Received"
+msgstr "Ricevuto"
+
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+msgid "Remove"
+msgstr "Rimuovi"
+
+#: ../src/qml/ParticipantInfoPage.qml:181
+msgid "Remove from group"
+msgstr "Rimuovi dal gruppo"
+
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
+#, qt-format
+msgid ""
+"Removing last member will cause '%1' to be dissolved. Would you like to "
+"continue?"
+msgstr "Rimuovere l'ultimo membro cancellerà '%1'. Vuoi continuare?"
+
+#: ../src/qml/AccountSectionDelegate.qml:103
+#, qt-format
+msgid "Renamed group to: %1"
+msgstr "Gruppo rinominato in: %1"
+
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/RegularMessageDelegate_irc.qml:163
+msgid "Retry"
+msgstr "Riprova"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "Scheda SIM bloccata"
+
+#: ../src/qml/MessageDelegate.qml:176
+msgid "SMS"
+msgstr "SMS"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:86
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
+#: ../src/qml/MessagingContactEditorPage.qml:49
+msgid "Save"
+msgstr "Salva"
+
+#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
+msgid "Search"
+msgstr "Cerca"
+
+#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
+msgid "Search..."
+msgstr "Cerca..."
+
+#: ../src/qml/ParticipantInfoPage.qml:135
+msgid "See in contacts"
+msgstr "Visualizza tra i contatti"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr "Seleziona"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "Invia"
+
+#: ../src/qml/ParticipantInfoPage.qml:166
+msgid "Send private message"
+msgstr "Invia un messaggio privato"
+
+#: ../src/qml/MessageInfoDialog.qml:143
+msgid "Sent"
+msgstr "Inviato"
+
+#: ../src/qml/ParticipantInfoPage.qml:153
+msgid "Set as admin"
+msgstr "Rendi amministratore"
+
+#: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:93
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
+#: ../src/qml/MessagingContactViewPage.qml:85
+msgid "Share"
+msgstr "Condividi"
+
+#: ../src/qml/SettingsPage.qml:63
+msgid "Simplified conversation view"
+msgstr "Vista conversazione simplificata"
+
+#: ../src/qml/SettingsPage.qml:43
+msgid "Sort by timestamp"
+msgstr "Ordina per data"
+
+#: ../src/qml/SettingsPage.qml:44
+msgid "Sort by title"
+msgstr "Ordina per titolo"
+
+#: ../src/qml/SettingsPage.qml:70
+msgid "Sort threads"
+msgstr "Ordina i thread"
+
+#: ../src/qml/MessageInfoDialog.qml:163
+msgid "Status"
+msgstr "Stato"
+
+#: ../src/qml/GroupChatInfoPage.qml:128
+msgid "Successfully left channel"
+msgstr "Canale abbandonato correttamente"
+
+#: ../src/qml/GroupChatInfoPage.qml:130
+msgid "Successfully left group"
+msgstr "Gruppo abbandonato correttamente"
+
+#: ../src/qml/ListItemDemo.qml:227
+msgid "Swipe to delete"
+msgstr "Scorrere per eliminare"
+
+#: ../src/qml/ListItemDemo.qml:177
+msgid "Swipe to reveal actions"
+msgstr "Scorrere per mostrare azioni"
+
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr "Tema di sistema"
+
+#: ../src/qml/MessageInfoDialog.qml:56
+msgid "Temporarily Failed"
+msgstr "Momentaneamente non riuscito"
+
+#: ../src/qml/MessageDelegate.qml:94
+#: ../src/qml/RegularMessageDelegate_irc.qml:66
+msgid "Text message copied to clipboard"
+msgstr "Messaggio copiato negli appunti"
+
+#: ../src/qml/Messages.qml:505
+msgid ""
+"The SIM card does not provide the owner's phone number. Because of that "
+"sending MMS group messages is not possible."
+msgstr ""
+"La scheda SIM non fornisce il numero di telefono nel proprietario. Per "
+"questo motivo non è possibile inviare messaggi MMS di gruppo."
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
+msgid ""
+"The content you are sending requires one MMS message per recipient, so you "
+"might get charged for multiple messages.\n"
+"Do you want to continue?"
+msgstr ""
+"Il contenuto che stai inviando richiede un messaggio MMS per ogni "
+"destinatario, quindi potrebbero venirti addebitati più messaggi.\n"
+"Continuare?"
+
+#: ../src/qml/Messages.qml:325
+msgid "The selected account is not available at the moment"
+msgstr "L'account selezionato non è disponibile al momento"
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
+msgstr "Tema"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr "Attualmente non è disponibile alcuna rete per %1"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
+msgid "There is currently no network."
+msgstr "Attualmente non è disponibile alcuna rete."
+
+#: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
+#: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
+msgid "This recipient was already selected"
+msgstr "Questo destinatario è già stato selezionato"
+
+#: ../src/qml/MessageInfoDialog.qml:108
+msgid "To"
+msgstr "A"
+
+#: ../src/qml/MultiRecipientInput.qml:33
+msgid "To:"
+msgstr "A:"
+
+#: ../src/qml/dateUtils.js:44
+msgid "Today"
+msgstr "Oggi"
+
+#: ../src/qml/MessageInfoDialog.qml:98
+msgid "Type"
+msgstr "Tipo"
+
+#: ../src/qml/NewGroupPage.qml:252
+msgid "Type a name..."
+msgstr "Inserisci un nome..."
+
+#: ../src/qml/Messages.qml:1255
+msgid "Typing.."
+msgstr "Sta scrivendo..."
+
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
+#: ../src/qml/MessageInfoDialog.qml:91
+msgid "Unknown"
+msgstr "Sconosciuto"
+
+#: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
+#: ../src/qml/ThumbnailContact.qml:44
+msgid "Unknown contact"
+msgstr "Contatto sconosciuto"
+
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "Video"
+
+#: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
+msgid "Video Preview"
+msgstr "Anteprima video"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
+msgid "Video attachment not supported"
+msgstr "Allegati video non supportati"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "Benvenuti nell'app di messaggistica!"
+
+#: ../src/qml/ListItemDemo.qml:133
+msgid "Welcome to your Ubuntu messaging app."
+msgstr "Benvenuti nella app di messaggi di Ubuntu."
+
+#: ../src/qml/ComposeBar.qml:568
+msgid "Write a broadcast message..."
+msgstr "Scrivi un messaggio broadcast..."
+
+#: ../src/qml/ComposeBar.qml:580
+msgid "Write a message..."
+msgstr "Scrivi un messaggio..."
+
+#: ../src/qml/dateUtils.js:49
+msgid "Yesterday"
+msgstr "Ieri"
+
+#: ../src/qml/AccountSectionDelegate.qml:130
+msgid "You are Admin"
+msgstr "Sei un Amministratore"
+
+#: ../src/qml/AccountSectionDelegate.qml:138
+msgid "You are not Admin"
+msgstr "Non sei un Amministratore"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+"Tentativo di inviare un file di grosse dimensioni (più di 300 kB): alcuni "
+"operatori potrebbero non essere in grado di inviarlo."
+
+#: ../src/qml/Messages.qml:1605
+msgid ""
+"You can't send messages to this group because the group is no longer active"
+msgstr "Non puoi inviare messaggi a questo gruppo poiché non è più attivo"
+
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
+msgid "You have to disable flight mode"
+msgstr "È necessario disabilitare la modalità aereo"
+
+#: ../src/qml/ComposeBar.qml:228
+msgid "You have to press and hold the record icon"
+msgstr "È necessario mantenere premuta l'icona del microfono"
+
+#: ../src/qml/AccountSectionDelegate.qml:91
+#, qt-format
+msgid "You invited %1 to this group"
+msgstr "Hai invitato %1 a questo gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:116
+msgid "You joined this group"
+msgstr "Ti sei unito a questo gruppo"
+
+#: ../src/qml/AccountSectionDelegate.qml:100
+msgid "You left this group"
+msgstr "Hai abbandonato questo gruppo"
+
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
+msgid "You need to select a SIM card"
+msgstr "È necessario selezionare una scheda SIM"
+
+#: ../src/qml/AccountSectionDelegate.qml:105
+#, qt-format
+msgid "You renamed group to: %1"
+msgstr "Hai cambiato  il nome del gruppo in: %1"
+
+#: ../src/qml/AccountSectionDelegate.qml:96
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Passati a %1 @ %2"
+
+#: ../src/qml/AccountSectionDelegate.qml:140
+msgid "You were removed from this group"
+msgstr "Sei stato rimosso da questo gruppo"
+
+#~ msgid "Add an online account"
+#~ msgstr "Aggiungi un account online"
+
+#~ msgid "Night Mode"
+#~ msgstr "Modalità Notte"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Yes"
+#~ msgstr "Sì"
+
+#~ msgid "%1 hour call"
+#~ msgid_plural "%1 hours call"
+#~ msgstr[0] "%1 ora"
+#~ msgstr[1] "%1 ore"
+
+#~ msgid "%1 minute call"
+#~ msgid_plural "%1 minutes call"
+#~ msgstr[0] "%1 minuto"
+#~ msgstr[1] "%1 minuti"
+
+#~ msgid "%1 second call"
+#~ msgid_plural "%1 seconds call"
+#~ msgstr[0] "%1 secondo"
+#~ msgstr[1] "%1 secondi"
+
+#~ msgid "Missing message data"
+#~ msgstr "Dati del messaggio mancanti"
+
+#~ msgid "New Message"
+#~ msgstr "Nuovo messaggio"
+
+#~ msgid "Create new"
+#~ msgstr "Crea nuovo"
+
+#~ msgid "Later"
+#~ msgstr "Più tardi"
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Passa alla SIM predefinita:"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ Crea nuovo"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Selezionare una SIM predefinita per tutti i messaggi in uscita. È "
+#~ "possibile modificale questa scelta nelle <a href=\"system_settings"
+#~ "\">Impostazioni</a>."

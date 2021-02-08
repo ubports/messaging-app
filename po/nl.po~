@@ -1,0 +1,943 @@
+# Dutch translation for messaging-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the messaging-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messaging-app\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"PO-Revision-Date: 2020-11-23 18:30+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
+"messaging-app/nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
+"X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
+
+#: ../src/qml/NewGroupPage.qml:250
+msgid "#channelName"
+msgstr "#kanaalNaam"
+
+#. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
+#: ../src/qml/ThreadDelegate.qml:74
+#, qt-format
+msgid "%1 + %2"
+msgstr "%1 + %2"
+
+#: ../src/qml/MainPage.qml:218
+#, qt-format
+msgid "%1 - Connecting..."
+msgstr "%1 - bezig met verbinden..."
+
+#: ../src/qml/AccountSectionDelegate.qml:119
+#, qt-format
+msgid "%1 added %2 to this group"
+msgstr "%1 heeft %2 toegevoegd aan deze groep"
+
+#: ../src/qml/AccountSectionDelegate.qml:93
+#, qt-format
+msgid "%1 invited %2 to this group"
+msgstr "%1 heeft %2 uitgenodigd voor deze groep"
+
+#: ../src/qml/AccountSectionDelegate.qml:127
+#, qt-format
+msgid "%1 is Admin"
+msgstr "%1 is beheerder"
+
+#: ../src/qml/AccountSectionDelegate.qml:135
+#, qt-format
+msgid "%1 is not Admin"
+msgstr "%1 is geen beheerder"
+
+#: ../src/qml/Messages.qml:1253
+#, qt-format
+msgid "%1 is typing.."
+msgstr "%1 is aan het typen..."
+
+#: ../src/qml/AccountSectionDelegate.qml:121
+#, qt-format
+msgid "%1 joined this group"
+msgstr "%1 is nu lid van deze groep"
+
+#: ../src/qml/AccountSectionDelegate.qml:113
+#, qt-format
+msgid "%1 left this group"
+msgstr "%1 heeft deze groep verlaten"
+
+#: ../src/qml/AccountSectionDelegate.qml:111
+#, qt-format
+msgid "%1 removed %2 from this group"
+msgstr "%1 heeft %2 weggestuurd uit deze groep"
+
+#: ../src/qml/AccountSectionDelegate.qml:107
+#, qt-format
+msgid "%1 renamed group to: %2"
+msgstr "%1 heeft de groepsnaam gewijzigd in '%2'"
+
+#: ../src/qml/AccountSectionDelegate.qml:125
+#, qt-format
+msgid "%1 set %2 as Admin"
+msgstr "%1 heeft %2 beheerder gemaakt"
+
+#: ../src/qml/AccountSectionDelegate.qml:133
+#, qt-format
+msgid "%1 set %2 as not Admin"
+msgstr "%1 heeft %2 niet-beheerder gemaakt"
+
+#: ../src/qml/AccountSectionDelegate.qml:89
+#, qt-format
+msgid "%1 was invited to this group"
+msgstr "%1 is uitgenodigd voor deze groep"
+
+#: ../src/qml/MessagingBottomEdge.qml:26
+msgid "+"
+msgstr "+"
+
+#: ../src/qml/AudioRecordingBar.qml:154
+msgid "<<< Swipe to cancel"
+msgstr "<<< Veeg om af te breken"
+
+#: ../src/qml/MessageInfoDialog.qml:60
+msgid "Accepted"
+msgstr "Geaccepteerd"
+
+#: ../src/qml/Messages.qml:846
+msgid "Add"
+msgstr "Toevoegen"
+
+#: ../src/qml/GroupChatInfoPage.qml:374
+msgid "Add participant:"
+msgstr "Deelnemer toevoegen:"
+
+#: ../src/qml/NewRecipientPage.qml:88
+msgid "Add recipient"
+msgstr "Ontvanger toevoegen"
+
+#: ../src/qml/ParticipantInfoPage.qml:135
+msgid "Add to contacts"
+msgstr "Toevoegen aan contactpersonen"
+
+#: ../src/qml/GroupChatInfoPage.qml:396
+msgid "Add..."
+msgstr "Toevoegen..."
+
+#: ../src/qml/ParticipantDelegate.qml:42
+msgid "Admin"
+msgstr "Beheerder"
+
+#: ../src/qml/NewRecipientPage.qml:112
+msgid "All"
+msgstr "Alle"
+
+#: ../src/qml/ThreadDelegate.qml:118
+#, qt-format
+msgid "Attachment: %1 audio clip"
+msgid_plural "Attachments: %1 audio clips"
+msgstr[0] "Bijlage: %1 audiobericht"
+msgstr[1] "Bijlagen: %1 audioberichten"
+
+#: ../src/qml/ThreadDelegate.qml:115
+#, qt-format
+msgid "Attachment: %1 contact"
+msgid_plural "Attachments: %1 contacts"
+msgstr[0] "Bijlage: %1 contactpersoon"
+msgstr[1] "Bijlage: %1 contactpersonen"
+
+#: ../src/qml/ThreadDelegate.qml:121
+#, qt-format
+msgid "Attachment: %1 file"
+msgid_plural "Attachments: %1 files"
+msgstr[0] "Bijlage: %1 bestand"
+msgstr[1] "Bijlage: %1 bestanden"
+
+#: ../src/qml/ThreadDelegate.qml:109
+#, qt-format
+msgid "Attachment: %1 image"
+msgid_plural "Attachments: %1 images"
+msgstr[0] "Bijlage: %1 afbeelding"
+msgstr[1] "Bijlage: %1 afbeeldingen"
+
+#: ../src/qml/ThreadDelegate.qml:112
+#, qt-format
+msgid "Attachment: %1 video"
+msgid_plural "Attachments: %1 videos"
+msgstr[0] "Bijlage: %1 video"
+msgstr[1] "Bijlage: %1 video's"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
+msgid "Audio attachment not supported"
+msgstr "De audiobijlage wordt niet ondersteund"
+
+#: ../src/qml/Messages.qml:1268
+msgid "Away"
+msgstr "Afwezig"
+
+#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
+#: ../src/qml/SettingsPage.qml:263
+msgid "Back"
+msgstr "Vorige"
+
+#: ../src/qml/Messages.qml:1270
+msgid "Busy"
+msgstr "Bezig"
+
+#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+msgid "Call"
+msgstr "Oproep"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:62
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
+#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
+#: ../src/qml/MessagingContactEditorPage.qml:36
+#: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
+msgid "Change"
+msgstr "Aanpassen"
+
+#. TRANSLATORS: %1 refers to the SIM card name or account name
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
+#, qt-format
+msgid "Change all Messaging associations to %1?"
+msgstr "Wil je alle berichttoewijzingen overzetten naar %1?"
+
+#: ../src/qml/GroupChatInfoPage.qml:120
+msgid "Channel Info"
+msgstr "Kanaalinformatie"
+
+#: ../src/qml/NewGroupPage.qml:232
+msgid "Channel name:"
+msgstr "Kanaalnaam:"
+
+#: ../src/qml/Dialogs/InformationDialog.qml:30
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:32
+#: ../src/qml/MessageInfoDialog.qml:168
+msgid "Close"
+msgstr "Sluiten"
+
+#: ../src/qml/EmptyState.qml:50
+msgid "Compose a new message by swiping up from the bottom of the screen."
+msgstr ""
+"Stel een bericht op door omhoog te vegen vanaf de onderkant van het scherm."
+
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+msgid "Contact"
+msgstr "Contactpersoon"
+
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/RegularMessageDelegate_irc.qml:171
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: ../src/qml/Messages.qml:1105
+#, qt-format
+msgid "Create %1 Group..."
+msgstr "%1-groep aanmaken..."
+
+#: ../src/qml/Messages.qml:1075
+msgid "Create MMS Group..."
+msgstr "MMS-groep aanmaken..."
+
+#: ../src/qml/NewGroupPage.qml:81
+msgid "Creating Group..."
+msgstr "Bezig met aanmaken..."
+
+#: ../src/qml/SettingsPage.qml:50
+msgid "Dark"
+msgstr "Donker"
+
+#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/RegularMessageDelegate_irc.qml:151
+#: ../src/qml/ThreadDelegate.qml:167
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: ../src/qml/MessageInfoDialog.qml:64
+msgid "Deleted"
+msgstr "Verwijderd"
+
+#: ../src/qml/MessageInfoDialog.qml:54
+msgid "Delivered"
+msgstr "Verzonden"
+
+#: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:62
+msgid "Don't ask again"
+msgstr "Niet meer vragen"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
+msgid "Don't show again"
+msgstr "Niet meer tonen"
+
+#: ../src/qml/ThreadDelegate.qml:346
+msgid "Draft:"
+msgstr "Concept:"
+
+#: ../src/qml/MessagingContactViewPage.qml:96
+msgid "Edit"
+msgstr "Aanpassen"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:35
+msgid "Enable"
+msgstr "Inschakelen"
+
+#: ../src/qml/SettingsPage.qml:56
+msgid "Enable MMS messages"
+msgstr "MMS-berichten inschakelen"
+
+#: ../src/qml/GroupChatInfoPage.qml:182
+msgid "End group"
+msgstr "Groep opheffen"
+
+#: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
+msgid "Failed"
+msgstr "Mislukt"
+
+#: ../src/qml/NewGroupPage.qml:170
+msgid "Failed to create group"
+msgstr "De groep kan niet worden aangemaakt"
+
+#: ../src/qml/GroupChatInfoPage.qml:238
+msgid "Failed to delete group"
+msgstr "De groep kan niet worden verwijderd"
+
+#: ../src/qml/GroupChatInfoPage.qml:136
+msgid "Failed to leave channel"
+msgstr "Het kanaal kan niet worden verlaten"
+
+#: ../src/qml/GroupChatInfoPage.qml:138
+msgid "Failed to leave group"
+msgstr "De groep kan niet worden verlaten"
+
+#: ../src/qml/GroupChatInfoPage.qml:248
+msgid "Failed to modify group title"
+msgstr "De groepsnaam kan niet worden aangepast"
+
+#: ../src/qml/SendMessageValidator.qml:221
+msgid "Failed to send the message"
+msgstr "Het bericht kan niet worden verstuurd"
+
+#: ../src/qml/MessageStatusIcon.qml:75
+msgid "Failed!"
+msgstr "Mislukt!"
+
+#: ../src/qml/NewRecipientPage.qml:112
+msgid "Favorites"
+msgstr "Favorieten"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
+msgid "File size warning"
+msgstr "Bestandsgroottewaarschuwing"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:33
+msgid "File type not supported"
+msgstr "Dit bestandstype wordt niet ondersteund"
+
+#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/RegularMessageDelegate_irc.qml:179
+msgid "Forward"
+msgstr "Doorsturen"
+
+#: ../src/qml/MessageInfoDialog.qml:102
+msgid "From"
+msgstr "Van"
+
+#: ../src/qml/ListItemDemo.qml:50
+msgid "Got it"
+msgstr "Ik begrijp het"
+
+#: ../src/qml/MessageInfoDialog.qml:87
+msgid "Group"
+msgstr "Groep"
+
+#: ../src/qml/Messages.qml:817
+#, qt-format
+msgid "Group (%1)"
+msgstr "Groep (%1)"
+
+#: ../src/qml/GroupChatInfoPage.qml:122
+msgid "Group Info"
+msgstr "Groepsinformatie"
+
+#: ../src/qml/AccountSectionDelegate.qml:142
+#: ../src/qml/GroupChatInfoPage.qml:240
+msgid "Group has been dissolved"
+msgstr "De groep is opgeheven"
+
+#: ../src/qml/NewGroupPage.qml:234
+msgid "Group name:"
+msgstr "Groepsnaam:"
+
+#: ../src/qml/RegularMessageDelegate_irc.qml:188
+msgid "IRC"
+msgstr "IRC"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
+msgid ""
+"If you wish to edit your SIM and other mobile preferences, please visit <a "
+"href=\"system_settings\">System Settings</a>."
+msgstr ""
+"Ga naar de <a href=\"system_settings\">systeeminstellingen</a> als je je "
+"simkaart of andere mobiele instellingen wilt aanpassen."
+
+#: ../src/qml/AttachmentPanel.qml:104
+msgid "Image"
+msgstr "Afbeelding"
+
+#: ../src/qml/AttachmentDelegates/PreviewerImage.qml:37
+msgid "Image Preview"
+msgstr "Voorvertoning"
+
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ParticipantInfoPage.qml:35
+#: ../src/qml/RegularMessageDelegate_irc.qml:186
+msgid "Info"
+msgstr "Informatie"
+
+#: ../src/qml/Messages.qml:314
+msgid "It is not possible to send messages at the moment"
+msgstr "Het is momenteel niet mogelijk om berichten te versturen"
+
+#: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
+msgid "It is not possible to send messages in flight mode"
+msgstr "Schakel de vliegtuigstand uit om berichten te versturen"
+
+#: ../src/qml/SendMessageValidator.qml:220
+msgid "It is not possible to send the message"
+msgstr "Het bericht kan niet worden verstuurd"
+
+#: ../src/qml/Messages.qml:1099
+msgid "Join IRC Channel..."
+msgstr "IRC-kanaal binnengaan..."
+
+#: ../src/qml/NewGroupPage.qml:88
+msgid "Join IRC channel:"
+msgstr "Ga IRC-kanaal binnen:"
+
+#: ../src/qml/GroupChatInfoPage.qml:112
+msgid "Leave channel"
+msgstr "Kanaal verlaten"
+
+#: ../src/qml/GroupChatInfoPage.qml:114
+msgid "Leave group"
+msgstr "Groep verlaten"
+
+#: ../src/qml/SettingsPage.qml:49
+msgid "Light"
+msgstr "Licht"
+
+#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+msgid "MMS"
+msgstr "MMS"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:31
+msgid ""
+"MMS support is required to send this message.\n"
+"Do you want to enable it?"
+msgstr ""
+"Er is mms-ondersteuning vereist om dit bericht te kunnen versturen.\n"
+"Wil je mms inschakelen?"
+
+#: ../src/qml/Dialogs/MMSEnableDialog.qml:30
+msgid "MMS support required"
+msgstr "MMS-ondersteuning vereist"
+
+#: ../src/qml/GroupChatInfoPage.qml:149
+msgid "Me"
+msgstr "Ik"
+
+#: ../src/qml/ContactSearchWidget.qml:44
+msgid "Members:"
+msgstr "Leden:"
+
+#: ../src/qml/MessageInfoDialog.qml:95
+msgid "Message info"
+msgstr "Berichtinformatie"
+
+#: ../src/qml/MainPage.qml:77
+msgid "Messages"
+msgstr "Berichten"
+
+#: ../src/messaging-app.desktop.in.in.h:4
+msgid "Messages;SMS;MMS;Text Messages;Text"
+msgstr "Berichten;sms;mms;Tekstberichten;Tekst"
+
+#: ../src/messaging-app.desktop.in.in.h:1
+msgid "Messaging"
+msgstr "Berichten"
+
+#: ../src/messaging-app.desktop.in.in.h:2
+msgid "Messaging App"
+msgstr "Berichtenapp"
+
+#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+msgid "Messaging application"
+msgstr "Berichtenapplicatie"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
+msgid "Multiple MMS Messages"
+msgstr "Meerdere mms-berichten"
+
+#: ../src/qml/MessageDelegate.qml:184
+msgid "Myself"
+msgstr "Ik"
+
+#: ../src/qml/NewGroupPage.qml:94
+#, qt-format
+msgid "New %1 Group"
+msgstr "Nieuwe %1-groep"
+
+#: ../src/qml/NewGroupPage.qml:84
+msgid "New MMS Group"
+msgstr "Nieuwe mms-groep"
+
+#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
+msgid "New message"
+msgstr "Nieuw bericht"
+
+#: ../src/qml/Messages.qml:310 ../src/qml/SendMessageValidator.qml:217
+msgid "No SIM card"
+msgstr "Geen simkaart"
+
+#: ../src/qml/Messages.qml:307 ../src/qml/SendMessageValidator.qml:214
+msgid "No SIM card selected"
+msgstr "Geen simkaart gekozen"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:28
+msgid "No network"
+msgstr "Geen bereik"
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
+msgid "No permission to access microphone"
+msgstr "Toegang tot microfoon geweigerd"
+
+#: ../src/qml/Messages.qml:324
+msgid "Not available"
+msgstr "Niet beschikbaar"
+
+#: ../src/qml/ContactSearchWidget.qml:67
+msgid "Number or contact name"
+msgstr "Nummer of naam van contactpersoon"
+
+#: ../src/qml/Messages.qml:1266
+msgid "Offline"
+msgstr "Offline"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
+#: ../src/qml/Dialogs/SimLockedDialog.qml:49
+msgid "Ok"
+msgstr "Oké"
+
+#: ../src/qml/Messages.qml:1264
+msgid "Online"
+msgstr "Online"
+
+#: ../src/qml/GroupChatInfoPage.qml:374
+#, qt-format
+msgid "Participants: %1"
+msgstr "Deelnemers: %1"
+
+#: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
+msgid "Pending"
+msgstr "In afwachting"
+
+#: ../src/qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Kies een toe te voegen account."
+
+#: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
+msgid ""
+"Please grant access on <a href=\"system_settings\">System Settings &gt; "
+"Security &amp; Privacy</a>."
+msgstr ""
+"Verleen toegang via <a href=\"system_settings\">Systeeminstellingen &gt; "
+"Beveiliging en privacy</a>."
+
+#: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
+msgid "Please insert a SIM card and try again."
+msgstr "Plaats een simkaart en probeer het opnieuw."
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:37
+msgid ""
+"Please unlock your SIM card to call or send a message. You can unlock your "
+"SIM card from the Network Indicator at the top of the screen or by visiting "
+"<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
+msgstr ""
+"Ontgrendel je simkaart om te bellen of een bericht te versturen. Je kunt je "
+"simkaart ontgrendelen via het netwerkmenu bovenaan het scherm of door naar "
+"<a href=\"system_settings\">Systeeminstellingen &gt; Beveiliging en privacy</"
+"a> te gaan."
+
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+msgid "Read"
+msgstr "Gelezen"
+
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+msgid "Received"
+msgstr "Ontvangen"
+
+#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
+#: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: ../src/qml/ParticipantInfoPage.qml:181
+msgid "Remove from group"
+msgstr "Wegsturen uit groep"
+
+#: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
+#, qt-format
+msgid ""
+"Removing last member will cause '%1' to be dissolved. Would you like to "
+"continue?"
+msgstr ""
+"Door het laatste groepslid weg te sturen, wordt '%1' opgeheven. Weet je het "
+"zeker?"
+
+#: ../src/qml/AccountSectionDelegate.qml:103
+#, qt-format
+msgid "Renamed group to: %1"
+msgstr "De groepsnaam is gewijzigd in '%1'"
+
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/RegularMessageDelegate_irc.qml:163
+msgid "Retry"
+msgstr "Opnieuw proberen"
+
+#: ../src/qml/Dialogs/SimLockedDialog.qml:26
+msgid "SIM Card is locked"
+msgstr "Simkaart is vergrendeld"
+
+#: ../src/qml/MessageDelegate.qml:176
+msgid "SMS"
+msgstr "SMS"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:86
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
+#: ../src/qml/MessagingContactEditorPage.qml:49
+msgid "Save"
+msgstr "Opslaan"
+
+#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
+msgid "Search"
+msgstr "Zoeken"
+
+#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
+msgid "Search..."
+msgstr "Zoeken…"
+
+#: ../src/qml/ParticipantInfoPage.qml:135
+msgid "See in contacts"
+msgstr "Bekijken in contactpersonen"
+
+#: ../src/qml/MainPage.qml:197
+msgid "Select"
+msgstr "Kiezen"
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
+msgid "Send"
+msgstr "Versturen"
+
+#: ../src/qml/ParticipantInfoPage.qml:166
+msgid "Send private message"
+msgstr "Privébericht versturen"
+
+#: ../src/qml/MessageInfoDialog.qml:143
+msgid "Sent"
+msgstr "Verzonden"
+
+#: ../src/qml/ParticipantInfoPage.qml:153
+msgid "Set as admin"
+msgstr "Instellen als beheerder"
+
+#: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../src/qml/AttachmentDelegates/Previewer.qml:93
+#: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
+#: ../src/qml/MessagingContactViewPage.qml:85
+msgid "Share"
+msgstr "Delen"
+
+#: ../src/qml/SettingsPage.qml:63
+msgid "Simplified conversation view"
+msgstr "Vereenvoudigde gespreksweergave"
+
+#: ../src/qml/SettingsPage.qml:43
+msgid "Sort by timestamp"
+msgstr "Chronologisch ordenen"
+
+#: ../src/qml/SettingsPage.qml:44
+msgid "Sort by title"
+msgstr "Alfabetisch ordenen"
+
+#: ../src/qml/SettingsPage.qml:70
+msgid "Sort threads"
+msgstr "Op gesprek ordenen"
+
+#: ../src/qml/MessageInfoDialog.qml:163
+msgid "Status"
+msgstr "Status"
+
+#: ../src/qml/GroupChatInfoPage.qml:128
+msgid "Successfully left channel"
+msgstr "Je hebt het kanaal verlaten"
+
+#: ../src/qml/GroupChatInfoPage.qml:130
+msgid "Successfully left group"
+msgstr "Je hebt de groep verlaten"
+
+#: ../src/qml/ListItemDemo.qml:227
+msgid "Swipe to delete"
+msgstr "Veeg om te verwijderen"
+
+#: ../src/qml/ListItemDemo.qml:177
+msgid "Swipe to reveal actions"
+msgstr "Veeg om acties te tonen"
+
+#: ../src/qml/SettingsPage.qml:48
+msgid "System Theme"
+msgstr "Systeemthema"
+
+#: ../src/qml/MessageInfoDialog.qml:56
+msgid "Temporarily Failed"
+msgstr "Tijdelijk mislukt"
+
+#: ../src/qml/MessageDelegate.qml:94
+#: ../src/qml/RegularMessageDelegate_irc.qml:66
+msgid "Text message copied to clipboard"
+msgstr "Het tekstbericht is gekopieerd naar het klembord"
+
+#: ../src/qml/Messages.qml:505
+msgid ""
+"The SIM card does not provide the owner's phone number. Because of that "
+"sending MMS group messages is not possible."
+msgstr ""
+"Het telefoonnummer van de eigenaar staat niet op de simkaart. Hierdoor is "
+"het versturen van mms-groepsberichten niet mogelijk."
+
+#: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
+msgid ""
+"The content you are sending requires one MMS message per recipient, so you "
+"might get charged for multiple messages.\n"
+"Do you want to continue?"
+msgstr ""
+"De inhoud die je probeert te versturen, vereist één mms-bericht per "
+"ontvanger. Mogelijk worden meerdere berichten in rekening gebracht.\n"
+"Weet je het zeker?"
+
+#: ../src/qml/Messages.qml:325
+msgid "The selected account is not available at the moment"
+msgstr "Het gekozen account is momenteel niet beschikbaar"
+
+#: ../src/qml/SettingsPage.qml:78
+msgid "Theme"
+msgstr "Thema"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
+#, qt-format
+msgid "There is currently no network on %1"
+msgstr "Je hebt momenteel geen bereik op %1"
+
+#: ../src/qml/Dialogs/NoNetworkDialog.qml:29
+msgid "There is currently no network."
+msgstr "Je hebt momenteel geen bereik."
+
+#: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
+#: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
+msgid "This recipient was already selected"
+msgstr "Deze ontvanger is reeds geselecteerd"
+
+#: ../src/qml/MessageInfoDialog.qml:108
+msgid "To"
+msgstr "Aan"
+
+#: ../src/qml/MultiRecipientInput.qml:33
+msgid "To:"
+msgstr "Aan:"
+
+#: ../src/qml/dateUtils.js:44
+msgid "Today"
+msgstr "Vandaag"
+
+#: ../src/qml/MessageInfoDialog.qml:98
+msgid "Type"
+msgstr "Soort"
+
+#: ../src/qml/NewGroupPage.qml:252
+msgid "Type a name..."
+msgstr "Typ een naam..."
+
+#: ../src/qml/Messages.qml:1255
+msgid "Typing.."
+msgstr "Aan het typen..."
+
+#: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
+#: ../src/qml/MessageInfoDialog.qml:91
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
+#: ../src/qml/ThumbnailContact.qml:44
+msgid "Unknown contact"
+msgstr "Onbekende contactpersoon"
+
+#: ../src/qml/AttachmentPanel.qml:117
+msgid "Video"
+msgstr "Video"
+
+#: ../src/qml/AttachmentDelegates/PreviewerVideo.qml:32
+msgid "Video Preview"
+msgstr "Voorvertoning"
+
+#: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:31
+msgid "Video attachment not supported"
+msgstr "Deze videobijlage wordt niet ondersteund"
+
+#: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:27
+msgid "Welcome to your Messaging app!"
+msgstr "Welkom in je berichtenapp!"
+
+#: ../src/qml/ListItemDemo.qml:133
+msgid "Welcome to your Ubuntu messaging app."
+msgstr "Welkom in je Ubuntu-berichtenapp."
+
+#: ../src/qml/ComposeBar.qml:568
+msgid "Write a broadcast message..."
+msgstr "Stel een bericht op…"
+
+#: ../src/qml/ComposeBar.qml:580
+msgid "Write a message..."
+msgstr "Stel een bericht op…"
+
+#: ../src/qml/dateUtils.js:49
+msgid "Yesterday"
+msgstr "Gisteren"
+
+#: ../src/qml/AccountSectionDelegate.qml:130
+msgid "You are Admin"
+msgstr "Je bent beheerder"
+
+#: ../src/qml/AccountSectionDelegate.qml:138
+msgid "You are not Admin"
+msgstr "Je bent geen beheerder"
+
+#: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
+msgid ""
+"You are trying to send big files (over 300Kb). Some operators might not be "
+"able to send it."
+msgstr ""
+"Je probeert grote bestanden (meer dan 300Kb) te versturen. Sommige providers "
+"kunnen dit mogelijk niet aan."
+
+#: ../src/qml/Messages.qml:1605
+msgid ""
+"You can't send messages to this group because the group is no longer active"
+msgstr "Je kunt hier geen berichten plaatsen: de groep bestaat niet meer"
+
+#: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
+msgid "You have to disable flight mode"
+msgstr "Schakel de vliegtuigstand uit"
+
+#: ../src/qml/ComposeBar.qml:228
+msgid "You have to press and hold the record icon"
+msgstr "Houd het opnamepictogram ingedrukt"
+
+#: ../src/qml/AccountSectionDelegate.qml:91
+#, qt-format
+msgid "You invited %1 to this group"
+msgstr "Je hebt %1 uitgenodigd voor deze groep"
+
+#: ../src/qml/AccountSectionDelegate.qml:116
+msgid "You joined this group"
+msgstr "Je bent lid geworden van deze groep"
+
+#: ../src/qml/AccountSectionDelegate.qml:100
+msgid "You left this group"
+msgstr "Je hebt deze groep verlaten"
+
+#: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
+msgid "You need to select a SIM card"
+msgstr "Kies een simkaart"
+
+#: ../src/qml/AccountSectionDelegate.qml:105
+#, qt-format
+msgid "You renamed group to: %1"
+msgstr "Je hebt de groepsnaam gewijzigd in '%1'"
+
+#: ../src/qml/AccountSectionDelegate.qml:96
+#, qt-format
+msgid "You switched to %1 @ %2"
+msgstr "Je bent overgeschakeld naar %1 @ %2"
+
+#: ../src/qml/AccountSectionDelegate.qml:140
+msgid "You were removed from this group"
+msgstr "Je bent weggestuurd uit deze groep"
+
+#~ msgid "Add an online account"
+#~ msgstr "Online-account toevoegen"
+
+#~ msgid "Night Mode"
+#~ msgstr "Nachtmodus"
+
+#~ msgid "No"
+#~ msgstr "Nee"
+
+#~ msgid "Yes"
+#~ msgstr "Ja"
+
+#~ msgid "%1 hour call"
+#~ msgid_plural "%1 hours call"
+#~ msgstr[0] "gesprek van %1 uur"
+#~ msgstr[1] "gesprek van %1 uur"
+
+#~ msgid "%1 minute call"
+#~ msgid_plural "%1 minutes call"
+#~ msgstr[0] "gesprek van %1 minuut"
+#~ msgstr[1] "gesprek van %1 minuten"
+
+#~ msgid "%1 second call"
+#~ msgid_plural "%1 seconds call"
+#~ msgstr[0] "gesprek van %1 seconde"
+#~ msgstr[1] "gesprek van %1 seconden"
+
+#~ msgid "Missing message data"
+#~ msgstr "Berichtgegevens ontbreken"
+
+#~ msgid "New Message"
+#~ msgstr "Nieuw bericht"
+
+#~ msgid "Later"
+#~ msgstr "Later"
+
+#~ msgid ""
+#~ "Select a default SIM for all outgoing messages. You can always alter your "
+#~ "choice in <a href=\"system_settings\">System Settings</a>."
+#~ msgstr ""
+#~ "Selecteer de gewenste standaard simkaart voor alle uitgaande berichten. U "
+#~ "kunt deze keuze altijd wijzigen in de <a href=\"system_settings"
+#~ "\">Systeeminstellingen</a>."
+
+#~ msgid "Switch to default SIM:"
+#~ msgstr "Wissel naar de standaard simkaart:"
+
+#~ msgid "Create new"
+#~ msgstr "Nieuw aanmaken"
+
+#~ msgid "+ Create New"
+#~ msgstr "+ nieuw aanmaken"
