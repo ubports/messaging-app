@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
 "PO-Revision-Date: 2020-02-17 11:21+0000\n"
 "Last-Translator: HSN80 <hosseinabbasi80@outlook.com>\n"
 "Language-Team: Persian <https://translate.ubports.com/projects/ubports/"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#نام‌کانال"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "%1 مدیر است"
 msgid "%1 is not Admin"
 msgstr "%1 مدیر نیست"
 
-#: ../src/qml/Messages.qml:1253
+#: ../src/qml/Messages.qml:1256
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 در حال نوشتن…"
@@ -107,7 +107,7 @@ msgstr "برای لغو بکشید >>>"
 msgid "Accepted"
 msgstr "پذیرفته‌‌شده"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "افزودن"
 
@@ -135,31 +135,31 @@ msgstr "مدیر"
 msgid "All"
 msgstr "همه"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "پیوست: %1 کلیپ صوتی"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "ضمیمه: %1 مخاطب"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "ضمیمه: %1 پرونده"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "ضمیمه: %1 تصویر"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -169,21 +169,21 @@ msgstr[0] "ضمیمه: %1 ویدیو"
 msgid "Audio attachment not supported"
 msgstr "پیوست‌های صوتی پشتیبانی نمی‌شوند"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "غایب"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "عقب"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "مشغول"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "تماس"
 
@@ -227,21 +227,21 @@ msgstr "بستن"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "با لغزش به بالا از پایین صفحه، پیامی جدید بنویسید."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "مخاطب"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "رونوشت"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "ساخت %1 گروه..."
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "ساخت گروه MMS..."
 
@@ -253,9 +253,10 @@ msgstr "ساختن گروه..."
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "حذف"
 
@@ -275,7 +276,7 @@ msgstr "دیگر پرسیده نشود"
 msgid "Don't show again"
 msgstr "دیگر نشان داده نشود"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr ""
 
@@ -339,7 +340,7 @@ msgstr "هشدار اندازهٔ پرونده"
 msgid "File type not supported"
 msgstr "نوع پرونده پشتیبانی نمی‌شود"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "فرستادن"
@@ -356,7 +357,7 @@ msgstr "گرفتم"
 msgid "Group"
 msgstr "گروه"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "گروه (%1)"
@@ -394,7 +395,7 @@ msgstr "تصویر"
 msgid "Image Preview"
 msgstr "پیش‌نمایش تصویر"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -412,7 +413,7 @@ msgstr "ارسال پیام در حالت پرواز امکان پذیر نیس�
 msgid "It is not possible to send the message"
 msgstr "ارسال پیام امکان پذیر نیست"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "به کانال IRC بپیوندید ..."
 
@@ -432,7 +433,7 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "پیام چندرسانه‌ای"
 
@@ -482,7 +483,7 @@ msgstr "برنامه‌ی پیام‌رسان"
 msgid "Multiple MMS Messages"
 msgstr ""
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "خودم"
 
@@ -523,7 +524,7 @@ msgstr ""
 msgid "Number or contact name"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "برون‌خط"
 
@@ -533,9 +534,16 @@ msgstr "برون‌خط"
 msgid "Ok"
 msgstr "قبول"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "برخط"
+
+#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -580,7 +588,7 @@ msgstr "خوانده شده"
 msgid "Received"
 msgstr "دریافتی"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -602,7 +610,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "تلاش دوباره"
@@ -611,7 +619,7 @@ msgstr "تلاش دوباره"
 msgid "SIM Card is locked"
 msgstr "سیم کارت قفل شده است"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "پیام کوتاه"
 
@@ -714,7 +722,7 @@ msgstr "موقّتاً شکست خورد"
 msgid "Text message copied to clipboard"
 msgstr "پیام متنی در حافظه رونوشت شد"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -769,7 +777,7 @@ msgstr "گونه"
 msgid "Type a name..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1255
+#: ../src/qml/Messages.qml:1258
 msgid "Typing.."
 msgstr "در حال نوشتن…"
 
@@ -803,12 +811,12 @@ msgstr "به کارهٔ پیام‌رسانتان خوش آمدید!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "به اپ پیام‌رسانی اوبونتویتان خوش آمدید."
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:566
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "نوشتن یک پیام…"
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:578
 msgid "Write a message..."
 msgstr "نوشتن یک پیام…"
 
@@ -832,7 +840,7 @@ msgstr ""
 "دارید تلاش می‌کنید پرونده‌ّای بزرگی (بالای ۳۰۰ ک.ب) را بفرستید. ممکن است برخی "
 "اپراتورها نتوانند آن را بفرستند."
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
@@ -841,7 +849,7 @@ msgstr ""
 msgid "You have to disable flight mode"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "باید نقشک ضبط را فشار داده و نگه دارید"
 

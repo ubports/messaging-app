@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-11-23 18:30+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"PO-Revision-Date: 2021-01-31 17:52+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#názevKanálu"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "%1 je Správce"
 msgid "%1 is not Admin"
 msgstr "%1 není Správce"
 
-#: ../src/qml/Messages.qml:1253
+#: ../src/qml/Messages.qml:1256
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 píše…"
@@ -107,7 +107,7 @@ msgstr "<<< Pro zrušení přetáhněte"
 msgid "Accepted"
 msgstr "Přijaté"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "Přidat"
 
@@ -135,7 +135,7 @@ msgstr "Správce"
 msgid "All"
 msgstr "Vše"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
@@ -143,7 +143,7 @@ msgstr[0] "Příloha: %1 audio soubor"
 msgstr[1] "Přílohy: %1 audio soubory"
 msgstr[2] "Přílohy: %1 audio souborů"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -151,7 +151,7 @@ msgstr[0] "Příloha: %1 kontakt"
 msgstr[1] "Přílohy: %1 kontakty"
 msgstr[2] "Přílohy: %1 kontaktů"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -159,7 +159,7 @@ msgstr[0] "Příloha: %1 soubor"
 msgstr[1] "Přílohy: %1 soubory"
 msgstr[2] "Přílohy: %1 souborů"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -167,7 +167,7 @@ msgstr[0] "Příloha: %1 obrázek"
 msgstr[1] "Přílohy: %1 obrázky"
 msgstr[2] "Přílohy: %1 obrázků"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -179,21 +179,21 @@ msgstr[2] "Přílohy: %1 videí"
 msgid "Audio attachment not supported"
 msgstr "Přiložený audio soubor není podporován"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Nepřítomný"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "Zpět"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "Zaneprázděn(a)"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "Hovor"
 
@@ -239,21 +239,21 @@ msgstr ""
 "Pro vytvoření nové textové zprávy vytáhněte nový formulář ze spodního okraje "
 "obrazovky."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "Kontakt"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Vytvořit %1 skupinu…"
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "Vytvořit MMS skupinu…"
 
@@ -265,9 +265,10 @@ msgstr "Vytváření skupiny…"
 msgid "Dark"
 msgstr "Tmavý"
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "Smazat"
 
@@ -287,7 +288,7 @@ msgstr "Neptat se znovu"
 msgid "Don't show again"
 msgstr "Znovu nezobrazovat"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Koncept:"
 
@@ -351,7 +352,7 @@ msgstr "Varování ohledně velikosti souboru"
 msgid "File type not supported"
 msgstr "Typ souboru není podporován"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "Přeposlat"
@@ -368,7 +369,7 @@ msgstr "Pochopil(a) jsem"
 msgid "Group"
 msgstr "Skupina"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "Skupina (%1)"
@@ -406,7 +407,7 @@ msgstr "Obrázek"
 msgid "Image Preview"
 msgstr "Náhled obrázku"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -424,7 +425,7 @@ msgstr "V režimu Letadlo nelze odesílat zprávy"
 msgid "It is not possible to send the message"
 msgstr "Není možné odeslat zprávu"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "Připojit se k IRC kanálu…"
 
@@ -444,7 +445,7 @@ msgstr "Opustit skupinu"
 msgid "Light"
 msgstr "Světlý"
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -496,7 +497,7 @@ msgstr "Aplikace pro posílání a příjem zpráv"
 msgid "Multiple MMS Messages"
 msgstr "Vícero MMS zpráv"
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "Já"
 
@@ -537,7 +538,7 @@ msgstr "Nedostupné"
 msgid "Number or contact name"
 msgstr "Číslo nebo jméno kontaktu"
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "Nepřipojeno"
 
@@ -547,9 +548,19 @@ msgstr "Nepřipojeno"
 msgid "Ok"
 msgstr "Přijmout"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "Připojen(a)"
+
+#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
+"Jejda, v systému MMS došlo k chybě a tuto zprávu nelze načíst.  "
+"Zkontrolujte, zda jsou mobilní data ZAPNUTÁ a nastavení MMS jsou správná, a "
+"poté požádejte odesílatele, aby to zkusil znovu."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -594,7 +605,7 @@ msgstr "Přečtené"
 msgid "Received"
 msgstr "Doručené"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -618,7 +629,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr "Skupina přejmenována na: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "Zkusit znovu"
@@ -627,7 +638,7 @@ msgstr "Zkusit znovu"
 msgid "SIM Card is locked"
 msgstr "SIM karta je uzamčena"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "SMS"
 
@@ -728,7 +739,7 @@ msgstr "Dočasný nezdar"
 msgid "Text message copied to clipboard"
 msgstr "Textová zpráva zkopírována do schránky"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -788,7 +799,7 @@ msgstr "Typ"
 msgid "Type a name..."
 msgstr "Napište název…"
 
-#: ../src/qml/Messages.qml:1255
+#: ../src/qml/Messages.qml:1258
 msgid "Typing.."
 msgstr "Píše…"
 
@@ -822,11 +833,11 @@ msgstr "Vítejte v aplikaci Zprávy!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Vítejte aplikaci zprávy."
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:566
 msgid "Write a broadcast message..."
 msgstr "Napište zprávu, která má být rozeslána…"
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:578
 msgid "Write a message..."
 msgstr "Napsat zprávu..."
 
@@ -850,7 +861,7 @@ msgstr ""
 "Snažíte se odeslat velké soubory (přes 300Kb). Někteří operátoři to nemusí "
 "být schopni odeslat."
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "Této skupině nelze odeslat zprávu, protože není dlouhodobě aktivní"
@@ -859,7 +870,7 @@ msgstr "Této skupině nelze odeslat zprávu, protože není dlouhodobě aktivn�
 msgid "You have to disable flight mode"
 msgstr "Je třeba vypnout režim Letadlo"
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "Klepněte na a podržte ikonu nahrávání"
 

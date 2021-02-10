@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
-"PO-Revision-Date: 2020-10-27 14:16+0000\n"
+"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"PO-Revision-Date: 2021-02-08 06:06+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pt/>\n"
@@ -25,7 +25,7 @@ msgid "#channelName"
 msgstr "#channelName"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -55,7 +55,7 @@ msgstr "%1 é Admin"
 msgid "%1 is not Admin"
 msgstr "%1 não é Admin"
 
-#: ../src/qml/Messages.qml:1253
+#: ../src/qml/Messages.qml:1256
 #, qt-format
 msgid "%1 is typing.."
 msgstr "%1 está a escrever..."
@@ -107,7 +107,7 @@ msgstr "<<< Deslize para cancelar"
 msgid "Accepted"
 msgstr "Aceite"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "Adicionar"
 
@@ -135,35 +135,35 @@ msgstr "Admin"
 msgid "All"
 msgstr "Todos"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] "Anexo: %1 clip de som"
 msgstr[1] "Anexos: %1 clips de som"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] "Anexo: %1 contacto"
 msgstr[1] "Anexos: %1 contactos"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] "Anexo: %1 ficheiro"
 msgstr[1] "Anexos: %1 ficheiros"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] "Anexo: %1 imagem"
 msgstr[1] "Anexos: %1 imagens"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -174,21 +174,21 @@ msgstr[1] "Anexos: %1 vídeos"
 msgid "Audio attachment not supported"
 msgstr "Anexo de áudio não suportado"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Ausente"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
 msgstr "Voltar"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "Ocupado(a)"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "Chamar"
 
@@ -233,21 +233,21 @@ msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 "Para compor uma nova mensagem, deslize para cima a partir do fundo do ecrã."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "Contacto"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Criar grupo %1..."
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "Criar grupo de MMS..."
 
@@ -259,9 +259,10 @@ msgstr "A criar grupo..."
 msgid "Dark"
 msgstr "Escuro"
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -281,7 +282,7 @@ msgstr "Não voltar a perguntar"
 msgid "Don't show again"
 msgstr "Não mostrar de novo"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Rascunho:"
 
@@ -345,7 +346,7 @@ msgstr "Aviso de tamanho do ficheiro"
 msgid "File type not supported"
 msgstr "Tipo de ficheiro não suportado"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "Reencaminhar"
@@ -362,7 +363,7 @@ msgstr "Entendido"
 msgid "Group"
 msgstr "Grupo"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "Grupo (%1)"
@@ -400,7 +401,7 @@ msgstr "Imagem"
 msgid "Image Preview"
 msgstr "Pré-visualizar imagem"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -418,7 +419,7 @@ msgstr "É impossível enviar mensagens no modo avião"
 msgid "It is not possible to send the message"
 msgstr "É impossível enviar a mensagem"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "Juntar-se ao canal de IRC..."
 
@@ -438,7 +439,7 @@ msgstr "Sair do grupo"
 msgid "Light"
 msgstr "Claro"
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -490,7 +491,7 @@ msgstr "Aplicação de mensagens"
 msgid "Multiple MMS Messages"
 msgstr "Múltiplas mensagens de MMS"
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "Eu"
 
@@ -531,7 +532,7 @@ msgstr "Não disponível"
 msgid "Number or contact name"
 msgstr "Número ou nome de contacto"
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "Desligado"
 
@@ -541,9 +542,19 @@ msgstr "Desligado"
 msgid "Ok"
 msgstr "Ok"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "Ligado"
+
+#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
+"Ocorreu um erro com o sistema de MMS e esta mensagem não pode ser obtida. "
+"Por favor, assegure que os Dados móveis estão ligados e as configurações "
+"corretas. Depois peça ao remetente para enviar novamente."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -588,7 +599,7 @@ msgstr "Lida"
 msgid "Received"
 msgstr "Recebida"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 msgid "Remove"
@@ -610,7 +621,7 @@ msgstr "Remover o último membro irá originar o fim de '%1'. Deseja continuar?"
 msgid "Renamed group to: %1"
 msgstr "Renomeou o grupo para: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "Tentar novamente"
@@ -619,7 +630,7 @@ msgstr "Tentar novamente"
 msgid "SIM Card is locked"
 msgstr "O cartão SIM está bloqueado"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "SMS"
 
@@ -720,7 +731,7 @@ msgstr "Falha temporária"
 msgid "Text message copied to clipboard"
 msgstr "Copiado para área de transferência"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -780,7 +791,7 @@ msgstr "Tipo"
 msgid "Type a name..."
 msgstr "Escreva um nome..."
 
-#: ../src/qml/Messages.qml:1255
+#: ../src/qml/Messages.qml:1258
 msgid "Typing.."
 msgstr "Escrevendo..."
 
@@ -814,11 +825,11 @@ msgstr "Bem-vindo à app de Mensagens!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Bem-vindo à aplicação de mensagens do Ubuntu Touch."
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:566
 msgid "Write a broadcast message..."
 msgstr "Escreva uma mensagem de difusão..."
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:578
 msgid "Write a message..."
 msgstr "Escrever mensagem..."
 
@@ -842,7 +853,7 @@ msgstr ""
 "Está a tentar enviar ficheiros grandes (mais de 300kb). Algumas operadoras "
 "podem não conseguir enviar estes ficheiros."
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
@@ -853,7 +864,7 @@ msgstr ""
 msgid "You have to disable flight mode"
 msgstr "Precisa de desligar o modo avião"
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "Pressione e segure o ícone de gravação"
 
@@ -868,7 +879,7 @@ msgstr "Você juntou-se a este grupo"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "Você saiu deste grupo"
+msgstr "Você saiu do grupo"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
