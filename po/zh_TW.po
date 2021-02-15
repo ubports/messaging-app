@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2020-10-15 10:02+0000\n"
-"Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
+"PO-Revision-Date: 2021-02-14 20:35+0000\n"
+"Last-Translator: louies0623 <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -545,7 +545,7 @@ msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
-msgstr ""
+msgstr "糟糕，媒體訊息系統出現錯誤，無法搜尋到這個訊息。 請確保基地台已打開並且媒體訊息的設定是正確的，然後請寄件者重試。"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -862,7 +862,7 @@ msgstr "您加入了這個群組"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "您離開了這個群組"
+msgstr "您已離開了群組"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
