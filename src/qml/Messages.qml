@@ -37,6 +37,7 @@ Page {
     // this property can be overriden by the user using the account switcher,
     // in the suru divider
     property string accountId: ""
+    property string text: "" // from url-dispatcher
     property var threadId: threads.length > 0 ? threads[0].threadId : ""
     property int chatType: threads.length > 0 ? threads[0].chatType : HistoryThreadModel.ChatTypeNone
     property QtObject account: getCurrentAccount()
@@ -996,6 +997,10 @@ Page {
                 }
             }
         }
+        if (messages.text.length > 0) {
+            composeBar.text = text
+        }
+
         restoreBindings()
         if (threadId !== "" && accountId !== "" && threads.length == 0) {
             addNewThreadToFilter(accountId, {"threadId": threadId, "chatType": chatType})

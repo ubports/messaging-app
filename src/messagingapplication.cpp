@@ -58,6 +58,7 @@ static void printUsage(const QStringList& arguments)
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
              << "[message:///PHONE_NUMBER]"
+             << "[sms:///PHONE_NUMBER?body=<body-text>]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -106,7 +107,7 @@ bool MessagingApplication::setup()
     bool fullScreen = false;
 
     if (validSchemes.isEmpty()) {
-        validSchemes << "message";
+        validSchemes << "message" << "sms";
     }
 
     QStringList arguments = this->arguments();
@@ -248,12 +249,16 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
+    // QUrl does not recognize "sms://" url, so lets convert it to "sms:"
+    QRegExp rx(":/{1,}");
+    QString normalizedArg = QString(arg).replace(rx,":");
+
     QVariantMap properties;
-    QUrl url(arg);
+    QUrl url(normalizedArg);
     QString scheme = url.scheme();
     QString value = url.path();
-    // Remove the first "/" if needed. We have two possible scenarios:
-    // message:///phonenumber and message:phonenumber
+    // Remove the first "/" if needed. We have possible scenarios:
+    // message:///phonenumber and message:phonenumber, sms:///phonenumber and sms:phonenumber
     if (value.startsWith("/")) {
         value = value.right(value.length()-1);
         if (!value.isEmpty()) {
@@ -284,7 +289,7 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
-    if (scheme == "message") {
+    if (scheme == "message" || scheme == "sms") {
         if (value.isEmpty() && properties.isEmpty()) {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         } else {

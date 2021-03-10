@@ -1,5 +1,8 @@
 [
 	{
 		"protocol": "message"
-	}
+	},
+	{
+		"protocol": "sms"
+	},
 ]
