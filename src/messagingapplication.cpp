@@ -265,10 +265,7 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
     QUrlQuery query(url);
     Q_FOREACH(const Pair &item, query.queryItems(QUrl::FullyDecoded)) {
-        if (item.first == "text") {
-            properties["text"] = item.second;
-        }
-          if (item.first == "text") {
+        if (item.first == "text" || item.first == "body") {
             properties["text"] = item.second;
         }
         if (item.first == "accountId") {
@@ -287,14 +284,7 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
-    if (scheme == "message") {
-        if (value.isEmpty() && properties.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startNewMessage");
-        } else {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, properties));
-        }
-    }
-    if (scheme == "sms") {
+    if (scheme == "message" || scheme == "sms") {
         if (value.isEmpty() && properties.isEmpty()) {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         } else {
