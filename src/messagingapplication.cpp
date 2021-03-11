@@ -107,8 +107,7 @@ bool MessagingApplication::setup()
     bool fullScreen = false;
 
     if (validSchemes.isEmpty()) {
-        validSchemes << "message";
-        validSchemes << "sms";
+        validSchemes << "message" << "sms";
     }
 
     QStringList arguments = this->arguments();
