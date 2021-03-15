@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2020-07-04 19:31+0000\n"
+"PO-Revision-Date: 2021-03-13 20:29+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/am/>\n"
@@ -746,7 +746,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "ገጽታ"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format

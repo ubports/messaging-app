@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2020-11-01 19:29+0000\n"
-"Last-Translator: Iñaki Aliaga <him@mint.lgbt>\n"
+"PO-Revision-Date: 2021-03-14 12:36+0000\n"
+"Last-Translator: Josué <j2g2rp@gmail.com>\n"
 "Language-Team: Spanish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/es/>\n"
 "Language: es\n"
@@ -553,6 +553,10 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"Vaya, ha habido un error con el sistema MMS y este mensaje no pudo ser "
+"recuperado. Por favor, asegúrate de que los datos móviles están activados y "
+"la configuración de MMS es correcta, luego pide al remitente que lo intente "
+"de nuevo."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -624,7 +628,7 @@ msgstr "Cambiado el nombre del grupo a: %1"
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "Volver a intentar"
+msgstr "Reintentar"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"

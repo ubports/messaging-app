@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-01-31 16:07+0000\n"
-"Last-Translator: Daniel Frańczak <danielfranczak5@wp.pl>\n"
+"PO-Revision-Date: 2021-03-04 02:54+0000\n"
+"Last-Translator: Carlod <carlod@disroot.org>\n"
 "Language-Team: Polish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pl/>\n"
 "Language: pl\n"
@@ -462,7 +462,7 @@ msgstr "Wymagane wsparcie MMS"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr "Mnie"
+msgstr "Ja"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
