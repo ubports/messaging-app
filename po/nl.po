@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-02-11 13:32+0000\n"
+"PO-Revision-Date: 2021-03-04 20:28+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "messaging-app/nl/>\n"
@@ -133,7 +133,7 @@ msgstr "Beheerder"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Alle"
+msgstr "Alles"
 
 #: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
@@ -658,7 +658,7 @@ msgstr "Bekijken in contactpersonen"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr "Kiezen"
+msgstr "Selecteren"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
