@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-03-04 10:32+0000\n"
-"Last-Translator: Sam Zhang <sammyok@163.com>\n"
+"PO-Revision-Date: 2021-04-17 18:46+0000\n"
+"Last-Translator: Enceka <enceka@yeah.net>\n"
 "Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -642,7 +642,7 @@ msgstr "查看联系人"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
