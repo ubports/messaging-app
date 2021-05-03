@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-02-02 17:32+0000\n"
+"PO-Revision-Date: 2021-04-20 21:42+0000\n"
 "Last-Translator: Florian Leeber <flori@bin.org.in>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "messaging-app/de/>\n"
@@ -761,7 +761,7 @@ msgstr "Das ausgewählte Konto ist momentan nicht verfügbar"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr "Stil"
+msgstr "Thema"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format

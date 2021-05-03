@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-01-31 17:52+0000\n"
+"PO-Revision-Date: 2021-04-22 10:44+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -762,7 +762,7 @@ msgstr "Vybraný účet není právě dostupný"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr "Styl"
+msgstr "Motiv prostředí"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -780,7 +780,7 @@ msgstr "Tento příjemce už byl vybrán"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr "Pro"
+msgstr "Do"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-04-17 18:46+0000\n"
+"PO-Revision-Date: 2021-05-03 03:46+0000\n"
 "Last-Translator: Enceka <enceka@yeah.net>\n"
 "Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hans/>\n"
@@ -177,7 +177,7 @@ msgstr "离开"
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
 #: ../src/qml/SettingsPage.qml:263
 msgid "Back"
-msgstr "返回"
+msgstr "上一步"
 
 #: ../src/qml/Messages.qml:1273
 msgid "Busy"
@@ -251,7 +251,7 @@ msgstr "创建群组…"
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr ""
+msgstr "暗"
 
 #: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
@@ -278,7 +278,7 @@ msgstr "以后不要再显示"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
-msgstr ""
+msgstr "草稿："
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
@@ -286,7 +286,7 @@ msgstr "编辑"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
-msgstr ""
+msgstr "开启"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -431,7 +431,7 @@ msgstr "离开群组"
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr ""
+msgstr "亮"
 
 #: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
@@ -545,7 +545,7 @@ msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
-msgstr ""
+msgstr "糟糕，MMS系统出现错误并且无法检索到此消息。 请确保蜂窝数据已打开并且MMS设置正确，然后请发件人再试一次。"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -708,7 +708,7 @@ msgstr "滑动显示操作"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
-msgstr ""
+msgstr "系统主题"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -740,7 +740,7 @@ msgstr "所选帐号目前不可用"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "主题"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format

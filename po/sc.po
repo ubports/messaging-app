@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2020-10-01 09:09+0000\n"
+"PO-Revision-Date: 2021-04-22 10:44+0000\n"
 "Last-Translator: Adria <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sc/>\n"
@@ -551,6 +551,10 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"Impossìbile recuperare su messàgiu pro more de una faddina in su sistema "
+"MMS. Assegura·ti chi sa connessione de datos mòbiles est ativa e sa "
+"cunfiguratzione MMS est curreta; pustis, dimanda chi ti ddu torrant a "
+"imbiare."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -877,7 +881,7 @@ msgstr "As aderidu a custu grupu"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "As lassadu su grupu"
+msgstr "As lassadu custu grupu"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
