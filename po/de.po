@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-04-20 21:42+0000\n"
-"Last-Translator: Florian Leeber <flori@bin.org.in>\n"
+"PO-Revision-Date: 2021-05-15 18:00+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "messaging-app/de/>\n"
 "Language: de\n"
@@ -779,7 +779,7 @@ msgstr "Dieser Empfänger wurde bereits ausgewählt"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
-msgstr "An"
+msgstr "Bis"
 
 #: ../src/qml/MultiRecipientInput.qml:33
 msgid "To:"
