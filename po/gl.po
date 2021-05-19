@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-05-19 15:43+0000\n"
+"PO-Revision-Date: 2021-05-19 23:40+0000\n"
 "Last-Translator: Davidrebolomaga <davidre345@hotmail.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "messaging-app/gl/>\n"
@@ -256,7 +256,7 @@ msgstr "Creando grupo..."
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "Dark"
-msgstr ""
+msgstr "Escuro"
 
 #: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
@@ -283,7 +283,7 @@ msgstr "Non mostrar outra vez"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
-msgstr ""
+msgstr "Borrador:"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
@@ -291,7 +291,7 @@ msgstr "Editar"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
-msgstr ""
+msgstr "Activar"
 
 #: ../src/qml/SettingsPage.qml:56
 msgid "Enable MMS messages"
@@ -436,7 +436,7 @@ msgstr "Deixar o grupo"
 
 #: ../src/qml/SettingsPage.qml:49
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
@@ -551,6 +551,9 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"Ocorreu un erro co sistema de MMS e esta mensaxe non pode ser obtida. Por "
+"favor, asegúrese que os datos móbiles están acendidos e a configuración "
+"correcta. Despois pida ao remitente para intentalo de novo."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -717,7 +720,7 @@ msgstr "Esvare para ver accións"
 
 #: ../src/qml/SettingsPage.qml:48
 msgid "System Theme"
-msgstr ""
+msgstr "Tema do sistema"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -752,7 +755,7 @@ msgstr "A conta seleccionada non está dispoñíbel neste momento"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
