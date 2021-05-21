@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-05-19 23:40+0000\n"
+"PO-Revision-Date: 2021-05-21 14:05+0000\n"
 "Last-Translator: Davidrebolomaga <davidre345@hotmail.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "messaging-app/gl/>\n"
@@ -101,7 +101,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
-msgstr "<<< Esvarar para cancelar"
+msgstr "<<< Deslice para cancelar"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -133,7 +133,7 @@ msgstr "Administrador"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Todos"
+msgstr "Todo"
 
 #: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
@@ -190,7 +190,7 @@ msgstr "Ocupado"
 
 #: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
-msgstr "Chamar"
+msgstr "Chamada"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -533,7 +533,7 @@ msgstr "Número ou nome do contacto"
 
 #: ../src/qml/Messages.qml:1269
 msgid "Offline"
-msgstr "Desconectado"
+msgstr "Sen conexión"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -543,7 +543,7 @@ msgstr "Aceptar"
 
 #: ../src/qml/Messages.qml:1267
 msgid "Online"
-msgstr "Conectado"
+msgstr "En liña"
 
 #: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
 msgid ""
@@ -674,7 +674,7 @@ msgstr "Definir como administrador"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr "Axustes"
+msgstr "Configuración"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
@@ -879,7 +879,7 @@ msgstr "Vostede entrou neste grupo"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "Vostede deixou este grupo"
+msgstr "Saíches deste grupo"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
