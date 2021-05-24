@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2020-09-14 18:57+0000\n"
+"PO-Revision-Date: 2021-05-22 21:42+0000\n"
 "Last-Translator: dano6 <dano.kutka@gmail.com>\n"
 "Language-Team: Slovak <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sk/>\n"
@@ -556,6 +556,9 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"V systéme MMS prišlo k chybe a túto správu nemožno prečítať. Skontrolujte, "
+"či sú mobilné dáta ZAPNUTÉ a nastavenie MMS správne, a potom požiadajte "
+"odosielateľa správu odoslať znovu."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
