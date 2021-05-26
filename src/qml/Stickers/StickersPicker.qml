@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Canonical Ltd.
+ * Copyright 2021 Ubports Foundation
  *
  * This file is part of messaging-app.
  *
@@ -59,7 +59,6 @@ FocusScope {
         id: stickerPacksModel
         stickerPath: dataLocation + "/stickers"
 
-        onCountChanged: console.log('sps count', count);
         onPackCreated: {
             stickersModel.packName = packName
             setsList.positionViewAtEnd()
@@ -67,7 +66,6 @@ FocusScope {
         }
         onPackRemoved: {
             var currentIndex = setsList.currentIndex
-            console.log('currentIndex', currentIndex)
             if (currentIndex > 0 ) {
                 currentIndex--
                 setsList.currentIndex = currentIndex
@@ -81,10 +79,6 @@ FocusScope {
 
     StickersModel {
         id: stickersModel
-        onCountChanged: {
-            console.log('sp count:', count)
-        }
-        onPackNameChanged: console.log('selected pack:', packName)
     }
 
     Rectangle {

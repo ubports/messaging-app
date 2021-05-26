@@ -1,4 +1,20 @@
-
+/*
+ * Copyright 2021 Ubports Foundation
+ *
+ * This file is part of messaging-app.
+ *
+ * messaging-app is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 3.
+ *
+ * messaging-app is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "stickers-pack-model.h"
 #include "stickers-history-model.h"
 #include "fileoperations.h"
@@ -167,7 +183,6 @@ void StickersPackModel::removeSticker(const QString &packName, const QString &st
         }
 
         if (sp.count() == 1) {
-            qDebug() << "spc == 1, remove pack";
             removePack(packName);
         } else {
             sp.setCount(sp.count() - 1);
@@ -218,7 +233,6 @@ void StickersPackModel::populate()
     }
 
     if (!hasEmptyPack && !m_stickerPath.isEmpty()) {
-        qDebug() << "no empty packs -> create one";
         StickerPack newSp = generatePack();
         m_stickerPacks.append(newSp);
         Q_EMIT packCreated(newSp.name());
