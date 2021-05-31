@@ -57,6 +57,7 @@ public:
     void setLimit(int limit);
 
     Q_INVOKABLE void add(const QString& sticker);
+    Q_INVOKABLE void remove(const QString& sticker);
     Q_INVOKABLE void clearAll();
     Q_INVOKABLE QVariantMap get(int index) const;
 

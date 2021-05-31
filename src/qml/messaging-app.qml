@@ -43,6 +43,7 @@ MainView {
     property alias userTheme: globalSettings.userTheme
     property alias favoriteChannels: favoriteChannelsItem
     property alias autoplayAnimatedImage: globalSettings.autoplayAnimatedImage
+    property alias enableStickers: globalSettings.enableStickers
 
     // private
     property var _pendingProperties: null
@@ -290,14 +291,7 @@ MainView {
         property bool compactView: false
         property string userTheme: "default"
         property bool autoplayAnimatedImage: true
-    }
-
-    StickerPacksModel {
-        id: stickerPacksModel
-    }
-
-    StickersModel {
-        id: stickersModel
+        property bool enableStickers: true
     }
 
     Connections {

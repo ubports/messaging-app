@@ -1052,7 +1052,7 @@ Page {
             messages.ready()
         }
         markThreadAsRead()
-        if (!newMessage)
+        if (active && !newMessage)
             composeBar.forceFocus()
     }
 

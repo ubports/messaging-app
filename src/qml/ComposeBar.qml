@@ -282,17 +282,18 @@ Flickable {
         TransparentButton {
             id: stickersButton
             objectName: "stickersButton"
+            visible: mainView.enableStickers
             iconSource: (stickersPicker.expanded && oskEnabled) ? Qt.resolvedUrl("./assets/input-keyboard-symbolic.svg") :
                                                                   Qt.resolvedUrl("./assets/face-smile-big-symbolic-2.svg")
-            visible: stickerPacksModel.count > 0
             onClicked: {
                 if (!stickersPicker.expanded) {
+                    attachmentPanel.expanded = false
                     messageTextArea.focus = false
                     stickersPicker.expanded = true
-                    attachmentPanel.expanded = false
                 } else {
-                    stickersPicker.expanded = false
                     messageTextArea.forceActiveFocus()
+                    stickersPicker.expanded = false
+
                 }
             }
         }
@@ -668,22 +669,52 @@ Flickable {
     Loader {
         id: stickersPicker
         property bool expanded: false
-        height: expanded ? item.height : 0
-        active: false
+        property int maxHeight: units.gu(30)
+        property int minHeight: 0
+        property bool initialState: false
+
+        height: 0
+
+        active: expanded
+        visible: expanded
         sourceComponent: stickersPickerComponent
         anchors {
             left: parent.left
             right: parent.right
             top: textEntry.bottom
+            margins: units.gu(0.5)
         }
+
+        onInitialStateChanged: {
+            if (initialState) {
+                height = Qt.binding(function() { return expanded ? maxHeight : minHeight})
+            }
+        }
+
         onExpandedChanged: {
-            if (expanded) {
-               stickersPicker.active = expanded
-            }
-            if (active) {
-                item.expanded = expanded
+            // we define here that height must follow keyboard dismissing height, otherwise,
+            // stickerPicker would suddenly resize and make the conversation list jumping up and down
+
+            if (expanded && keyboard.height > 0) {
+                initialState = false
+                maxHeight = keyboard.height
+                height = Qt.binding(function() {
+                    var currentHeight = maxHeight - keyboard.height
+                    if (!expanded && currentHeight <= 0) {
+                        initialState = true
+                        return 0
+                    }else {
+                        return currentHeight
+                    }
+                })
+
             }
         }
+
+        Component.onCompleted: {
+            initialState = true
+        }
+
     }
 
     Component {
@@ -709,11 +740,11 @@ Flickable {
                 attachment["name"] = filePath.split('/').reverse()[0]
                 attachment["filePath"] = filePath
 
-                // we need to append the attachment to a ListModel, so create it dynamically
-                var attachments = Qt.createQmlObject("import QtQuick 2.0; ListModel { }", composeBar)
+                // Send it as normal attachment
                 attachments.append(attachment)
                 composeBar.sendRequested("", attachmentsToModel())
                 stickersPicker.expanded = false
+                messageTextArea.forceActiveFocus()
             }
         }
     }

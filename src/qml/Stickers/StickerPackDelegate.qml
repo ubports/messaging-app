@@ -17,37 +17,35 @@
  */
 
 import QtQuick 2.3
-import Qt.labs.folderlistmodel 2.1
 import Ubuntu.Components 1.3
 
 AbstractButton {
-    property alias path: stickers.folder
-    property string name
-    property bool selected
+    id: root
+
+    property bool selected: false
+    height: units.gu(6)
+    width: height
+
 
     Rectangle {
-        anchors.fill: parent
-        color: selected ? "#f5f5f5" : "transparent"
-    }
-
-    Icon {
-        anchors.fill: parent
-        visible: stickers.count === 0
-        name: "cancel"
+        height: units.gu(0.2)
+        width: parent.width
+        anchors.bottom: parent.bottom
+        color: selected ? theme.palette.normal.selectionText  : "transparent"
     }
 
     Image {
-        visible: stickers.count > 0
+        id: image
+        //visible: stickerPack.count > 0
         anchors.fill: parent
         anchors.margins: units.gu(0.5)
+        sourceSize.height: parent.height
+        sourceSize.width: parent.width
         fillMode: Image.PreserveAspectFit
+        asynchronous: true
         smooth: true
-        source: visible ? stickers.get(0, "filePath") : ""
+        source: thumbnail.length > 0 ? "file://" + thumbnail : "image://theme/stock_image"
     }
 
-    FolderListModel {
-        id: stickers
-        showDirs: false
-        nameFilters: ["*.png", "*.webm", "*.gif"]
-    }
+
 }

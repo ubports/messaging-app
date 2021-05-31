@@ -28,6 +28,9 @@
 #include "audiorecorder.h"
 #include "fileoperations.h"
 #include "stickers-history-model.h"
+#include "stickers-pack-model.h"
+#include <QDir>
+#include <QDirIterator>
 
 class TestContext : public QObject
 {
@@ -48,7 +51,18 @@ public:
         return m_temporary.path();
     }
 
+    Q_INVOKABLE void clear() {
+
+        QDirIterator dirIter(QDir(testDir()).filePath("stickers"), QDir::Dirs | QDir::NoDotAndDotDot);
+        while (dirIter.hasNext()) {
+            dirIter.next();
+            QDir dir(dirIter.filePath());
+            dir.removeRecursively();
+        }
+    }
+
     QTemporaryDir m_temporary;
+
 };
 
 static QObject* TestContext_singleton_factory(QQmlEngine* engine, QJSEngine* scriptEngine)
@@ -76,6 +90,7 @@ int main(int argc, char** argv)
 {
     const char* uri = "messagingapp.private";
     qmlRegisterType<AudioRecorder>(uri, 0, 1, "AudioRecorder");
+    qmlRegisterType<StickersPackModel>(uri, 0, 1, "StickersPackModel");
     qmlRegisterSingletonType<FileOperations>(uri, 0, 1, "FileOperations", FileOperations_singleton_factory);
     qmlRegisterSingletonType<StickersHistoryModel>(uri, 0, 1, "StickersHistoryModel", StickersHistoryModel_singleton_factory);
 

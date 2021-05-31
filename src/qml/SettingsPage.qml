@@ -36,7 +36,8 @@ Page {
         "threadSort": function(value) { mainView.sortThreadsBy = value },
         "compactView": function(value) { mainView.compactView = value },
         "userTheme": function(value) { mainView.userTheme = value },
-        "autoplayAnimatedImage": function(value) { mainView.autoplayAnimatedImage = value }
+        "autoplayAnimatedImage": function(value) { mainView.autoplayAnimatedImage = value },
+        "enableStickers": function(value) { mainView.enableStickers = value }
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -58,6 +59,13 @@ Page {
                    "property": telepathyHelper.mmsEnabled,
                    "activatedFuncion": null,
                    "setMethod": "mmsEnabled"}
+        },
+        { "type": "boolean",
+          "data": {"name": "enableStickers",
+                   "description": i18n.tr("Enable stickers"),
+                   "property": mainView.enableStickers,
+                   "activatedFuncion": null,
+                   "setMethod": "enableStickers"}
         },
         { "type": "boolean",
           "data": {"name": "compactView",

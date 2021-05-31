@@ -22,6 +22,7 @@ set(SOURCES
     ${messaging-app_SOURCE_DIR}/src/audiorecorder.cpp
     ${messaging-app_SOURCE_DIR}/src/fileoperations.cpp
     ${messaging-app_SOURCE_DIR}/src/stickers-history-model.cpp
+    ${messaging-app_SOURCE_DIR}/src/stickers-pack-model.cpp
     tst_QmlTests.cpp
 )
 
@@ -45,6 +46,7 @@ add_test(MessageBubble ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_Me
 add_test(MessagesView ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessagesView.qml)
 add_test(AttachmentsDelegate ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_AttachmentsDelegate.qml)
 add_test(StickersHistoryModel ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_StickersHistoryModel.qml)
+add_test(StickersPackModel ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_StickersPackModel.qml)
 
 # make qml files visible in QtCreator
 file(GLOB_RECURSE NON_COMPILED_FILES *.qml)
