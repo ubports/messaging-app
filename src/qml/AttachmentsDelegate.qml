@@ -112,6 +112,26 @@ Column {
         }
     }
 
+    function getMinHeight(attachmentType) {
+        var minHeight = units.gu(5)
+        switch (attachmentType) {
+        case 'audio':
+            minHeight = units.gu(5)
+            break
+        case 'image':
+        case 'video':
+            minHeight = units.gu(14)
+            break
+        case 'vcard':
+            minHeight = units.gu(9.5)
+            break
+        default:
+            minHeight = units.gu(15)
+        }
+
+        return minHeight
+    }
+
     spacing: units.gu(1)
     Repeater {
         id: attachmentsRepeater
@@ -119,6 +139,8 @@ Column {
         Loader {
             id: attachmentLoader
             property bool loaded: status === Loader.Ready
+            height: loaded ? item.height : getMinHeight(modelData.type)
+            width: units.gu(27)
 
             states: [
                 State {
