@@ -22,7 +22,7 @@ import Ubuntu.Components 1.3
 
 
 Rectangle {
-    id: listItemDemo
+    id: root
 
     property bool enabled
     signal disable
@@ -36,25 +36,41 @@ Rectangle {
         }
     }
 
-    Button {
-        id: gotItButton
-        objectName: "gotItButton"
+    MessageDelegate {
+        id: listItem
+
+        property int xPos: 0
+
+        animated: false
+        onXPosChanged: listItem.updatePosition(xPos)
 
         anchors {
-            bottom: dragTitle.bottom
-            horizontalCenter: parent.horizontalCenter
-            bottomMargin: units.gu(21)
+            top: parent.top
+            topMargin: units.gu(14)
+            left: parent.left
+            right: parent.right
         }
-        width: units.gu(17)
-        strokeColor: theme.palette.normal.positive
-        text: i18n.tr("Got it")
-        enabled: !dismissAnimation.running
-        onClicked: dismissAnimation.start()
+        height: units.gu(10)
 
-        InverseMouseArea {
-            anchors.fill: parent
-            topmostItem: false
-        }
+        color: Theme.palette.normal.background
+
+        messageData: {
+            "textMessage": i18n.tr("Welcome to your messaging app."),
+            "timestamp": new Date(),
+            "textMessageStatus": 1,
+            "senderId": "self",
+            "textReadTimestamp": new Date(),
+            "textMessageAttachments": [],
+            "newEvent": false,
+            "accountId": "",
+            "participants": ["111111111"],
+            "accountLabel" : ""}
+
+        incoming: true
+        accountLabel: ""
+        enabled: false
+
+
     }
 
     RowLayout {
@@ -63,13 +79,15 @@ Rectangle {
         anchors {
             left: parent.left
             right: parent.right
-            bottom: listItem.top
+            top: listItem.bottom
             margins: units.gu(1)
+            //topMargin: units.gu(3)
         }
+        height: units.gu(3)
         spacing: units.gu(2)
 
         Image {
-            visible: listItem.swipePosition < 0
+            visible: listItem.swipeState === "RightToLeft"
             source: Qt.resolvedUrl("./assets/swipe_arrow.svg")
             rotation: 180
             Layout.preferredWidth: sourceSize.width
@@ -94,7 +112,7 @@ Rectangle {
         }
 
         Image {
-            visible: listItem.swipePosition > 0
+            visible: listItem.swipeState === "LeftToRight"
             source: Qt.resolvedUrl("./assets/swipe_arrow.svg")
             Layout.preferredWidth: sourceSize.width
             height: parent.height
@@ -107,69 +125,39 @@ Rectangle {
         }
     }
 
-    MessageDelegate {
-        id: listItem
-
-        // message data
-        property int index: 10
-        property int textMessageStatus: 1
-        property var textMessageAttachments: []
-        property var messageData: null
-
-        incoming: true
-        accountLabel: ""
-        enabled: false
+    Button {
+        id: gotItButton
+        objectName: "gotItButton"
 
         anchors {
             bottom: parent.bottom
-            bottomMargin: units.gu(8)
-            left: parent.left
-            right: parent.right
+            horizontalCenter: parent.horizontalCenter
+            bottomMargin: units.gu(9)
         }
-        height: units.gu(4)
+        width: units.gu(17)
+        strokeColor: theme.palette.normal.positive
+        text: i18n.tr("Got it")
+        enabled: !dismissAnimation.running
+        onClicked: dismissAnimation.start()
 
-        Component.onCompleted: {
-            messageData = {
-                "textMessage": i18n.tr("Welcome to your Ubuntu messaging app."),
-                "timestamp": new Date(),
-                "textMessageStatus": 1,
-                "senderId": "self",
-                "textReadTimestamp": new Date(),
-                "textMessageAttachments": [],
-                "newEvent": false,
-                "accountId": "",
-                "accountLabel" : ""}
-        }
-
-        trailingActions: ListItemActions {
-            actions: [
-                Action {
-                    id: infoAction
-
-                    iconName: "info"
-                    text: i18n.tr("Info")
-                },
-                Action {
-                    iconName: "reload"
-                    text: i18n.tr("Retry")
-                },
-                Action {
-                    iconName: "edit-copy"
-                    text: i18n.tr("Copy")
-                }
-            ]
+        InverseMouseArea {
+            anchors.fill: parent
+            topmostItem: false
         }
     }
 
     SequentialAnimation {
         id: slideAnimation
 
-        readonly property real leadingActionsWidth: listItem.leadingActions.actions.length * units.gu(6) + units.gu(2)
-        readonly property real trailingActionsWidth: listItem.trailingActions.actions.length * units.gu(6) + units.gu(2)
-
+        readonly property real leftToRightXpos: (-3 * (listItem.actionWidth + units.gu(2)))
+        readonly property real rightToLeftXpos: listItem.leftActionWidth
 
         loops: Animation.Infinite
-        running: listItemDemo.enabled
+        running: root.enabled
+
+        PauseAnimation {
+            duration: UbuntuAnimation.SleepyDuration
+        }
 
         PropertyAction {
             target: dragMessage
@@ -186,9 +174,9 @@ Rectangle {
         ParallelAnimation {
             PropertyAnimation {
                 target:  listItem
-                property: "swipePosition"
+                property: "xPos"
                 from: 0
-                to: -slideAnimation.trailingActionsWidth
+                to: slideAnimation.leftToRightXpos
                 duration: 2000
             }
             PropertyAnimation {
@@ -214,8 +202,8 @@ Rectangle {
 
             PropertyAnimation {
                 target: listItem
-                property: "swipePosition"
-                from: -slideAnimation.trailingActionsWidth
+                property: "xPos"
+                from: slideAnimation.leftToRightXpos
                 to: 0
                 duration: UbuntuAnimation.SleepyDuration
             }
@@ -236,9 +224,9 @@ Rectangle {
         ParallelAnimation {
             PropertyAnimation {
                 target: listItem
-                property: "swipePosition"
+                property: "xPos"
                 from: 0
-                to: slideAnimation.leadingActionsWidth
+                to: slideAnimation.rightToLeftXpos
                 duration: UbuntuAnimation.SleepyDuration
             }
             PropertyAnimation {
@@ -264,12 +252,13 @@ Rectangle {
 
             PropertyAnimation {
                 target: listItem
-                property: "swipePosition"
-                from: slideAnimation.leadingActionsWidth
+                property: "xPos"
+                from: slideAnimation.rightToLeftXpos
                 to: 0
                 duration: UbuntuAnimation.SleepyDuration
             }
         }
+
     }
 
     SequentialAnimation {
@@ -279,17 +268,18 @@ Rectangle {
         running: false
 
         UbuntuNumberAnimation {
-            target: listItemDemo
+            target: root
             property: "opacity"
             to: 0.0
             duration:  UbuntuAnimation.SlowDuration
         }
         ScriptAction {
-            script: listItemDemo.disable()
+            script: root.disable()
         }
     }
 
     Component.onCompleted: {
         opacity = 0.85
+        pageHeader.visible = false
     }
 }

@@ -1735,7 +1735,7 @@ Page {
 
         property bool parentActive: messages.active
 
-        parent: QuickUtils.rootItem(this)
+        parent: messages
         anchors.fill: parent
         onStatusChanged: {
             if (status === Loader.Ready) {
