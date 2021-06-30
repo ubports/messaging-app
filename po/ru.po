@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-03-25 08:24+0000\n"
-"Last-Translator: Eugene Markoff <uralhistory@gmail.com>\n"
+"PO-Revision-Date: 2021-06-30 00:49+0000\n"
+"Last-Translator: Герман Семенов <GermanAizek@yandex.ru>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ru/>\n"
 "Language: ru\n"
@@ -196,7 +196,7 @@ msgstr "Занят"
 
 #: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
-msgstr "Вызов"
+msgstr "Набрать номер"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -662,7 +662,7 @@ msgstr "Смотреть в контактах"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr "Выбрать"
+msgstr "Выделить"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"

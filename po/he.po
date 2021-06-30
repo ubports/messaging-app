@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2020-12-24 08:57+0000\n"
+"PO-Revision-Date: 2021-06-24 08:22+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
 "messaging-app/he/>\n"
@@ -751,7 +751,7 @@ msgstr "החשבון שנבחר אינו זמין כרגע"
 
 #: ../src/qml/SettingsPage.qml:78
 msgid "Theme"
-msgstr "ערכות נושא"
+msgstr "ערכת עיצוב"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
