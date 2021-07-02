@@ -60,6 +60,7 @@ Description: messaging application for Ubuntu
  An application to send and receive messages.
 
 Package: messaging-app-autopilot
+Build-Profiles: <!noinsttest>
 Architecture: all
 Section: debug
 Depends:
