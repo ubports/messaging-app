@@ -33,8 +33,8 @@ ListItemWithActions {
 
     property QtObject chatEntry: null
     property bool compactView: false
-    property bool isEmptyMMS: eventTextMessageType === HistoryEventModel.MessageTypeMultiPart && displayedEventTextAttachments.length === 0 && eventTextMessage.length === 0
-    property string defaultMMSErrorMessage: i18n.tr("Oops, there has been an error with the MMS system and this message could not be retrieved. Please ensure Cellular Data is ON and MMS settings are correct, then ask the sender to try again.")
+    property bool isIncomingMmsError: eventSenderId !== "self" && eventTextMessageType === HistoryEventModel.MessageTypeMultiPart && displayedEventTextAttachments.length === 0 && (eventTextMessage.length === 0 || eventTextMessageStatus === HistoryEventModel.MessageStatusTemporarilyFailed || eventTextMessageStatus === HistoryEventModel.MessageStatusPermanentlyFailed || eventTextMessageStatus === HistoryEventModel.MessageStatusPending)
+    property string defaultMMSErrorMessage: i18n.tr("New MMS notification")
     property var participant: participants ? participants[0] : {}
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
     property string searchTerm
@@ -124,7 +124,7 @@ ListItemWithActions {
         if (attachmentCount > 0) {
             return i18n.tr("Attachment: %1 file", "Attachments: %1 files").arg(attachmentCount)
         }
-        if(isEmptyMMS) {
+        if(isIncomingMmsError) {
             return defaultMMSErrorMessage
         }
 
@@ -358,12 +358,12 @@ ListItemWithActions {
 
         Image {
             id: mmsErrorImg
-            visible: isEmptyMMS
+            visible: isIncomingMmsError
             source: "image://theme/mail-mark-important"
             anchors.verticalCenter: latestMessage.verticalCenter
             sourceSize.height: units.gu(2)
             layer {
-                enabled: isEmptyMMS
+                enabled: isIncomingMmsError
                 effect: ColorOverlay {
                     color: "red"
                 }
