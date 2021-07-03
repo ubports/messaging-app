@@ -53,11 +53,13 @@ namespace C {
 #include <libintl.h>
 }
 
+//try to add 
 static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
              << "[message:///PHONE_NUMBER]"
+             << "[sms:///PHONE_NUMBER?body=<body-text>]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -106,7 +108,7 @@ bool MessagingApplication::setup()
     bool fullScreen = false;
 
     if (validSchemes.isEmpty()) {
-        validSchemes << "message";
+        validSchemes << "message" << "sms";
     }
 
     QStringList arguments = this->arguments();
@@ -252,8 +254,8 @@ void MessagingApplication::parseArgument(const QString &arg)
     QUrl url(arg);
     QString scheme = url.scheme();
     QString value = url.path();
-    // Remove the first "/" if needed. We have two possible scenarios:
-    // message:///phonenumber and message:phonenumber
+    // Remove the first "/" if needed. We have possible scenarios:
+    // message:///phonenumber and message:phonenumber, sms:///phonenumber and sms:phonenumber
     if (value.startsWith("/")) {
         value = value.right(value.length()-1);
         if (!value.isEmpty()) {
@@ -265,7 +267,7 @@ void MessagingApplication::parseArgument(const QString &arg)
     }
     QUrlQuery query(url);
     Q_FOREACH(const Pair &item, query.queryItems(QUrl::FullyDecoded)) {
-        if (item.first == "text") {
+        if (item.first == "text" || item.first == "body") {
             properties["text"] = item.second;
         }
         if (item.first == "accountId") {
@@ -284,7 +286,7 @@ void MessagingApplication::parseArgument(const QString &arg)
         return;
     }
 
-    if (scheme == "message") {
+    if (scheme == "message" || scheme == "sms") {
         if (value.isEmpty() && properties.isEmpty()) {
             QMetaObject::invokeMethod(mainView, "startNewMessage");
         } else {
