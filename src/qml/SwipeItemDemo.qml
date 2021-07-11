@@ -33,16 +33,19 @@ Loader {
 
     function enable() {
         root.enabled = true;
+        if (necessary && enabled) {
+            runTimer.start();
+        }
     }
 
     function disable() {
         if (root.enabled) {
             root.necessary = false;
             root.enabled = false;
+            root.source = "";
         }
     }
 
-    source: necessary && enabled ? Qt.resolvedUrl("ListItemDemo.qml") : ""
     asynchronous: true
 
     Binding {
@@ -54,6 +57,15 @@ Loader {
     Connections {
         target: root.item
         onDisable: root.disable()
+    }
+
+    Timer {
+        id: runTimer
+        running: false
+        interval: 2000
+        repeat: false
+        onTriggered: root.source = Qt.resolvedUrl("ListItemDemo.qml")
+
     }
 
     Settings {
