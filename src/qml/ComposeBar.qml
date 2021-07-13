@@ -67,7 +67,7 @@ Flickable {
     property int smsLength: 160
 
     function forceFocus() {
-        if (showContents)
+        if (showContents && mainView.autoPopupKeyboard)
             messageTextArea.forceActiveFocus()
     }
 

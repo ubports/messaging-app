@@ -37,7 +37,8 @@ Page {
         "compactView": function(value) { mainView.compactView = value },
         "userTheme": function(value) { mainView.userTheme = value },
         "autoplayAnimatedImage": function(value) { mainView.autoplayAnimatedImage = value },
-        "enableStickers": function(value) { mainView.enableStickers = value }
+        "enableStickers": function(value) { mainView.enableStickers = value },
+        "autoPopupKeyboard": function(value) { mainView.autoPopupKeyboard = value },
         //"characterCountEnabled": function(value) { msgSettings.showCharacterCount = value }
     }
 
@@ -97,6 +98,13 @@ Page {
                    "property": mainView.autoplayAnimatedImage,
                    "activatedFuncion": null,
                    "setMethod": "autoplayAnimatedImage"}
+        },
+        { "type": "boolean",
+          "data": {"name": "autoPopupKeyboard",
+                   "description": i18n.tr("Auto display keyboard"),
+                   "property": mainView.autoPopupKeyboard,
+                   "activatedFuncion": null,
+                   "setMethod": "autoPopupKeyboard"}
         },
         /*,
         { "name": "characterCountEnabled",
