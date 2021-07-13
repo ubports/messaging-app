@@ -44,6 +44,7 @@ MainView {
     property alias favoriteChannels: favoriteChannelsItem
     property alias autoplayAnimatedImage: globalSettings.autoplayAnimatedImage
     property alias enableStickers: globalSettings.enableStickers
+    property alias autoPopupKeyboard: globalSettings.autoPopupKeyboard
 
     // private
     property var _pendingProperties: null
@@ -292,6 +293,7 @@ MainView {
         property string userTheme: "default"
         property bool autoplayAnimatedImage: true
         property bool enableStickers: true
+        property bool autoPopupKeyboard: true
     }
 
     Connections {
