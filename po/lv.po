@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
 "PO-Revision-Date: 2015-11-22 08:05+0000\n"
 "Last-Translator: Rūdolfs Mazurs <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1256
 #, qt-format
-msgid "%1 is typing.."
+msgid "%1 is typing..."
 msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -180,13 +180,17 @@ msgstr[2] "Pielikums: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Audio pielikumi nav atbalstīti"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr ""
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr ""
 
@@ -260,11 +264,11 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -299,10 +303,14 @@ msgstr "Rediģēt"
 msgid "Enable"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 #, fuzzy
 msgid "Enable MMS messages"
 msgstr "Ieslēgt MMS grupu tērzēšanu"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -442,11 +450,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -488,7 +496,7 @@ msgstr "Īsziņas"
 msgid "Messaging App"
 msgstr "Īsziņu lietotne"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Īsziņu lietotne"
 
@@ -551,7 +559,7 @@ msgstr "Labi"
 msgid "Online"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -569,6 +577,14 @@ msgstr "Gaida"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
@@ -603,6 +619,7 @@ msgstr "Saņemts"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Izņemt"
 
@@ -685,25 +702,29 @@ msgstr "Iestatījumi"
 msgid "Share"
 msgstr "Dalīties"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Statuss"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -721,7 +742,7 @@ msgstr "Velciet, lai dzēstu"
 msgid "Swipe to reveal actions"
 msgstr "Velciet, lai atklātu darbības"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr ""
 
@@ -751,7 +772,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr ""
 
@@ -790,7 +811,7 @@ msgid "Type a name..."
 msgstr ""
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+msgid "Typing..."
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -823,12 +844,12 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Laipni lūdzam Ubuntu ziņojumu lietotnē."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Rakstīt īsziņu..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Rakstīt īsziņu..."
 
@@ -892,6 +913,14 @@ msgstr "Jūs pārslēdzāties uz %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
 msgstr ""
 
 #~ msgid "No"

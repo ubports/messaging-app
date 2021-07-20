@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-04-22 10:44+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"PO-Revision-Date: 2021-07-11 12:28+0000\n"
 "Last-Translator: louies0623 <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hant/>\n"
@@ -57,8 +57,8 @@ msgstr "%1 不再是管理員"
 
 #: ../src/qml/Messages.qml:1256
 #, qt-format
-msgid "%1 is typing.."
-msgstr "%1 正在打字中.."
+msgid "%1 is typing..."
+msgstr "%1 正在輸入中..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -169,13 +169,17 @@ msgstr[0] "附件：%1 條影片"
 msgid "Audio attachment not supported"
 msgstr "不支援音訊附件"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr "‎自動播放動畫影像‎"
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "離開"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "返回"
 
@@ -249,11 +253,11 @@ msgstr "建立多媒體訊息群組…"
 msgid "Creating Group..."
 msgstr "建立群組..."
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "深色"
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -288,9 +292,13 @@ msgstr "編輯"
 msgid "Enable"
 msgstr "啟用"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "啟用多媒體訊息"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr "‎啟用貼圖"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -429,11 +437,11 @@ msgstr "離開頻道"
 msgid "Leave group"
 msgstr "離開群組"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "淺色"
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "多媒體訊息"
 
@@ -477,7 +485,7 @@ msgstr "訊息"
 msgid "Messaging App"
 msgstr "訊息程式"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "訊息應用程式"
 
@@ -540,12 +548,14 @@ msgstr "確定"
 msgid "Online"
 msgstr "上線"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
-msgstr "糟糕，媒體訊息系統出現錯誤，無法搜尋到這個訊息。 請確保基地台已打開並且媒體訊息的設定是正確的，然後請寄件者重試。"
+msgstr ""
+"糟糕，媒體訊息系統出現錯誤，無法搜尋到這個訊息。 請確保基地台已打開並且媒體訊"
+"息的設定是正確的，然後請寄件者重試。"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -559,6 +569,14 @@ msgstr "待處理"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "選擇要建立的帳戶。"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr "‎請確認您要刪除歷史記錄中的所有貼圖‎"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr "‎請確認您要刪除此套件中的所有貼圖‎"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -592,6 +610,7 @@ msgstr "收到"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "移除"
 
@@ -672,25 +691,29 @@ msgstr "設定"
 msgid "Share"
 msgstr "分享"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "簡化對話視圖"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "按時間來排序"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "按名稱來排序"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "對執行來進行排序"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "狀態"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr "貼圖"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -708,7 +731,7 @@ msgstr "滑動來刪除"
 msgid "Swipe to reveal actions"
 msgstr "滑動來顯示功能"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "系統佈景主題"
 
@@ -740,7 +763,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "所選帳戶目前不可用"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "佈景主題"
 
@@ -779,8 +802,8 @@ msgid "Type a name..."
 msgstr "輸入名稱..."
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
-msgstr "打字中.."
+msgid "Typing..."
+msgstr "輸入中..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -812,11 +835,11 @@ msgstr "歡迎使用訊息應用程式！"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "歡迎使用您的 Ubuntu 訊息應用程式。"
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "撰寫一則廣播訊息..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "撰寫一則訊息..."
 
@@ -881,6 +904,14 @@ msgstr "您已切換到 %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "您已被從這個群組中移除"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr "目前還沒有貼圖"
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr "‎發送的貼圖將會出現在這裡‎"
 
 #~ msgid "Add an online account"
 #~ msgstr "加入在線上的帳戶"

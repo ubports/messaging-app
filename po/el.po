@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
 "PO-Revision-Date: 2020-12-17 14:38+0000\n"
 "Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
 "Language-Team: Greek <https://translate.ubports.com/projects/ubports/"
@@ -56,8 +56,8 @@ msgid "%1 is not Admin"
 msgstr "Ο %1 δεν είναι διαχειριστής"
 
 #: ../src/qml/Messages.qml:1256
-#, qt-format
-msgid "%1 is typing.."
+#, fuzzy, qt-format
+msgid "%1 is typing..."
 msgstr "Ο %1 πληκτρολογεί.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -174,13 +174,17 @@ msgstr[1] "Συνημμένα: %1 βίντεο"
 msgid "Audio attachment not supported"
 msgstr "Το επισυναπτόμενο αρχείο ήχου δεν υποστηρίζεται"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Απουσιάζει"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "Πίσω"
 
@@ -255,11 +259,11 @@ msgstr "Δημιουργία ομάδας MMS..."
 msgid "Creating Group..."
 msgstr "Γίνεται δημιουργία ομάδας..."
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "Σκούρο"
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -294,9 +298,13 @@ msgstr "Επεξεργασία"
 msgid "Enable"
 msgstr "Ενεργοποίηση"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "Ενεργοποίηση μηνυμάτων ΜΜS"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -436,11 +444,11 @@ msgstr "Αποχώρηση από το κανάλι"
 msgid "Leave group"
 msgstr "Αποχώρηση από την ομάδα"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "Ανοιχτό"
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -484,7 +492,7 @@ msgstr "Μηνύματα"
 msgid "Messaging App"
 msgstr "Εφαρμογή Μηνύματα"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Εφαρμογή μηνυμάτων"
 
@@ -547,7 +555,7 @@ msgstr "OK"
 msgid "Online"
 msgstr "Σε σύνδεση"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -566,6 +574,14 @@ msgstr "Σε αναμονή"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "Επιλέξτε έναν λογαριασμό για δημιουργία."
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -601,6 +617,7 @@ msgstr "Παρελήφθη"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Αφαίρεση"
 
@@ -683,25 +700,29 @@ msgstr "Ρυθμίσεις"
 msgid "Share"
 msgstr "Κοινοποίηση"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "Απλοποιημένη προβολή συνομιλίας"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "Ταξινόμηση κατά χρονική σήμανση"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "Ταξινόμηση κατά τίτλο"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "Ταξινόμηση νημάτων"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Κατάσταση"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -719,7 +740,7 @@ msgstr "Σύρετε για διαγραφή"
 msgid "Swipe to reveal actions"
 msgstr "Σύρετε για να εμφανίσετε ενέργειες"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "Θέμα συστήματος"
 
@@ -754,7 +775,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Ο επιλεγμένος λογαριασμός δεν είναι προς το παρόν διαθέσιμος"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "Θέμα"
 
@@ -793,7 +814,8 @@ msgid "Type a name..."
 msgstr "Γράψτε ένα όνομα..."
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+#, fuzzy
+msgid "Typing..."
 msgstr "Πληκτρολογεί..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -826,11 +848,11 @@ msgstr "Καλώς ήρθατε στην εφαρμογή μηνυμάτων!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Καλώς ήρθατε στην εφαρμογή συνομιλίας του Ubuntu."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "Γράψτε ένα μήνυμα μετάδοσης..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Γράψτε ένα μήνυμα..."
 
@@ -899,6 +921,14 @@ msgstr "Έγινε αλλαγή σε %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "Σας έχουν αφαιρέσει από αυτή την ομάδα"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr ""
 
 #~ msgid "Add an online account"
 #~ msgstr "Προσθήκη ενός λογαριασμού online"
