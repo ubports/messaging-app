@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
 "PO-Revision-Date: 2020-07-31 09:29+0000\n"
 "Last-Translator: Young Kim <rsyh93@gmail.com>\n"
 "Language-Team: Korean <https://translate.ubports.com/projects/ubports/"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1256
 #, fuzzy, qt-format
-msgid "%1 is typing.."
+msgid "%1 is typing..."
 msgstr "작성 중..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -171,13 +171,17 @@ msgstr[0] "첨부 파일: 동영상 %1"
 msgid "Audio attachment not supported"
 msgstr "음악을 첨부할 수 없습니다."
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "자리 비움"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "뒤로"
 
@@ -251,11 +255,11 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -290,10 +294,14 @@ msgstr "편집"
 msgid "Enable"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 #, fuzzy
 msgid "Enable MMS messages"
 msgstr "MMS 그룹 채팅 활성화"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -438,11 +446,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -486,7 +494,7 @@ msgstr "메시지 보내기"
 msgid "Messaging App"
 msgstr "메시지 프로그램"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "메시지 프로그램"
 
@@ -549,7 +557,7 @@ msgstr "확인"
 msgid "Online"
 msgstr "온라인"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -567,6 +575,14 @@ msgstr "보류"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
@@ -602,6 +618,7 @@ msgstr "받음"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "제거"
 
@@ -684,25 +701,29 @@ msgstr "설정"
 msgid "Share"
 msgstr "공유"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "상태"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -720,7 +741,7 @@ msgstr "밀어서 삭제"
 msgid "Swipe to reveal actions"
 msgstr "작업들을 보려면 밀어주세요"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr ""
 
@@ -750,7 +771,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr ""
 
@@ -789,7 +810,8 @@ msgid "Type a name..."
 msgstr ""
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+#, fuzzy
+msgid "Typing..."
 msgstr "작성 중..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -822,12 +844,12 @@ msgstr "메시지 앱을 사용해주셔서 감사합니다!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "우분투 메시지 어플리케이션에 오신걸 환영합니다."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "메시지 쓰기..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "메시지 쓰기..."
 
@@ -893,6 +915,14 @@ msgstr "%1(으)로 %2에 전환했습니다."
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
 msgstr ""
 
 #~ msgid "No"

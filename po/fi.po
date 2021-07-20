@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
 "PO-Revision-Date: 2020-11-23 18:30+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
@@ -56,8 +56,8 @@ msgid "%1 is not Admin"
 msgstr "%1 ei ole ylläpitäjä"
 
 #: ../src/qml/Messages.qml:1256
-#, qt-format
-msgid "%1 is typing.."
+#, fuzzy, qt-format
+msgid "%1 is typing..."
 msgstr "%1 kirjoittaa..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -174,13 +174,17 @@ msgstr[1] "Liitteet: %1 videota"
 msgid "Audio attachment not supported"
 msgstr "Ääniliitteet eivät ole tuettuja"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Poissa"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "Takaisin"
 
@@ -254,11 +258,11 @@ msgstr "Luo MMS-ryhmä..."
 msgid "Creating Group..."
 msgstr "Luodaan ryhmää..."
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "Tumma"
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -293,9 +297,13 @@ msgstr "Muokkaa"
 msgid "Enable"
 msgstr "Käytä"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "Ota käyttöön MMS-viestit"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -434,11 +442,11 @@ msgstr "Poistu kanavalta"
 msgid "Leave group"
 msgstr "Poistu ryhmästä"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "Vaalea"
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -484,7 +492,7 @@ msgstr "Viestit"
 msgid "Messaging App"
 msgstr "Viestisovellus"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Viestisovellus"
 
@@ -547,7 +555,7 @@ msgstr "OK"
 msgid "Online"
 msgstr "Paikalla"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -566,6 +574,14 @@ msgstr "Odottaa"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "Valitse luotava tili."
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -601,6 +617,7 @@ msgstr "Vastaanotettu"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Poista"
 
@@ -683,25 +700,29 @@ msgstr "Asetukset"
 msgid "Share"
 msgstr "Jaa"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "Yksinkertaistettu keskustelunäkymä"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "Järjestä aikaleiman mukaan"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "Järjestä otsikon mukaan"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "Järjestä ketjut"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Tila"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -719,7 +740,7 @@ msgstr "Vedä poistaaksesi"
 msgid "Swipe to reveal actions"
 msgstr "Vedä paljastaaksesi toiminnot"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "Järjestelmän teema"
 
@@ -754,7 +775,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Valittu tili ei ole käytettävissä tällä hetkellä"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "Teema"
 
@@ -793,7 +814,8 @@ msgid "Type a name..."
 msgstr "Kirjoita nimi..."
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+#, fuzzy
+msgid "Typing..."
 msgstr "Kirjoittaa..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -826,11 +848,11 @@ msgstr "Tervetuloa viestisovellukseen!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Tervetuloa Ubuntun viestisovellukseen."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "Kirjoita yleislähetysviesti..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Kirjoita viesti..."
 
@@ -898,6 +920,14 @@ msgstr "Vaihdoit SIM-korttiin %1 %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "Sinut poistettiin tästä ryhmästä"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr ""
 
 #~ msgid "Add an online account"
 #~ msgstr "Lisää verkkotili"
