@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-05-15 18:00+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"PO-Revision-Date: 2021-07-24 19:07+0000\n"
+"Last-Translator: Stefan Kalb <stefan.kalb@gmx.ch>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "messaging-app/de/>\n"
 "Language: de\n"
@@ -57,8 +57,8 @@ msgstr "%1 ist kein Admin"
 
 #: ../src/qml/Messages.qml:1256
 #, qt-format
-msgid "%1 is typing.."
-msgstr "%1 tippt ..."
+msgid "%1 is typing..."
+msgstr "%1 tippt..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -174,13 +174,17 @@ msgstr[1] "Anhänge: %1 Videos"
 msgid "Audio attachment not supported"
 msgstr "Tonanhang wird nicht unterstützt"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr "Animation automatisch abspielen"
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Abwesend"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "Zurück"
 
@@ -256,11 +260,11 @@ msgstr "MMS-Gruppe erstellen ..."
 msgid "Creating Group..."
 msgstr "Gruppe wird erstellt ..."
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "Dunkel"
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -295,9 +299,13 @@ msgstr "Bearbeiten"
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "MMS-Nachrichten aktivieren"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr "Sticker einschalten"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -436,11 +444,11 @@ msgstr "Kanal verlassen"
 msgid "Leave group"
 msgstr "Gruppe verlassen"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "Hell"
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -484,7 +492,7 @@ msgstr "Nachrichten"
 msgid "Messaging App"
 msgstr "Nachrichten-App"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Nachrichtenan-App"
 
@@ -547,7 +555,7 @@ msgstr "OK"
 msgid "Online"
 msgstr "Verbunden"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -570,6 +578,17 @@ msgstr "In Arbeit"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "Wähle ein Konto zum Anlegen aus."
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+"Bitte bestätigen Sie daß sie alle Sticker in der Historie löschen wollen"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr ""
+"Bitte bestätigen Sie daß Sie alle Sticker in diesem Stickerpack löschen "
+"wollen"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -605,6 +624,7 @@ msgstr "Empfangen"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -629,7 +649,7 @@ msgstr "Gruppe umbenannt zu: %1"
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "Wiederholen"
+msgstr "Erneut versuchen"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
@@ -687,25 +707,29 @@ msgstr "Einstellungen"
 msgid "Share"
 msgstr "Teilen"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "Vereinfachte Ansicht"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "Chronologisch sortieren"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "Alphabetisch sortieren"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "Themen sortieren"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Status"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr "Sticker"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -723,7 +747,7 @@ msgstr "Wischen zum Löschen"
 msgid "Swipe to reveal actions"
 msgstr "Wischen, um Aktionen zu zeigen"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "Systemdesign"
 
@@ -759,7 +783,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Das ausgewählte Konto ist momentan nicht verfügbar"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "Thema"
 
@@ -798,8 +822,8 @@ msgid "Type a name..."
 msgstr "Geben Sie einen Namen ein ..."
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
-msgstr "Tippt …"
+msgid "Typing..."
+msgstr "Tippt…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -831,11 +855,11 @@ msgstr "Willkommen in Ihrer Nachrichten-App!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Willkommen bei Ihrer Ubuntu-Nachrichten-App."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "Eine Nachricht an alle schreiben ..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Eine Nachricht schreiben..."
 
@@ -904,6 +928,14 @@ msgstr "Sie haben zu %1 gewechselt um %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "Sie wurden aus dieser Gruppe entfernt"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr "Bisher keine Sticker"
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr "Gesendete Sticker werden hier aufscheinen"
 
 #~ msgid "Add an online account"
 #~ msgstr "Einen Online-Account hinzufügen"

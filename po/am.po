@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
 "PO-Revision-Date: 2021-03-13 20:29+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
@@ -56,8 +56,8 @@ msgid "%1 is not Admin"
 msgstr "%1 አስተዳዳሪ አይደለም"
 
 #: ../src/qml/Messages.qml:1256
-#, qt-format
-msgid "%1 is typing.."
+#, fuzzy, qt-format
+msgid "%1 is typing..."
 msgstr "%1 በ መጻፍ ላይ.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -174,13 +174,17 @@ msgstr[1] "ማያያዣዎች: %1 ቪዲዮዎች"
 msgid "Audio attachment not supported"
 msgstr "ድምፅ ማያያዝ አይቻልም"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "የሉም"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "ወደ ኋላ"
 
@@ -254,11 +258,11 @@ msgstr "የ MMS ቡድን መፍጠሪያ..."
 msgid "Creating Group..."
 msgstr "ቡድን በ መፍጠር ላይ..."
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -293,9 +297,13 @@ msgstr "ማረሚያ"
 msgid "Enable"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "የ MMS መልእክት ማስቻያ"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -434,11 +442,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -480,7 +488,7 @@ msgstr "መልእክቶች"
 msgid "Messaging App"
 msgstr "የ መልእክቶች መተግበሪያ"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "የ መልእክቶች መተግበሪያ"
 
@@ -543,7 +551,7 @@ msgstr "እሺ"
 msgid "Online"
 msgstr "በ መስመር ላይ"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -562,6 +570,14 @@ msgstr "ያልተወሰነ"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "መግለጫ ለ መፍጠር ይምረጡ:"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -596,6 +612,7 @@ msgstr "ተቀብለዋል"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "ማስወገጃ"
 
@@ -678,25 +695,29 @@ msgstr "ማሰናጃ"
 msgid "Share"
 msgstr "ማካፈያ"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "በ አርእስት መለያ"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "ሁኔታው"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -714,7 +735,7 @@ msgstr "ለማጥፋት ይጥረጉ"
 msgid "Swipe to reveal actions"
 msgstr "ተግባሮቹን ለማየት ይጥረጉ"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr ""
 
@@ -744,7 +765,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "ገጽታ"
 
@@ -783,7 +804,8 @@ msgid "Type a name..."
 msgstr "ስም ይጻፉ..."
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+#, fuzzy
+msgid "Typing..."
 msgstr "በመጻፍ ላይ.."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -816,12 +838,12 @@ msgstr "እንኳን ደህና መጡ ወደ መልእክት መተግበሪያ!
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "እንኳን ደህና መጡ ወደ እርስዎ የ ኡቡንቱ መልእክት መተግበሪያ"
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "መልእክት መጻፊያ..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "መልእክት መጻፊያ..."
 
@@ -886,6 +908,14 @@ msgstr "እርስዎ ቀይረዋል ወደ %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "እርስዎ ከዚህ ቡድን ውስጥ ተወግደዋል"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr ""
 
 #~ msgid "Add an online account"
 #~ msgstr "በ መስመር ላይ መግለጫ መጨመሪያ"

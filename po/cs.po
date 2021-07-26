@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-04-22 10:44+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"PO-Revision-Date: 2021-07-01 03:32+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
@@ -57,8 +57,8 @@ msgstr "%1 není Správce"
 
 #: ../src/qml/Messages.qml:1256
 #, qt-format
-msgid "%1 is typing.."
-msgstr "%1 píše…"
+msgid "%1 is typing..."
+msgstr "%1 píše..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -179,13 +179,17 @@ msgstr[2] "Přílohy: %1 videí"
 msgid "Audio attachment not supported"
 msgstr "Přiložený audio soubor není podporován"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr "Automaticky přehrávat animovaný obrázek"
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Nepřítomný"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "Zpět"
 
@@ -261,11 +265,11 @@ msgstr "Vytvořit MMS skupinu…"
 msgid "Creating Group..."
 msgstr "Vytváření skupiny…"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "Tmavý"
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -300,9 +304,13 @@ msgstr "Upravit"
 msgid "Enable"
 msgstr "Povolit"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "Povolit MMS zprávy"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr "Povolit nálepky"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -441,11 +449,11 @@ msgstr "Opustit kanál"
 msgid "Leave group"
 msgstr "Opustit skupinu"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "Světlý"
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -489,7 +497,7 @@ msgstr "Zprávy"
 msgid "Messaging App"
 msgstr "Aplikace pro zprávy"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Aplikace pro posílání a příjem zpráv"
 
@@ -552,7 +560,7 @@ msgstr "Přijmout"
 msgid "Online"
 msgstr "Připojen(a)"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -574,6 +582,14 @@ msgstr "Čekající"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "Vyberte účet, který chcete vytvořit."
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr "Potvrďte prosím, že chcete odstranit všechny nálepky v historii"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr "Potvrďte prosím, že chcete odstranit všechny nálepky v tomto balíčku"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -608,6 +624,7 @@ msgstr "Doručené"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Odstranit"
 
@@ -690,25 +707,29 @@ msgstr "Nastavení"
 msgid "Share"
 msgstr "Sdílet"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "Zjednodušené zobrazení konverzace"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "Seřadit dle data a hodiny"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "Seřadit dle názvu"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "Seřadit vlákna"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Stav"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr "Nálepky"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -726,7 +747,7 @@ msgstr "Smažete přejetím prstem"
 msgid "Swipe to reveal actions"
 msgstr "Možné akce zobrazíte přejetím prstem"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "Styl systému"
 
@@ -760,7 +781,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Vybraný účet není právě dostupný"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "Motiv prostředí"
 
@@ -800,8 +821,8 @@ msgid "Type a name..."
 msgstr "Napište název…"
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
-msgstr "Píše…"
+msgid "Typing..."
+msgstr "Píše..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -833,11 +854,11 @@ msgstr "Vítejte v aplikaci Zprávy!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Vítejte aplikaci zprávy."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "Napište zprávu, která má být rozeslána…"
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Napsat zprávu..."
 
@@ -904,6 +925,14 @@ msgstr "Přepnuli jste %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "Byl jste odstraněni z této skupiny"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr "zatím žádné nálepky"
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr "zde se zobrazí odeslané nálepky"
 
 #~ msgid "Add an online account"
 #~ msgstr "Přidat on-line účet"
