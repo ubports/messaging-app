@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-21 12:22+0000\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
 "PO-Revision-Date: 2021-05-24 06:26+0000\n"
 "Last-Translator: Abdellatif Oussaid <oussaid.abdellatif@gmail.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
@@ -26,7 +26,7 @@ msgid "#channelName"
 msgstr "#اسم_القناة"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:74
+#: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
 msgstr "%1 + %2"
@@ -56,9 +56,9 @@ msgstr "%1 مدير"
 msgid "%1 is not Admin"
 msgstr "%1 ليس مديرًا"
 
-#: ../src/qml/Messages.qml:1253
-#, qt-format
-msgid "%1 is typing.."
+#: ../src/qml/Messages.qml:1256
+#, fuzzy, qt-format
+msgid "%1 is typing..."
 msgstr "%1 يكتب.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -108,7 +108,7 @@ msgstr "اسحب للإلغاء >>>"
 msgid "Accepted"
 msgstr "مقبول"
 
-#: ../src/qml/Messages.qml:846
+#: ../src/qml/Messages.qml:849
 msgid "Add"
 msgstr "أضف"
 
@@ -136,7 +136,7 @@ msgstr "مدير"
 msgid "All"
 msgstr "الكل"
 
-#: ../src/qml/ThreadDelegate.qml:118
+#: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
@@ -147,7 +147,7 @@ msgstr[3] "مرفقات: %1 مقاطع صوتية"
 msgstr[4] "مرفقات: %1 مقطعًا صوتيًا"
 msgstr[5] "مرفقات: %1 مقطع صوتي"
 
-#: ../src/qml/ThreadDelegate.qml:115
+#: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
@@ -158,7 +158,7 @@ msgstr[3] "مرفقات: %1 متراسلين"
 msgstr[4] "مرفقات: %1 مترسلًا"
 msgstr[5] "مرفقات: %1 متراسل"
 
-#: ../src/qml/ThreadDelegate.qml:121
+#: ../src/qml/ThreadDelegate.qml:125
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
@@ -169,7 +169,7 @@ msgstr[3] "مرفقات: %1 ملفات"
 msgstr[4] "مرفقات: %1 ملفا"
 msgstr[5] "مرفقات: %1 ملف"
 
-#: ../src/qml/ThreadDelegate.qml:109
+#: ../src/qml/ThreadDelegate.qml:113
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
@@ -180,7 +180,7 @@ msgstr[3] "مرفقات: %1 صور"
 msgstr[4] "مرفقات: %1 صورة"
 msgstr[5] "مرفقات: %1 صورة"
 
-#: ../src/qml/ThreadDelegate.qml:112
+#: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -195,21 +195,25 @@ msgstr[5] "مرفقات: %1 فيديو"
 msgid "Audio attachment not supported"
 msgstr "إرفاق الصوت غير مدعوم"
 
-#: ../src/qml/Messages.qml:1268
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
+#: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "غائب"
 
-#: ../src/qml/Messages.qml:697 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "للخلف"
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1273
 msgid "Busy"
 msgstr "مشغول"
 
-#: ../src/qml/Messages.qml:834 ../src/qml/Messages.qml:950
+#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
 msgstr "اتصل"
 
@@ -253,21 +257,21 @@ msgstr "أغلق"
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr "أنشئ رسالة جديدة عن طريق سحب إصبعك من أسفل الشاشة."
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:961
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
 msgid "Contact"
 msgstr "متراسل"
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:159
+#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr "انسخ"
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1108
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "أنشئ مجموعة %1…"
 
-#: ../src/qml/Messages.qml:1075
+#: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
 msgstr "أنشئ مجموعة MMS…"
 
@@ -275,13 +279,14 @@ msgstr "أنشئ مجموعة MMS…"
 msgid "Creating Group..."
 msgstr "ينشئ مجموعة…"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "داكن"
 
-#: ../src/qml/MessageDelegate.qml:128 ../src/qml/NewGroupPage.qml:309
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:167
+#: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
 msgstr "احذف"
 
@@ -301,7 +306,7 @@ msgstr "لا تسأل مجددًا"
 msgid "Don't show again"
 msgstr "لا تعرض مجددًا"
 
-#: ../src/qml/ThreadDelegate.qml:346
+#: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "مسودة:"
 
@@ -313,9 +318,13 @@ msgstr "حرر"
 msgid "Enable"
 msgstr "فعِّل"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "فعّل رسائل MMS"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -365,7 +374,7 @@ msgstr "تحذير بسبب حجم الملف"
 msgid "File type not supported"
 msgstr "نوع الملف غير مدعوم"
 
-#: ../src/qml/MessageDelegate.qml:167
+#: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
 msgstr "تقدّم"
@@ -382,7 +391,7 @@ msgstr "تم"
 msgid "Group"
 msgstr "مجموعة"
 
-#: ../src/qml/Messages.qml:817
+#: ../src/qml/Messages.qml:820
 #, qt-format
 msgid "Group (%1)"
 msgstr "مجموعة (%1)"
@@ -409,8 +418,8 @@ msgid ""
 "If you wish to edit your SIM and other mobile preferences, please visit <a "
 "href=\"system_settings\">System Settings</a>."
 msgstr ""
-"اذا أردت تحرير إعدادات الشريحة وإعدادات الهاتف زر <a href=\"system_settings\""
-">إعدادات النظام</a>."
+"اذا أردت تحرير إعدادات الشريحة وإعدادات الهاتف زر <a href=\"system_settings"
+"\">إعدادات النظام</a>."
 
 #: ../src/qml/AttachmentPanel.qml:104
 msgid "Image"
@@ -420,7 +429,7 @@ msgstr "صورة"
 msgid "Image Preview"
 msgstr "معاينة الصورة"
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:174
+#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
 #: ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
@@ -438,7 +447,7 @@ msgstr "يتعذر ارسال رسالة في وضع الطيران"
 msgid "It is not possible to send the message"
 msgstr "لا يمكن ارسال رسالة"
 
-#: ../src/qml/Messages.qml:1099
+#: ../src/qml/Messages.qml:1102
 msgid "Join IRC Channel..."
 msgstr "انضم الى قناة IRC…"
 
@@ -454,11 +463,11 @@ msgstr "غادر القناة"
 msgid "Leave group"
 msgstr "غادر المجموعة"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "فاتح"
 
-#: ../src/qml/ComposeBar.qml:625 ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "رسالة وسائط (MMS)"
 
@@ -502,7 +511,7 @@ msgstr "يراسل"
 msgid "Messaging App"
 msgstr "تطبيق مراسلة"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "تطبيق مراسلة"
 
@@ -510,7 +519,7 @@ msgstr "تطبيق مراسلة"
 msgid "Multiple MMS Messages"
 msgstr "رسائل MMS متعددة"
 
-#: ../src/qml/MessageDelegate.qml:184
+#: ../src/qml/MessageDelegate.qml:169
 msgid "Myself"
 msgstr "نفسي"
 
@@ -551,7 +560,7 @@ msgstr "لا تتوفر"
 msgid "Number or contact name"
 msgstr "رقم أو اسم المتراسل"
 
-#: ../src/qml/Messages.qml:1266
+#: ../src/qml/Messages.qml:1269
 msgid "Offline"
 msgstr "غير متصل"
 
@@ -561,9 +570,16 @@ msgstr "غير متصل"
 msgid "Ok"
 msgstr "موافق"
 
-#: ../src/qml/Messages.qml:1264
+#: ../src/qml/Messages.qml:1267
 msgid "Online"
 msgstr "متصل"
+
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then ask the sender to try again."
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -577,6 +593,14 @@ msgstr "معلق"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "اختر حساب للإنشاء."
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -609,9 +633,10 @@ msgstr "مقروء"
 msgid "Received"
 msgstr "مستلمة"
 
-#: ../src/qml/ComposeBar.qml:204
+#: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "أزل"
 
@@ -631,7 +656,7 @@ msgstr "إزالة آخر عضو ستحل مجموعة '%1'. أتريد المت
 msgid "Renamed group to: %1"
 msgstr "غُيّر اسم المجموعة الى: %1"
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:151
+#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr "حاول مجددًا"
@@ -640,7 +665,7 @@ msgstr "حاول مجددًا"
 msgid "SIM Card is locked"
 msgstr "شريحة الهاتف مقفلة"
 
-#: ../src/qml/MessageDelegate.qml:176
+#: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
 msgstr "رسالة قصيرة"
 
@@ -692,25 +717,29 @@ msgstr "الإعدادات"
 msgid "Share"
 msgstr "شارك"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "عرض مبسط للمحادثة"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "افرز وفق الختم الزمني"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "افرز وفق العنوان"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "افرز النقاشات"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "الحالة"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -728,7 +757,7 @@ msgstr "اسحب للحذف"
 msgid "Swipe to reveal actions"
 msgstr "اسحب لإظهار الإجراءات"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "سمة النظام"
 
@@ -741,7 +770,7 @@ msgstr "فشل مؤقت"
 msgid "Text message copied to clipboard"
 msgstr "نُسخت الرسالة النصية إلى الحافظة"
 
-#: ../src/qml/Messages.qml:505
+#: ../src/qml/Messages.qml:508
 msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
@@ -763,7 +792,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "الحساب المختار غير متوفر حاليًا"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "ثيمات"
 
@@ -801,8 +830,9 @@ msgstr "النوع"
 msgid "Type a name..."
 msgstr "اكتب اسمًا…"
 
-#: ../src/qml/Messages.qml:1255
-msgid "Typing.."
+#: ../src/qml/Messages.qml:1258
+#, fuzzy
+msgid "Typing..."
 msgstr "يكتب.."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -835,11 +865,11 @@ msgstr "مرحبا بك في تطبيق المراسلة!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "مرحبا بك في تطبيق أوبونتو للمراسلة."
 
-#: ../src/qml/ComposeBar.qml:568
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "اكتب رسالة بث..."
 
-#: ../src/qml/ComposeBar.qml:580
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "اكتب رسالة..."
 
@@ -861,7 +891,7 @@ msgid ""
 "able to send it."
 msgstr "أنت تحاول إرسال ملف ضخم (فوق 300 كب). بعض المشغلات لن تتمكن من ارساله."
 
-#: ../src/qml/Messages.qml:1605
+#: ../src/qml/Messages.qml:1608
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "لن تتمكن من ارسال رسائل لهذه المجموعة لأنها ليست نشطة"
@@ -870,7 +900,7 @@ msgstr "لن تتمكن من ارسال رسائل لهذه المجموعة ل�
 msgid "You have to disable flight mode"
 msgstr "عطَلتَ وضع الطيران"
 
-#: ../src/qml/ComposeBar.qml:228
+#: ../src/qml/ComposeBar.qml:227
 msgid "You have to press and hold the record icon"
 msgstr "عليك ضغط أيقونة التسجيل مع التعليق"
 
@@ -904,6 +934,14 @@ msgstr "تحولتَ إلى %1 @ %2"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "أُزلتَ من هذه المجموعة"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr ""
 
 #~ msgid "No"
 #~ msgstr "لا"
