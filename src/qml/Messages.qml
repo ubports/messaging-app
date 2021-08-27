@@ -625,6 +625,7 @@ Page {
                 return baseIdentifier
             }
         }
+        return ""
     }
 
     function contactMatchFieldFromProtocol(protocol, fallback) {
@@ -782,7 +783,7 @@ Page {
                 Action {
                     id: rejoinGroupChatAction
                     objectName: "rejoinGroupChatAction"
-                    enabled: !chatEntry.active && messages.account.protocolInfo.enableRejoin && messages.account.connected
+                    enabled: !chatEntry.active && messages.account && messages.account.protocolInfo.enableRejoin && messages.account.connected
                     visible: enabled
                     iconName: "view-refresh"
                     onTriggered: messages.chatEntry.startChat()
@@ -1216,7 +1217,7 @@ Page {
     Binding {
         target: messages.chatEntry
         property: "autoRequest"
-        value: !messages.newMessage && !messages.account.protocolInfo.enableRejoin
+        value: !messages.newMessage && !(messages.account && messages.account.protocolInfo.enableRejoin)
     }
 
     Repeater {
@@ -1649,8 +1650,8 @@ Page {
         threadId: messages.threadId
         presenceRequest: messages.presenceRequest
         isBroadcast: messages.isBroadcast
-        returnToSend: messages.account.protocolInfo.returnToSend
-        enableAttachments: messages.account.protocolInfo.enableAttachments
+        returnToSend: messages.account && messages.account.protocolInfo.returnToSend
+        enableAttachments: messages.account && messages.account.protocolInfo.enableAttachments
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
@@ -1680,7 +1681,7 @@ Page {
         }
         canSend: chatType == ChatEntry.ChatTypeRoom || (participants !== null && participants.length > 0) || multiRecipient.recipientCount > 0 || multiRecipient.searchString !== ""
         oskEnabled: messages.oskEnabled
-        usingMMS: messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
+        usingMMS: messages.account && messages.account.type == AccountEntry.PhoneAccount && messages.chatType == ChatEntry.ChatTypeRoom
 
         Component.onCompleted: {
             // if page is active, it means this is not a bottom edge page
