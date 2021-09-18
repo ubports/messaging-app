@@ -27,8 +27,10 @@
         "/usr/share/applications/",
         "/custom/xdg/data/dconf/",
         "/usr/share/*/assets/",
+        "@{PROC}/[0-9]*/task/[0-9]*/comm",
         "@{HOME}/.local/share/evolution/addressbook/*/photos/",
         "@{HOME}/.cache/messaging-app/HubIncoming/**",
+        "@{HOME}/.cache/qtshadercache-arm64-little_endian-lp64/**",
         "@{HOME}/.config/dconf/user",
         "/usr/share/messaging-app/"
       ]
