@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-04-22 10:44+0000\n"
+"PO-Revision-Date: 2021-08-20 23:16+0000\n"
 "Last-Translator: Adria <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sc/>\n"
@@ -55,7 +55,7 @@ msgid "%1 is not Admin"
 msgstr "%1 no est amministradore"
 
 #: ../src/qml/Messages.qml:1256
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing..."
 msgstr "%1 est iscriende..."
 
@@ -175,7 +175,7 @@ msgstr "Allegare àudio no est ancora possìbile"
 
 #: ../src/qml/SettingsPage.qml:96
 msgid "AutoPlay animated image"
-msgstr ""
+msgstr "Riprodue is animatziones in automàticu"
 
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
@@ -303,7 +303,7 @@ msgstr "Ativa messàgios MMS"
 
 #: ../src/qml/SettingsPage.qml:65
 msgid "Enable stickers"
-msgstr ""
+msgstr "Ativa is adesivos"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -579,11 +579,11 @@ msgstr "Sèbera unu contu de creare."
 
 #: ../src/qml/Stickers/StickersPicker.qml:139
 msgid "Please confirm that you want to delete all stickers in the history"
-msgstr ""
+msgstr "Cunfirma chi boles cantzellare totu is adesivos de sa cronologia"
 
 #: ../src/qml/Stickers/StickersPicker.qml:139
 msgid "Please confirm that you want to delete all stickers in this pack"
-msgstr ""
+msgstr "Cunfirma chi boles cantzellare totu is adesivos in custu pachete"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -724,7 +724,7 @@ msgstr "Istadu"
 
 #: ../src/qml/Stickers/StickersPicker.qml:138
 msgid "Stickers"
-msgstr ""
+msgstr "Adesivos"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -816,7 +816,6 @@ msgid "Type a name..."
 msgstr "Iscrie unu nòmine..."
 
 #: ../src/qml/Messages.qml:1258
-#, fuzzy
 msgid "Typing..."
 msgstr "Iscriende..."
 
@@ -925,11 +924,11 @@ msgstr "T'ant bogadu de custu grupu"
 
 #: ../src/qml/Stickers/StickersPicker.qml:268
 msgid "no stickers yet"
-msgstr ""
+msgstr "ancora perunu adesivu"
 
 #: ../src/qml/Stickers/StickersPicker.qml:309
 msgid "sent stickers will appear here"
-msgstr ""
+msgstr "is adesivos imbiados ant a èssere inoghe"
 
 #~ msgid "No"
 #~ msgstr "Nono"

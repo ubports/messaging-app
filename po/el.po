@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2020-12-17 14:38+0000\n"
+"PO-Revision-Date: 2021-09-20 23:03+0000\n"
 "Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
 "Language-Team: Greek <https://translate.ubports.com/projects/ubports/"
 "messaging-app/el/>\n"
@@ -56,9 +56,9 @@ msgid "%1 is not Admin"
 msgstr "Ο %1 δεν είναι διαχειριστής"
 
 #: ../src/qml/Messages.qml:1256
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing..."
-msgstr "Ο %1 πληκτρολογεί.."
+msgstr "Ο %1 πληκτρολογεί..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -176,7 +176,7 @@ msgstr "Το επισυναπτόμενο αρχείο ήχου δεν υποσ�
 
 #: ../src/qml/SettingsPage.qml:96
 msgid "AutoPlay animated image"
-msgstr ""
+msgstr "Αυτόματη αναπαραγωγή κινούμενης εικόνας"
 
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
@@ -304,7 +304,7 @@ msgstr "Ενεργοποίηση μηνυμάτων ΜΜS"
 
 #: ../src/qml/SettingsPage.qml:65
 msgid "Enable stickers"
-msgstr ""
+msgstr "Ενεργοποίηση αυτοκόλλητων"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -561,6 +561,10 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"Ωχ, παρουσιάστηκε σφάλμα με το σύστημα MMS και δεν ήταν δυνατή η ανάκτηση "
+"αυτού του μηνύματος. Παρακαλούμε βεβαιωθείτε ότι τα δεδομένα κινητής "
+"τηλεφωνίας είναι ενεργοποιημένα και οι ρυθμίσεις MMS είναι σωστές και, στη "
+"συνέχεια, ζητήστε από τον αποστολέα να προσπαθήσει ξανά."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -578,10 +582,14 @@ msgstr "Επιλέξτε έναν λογαριασμό για δημιουργί
 #: ../src/qml/Stickers/StickersPicker.qml:139
 msgid "Please confirm that you want to delete all stickers in the history"
 msgstr ""
+"Παρακαλούμε επιβεβαιώστε ότι θέλετε να διαγράψετε όλα τα αυτοκόλλητα στο "
+"ιστορικό"
 
 #: ../src/qml/Stickers/StickersPicker.qml:139
 msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr ""
+"Παρακαλούμε επιβεβαιώστε ότι θέλετε να διαγράψετε όλα τα αυτοκόλλητα σε αυτό "
+"το πακέτο"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -722,7 +730,7 @@ msgstr "Κατάσταση"
 
 #: ../src/qml/Stickers/StickersPicker.qml:138
 msgid "Stickers"
-msgstr ""
+msgstr "Αυτοκόλλητα"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -814,7 +822,6 @@ msgid "Type a name..."
 msgstr "Γράψτε ένα όνομα..."
 
 #: ../src/qml/Messages.qml:1258
-#, fuzzy
 msgid "Typing..."
 msgstr "Πληκτρολογεί..."
 
@@ -924,11 +931,11 @@ msgstr "Σας έχουν αφαιρέσει από αυτή την ομάδα"
 
 #: ../src/qml/Stickers/StickersPicker.qml:268
 msgid "no stickers yet"
-msgstr ""
+msgstr "δεν υπάρχουν αυτοκόλλητα ακόμα"
 
 #: ../src/qml/Stickers/StickersPicker.qml:309
 msgid "sent stickers will appear here"
-msgstr ""
+msgstr "τα αυτοκόλλητα που έχουν σταλεί θα εμφανιστούν εδώ"
 
 #~ msgid "Add an online account"
 #~ msgstr "Προσθήκη ενός λογαριασμού online"
