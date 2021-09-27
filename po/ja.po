@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-07-08 16:43+0000\n"
+"PO-Revision-Date: 2021-09-11 14:17+0000\n"
 "Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ja/>\n"
@@ -56,7 +56,7 @@ msgid "%1 is not Admin"
 msgstr "%1 は管理者ではありません"
 
 #: ../src/qml/Messages.qml:1256
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing..."
 msgstr "%1 が入力中.."
 
@@ -171,7 +171,7 @@ msgstr "オーディオの添付はサポートされていません"
 
 #: ../src/qml/SettingsPage.qml:96
 msgid "AutoPlay animated image"
-msgstr ""
+msgstr "アニメーション画像を自動再生する"
 
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
@@ -214,11 +214,11 @@ msgstr "すべてのメッセージを%1経由に変更しますか？"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "チャンネル情報"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "チャンネル名:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -247,11 +247,11 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1078
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "MMSグループを作成…"
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "グループを作成しています…"
 
 #: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
@@ -278,11 +278,11 @@ msgstr "再び表示しない"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
-msgstr ""
+msgstr "再び表示しない"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
-msgstr ""
+msgstr "下書き:"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
@@ -290,16 +290,15 @@ msgstr "編集"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
-msgstr ""
+msgstr "有効化"
 
 #: ../src/qml/SettingsPage.qml:58
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "新しいメッセージ"
+msgstr "MMSメッセージを有効にする"
 
 #: ../src/qml/SettingsPage.qml:65
 msgid "Enable stickers"
-msgstr ""
+msgstr "スタンプを有効にする"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"

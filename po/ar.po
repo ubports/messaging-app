@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-05-24 06:26+0000\n"
-"Last-Translator: Abdellatif Oussaid <oussaid.abdellatif@gmail.com>\n"
+"PO-Revision-Date: 2021-08-30 09:30+0000\n"
+"Last-Translator: HEROBRINE7GAMER <tapermeerkat77@gmail.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
 "Language: ar\n"
@@ -794,7 +794,7 @@ msgstr "الحساب المختار غير متوفر حاليًا"
 
 #: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
-msgstr "ثيمات"
+msgstr "‫سمة"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
