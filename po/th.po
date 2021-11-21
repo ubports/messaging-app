@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-05-23 05:10+0000\n"
+"PO-Revision-Date: 2021-10-14 16:02+0000\n"
 "Last-Translator: Wannaphong Phatthiyaphaibun <wannaphong@yahoo.com>\n"
 "Language-Team: Thai <https://translate.ubports.com/projects/ubports/"
 "messaging-app/th/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: ../src/qml/ThreadDelegate.qml:78
 #, qt-format
 msgid "%1 + %2"
-msgstr ""
+msgstr "%1 + %2"
 
 #: ../src/qml/MainPage.qml:218
 #, qt-format
@@ -48,12 +48,12 @@ msgstr "%1 ได้เชิญ %2 เข้ากลุ่มนี้"
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 เป็นผู้ดูแล"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 ไม่ใช่ผู้ดูแล"
 
 #: ../src/qml/Messages.qml:1256
 #, fuzzy, qt-format
@@ -63,27 +63,27 @@ msgstr "%1 กำลังพิมพ์อยู่.."
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 ได้เข้าร่วมกลุ่มนี้"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 ได้ออกจากกลุ่มนี้"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 ลบ %2 ออกจากกลุ่มนี้"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 เปลี่ยนชื่อกลุ่มเป็น: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 ได้กำหนดให้ %2 เป็นผู้ดูแล"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
@@ -105,11 +105,11 @@ msgstr "<<< เลื่อนเพื่อยกเลิก"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
-msgstr ""
+msgstr "ยอมรับแล้ว"
 
 #: ../src/qml/Messages.qml:849
 msgid "Add"
-msgstr ""
+msgstr "เพิ่ม"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 msgid "Add participant:"
@@ -125,7 +125,7 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "เพิ่ม..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
@@ -628,7 +628,7 @@ msgstr ""
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr ""
+msgstr "ลองอีกครั้ง"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
@@ -658,7 +658,7 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "เลือก"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
@@ -678,7 +678,7 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr "ตั้งค่า"
+msgstr "การตั้งค่า"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
@@ -758,7 +758,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
-msgstr ""
+msgstr "ธีม"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-08-30 09:30+0000\n"
+"PO-Revision-Date: 2021-10-12 07:49+0000\n"
 "Last-Translator: HEROBRINE7GAMER <tapermeerkat77@gmail.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ar/>\n"
@@ -377,7 +377,7 @@ msgstr "نوع الملف غير مدعوم"
 #: ../src/qml/MessageDelegate.qml:152
 #: ../src/qml/RegularMessageDelegate_irc.qml:179
 msgid "Forward"
-msgstr "تقدّم"
+msgstr "للأمام"
 
 #: ../src/qml/MessageInfoDialog.qml:102
 msgid "From"
@@ -385,7 +385,7 @@ msgstr "من"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr "تم"
+msgstr "فهمت ذلك"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -638,7 +638,7 @@ msgstr "مستلمة"
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 #: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
-msgstr "أزل"
+msgstr "احذف"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
@@ -755,7 +755,7 @@ msgstr "اسحب للحذف"
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr "اسحب لإظهار الإجراءات"
+msgstr "اسحب لإظهار الاجراءات"
 
 #: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
@@ -803,7 +803,7 @@ msgstr "لا توجد شبكة حاليا في %1"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "لا توجد شبكة حاليا."
+msgstr "لا توجد حاليا أي شبكة."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59

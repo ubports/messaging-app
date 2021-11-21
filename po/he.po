@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-06-24 08:22+0000\n"
+"PO-Revision-Date: 2021-10-24 12:10+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
 "messaging-app/he/>\n"
@@ -56,9 +56,9 @@ msgid "%1 is not Admin"
 msgstr "1% לא מנהל"
 
 #: ../src/qml/Messages.qml:1256
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing..."
-msgstr "%1 מקליד/ה"
+msgstr "%1 מקליד/ה…"
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
@@ -101,7 +101,7 @@ msgstr "+"
 
 #: ../src/qml/AudioRecordingBar.qml:154
 msgid "<<< Swipe to cancel"
-msgstr "החלק על מנת לבטל >>>"
+msgstr "החלקה מבטלת >>>"
 
 #: ../src/qml/MessageInfoDialog.qml:60
 msgid "Accepted"
@@ -176,7 +176,7 @@ msgstr "קובץ אודיו מצורף לא נתמך"
 
 #: ../src/qml/SettingsPage.qml:96
 msgid "AutoPlay animated image"
-msgstr ""
+msgstr "לנגן תמונות מונפשות אוטומטית"
 
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
@@ -186,7 +186,7 @@ msgstr "לא פה"
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
 #: ../src/qml/SettingsPage.qml:279
 msgid "Back"
-msgstr "אחורה"
+msgstr "חזרה"
 
 #: ../src/qml/Messages.qml:1273
 msgid "Busy"
@@ -303,7 +303,7 @@ msgstr "אפשר הודעות MMS"
 
 #: ../src/qml/SettingsPage.qml:65
 msgid "Enable stickers"
-msgstr ""
+msgstr "הפעלת מדבקות"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -559,6 +559,9 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"אופס, נראה שהייתה שגיאה עם מערכת ה־MMS (הודעות מולטימדיה) ואי אפשר למשוך את "
+"ההודעה הזאת. נא לוודא שחיבור הנתונים הסלולרי פעיל ושהגדרות ה־MMS נכונות, "
+"לאחר מכן לבקש ממי ששלח לשלוח שוב."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -575,11 +578,11 @@ msgstr "בחר חשבון ליצירה."
 
 #: ../src/qml/Stickers/StickersPicker.qml:139
 msgid "Please confirm that you want to delete all stickers in the history"
-msgstr ""
+msgstr "נא לאמת שברצונך למחוק את כל המדבקות מההיסטוריה"
 
 #: ../src/qml/Stickers/StickersPicker.qml:139
 msgid "Please confirm that you want to delete all stickers in this pack"
-msgstr ""
+msgstr "נא לאמת שברצונך למחוק את כל המדבקות בחבילה הזאת"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -637,7 +640,7 @@ msgstr "שם הקבוצה שונה ל: %1"
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
-msgstr "ניסיון מחדש"
+msgstr "ניסיון חוזר"
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:26
 msgid "SIM Card is locked"
@@ -645,7 +648,7 @@ msgstr "כרטיס ה- SIM נעול"
 
 #: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
-msgstr "סמס"
+msgstr "מסרון"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:86
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
@@ -717,7 +720,7 @@ msgstr "מצב"
 
 #: ../src/qml/Stickers/StickersPicker.qml:138
 msgid "Stickers"
-msgstr ""
+msgstr "מדבקות"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -809,9 +812,8 @@ msgid "Type a name..."
 msgstr "הקלד שם ..."
 
 #: ../src/qml/Messages.qml:1258
-#, fuzzy
 msgid "Typing..."
-msgstr "מקליד.."
+msgstr "הקלדה…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
@@ -895,7 +897,7 @@ msgstr "הצטרפת לקבוצה זו"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr "עזבת את הקבוצה הזו"
+msgstr "עזבת את הקבוצה"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
@@ -917,11 +919,11 @@ msgstr "הוצאת מהקבוצה הזו"
 
 #: ../src/qml/Stickers/StickersPicker.qml:268
 msgid "no stickers yet"
-msgstr ""
+msgstr "אין מדבקות עדיין"
 
 #: ../src/qml/Stickers/StickersPicker.qml:309
 msgid "sent stickers will appear here"
-msgstr ""
+msgstr "מדבקות שנשלחו תופענה כאן"
 
 #~ msgid "Add an online account"
 #~ msgstr "הוסף חשבון מקוון"
