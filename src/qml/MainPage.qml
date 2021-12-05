@@ -414,7 +414,7 @@ Page {
 
     Loader {
         id: bottomEdgeLoader
-        asynchronous: true
+        asynchronous: false  // Workaround for https://github.com/ubports/messaging-app/issues/309
         active: !mainView.dualPanel
         source: Qt.resolvedUrl('MessagingBottomEdge.qml')
         onLoaded: bottomEdgeLoader.item.parent = mainPage
