@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"POT-Creation-Date: 2021-12-15 20:47+0000\n"
 "PO-Revision-Date: 2021-06-30 19:36+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
@@ -55,7 +55,7 @@ msgstr "%1 is beheerder"
 msgid "%1 is not Admin"
 msgstr "%1 is geen beheerder"
 
-#: ../src/qml/Messages.qml:1256
+#: ../src/qml/Messages.qml:1259
 #, qt-format
 msgid "%1 is typing..."
 msgstr "%1 is aan het typen…"
@@ -174,21 +174,25 @@ msgstr[1] "Bijlage: %1 video's"
 msgid "Audio attachment not supported"
 msgstr "De audiobijlage wordt niet ondersteund"
 
-#: ../src/qml/SettingsPage.qml:96
+#: ../src/qml/SettingsPage.qml:104
+msgid "Auto display keyboard"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
 msgstr "Animatie automatisch afspelen"
 
-#: ../src/qml/Messages.qml:1271
+#: ../src/qml/Messages.qml:1274
 msgid "Away"
 msgstr "Afwezig"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
-#: ../src/qml/SettingsPage.qml:279
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
+#: ../src/qml/SettingsPage.qml:287
 msgid "Back"
 msgstr "Vorige"
 
-#: ../src/qml/Messages.qml:1273
+#: ../src/qml/Messages.qml:1276
 msgid "Busy"
 msgstr "Bezig"
 
@@ -228,7 +232,7 @@ msgstr "Kanaalnaam:"
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
-#: ../src/qml/MessageInfoDialog.qml:168
+#: ../src/qml/MessageInfoDialog.qml:167
 msgid "Close"
 msgstr "Sluiten"
 
@@ -246,12 +250,12 @@ msgstr "Contactpersoon"
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: ../src/qml/Messages.qml:1108
+#: ../src/qml/Messages.qml:1111
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "%1-groep samenstellen…"
 
-#: ../src/qml/Messages.qml:1078
+#: ../src/qml/Messages.qml:1081
 msgid "Create MMS Group..."
 msgstr "MMS-groep samenstellen…"
 
@@ -259,11 +263,11 @@ msgstr "MMS-groep samenstellen…"
 msgid "Creating Group..."
 msgstr "Bezig met samenstellen…"
 
-#: ../src/qml/SettingsPage.qml:52
+#: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
 msgstr "Donker"
 
-#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -286,6 +290,10 @@ msgstr "Niet meer vragen"
 msgid "Don't show again"
 msgstr "Niet meer tonen"
 
+#: ../src/qml/MessageAlertBubble.qml:144
+msgid "Download"
+msgstr ""
+
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Concept:"
@@ -298,11 +306,11 @@ msgstr "Bewerken"
 msgid "Enable"
 msgstr "Inschakelen"
 
-#: ../src/qml/SettingsPage.qml:58
+#: ../src/qml/SettingsPage.qml:59
 msgid "Enable MMS messages"
 msgstr "MMS-berichten inschakelen"
 
-#: ../src/qml/SettingsPage.qml:65
+#: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
 msgstr "Stickers gebruiken"
 
@@ -427,7 +435,7 @@ msgstr "Schakel de vliegtuigstand uit om berichten te versturen"
 msgid "It is not possible to send the message"
 msgstr "Het bericht kan niet worden verstuurd"
 
-#: ../src/qml/Messages.qml:1102
+#: ../src/qml/Messages.qml:1105
 msgid "Join IRC Channel..."
 msgstr "Deelnemen aan irc-kanaal…"
 
@@ -443,7 +451,7 @@ msgstr "Kanaal verlaten"
 msgid "Leave group"
 msgstr "Groep verlaten"
 
-#: ../src/qml/SettingsPage.qml:51
+#: ../src/qml/SettingsPage.qml:52
 msgid "Light"
 msgstr "Licht"
 
@@ -499,7 +507,7 @@ msgstr "Berichtenapplicatie"
 msgid "Multiple MMS Messages"
 msgstr "Meerdere mms-berichten"
 
-#: ../src/qml/MessageDelegate.qml:169
+#: ../src/qml/MessageDelegate.qml:170
 msgid "Myself"
 msgstr "Ik"
 
@@ -511,6 +519,15 @@ msgstr "Nieuwe %1-groep"
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
 msgstr "Nieuwe mms-groep"
+
+#: ../src/qml/MessageAlertBubble.qml:35
+#, qt-format
+msgid "New MMS message to download: size is %1KB, expires on %2"
+msgstr ""
+
+#: ../src/qml/ThreadDelegate.qml:37
+msgid "New MMS notification"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -540,7 +557,7 @@ msgstr "Niet beschikbaar"
 msgid "Number or contact name"
 msgstr "Nummer of naam van contactpersoon"
 
-#: ../src/qml/Messages.qml:1269
+#: ../src/qml/Messages.qml:1272
 msgid "Offline"
 msgstr "Offline"
 
@@ -550,15 +567,27 @@ msgstr "Offline"
 msgid "Ok"
 msgstr "Oké"
 
-#: ../src/qml/Messages.qml:1267
+#: ../src/qml/Messages.qml:1270
 msgid "Online"
 msgstr "Online"
 
-#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:33
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
+msgstr ""
+"Dit bericht kan niet worden opgehaald omdat er een fout is opgetreden in het "
+"mms-systeem. Zorg er voor dat mobiel internet is ingeschakeld en de mms-"
+"instellingen juist zijn en vraag de afzender het bericht opnieuw te "
+"versturen."
+
+#: ../src/qml/MessageAlertBubble.qml:34
+#, fuzzy
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
 "Dit bericht kan niet worden opgehaald omdat er een fout is opgetreden in het "
 "mms-systeem. Zorg er voor dat mobiel internet is ingeschakeld en de mms-"
@@ -578,11 +607,11 @@ msgstr "In afwachting"
 msgid "Pick an account to create."
 msgstr "Kies een toe te voegen account."
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
 msgstr "Weet je zeker dat je alle stickers uit de geschiedenis wilt wissen?"
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr "Weet je zeker dat je alle stickers uit dit pakket wilt wissen?"
 
@@ -609,18 +638,18 @@ msgstr ""
 "<a href=\"system_settings\">Systeeminstellingen &gt; Beveiliging en privacy</"
 "a> te gaan."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:156
 msgid "Read"
 msgstr "Gelezen"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:149
 msgid "Received"
 msgstr "Ontvangen"
 
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
-#: ../src/qml/Stickers/StickersPicker.qml:124
+#: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
 msgstr "Verwijderen"
 
@@ -703,27 +732,27 @@ msgstr "Instellingen"
 msgid "Share"
 msgstr "Delen"
 
-#: ../src/qml/SettingsPage.qml:72
+#: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
 msgstr "Vereenvoudigde gespreksweergave"
 
-#: ../src/qml/SettingsPage.qml:45
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by timestamp"
 msgstr "Chronologisch ordenen"
 
-#: ../src/qml/SettingsPage.qml:46
+#: ../src/qml/SettingsPage.qml:47
 msgid "Sort by title"
 msgstr "Alfabetisch ordenen"
 
-#: ../src/qml/SettingsPage.qml:79
+#: ../src/qml/SettingsPage.qml:80
 msgid "Sort threads"
 msgstr "Op gesprek ordenen"
 
-#: ../src/qml/MessageInfoDialog.qml:163
+#: ../src/qml/MessageInfoDialog.qml:162
 msgid "Status"
 msgstr "Status"
 
-#: ../src/qml/Stickers/StickersPicker.qml:138
+#: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
 msgstr "Stickers"
 
@@ -743,7 +772,7 @@ msgstr "Veeg om te verwijderen"
 msgid "Swipe to reveal actions"
 msgstr "Veeg om acties te tonen"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
 msgstr "Systeemthema"
 
@@ -778,7 +807,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Het gekozen account is momenteel niet beschikbaar"
 
-#: ../src/qml/SettingsPage.qml:87
+#: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
 msgstr "Thema"
 
@@ -816,7 +845,7 @@ msgstr "Soort"
 msgid "Type a name..."
 msgstr "Typ een naam…"
 
-#: ../src/qml/Messages.qml:1258
+#: ../src/qml/Messages.qml:1261
 msgid "Typing..."
 msgstr "Aan het typen…"
 
@@ -878,7 +907,7 @@ msgstr ""
 "Je probeert grote bestanden (meer dan 300Kb) te versturen. Sommige providers "
 "kunnen dit mogelijk niet aan."
 
-#: ../src/qml/Messages.qml:1608
+#: ../src/qml/Messages.qml:1611
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "Je kunt hier geen berichten plaatsen: de groep bestaat niet meer"
@@ -922,11 +951,11 @@ msgstr "Je bent overgeschakeld naar %1 @ %2"
 msgid "You were removed from this group"
 msgstr "Je bent weggestuurd uit deze groep"
 
-#: ../src/qml/Stickers/StickersPicker.qml:268
+#: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
 msgstr "Nog geen stickers"
 
-#: ../src/qml/Stickers/StickersPicker.qml:309
+#: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
 msgstr "Verzonden stickers worden hier getoond"
 

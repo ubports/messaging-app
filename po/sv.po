@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"POT-Creation-Date: 2021-12-15 20:47+0000\n"
 "PO-Revision-Date: 2021-10-23 13:45+0000\n"
 "Last-Translator: Jakob Fridesjö <jakob.fridesjo@tuta.io>\n"
 "Language-Team: Swedish <https://translate.ubports.com/projects/ubports/"
@@ -55,7 +55,7 @@ msgstr "%1 är Administratör"
 msgid "%1 is not Admin"
 msgstr "%1 är inte Administratör"
 
-#: ../src/qml/Messages.qml:1256
+#: ../src/qml/Messages.qml:1259
 #, qt-format
 msgid "%1 is typing..."
 msgstr "%1 skriver..."
@@ -174,21 +174,25 @@ msgstr[1] "Bilagor: %1 videofilmer"
 msgid "Audio attachment not supported"
 msgstr "Bifogat ljud stöds ej"
 
-#: ../src/qml/SettingsPage.qml:96
+#: ../src/qml/SettingsPage.qml:104
+msgid "Auto display keyboard"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
 msgstr "Autospela animerad bild"
 
-#: ../src/qml/Messages.qml:1271
+#: ../src/qml/Messages.qml:1274
 msgid "Away"
 msgstr "Frånvarande"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
-#: ../src/qml/SettingsPage.qml:279
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
+#: ../src/qml/SettingsPage.qml:287
 msgid "Back"
 msgstr "Backa"
 
-#: ../src/qml/Messages.qml:1273
+#: ../src/qml/Messages.qml:1276
 msgid "Busy"
 msgstr "Upptagen"
 
@@ -228,7 +232,7 @@ msgstr "Namn på kanalen:"
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
-#: ../src/qml/MessageInfoDialog.qml:168
+#: ../src/qml/MessageInfoDialog.qml:167
 msgid "Close"
 msgstr "Stäng"
 
@@ -246,12 +250,12 @@ msgstr "Kontakt"
 msgid "Copy"
 msgstr "Kopiera"
 
-#: ../src/qml/Messages.qml:1108
+#: ../src/qml/Messages.qml:1111
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Skapa %1 Grupp..."
 
-#: ../src/qml/Messages.qml:1078
+#: ../src/qml/Messages.qml:1081
 msgid "Create MMS Group..."
 msgstr "Skapa MMS-grupp..."
 
@@ -259,11 +263,11 @@ msgstr "Skapa MMS-grupp..."
 msgid "Creating Group..."
 msgstr "Skapar grupp..."
 
-#: ../src/qml/SettingsPage.qml:52
+#: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
 msgstr "Mörk"
 
-#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -286,6 +290,10 @@ msgstr "Fråga inte igen"
 msgid "Don't show again"
 msgstr "Visa inte igen"
 
+#: ../src/qml/MessageAlertBubble.qml:144
+msgid "Download"
+msgstr ""
+
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Utkast:"
@@ -298,11 +306,11 @@ msgstr "Redigera"
 msgid "Enable"
 msgstr "Aktivera"
 
-#: ../src/qml/SettingsPage.qml:58
+#: ../src/qml/SettingsPage.qml:59
 msgid "Enable MMS messages"
 msgstr "Aktivera MMS-meddelanden"
 
-#: ../src/qml/SettingsPage.qml:65
+#: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
 msgstr "Aktivera stickers"
 
@@ -427,7 +435,7 @@ msgstr "Det går inte att skicka meddelanden i flygsäkert läge"
 msgid "It is not possible to send the message"
 msgstr "Det är inte möjligt att skicka meddelandet"
 
-#: ../src/qml/Messages.qml:1102
+#: ../src/qml/Messages.qml:1105
 msgid "Join IRC Channel..."
 msgstr "Anslut till IRC-kanal..."
 
@@ -443,7 +451,7 @@ msgstr "Lämna kanal"
 msgid "Leave group"
 msgstr "Lämna grupp"
 
-#: ../src/qml/SettingsPage.qml:51
+#: ../src/qml/SettingsPage.qml:52
 msgid "Light"
 msgstr "Ljus"
 
@@ -500,7 +508,7 @@ msgstr "Meddelandeprogram"
 msgid "Multiple MMS Messages"
 msgstr "Flera MMS-meddelanden"
 
-#: ../src/qml/MessageDelegate.qml:169
+#: ../src/qml/MessageDelegate.qml:170
 msgid "Myself"
 msgstr "Jag"
 
@@ -513,6 +521,15 @@ msgstr "Ny %1 grupp"
 #, fuzzy
 msgid "New MMS Group"
 msgstr "Ny MMS grupp"
+
+#: ../src/qml/MessageAlertBubble.qml:35
+#, qt-format
+msgid "New MMS message to download: size is %1KB, expires on %2"
+msgstr ""
+
+#: ../src/qml/ThreadDelegate.qml:37
+msgid "New MMS notification"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -542,7 +559,7 @@ msgstr "Inte tillgänglig"
 msgid "Number or contact name"
 msgstr "Nummer eller kontaktnamn"
 
-#: ../src/qml/Messages.qml:1269
+#: ../src/qml/Messages.qml:1272
 msgid "Offline"
 msgstr "Ej ansluten"
 
@@ -552,15 +569,26 @@ msgstr "Ej ansluten"
 msgid "Ok"
 msgstr "Ok"
 
-#: ../src/qml/Messages.qml:1267
+#: ../src/qml/Messages.qml:1270
 msgid "Online"
 msgstr "Ansluten"
 
-#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:33
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
+msgstr ""
+"Oj, det har skett ett fel i MMS-systemet och det här meddelandet kunde ej "
+"mottagas. Var vänlig säkerställ att Mobildata är påslaget och MMS-"
+"inställningar är korrekta, fråga sedan avsändare att försöka igen."
+
+#: ../src/qml/MessageAlertBubble.qml:34
+#, fuzzy
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
 "Oj, det har skett ett fel i MMS-systemet och det här meddelandet kunde ej "
 "mottagas. Var vänlig säkerställ att Mobildata är påslaget och MMS-"
@@ -579,11 +607,11 @@ msgstr "Väntar"
 msgid "Pick an account to create."
 msgstr "Välj konto att skapa."
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
 msgstr "Vänligen bekräfta att du vill radera alla stickers i historiken"
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr "Vänligen bekräfta att du vill radera alla stickers i detta paket"
 
@@ -610,18 +638,18 @@ msgstr ""
 "href=\"system_settings\">Systeminställningar &gt; Säkerhet &amp; sekretess</"
 "a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:156
 msgid "Read"
 msgstr "Läs"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:149
 msgid "Received"
 msgstr "Mottagna"
 
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
-#: ../src/qml/Stickers/StickersPicker.qml:124
+#: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -703,27 +731,27 @@ msgstr "Inställningar"
 msgid "Share"
 msgstr "Dela"
 
-#: ../src/qml/SettingsPage.qml:72
+#: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
 msgstr "Förenklad konversationsvy"
 
-#: ../src/qml/SettingsPage.qml:45
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by timestamp"
 msgstr "Sortera av tidsstämpel"
 
-#: ../src/qml/SettingsPage.qml:46
+#: ../src/qml/SettingsPage.qml:47
 msgid "Sort by title"
 msgstr "Sortera av titel"
 
-#: ../src/qml/SettingsPage.qml:79
+#: ../src/qml/SettingsPage.qml:80
 msgid "Sort threads"
 msgstr "Sortera trådar"
 
-#: ../src/qml/MessageInfoDialog.qml:163
+#: ../src/qml/MessageInfoDialog.qml:162
 msgid "Status"
 msgstr "Status"
 
-#: ../src/qml/Stickers/StickersPicker.qml:138
+#: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
 msgstr "Stickers"
 
@@ -743,7 +771,7 @@ msgstr "Svep för att ta bort"
 msgid "Swipe to reveal actions"
 msgstr "Svep för att visa åtgärder"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
 msgstr "Systemtema"
 
@@ -776,7 +804,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Det valda kontot är inte tillgängligt just nu"
 
-#: ../src/qml/SettingsPage.qml:87
+#: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
 msgstr "Tema"
 
@@ -814,7 +842,7 @@ msgstr "Typ"
 msgid "Type a name..."
 msgstr "Skriv ett namn..."
 
-#: ../src/qml/Messages.qml:1258
+#: ../src/qml/Messages.qml:1261
 msgid "Typing..."
 msgstr "Skriver..."
 
@@ -877,7 +905,7 @@ msgstr ""
 "Du försöker skicka stora filer (över 300kb). En del operatörer kanske inte "
 "klarar av att skicka dem."
 
-#: ../src/qml/Messages.qml:1608
+#: ../src/qml/Messages.qml:1611
 #, fuzzy
 msgid ""
 "You can't send messages to this group because the group is no longer active"
@@ -924,11 +952,11 @@ msgstr "Du växlade till %1 @ %2"
 msgid "You were removed from this group"
 msgstr "Du blev borttagen från den här gruppen"
 
-#: ../src/qml/Stickers/StickersPicker.qml:268
+#: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
 msgstr "inga stickers ännu"
 
-#: ../src/qml/Stickers/StickersPicker.qml:309
+#: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
 msgstr "skickade stickers kommer synas här"
 

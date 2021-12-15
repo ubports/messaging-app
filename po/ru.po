@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"POT-Creation-Date: 2021-12-15 20:47+0000\n"
 "PO-Revision-Date: 2021-07-01 03:32+0000\n"
 "Last-Translator: Герман Семенов <GermanAizek@yandex.ru>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
@@ -56,7 +56,7 @@ msgstr "%1 Администратор"
 msgid "%1 is not Admin"
 msgstr "%1 не является Администратором"
 
-#: ../src/qml/Messages.qml:1256
+#: ../src/qml/Messages.qml:1259
 #, qt-format
 msgid "%1 is typing..."
 msgstr "%1 набирает..."
@@ -180,21 +180,25 @@ msgstr[2] "Приложение: %1 видео"
 msgid "Audio attachment not supported"
 msgstr "Вложенный аудиофайл не поддерживается"
 
-#: ../src/qml/SettingsPage.qml:96
+#: ../src/qml/SettingsPage.qml:104
+msgid "Auto display keyboard"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
 msgstr "Автоматическое проигрывание анимаций"
 
-#: ../src/qml/Messages.qml:1271
+#: ../src/qml/Messages.qml:1274
 msgid "Away"
 msgstr "Отошёл"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
-#: ../src/qml/SettingsPage.qml:279
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
+#: ../src/qml/SettingsPage.qml:287
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/qml/Messages.qml:1273
+#: ../src/qml/Messages.qml:1276
 msgid "Busy"
 msgstr "Занят"
 
@@ -234,7 +238,7 @@ msgstr "Название канала:"
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
-#: ../src/qml/MessageInfoDialog.qml:168
+#: ../src/qml/MessageInfoDialog.qml:167
 msgid "Close"
 msgstr "Закрыть"
 
@@ -251,12 +255,12 @@ msgstr "Контакт"
 msgid "Copy"
 msgstr "Копировать"
 
-#: ../src/qml/Messages.qml:1108
+#: ../src/qml/Messages.qml:1111
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Создать %1 Группу..."
 
-#: ../src/qml/Messages.qml:1078
+#: ../src/qml/Messages.qml:1081
 msgid "Create MMS Group..."
 msgstr "Создать MMS Группу..."
 
@@ -264,11 +268,11 @@ msgstr "Создать MMS Группу..."
 msgid "Creating Group..."
 msgstr "Создать Группу..."
 
-#: ../src/qml/SettingsPage.qml:52
+#: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
 msgstr "Тёмная"
 
-#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -291,6 +295,10 @@ msgstr "Больше не спрашивать"
 msgid "Don't show again"
 msgstr "Не показывать снова"
 
+#: ../src/qml/MessageAlertBubble.qml:144
+msgid "Download"
+msgstr ""
+
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Черновик:"
@@ -303,11 +311,11 @@ msgstr "Редактировать"
 msgid "Enable"
 msgstr "Разрешить"
 
-#: ../src/qml/SettingsPage.qml:58
+#: ../src/qml/SettingsPage.qml:59
 msgid "Enable MMS messages"
 msgstr "Включить MMS-чат"
 
-#: ../src/qml/SettingsPage.qml:65
+#: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
 msgstr "Разрешить стикеры"
 
@@ -432,7 +440,7 @@ msgstr "Невозможно отправлять сообщения в режи
 msgid "It is not possible to send the message"
 msgstr "Невозможно отослать сообщение"
 
-#: ../src/qml/Messages.qml:1102
+#: ../src/qml/Messages.qml:1105
 msgid "Join IRC Channel..."
 msgstr "Присоединится к IRC-каналу"
 
@@ -448,7 +456,7 @@ msgstr "Выйти из канала"
 msgid "Leave group"
 msgstr "Покинуть группу"
 
-#: ../src/qml/SettingsPage.qml:51
+#: ../src/qml/SettingsPage.qml:52
 msgid "Light"
 msgstr "Светлая"
 
@@ -504,7 +512,7 @@ msgstr "Приложение, позволяющее обмениваться с
 msgid "Multiple MMS Messages"
 msgstr "Несколько MMS-сообщений"
 
-#: ../src/qml/MessageDelegate.qml:169
+#: ../src/qml/MessageDelegate.qml:170
 msgid "Myself"
 msgstr "Я"
 
@@ -516,6 +524,15 @@ msgstr "Новая группа %1"
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
 msgstr "Новая группа MMS"
+
+#: ../src/qml/MessageAlertBubble.qml:35
+#, qt-format
+msgid "New MMS message to download: size is %1KB, expires on %2"
+msgstr ""
+
+#: ../src/qml/ThreadDelegate.qml:37
+msgid "New MMS notification"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -545,7 +562,7 @@ msgstr "Не доступно"
 msgid "Number or contact name"
 msgstr "Номер или имя контакта"
 
-#: ../src/qml/Messages.qml:1269
+#: ../src/qml/Messages.qml:1272
 msgid "Offline"
 msgstr "Не в сети"
 
@@ -555,15 +572,26 @@ msgstr "Не в сети"
 msgid "Ok"
 msgstr "ОК"
 
-#: ../src/qml/Messages.qml:1267
+#: ../src/qml/Messages.qml:1270
 msgid "Online"
 msgstr "В сети"
 
-#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:33
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
+msgstr ""
+"К сожалению, в системе MMS произошла ошибка, и это сообщение не может быть "
+"получено. Убедитесь, что сотовые данные включены и настройки MMS верны, а "
+"затем попросите отправителя повторить попытку."
+
+#: ../src/qml/MessageAlertBubble.qml:34
+#, fuzzy
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
 "К сожалению, в системе MMS произошла ошибка, и это сообщение не может быть "
 "получено. Убедитесь, что сотовые данные включены и настройки MMS верны, а "
@@ -582,11 +610,11 @@ msgstr "В ожидании"
 msgid "Pick an account to create."
 msgstr "Для создания войдите в аккаунт."
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
 msgstr "Подтвердите, что хотите удалить все стикеры из истории"
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr "Подтвердите, что хотите удалить все стикеры в этом наборе"
 
@@ -613,18 +641,18 @@ msgstr ""
 "<a href=\"system_settings\">Настройки системы &gt; Безопасность и "
 "конфиденциальность</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:156
 msgid "Read"
 msgstr "Прочитать"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:149
 msgid "Received"
 msgstr "Получено"
 
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
-#: ../src/qml/Stickers/StickersPicker.qml:124
+#: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
 msgstr "Удалить"
 
@@ -707,27 +735,27 @@ msgstr "Настройки"
 msgid "Share"
 msgstr "Поделиться"
 
-#: ../src/qml/SettingsPage.qml:72
+#: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
 msgstr "Упрощенный вид беседы"
 
-#: ../src/qml/SettingsPage.qml:45
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by timestamp"
 msgstr "Сортировать по времени"
 
-#: ../src/qml/SettingsPage.qml:46
+#: ../src/qml/SettingsPage.qml:47
 msgid "Sort by title"
 msgstr "Сортировать по названию"
 
-#: ../src/qml/SettingsPage.qml:79
+#: ../src/qml/SettingsPage.qml:80
 msgid "Sort threads"
 msgstr "Сортировать по темам"
 
-#: ../src/qml/MessageInfoDialog.qml:163
+#: ../src/qml/MessageInfoDialog.qml:162
 msgid "Status"
 msgstr "Статус"
 
-#: ../src/qml/Stickers/StickersPicker.qml:138
+#: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
 msgstr "Стикеры"
 
@@ -747,7 +775,7 @@ msgstr "Проведите для удаления"
 msgid "Swipe to reveal actions"
 msgstr "Проведите для выбора действия"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
 msgstr "Тема по умолчанию"
 
@@ -782,7 +810,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Выбранная учетная запись в данный момент недоступна"
 
-#: ../src/qml/SettingsPage.qml:87
+#: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
 msgstr "Тема"
 
@@ -820,7 +848,7 @@ msgstr "Тип"
 msgid "Type a name..."
 msgstr "Напишите название..."
 
-#: ../src/qml/Messages.qml:1258
+#: ../src/qml/Messages.qml:1261
 msgid "Typing..."
 msgstr "Набирает..."
 
@@ -882,7 +910,7 @@ msgstr ""
 "Вы пытаетесь отправить крупные файлы (размером более 300 КБ). Некоторые "
 "операторы не поддерживают такие передачи."
 
-#: ../src/qml/Messages.qml:1608
+#: ../src/qml/Messages.qml:1611
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
@@ -928,11 +956,11 @@ msgstr "Вы переключились на %1 @ %2"
 msgid "You were removed from this group"
 msgstr "Вы были удалены из этой группы"
 
-#: ../src/qml/Stickers/StickersPicker.qml:268
+#: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
 msgstr "наклеек пока нет"
 
-#: ../src/qml/Stickers/StickersPicker.qml:309
+#: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
 msgstr "здесь появятся отправленные наклейки"
 
