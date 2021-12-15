@@ -18,6 +18,8 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
 
@@ -214,6 +216,20 @@ Page {
         onlineAccountApplicationId: "messaging-app"
 
         filterTerm: searchField.text
+        rightSideActions:[
+            Action {
+                iconName: "stock_contact"
+                text: i18n.tr("Contact Details")
+                onTriggered: {
+                    var contact = contactList.listModel.contacts[value.contactIndex]
+                    mainView.showContactDetails(newRecipientPage,
+                                                contact.contactId,
+                                                null,
+                                                null)
+                }
+            }
+        ]
+
         onContactClicked: {
             if (newRecipientPage.accountToAdd) {
                 mainView.addAccountToContact(newRecipientPage,
@@ -223,10 +239,19 @@ Page {
                                              newRecipientPage,
                                              contactList.listModel)
             } else {
-                mainView.showContactDetails(newRecipientPage,
-                                            contact,
-                                            newRecipientPage,
-                                            contactList.listModel)
+
+                if (contact.phoneNumbers.length > 1) {
+                    var dialog = PopupUtils.open(chooseNumberDialog, newRecipientPage, {
+                        'contact': contact
+                    });
+                    dialog.selectedPhoneNumber.connect(
+                                function(number) {
+                                    addRecipient(number, contact)
+                                    PopupUtils.close(dialog);
+                                })
+                } else {
+                    addRecipient(contact.phoneNumber.number, contact)
+                }
             }
         }
 
@@ -250,6 +275,42 @@ Page {
                                                contact: newContact,
                                                initialFocusSection: focusField,
                                                contactListPage: newRecipientPage })
+        }
+    }
+
+    Component {
+        id: chooseNumberDialog
+        Dialog {
+            id: dialog
+            property var contact
+            title: i18n.tr("Please select a phone number")
+            modal:true
+
+            signal selectedPhoneNumber(string number)
+
+            ListItem.ItemSelector {
+                id: phoneNumberList
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                activeFocusOnPress: false
+                expanded: true
+                text: i18n.tr("Numbers") + ":"
+                model: contact.phoneNumbers
+                selectedIndex: -1
+                delegate: OptionSelectorDelegate {
+                    highlightWhenPressed: true
+                    text: modelData.number
+                    activeFocusOnPress: false
+                }
+                onDelegateClicked: selectedPhoneNumber(contact.phoneNumbers[index].number)
+            }
+
+            Connections {
+                target: __eventGrabber
+                onPressed: PopupUtils.close(dialog)
+            }
         }
     }
 

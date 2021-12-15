@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-15 20:47+0000\n"
+"POT-Creation-Date: 2021-12-16 08:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "%1 is not Admin"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1259
+#: ../src/qml/Messages.qml:1260
 #, qt-format
 msgid "%1 is typing..."
 msgstr ""
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Accepted"
 msgstr ""
 
-#: ../src/qml/Messages.qml:849
+#: ../src/qml/Messages.qml:850
 msgid "Add"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Add participant:"
 msgstr ""
 
-#: ../src/qml/NewRecipientPage.qml:88
+#: ../src/qml/NewRecipientPage.qml:90
 msgid "Add recipient"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: ../src/qml/NewRecipientPage.qml:112
+#: ../src/qml/NewRecipientPage.qml:114
 msgid "All"
 msgstr ""
 
@@ -180,21 +180,21 @@ msgstr ""
 msgid "AutoPlay animated image"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1274
+#: ../src/qml/Messages.qml:1275
 msgid "Away"
 msgstr ""
 
-#: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
+#: ../src/qml/Messages.qml:701 ../src/qml/NewRecipientPage.qml:99
+#: ../src/qml/NewRecipientPage.qml:367 ../src/qml/SettingsPage.qml:133
 #: ../src/qml/SettingsPage.qml:287
 msgid "Back"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1276
+#: ../src/qml/Messages.qml:1277
 msgid "Busy"
 msgstr ""
 
-#: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
+#: ../src/qml/Messages.qml:838 ../src/qml/Messages.qml:954
 msgid "Call"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
 #: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
 #: ../src/qml/MessagingContactEditorPage.qml:36
-#: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
+#: ../src/qml/NewRecipientPage.qml:168 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
 msgstr ""
 
@@ -238,8 +238,12 @@ msgstr ""
 msgid "Compose a new message by swiping up from the bottom of the screen."
 msgstr ""
 
-#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:964
+#: ../src/qml/AttachmentPanel.qml:155 ../src/qml/Messages.qml:965
 msgid "Contact"
+msgstr ""
+
+#: ../src/qml/NewRecipientPage.qml:222
+msgid "Contact Details"
 msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
@@ -247,12 +251,12 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1111
+#: ../src/qml/Messages.qml:1112
 #, qt-format
 msgid "Create %1 Group..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1081
+#: ../src/qml/Messages.qml:1082
 msgid "Create MMS Group..."
 msgstr ""
 
@@ -347,7 +351,7 @@ msgstr ""
 msgid "Failed!"
 msgstr ""
 
-#: ../src/qml/NewRecipientPage.qml:112
+#: ../src/qml/NewRecipientPage.qml:114
 msgid "Favorites"
 msgstr ""
 
@@ -376,7 +380,7 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: ../src/qml/Messages.qml:820
+#: ../src/qml/Messages.qml:821
 #, qt-format
 msgid "Group (%1)"
 msgstr ""
@@ -430,7 +434,7 @@ msgstr ""
 msgid "It is not possible to send the message"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1105
+#: ../src/qml/Messages.qml:1106
 msgid "Join IRC Channel..."
 msgstr ""
 
@@ -550,7 +554,11 @@ msgstr ""
 msgid "Number or contact name"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1272
+#: ../src/qml/NewRecipientPage.qml:299
+msgid "Numbers"
+msgstr ""
+
+#: ../src/qml/Messages.qml:1273
 msgid "Offline"
 msgstr ""
 
@@ -560,7 +568,7 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: ../src/qml/Messages.qml:1270
+#: ../src/qml/Messages.qml:1271
 msgid "Online"
 msgstr ""
 
@@ -607,6 +615,10 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:311 ../src/qml/SendMessageValidator.qml:218
 msgid "Please insert a SIM card and try again."
+msgstr ""
+
+#: ../src/qml/NewRecipientPage.qml:286
+msgid "Please select a phone number"
 msgstr ""
 
 #: ../src/qml/Dialogs/SimLockedDialog.qml:37
@@ -666,11 +678,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:139
+#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:141
 msgid "Search"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:128
+#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:130
 msgid "Search..."
 msgstr ""
 
@@ -816,7 +828,7 @@ msgstr ""
 msgid "Type a name..."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1261
+#: ../src/qml/Messages.qml:1262
 msgid "Typing..."
 msgstr ""
 
@@ -876,7 +888,7 @@ msgid ""
 "able to send it."
 msgstr ""
 
-#: ../src/qml/Messages.qml:1611
+#: ../src/qml/Messages.qml:1612
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
