@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-05 13:33+0000\n"
+"POT-Creation-Date: 2021-12-15 20:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,7 +264,7 @@ msgstr ""
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -285,6 +285,10 @@ msgstr ""
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:59
 msgid "Don't show again"
+msgstr ""
+
+#: ../src/qml/MessageAlertBubble.qml:144
+msgid "Download"
 msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:354
@@ -509,6 +513,15 @@ msgstr ""
 msgid "New MMS Group"
 msgstr ""
 
+#: ../src/qml/MessageAlertBubble.qml:35
+#, qt-format
+msgid "New MMS message to download: size is %1KB, expires on %2"
+msgstr ""
+
+#: ../src/qml/ThreadDelegate.qml:37
+msgid "New MMS notification"
+msgstr ""
+
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
 msgstr ""
@@ -551,11 +564,18 @@ msgstr ""
 msgid "Online"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:33
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
+msgstr ""
+
+#: ../src/qml/MessageAlertBubble.qml:34
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
