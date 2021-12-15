@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2019-11-03 20:36+0000\n"
-"Last-Translator: Ege Öz <ege.oz@tutanota.com>\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"PO-Revision-Date: 2021-09-05 02:47+0000\n"
+"Last-Translator: Görkem Metin <grmetin24@gmail.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -57,7 +57,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1256
 #, fuzzy, qt-format
-msgid "%1 is typing.."
+msgid "%1 is typing..."
 msgstr "Yazıyor..."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -176,13 +176,17 @@ msgstr[1] "Ek: %1 video"
 msgid "Audio attachment not supported"
 msgstr "Ses eklentisi desteklenmemektedir."
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "Dışarıda"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "Geri"
 
@@ -192,7 +196,7 @@ msgstr "Meşgul"
 
 #: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
-msgstr "Ara"
+msgstr "Arama"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -256,11 +260,11 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -295,10 +299,14 @@ msgstr "Düzenle"
 msgid "Enable"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 #, fuzzy
 msgid "Enable MMS messages"
 msgstr "MMS grup sohbeti etkinleştirme"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -443,11 +451,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -489,7 +497,7 @@ msgstr "Mesajlaşma"
 msgid "Messaging App"
 msgstr "Mesajlaşma Uygulaması"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Mesajlaşma uygulaması"
 
@@ -552,7 +560,7 @@ msgstr "Tamam"
 msgid "Online"
 msgstr "Çevrimiçi"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -571,6 +579,14 @@ msgstr "Bekliyor"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "Oluşturmak için bir hesap seçin."
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -606,6 +622,7 @@ msgstr "Alındı"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Kaldır"
 
@@ -688,25 +705,29 @@ msgstr "Ayarlar"
 msgid "Share"
 msgstr "Paylaş"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Durum"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -724,7 +745,7 @@ msgstr "Silmek için kaydırın"
 msgid "Swipe to reveal actions"
 msgstr "Eylemleri açmak için kaydırın"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr ""
 
@@ -754,7 +775,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr ""
 
@@ -793,7 +814,8 @@ msgid "Type a name..."
 msgstr ""
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+#, fuzzy
+msgid "Typing..."
 msgstr "Yazıyor..."
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -826,12 +848,12 @@ msgstr "İleti uygulamanıza hoşgeldiniz!"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Ubuntu ileti uygulamnıza hoşgeldiniz."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Bir ileti yazın..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Bir ileti yazın..."
 
@@ -897,6 +919,14 @@ msgstr "%2'de %1'e geçtiniz"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
 msgstr ""
 
 #~ msgid "No"

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2017-09-28 20:32+0000\n"
-"Last-Translator: Henrik Holm <hbir@post10.tele.dk>\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"PO-Revision-Date: 2021-08-09 23:49+0000\n"
+"Last-Translator: Chris Hanson <sidrex@tutanota.com>\n"
 "Language-Team: Danish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/da/>\n"
 "Language: da\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
 
 #: ../src/qml/NewGroupPage.qml:250
@@ -58,7 +58,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1256
 #, qt-format
-msgid "%1 is typing.."
+msgid "%1 is typing..."
 msgstr ""
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -177,13 +177,17 @@ msgstr[1] "Vedhæftet: %1 videoer"
 msgid "Audio attachment not supported"
 msgstr "Lydvedhæftning ikke understøttet"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr ""
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr ""
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "Tilbage"
 
@@ -208,7 +212,7 @@ msgstr "Annullér"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
-msgstr ""
+msgstr "Skift"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
@@ -257,11 +261,11 @@ msgstr ""
 msgid "Creating Group..."
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -296,10 +300,14 @@ msgstr "Redigér"
 msgid "Enable"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 #, fuzzy
 msgid "Enable MMS messages"
 msgstr "Aktiver MMS-gruppechat"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -389,7 +397,7 @@ msgstr "Gruppe"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -439,11 +447,11 @@ msgstr ""
 msgid "Leave group"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr ""
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "MMS"
 
@@ -459,7 +467,7 @@ msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Mig"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
@@ -485,7 +493,7 @@ msgstr "Beskeder"
 msgid "Messaging App"
 msgstr "Beskedprogram"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "Program til modtagelse af beskeder"
 
@@ -548,7 +556,7 @@ msgstr "OK"
 msgid "Online"
 msgstr ""
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -566,6 +574,14 @@ msgstr "I kø"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr ""
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
@@ -600,6 +616,7 @@ msgstr "Modtaget"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "Fjern"
 
@@ -682,25 +699,29 @@ msgstr "Indstillinger"
 msgid "Share"
 msgstr "Del"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "Status"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -718,7 +739,7 @@ msgstr "Stryg for at slette"
 msgid "Swipe to reveal actions"
 msgstr "Stryg for at vise handlinger"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr ""
 
@@ -748,7 +769,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr ""
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr ""
 
@@ -787,7 +808,7 @@ msgid "Type a name..."
 msgstr ""
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+msgid "Typing..."
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -820,12 +841,12 @@ msgstr ""
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "Velkommen til dit Ubuntu beskedprogram."
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 #, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Skriv en besked..."
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "Skriv en besked..."
 
@@ -889,6 +910,14 @@ msgstr "Du skiftede til %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr ""
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
 msgstr ""
 
 #~ msgid "No"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 20:32+0000\n"
-"PO-Revision-Date: 2021-06-13 20:40+0000\n"
-"Last-Translator: Ito Rimai <ItoRimai@foxmail.com>\n"
+"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"PO-Revision-Date: 2021-07-11 20:02+0000\n"
+"Last-Translator: Enceka <enceka@yeah.net>\n"
 "Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
 "ubports/messaging-app/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -57,7 +57,7 @@ msgstr "%1 不再是管理员"
 
 #: ../src/qml/Messages.qml:1256
 #, qt-format
-msgid "%1 is typing.."
+msgid "%1 is typing..."
 msgstr "%1 正在输入.."
 
 #: ../src/qml/AccountSectionDelegate.qml:121
@@ -169,13 +169,17 @@ msgstr[0] "附件: %1 段视频"
 msgid "Audio attachment not supported"
 msgstr "不支持音频附件"
 
+#: ../src/qml/SettingsPage.qml:96
+msgid "AutoPlay animated image"
+msgstr "自动播放动态图"
+
 #: ../src/qml/Messages.qml:1271
 msgid "Away"
 msgstr "离开"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:109
-#: ../src/qml/SettingsPage.qml:263
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
+#: ../src/qml/SettingsPage.qml:279
 msgid "Back"
 msgstr "返回"
 
@@ -249,11 +253,11 @@ msgstr "创建彩信群组…"
 msgid "Creating Group..."
 msgstr "创建群组…"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:52
 msgid "Dark"
 msgstr "暗"
 
-#: ../src/qml/MessageAlertBubble.qml:101 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -288,9 +292,13 @@ msgstr "编辑"
 msgid "Enable"
 msgstr "开启"
 
-#: ../src/qml/SettingsPage.qml:56
+#: ../src/qml/SettingsPage.qml:58
 msgid "Enable MMS messages"
 msgstr "启用彩信消息"
+
+#: ../src/qml/SettingsPage.qml:65
+msgid "Enable stickers"
+msgstr "启用贴纸"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -429,11 +437,11 @@ msgstr "离开频道"
 msgid "Leave group"
 msgstr "离开群组"
 
-#: ../src/qml/SettingsPage.qml:49
+#: ../src/qml/SettingsPage.qml:51
 msgid "Light"
 msgstr "亮"
 
-#: ../src/qml/ComposeBar.qml:623 ../src/qml/MessageDelegate.qml:161
+#: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
 msgstr "彩信"
 
@@ -477,7 +485,7 @@ msgstr "信息"
 msgid "Messaging App"
 msgstr "短信应用"
 
-#: ../src/messagingapplication.cpp:204 ../src/messaging-app.desktop.in.in.h:3
+#: ../src/messagingapplication.cpp:206 ../src/messaging-app.desktop.in.in.h:3
 msgid "Messaging application"
 msgstr "短信应用程序"
 
@@ -540,12 +548,14 @@ msgstr "确定"
 msgid "Online"
 msgstr "在线"
 
-#: ../src/qml/MessageAlertBubble.qml:68 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
-msgstr "糟糕，MMS系统出现错误并且无法检索到此消息。 请确保蜂窝数据已打开并且MMS设置正确，然后请发件人再试一次。"
+msgstr ""
+"糟糕，MMS系统出现错误并且无法检索到此消息。 请确保蜂窝数据已打开并且MMS设置正"
+"确，然后请发件人再试一次。"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -559,6 +569,14 @@ msgstr "待处理"
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
 msgstr "选择创建账户"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in the history"
+msgstr "请确认您想删除历史记录中的所有贴纸"
+
+#: ../src/qml/Stickers/StickersPicker.qml:139
+msgid "Please confirm that you want to delete all stickers in this pack"
+msgstr "请确认您想删除这个包中的所有贴纸"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -590,6 +608,7 @@ msgstr "已接收"
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
+#: ../src/qml/Stickers/StickersPicker.qml:124
 msgid "Remove"
 msgstr "移除"
 
@@ -670,25 +689,29 @@ msgstr "设置"
 msgid "Share"
 msgstr "分享"
 
-#: ../src/qml/SettingsPage.qml:63
+#: ../src/qml/SettingsPage.qml:72
 msgid "Simplified conversation view"
 msgstr "简化对话视图"
 
-#: ../src/qml/SettingsPage.qml:43
+#: ../src/qml/SettingsPage.qml:45
 msgid "Sort by timestamp"
 msgstr "按时间排序"
 
-#: ../src/qml/SettingsPage.qml:44
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by title"
 msgstr "按名称排序"
 
-#: ../src/qml/SettingsPage.qml:70
+#: ../src/qml/SettingsPage.qml:79
 msgid "Sort threads"
 msgstr "按使用排序"
 
 #: ../src/qml/MessageInfoDialog.qml:163
 msgid "Status"
 msgstr "状态"
+
+#: ../src/qml/Stickers/StickersPicker.qml:138
+msgid "Stickers"
+msgstr "贴纸"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -706,7 +729,7 @@ msgstr "滑动删除"
 msgid "Swipe to reveal actions"
 msgstr "滑动显示操作"
 
-#: ../src/qml/SettingsPage.qml:48
+#: ../src/qml/SettingsPage.qml:50
 msgid "System Theme"
 msgstr "系统主题"
 
@@ -738,7 +761,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "所选帐号目前不可用"
 
-#: ../src/qml/SettingsPage.qml:78
+#: ../src/qml/SettingsPage.qml:87
 msgid "Theme"
 msgstr "主题"
 
@@ -777,7 +800,7 @@ msgid "Type a name..."
 msgstr "输入一个名称…"
 
 #: ../src/qml/Messages.qml:1258
-msgid "Typing.."
+msgid "Typing..."
 msgstr "正在输入…"
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
@@ -810,11 +833,11 @@ msgstr "欢迎使用您的信息应用！"
 msgid "Welcome to your Ubuntu messaging app."
 msgstr "欢迎来到您的 Ubuntu 短信应用。"
 
-#: ../src/qml/ComposeBar.qml:566
+#: ../src/qml/ComposeBar.qml:567
 msgid "Write a broadcast message..."
 msgstr "编写一个广播消息…"
 
-#: ../src/qml/ComposeBar.qml:578
+#: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
 msgstr "编写新信息..."
 
@@ -879,6 +902,14 @@ msgstr "你在 %2 切换至 %1"
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
 msgstr "您已被该群组移除"
+
+#: ../src/qml/Stickers/StickersPicker.qml:268
+msgid "no stickers yet"
+msgstr "没有贴纸"
+
+#: ../src/qml/Stickers/StickersPicker.qml:309
+msgid "sent stickers will appear here"
+msgstr "发送的贴纸会在这出现"
 
 #~ msgid "Add an online account"
 #~ msgstr "添加一个在线账号"
