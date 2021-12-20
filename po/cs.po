@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 12:12+0000\n"
+"POT-Creation-Date: 2021-12-15 20:47+0000\n"
 "PO-Revision-Date: 2021-07-01 03:32+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
@@ -55,7 +55,7 @@ msgstr "%1 je Správce"
 msgid "%1 is not Admin"
 msgstr "%1 není Správce"
 
-#: ../src/qml/Messages.qml:1256
+#: ../src/qml/Messages.qml:1259
 #, qt-format
 msgid "%1 is typing..."
 msgstr "%1 píše..."
@@ -179,21 +179,25 @@ msgstr[2] "Přílohy: %1 videí"
 msgid "Audio attachment not supported"
 msgstr "Přiložený audio soubor není podporován"
 
-#: ../src/qml/SettingsPage.qml:96
+#: ../src/qml/SettingsPage.qml:104
+msgid "Auto display keyboard"
+msgstr ""
+
+#: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
 msgstr "Automaticky přehrávat animovaný obrázek"
 
-#: ../src/qml/Messages.qml:1271
+#: ../src/qml/Messages.qml:1274
 msgid "Away"
 msgstr "Nepřítomný"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
-#: ../src/qml/SettingsPage.qml:279
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
+#: ../src/qml/SettingsPage.qml:287
 msgid "Back"
 msgstr "Zpět"
 
-#: ../src/qml/Messages.qml:1273
+#: ../src/qml/Messages.qml:1276
 msgid "Busy"
 msgstr "Zaneprázděn(a)"
 
@@ -233,7 +237,7 @@ msgstr "Název kanálu:"
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
-#: ../src/qml/MessageInfoDialog.qml:168
+#: ../src/qml/MessageInfoDialog.qml:167
 msgid "Close"
 msgstr "Ukončit"
 
@@ -252,12 +256,12 @@ msgstr "Kontakt"
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: ../src/qml/Messages.qml:1108
+#: ../src/qml/Messages.qml:1111
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Vytvořit %1 skupinu…"
 
-#: ../src/qml/Messages.qml:1078
+#: ../src/qml/Messages.qml:1081
 msgid "Create MMS Group..."
 msgstr "Vytvořit MMS skupinu…"
 
@@ -265,11 +269,11 @@ msgstr "Vytvořit MMS skupinu…"
 msgid "Creating Group..."
 msgstr "Vytváření skupiny…"
 
-#: ../src/qml/SettingsPage.qml:52
+#: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
 msgstr "Tmavý"
 
-#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -292,6 +296,10 @@ msgstr "Neptat se znovu"
 msgid "Don't show again"
 msgstr "Znovu nezobrazovat"
 
+#: ../src/qml/MessageAlertBubble.qml:144
+msgid "Download"
+msgstr ""
+
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Koncept:"
@@ -304,11 +312,11 @@ msgstr "Upravit"
 msgid "Enable"
 msgstr "Povolit"
 
-#: ../src/qml/SettingsPage.qml:58
+#: ../src/qml/SettingsPage.qml:59
 msgid "Enable MMS messages"
 msgstr "Povolit MMS zprávy"
 
-#: ../src/qml/SettingsPage.qml:65
+#: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
 msgstr "Povolit nálepky"
 
@@ -433,7 +441,7 @@ msgstr "V režimu Letadlo nelze odesílat zprávy"
 msgid "It is not possible to send the message"
 msgstr "Není možné odeslat zprávu"
 
-#: ../src/qml/Messages.qml:1102
+#: ../src/qml/Messages.qml:1105
 msgid "Join IRC Channel..."
 msgstr "Připojit se k IRC kanálu…"
 
@@ -449,7 +457,7 @@ msgstr "Opustit kanál"
 msgid "Leave group"
 msgstr "Opustit skupinu"
 
-#: ../src/qml/SettingsPage.qml:51
+#: ../src/qml/SettingsPage.qml:52
 msgid "Light"
 msgstr "Světlý"
 
@@ -505,7 +513,7 @@ msgstr "Aplikace pro posílání a příjem zpráv"
 msgid "Multiple MMS Messages"
 msgstr "Vícero MMS zpráv"
 
-#: ../src/qml/MessageDelegate.qml:169
+#: ../src/qml/MessageDelegate.qml:170
 msgid "Myself"
 msgstr "Já"
 
@@ -517,6 +525,15 @@ msgstr "Nová %1 skupina"
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
 msgstr "Nová MMS skupina"
+
+#: ../src/qml/MessageAlertBubble.qml:35
+#, qt-format
+msgid "New MMS message to download: size is %1KB, expires on %2"
+msgstr ""
+
+#: ../src/qml/ThreadDelegate.qml:37
+msgid "New MMS notification"
+msgstr ""
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -546,7 +563,7 @@ msgstr "Nedostupné"
 msgid "Number or contact name"
 msgstr "Číslo nebo jméno kontaktu"
 
-#: ../src/qml/Messages.qml:1269
+#: ../src/qml/Messages.qml:1272
 msgid "Offline"
 msgstr "Nepřipojeno"
 
@@ -556,15 +573,26 @@ msgstr "Nepřipojeno"
 msgid "Ok"
 msgstr "Přijmout"
 
-#: ../src/qml/Messages.qml:1267
+#: ../src/qml/Messages.qml:1270
 msgid "Online"
 msgstr "Připojen(a)"
 
-#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:33
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
+msgstr ""
+"Jejda, v systému MMS došlo k chybě a tuto zprávu nelze načíst.  "
+"Zkontrolujte, zda jsou mobilní data ZAPNUTÁ a nastavení MMS jsou správná, a "
+"poté požádejte odesílatele, aby to zkusil znovu."
+
+#: ../src/qml/MessageAlertBubble.qml:34
+#, fuzzy
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
 "Jejda, v systému MMS došlo k chybě a tuto zprávu nelze načíst.  "
 "Zkontrolujte, zda jsou mobilní data ZAPNUTÁ a nastavení MMS jsou správná, a "
@@ -583,11 +611,11 @@ msgstr "Čekající"
 msgid "Pick an account to create."
 msgstr "Vyberte účet, který chcete vytvořit."
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
 msgstr "Potvrďte prosím, že chcete odstranit všechny nálepky v historii"
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr "Potvrďte prosím, že chcete odstranit všechny nálepky v tomto balíčku"
 
@@ -613,18 +641,18 @@ msgstr ""
 "Network Indicator, nacházející se na horní ploše displeje, nebo navštivte <a "
 "href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:156
 msgid "Read"
 msgstr "Přečtené"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:149
 msgid "Received"
 msgstr "Doručené"
 
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
-#: ../src/qml/Stickers/StickersPicker.qml:124
+#: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
 msgstr "Odstranit"
 
@@ -707,27 +735,27 @@ msgstr "Nastavení"
 msgid "Share"
 msgstr "Sdílet"
 
-#: ../src/qml/SettingsPage.qml:72
+#: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
 msgstr "Zjednodušené zobrazení konverzace"
 
-#: ../src/qml/SettingsPage.qml:45
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by timestamp"
 msgstr "Seřadit dle data a hodiny"
 
-#: ../src/qml/SettingsPage.qml:46
+#: ../src/qml/SettingsPage.qml:47
 msgid "Sort by title"
 msgstr "Seřadit dle názvu"
 
-#: ../src/qml/SettingsPage.qml:79
+#: ../src/qml/SettingsPage.qml:80
 msgid "Sort threads"
 msgstr "Seřadit vlákna"
 
-#: ../src/qml/MessageInfoDialog.qml:163
+#: ../src/qml/MessageInfoDialog.qml:162
 msgid "Status"
 msgstr "Stav"
 
-#: ../src/qml/Stickers/StickersPicker.qml:138
+#: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
 msgstr "Nálepky"
 
@@ -747,7 +775,7 @@ msgstr "Smažete přejetím prstem"
 msgid "Swipe to reveal actions"
 msgstr "Možné akce zobrazíte přejetím prstem"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
 msgstr "Styl systému"
 
@@ -781,7 +809,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Vybraný účet není právě dostupný"
 
-#: ../src/qml/SettingsPage.qml:87
+#: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
 msgstr "Motiv prostředí"
 
@@ -820,7 +848,7 @@ msgstr "Typ"
 msgid "Type a name..."
 msgstr "Napište název…"
 
-#: ../src/qml/Messages.qml:1258
+#: ../src/qml/Messages.qml:1261
 msgid "Typing..."
 msgstr "Píše..."
 
@@ -882,7 +910,7 @@ msgstr ""
 "Snažíte se odeslat velké soubory (přes 300Kb). Někteří operátoři to nemusí "
 "být schopni odeslat."
 
-#: ../src/qml/Messages.qml:1608
+#: ../src/qml/Messages.qml:1611
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr "Této skupině nelze odeslat zprávu, protože není dlouhodobě aktivní"
@@ -926,11 +954,11 @@ msgstr "Přepnuli jste %1 @ %2"
 msgid "You were removed from this group"
 msgstr "Byl jste odstraněni z této skupiny"
 
-#: ../src/qml/Stickers/StickersPicker.qml:268
+#: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
 msgstr "zatím žádné nálepky"
 
-#: ../src/qml/Stickers/StickersPicker.qml:309
+#: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
 msgstr "zde se zobrazí odeslané nálepky"
 
