@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 12:12+0000\n"
-"PO-Revision-Date: 2021-07-01 03:32+0000\n"
+"POT-Creation-Date: 2021-12-15 20:47+0000\n"
+"PO-Revision-Date: 2021-12-22 12:51+0000\n"
 "Last-Translator: Anne Onyme <anneonyme017@netcourrier.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fr/>\n"
@@ -55,7 +55,7 @@ msgstr "%1 est administrateur/trice"
 msgid "%1 is not Admin"
 msgstr "%1 n'est pas administrateur/trice"
 
-#: ../src/qml/Messages.qml:1256
+#: ../src/qml/Messages.qml:1259
 #, qt-format
 msgid "%1 is typing..."
 msgstr "%1 écrit..."
@@ -174,21 +174,25 @@ msgstr[1] "Pièces jointes : %1 vidéos"
 msgid "Audio attachment not supported"
 msgstr "Pièce jointe audio non prise en charge"
 
-#: ../src/qml/SettingsPage.qml:96
+#: ../src/qml/SettingsPage.qml:104
+msgid "Auto display keyboard"
+msgstr "Afficher automatiquement le clavier"
+
+#: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
 msgstr "Lecture automatique des images animées"
 
-#: ../src/qml/Messages.qml:1271
+#: ../src/qml/Messages.qml:1274
 msgid "Away"
 msgstr "Absent(e)"
 
 #: ../src/qml/Messages.qml:700 ../src/qml/NewRecipientPage.qml:97
-#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:125
-#: ../src/qml/SettingsPage.qml:279
+#: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
+#: ../src/qml/SettingsPage.qml:287
 msgid "Back"
 msgstr "Retour"
 
-#: ../src/qml/Messages.qml:1273
+#: ../src/qml/Messages.qml:1276
 msgid "Busy"
 msgstr "Occupé(e)"
 
@@ -228,7 +232,7 @@ msgstr "Nom du groupe :"
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:32
-#: ../src/qml/MessageInfoDialog.qml:168
+#: ../src/qml/MessageInfoDialog.qml:167
 msgid "Close"
 msgstr "Fermer"
 
@@ -247,12 +251,12 @@ msgstr "Contact"
 msgid "Copy"
 msgstr "Copier"
 
-#: ../src/qml/Messages.qml:1108
+#: ../src/qml/Messages.qml:1111
 #, qt-format
 msgid "Create %1 Group..."
 msgstr "Créer le groupe %1..."
 
-#: ../src/qml/Messages.qml:1078
+#: ../src/qml/Messages.qml:1081
 msgid "Create MMS Group..."
 msgstr "Créer le groupe MMS..."
 
@@ -260,11 +264,11 @@ msgstr "Créer le groupe MMS..."
 msgid "Creating Group..."
 msgstr "Création du groupe..."
 
-#: ../src/qml/SettingsPage.qml:52
+#: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
 msgstr "Sombre"
 
-#: ../src/qml/MessageAlertBubble.qml:100 ../src/qml/MessageDelegate.qml:127
+#: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
@@ -287,6 +291,10 @@ msgstr "Ne plus demander"
 msgid "Don't show again"
 msgstr "Ne plus afficher"
 
+#: ../src/qml/MessageAlertBubble.qml:144
+msgid "Download"
+msgstr "Télécharger"
+
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
 msgstr "Brouillon :"
@@ -299,11 +307,11 @@ msgstr "Modifier"
 msgid "Enable"
 msgstr "Activer"
 
-#: ../src/qml/SettingsPage.qml:58
+#: ../src/qml/SettingsPage.qml:59
 msgid "Enable MMS messages"
 msgstr "Activer les messages MMS"
 
-#: ../src/qml/SettingsPage.qml:65
+#: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
 msgstr "Activer les autocollants"
 
@@ -429,7 +437,7 @@ msgstr "Impossible d'envoyer des messages en mode avion"
 msgid "It is not possible to send the message"
 msgstr "Impossible d'envoyer le message"
 
-#: ../src/qml/Messages.qml:1102
+#: ../src/qml/Messages.qml:1105
 msgid "Join IRC Channel..."
 msgstr "Rejoindre le canal IRC..."
 
@@ -445,7 +453,7 @@ msgstr "Quitter le canal"
 msgid "Leave group"
 msgstr "Quitter le groupe"
 
-#: ../src/qml/SettingsPage.qml:51
+#: ../src/qml/SettingsPage.qml:52
 msgid "Light"
 msgstr "Clair"
 
@@ -501,7 +509,7 @@ msgstr "Application de messagerie"
 msgid "Multiple MMS Messages"
 msgstr "Messages MMS multiples"
 
-#: ../src/qml/MessageDelegate.qml:169
+#: ../src/qml/MessageDelegate.qml:170
 msgid "Myself"
 msgstr "Moi-même"
 
@@ -513,6 +521,15 @@ msgstr "Nouveau groupe %1"
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
 msgstr "Nouveau groupe MMS"
+
+#: ../src/qml/MessageAlertBubble.qml:35
+#, qt-format
+msgid "New MMS message to download: size is %1KB, expires on %2"
+msgstr "Nouveau message MMS à télécharger : taille %1 ko, expire le %2"
+
+#: ../src/qml/ThreadDelegate.qml:37
+msgid "New MMS notification"
+msgstr "Nouvelle notification de MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -542,7 +559,7 @@ msgstr "Indisponible"
 msgid "Number or contact name"
 msgstr "Numéro ou nom du contact"
 
-#: ../src/qml/Messages.qml:1269
+#: ../src/qml/Messages.qml:1272
 msgid "Offline"
 msgstr "Déconnecté(e)"
 
@@ -552,11 +569,11 @@ msgstr "Déconnecté(e)"
 msgid "Ok"
 msgstr "Valider"
 
-#: ../src/qml/Messages.qml:1267
+#: ../src/qml/Messages.qml:1270
 msgid "Online"
 msgstr "Connecté(e)"
 
-#: ../src/qml/MessageAlertBubble.qml:67 ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/MessageAlertBubble.qml:33
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -566,6 +583,17 @@ msgstr ""
 "être récupéré. Veuillez vous assurer que la fonction « Données cellulaires » "
 "est activée et que les paramètres des MMS sont corrects, puis demandez à "
 "l'expéditeur/trice de réessayer."
+
+#: ../src/qml/MessageAlertBubble.qml:34
+msgid ""
+"Oops, there has been an error with the MMS system and this message could not "
+"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
+"correct, then tap the redownload button to try to retrieve the message again."
+msgstr ""
+"Oups, il y a eu une erreur avec le système de MMS et ce message n'a pas pu "
+"être récupéré. Veuillez vous assurer que la fonction « Données cellulaires » "
+"est activée et que les paramètres des MMS sont corrects, puis appuyez sur le "
+"bouton retélécharger pour essayer de récupérer de nouveau le message."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -580,13 +608,13 @@ msgstr "En attente"
 msgid "Pick an account to create."
 msgstr "Choisissez un compte à créer."
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
 msgstr ""
 "Veuillez confirmer que vous souhaitez supprimer tous les autocollants de "
 "l'historique"
 
-#: ../src/qml/Stickers/StickersPicker.qml:139
+#: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
 msgstr ""
 "Veuillez confirmer que vous souhaitez supprimer tous les autocollants de ce "
@@ -615,18 +643,18 @@ msgstr ""
 "de réseau en haut de l'écran ou en allant dans <a href=\"system_settings"
 "\">Paramètres du système &gt; Sécurité et vie privée</a>."
 
-#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:157
+#: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:156
 msgid "Read"
 msgstr "Lu"
 
-#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:150
+#: ../src/qml/MessageInfoDialog.qml:70 ../src/qml/MessageInfoDialog.qml:149
 msgid "Received"
 msgstr "Reçu"
 
 #: ../src/qml/ComposeBar.qml:203
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:48
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
-#: ../src/qml/Stickers/StickersPicker.qml:124
+#: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
 msgstr "Supprimer"
 
@@ -709,27 +737,27 @@ msgstr "Paramètres"
 msgid "Share"
 msgstr "Partager"
 
-#: ../src/qml/SettingsPage.qml:72
+#: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
 msgstr "Vue simplifiée des conversations"
 
-#: ../src/qml/SettingsPage.qml:45
+#: ../src/qml/SettingsPage.qml:46
 msgid "Sort by timestamp"
 msgstr "Par date"
 
-#: ../src/qml/SettingsPage.qml:46
+#: ../src/qml/SettingsPage.qml:47
 msgid "Sort by title"
 msgstr "Par titre"
 
-#: ../src/qml/SettingsPage.qml:79
+#: ../src/qml/SettingsPage.qml:80
 msgid "Sort threads"
 msgstr "Trier les fils"
 
-#: ../src/qml/MessageInfoDialog.qml:163
+#: ../src/qml/MessageInfoDialog.qml:162
 msgid "Status"
 msgstr "État"
 
-#: ../src/qml/Stickers/StickersPicker.qml:138
+#: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
 msgstr "Autocollants"
 
@@ -749,7 +777,7 @@ msgstr "Faites glisser pour supprimer"
 msgid "Swipe to reveal actions"
 msgstr "Faites glisser pour dévoiler des actions"
 
-#: ../src/qml/SettingsPage.qml:50
+#: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
 msgstr "Thème du système"
 
@@ -784,7 +812,7 @@ msgstr ""
 msgid "The selected account is not available at the moment"
 msgstr "Le compte sélectionné n'est pas disponible pour le moment"
 
-#: ../src/qml/SettingsPage.qml:87
+#: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
 msgstr "Thème"
 
@@ -822,7 +850,7 @@ msgstr "Saisie"
 msgid "Type a name..."
 msgstr "Saisissez un nom..."
 
-#: ../src/qml/Messages.qml:1258
+#: ../src/qml/Messages.qml:1261
 msgid "Typing..."
 msgstr "Saisie..."
 
@@ -884,7 +912,7 @@ msgstr ""
 "Vous essayez d'envoyer de gros fichiers (plus de 300 kB). Certains "
 "opérateurs pourraient ne pas être en mesure de les envoyer."
 
-#: ../src/qml/Messages.qml:1608
+#: ../src/qml/Messages.qml:1611
 msgid ""
 "You can't send messages to this group because the group is no longer active"
 msgstr ""
@@ -930,11 +958,11 @@ msgstr "Vous avez basculé sur %1 @ %2"
 msgid "You were removed from this group"
 msgstr "Vous avez été retiré de ce groupe"
 
-#: ../src/qml/Stickers/StickersPicker.qml:268
+#: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
 msgstr "Pas encore d'autocollants"
 
-#: ../src/qml/Stickers/StickersPicker.qml:309
+#: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
 msgstr "Les autocollants envoyés apparaîtront ici"
 
