@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-07-01 03:32+0000\n"
+"PO-Revision-Date: 2021-12-22 12:51+0000\n"
 "Last-Translator: Anne Onyme <anneonyme017@netcourrier.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fr/>\n"
@@ -176,7 +176,7 @@ msgstr "Pièce jointe audio non prise en charge"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Afficher automatiquement le clavier"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
@@ -293,7 +293,7 @@ msgstr "Ne plus afficher"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Télécharger"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -525,11 +525,11 @@ msgstr "Nouveau groupe MMS"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Nouveau message MMS à télécharger : taille %1 ko, expire le %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Nouvelle notification de MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -585,7 +585,6 @@ msgstr ""
 "l'expéditeur/trice de réessayer."
 
 #: ../src/qml/MessageAlertBubble.qml:34
-#, fuzzy
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -593,8 +592,8 @@ msgid ""
 msgstr ""
 "Oups, il y a eu une erreur avec le système de MMS et ce message n'a pas pu "
 "être récupéré. Veuillez vous assurer que la fonction « Données cellulaires » "
-"est activée et que les paramètres des MMS sont corrects, puis demandez à "
-"l'expéditeur/trice de réessayer."
+"est activée et que les paramètres des MMS sont corrects, puis appuyez sur le "
+"bouton retélécharger pour essayer de récupérer de nouveau le message."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
