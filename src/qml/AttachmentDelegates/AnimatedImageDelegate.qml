@@ -19,14 +19,15 @@
 import QtQuick 2.2
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
+import QtGraphicalEffects 1.0
 import ".."
 
 BaseDelegate {
     id: imageDelegate
 
     previewer: "AttachmentDelegates/PreviewerImage.qml"
-    height: imageAttachment.height
-    width: imageAttachment.width
+    height: bubble.height + messageFooter.height + units.gu(0.5)
+    width: bubble.width
 
     function calculateVisibility() {
         // check if item is truly visible
@@ -40,7 +41,7 @@ BaseDelegate {
                 attachment.played = true
                 // prevent from infinite playing
                 autoStopAnimation.start()
-             }
+            }
         } else {
             imageAttachment.playing = false
             autoStopAnimation.stop()
@@ -76,9 +77,6 @@ BaseDelegate {
         onTriggered: imageAttachment.playing = false
     }
 
-    property bool isFullyVisible: (yoff > list.y && yoff + height < list.y + list.height)
-
-
     UbuntuShape {
         id: bubble
         anchors.top: parent.top
@@ -89,12 +87,12 @@ BaseDelegate {
             id: imageAttachment
             objectName: "imageAttachment"
 
-            fillMode: Image.PreserveAspectCrop
+            fillMode: Image.PreserveAspectFit
             playing: false
             source: attachment.filePath
-            asynchronous: true
-            height: units.gu(14)
-            width:units.gu(27)
+            asynchronous: messageList.moving ? true: false
+            height: units.gu(27)
+            width: units.gu(27)
             cache: false
 
             onStatusChanged:  {
@@ -112,12 +110,11 @@ BaseDelegate {
             id: playbackBtn
             anchors {
                 right: imageAttachment.right
-                bottom: imageFooter.top
-                rightMargin: units.gu(1)
+                bottom: imageAttachment.bottom
+                rightMargin: units.gu(0.5)
             }
             width: units.gu(3)
             height: width
-            backgroundColor: Qt.rbga(255,255,255)
             radius: "large"
 
             Icon {
@@ -127,52 +124,41 @@ BaseDelegate {
 
             MouseArea {
                 anchors.fill: parent
-                onPressed: {
-                    imageAttachment.playing ? imageAttachment.playing = false: imageAttachment.playing = true
-                }
+                onPressed: imageAttachment.playing = !imageAttachment.playing
             }
-
         }
 
-
-        Rectangle {
-            id: imageFooter
+        Row {
+            id: messageFooter
             visible: imageDelegate.lastItem
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "transparent" }
-                GradientStop { position: 1.0; color: "gray" }
-            }
+            spacing: units.gu(1)
 
             anchors {
-                bottom: parent.bottom
-                left: parent.left
+                top: parent.bottom
+                topMargin: units.gu(0.5)
                 right: parent.right
+                rightMargin: units.gu(1)
             }
-            height: units.gu(2)
-            radius: bubble.height * 0.1
+
             Label {
-                anchors{
-                    left: parent.left
-                    bottom: parent.bottom
-                    leftMargin: incoming ? units.gu(2) : units.gu(1)
-                    bottomMargin: units.gu(0.5)
-                }
+                id: dateLbl
+                anchors.bottom: parent.bottom
                 fontSize: "xx-small"
                 text: Qt.formatTime(timestamp).toLowerCase()
-                color: "white"
+            }
+
+            DeliveryStatus {
+                id: deliveryStatus
+                anchors.verticalCenter: dateLbl.verticalCenter
+                messageStatus: textMessageStatus
+                enabled: showDeliveryStatus
+
+                ColorOverlay {
+                    anchors.fill: deliveryStatus
+                    source: deliveryStatus
+                    color: dateLbl.color
+                }
             }
         }
-    }
-
-    DeliveryStatus {
-       id: deliveryStatus
-       messageStatus: textMessageStatus
-       enabled: showDeliveryStatus
-       anchors {
-           right: parent.right
-           rightMargin: units.gu(0.5)
-           bottom: parent.bottom
-           bottomMargin: units.gu(0.5)
-       }
     }
 }
