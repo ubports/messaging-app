@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-16 08:13+0000\n"
+"POT-Creation-Date: 2022-01-17 08:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Contact Details"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
+#: ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
 msgstr ""
@@ -372,7 +372,7 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:50
+#: ../src/qml/ListItemDemo.qml:139
 msgid "Got it"
 msgstr ""
 
@@ -416,8 +416,7 @@ msgstr ""
 msgid "Image Preview"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:150 ../src/qml/MessageDelegate.qml:159
-#: ../src/qml/ParticipantInfoPage.qml:35
+#: ../src/qml/MessageDelegate.qml:159 ../src/qml/ParticipantInfoPage.qml:35
 #: ../src/qml/RegularMessageDelegate_irc.qml:186
 msgid "Info"
 msgstr ""
@@ -659,7 +658,7 @@ msgstr ""
 msgid "Renamed group to: %1"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
+#: ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
 msgid "Retry"
 msgstr ""
@@ -752,11 +751,11 @@ msgstr ""
 msgid "Successfully left group"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:227
+#: ../src/qml/ListItemDemo.qml:215
 msgid "Swipe to delete"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:177
+#: ../src/qml/ListItemDemo.qml:165
 msgid "Swipe to reveal actions"
 msgstr ""
 
@@ -858,8 +857,8 @@ msgstr ""
 msgid "Welcome to your Messaging app!"
 msgstr ""
 
-#: ../src/qml/ListItemDemo.qml:133
-msgid "Welcome to your Ubuntu messaging app."
+#: ../src/qml/ListItemDemo.qml:58
+msgid "Welcome to your messaging app."
 msgstr ""
 
 #: ../src/qml/ComposeBar.qml:567
