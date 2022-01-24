@@ -40,7 +40,7 @@ UbuntuListView {
 
         property var proxyModel: []
 
-        manager: "galera"
+        manager: ContactManager.manager()
         view: root
         autoUpdate: false
         sortOrders: [
