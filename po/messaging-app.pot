@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-17 08:59+0000\n"
+"POT-Creation-Date: 2022-01-26 08:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,10 +28,17 @@ msgstr ""
 msgid "%1 + %2"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:218
+#: ../src/qml/MainPage.qml:242
 #, qt-format
 msgid "%1 - Connecting..."
 msgstr ""
+
+#: ../src/qml/MainPage.qml:98
+#, qt-format
+msgid "%1 Thread to delete"
+msgid_plural "%1 Threads to delete"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
@@ -203,7 +210,7 @@ msgstr ""
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:46
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
+#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:168
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:168 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
@@ -271,7 +278,7 @@ msgstr ""
 #: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:175
+#: ../src/qml/ThreadDelegate.qml:201
 msgid "Delete"
 msgstr ""
 
@@ -295,7 +302,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:354
+#: ../src/qml/ThreadDelegate.qml:380
 msgid "Draft:"
 msgstr ""
 
@@ -479,7 +486,7 @@ msgstr ""
 msgid "Message info"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:77
+#: ../src/qml/MainPage.qml:75
 msgid "Messages"
 msgstr ""
 
@@ -521,11 +528,11 @@ msgstr ""
 msgid "New MMS message to download: size is %1KB, expires on %2"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/ThreadDelegate.qml:36
 msgid "New MMS notification"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
+#: ../src/qml/MainPage.qml:141 ../src/qml/MainPage.qml:287
 msgid "New message"
 msgstr ""
 
@@ -677,11 +684,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:141
+#: ../src/qml/MainPage.qml:122 ../src/qml/NewRecipientPage.qml:141
 msgid "Search"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:130
+#: ../src/qml/MainPage.qml:60 ../src/qml/NewRecipientPage.qml:130
 msgid "Search..."
 msgstr ""
 
@@ -689,7 +696,7 @@ msgstr ""
 msgid "See in contacts"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:197
+#: ../src/qml/MainPage.qml:221
 msgid "Select"
 msgstr ""
 
@@ -709,7 +716,7 @@ msgstr ""
 msgid "Set as admin"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:132 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
 msgstr ""
 
@@ -829,6 +836,10 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1262
 msgid "Typing..."
+msgstr ""
+
+#: ../src/qml/MainPage.qml:103
+msgid "Undo"
 msgstr ""
 
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75

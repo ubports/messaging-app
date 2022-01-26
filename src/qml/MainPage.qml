@@ -18,7 +18,6 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1
 import Ubuntu.History 0.1
@@ -67,7 +66,6 @@ Page {
         }
     }
 
-    flickable: pageHeader.flickable
     header: PageHeader {
         id: pageHeader
 
@@ -75,13 +73,38 @@ Page {
         property alias trailingActions: trailingBar.actions
 
         title: i18n.tr("Messages")
-        flickable: dualPanel ? null : threadList
         leadingActionBar {
             id: leadingBar
         }
 
         trailingActionBar {
             id: trailingBar
+        }
+    }
+
+    ListItem {
+        id: undoRemoveHeader
+        height: removeThreadsTimer.running ? layout.height : 0
+        implicitHeight: layout.height
+        anchors.top: pageHeader.bottom
+
+        Behavior on height {
+            NumberAnimation { duration: 100 }
+        }
+
+        ListItemLayout {
+            id: layout
+            title.text : i18n.tr("%1 Thread to delete", "%1 Threads to delete", threadList.selectedItems.count).arg(threadList.selectedItems.count)
+            Button {
+                id: undoBtn
+                color: Theme.palette.normal.positive
+                SlotsLayout.position: SlotsLayout.Trailing;
+                text: i18n.tr("Undo")
+                onClicked: {
+                    removeThreadsTimer.stop()
+                    threadList.cancelSelection()
+                }
+            }
         }
     }
 
@@ -189,7 +212,7 @@ Page {
                     objectName: "selectionModeDeleteAction"
                     enabled: threadList.selectedItems.count > 0
                     iconName: "delete"
-                    onTriggered: threadList.endSelection()
+                    onTriggered: removeThreadsTimer.restart()
                 }
             ]
             PropertyChanges {
@@ -241,8 +264,8 @@ Page {
         objectName: "threadList"
 
         anchors {
-            top: parent.top
-            topMargin: mainView.dualPanel ? pageHeader.height : 0
+            top: undoRemoveHeader.bottom
+            topMargin: 0
             left: parent.left
             right: parent.right
             bottom: keyboard.top
@@ -256,14 +279,17 @@ Page {
         //spacing: searchField.text === "" ? units.gu(-2) : 0
         section.property: mainView.sortThreadsBy === "title" ? "accountId" : "eventDate"
         section.delegate: searching && searchField.text !== ""  ? null : sectionDelegate
-        header: ListItem.Standard {
-            // FIXME: update
-            id: newItem
+        header: ListItem {
             height: mainView.dualPanel && mainView.composingNewMessage ? units.gu(8) : 0
-            text: i18n.tr("New message")
-            iconName: "message-new"
-            iconFrame: false
             selected: true
+            ListItemLayout {
+                title.text: i18n.tr("New message")
+                Icon {
+                    name: "message-new"
+                    SlotsLayout.position: SlotsLayout.Leading;
+                    height: units.gu(4)
+                }
+            }
         }
 
         onCurrentItemChanged: {
@@ -277,7 +303,6 @@ Page {
                 mainPage._keepFocus = true
             }
         }
-
 
         listDelegate: ThreadDelegate {
             id: threadDelegate
@@ -304,14 +329,10 @@ Page {
                 left: parent.left
                 right: parent.right
             }
+
             compactView: mainView.compactView
             selectionMode: threadList.isInSelectionMode
-            selected: {
-                if (selectionMode) {
-                    return threadList.isSelected(threadDelegate)
-                }
-                return false
-            }
+            selected: threadList.isSelected(threadDelegate)
 
             searchTerm: mainPage.searching ? searchField.text : ""
 
@@ -337,6 +358,16 @@ Page {
                 }
             }
 
+            onRemoveRequested: {
+                threadList.selectItem(threadDelegate)
+                threadDelegate.selected = true
+                undoBtn.clicked.connect(function() {
+                    threadDelegate.selected = false
+                    threadDelegate.toRemove = false;
+                })
+                removeThreadsTimer.restart()
+            }
+
             chatEntry : ChatEntry {
                 chatType: model.properties.chatType
                 participantIds: model.properties.participantIds ? model.properties.participantIds : []
@@ -347,7 +378,7 @@ Page {
 
             ListView.onRemove: SequentialAnimation {
                 PropertyAction { target: threadDelegate; property: "ListView.delayRemove"; value: true }
-                NumberAnimation { target: threadDelegate; property: "height"; to: 0; duration: 250; easing.type: Easing.InOutQuad }
+                NumberAnimation { target: threadDelegate; property: "height"; to: 0; duration: 250 }
                 PropertyAction { target: threadDelegate; property: "ListView.delayRemove"; value: false }
             }
         }
@@ -410,6 +441,13 @@ Page {
                                           {"flickableItem": threadList})
             threadList.forceActiveFocus()
         }
+    }
+
+    Timer {
+        id: removeThreadsTimer
+        interval: 3000
+        repeat: false
+        onTriggered: threadList.endSelection()
     }
 
     Loader {
