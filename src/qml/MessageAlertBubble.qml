@@ -30,9 +30,9 @@ ListItemWithActions{
 
     readonly property var messageStatus: messageData.textMessageStatus
 
-    readonly property string permanentErrorText: i18n.tr("Oops, there has been an error with the MMS system and this message could not be retrieved. Please ensure Cellular Data is ON and MMS settings are correct, then ask the sender to try again.")
-    readonly property string temporaryErrorText: i18n.tr("Oops, there has been an error with the MMS system and this message could not be retrieved. Please ensure Cellular Data is ON and MMS settings are correct, then tap the redownload button to try to retrieve the message again.")
-    readonly property string mmsReceivedText: i18n.tr("New MMS message to download: size is %1KB, expires on %2")
+    readonly property string permanentErrorText: i18n.tr("Could not fetch the MMS message. Maybe the MMS settings are incorrect or cellular data is off?")
+    readonly property string temporaryErrorText: i18n.tr("Could not fetch the MMS message. Maybe the MMS settings are incorrect or cellular data is off?")
+    readonly property string mmsReceivedText: i18n.tr("New MMS message (of %1 KB) to be downloaded before %2")
 
     readonly property bool permanentError: (messageData.textMessageStatus === HistoryThreadModel.MessageStatusPermanentlyFailed) || (messageData.textMessageStatus === HistoryThreadModel.MessageStatusUnknown)
 
@@ -141,7 +141,7 @@ ListItemWithActions{
 
     Button {
         id: redownloadButton
-        text: i18n.tr("Download")
+        text: i18n.tr("Try again")
         visible: !permanentError
         enabled: messageData.textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed
 
