@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-10-15 10:11+0000\n"
+"PO-Revision-Date: 2022-02-03 01:22+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://translate.ubports.com/projects/"
 "ubports/messaging-app/nb/>\n"
@@ -178,7 +178,7 @@ msgstr "Lyd-vedlegg støttes ikke"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Vis tastatur automatisk"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
@@ -293,7 +293,7 @@ msgstr "Ikke vis igjen"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Last ned"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -524,11 +524,11 @@ msgstr "Ny MMS-gruppe"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Ny MMS-melding å laste ned: Størrelsen er %1 KB, Utløper"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Ny MMS-merknad"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"

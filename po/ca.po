@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-07-02 09:57+0000\n"
+"PO-Revision-Date: 2022-01-22 21:58+0000\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ca/>\n"
@@ -176,7 +176,7 @@ msgstr "L'adjunció d'àudio no és compatible"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Mostra el teclat automàticament"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
@@ -293,7 +293,7 @@ msgstr "No mostris un altre cop"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Descarrega"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -524,11 +524,11 @@ msgstr "Nou grup MMS"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Missatges MMS per descarregar: mida %1 KB, caduca el %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Notificació de nou MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -584,7 +584,6 @@ msgstr ""
 "tornin a enviar."
 
 #: ../src/qml/MessageAlertBubble.qml:34
-#, fuzzy
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -592,8 +591,8 @@ msgid ""
 msgstr ""
 "Sembla que hi ha hagut un error amb el sistema MMS i aquest missatge no s'ha "
 "pogut recuperar. Assegureu-vos de que la connexió de dades mòbils està "
-"connectada i la configuració MMS és correcta. Llavors demaneu que vos el "
-"tornin a enviar."
+"connectada, la configuració MMS és correcta i llavors pitgeu el botó de "
+"tornar a descarregar per provar d'obtenir el missatge novament."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-07-01 03:32+0000\n"
-"Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
+"PO-Revision-Date: 2022-01-09 17:32+0000\n"
+"Last-Translator: c4pp4 <c4pp4@seznam.cz>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports/"
 "messaging-app/cs/>\n"
 "Language: cs\n"
@@ -181,7 +181,7 @@ msgstr "Přiložený audio soubor není podporován"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Automaticky zobrazit klávesnici"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
@@ -298,7 +298,7 @@ msgstr "Znovu nezobrazovat"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Stáhnout"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -529,11 +529,11 @@ msgstr "Nová MMS skupina"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Nová MMS zpráva ke stažení: velikost %1KB, vyprší %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Upozornění na novou MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -583,20 +583,18 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
-"Jejda, v systému MMS došlo k chybě a tuto zprávu nelze načíst.  "
-"Zkontrolujte, zda jsou mobilní data ZAPNUTÁ a nastavení MMS jsou správná, a "
-"poté požádejte odesílatele, aby to zkusil znovu."
+"Ve službě MMS došlo k chybě a tato zpráva nemohla být přijata. Zkontrolujte "
+"mobilní data a nastavení MMS, poté požádejte odesílatele, aby to zkusil "
+"znovu."
 
 #: ../src/qml/MessageAlertBubble.qml:34
-#, fuzzy
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
-"Jejda, v systému MMS došlo k chybě a tuto zprávu nelze načíst.  "
-"Zkontrolujte, zda jsou mobilní data ZAPNUTÁ a nastavení MMS jsou správná, a "
-"poté požádejte odesílatele, aby to zkusil znovu."
+"Ve službě MMS došlo k chybě a tato zpráva nemohla být přijata. Zkontrolujte "
+"mobilní data a nastavení MMS, poté se pokuste zprávu stáhnout."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -802,8 +800,9 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
-"Obsah, který odesíláte vyžaduje MMS zprávu pro každěho z příjemců. Je možné, "
-"že Vám bude služba takto vyúčtována. Chcete pokračovat?"
+"Obsah, který odesíláte, vyžaduje MMS zprávu pro každého z příjemců. Je "
+"možné, že Vám bude služba takto vyúčtována.\n"
+"Chcete pokračovat?"
 
 #: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
