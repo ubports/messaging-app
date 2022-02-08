@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-12-27 19:07+0000\n"
+"PO-Revision-Date: 2022-01-04 21:54+0000\n"
 "Last-Translator: Carlod <carlod@disroot.org>\n"
 "Language-Team: Polish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/pl/>\n"
@@ -182,7 +182,7 @@ msgstr "Załączniki dźwiękowe nie są obsługiwane"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Automatycznie wyświetlaj klawiaturę"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
