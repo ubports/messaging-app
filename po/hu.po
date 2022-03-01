@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2022-02-06 13:44+0000\n"
+"PO-Revision-Date: 2022-02-28 01:52+0000\n"
 "Last-Translator: Lundrin <berenyi.vilmos@tutanota.com>\n"
 "Language-Team: Hungarian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/hu/>\n"
@@ -48,7 +48,7 @@ msgstr "%1 meghívta %2 -t a csoportba"
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr "%1 az Admin"
+msgstr "%1 Admin"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
@@ -83,12 +83,12 @@ msgstr "%1 átnevezte a csoportot erre: %2"
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr "%1 módosította %2 -t Adminná"
+msgstr "%1 beállította %2 -t Adminként"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr "%1 módosította %2 -t nem Adminná"
+msgstr "%1 beállította %2 -t nem Adminként"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
@@ -180,7 +180,7 @@ msgstr "Billentyűzet automatikus megjelenítése"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
-msgstr "Animációk automatikus lejátszása"
+msgstr "Animált képek automatikus lejátszása"
 
 #: ../src/qml/Messages.qml:1274
 msgid "Away"
@@ -223,7 +223,7 @@ msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr "Csatorna információ"
+msgstr "Csatorna infó"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
@@ -385,7 +385,7 @@ msgstr "Csoport (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
 msgid "Group Info"
-msgstr "Csoport információ"
+msgstr "Csoport Infó"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
@@ -425,7 +425,7 @@ msgstr "Információ"
 
 #: ../src/qml/Messages.qml:314
 msgid "It is not possible to send messages at the moment"
-msgstr "Jelenlen nem lehet üzeneteket küldeni"
+msgstr "Jelenleg nem lehet küldhet üzeneteteket küldeni"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
@@ -523,7 +523,7 @@ msgstr "Új MMS Csoport"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr "Új letölthető MMS üzenet; méret: %1 KB, lejár: %2"
+msgstr "Új letölthető MMS üzenet: mérete %1 KB, lejár %2 -kor"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
@@ -555,7 +555,7 @@ msgstr "Nem elérhető"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr "Telefonszám, vagy név"
+msgstr "Telefonszám, vagy névjegy"
 
 #: ../src/qml/Messages.qml:1272
 msgid "Offline"
@@ -755,11 +755,11 @@ msgstr "Matricák"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr "Csatorna sikeres elhagyása"
+msgstr "Csatorna sikeresen elhagyva"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr "Csoport sikeres elhagyása"
+msgstr "Csoport sikeresen elhagyva"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -877,7 +877,6 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "Üdvözli az Ubuntu üzenetküldő alkalmazása."
 
 #: ../src/qml/ComposeBar.qml:567
-#, fuzzy
 msgid "Write a broadcast message..."
 msgstr "Üzenet írása mindenkinek…"
 
@@ -951,7 +950,7 @@ msgstr "Eltávolítottak ebből a csoportból"
 
 #: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
-msgstr "Még nincsenek matricák"
+msgstr "még nincsenek matricák"
 
 #: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"

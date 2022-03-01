@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2020-12-17 15:11+0000\n"
-"Last-Translator: Enkli Ylli <eylli@yahoo.com>\n"
+"PO-Revision-Date: 2022-02-25 22:25+0000\n"
+"Last-Translator: Stefan Kalb <stefan.kalb@gmx.ch>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sq/>\n"
 "Language: sq\n"
@@ -214,7 +214,7 @@ msgstr "Anullo"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
-msgstr ""
+msgstr "Ndrysho"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
