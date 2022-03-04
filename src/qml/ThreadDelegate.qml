@@ -133,6 +133,8 @@ ListItemWithActions {
 
     signal removeRequested()
 
+    color: enabled ? Theme.palette.normal.background : Theme.palette.selectedDisabled.background
+
     states: [
         State {
             name: "compactView"
@@ -167,30 +169,6 @@ ListItemWithActions {
                 target: contactName
                 anchors.right: time.left
             }
-        },
-        State {
-            name: "selectedForRemoval"
-            when: selected
-            PropertyChanges {
-                target: delegate
-                locked: true
-            }
-            PropertyChanges {
-                target: delegate
-                color: Theme.palette.selectedDisabled.background
-            }
-            PropertyChanges {
-                target: avatar
-                backgroundColor: UbuntuColors.silk
-            }
-            PropertyChanges {
-                target: contactName
-                color: Theme.palette.selectedDisabled.backgroundText
-            }
-            PropertyChanges {
-                target: latestMessage
-                color: Theme.palette.selectedDisabled.backgroundSecondaryText
-            }
         }
     ]
 
@@ -220,6 +198,7 @@ ListItemWithActions {
                 return "image://theme/contact"
             }
         }
+        backgroundColor: enabled ? ContactsJS.contactColor(displayName) : UbuntuColors.silk
         fallbackDisplayName: (isBroadcast || groupTitle == "") ? delegateHelper.alias : contactName.text
         showAvatarPicture: (delegateHelper.avatar !== "") || (initials.length === 0)
         anchors {
@@ -262,7 +241,7 @@ ListItemWithActions {
             rightMargin: unreadCountIndicator.width
         }
         elide: Text.ElideRight
-        color: Theme.palette.normal.backgroundText
+        color: enabled ? Theme.palette.normal.backgroundText : Theme.palette.selectedDisabled.backgroundText
         font.bold: unreadCount > 0
         text: {
             if (groupChat) {
@@ -406,7 +385,7 @@ ListItemWithActions {
             textFormat: Text.PlainText
             maximumLineCount: 2
             wrapMode: Text.Wrap
-            color: Theme.palette.normal.backgroundSecondaryText
+            color: enabled ? Theme.palette.normal.backgroundSecondaryText : Theme.palette.selectedDisabled.backgroundSecondaryText
         }
     }
 

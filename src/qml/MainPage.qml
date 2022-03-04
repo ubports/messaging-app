@@ -94,7 +94,7 @@ Page {
 
         ListItemLayout {
             id: layout
-            title.text : i18n.tr("%1 Thread to delete", "%1 Threads to delete", threadList.selectedItems.count).arg(threadList.selectedItems.count)
+            title.text : i18n.tr("%1 Thread deleted", "%1 Threads deleted", threadList.selectedItems.count).arg(threadList.selectedItems.count)
             Button {
                 id: undoBtn
                 color: Theme.palette.normal.positive
@@ -333,6 +333,7 @@ Page {
             compactView: mainView.compactView
             selectionMode: threadList.isInSelectionMode
             selected: threadList.isSelected(threadDelegate)
+            enabled: !(removeThreadsTimer.running && selected)
 
             searchTerm: mainPage.searching ? searchField.text : ""
 
