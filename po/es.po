@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-08-29 10:49+0000\n"
-"Last-Translator: Josué <j2g2rp@gmail.com>\n"
+"PO-Revision-Date: 2022-03-09 20:47+0000\n"
+"Last-Translator: Marcos Sánchez Provencio <raptopassion@gmail.com>\n"
 "Language-Team: Spanish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/es/>\n"
 "Language: es\n"
@@ -726,7 +726,7 @@ msgstr "Configurar como administrador"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr "Configuración"
+msgstr "Ajustes"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
