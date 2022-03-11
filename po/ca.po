@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2022-01-22 21:58+0000\n"
-"Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
+"PO-Revision-Date: 2022-03-07 17:25+0000\n"
+"Last-Translator: Jaume Angrill <txaume@protonmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "messaging-app/ca/>\n"
 "Language: ca\n"
@@ -524,11 +524,11 @@ msgstr "Nou grup MMS"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr "Missatges MMS per descarregar: mida %1 KB, caduca el %2"
+msgstr "Nou missatge MMS per descarregar: mida %1KB, caduca en %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr "Notificació de nou MMS"
+msgstr "Nova notificació MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
