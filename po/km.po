@@ -8,20 +8,21 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2014-09-01 09:22+0000\n"
-"Last-Translator: Sophea Sok <sksophea@gmail.com>\n"
-"Language-Team: Khmer <km@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-03-15 16:42+0000\n"
+"Last-Translator: ប៉ុកណូ រ៉ូយ៉ាល់ <poknoroyal@outlook.com>\n"
+"Language-Team: Central Khmer <https://translate.ubports.com/projects/ubports/"
+"messaging-app/km/>\n"
+"Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#ឈ្មោះឆានែល"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:78
@@ -32,67 +33,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - កំពុងតភ្ជាប់…"
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 បានបន្ថែម %2 ទៅកាន់ក្រុមនេះ"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 បានអញ្ជើញ %2 ទៅកាន់ក្រុមនេះ"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 គឺជាអ្នកគ្រប់គ្រង"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 មិនមែនអ្នកគ្រប់គ្រងទេ"
 
 #: ../src/qml/Messages.qml:1259
 #, qt-format
 msgid "%1 is typing..."
-msgstr ""
+msgstr "%1 គឺកំពុងតែវាយ…"
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 បានចូលរួមក្រុមនេះ"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 បានចាកចេញពីក្រុម"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 បានដក %2 ចេញពីក្រុមនេះ"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 បានប្ដូរឈ្មោះក្រុមទៅ៖ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 កំណត់ %2 ជាអ្នកគ្រប់គ្រង"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 កំណត់ %2 លែងជាអ្នកគ្រប់គ្រង"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 បានអញ្ជើញចូលក្រុមនេះ"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -111,26 +112,24 @@ msgid "Add"
 msgstr "បន្ថែម​"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "បន្ថែម​អ្នក​ទទួល"
+msgstr "បន្ថែម​អ្នក​ចូលរួម៖"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
 msgstr "បន្ថែម​អ្នក​ទទួល"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "មិន​ស្គាល់​ទំនាក់ទំនង"
+msgstr "បន្ថែមទៅទំនាក់ទំនង"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "បន្ថែម…"
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "អ្នកគ្រប់គ្រង"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -140,8 +139,7 @@ msgstr "ទាំងអស់"
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ឯកសារភ្ជាប់៖ ឈុតអូឌីយ៉ូ %1"
 
 #: ../src/qml/ThreadDelegate.qml:119
 #, qt-format
@@ -159,13 +157,13 @@ msgstr[0] "ឯកសារ​ភ្ជាប់៖ ឯកសារ %1"
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
-msgstr[0] "ឯកសារ​ភ្ជាប់៖ រូបភាព %1"
+msgstr[0] "ឯកសារ​ភ្ជាប់៖ %1 រូបភាព"
 
 #: ../src/qml/ThreadDelegate.qml:116
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
-msgstr[0] "ឯកសារ​ភ្ជាប់៖ វីដេអូ %1"
+msgstr[0] "ឯកសារភ្ជាប់៖ %1 វីដេអូ"
 
 #: ../src/qml/AttachmentDelegates/DefaultDelegate.qml:28
 msgid "Audio attachment not supported"
@@ -187,7 +185,7 @@ msgstr "ចាកឆ្ងាយ"
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
 #: ../src/qml/SettingsPage.qml:287
 msgid "Back"
-msgstr "ថយក្រោយ"
+msgstr "បកក្រោយ"
 
 #: ../src/qml/Messages.qml:1276
 msgid "Busy"
@@ -206,7 +204,7 @@ msgstr "ហៅ"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "បោះ​បង់"
+msgstr "បោះបង់"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
@@ -244,7 +242,7 @@ msgstr "ទំនាក់ទំនង"
 #: ../src/qml/ListItemDemo.qml:158 ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
-msgstr "​ចម្លង"
+msgstr "ចម្លង"
 
 #: ../src/qml/Messages.qml:1111
 #, qt-format
@@ -554,7 +552,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1272
 msgid "Offline"
-msgstr "ក្រៅ​បណ្តាញ"
+msgstr "អហ្វឡាញ"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:45
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
@@ -634,7 +632,7 @@ msgstr "បាន​ទទួល"
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 #: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
-msgstr "លុបចេញ"
+msgstr "ដកចេញ"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
@@ -663,7 +661,7 @@ msgstr "ស៊ី​ម​កាត​ត្រូវ​បាន​ចាក់
 
 #: ../src/qml/MessageDelegate.qml:161
 msgid "SMS"
-msgstr "សារ SMS"
+msgstr "SMS"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:86
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:91
@@ -707,13 +705,13 @@ msgstr ""
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
-msgstr ""
+msgstr "ការកំណត់"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:93
 #: ../src/qml/AttachmentDelegates/PreviewerMultipleContacts.qml:99
 #: ../src/qml/MessagingContactViewPage.qml:85
 msgid "Share"
-msgstr "ចែក​រំលែក"
+msgstr "ចែករំលែក"
 
 #: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
@@ -787,7 +785,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
-msgstr ""
+msgstr "ស្បែក"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -830,7 +828,7 @@ msgstr ""
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
 msgid "Unknown"
-msgstr "មិន​ស្គាល់"
+msgstr "មិនស្គាល់"
 
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44
@@ -868,7 +866,7 @@ msgstr "សរសេរ​សារ..."
 
 #: ../src/qml/dateUtils.js:49
 msgid "Yesterday"
-msgstr "ម្សិល​មិញ"
+msgstr "ម្សិលមិញ"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
