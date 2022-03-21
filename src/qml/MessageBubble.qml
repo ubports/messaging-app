@@ -64,7 +64,9 @@ Item {
         }
 
         // remove html tags
-        text = text.replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
+        text = text.replace(/<[^>]*>?/gm, '');
+        // escape '&' char
+        text = text.replace(/&/g, '&amp;');
         // preserve new lines
         text = text.replace(/\n/g, '<br>');
         // check for links
