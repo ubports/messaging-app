@@ -19,7 +19,6 @@
 import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Telephony 0.1
 import Ubuntu.Contacts 0.1
 import QtContacts 5.0
@@ -131,10 +130,12 @@ ListItemWithActions {
         return formatDisplayedText(displayedEventTextMessage)
     }
 
-    state: compactView ? "compactView" : ""
+    signal removeRequested()
+
     states: [
         State {
             name: "compactView"
+            when: compactView
             PropertyChanges {
                 target: avatar
                 visible: false
@@ -173,9 +174,7 @@ ListItemWithActions {
             Action {
                 iconName: "delete"
                 text: i18n.tr("Delete")
-                onTriggered: {
-                    mainView.removeThreads(model.threads)
-                }
+                onTriggered: delegate.removeRequested()
             }
 
     Component.onCompleted: {
