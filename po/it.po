@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-07-18 22:26+0000\n"
+"PO-Revision-Date: 2022-04-23 09:39+0000\n"
 "Last-Translator: Mike <miguel2000@livecom.it>\n"
 "Language-Team: Italian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/it/>\n"
@@ -176,7 +176,7 @@ msgstr "Allegati audio non supportati"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Mostra tastiera in automatico"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
@@ -292,7 +292,7 @@ msgstr "Non mostrare più"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Scarica"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -523,11 +523,11 @@ msgstr "Nuovo gruppo MMS"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Nuovo MMS da scaricare: la dimensione è %1 KB, scade il %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Nuova notifica MMS"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -582,7 +582,6 @@ msgstr ""
 "impostazioni MMS corrette, poi chiedi al mittente di riprovare."
 
 #: ../src/qml/MessageAlertBubble.qml:34
-#, fuzzy
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -590,7 +589,8 @@ msgid ""
 msgstr ""
 "Oops, c'è stato un errore con il sistema MMS e questo messaggio non ha "
 "potuto essere stato ricevuto. Assicurati che i dati mobili siano attivi e le "
-"impostazioni MMS corrette, poi chiedi al mittente di riprovare."
+"impostazioni MMS corrette, poi clicca di nuovo il pulsante per scaricarlo "
+"per provare a riceverlo di nuovo."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
