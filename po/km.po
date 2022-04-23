@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2022-03-17 07:51+0000\n"
+"PO-Revision-Date: 2022-04-01 06:36+0000\n"
 "Last-Translator: ប៉ុកណូ រ៉ូយ៉ាល់ <poknoroyal@outlook.com>\n"
 "Language-Team: Central Khmer <https://translate.ubports.com/projects/ubports/"
 "messaging-app/km/>\n"
@@ -368,7 +368,7 @@ msgstr "ពី"
 
 #: ../src/qml/ListItemDemo.qml:50
 msgid "Got it"
-msgstr ""
+msgstr "យល់ហើយ"
 
 #: ../src/qml/MessageInfoDialog.qml:87
 msgid "Group"
@@ -536,7 +536,7 @@ msgstr "មិន​បាន​ជ្រើស​ស៊ីម​កាត"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:28
 msgid "No network"
-msgstr "មិន​មាន​បណ្ដាញ"
+msgstr "គ្មាន​សេវា"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:26
 msgid "No permission to access microphone"
@@ -589,7 +589,7 @@ msgstr "កំពុង​រង់ចាំ"
 
 #: ../src/qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "រើសគណនី ដើម្បីបង្កើត។"
 
 #: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
@@ -615,9 +615,9 @@ msgid ""
 "SIM card from the Network Indicator at the top of the screen or by visiting "
 "<a href=\"system_settings\">System Settings &gt; Security &amp; Privacy</a>."
 msgstr ""
-"សូមដោះសោស៊ីមកាតរបស់អ្នក ដើម្បីហៅឬផ្ញើសារ ។ អ្នកអាចដោះសោរស៊ីមកាតរបស់អ្នក ពី បណ្តាញសូចនាករ "
-"នៅកំពូលនៃអេក្រង់ឬដោយទស្សនា <a href=\"system_settings\">ការកំណត់ប្រព័ន្ធ &gt; សន្តិសុខ "
-"&amp; ភាពឯកជន ។"
+"សូមដោះសោស៊ីមកាតរបស់អ្នក ដើម្បីហៅឬផ្ញើសារ ។ អ្នកអាចដោះសោរស៊ីមកាតរបស់អ្នក "
+"មកពីទ្រនិចបង្ហាញសេវានៅកំពូលនៃអេក្រង់ ឬដោយចូលទៅ <a href=\"system_settings\""
+">ការកំណត់ប្រព័ន្ធ &gt; សន្តិសុខ &amp; ឯកជនភាព</a>។"
 
 #: ../src/qml/MessageInfoDialog.qml:62 ../src/qml/MessageInfoDialog.qml:156
 msgid "Read"
@@ -747,11 +747,11 @@ msgstr ""
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
-msgstr ""
+msgstr "អូស ដើម្បីលុប"
 
 #: ../src/qml/ListItemDemo.qml:177
 msgid "Swipe to reveal actions"
-msgstr ""
+msgstr "អូស ដើម្បីបង្ហាញសកម្មភាព"
 
 #: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
@@ -794,7 +794,7 @@ msgstr "បច្ចុប្បន្ន​មិន​មាន​សេវា
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "បច្ចុប្បន្ន​មិន​មាន​សេវា។"
+msgstr "បច្ចុប្បន្ន​គឺគ្មាន​សេវាឡើយ។"
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
