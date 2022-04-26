@@ -141,7 +141,7 @@ ListItemWithActions{
 
     Button {
         id: redownloadButton
-        text: i18n.tr("Try again")
+        text: i18n.tr("Download")
         visible: !permanentError
         enabled: messageData.textMessageStatus === HistoryThreadModel.MessageStatusTemporarilyFailed
 
