@@ -1651,7 +1651,15 @@ Page {
         presenceRequest: messages.presenceRequest
         isBroadcast: messages.isBroadcast
         returnToSend: messages.account && messages.account.protocolInfo.returnToSend
-        enableAttachments: messages.account && messages.account.protocolInfo.enableAttachments
+        enableAttachments: {
+            if (messages.account) {
+                if (messages.account.protocolInfo.name === "ofono") {
+                    return messages.account.protocolInfo.enableAttachments && telepathyHelper.mmsEnabled
+                } else {
+                    return messages.account.protocolInfo.enableAttachments
+                }
+            }
+        }
 
         showContents: !selectionMode && !isSearching && !chatInactiveLabel.visible
         maxHeight: messages.height - keyboard.height - screenTop.y
