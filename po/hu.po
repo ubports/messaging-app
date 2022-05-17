@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-01-28 03:24+0000\n"
-"Last-Translator: Adam <padamyno@gmail.com>\n"
+"PO-Revision-Date: 2022-02-28 01:52+0000\n"
+"Last-Translator: Lundrin <berenyi.vilmos@tutanota.com>\n"
 "Language-Team: Hungarian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/hu/>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
-msgstr ""
+msgstr "#csatornaNév"
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
 #: ../src/qml/ThreadDelegate.qml:78
@@ -33,67 +33,67 @@ msgstr "%1 + %2"
 #: ../src/qml/MainPage.qml:218
 #, qt-format
 msgid "%1 - Connecting..."
-msgstr ""
+msgstr "%1 - Csatlakozás..."
 
 #: ../src/qml/AccountSectionDelegate.qml:119
 #, qt-format
 msgid "%1 added %2 to this group"
-msgstr ""
+msgstr "%1 hozzáadta %2 -t a csoporthoz"
 
 #: ../src/qml/AccountSectionDelegate.qml:93
 #, qt-format
 msgid "%1 invited %2 to this group"
-msgstr ""
+msgstr "%1 meghívta %2 -t a csoportba"
 
 #: ../src/qml/AccountSectionDelegate.qml:127
 #, qt-format
 msgid "%1 is Admin"
-msgstr ""
+msgstr "%1 Admin"
 
 #: ../src/qml/AccountSectionDelegate.qml:135
 #, qt-format
 msgid "%1 is not Admin"
-msgstr ""
+msgstr "%1 nem Admin"
 
 #: ../src/qml/Messages.qml:1259
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing..."
-msgstr "Gépel…"
+msgstr "%1 gépel…"
 
 #: ../src/qml/AccountSectionDelegate.qml:121
 #, qt-format
 msgid "%1 joined this group"
-msgstr ""
+msgstr "%1 csatlakozott a csoporthoz"
 
 #: ../src/qml/AccountSectionDelegate.qml:113
 #, qt-format
 msgid "%1 left this group"
-msgstr ""
+msgstr "%1 elhagyta a csoportot"
 
 #: ../src/qml/AccountSectionDelegate.qml:111
 #, qt-format
 msgid "%1 removed %2 from this group"
-msgstr ""
+msgstr "%1 eltávolította %2 -t a csoportból"
 
 #: ../src/qml/AccountSectionDelegate.qml:107
 #, qt-format
 msgid "%1 renamed group to: %2"
-msgstr ""
+msgstr "%1 átnevezte a csoportot erre: %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:125
 #, qt-format
 msgid "%1 set %2 as Admin"
-msgstr ""
+msgstr "%1 beállította %2 -t Adminként"
 
 #: ../src/qml/AccountSectionDelegate.qml:133
 #, qt-format
 msgid "%1 set %2 as not Admin"
-msgstr ""
+msgstr "%1 beállította %2 -t nem Adminként"
 
 #: ../src/qml/AccountSectionDelegate.qml:89
 #, qt-format
 msgid "%1 was invited to this group"
-msgstr ""
+msgstr "%1 -t meghívták a csoportba"
 
 #: ../src/qml/MessagingBottomEdge.qml:26
 msgid "+"
@@ -112,26 +112,24 @@ msgid "Add"
 msgstr "Hozzáadás"
 
 #: ../src/qml/GroupChatInfoPage.qml:374
-#, fuzzy
 msgid "Add participant:"
-msgstr "Címzett hozzáadása"
+msgstr "Résztvevő hozzáadása:"
 
 #: ../src/qml/NewRecipientPage.qml:88
 msgid "Add recipient"
 msgstr "Címzett hozzáadása"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "Add to contacts"
-msgstr "Ismeretlen névjegy"
+msgstr "Hozzáadás névjegyekhez"
 
 #: ../src/qml/GroupChatInfoPage.qml:396
 msgid "Add..."
-msgstr ""
+msgstr "Hozzáad..."
 
 #: ../src/qml/ParticipantDelegate.qml:42
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
@@ -178,11 +176,11 @@ msgstr "Audiomelléklet nem támogatott"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Billentyűzet automatikus megjelenítése"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
-msgstr ""
+msgstr "Animált képek automatikus lejátszása"
 
 #: ../src/qml/Messages.qml:1274
 msgid "Away"
@@ -211,25 +209,25 @@ msgstr "Hívás"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
-msgstr ""
+msgstr "Módosítás"
 
 #. TRANSLATORS: %1 refers to the SIM card name or account name
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:29
 #, qt-format
 msgid "Change all Messaging associations to %1?"
-msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1"
+msgstr "Minden üzenetküldés hozzárendelése a következőhöz: %1?"
 
 #: ../src/qml/GroupChatInfoPage.qml:120
 msgid "Channel Info"
-msgstr ""
+msgstr "Csatorna infó"
 
 #: ../src/qml/NewGroupPage.qml:232
 msgid "Channel name:"
-msgstr ""
+msgstr "Csatorna név:"
 
 #: ../src/qml/Dialogs/InformationDialog.qml:30
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:47
@@ -254,19 +252,19 @@ msgstr "Másolás"
 #: ../src/qml/Messages.qml:1111
 #, qt-format
 msgid "Create %1 Group..."
-msgstr ""
+msgstr "%1 Csoport Létrehozása..."
 
 #: ../src/qml/Messages.qml:1081
 msgid "Create MMS Group..."
-msgstr ""
+msgstr "MMS Csoport Létrehozása..."
 
 #: ../src/qml/NewGroupPage.qml:81
 msgid "Creating Group..."
-msgstr ""
+msgstr "Csoport Létrehozása..."
 
 #: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
-msgstr ""
+msgstr "Sötét"
 
 #: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
@@ -293,11 +291,11 @@ msgstr "Ne mutassa újra"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Letöltés"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
-msgstr ""
+msgstr "Piszkozat:"
 
 #: ../src/qml/MessagingContactViewPage.qml:96
 msgid "Edit"
@@ -305,47 +303,43 @@ msgstr "Szerkesztés"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:35
 msgid "Enable"
-msgstr ""
+msgstr "Bekapcsol"
 
 #: ../src/qml/SettingsPage.qml:59
-#, fuzzy
 msgid "Enable MMS messages"
-msgstr "MMS csoportos csevegés"
+msgstr "MMS üzenetek engedélyezése"
 
 #: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
-msgstr ""
+msgstr "Matricák engedélyezése"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
-msgstr ""
+msgstr "Csoport bezárása"
 
 #: ../src/qml/MessageInfoDialog.qml:58 ../src/qml/Messages.qml:313
 msgid "Failed"
 msgstr "Sikertelen"
 
 #: ../src/qml/NewGroupPage.qml:170
-#, fuzzy
 msgid "Failed to create group"
-msgstr "Nem sikerült az üzenet elküldése"
+msgstr "Csoport létrehozása sikertelen"
 
 #: ../src/qml/GroupChatInfoPage.qml:238
-#, fuzzy
 msgid "Failed to delete group"
-msgstr "Húzza el a törléshez"
+msgstr "Csoport törlése sikertelen"
 
 #: ../src/qml/GroupChatInfoPage.qml:136
-#, fuzzy
 msgid "Failed to leave channel"
-msgstr "Nem sikerült az üzenet elküldése"
+msgstr "Csatorna elhagyása sikertelen"
 
 #: ../src/qml/GroupChatInfoPage.qml:138
 msgid "Failed to leave group"
-msgstr ""
+msgstr "Csoport elhagyása sikertelen"
 
 #: ../src/qml/GroupChatInfoPage.qml:248
 msgid "Failed to modify group title"
-msgstr ""
+msgstr "Csoport módosítása sikertelen"
 
 #: ../src/qml/SendMessageValidator.qml:221
 msgid "Failed to send the message"
@@ -390,23 +384,21 @@ msgid "Group (%1)"
 msgstr "Csoport (%1)"
 
 #: ../src/qml/GroupChatInfoPage.qml:122
-#, fuzzy
 msgid "Group Info"
-msgstr "Csoport"
+msgstr "Csoport Infó"
 
 #: ../src/qml/AccountSectionDelegate.qml:142
 #: ../src/qml/GroupChatInfoPage.qml:240
 msgid "Group has been dissolved"
-msgstr ""
+msgstr "Csoport felbomlott"
 
 #: ../src/qml/NewGroupPage.qml:234
-#, fuzzy
 msgid "Group name:"
-msgstr "Csoport"
+msgstr "Csoport név:"
 
 #: ../src/qml/RegularMessageDelegate_irc.qml:188
 msgid "IRC"
-msgstr ""
+msgstr "IRC"
 
 #: ../src/qml/Dialogs/NoDefaultSIMCardDialog.qml:38
 msgid ""
@@ -432,9 +424,8 @@ msgid "Info"
 msgstr "Információ"
 
 #: ../src/qml/Messages.qml:314
-#, fuzzy
 msgid "It is not possible to send messages at the moment"
-msgstr "Repülőgépes módban nem küldhet üzenetet"
+msgstr "Jelenleg nem lehet küldhet üzeneteteket küldeni"
 
 #: ../src/qml/Messages.qml:305 ../src/qml/SendMessageValidator.qml:212
 msgid "It is not possible to send messages in flight mode"
@@ -446,23 +437,23 @@ msgstr "Nem lehetséges az üzenetküldés"
 
 #: ../src/qml/Messages.qml:1105
 msgid "Join IRC Channel..."
-msgstr ""
+msgstr "Csatlakozás IRC-Csatornához..."
 
 #: ../src/qml/NewGroupPage.qml:88
 msgid "Join IRC channel:"
-msgstr ""
+msgstr "Csatlakozás IRC-Csatornához:"
 
 #: ../src/qml/GroupChatInfoPage.qml:112
 msgid "Leave channel"
-msgstr ""
+msgstr "Csatorna elhagyása"
 
 #: ../src/qml/GroupChatInfoPage.qml:114
 msgid "Leave group"
-msgstr ""
+msgstr "Csoport elhagyása"
 
 #: ../src/qml/SettingsPage.qml:52
 msgid "Light"
-msgstr ""
+msgstr "Világos"
 
 #: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
@@ -473,18 +464,20 @@ msgid ""
 "MMS support is required to send this message.\n"
 "Do you want to enable it?"
 msgstr ""
+"MMS támogatás szükséges az üzenet elküldéséhez.\n"
+"Szeretné engedélyezni?"
 
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:30
 msgid "MMS support required"
-msgstr ""
+msgstr "MMS támogatás szükséges"
 
 #: ../src/qml/GroupChatInfoPage.qml:149
 msgid "Me"
-msgstr ""
+msgstr "Én"
 
 #: ../src/qml/ContactSearchWidget.qml:44
 msgid "Members:"
-msgstr ""
+msgstr "Tagok:"
 
 #: ../src/qml/MessageInfoDialog.qml:95
 msgid "Message info"
@@ -512,7 +505,7 @@ msgstr "Üzenetküldő alkalmazás"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:30
 msgid "Multiple MMS Messages"
-msgstr ""
+msgstr "Több MMS üzenet"
 
 #: ../src/qml/MessageDelegate.qml:170
 msgid "Myself"
@@ -521,20 +514,20 @@ msgstr "Én"
 #: ../src/qml/NewGroupPage.qml:94
 #, qt-format
 msgid "New %1 Group"
-msgstr ""
+msgstr "Új %1 Csoport"
 
 #: ../src/qml/NewGroupPage.qml:84
 msgid "New MMS Group"
-msgstr ""
+msgstr "Új MMS Csoport"
 
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Új letölthető MMS üzenet: mérete %1 KB, lejár %2 -kor"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Új MMS értesítés"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -558,11 +551,11 @@ msgstr "Nincs jogosultsága a mikrofon eléréséhez"
 
 #: ../src/qml/Messages.qml:324
 msgid "Not available"
-msgstr ""
+msgstr "Nem elérhető"
 
 #: ../src/qml/ContactSearchWidget.qml:67
 msgid "Number or contact name"
-msgstr ""
+msgstr "Telefonszám, vagy névjegy"
 
 #: ../src/qml/Messages.qml:1272
 msgid "Offline"
@@ -584,6 +577,9 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then ask the sender to try again."
 msgstr ""
+"Upsz, hiba történt az MMS rendszerben és ezt az üzenetet nem sikerült "
+"fogadni. Bizonyosodjon meg arról, hogy a mobiladatok be van kapcsolva, és az "
+"MMS beállítások megfelelők, majd kérje meg a küldőt, hogy próbálja újra."
 
 #: ../src/qml/MessageAlertBubble.qml:34
 msgid ""
@@ -591,11 +587,15 @@ msgid ""
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
 "correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
+"Upsz, hiba történt az MMS rendszerben és ezt az üzenetet nem sikerült "
+"fogadni. Bizonyosodjon meg arról, hogy a mobiladatok be van kapcsolva, és az "
+"MMS beállítások megfelelők, majd nyomjon a letöltés gombra a fogadás "
+"újrapróbálásához."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
 msgid "Participants: %1"
-msgstr ""
+msgstr "Résztvevők: %1"
 
 #: ../src/qml/MessageInfoDialog.qml:66 ../src/qml/ParticipantDelegate.qml:45
 msgid "Pending"
@@ -607,11 +607,11 @@ msgstr "A létrehozáshoz válasszon fiókot."
 
 #: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
-msgstr ""
+msgstr "Erősítse meg, hogy törölni akarja az összes matricát az előzményekből"
 
 #: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
-msgstr ""
+msgstr "Erősítse meg, hogy törölni akarja az összes matricát ebből a készletből"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -653,7 +653,7 @@ msgstr "Eltávolítás"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
-msgstr ""
+msgstr "Eltávolítás a csoportból"
 
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:30
 #, qt-format
@@ -661,11 +661,12 @@ msgid ""
 "Removing last member will cause '%1' to be dissolved. Would you like to "
 "continue?"
 msgstr ""
+"Az utolsó tag eltávolítása a(z) '%1' felbomlásával jár. Szeretné folytatni?"
 
 #: ../src/qml/AccountSectionDelegate.qml:103
 #, qt-format
 msgid "Renamed group to: %1"
-msgstr ""
+msgstr "Csoport átnevezve erre: %1"
 
 #: ../src/qml/ListItemDemo.qml:154 ../src/qml/MessageDelegate.qml:136
 #: ../src/qml/RegularMessageDelegate_irc.qml:163
@@ -695,22 +696,20 @@ msgid "Search..."
 msgstr "Keresés…"
 
 #: ../src/qml/ParticipantInfoPage.qml:135
-#, fuzzy
 msgid "See in contacts"
-msgstr "Ismeretlen névjegy"
+msgstr "Megtekintés névjegyekben"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "Kijelölés"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
 msgstr "Küldés"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
-#, fuzzy
 msgid "Send private message"
-msgstr "Üzenet írása…"
+msgstr "Privát üzenet küldése"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"
@@ -718,7 +717,7 @@ msgstr "Elküldve"
 
 #: ../src/qml/ParticipantInfoPage.qml:153
 msgid "Set as admin"
-msgstr ""
+msgstr "Beállítás adminként"
 
 #: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
@@ -732,19 +731,19 @@ msgstr "Megosztás"
 
 #: ../src/qml/SettingsPage.qml:73
 msgid "Simplified conversation view"
-msgstr ""
+msgstr "Egyszerűsített beszélgetés nézet"
 
 #: ../src/qml/SettingsPage.qml:46
 msgid "Sort by timestamp"
-msgstr ""
+msgstr "Rendezés idő szerint"
 
 #: ../src/qml/SettingsPage.qml:47
 msgid "Sort by title"
-msgstr ""
+msgstr "Rendezés cím szerint"
 
 #: ../src/qml/SettingsPage.qml:80
 msgid "Sort threads"
-msgstr ""
+msgstr "Rendezés témánként"
 
 #: ../src/qml/MessageInfoDialog.qml:162
 msgid "Status"
@@ -752,15 +751,15 @@ msgstr "Állapot"
 
 #: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
-msgstr ""
+msgstr "Matricák"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
-msgstr ""
+msgstr "Csatorna sikeresen elhagyva"
 
 #: ../src/qml/GroupChatInfoPage.qml:130
 msgid "Successfully left group"
-msgstr ""
+msgstr "Csoport sikeresen elhagyva"
 
 #: ../src/qml/ListItemDemo.qml:227
 msgid "Swipe to delete"
@@ -772,7 +771,7 @@ msgstr "Húzza el a műveletek megjelenítéséhez"
 
 #: ../src/qml/SettingsPage.qml:51
 msgid "System Theme"
-msgstr ""
+msgstr "Rendszer Téma"
 
 #: ../src/qml/MessageInfoDialog.qml:56
 msgid "Temporarily Failed"
@@ -788,6 +787,8 @@ msgid ""
 "The SIM card does not provide the owner's phone number. Because of that "
 "sending MMS group messages is not possible."
 msgstr ""
+"A SIM kártya nem adja meg a tulajdonos telefonszámát, ezért csoportos MMS "
+"üzenetek küldése nem lehetséges."
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:31
 msgid ""
@@ -795,14 +796,17 @@ msgid ""
 "might get charged for multiple messages.\n"
 "Do you want to continue?"
 msgstr ""
+"Az elküldeni kívánt tartalomhoz fogadónként szükséges egy MMS, amiért "
+"többszöri díjazás léphet fel több üzenetért.\n"
+"Szeretné folytatni?"
 
 #: ../src/qml/Messages.qml:325
 msgid "The selected account is not available at the moment"
-msgstr ""
+msgstr "Kijelölt fiók jelenleg nem elérhető"
 
 #: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
-msgstr ""
+msgstr "Téma"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -811,12 +815,12 @@ msgstr "Jelenleg nincs hálózat ezen: %1"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 msgid "There is currently no network."
-msgstr "Jelenleg nincs hálózat"
+msgstr "Jelenleg nincs hálózat."
 
 #: ../src/qml/GroupChatInfoPage.qml:213 ../src/qml/GroupChatInfoPage.qml:219
 #: ../src/qml/GroupChatInfoPage.qml:225 ../src/qml/NewGroupPage.qml:59
 msgid "This recipient was already selected"
-msgstr ""
+msgstr "Ez a fogadó már ki lett jelölve"
 
 #: ../src/qml/MessageInfoDialog.qml:108
 msgid "To"
@@ -836,10 +840,9 @@ msgstr "Típus"
 
 #: ../src/qml/NewGroupPage.qml:252
 msgid "Type a name..."
-msgstr ""
+msgstr "Írjon egy nevet..."
 
 #: ../src/qml/Messages.qml:1261
-#, fuzzy
 msgid "Typing..."
 msgstr "Gépel…"
 
@@ -874,9 +877,8 @@ msgid "Welcome to your Ubuntu messaging app."
 msgstr "Üdvözli az Ubuntu üzenetküldő alkalmazása."
 
 #: ../src/qml/ComposeBar.qml:567
-#, fuzzy
 msgid "Write a broadcast message..."
-msgstr "Üzenet írása…"
+msgstr "Üzenet írása mindenkinek…"
 
 #: ../src/qml/ComposeBar.qml:579
 msgid "Write a message..."
@@ -888,11 +890,11 @@ msgstr "Tegnap"
 
 #: ../src/qml/AccountSectionDelegate.qml:130
 msgid "You are Admin"
-msgstr ""
+msgstr "Te Admin vagy"
 
 #: ../src/qml/AccountSectionDelegate.qml:138
 msgid "You are not Admin"
-msgstr ""
+msgstr "Te nem vagy Admin"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:37
 msgid ""
@@ -905,7 +907,7 @@ msgstr ""
 #: ../src/qml/Messages.qml:1611
 msgid ""
 "You can't send messages to this group because the group is no longer active"
-msgstr ""
+msgstr "Nem küldhetsz üzeneteket ebbe a csoportba, mert a csoport már nem aktív"
 
 #: ../src/qml/Messages.qml:304 ../src/qml/SendMessageValidator.qml:211
 msgid "You have to disable flight mode"
@@ -918,15 +920,15 @@ msgstr "Tartsa lenyomva az ikont a felvétel alatt"
 #: ../src/qml/AccountSectionDelegate.qml:91
 #, qt-format
 msgid "You invited %1 to this group"
-msgstr ""
+msgstr "Meghívtad %1 -t ebbe a csoportba"
 
 #: ../src/qml/AccountSectionDelegate.qml:116
 msgid "You joined this group"
-msgstr ""
+msgstr "Csatlakoztál a csoporthoz"
 
 #: ../src/qml/AccountSectionDelegate.qml:100
 msgid "You left this group"
-msgstr ""
+msgstr "Elhagyta ezt a csoportot"
 
 #: ../src/qml/Messages.qml:308 ../src/qml/SendMessageValidator.qml:215
 msgid "You need to select a SIM card"
@@ -935,7 +937,7 @@ msgstr "Ki kell választania egy SIM kártyát"
 #: ../src/qml/AccountSectionDelegate.qml:105
 #, qt-format
 msgid "You renamed group to: %1"
-msgstr ""
+msgstr "Átnevezted a csoportot erre: %1"
 
 #: ../src/qml/AccountSectionDelegate.qml:96
 #, qt-format
@@ -944,15 +946,15 @@ msgstr "Átvátott erre: %1 @ %2"
 
 #: ../src/qml/AccountSectionDelegate.qml:140
 msgid "You were removed from this group"
-msgstr ""
+msgstr "Eltávolítottak ebből a csoportból"
 
 #: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
-msgstr ""
+msgstr "még nincsenek matricák"
 
 #: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
-msgstr ""
+msgstr "elküldött matricák itt fognak megjelenni"
 
 #~ msgid "No"
 #~ msgstr "Nem"

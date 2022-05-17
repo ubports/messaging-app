@@ -1,0 +1,4 @@
+clickable_minimum_required: "7.2.0"
+builder: "cmake"
+build_args: "-DCMAKE_INSTALL_PREFIX='' -DCLICK_MODE=ON -DENABLE_TESTS=OFF"
+skip_review: true

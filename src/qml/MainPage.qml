@@ -44,6 +44,18 @@ Page {
         threadList.currentIndex = index
     }
 
+    function requestThreadDelete() {
+        var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/RemoveThreadDialog.qml"), mainPage, {  threadCount: threadList.selectedItems.count})
+        dialog.canceled.connect(function() {
+            threadList.cancelSelection()
+            PopupUtils.close(dialog)
+        });
+        dialog.accepted.connect(function() {
+            threadList.endSelection()
+            PopupUtils.close(dialog)
+        });
+    }
+
     signal newThreadCreated(var newThread)
 
     TextField {
@@ -189,7 +201,7 @@ Page {
                     objectName: "selectionModeDeleteAction"
                     enabled: threadList.selectedItems.count > 0
                     iconName: "delete"
-                    onTriggered: threadList.endSelection()
+                    onTriggered: mainPage.requestThreadDelete()
                 }
             ]
             PropertyChanges {
@@ -335,6 +347,12 @@ Page {
                 }else{
                     threadList.cancelSelection()
                 }
+            }
+
+            onRemoveRequested: {
+                threadList.selectItem(threadDelegate)
+                threadDelegate.selected = true
+                mainPage.requestThreadDelete()
             }
 
             chatEntry : ChatEntry {

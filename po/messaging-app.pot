@@ -23,12 +23,12 @@ msgid "#channelName"
 msgstr ""
 
 #. TRANSLATORS: %1 is the first recipient the message is sent to, %2 is the count of remaining recipients
-#: ../src/qml/ThreadDelegate.qml:78
+#: ../src/qml/ThreadDelegate.qml:77
 #, qt-format
 msgid "%1 + %2"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:218
+#: ../src/qml/MainPage.qml:230
 #, qt-format
 msgid "%1 - Connecting..."
 msgstr ""
@@ -133,35 +133,42 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:122
+#: ../src/qml/Dialogs/RemoveThreadDialog.qml:30
+#, qt-format
+msgid "Are you sure you want to delete this thread ?"
+msgid_plural "Are you sure you want to delete %1 threads ?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/qml/ThreadDelegate.qml:121
 #, qt-format
 msgid "Attachment: %1 audio clip"
 msgid_plural "Attachments: %1 audio clips"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:119
+#: ../src/qml/ThreadDelegate.qml:118
 #, qt-format
 msgid "Attachment: %1 contact"
 msgid_plural "Attachments: %1 contacts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:125
+#: ../src/qml/ThreadDelegate.qml:124
 #, qt-format
 msgid "Attachment: %1 file"
 msgid_plural "Attachments: %1 files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:113
+#: ../src/qml/ThreadDelegate.qml:112
 #, qt-format
 msgid "Attachment: %1 image"
 msgid_plural "Attachments: %1 images"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/qml/ThreadDelegate.qml:116
+#: ../src/qml/ThreadDelegate.qml:115
 #, qt-format
 msgid "Attachment: %1 video"
 msgid_plural "Attachments: %1 videos"
@@ -202,8 +209,9 @@ msgstr ""
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:45
 #: ../src/qml/Dialogs/MMSEnableDialog.qml:46
+#: ../src/qml/Dialogs/RemoveThreadDialog.qml:43
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:39
-#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:144
+#: ../src/qml/GroupChatInfoPage.qml:396 ../src/qml/MainPage.qml:156
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:168 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
@@ -280,12 +288,19 @@ msgstr ""
 msgid "Dark"
 msgstr ""
 
+#: ../src/qml/Dialogs/RemoveThreadDialog.qml:47
 #: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
-#: ../src/qml/ThreadDelegate.qml:175
+#: ../src/qml/ThreadDelegate.qml:176
 msgid "Delete"
 msgstr ""
+
+#: ../src/qml/Dialogs/RemoveThreadDialog.qml:28
+msgid "Delete thread"
+msgid_plural "Delete threads"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -307,7 +322,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:354
+#: ../src/qml/ThreadDelegate.qml:353
 msgid "Draft:"
 msgstr ""
 
@@ -491,7 +506,7 @@ msgstr ""
 msgid "Message info"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:77
+#: ../src/qml/MainPage.qml:89
 msgid "Messages"
 msgstr ""
 
@@ -533,11 +548,11 @@ msgstr ""
 msgid "New MMS message (of %1 kB) to be downloaded before %2"
 msgstr ""
 
-#: ../src/qml/ThreadDelegate.qml:37
+#: ../src/qml/ThreadDelegate.qml:36
 msgid "New MMS notification"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
+#: ../src/qml/MainPage.qml:129 ../src/qml/MainPage.qml:275
 msgid "New message"
 msgstr ""
 
@@ -675,11 +690,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:98 ../src/qml/NewRecipientPage.qml:141
+#: ../src/qml/MainPage.qml:110 ../src/qml/NewRecipientPage.qml:141
 msgid "Search"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:61 ../src/qml/NewRecipientPage.qml:130
+#: ../src/qml/MainPage.qml:73 ../src/qml/NewRecipientPage.qml:130
 msgid "Search..."
 msgstr ""
 
@@ -687,7 +702,7 @@ msgstr ""
 msgid "See in contacts"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:197
+#: ../src/qml/MainPage.qml:209
 msgid "Select"
 msgstr ""
 
@@ -707,7 +722,7 @@ msgstr ""
 msgid "Set as admin"
 msgstr ""
 
-#: ../src/qml/MainPage.qml:108 ../src/qml/SettingsPage.qml:26
+#: ../src/qml/MainPage.qml:120 ../src/qml/SettingsPage.qml:26
 msgid "Settings"
 msgstr ""
 
