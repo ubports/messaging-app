@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-30 09:28+0000\n"
+"POT-Creation-Date: 2022-05-17 08:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,6 +257,18 @@ msgstr ""
 #: ../src/qml/MessageDelegate.qml:144
 #: ../src/qml/RegularMessageDelegate_irc.qml:171
 msgid "Copy"
+msgstr ""
+
+#: ../src/qml/MessageAlertBubble.qml:34
+msgid ""
+"Could not fetch the MMS message. Maybe the MMS settings are incorrect or "
+"cellular data is off?"
+msgstr ""
+
+#: ../src/qml/MessageAlertBubble.qml:33
+msgid ""
+"Could not fetch the MMS message. Maybe the MMS settings are incorrect or "
+"cellular data is off? Ask to have the message sent again if everything is OK."
 msgstr ""
 
 #: ../src/qml/Messages.qml:1112
@@ -533,7 +545,7 @@ msgstr ""
 
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
-msgid "New MMS message to download: size is %1KB, expires on %2"
+msgid "New MMS message (of %1 kB) to be downloaded before %2"
 msgstr ""
 
 #: ../src/qml/ThreadDelegate.qml:36
@@ -584,20 +596,6 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:1271
 msgid "Online"
-msgstr ""
-
-#: ../src/qml/MessageAlertBubble.qml:33
-msgid ""
-"Oops, there has been an error with the MMS system and this message could not "
-"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
-"correct, then ask the sender to try again."
-msgstr ""
-
-#: ../src/qml/MessageAlertBubble.qml:34
-msgid ""
-"Oops, there has been an error with the MMS system and this message could not "
-"be retrieved. Please ensure Cellular Data is ON and MMS settings are "
-"correct, then tap the redownload button to try to retrieve the message again."
 msgstr ""
 
 #: ../src/qml/GroupChatInfoPage.qml:374
