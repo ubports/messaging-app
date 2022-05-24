@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2022-02-25 22:25+0000\n"
-"Last-Translator: Stefan Kalb <stefan.kalb@gmx.ch>\n"
+"PO-Revision-Date: 2022-05-17 17:23+0000\n"
+"Last-Translator: Rrahim Gashi <himi-f@hotmail.com>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports/"
 "messaging-app/sq/>\n"
 "Language: sq\n"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "All"
-msgstr "Të Gjitha"
+msgstr "Të gjitha"
 
 #: ../src/qml/ThreadDelegate.qml:122
 #, qt-format
@@ -199,7 +199,7 @@ msgstr "I zënë"
 
 #: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
-msgstr "Thirrje"
+msgstr "Thirr"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -272,7 +272,7 @@ msgstr ""
 #: ../src/qml/RegularMessageDelegate_irc.qml:151
 #: ../src/qml/ThreadDelegate.qml:175
 msgid "Delete"
-msgstr "Fshije"
+msgstr "Fshijë"
 
 #: ../src/qml/MessageInfoDialog.qml:64
 msgid "Deleted"
@@ -353,7 +353,7 @@ msgstr "Dështoi!"
 
 #: ../src/qml/NewRecipientPage.qml:112
 msgid "Favorites"
-msgstr "Të Parapëlqyerat"
+msgstr "Favoritet"
 
 #: ../src/qml/Dialogs/FileSizeWarningDialog.qml:26
 msgid "File size warning"

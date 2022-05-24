@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2022-02-03 01:22+0000\n"
+"PO-Revision-Date: 2022-05-03 07:30+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://translate.ubports.com/projects/"
 "ubports/messaging-app/nb/>\n"
@@ -524,7 +524,7 @@ msgstr "Ny MMS-gruppe"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr "Ny MMS-melding å laste ned: Størrelsen er %1 KB, Utløper"
+msgstr "Ny MMS-melding å laste ned: Størrelsen er %1 kB, utløper %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
