@@ -62,11 +62,9 @@ Item {
         if (!text) {
             return text;
         }
+        // escape '&' char and '<' '>' chars
+        text = text.replace(/&/g, '&amp;').replace(/</g,'&lt;').replace(/>/g,'<tt>&gt;</tt>');
 
-        // remove html tags
-        text = text.replace(/<[^>]*>?/gm, '');
-        // escape '&' char
-        text = text.replace(/&/g, '&amp;');
         // preserve new lines
         text = text.replace(/\n/g, '<br>');
         // check for links
