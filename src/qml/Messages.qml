@@ -1658,6 +1658,8 @@ Page {
                 } else {
                     return messages.account.protocolInfo.enableAttachments
                 }
+            } else {
+                return true // by default make them visible
             }
         }
 
