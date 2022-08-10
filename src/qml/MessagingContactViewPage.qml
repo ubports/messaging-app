@@ -124,7 +124,7 @@ ContactViewPage {
     Component {
         id: contactModelComponent
 
-        ContactModel {
+        ContactListModel {
             id: contactModelHelper
 
             manager: ContactManager.manager()
