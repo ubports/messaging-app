@@ -18,7 +18,7 @@ ifneq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
 endif
 
 ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
-export DEB_BUILD_PROFILES := cross
+	DEB_BUILD_PROFILES += cross
 endif
 
 %:

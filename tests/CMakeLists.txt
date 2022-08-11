@@ -12,5 +12,7 @@ install(DIRECTORY ${AUTOPILOT_DIR}
     DESTINATION ${PYTHON_PACKAGE_DIR}
     )
 
-add_subdirectory(qml)
+if (ENABLE_TESTS AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64el")) AND (NOT ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ppc64le")))
+    add_subdirectory(qml)
+endif()
 add_subdirectory(data)

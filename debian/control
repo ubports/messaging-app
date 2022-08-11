@@ -3,13 +3,13 @@ Section: x11
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends:
- apparmor-easyprof,
- apparmor-easyprof-ubuntu (>= 1.3.13),
+ apparmor-easyprof:all,
+ apparmor-easyprof-ubuntu:all (>= 1.3.13),
  apparmor:native,
  cmake,
  debhelper (>= 9),
  dh-apparmor,
- dh-translations,
+ dh-translations:all,
  libnotify-dev,
  pkg-config,
  python3-flake8 (>= 2.2.2-1ubuntu4) | python3-flake8:native,
