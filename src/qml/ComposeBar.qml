@@ -474,6 +474,7 @@ Flickable {
                 property bool autoCompleteLock: false
 
                 property int autoCompleteStartIndex: -1
+                property real fontSize: FontUtils.sizeToPixels(mainView.scaledFontSize)
 
                 function updateAutoComplete(startIndex, input)
                 {
@@ -558,7 +559,7 @@ Flickable {
                 Keys.onReturnPressed: event.accepted = returnPressed()
                 Keys.onEnterPressed: event.accepted = returnPressed()
                 // this value is to avoid letter being cut off
-                height: units.gu(4.3)
+                height: fontSize * 2.2
                 style: LocalTextAreaStyle {}
                 autoSize: true
                 maximumLineCount: attachments.count == 0 ? 8 : 4
@@ -580,7 +581,7 @@ Flickable {
                 }
                 focus: textEntry.focus
                 font.family: "Ubuntu"
-                font.pixelSize: FontUtils.sizeToPixels("medium")
+                font.pixelSize: fontSize
                 color: Theme.palette.normal.backgroundText
                 Keys.onPressed: {
                     if (event.key === Qt.Key_Tab) {

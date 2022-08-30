@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.12
 import QtQuick.Window 2.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
@@ -1518,6 +1518,47 @@ Page {
             right: parent.right
         }
         height: 0
+    }
+
+    PinchHandler {
+        id: pinchHandler
+        target: null
+
+        minimumPointCount: 2
+        maximumScale: 3
+
+        property real previousScale: 1.0
+        property real zoomThreshold: 0.5
+
+        onScaleChanged: {
+
+            var nextLevel = mainView.scaleLevel
+            if (activeScale > previousScale + zoomThreshold && nextLevel < maximumScale) { // zoom in
+                nextLevel++
+            } else if (activeScale < previousScale - zoomThreshold && nextLevel > 0) { // zoom out
+                nextLevel--
+            }
+
+            if (nextLevel !== mainView.scaleLevel) {
+
+                mainView.scaleLevel = nextLevel
+
+                 // get the index of the current drag item if any and make ListView follow it
+                var positionInRoot = mapToItem(messageList.contentItem, centroid.position.x, centroid.position.y)
+                const currentIndex = messageList.indexAt(positionInRoot.x,positionInRoot.y)
+
+                messageList.positionViewAtIndex(currentIndex, ListView.Visible)
+
+                previousScale = activeScale
+            }
+        }
+
+        onActiveChanged: {
+            if (active) {
+                previousScale = 1.0
+                messageList.currentIndex = -1
+            }
+        }
     }
 
     MessagesListView {
