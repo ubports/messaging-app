@@ -71,9 +71,9 @@ ContactViewPage {
     {
         if (root.accountToAdd) {
             if (root.accountToAdd.protocol === "OnlineAccount.Unknown") {
-                root.addPhoneToContactImpl(contact, root.accountToAdd.uri)
+                root.addPhoneToContactImpl(root.contactMainConstituent, root.accountToAdd.uri)
             } else {
-                root.addAccountToContactImpl(contact, root.accountToAdd)
+                root.addAccountToContactImpl(root.contactMainConstituent, root.accountToAdd)
                 root.accountToAdd = null
             }
         }
@@ -100,7 +100,7 @@ ContactViewPage {
             onTriggered: {
                 pageStack.addPageToCurrentColumn(root, contactEditorPageURL,
                                { model: root.model,
-                                 contact: root.contact,
+                                 contact: root.contactMainConstituent,
                                  contactListPage: root.contactListPage })
             }
         }
@@ -124,7 +124,7 @@ ContactViewPage {
     Component {
         id: contactModelComponent
 
-        ContactModel {
+        ContactListModel {
             id: contactModelHelper
 
             manager: ContactManager.manager()
