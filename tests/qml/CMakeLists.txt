@@ -42,9 +42,10 @@ include_directories(
 # FIXME: fix the test and re-enable
 #add_test(DualSim ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_DualSim.qml)
 add_test(SingleSim ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_SingleSim.qml)
-set_tests_properties(SingleSim PROPERTIES ENVIRONMENT "HOME=/tmp/tests")
+set_tests_properties(SingleSim PROPERTIES ENVIRONMENT "HOME=/tmp/tests-singlesim")
 add_test(MessageBubble ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessageBubble.qml)
 add_test(MessagesView ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_MessagesView.qml)
+set_tests_properties(MessagesView PROPERTIES ENVIRONMENT "HOME=/tmp/tests-messagesview")
 add_test(AttachmentsDelegate ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_AttachmentsDelegate.qml)
 add_test(StickersHistoryModel ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_StickersHistoryModel.qml)
 add_test(StickersPackModel ${TEST_COMMAND} -input ${CMAKE_CURRENT_SOURCE_DIR}/tst_StickersPackModel.qml)
