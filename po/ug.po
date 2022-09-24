@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2015-10-26 05:21+0000\n"
-"Last-Translator: Eltikin <eltikinuyghur@hotmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-09-05 19:21+0000\n"
+"Last-Translator: flame4 <alimjoo00@163.com>\n"
+"Language-Team: Uyghur <https://translate.ubports.com/projects/ubports/"
+"messaging-app/ug/>\n"
+"Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2016-12-13 05:38+0000\n"
-"X-Generator: Launchpad (build 18293)\n"
 
 #: ../src/qml/NewGroupPage.qml:250
 msgid "#channelName"
@@ -187,7 +188,7 @@ msgstr ""
 #: ../src/qml/NewRecipientPage.qml:306 ../src/qml/SettingsPage.qml:133
 #: ../src/qml/SettingsPage.qml:287
 msgid "Back"
-msgstr ""
+msgstr "قايتىش"
 
 #: ../src/qml/Messages.qml:1276
 msgid "Busy"
@@ -195,7 +196,7 @@ msgstr ""
 
 #: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
-msgstr "چاقىر"
+msgstr "تىلىفۇن ئۇرۇش"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -206,7 +207,7 @@ msgstr "چاقىر"
 #: ../src/qml/MessagingContactEditorPage.qml:36
 #: ../src/qml/NewRecipientPage.qml:166 ../src/qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "ئەمەلدىن قالدۇر"
+msgstr "ئەمەلدىن قالدۇرش"
 
 #: ../src/qml/Dialogs/SetDefaultSIMCardDialog.qml:47
 msgid "Change"
@@ -263,7 +264,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:53
 msgid "Dark"
-msgstr ""
+msgstr "قاراڭغۇ"
 
 #: ../src/qml/MessageAlertBubble.qml:169 ../src/qml/MessageDelegate.qml:127
 #: ../src/qml/NewGroupPage.qml:309
@@ -453,7 +454,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:52
 msgid "Light"
-msgstr ""
+msgstr "يورۇق"
 
 #: ../src/qml/ComposeBar.qml:624 ../src/qml/MessageDelegate.qml:161
 msgid "MMS"
@@ -563,7 +564,7 @@ msgstr ""
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:49
 #: ../src/qml/Dialogs/SimLockedDialog.qml:49
 msgid "Ok"
-msgstr "تامام"
+msgstr "جەزىملەش"
 
 #: ../src/qml/Messages.qml:1270
 msgid "Online"
@@ -638,7 +639,7 @@ msgstr "تاپشۇرۇۋالغىنى"
 #: ../src/qml/GroupChatInfoPage.qml:432 ../src/qml/GroupChatInfoPage.qml:436
 #: ../src/qml/Stickers/StickersPicker.qml:118
 msgid "Remove"
-msgstr "چىقىرىۋەت"
+msgstr "ئۆچۈرۈش"
 
 #: ../src/qml/ParticipantInfoPage.qml:181
 msgid "Remove from group"
@@ -690,7 +691,7 @@ msgstr "نامەلۇم ئالاقەداش"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr ""
+msgstr "تاللاش"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
@@ -791,7 +792,7 @@ msgstr ""
 
 #: ../src/qml/SettingsPage.qml:88
 msgid "Theme"
-msgstr ""
+msgstr "تىما"
 
 #: ../src/qml/Dialogs/NoNetworkDialog.qml:29
 #, qt-format
@@ -834,7 +835,7 @@ msgstr ""
 #: ../src/qml/MessageInfoDialog.qml:72 ../src/qml/MessageInfoDialog.qml:75
 #: ../src/qml/MessageInfoDialog.qml:91
 msgid "Unknown"
-msgstr "نامەلۇم"
+msgstr "بامەلۇم"
 
 #: ../src/qml/AttachmentDelegates/ContactDelegate.qml:48
 #: ../src/qml/ThumbnailContact.qml:44

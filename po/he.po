@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2021-10-24 12:10+0000\n"
+"PO-Revision-Date: 2022-09-05 19:21+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
 "messaging-app/he/>\n"
@@ -176,7 +176,7 @@ msgstr "קובץ אודיו מצורף לא נתמך"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "להציג מקלדת אוטומטית"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
@@ -291,7 +291,7 @@ msgstr "אל תראה שוב"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "הורדה"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -522,11 +522,11 @@ msgstr "קבוצת MMS חדשה"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "הודעת מולטימדיה חדשה להורדה: הגודל הוא %1 ק״ב, תפוג ב־%2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "התראת מולטימדיה חדשה"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -581,7 +581,6 @@ msgstr ""
 "לאחר מכן לבקש ממי ששלח לשלוח שוב."
 
 #: ../src/qml/MessageAlertBubble.qml:34
-#, fuzzy
 msgid ""
 "Oops, there has been an error with the MMS system and this message could not "
 "be retrieved. Please ensure Cellular Data is ON and MMS settings are "
@@ -589,7 +588,7 @@ msgid ""
 msgstr ""
 "אופס, נראה שהייתה שגיאה עם מערכת ה־MMS (הודעות מולטימדיה) ואי אפשר למשוך את "
 "ההודעה הזאת. נא לוודא שחיבור הנתונים הסלולרי פעיל ושהגדרות ה־MMS נכונות, "
-"לאחר מכן לבקש ממי ששלח לשלוח שוב."
+"לאחר מכן לגעת בכפתור ההורדה מחדש כדי למשוך את ההודעה שוב."
 
 #: ../src/qml/GroupChatInfoPage.qml:374
 #, qt-format
@@ -698,15 +697,15 @@ msgstr "ראה באנשי קשר"
 
 #: ../src/qml/MainPage.qml:197
 msgid "Select"
-msgstr "בחר"
+msgstr "בחירה"
 
 #: ../src/qml/Dialogs/MMSBroadcastDialog.qml:35
 msgid "Send"
-msgstr "שלח"
+msgstr "שליחה"
 
 #: ../src/qml/ParticipantInfoPage.qml:166
 msgid "Send private message"
-msgstr "שלח הודעה פרטית"
+msgstr "שליחת הודעה פרטית"
 
 #: ../src/qml/MessageInfoDialog.qml:143
 msgid "Sent"

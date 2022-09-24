@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: messaging-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 20:47+0000\n"
-"PO-Revision-Date: 2020-11-23 18:30+0000\n"
+"PO-Revision-Date: 2022-09-24 13:09+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
 "messaging-app/fi/>\n"
@@ -56,7 +56,7 @@ msgid "%1 is not Admin"
 msgstr "%1 ei ole ylläpitäjä"
 
 #: ../src/qml/Messages.qml:1259
-#, fuzzy, qt-format
+#, qt-format
 msgid "%1 is typing..."
 msgstr "%1 kirjoittaa..."
 
@@ -176,11 +176,11 @@ msgstr "Ääniliitteet eivät ole tuettuja"
 
 #: ../src/qml/SettingsPage.qml:104
 msgid "Auto display keyboard"
-msgstr ""
+msgstr "Näytä näppäimistö automaattisesti"
 
 #: ../src/qml/SettingsPage.qml:97
 msgid "AutoPlay animated image"
-msgstr ""
+msgstr "Toista automaattisesti animoidut kuvat"
 
 #: ../src/qml/Messages.qml:1274
 msgid "Away"
@@ -198,7 +198,7 @@ msgstr "Varattu"
 
 #: ../src/qml/Messages.qml:837 ../src/qml/Messages.qml:953
 msgid "Call"
-msgstr "Soita"
+msgstr "Puhelu"
 
 #: ../src/qml/AttachmentDelegates/Previewer.qml:62
 #: ../src/qml/Dialogs/EmptyGroupWarningDialog.qml:40
@@ -291,7 +291,7 @@ msgstr "Älä näytä uudelleen"
 
 #: ../src/qml/MessageAlertBubble.qml:144
 msgid "Download"
-msgstr ""
+msgstr "Lataa"
 
 #: ../src/qml/ThreadDelegate.qml:354
 msgid "Draft:"
@@ -311,7 +311,7 @@ msgstr "Ota käyttöön MMS-viestit"
 
 #: ../src/qml/SettingsPage.qml:66
 msgid "Enable stickers"
-msgstr ""
+msgstr "Käytä tarroja"
 
 #: ../src/qml/GroupChatInfoPage.qml:182
 msgid "End group"
@@ -524,11 +524,11 @@ msgstr "Uusi MMS-ryhmä"
 #: ../src/qml/MessageAlertBubble.qml:35
 #, qt-format
 msgid "New MMS message to download: size is %1KB, expires on %2"
-msgstr ""
+msgstr "Uusi MMS-viesti ladattavaksi: koko on %1 kt, vanhenee %2"
 
 #: ../src/qml/ThreadDelegate.qml:37
 msgid "New MMS notification"
-msgstr ""
+msgstr "Uusi MMS-ilmoitus"
 
 #: ../src/qml/MainPage.qml:117 ../src/qml/MainPage.qml:263
 msgid "New message"
@@ -601,11 +601,11 @@ msgstr "Valitse luotava tili."
 
 #: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in the history"
-msgstr ""
+msgstr "Vahvista että haluat poistaa kaikki tarrat historiasta"
 
 #: ../src/qml/Stickers/StickersPicker.qml:133
 msgid "Please confirm that you want to delete all stickers in this pack"
-msgstr ""
+msgstr "Vahvista että haluat poistaa kaikki tarrat tästä pakkauksesta"
 
 #: ../src/qml/Dialogs/NoMicrophonePermission.qml:37
 msgid ""
@@ -746,7 +746,7 @@ msgstr "Tila"
 
 #: ../src/qml/Stickers/StickersPicker.qml:132
 msgid "Stickers"
-msgstr ""
+msgstr "Tarrat"
 
 #: ../src/qml/GroupChatInfoPage.qml:128
 msgid "Successfully left channel"
@@ -838,7 +838,6 @@ msgid "Type a name..."
 msgstr "Kirjoita nimi..."
 
 #: ../src/qml/Messages.qml:1261
-#, fuzzy
 msgid "Typing..."
 msgstr "Kirjoittaa..."
 
@@ -947,11 +946,11 @@ msgstr "Sinut poistettiin tästä ryhmästä"
 
 #: ../src/qml/Stickers/StickersPicker.qml:262
 msgid "no stickers yet"
-msgstr ""
+msgstr "ei vielä tarroja"
 
 #: ../src/qml/Stickers/StickersPicker.qml:303
 msgid "sent stickers will appear here"
-msgstr ""
+msgstr "lähetetyt tarrat ilmestyvät tänne"
 
 #~ msgid "Add an online account"
 #~ msgstr "Lisää verkkotili"
