@@ -1,3 +1,9 @@
+messaging-app (0.1.4) xenial; urgency=medium
+
+  * debian/control: bump dependency to apparmor-easyprof-ubuntu
+
+ -- Alberto Mardegan <mardy@users.sourceforge.net>  Wed, 14 Sep 2022 22:04:34 +0300
+
 messaging-app (0.1.3~0ubports0) xenial; urgency=medium
 
   * Removed leadingActions from MessagingContactViewPage
