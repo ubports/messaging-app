@@ -1,0 +1,8 @@
+[
+	{
+        "protocol": "messagetest"
+        },
+        {
+        "protocol": "smstest"
+        }
+]
