@@ -42,15 +42,15 @@ Item {
         id: avatar
 
         fallbackAvatarUrl: {
-            if (participant && participant.avatar !== "") {
+            if (participant.avatar !== "") {
                return participant.avatar
             } else {
                return "image://theme/contact"
             }
         }
-        fallbackDisplayName:  participant ? participant.alias: ""
-        showAvatarPicture: (participant && participant.avatar !== "") || (initials.length === 0)
-        visible: participant && title.length > 0
+        fallbackDisplayName:  participant.alias
+        showAvatarPicture: (participant.avatar !== "") || (initials.length === 0)
+        visible: title.length > 0
         anchors {
             left: parent.left
             top: parent.top

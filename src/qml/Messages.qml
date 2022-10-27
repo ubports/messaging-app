@@ -85,18 +85,6 @@ Page {
     // to be used by tests as variant does not work with autopilot
     property bool userTyping: false
     property string userTypingId: ""
-    property string firstParticipantId: participantIds.length > 0 ? participantIds[0] : ""
-    property variant firstParticipant: {
-        if (!participants || participants.length == 0) {
-            return null
-        }
-        var participant = participants[0]
-        if (typeof participant === "string") {
-            return {identifier: participant, alias: participant}
-        } else {
-            return participant
-        }
-    }
 
     property var threads: []
     property QtObject presenceRequest: presenceItem
@@ -104,9 +92,7 @@ Page {
     property alias oskEnabled: keyboard.oskEnabled
     property bool isReady: false
     property QtObject chatEntry
-    property string firstRecipientAlias: ((contactWatcher.isUnknown &&
-                                           contactWatcher.isInteractive) ||
-                                          contactWatcher.alias === "") ? contactWatcher.identifier : contactWatcher.alias
+
     property bool newMessage: false
     property var lastTypingTimestamp: 0
 
@@ -539,6 +525,7 @@ Page {
 
     function updateFilters(accounts, chatType, participantIds, reload, threads) {
         selectThreadOnIdle.restart()
+        // for local test, this condition must be commented
         if (participantIds.length == 0 || accounts.length == 0) {
             if (chatType != HistoryThreadModel.ChatTypeRoom) {
                 return null
@@ -666,7 +653,7 @@ Page {
             }
 
             if (participants && participants.length === 1) {
-                return firstRecipientAlias
+                return threadInformation.firstParticipantalias.length > 0 ? threadInformation.firstParticipantalias : contactWatcher.contactAlias
             }
 
             return " "
@@ -777,7 +764,7 @@ Page {
                     iconName: "contact-group"
                     onTriggered: {
                         // at this point we are interested in the thread participants no matter what the channel type is
-                        messagesModel.requestThreadParticipants(messages.threads)
+                        threadInformation.requestThreadParticipants(messages.threads)
                         mainStack.addPageToCurrentColumn(messages, Qt.resolvedUrl("GroupChatInfoPage.qml"), { threadInformation: threadInformation, chatEntry: messages.chatEntry, eventModel: eventModel})
                     }
                 },
@@ -815,6 +802,7 @@ Page {
 
                         // include the "Me" participant to be consistent with
                         // group info page
+                        var roomInfo = threadInformation.chatRoomInfo
                         if (roomInfo.Joined) {
                             finalParticipants++
                         }
@@ -1257,7 +1245,7 @@ Page {
         width: parent ? parent.width - units.gu(2) : undefined
         height: units.gu(5)
         title: pageHeader.title
-        participant: firstParticipant
+        participant: threadInformation.firstParticipant
         subtitle: {
             if (userTyping) {
                 if (groupChat) {
@@ -1398,66 +1386,23 @@ Page {
 
     ContactWatcher {
         id: contactWatcherInternal
-        identifier: firstParticipant && firstParticipant.identifier ? messages.participantIdentifierByProtocol(messages.account, firstParticipant.identifier) : ""
-        contactId: firstParticipant && firstParticipant.contactId ? firstParticipant.contactId : ""
-        alias: firstParticipant && firstParticipant.alias ? firstParticipant.alias : ""
-        avatar: firstParticipant && firstParticipant.avatar ? firstParticipant.avatar : ""
-        detailProperties: firstParticipant && firstParticipant.detailProperties ? firstParticipant.detailProperties : {}
+        property string contactAlias:  ((isUnknown && interactive) || alias === "") ?  identifier : alias
+
+        identifier: threadInformation.firstParticipant.identifier ? messages.participantIdentifierByProtocol(messages.account,threadInformation.firstParticipant.identifier) : ""
+        contactId: threadInformation.firstParticipant.contactId
+        alias:  threadInformation.firstParticipant.alias
+        avatar: threadInformation.firstParticipant.avatar
+        detailProperties: threadInformation.firstParticipant.detailProperties
         addressableFields:  messages.account && messages.account.protocolInfo ?
                                messages.contactMatchFieldFromProtocol(messages.account.protocolInfo.name, messages.account.addressableVCardFields) : []
     }
 
-    HistoryUnionFilter {
-        id: filters
-        HistoryIntersectionFilter {
-            HistoryFilter { filterProperty: "accountId"; filterValue: messages.accountId }
-            HistoryFilter { filterProperty: "threadId"; filterValue: messages.threadId }
-        }
-    }
-
-    HistoryGroupedThreadsModel {
-        id: messagesModel
-        type: HistoryThreadModel.EventTypeText
-        sort: HistorySort {}
-        groupingProperty: "participants"
-        filter: messages.accountId != "" && messages.threadId != "" ? filters : null
-        matchContacts: true
-    }
-
-    ListView {
+    ThreadInformation {
         id: threadInformation
-        property var chatRoomInfo: null
-        property var participants: null
-        property var localPendingParticipants: null
-        property var remotePendingParticipants: null
-        property var threads: null
-        model: messagesModel
-        visible: false
-        delegate: Item {
-            property var threads: model.threads
-            onThreadsChanged: {
-                //workaround for https://github.com/ubports/messaging-app/issues/66, model is loaded twice when sending a new message due to message status change (status = unknow and then active )
-                //make sure there is really a participants list update to avoid unecessary reloading
-                if (threadInformation.participants == null || threadInformation.participantsHasChanged(model.participants)){
-                    threadInformation.participants = model.participants
-                }
-                threadInformation.chatRoomInfo = model.chatRoomInfo
-                threadInformation.localPendingParticipants = model.localPendingParticipants
-                threadInformation.remotePendingParticipants = model.remotePendingParticipants
-                threadInformation.threads = model.threads
-
-            }
-        }
-
-        function participantsHasChanged(newParticipants){
-            var oldParticipantsIds = messages.participantIds
-            if (newParticipants.length !== oldParticipantsIds.length) return true
-
-            for (var i in newParticipants) {
-                if (oldParticipantsIds.indexOf(newParticipants[i].identifier) === -1) return true
-            }
-            return false
-        }
+        accountId: messages.accountId
+        threadId: messages.threadId
+        threads: messages.threads
+        participantIds: messages.participantIds
     }
 
     HistoryEventModel {
