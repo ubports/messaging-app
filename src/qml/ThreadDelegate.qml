@@ -220,7 +220,7 @@ ListItemWithActions {
             }
             return "image://theme/contact"
         }
-        asynchronous: true
+        asynchronous: false
         sourceSize.height: units.gu(2)
     }
 

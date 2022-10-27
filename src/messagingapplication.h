@@ -22,11 +22,13 @@
 #include <QObject>
 #include <QQuickView>
 #include <QGuiApplication>
+#include <QStringList>
 
 class MessagingApplication : public QGuiApplication
 {
     Q_OBJECT
     Q_PROPERTY(bool fullscreen READ fullscreen WRITE setFullscreen NOTIFY fullscreenChanged)
+    Q_PROPERTY(bool defaultStartupMode READ defaultStartupMode CONSTANT)
 
 public:
     MessagingApplication(int &argc, char **argv);
@@ -34,9 +36,12 @@ public:
 
     bool fullscreen() const;
     bool setup();
+    bool defaultStartupMode() const;
 
 Q_SIGNALS:
     void fullscreenChanged();
+    void startChatRequested(QVariantMap properties);
+    void startNewMessageRequested();
 
 public Q_SLOTS:
     void activateWindow();
@@ -50,13 +55,15 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void setFullscreen(bool fullscreen);
+
     void onViewStatusChanged(QQuickView::Status status);
     void onApplicationReady();
-
 private:
     QQuickView *m_view;
     QString m_arg;
     bool m_applicationIsReady;
+    bool mDefaultStartupMode;
+    QStringList mValidSchemes;
 };
 
 #endif // MESSAGINGAPPLICATION_H

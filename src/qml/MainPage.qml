@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Popups 1.3
@@ -25,7 +25,7 @@ import Ubuntu.History 0.1
 import Ubuntu.Telephony 0.1
 import "dateUtils.js" as DateUtils
 
-Page {
+Item {
     id: mainPage
     property alias selectionMode: threadList.isInSelectionMode
     property bool searching: false
@@ -79,8 +79,7 @@ Page {
         }
     }
 
-    flickable: pageHeader.flickable
-    header: PageHeader {
+    property PageHeader header: PageHeader {
         id: pageHeader
 
         property alias leadingActions: leadingBar.actions
@@ -95,6 +94,8 @@ Page {
         trailingActionBar {
             id: trailingBar
         }
+
+        Keys.onEscapePressed: threadList.forceActiveFocus()
     }
 
     states: [
@@ -121,7 +122,7 @@ Page {
                     iconName: "settings"
                     onTriggered: {
                         threadList.currentIndex = -1
-                        pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("SettingsPage.qml"))
+                        mainView.showSettings()
                     }
                 },
                 Action {
@@ -279,15 +280,12 @@ Page {
         }
 
         onCurrentItemChanged: {
-            if (pageStack.columns > 1) {
-                currentItem.show()
-                if (mainPage._keepFocus)
-                    // Keep focus on current page
-                    threadList.forceActiveFocus()
-                else if (pageStack.activePage)
-                    pageStack.activePage.forceActiveFocus()
-                mainPage._keepFocus = true
-            }
+                if (mainView.mainStack.columns > 1) {
+                    if (mainView.mainStack.activePage) {
+                     mainView.showEmptyState()
+                    }
+                    mainPage._keepFocus = true
+                }
         }
 
 
@@ -324,21 +322,23 @@ Page {
                 }
                 return false
             }
+            color: threadList.currentIndex == index ? Theme.palette.selected.background : Theme.palette.normal.background
 
             searchTerm: mainPage.searching ? searchField.text : ""
 
             onItemClicked: {
+                threadList.currentIndex = index
                 if (threadList.isInSelectionMode) {
                     if (!threadList.selectItem(threadDelegate)) {
                         threadList.deselectItem(threadDelegate)
                     }
                 }else {
-                    if (pageStack.columns <= 1) {
-                        show()
-                    }
+                    show()
                 }
-                threadList.currentIndex = index
             }
+
+            Keys.onReturnPressed: show()
+            Keys.onEnterPressed: show()
 
             onItemPressAndHold: {
                 if (!threadList.isInSelectionMode) {
@@ -438,18 +438,23 @@ Page {
         onLoaded: bottomEdgeLoader.item.parent = mainPage
     }
 
-    onActiveFocusChanged: {
-        if (activeFocus && threadList.currentItem !== null && threadList.currentItem >= 0 ) {
-            threadList.currentItem.forceActiveFocus()
+    function forceActiveFocus() {
+        if (activeFocus) {
+            if (threadList.currentIndex >= 0 ) {
+                threadList.currentItem.forceActiveFocus()
+            } else {
+                threadList.forceActiveFocus()
+            }
         }
     }
 
-    Binding {
-        target: pageStack
-        property: "activePage"
-        value: mainPage
-        when: pageStack.columns === 1
+    onActiveFocusChanged: {
+       forceActiveFocus()
     }
 
-    KeyNavigation.right: pageStack.activePage
+    KeyNavigation.right: mainView.mainStack.activePage
+
+    Component.onCompleted: {
+        console.log('MainPage completed')
+    }
 }

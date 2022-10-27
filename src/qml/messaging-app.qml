@@ -25,7 +25,6 @@ import Ubuntu.Components.Popups 1.3
 import Ubuntu.Telephony 0.1
 import Ubuntu.Content 1.3
 import Ubuntu.History 0.1
-import "Stickers"
 
 MainView {
     id: mainView
@@ -201,7 +200,7 @@ MainView {
 
         onSetupReady: {
             if (multiplePhoneAccounts && !telepathyHelper.defaultMessagingAccount &&
-                !settings.mainViewIgnoreFirstTimeDialog && mainPage.displayedThreadIndex < 0) {
+                !settings.mainViewIgnoreFirstTimeDialog && mainPage.currentIndex() < 0) {
                 PopupUtils.open(Qt.createComponent("Dialogs/NoDefaultSIMCardDialog.qml").createObject(mainView))
             }
             for (var i in telepathyHelper.textAccounts.active) {
@@ -216,15 +215,6 @@ MainView {
     anchorToKeyboard: false
     activeFocusOnPress: false
     theme.name: userTheme === "default" ? "" : userTheme
-
-    Component.onCompleted: {
-        i18n.domain = "messaging-app"
-        i18n.bindtextdomain("messaging-app", i18nDirectory)
-
-        // when running in windowed mode, do not allow resizing
-        view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
-        view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
-    }
 
     HistoryGroupedThreadsModel {
         id: threadModel
@@ -323,8 +313,12 @@ MainView {
 
     function emptyStack(showEmpty) {
         if (typeof showEmpty === 'undefined') { showEmpty = true; }
+        if (!mainPage.enabled) {
+           mainPage.enabled = true
+        }
         mainStack.removePages(mainPage)
         if (showEmpty) {
+            mainPage.unselectThread()
             showEmptyState()
         }
         mainPage.forceActiveFocus()
@@ -332,9 +326,12 @@ MainView {
 
     function showEmptyState() {
         if (mainStack.columns > 1 && !application.findMessagingChild("emptyStatePage")) {
-            layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("EmptyStatePage.qml"))
-            mainPage.displayedThreadIndex = -1
+            layout.addPageToNextColumn(layout.primaryPage, Qt.resolvedUrl("EmptyStatePage.qml"))
         }
+    }
+
+    function showSettings() {
+        layout.addPageToNextColumn(layout.primaryPage, Qt.resolvedUrl("SettingsPage.qml"))
     }
 
     function startNewMessage() {
@@ -345,7 +342,8 @@ MainView {
     }
 
     function showMessagesView(properties) {
-        layout.addPageToNextColumn(mainPage, Qt.resolvedUrl("Messages.qml"), properties)
+        console.log('showMessages', JSON.stringify(properties))
+        layout.addPageToNextColumn(layout.primaryPage, Qt.resolvedUrl("Messages.qml"), properties)
     }
 
     function getThreadsForProperties(properties) {
@@ -465,7 +463,7 @@ MainView {
         if (threadId) {
             var index = threadModel.indexOf(properties.threadId, accountId)
             if (index !== -1) {
-                mainPage.selectMessage(index)
+                mainPage.selectThread(index)
                 return
             }
         }
@@ -495,6 +493,13 @@ MainView {
        }
     }
 
+    Component {
+        id: mainPageComponent
+
+        MainPage {
+        }
+    }
+
     AdaptivePageLayout {
         id: layout
 
@@ -513,8 +518,51 @@ MainView {
             }
         }
         asynchronous: false
-        primaryPage: MainPage {
+        primaryPage: Page {
             id: mainPage
+
+            property alias enabled: loader.active
+
+
+            header: loader.item ? loader.item.header : null
+
+            function selectThread(index) {
+                if (loader.item)  loader.item.selectMessage(index)
+            }
+
+            function unselectThread() {
+                if (loader.item)  loader.item.displayedThreadIndex = -1
+            }
+
+            function currentIndex() {
+                return (loader.item) ? loader.item.displayedThreadIndex : -1
+            }
+
+            Loader {
+                id: loader
+
+                active: application.defaultStartupMode
+                anchors.fill: parent
+                sourceComponent: mainPageComponent
+                onLoaded: {
+                    mainPage.flickable = item.header.flickable
+                    loader.item.forceActiveFocus()
+                   // mainPage.selectThread = item.selectMessage
+                }
+                visible: status == Loader.Ready
+            }
+
+            onActiveFocusChanged: {
+                console.log('MainPage activeFocus', activeFocus)
+                if (loader.item) loader.item.forceActiveFocus()
+            }
+
+            Binding {
+                target: pageStack
+                property: "activePage"
+                value: loader.item
+                when: layout.columns === 1
+            }
         }
 
         property bool completed: false
@@ -525,12 +573,18 @@ MainView {
                 if (application.findMessagingChild("emptyStatePage")) {
                     emptyStack(false)
                 }
-            } else if (layout.completed && layout.columns == 2 && !application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
+            } else if (layout.completed && layout.columns == 2) {
+                if (!mainPage.enabled) {
+                   mainPage.enabled = true
+                }
+                if(!application.findMessagingChild("emptyStatePage") && !application.findMessagingChild("fakeItem")) {
                 // we only have things to do here in case no thread is selected
-                emptyStack()
+                    emptyStack()
+                }
             }
         }
         Component.onCompleted: {
+
             if (layout.columns == 2 && !application.findMessagingChild("emptyStatePage")) {
                 // add the empty state page if necessary
                 emptyStack()
@@ -539,7 +593,38 @@ MainView {
         }
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: theme.palette.normal.background
+        visible: _pendingProperties !== null
+        ActivityIndicator {
+            anchors.centerIn: parent
+            running: parent.visible
+        }
+    }
+
     FavoriteChannels {
         id: favoriteChannelsItem
     }
+
+    Connections {
+        target: application
+
+        onStartChatRequested: startChat(properties)
+        onStartNewMessageRequested: startNewMessage()
+    }
+
+
+    Component.onCompleted: {
+        console.log('messaging-app completed', application.defaultStartupMode)
+
+        i18n.domain = "messaging-app"
+        i18n.bindtextdomain("messaging-app", i18nDirectory)
+
+        // when running in windowed mode, do not allow resizing
+        view.minimumWidth  = Qt.binding( function() { return units.gu(40) } )
+        view.minimumHeight = Qt.binding( function() { return units.gu(60) } )
+
+    }
+
 }
