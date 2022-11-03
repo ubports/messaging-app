@@ -1,3 +1,9 @@
+messaging-app (0.1.5) xenial; urgency=medium
+
+  * revert new contact backend
+
+ -- Lionel Duboeuf <lduboeuf@ouvaton.org>  Wed, 02 Oct 2022 22:04:34 +0200
+
 messaging-app (0.1.4) xenial; urgency=medium
 
   * debian/control: bump dependency to apparmor-easyprof-ubuntu
