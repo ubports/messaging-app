@@ -29,7 +29,7 @@ Desktop mode
 
 `clickable desktop` or via `clickable ide qtcreator`
 
-If we want to test with real data, History database and Contact database must be present in `~.local/share/history-service/history.sqlite` and `/home/lionel/.local/share/system/privileged/Contacts/qtcontacts-sqlite/contacts.db` respectively
+If we want to test with real data, History database and Contact database must be present in `~.clickable/home/.local/share/history-service/history.sqlite` and `~.clickable/home/.local/share/system/privileged/Contacts/qtcontacts-sqlite/contacts.db` respectively
 There is a condition that must be commented in order to see messages: see updateFilters method in Messages.qml
 
 Building with crossbuilder ( build & install as a deb package )
