@@ -33,6 +33,7 @@ ListItemWithActions {
     property QtObject chatEntry: null
     property bool compactView: false
     property bool isIncomingMmsError: eventSenderId !== "self" && eventTextMessageType === HistoryEventModel.MessageTypeMultiPart && displayedEventTextAttachments.length === 0 && (eventTextMessage.length === 0 || eventTextMessageStatus === HistoryEventModel.MessageStatusTemporarilyFailed || eventTextMessageStatus === HistoryEventModel.MessageStatusPermanentlyFailed || eventTextMessageStatus === HistoryEventModel.MessageStatusPending)
+    property bool isEmergencyBroadcast: eventSenderId === "x-ofono-cellbroadcast"
     property string defaultMMSErrorMessage: i18n.tr("New MMS notification")
     property var participant: participants ? participants[0] : {}
     property bool groupChat: chatType == HistoryThreadModel.ChatTypeRoom || participants.length > 1
@@ -189,6 +190,8 @@ ListItemWithActions {
         fallbackAvatarUrl: {
             if (delegateHelper.avatar !== "") {
                 return delegateHelper.avatar
+            } else if (isEmergencyBroadcast){
+                return "image://theme/broadcast"
             } else {
                 return "image://theme/contact"
             }
@@ -217,6 +220,9 @@ ListItemWithActions {
                 return "image://theme/broadcast"
             } else if (groupChat) {
                 return "image://theme/contact-group"
+            } else if (isEmergencyBroadcast) {
+                // TODO images according to severity
+                return "image://theme/dialog-warning-symbolic"
             }
             return "image://theme/contact"
         }
@@ -245,6 +251,8 @@ ListItemWithActions {
                     // FIXME: replace the dtr() call by a regular tr() call after
                     // string freeze
                     return i18n.dtr("telephony-service", "Unknown Number")
+                } else if (isEmergencyBroadcast) {
+                    return i18n.tr("Cell Broadcast")
                 } else if (unknownContact) {
                     return delegateHelper.phoneNumber
                 } else {

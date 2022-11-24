@@ -80,6 +80,7 @@ Page {
     property alias contactWatcher: contactWatcherInternal
     property string scrollToEventId: ""
     property bool isSearching: scrollToEventId !== ""
+    property bool isReadOnlyThread: firstParticipant && firstParticipant.identifier === "x-ofono-cellbroadcast"
     property string latestEventId: ""
     property bool reloadFilters: false
     // to be used by tests as variant does not work with autopilot
@@ -93,6 +94,11 @@ Page {
         var participant = participants[0]
         if (typeof participant === "string") {
             return {identifier: participant, alias: participant}
+        } else if (participant.identifier === "x-ofono-cellbroadcast") {
+            participant.alias = i18n.tr("Cell Broadcast")
+            participant.avatar = "image://theme/broadcast"
+            console.log("participant", JSON.stringify(participant))
+            return participant
         } else {
             return participant
         }
@@ -823,6 +829,16 @@ Page {
                 }
                 contents: headerContents
                 trailingActions: groupChatState.trailingActions
+                backEnabled: pageStack.columns === 1
+            }
+        },
+        State {
+            id: readOnlyThread
+            name: "readOnlyThread"
+            when: messages.isReadOnlyThread
+            PropertyChanges {
+                target: pageHeader
+                contents: headerContents
                 backEnabled: pageStack.columns === 1
             }
         },
@@ -1650,7 +1666,7 @@ Page {
             left: parent.left
             right: parent.right
         }
-
+        visible: !isReadOnlyThread
         participants: messages.participants
         threadId: messages.threadId
         presenceRequest: messages.presenceRequest
