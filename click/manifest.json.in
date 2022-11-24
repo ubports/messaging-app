@@ -6,10 +6,11 @@
     "hooks": {
         "messaging-app": {
             "apparmor": "messaging-app.apparmor",
-            "desktop":  "messaging-app.desktop"
+            "desktop":  "messaging-app.desktop",
+            "urls": "messaging-app.url-dispatcher"
         }
     },
     "version": "0.0.0+testing-click-build",
     "maintainer": "UBports <dev@ubports.com>",
-    "framework" : "ubuntu-sdk-16.04"
+    "framework" : "@CLICK_FRAMEWORK@"
 }

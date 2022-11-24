@@ -29,7 +29,7 @@ BottomEdge {
     preloadContent: true
 
     onCommitCompleted: {
-        layout.addPageToNextColumn(mainPage, bottomEdge.contentUrl)
+        layout.addPageToNextColumn(layout.primaryPage, bottomEdge.contentUrl)
         collapse()
     }
 

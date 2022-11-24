@@ -21,7 +21,6 @@
 #include "fileoperations.h"
 #include "stickers-history-model.h"
 #include "stickers-pack-model.h"
-
 #include <libnotify/notify.h>
 
 #include <QDir>
@@ -89,8 +88,13 @@ static QObject* StickersHistoryModel_singleton_factory(QQmlEngine* engine, QJSEn
 }
 
 MessagingApplication::MessagingApplication(int &argc, char **argv)
-    : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
+    : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false), mDefaultStartupMode(true)
 {
+#if defined(CLICK_TEST_MODE)
+    mValidSchemes = QStringList() << "messagetest" << "smstest";
+#else
+    mValidSchemes = QStringList() << "message" << "sms";
+#endif
 }
 
 bool MessagingApplication::fullscreen() const
@@ -103,12 +107,7 @@ bool MessagingApplication::setup()
 {
     QDBusConnection::sessionBus().registerService("com.canonical.MessagingApp");
     installIconPath();
-    static QList<QString> validSchemes;
     bool fullScreen = false;
-
-    if (validSchemes.isEmpty()) {
-        validSchemes << "message" << "sms";
-    }
 
     QStringList arguments = this->arguments();
 
@@ -157,7 +156,8 @@ bool MessagingApplication::setup()
 
     if (arguments.size() == 2) {
         QUrl uri(arguments.at(1));
-        if (validSchemes.contains(uri.scheme())) {
+        if (mValidSchemes.contains(uri.scheme())) {
+            mDefaultStartupMode = false;
             m_arg = arguments.at(1);
         }
     }
@@ -171,6 +171,7 @@ bool MessagingApplication::setup()
     m_view->rootContext()->setContextProperty("i18nDirectory", I18N_DIRECTORY);
     m_view->rootContext()->setContextProperty("view", m_view);
     m_view->engine()->addImportPath(UNITY8_QML_PATH);
+
 
     // check if there is a contacts backend override
     QString contactsBackend = qgetenv("QTCONTACTS_MANAGER_OVERRIDE");
@@ -204,9 +205,15 @@ bool MessagingApplication::setup()
     } else {
         m_view->show();
     }
+
     notify_init(C::gettext("Messaging application"));
 
     return true;
+}
+
+bool MessagingApplication::defaultStartupMode() const
+{
+    return mDefaultStartupMode;
 }
 
 MessagingApplication::~MessagingApplication()
@@ -240,6 +247,7 @@ void MessagingApplication::onApplicationReady()
 {
     m_applicationIsReady = true;
     parseArgument(m_arg);
+
     m_arg.clear();
 }
 
@@ -284,16 +292,11 @@ void MessagingApplication::parseArgument(const QString &arg)
         }
     }
 
-    QQuickItem *mainView = m_view->rootObject();
-    if (!mainView) {
-        return;
-    }
-
-    if (scheme == "message" || scheme == "sms") {
+    if (mValidSchemes.contains(scheme)) {
         if (value.isEmpty() && properties.isEmpty()) {
-            QMetaObject::invokeMethod(mainView, "startNewMessage");
+            Q_EMIT startNewMessageRequested();
         } else {
-            QMetaObject::invokeMethod(mainView, "startChat", Q_ARG(QVariant, properties));
+            Q_EMIT startChatRequested(properties);
         }
     }
 }

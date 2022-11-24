@@ -4,6 +4,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 option(ENABLE_TESTS "Build test programs" ON)
 option(CLICK_MODE "Build click package" OFF)
+option(ENABLE_TRANSLATION "Build Translation" ON)
+
+if (CLICK_MODE)
+    add_definitions(-DCLICK_TEST_MODE)
+endif()
 
 # Standard install paths
 include(GNUInstallDirs)
@@ -71,8 +76,9 @@ include_directories(
     )
 
 enable_testing()
-
-add_subdirectory(po)
+if (ENABLE_TRANSLATION)
+    add_subdirectory(po)
+endif()
 add_subdirectory(src)
 add_subdirectory(accounts)
 if (CLICK_MODE)

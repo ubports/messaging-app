@@ -585,6 +585,7 @@ Flickable {
                 Keys.onPressed: {
                     if (event.key === Qt.Key_Tab) {
                         event.accepted = autoComplete()
+                        sendButton.focus = true
                     } else if (participantPopover.popupVisible) {
                         // cancel non-visual autocomplete if any other key is pressed
                         participantPopover.close()
