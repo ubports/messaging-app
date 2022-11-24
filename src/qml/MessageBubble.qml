@@ -109,6 +109,10 @@ Item {
                               senderName.contentWidth))
             + units.gu(3)
 
+    Behavior on height {
+        NumberAnimation {}
+    }
+
     // if possible, put the timestamp and the delivery status in the same line as the text
     property int oneLineWidth: textLabel.implicitWidth + messageFooter.width
     property bool oneLine: oneLineWidth <= maxDelegateWidth
@@ -145,7 +149,7 @@ Item {
                 leftMargin: units.gu(1)
                 rightMargin: units.gu(1)
             }
-            fontSize: "medium"
+            fontSize: mainView.scaledFontSize
             onLinkActivated:  Qt.openUrlExternally(link)
             text: root.parseText(messageText)
             width: root.oneLine ? implicitWidth : maxDelegateWidth

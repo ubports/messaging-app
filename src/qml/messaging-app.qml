@@ -45,10 +45,13 @@ MainView {
     property alias autoplayAnimatedImage: globalSettings.autoplayAnimatedImage
     property alias enableStickers: globalSettings.enableStickers
     property alias autoPopupKeyboard: globalSettings.autoPopupKeyboard
+    property alias scaleLevel: globalSettings.scaleLevel
+
+    readonly property variant fontSizeNames: ["small", "medium", "large", "x-large"]
+    readonly property string scaledFontSize: fontSizeNames[scaleLevel]
 
     // private
     property var _pendingProperties: null
-
 
     function updateNewMessageStatus() {
         activeMessagesView = application.findMessagingChild("messagesPage", "active", true)
@@ -294,6 +297,7 @@ MainView {
         property bool autoplayAnimatedImage: true
         property bool enableStickers: true
         property bool autoPopupKeyboard: true
+        property int scaleLevel: 1
     }
 
     Connections {

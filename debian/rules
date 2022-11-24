@@ -62,7 +62,7 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 ifneq (,$(filter $(DEB_HOST_ARCH),$(testskip_architectures)))
 	-dh_auto_test
 else
-	dh_auto_test
+	CTEST_OUTPUT_ON_FAILURE=1 dh_auto_test
 endif
 endif
 
